@@ -12,6 +12,10 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@nestjs/common": "^11.1.5",
+    "@nestjs/core": "^11.1.5",
+    "@nestjs/platform-express": "^11.1.5",
+    "@supabase/supabase-js": "^2.52.1",
     "concurrently": "^9.2.0",
     "cross-env": "^7.0.3"
   }
