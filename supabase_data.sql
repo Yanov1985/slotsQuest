@@ -86,7 +86,7 @@ INSERT INTO slots (name, slug, provider_id, category_id, description, thumbnail_
 SELECT 
     'Starburst', 'starburst', p.id, c.id, 
     'Classic NetEnt slot with expanding wilds and re-spins', 
-    'https://via.placeholder.com/300x200?text=Starburst',
+    'https://picsum.photos/300/200?random=1',
     96.09, 'low', 0.10, 100.00, 5, 3, 'Space/Gems', 
     '2012-01-01', 8.5, 25000, true
 FROM providers p, slot_categories c 
@@ -97,7 +97,7 @@ INSERT INTO slots (name, slug, provider_id, category_id, description, thumbnail_
 SELECT 
     'Book of Dead', 'book-of-dead', p.id, c.id, 
     'Egyptian-themed adventure slot with expanding symbols', 
-    'https://via.placeholder.com/300x200?text=Book+of+Dead',
+    'https://picsum.photos/300/200?random=2',
     96.21, 'high', 0.01, 100.00, 5, 3, 'Ancient Egypt', 
     '2016-01-01', 9.0, 18500, true
 FROM providers p, slot_categories c 
@@ -108,7 +108,7 @@ INSERT INTO slots (name, slug, provider_id, category_id, description, thumbnail_
 SELECT 
     'Mega Moolah', 'mega-moolah', p.id, c.id, 
     'Famous progressive jackpot slot with African safari theme', 
-    'https://via.placeholder.com/300x200?text=Mega+Moolah',
+    'https://picsum.photos/300/200?random=3',
     88.12, 'medium', 0.25, 6.25, 5, 3, 'African Safari', 
     '2006-01-01', 8.8, 32000, true
 FROM providers p, slot_categories c 
@@ -119,7 +119,7 @@ INSERT INTO slots (name, slug, provider_id, category_id, description, thumbnail_
 SELECT 
     'Sweet Bonanza', 'sweet-bonanza', p.id, c.id, 
     'Candy-themed slot with tumble feature and multipliers', 
-    'https://via.placeholder.com/300x200?text=Sweet+Bonanza',
+    'https://picsum.photos/300/200?random=6',
     96.51, 'high', 0.20, 125.00, 6, 5, 'Candy/Sweets', 
     '2019-01-01', 8.6, 16800, true
 FROM providers p, slot_categories c 
@@ -130,7 +130,7 @@ INSERT INTO slots (name, slug, provider_id, category_id, description, thumbnail_
 SELECT 
     'Gonzo''s Quest', 'gonzos-quest', p.id, c.id, 
     'Adventure slot with avalanche feature and increasing multipliers', 
-    'https://via.placeholder.com/300x200?text=Gonzos+Quest',
+    'https://picsum.photos/300/200?random=4',
     95.97, 'medium', 0.20, 50.00, 5, 3, 'Adventure/Aztec', 
     '2010-01-01', 8.7, 22000, true
 FROM providers p, slot_categories c 

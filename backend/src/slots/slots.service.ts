@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
-import { mockSlots } from './mock-data';
 
 interface SlotFilters {
   provider?: string;
@@ -99,12 +98,9 @@ export class SlotsService {
 
     if (error) throw error;
 
-    // If no data from database, return mock featured slots
+    // If no data from database, return empty array
     if (!data || data.length === 0) {
-      return mockSlots
-        .filter((slot) => slot.rating >= 8.0)
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, 12);
+      return [];
     }
 
     return data;
@@ -128,9 +124,9 @@ export class SlotsService {
 
     if (error) throw error;
 
-    // If no data from database, return mock popular slots
+    // If no data from database, return empty array
     if (!data || data.length === 0) {
-      return mockSlots.sort((a, b) => b.play_count - a.play_count).slice(0, 12);
+      return [];
     }
 
     return data;
