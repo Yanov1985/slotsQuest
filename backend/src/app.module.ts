@@ -5,12 +5,14 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { SlotsModule } from './slots/slots.module';
 import { ProvidersModule } from './providers/providers.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    PrismaModule,
     SupabaseModule,
     SlotsModule,
     ProvidersModule,

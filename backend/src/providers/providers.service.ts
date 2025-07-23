@@ -46,11 +46,13 @@ export class ProvidersService {
 
     const { data, error } = await supabase
       .from('slots')
-      .select(`
+      .select(
+        `
         *,
         provider:providers(*),
         category:slot_categories(*)
-      `)
+      `,
+      )
       .eq('provider_id', provider.id)
       .eq('is_active', true)
       .order('rating', { ascending: false });
