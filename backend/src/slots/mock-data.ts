@@ -7,8 +7,8 @@ export const mockSlots = [
     thumbnail_url: 'https://via.placeholder.com/300x200?text=Starburst',
     rtp: 96.09,
     volatility: 'low',
-    min_bet: 0.10,
-    max_bet: 100.00,
+    min_bet: 0.1,
+    max_bet: 100.0,
     reels: 5,
     rows: 3,
     theme: 'Space/Gems',
@@ -22,14 +22,14 @@ export const mockSlots = [
       slug: 'netent',
       description: 'Leading provider of premium gaming solutions',
       founded_year: 1996,
-      country: 'Sweden'
+      country: 'Sweden',
     },
     category: {
       id: '1',
       name: 'Video Slots',
       slug: 'video-slots',
-      description: 'Modern video slot machines'
-    }
+      description: 'Modern video slot machines',
+    },
   },
   {
     id: '2',
@@ -40,7 +40,7 @@ export const mockSlots = [
     rtp: 96.21,
     volatility: 'high',
     min_bet: 0.01,
-    max_bet: 100.00,
+    max_bet: 100.0,
     reels: 5,
     rows: 3,
     theme: 'Ancient Egypt',
@@ -54,14 +54,14 @@ export const mockSlots = [
       slug: 'playngo',
       description: 'Mobile-first game developer',
       founded_year: 1997,
-      country: 'Sweden'
+      country: 'Sweden',
     },
     category: {
       id: '1',
       name: 'Video Slots',
       slug: 'video-slots',
-      description: 'Modern video slot machines'
-    }
+      description: 'Modern video slot machines',
+    },
   },
   {
     id: '3',
@@ -86,14 +86,14 @@ export const mockSlots = [
       slug: 'microgaming',
       description: 'Pioneer in online gaming software',
       founded_year: 1994,
-      country: 'Isle of Man'
+      country: 'Isle of Man',
     },
     category: {
       id: '2',
       name: 'Jackpot Slots',
       slug: 'jackpot-slots',
-      description: 'Progressive and fixed jackpot games'
-    }
+      description: 'Progressive and fixed jackpot games',
+    },
   },
   {
     id: '4',
@@ -103,8 +103,8 @@ export const mockSlots = [
     thumbnail_url: 'https://via.placeholder.com/300x200?text=Gonzo%27s+Quest',
     rtp: 95.97,
     volatility: 'medium',
-    min_bet: 0.20,
-    max_bet: 50.00,
+    min_bet: 0.2,
+    max_bet: 50.0,
     reels: 5,
     rows: 3,
     theme: 'Adventure',
@@ -118,14 +118,14 @@ export const mockSlots = [
       slug: 'netent',
       description: 'Leading provider of premium gaming solutions',
       founded_year: 1996,
-      country: 'Sweden'
+      country: 'Sweden',
     },
     category: {
       id: '1',
       name: 'Video Slots',
       slug: 'video-slots',
-      description: 'Modern video slot machines'
-    }
+      description: 'Modern video slot machines',
+    },
   },
   {
     id: '5',
@@ -135,8 +135,8 @@ export const mockSlots = [
     thumbnail_url: 'https://via.placeholder.com/300x200?text=Immortal+Romance',
     rtp: 96.86,
     volatility: 'medium',
-    min_bet: 0.30,
-    max_bet: 6.00,
+    min_bet: 0.3,
+    max_bet: 6.0,
     reels: 5,
     rows: 3,
     theme: 'Vampire/Romance',
@@ -150,14 +150,14 @@ export const mockSlots = [
       slug: 'microgaming',
       description: 'Pioneer in online gaming software',
       founded_year: 1994,
-      country: 'Isle of Man'
+      country: 'Isle of Man',
     },
     category: {
       id: '1',
       name: 'Video Slots',
       slug: 'video-slots',
-      description: 'Modern video slot machines'
-    }
+      description: 'Modern video slot machines',
+    },
   },
   {
     id: '6',
@@ -167,8 +167,8 @@ export const mockSlots = [
     thumbnail_url: 'https://via.placeholder.com/300x200?text=Sweet+Bonanza',
     rtp: 96.51,
     volatility: 'high',
-    min_bet: 0.20,
-    max_bet: 125.00,
+    min_bet: 0.2,
+    max_bet: 125.0,
     reels: 6,
     rows: 5,
     theme: 'Candy/Sweets',
@@ -182,15 +182,15 @@ export const mockSlots = [
       slug: 'pragmatic-play',
       description: 'Multi-product content provider',
       founded_year: 2015,
-      country: 'Malta'
+      country: 'Malta',
     },
     category: {
       id: '1',
       name: 'Video Slots',
       slug: 'video-slots',
-      description: 'Modern video slot machines'
-    }
-  }
+      description: 'Modern video slot machines',
+    },
+  },
 ];
 
 export const mockProviders = [
@@ -201,7 +201,7 @@ export const mockProviders = [
     description: 'Leading provider of premium gaming solutions',
     founded_year: 1996,
     country: 'Sweden',
-    is_active: true
+    is_active: true,
   },
   {
     id: '2',
@@ -210,7 +210,7 @@ export const mockProviders = [
     description: 'Mobile-first game developer',
     founded_year: 1997,
     country: 'Sweden',
-    is_active: true
+    is_active: true,
   },
   {
     id: '3',
@@ -219,7 +219,7 @@ export const mockProviders = [
     description: 'Pioneer in online gaming software',
     founded_year: 1994,
     country: 'Isle of Man',
-    is_active: true
+    is_active: true,
   },
   {
     id: '4',
@@ -228,6 +228,6 @@ export const mockProviders = [
     description: 'Multi-product content provider',
     founded_year: 2015,
     country: 'Malta',
-    is_active: true
-  }
+    is_active: true,
+  },
 ];

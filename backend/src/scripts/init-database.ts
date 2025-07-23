@@ -69,14 +69,13 @@ async function initDatabase() {
 
     if (error) {
       console.error('❌ Error executing SQL:', error);
-      
+
       // Fallback: try inserting data step by step
       console.log('🔄 Trying alternative approach...');
       await insertDataStepByStep();
     } else {
       console.log('✅ Database initialized successfully!');
     }
-
   } catch (error) {
     console.error('❌ Database initialization failed:', error);
     console.log('🔄 Trying alternative approach...');
@@ -88,19 +87,24 @@ async function insertDataStepByStep() {
   try {
     // Create a simple test slot without foreign key constraints
     console.log('📦 Creating test data...');
-    
+
     // First, let's just try to read from the tables to see what's available
     const { data: providers } = await supabase.from('providers').select('*');
-    const { data: categories } = await supabase.from('slot_categories').select('*');
-    
+    const { data: categories } = await supabase
+      .from('slot_categories')
+      .select('*');
+
     console.log('Existing providers:', providers?.length || 0);
     console.log('Existing categories:', categories?.length || 0);
-    
+
     if (!providers || providers.length === 0) {
-      console.log('⚠️  No providers found. Database may need to be initialized manually.');
-      console.log('Please run the SQL script from supabase_init.sql in your Supabase dashboard.');
+      console.log(
+        '⚠️  No providers found. Database may need to be initialized manually.',
+      );
+      console.log(
+        'Please run the SQL script from supabase_init.sql in your Supabase dashboard.',
+      );
     }
-    
   } catch (error) {
     console.error('❌ Alternative approach failed:', error);
   }

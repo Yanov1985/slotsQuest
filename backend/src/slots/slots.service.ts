@@ -69,10 +69,14 @@ export class SlotsService {
     const { data, error } = await query;
 
     if (error) throw error;
-    
+
     // Debug: log what we got from database
-    console.log('Database query result:', { data, error, dataLength: data?.length });
-    
+    console.log('Database query result:', {
+      data,
+      error,
+      dataLength: data?.length,
+    });
+
     return data;
   }
 
@@ -94,15 +98,15 @@ export class SlotsService {
       .limit(12);
 
     if (error) throw error;
-    
+
     // If no data from database, return mock featured slots
     if (!data || data.length === 0) {
       return mockSlots
-        .filter(slot => slot.rating >= 8.0)
+        .filter((slot) => slot.rating >= 8.0)
         .sort((a, b) => b.rating - a.rating)
         .slice(0, 12);
     }
-    
+
     return data;
   }
 
@@ -123,14 +127,12 @@ export class SlotsService {
       .limit(12);
 
     if (error) throw error;
-    
+
     // If no data from database, return mock popular slots
     if (!data || data.length === 0) {
-      return mockSlots
-        .sort((a, b) => b.play_count - a.play_count)
-        .slice(0, 12);
+      return mockSlots.sort((a, b) => b.play_count - a.play_count).slice(0, 12);
     }
-    
+
     return data;
   }
 
