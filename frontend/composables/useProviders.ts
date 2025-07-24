@@ -20,9 +20,53 @@ export const useProviders = () => {
     return response.data
   }
 
+  // Create provider
+  const createProvider = async (providerData: any) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/providers`, {
+        method: 'POST',
+        body: providerData
+      })
+      return response
+    } catch (error) {
+      console.error('Error creating provider:', error)
+      throw error
+    }
+  }
+
+  // Update provider
+  const updateProvider = async (id: string, providerData: any) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/providers/${id}`, {
+        method: 'PUT',
+        body: providerData
+      })
+      return response
+    } catch (error) {
+      console.error('Error updating provider:', error)
+      throw error
+    }
+  }
+
+  // Delete provider
+  const deleteProvider = async (id: string) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/providers/${id}`, {
+        method: 'DELETE'
+      })
+      return response
+    } catch (error) {
+      console.error('Error deleting provider:', error)
+      throw error
+    }
+  }
+
   return {
     getProviders,
     getProviderBySlug,
-    getSlotsByProvider
+    getSlotsByProvider,
+    createProvider,
+    updateProvider,
+    deleteProvider
   }
 }

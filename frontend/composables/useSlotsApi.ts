@@ -89,6 +89,47 @@ export const useSlotsApi = () => {
     return response.data
   }
 
+  // Create slot
+  const createSlot = async (slotData: any) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/slots`, {
+        method: 'POST',
+        body: slotData
+      })
+      return response
+    } catch (error) {
+      console.error('Error creating slot:', error)
+      throw error
+    }
+  }
+
+  // Update slot
+  const updateSlot = async (id: string, slotData: any) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/slots/${id}`, {
+        method: 'PUT',
+        body: slotData
+      })
+      return response
+    } catch (error) {
+      console.error('Error updating slot:', error)
+      throw error
+    }
+  }
+
+  // Delete slot
+  const deleteSlot = async (id: string) => {
+    try {
+      const response = await $fetch(`${baseURL}/api/slots/${id}`, {
+        method: 'DELETE'
+      })
+      return response
+    } catch (error) {
+      console.error('Error deleting slot:', error)
+      throw error
+    }
+  }
+
   return {
     getSlots,
     getFeaturedSlots,
@@ -98,6 +139,9 @@ export const useSlotsApi = () => {
     getSlotReviews,
     createSlotReview,
     addSlotRating,
-    getSlotRating
+    getSlotRating,
+    createSlot,
+    updateSlot,
+    deleteSlot
   }
 }
