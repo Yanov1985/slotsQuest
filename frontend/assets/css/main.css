@@ -1,3 +1,8 @@
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* SlotQuest Main Styles */
 
 /* Reset and base styles */
