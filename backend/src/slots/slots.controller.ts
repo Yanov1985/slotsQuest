@@ -31,7 +31,8 @@ export class SlotsController {
         offset: offset ? parseInt(offset) : undefined,
       });
       return { data };
-    } catch {
+    } catch (error) {
+      console.error('Error in getAllSlots:', error);
       throw new HttpException(
         'Failed to fetch slots',
         HttpStatus.INTERNAL_SERVER_ERROR,

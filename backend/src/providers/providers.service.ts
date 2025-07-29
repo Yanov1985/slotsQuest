@@ -1,63 +1,51 @@
 import { Injectable } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class ProvidersService {
-  constructor(private readonly supabaseService: SupabaseService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async getAllProviders() {
-    const supabase = this.supabaseService.getClient();
-
-    const { data, error } = await supabase
-      .from('providers')
-      .select('*')
-      .eq('is_active', true)
-      .order('name');
-
-    if (error) throw error;
+    const data = await this.prisma.providers.findMany({
+      where: {
+        is_active: true,
+      },
+      orderBy: {
+        name: 'asc',
+      },
+    });
     return { data };
   }
 
   async getProviderBySlug(slug: string) {
-    const supabase = this.supabaseService.getClient();
-
-    const { data, error } = await supabase
-      .from('providers')
-      .select('*')
-      .eq('slug', slug)
-      .eq('is_active', true)
-      .single();
-
-    if (error) throw error;
+    const data = await this.prisma.providers.findFirst({
+      where: {
+        slug,
+        is_active: true,
+      },
+    });
+    if (!data) {
+      throw new Error('Provider not found');
+    }
     return { data };
   }
 
   async getProviderSlots(slug: string) {
-    const supabase = this.supabaseService.getClient();
-
-    // First get the provider ID
-    const { data: provider, error: providerError } = await supabase
-      .from('providers')
-      .select('id')
-      .eq('slug', slug)
-      .single();
-
-    if (providerError) throw providerError;
-
-    const { data, error } = await supabase
-      .from('slots')
-      .select(
-        `
-        *,
-        provider:providers(*),
-        category:slot_categories(*)
-      `,
-      )
-      .eq('provider_id', provider.id)
-      .eq('is_active', true)
-      .order('rating', { ascending: false });
-
-    if (error) throw error;
+    const data = await this.prisma.slots.findMany({
+      where: {
+        providers: {
+          slug,
+        },
+        is_active: true,
+      },
+      include: {
+        providers: true,
+        slot_categories: true,
+      },
+      orderBy: {
+        rating: 'desc',
+      },
+    });
     return { data };
   }
 }

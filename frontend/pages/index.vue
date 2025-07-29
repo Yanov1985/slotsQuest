@@ -44,10 +44,10 @@
       <section class="container mx-auto px-4 py-20">
         <div class="text-center mb-16">
           <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            🎰 Популярные слоты
+            🎰 Все слоты
           </h2>
           <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-            Откройте для себя самые захватывающие игры с невероятными бонусами и джекпотами
+            Откройте для себя все доступные игры с невероятными бонусами и джекпотами
           </p>
         </div>
         
@@ -241,6 +241,69 @@
         </div>
       </section>
 
+      <!-- API Test Section -->
+      <section class="container mx-auto px-4 py-20">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+            🔧 Проверка API
+          </h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Проверьте соединение между фронтендом и бекендом
+          </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- API Status -->
+            <div class="p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-500/20 backdrop-blur-sm">
+              <div class="text-center">
+                <div class="text-6xl mb-4">{{ apiStatus === 'success' ? '✅' : apiStatus === 'error' ? '❌' : '🔄' }}</div>
+                <h3 class="text-2xl font-bold text-white mb-4">Статус API</h3>
+                <p class="text-gray-300 mb-6">
+                  {{ apiStatus === 'success' ? 'API работает корректно' : 
+                     apiStatus === 'error' ? 'Ошибка подключения к API' : 
+                     'Проверка соединения...' }}
+                </p>
+                <button 
+                  @click="testApi" 
+                  :disabled="apiTesting"
+                  class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg"
+                >
+                  {{ apiTesting ? '🔄 Проверка...' : '🔍 Проверить API' }}
+                </button>
+              </div>
+            </div>
+            
+            <!-- Slots Count -->
+            <div class="p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-purple-500/20 backdrop-blur-sm">
+              <div class="text-center">
+                <div class="text-6xl mb-4">🎰</div>
+                <h3 class="text-2xl font-bold text-white mb-4">Слоты в базе</h3>
+                <div class="text-4xl font-black text-purple-400 mb-4">
+                  {{ slots ? slots.length : '0' }}
+                </div>
+                <p class="text-gray-300 mb-6">
+                  {{ slots && slots.length > 0 ? 'Слоты загружены успешно' : 'Нет данных о слотах' }}
+                </p>
+                <button 
+                  @click="refresh()" 
+                  :disabled="pending"
+                  class="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg"
+                >
+                  {{ pending ? '🔄 Загрузка...' : '🔄 Обновить данные' }}
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Debug Info -->
+          <div v-if="debugInfo" class="mt-8 p-6 rounded-xl bg-gray-900/50 border border-gray-700">
+            <h4 class="text-lg font-bold text-white mb-4">🐛 Отладочная информация</h4>
+            <pre class="text-sm text-gray-300 overflow-x-auto">{{ debugInfo }}</pre>
+          </div>
+        </div>
+      </section>
+
       <!-- Call to Action Section -->
       <section class="container mx-auto px-4 py-32">
         <div class="text-center max-w-5xl mx-auto relative">
@@ -329,8 +392,68 @@
 
 <script setup>
 // Load slots data from API
-const { getPopularSlots } = useSlotsApi()
-const { data: slots, pending, error, refresh } = await useLazyAsyncData('popular-slots', () => getPopularSlots())
+const { getSlots } = useSlotsApi()
+const { data: slots, pending, error, refresh } = await useLazyAsyncData('all-slots', () => getSlots())
+
+// API testing state
+const apiStatus = ref('idle') // 'idle', 'testing', 'success', 'error'
+const apiTesting = ref(false)
+const debugInfo = ref('')
+
+// Test API connection
+const testApi = async () => {
+  apiTesting.value = true
+  apiStatus.value = 'testing'
+  debugInfo.value = ''
+  
+  try {
+    const config = useRuntimeConfig()
+    const baseURL = config.public.apiUrl
+    
+    // Test backend health
+    const healthResponse = await $fetch(`${baseURL}/api/health`).catch(() => null)
+    
+    // Test slots API
+    const slotsResponse = await $fetch(`${baseURL}/api/slots`).catch(err => {
+      throw new Error(`Slots API error: ${err.message || err}`)
+    })
+    
+    debugInfo.value = JSON.stringify({
+      backend_url: baseURL,
+      health_check: healthResponse ? 'OK' : 'Failed',
+      slots_count: slotsResponse?.data?.length || 0,
+      slots_sample: slotsResponse?.data?.slice(0, 2) || [],
+      timestamp: new Date().toISOString()
+    }, null, 2)
+    
+    apiStatus.value = 'success'
+  } catch (err) {
+    console.error('API Test Error:', err)
+    debugInfo.value = JSON.stringify({
+      error: err.message || err.toString(),
+      timestamp: new Date().toISOString()
+    }, null, 2)
+    apiStatus.value = 'error'
+  } finally {
+    apiTesting.value = false
+  }
+}
+
+// Auto-test API on mount
+onMounted(() => {
+  if (!slots.value || slots.value.length === 0) {
+    testApi()
+  } else {
+    apiStatus.value = 'success'
+  }
+})
+
+// Watch for slots data changes
+watch(slots, (newSlots) => {
+  if (newSlots && newSlots.length > 0 && apiStatus.value !== 'success') {
+    apiStatus.value = 'success'
+  }
+})
 
 // Page meta
 useHead({
