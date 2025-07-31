@@ -20,6 +20,13 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       wasm: true
+    },
+    devProxy: {
+      '/api': {
+        target: 'http://localhost:3001/api',
+        changeOrigin: true,
+        prependPath: true
+      }
     }
   }
 })

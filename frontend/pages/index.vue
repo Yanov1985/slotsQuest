@@ -30,10 +30,13 @@
         </div>
         
         <div class="flex flex-col sm:flex-row gap-6 justify-center mb-20">
-          <button class="group relative px-12 py-5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50">
-            <span class="relative z-10">🎰 Начать игру</span>
+          <NuxtLink 
+            to="/slots"
+            class="group relative px-12 py-5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 text-center"
+          >
+            <span class="relative z-10">🎰 Каталог слотов</span>
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </button>
+          </NuxtLink>
           <button class="group relative px-12 py-5 border-2 border-cyan-400/50 rounded-full font-bold text-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 backdrop-blur-sm">
             🏆 Турниры
           </button>
@@ -137,9 +140,9 @@
               
               <!-- Action Buttons -->
               <div class="flex space-x-3">
-                <button class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30">
-                  🎮 Играть
-                </button>
+                <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
+                  📖 Подробнее
+                </NuxtLink>
                 <button class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
                   💰 Демо
                 </button>

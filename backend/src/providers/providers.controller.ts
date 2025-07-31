@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { ProvidersService } from './providers.service';
 
-@Controller('providers')
+@Controller('api/providers')
 export class ProvidersController {
   constructor(private readonly providersService: ProvidersService) {}
 
@@ -15,9 +15,10 @@ export class ProvidersController {
   async getAllProviders() {
     try {
       return await this.providersService.getAllProviders();
-    } catch {
+    } catch (error) {
+      console.error('Providers error:', error);
       throw new HttpException(
-        'Failed to fetch providers',
+        `Failed to fetch providers: ${error.message}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

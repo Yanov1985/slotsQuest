@@ -11,8 +11,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Set global prefix
-  app.setGlobalPrefix('api');
+  // Global prefix removed - using controller-level prefixes
 
   const port = process.env.PORT || 3001;
   await app.listen(port);

@@ -20,19 +20,19 @@ export const useSlotsApi = () => {
     const url = `${baseURL}/api/slots${queryString ? `?${queryString}` : ''}`
 
     const response = await $fetch<{ data: any }>(url)
-    return response.data
+    return response.data || response
   }
 
   // Get featured slots
   const getFeaturedSlots = async () => {
     const response = await $fetch<{ data: any }>(`${baseURL}/api/slots/featured`)
-    return response.data
+    return response.data || response
   }
 
   // Get popular slots
   const getPopularSlots = async () => {
     const response = await $fetch<{ data: any }>(`${baseURL}/api/slots/popular`)
-    return response.data
+    return response.data || response
   }
 
   // Search slots

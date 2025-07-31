@@ -12,7 +12,7 @@ import { SlotsService } from './slots.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { CreateRatingDto } from './dto/create-rating.dto';
 
-@Controller('slots')
+@Controller('api/slots')
 export class SlotsController {
   constructor(private readonly slotsService: SlotsService) {}
 
@@ -34,7 +34,7 @@ export class SlotsController {
     } catch (error) {
       console.error('Error in getAllSlots:', error);
       throw new HttpException(
-        'Failed to fetch slots',
+        `Failed to fetch slots: ${error.message}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

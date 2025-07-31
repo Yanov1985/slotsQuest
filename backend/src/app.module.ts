@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { SlotsModule } from './slots/slots.module';
 import { ProvidersModule } from './providers/providers.module';
+import { CategoriesModule } from './categories/categories.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -16,6 +17,7 @@ import { PrismaModule } from './prisma/prisma.module';
     SupabaseModule,
     SlotsModule,
     ProvidersModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
