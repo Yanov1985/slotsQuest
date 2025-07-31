@@ -8,6 +8,7 @@ export const useSlotsApi = () => {
     category?: string
     limit?: number
     offset?: number
+    admin?: boolean
   }) => {
     const query = new URLSearchParams()
 
@@ -15,6 +16,7 @@ export const useSlotsApi = () => {
     if (filters?.category) query.append('category', filters.category)
     if (filters?.limit) query.append('limit', filters.limit.toString())
     if (filters?.offset) query.append('offset', filters.offset.toString())
+    if (filters?.admin) query.append('admin', 'true')
 
     const queryString = query.toString()
     const url = `${baseURL}/api/slots${queryString ? `?${queryString}` : ''}`
@@ -92,11 +94,11 @@ export const useSlotsApi = () => {
   // Create slot
   const createSlot = async (slotData: any) => {
     try {
-      const response = await $fetch(`${baseURL}/api/slots`, {
+      const response = await $fetch<{ data: any }>(`${baseURL}/api/slots`, {
         method: 'POST',
         body: slotData
       })
-      return response
+      return response.data || response
     } catch (error) {
       console.error('Error creating slot:', error)
       throw error
@@ -106,11 +108,11 @@ export const useSlotsApi = () => {
   // Update slot
   const updateSlot = async (id: string, slotData: any) => {
     try {
-      const response = await $fetch(`${baseURL}/api/slots/${id}`, {
+      const response = await $fetch<{ data: any }>(`${baseURL}/api/slots/${id}`, {
         method: 'PUT',
         body: slotData
       })
-      return response
+      return response.data || response
     } catch (error) {
       console.error('Error updating slot:', error)
       throw error

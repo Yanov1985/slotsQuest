@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateSlotDto } from './dto/create-slot.dto';
+import { UpdateSlotDto } from './dto/update-slot.dto';
 
 interface SlotFilters {
   provider?: string;
@@ -347,6 +349,102 @@ export class SlotsService {
       },
       orderBy: {
         rating: 'desc',
+      },
+    });
+
+    return slots;
+  }
+
+  async createSlot(createSlotDto: CreateSlotDto) {
+    // Generate slug from name
+    const slug = createSlotDto.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    // Prepare data with proper date conversion
+    const createData: any = {
+      ...createSlotDto,
+      slug,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+
+    // Convert release_date string to Date object if provided
+    if (createSlotDto.release_date) {
+      createData.release_date = new Date(createSlotDto.release_date);
+    }
+
+    const slot = await this.prisma.slots.create({
+      data: createData,
+      include: {
+        providers: true,
+        slot_categories: true,
+      },
+    });
+
+    return slot;
+  }
+
+  async updateSlot(id: string, updateSlotDto: UpdateSlotDto) {
+    // Update slug if name changed
+    const updateData: any = {
+      ...updateSlotDto,
+      updated_at: new Date(),
+    };
+
+    if (updateSlotDto.name) {
+      updateData.slug = updateSlotDto.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    }
+
+    // Convert release_date string to Date object if provided
+    if (updateSlotDto.release_date) {
+      updateData.release_date = new Date(updateSlotDto.release_date);
+    }
+
+    const slot = await this.prisma.slots.update({
+      where: { id },
+      data: updateData,
+      include: {
+        providers: true,
+        slot_categories: true,
+      },
+    });
+
+    return slot;
+  }
+
+  async deleteSlot(id: string) {
+    await this.prisma.slots.delete({
+      where: { id },
+    });
+
+    return { message: 'Slot deleted successfully' };
+  }
+
+  async getSlotById(id: string) {
+    const slot = await this.prisma.slots.findUnique({
+      where: { id },
+      include: {
+        providers: true,
+        slot_categories: true,
+      },
+    });
+
+    return slot;
+  }
+
+  async getAllSlotsForAdmin() {
+    const slots = await this.prisma.slots.findMany({
+      include: {
+        providers: true,
+        slot_categories: true,
+      },
+      orderBy: {
+        created_at: 'desc',
       },
     });
 

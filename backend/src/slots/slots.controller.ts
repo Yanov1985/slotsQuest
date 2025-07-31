@@ -4,6 +4,8 @@ import {
   Param,
   Query,
   Post,
+  Put,
+  Delete,
   Body,
   HttpException,
   HttpStatus,
@@ -11,6 +13,8 @@ import {
 import { SlotsService } from './slots.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { CreateRatingDto } from './dto/create-rating.dto';
+import { CreateSlotDto } from './dto/create-slot.dto';
+import { UpdateSlotDto } from './dto/update-slot.dto';
 
 @Controller('api/slots')
 export class SlotsController {
@@ -22,14 +26,20 @@ export class SlotsController {
     @Query('category') category?: string,
     @Query('limit') limit?: string,
     @Query('offset') offset?: string,
+    @Query('admin') admin?: string,
   ) {
     try {
-      const data = await this.slotsService.getAllSlots({
-        provider,
-        category,
-        limit: limit ? parseInt(limit) : undefined,
-        offset: offset ? parseInt(offset) : undefined,
-      });
+      let data;
+      if (admin === 'true') {
+        data = await this.slotsService.getAllSlotsForAdmin();
+      } else {
+        data = await this.slotsService.getAllSlots({
+          provider,
+          category,
+          limit: limit ? parseInt(limit) : undefined,
+          offset: offset ? parseInt(offset) : undefined,
+        });
+      }
       return { data };
     } catch (error) {
       console.error('Error in getAllSlots:', error);
@@ -173,6 +183,76 @@ export class SlotsController {
     } catch {
       throw new HttpException(
         'Failed to fetch slot rating',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Post()
+  async createSlot(@Body() createSlotDto: CreateSlotDto) {
+    try {
+      const slot = await this.slotsService.createSlot(createSlotDto);
+      return { data: slot };
+    } catch (error) {
+      console.error('Error creating slot:', error);
+      throw new HttpException(
+        `Failed to create slot: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Put(':id')
+  async updateSlot(
+    @Param('id') id: string,
+    @Body() updateSlotDto: UpdateSlotDto,
+  ) {
+    try {
+      const slot = await this.slotsService.updateSlot(id, updateSlotDto);
+      return { data: slot };
+    } catch (error) {
+      console.error('Error updating slot:', error);
+      if (error.code === 'P2025') {
+        throw new HttpException('Slot not found', HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(
+        `Failed to update slot: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Delete(':id')
+  async deleteSlot(@Param('id') id: string) {
+    try {
+      const result = await this.slotsService.deleteSlot(id);
+      return result;
+    } catch (error) {
+      console.error('Error deleting slot:', error);
+      if (error.code === 'P2025') {
+        throw new HttpException('Slot not found', HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(
+        `Failed to delete slot: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  @Get('admin/:id')
+  async getSlotById(@Param('id') id: string) {
+    try {
+      const slot = await this.slotsService.getSlotById(id);
+      if (!slot) {
+        throw new HttpException('Slot not found', HttpStatus.NOT_FOUND);
+      }
+      return { data: slot };
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        'Failed to fetch slot',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

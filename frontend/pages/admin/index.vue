@@ -164,7 +164,7 @@
                 </td>
                 <td class="px-6 py-4">
                   <span class="px-2 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded text-cyan-400 text-sm">
-                    {{ slot.provider?.name || 'Не указан' }}
+                    {{ slot.providers?.name || 'Не указан' }}
                   </span>
                 </td>
                 <td class="px-6 py-4">
@@ -269,6 +269,30 @@
               </div>
             </div>
             
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Категория</label>
+                <select
+                  v-model="slotForm.category_id"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                >
+                  <option value="">Выберите категорию</option>
+                  <option v-for="category in categories" :key="category.id" :value="category.id">
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Тема</label>
+                <input
+                  v-model="slotForm.theme"
+                  type="text"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  placeholder="Тема слота"
+                />
+              </div>
+            </div>
+            
             <div>
               <label class="block text-sm font-medium text-gray-300 mb-2">Описание</label>
               <textarea
@@ -307,33 +331,90 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Макс. выигрыш</label>
                 <input
-                  v-model="slotForm.max_win"
-                  type="text"
+                  v-model.number="slotForm.max_win"
+                  type="number"
+                  min="0"
+                  step="0.01"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="5000x"
+                  placeholder="5000"
+                />
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Мин. ставка</label>
+                <input
+                  v-model.number="slotForm.min_bet"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  placeholder="0.01"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Макс. ставка</label>
+                <input
+                  v-model.number="slotForm.max_bet"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  placeholder="100"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Барабаны</label>
+                <input
+                  v-model.number="slotForm.reels"
+                  type="number"
+                  min="1"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  placeholder="5"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Ряды</label>
+                <input
+                  v-model.number="slotForm.rows"
+                  type="number"
+                  min="1"
+                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  placeholder="3"
                 />
               </div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">URL изображения</label>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Линии выплат</label>
                 <input
-                  v-model="slotForm.image_url"
-                  type="url"
+                  v-model.number="slotForm.paylines"
+                  type="number"
+                  min="1"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="25"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">URL миниатюры</label>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Дата релиза</label>
                 <input
-                  v-model="slotForm.thumbnail_url"
-                  type="url"
+                  v-model="slotForm.release_date"
+                  type="date"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="https://example.com/thumb.jpg"
                 />
               </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">URL миниатюры</label>
+              <input
+                v-model="slotForm.thumbnail_url"
+                type="url"
+                class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                placeholder="https://example.com/thumb.jpg"
+              />
             </div>
             
             <div class="flex items-center space-x-4">
@@ -347,11 +428,19 @@
               </label>
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input
-                  v-model="slotForm.is_featured"
+                  v-model="slotForm.is_mobile_compatible"
                   type="checkbox"
-                  class="w-4 h-4 text-purple-400 bg-gray-800 border-gray-600 rounded focus:ring-purple-400 focus:ring-2"
+                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
                 />
-                <span class="text-gray-300">Рекомендуемый</span>
+                <span class="text-gray-300">Мобильная версия</span>
+              </label>
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input
+                  v-model="slotForm.is_demo_available"
+                  type="checkbox"
+                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
+                />
+                <span class="text-gray-300">Демо доступно</span>
               </label>
             </div>
             
@@ -413,10 +502,12 @@
 // Composables
 const { getSlots, createSlot, updateSlot, deleteSlot: deleteSlotApi } = useSlotsApi()
 const { getProviders } = useProviders()
+const { getCategories } = useCategories()
 
 // Reactive data
 const slots = ref([])
 const providers = ref([])
+const categories = ref([])
 const loading = ref(true)
 const saving = ref(false)
 const deleting = ref(false)
@@ -442,13 +533,23 @@ const slotForm = ref({
   name: '',
   description: '',
   provider_id: '',
+  category_id: '',
   rtp: null,
   volatility: '',
-  max_win: '',
-  image_url: '',
+  max_win: null,
+  min_bet: null,
+  max_bet: null,
+  reels: null,
+  rows: null,
+  paylines: null,
+  theme: '',
   thumbnail_url: '',
+  screenshots: [],
+  features: [],
   is_active: true,
-  is_featured: false
+  is_mobile_compatible: true,
+  is_demo_available: true,
+  release_date: ''
 })
 
 // Computed properties
@@ -501,7 +602,7 @@ const averageRTP = computed(() => {
 const loadSlots = async () => {
   try {
     loading.value = true
-    const response = await getSlots()
+    const response = await getSlots({ admin: true })
     slots.value = response || []
   } catch (error) {
     console.error('Ошибка загрузки слотов:', error)
@@ -521,12 +622,44 @@ const loadProviders = async () => {
   }
 }
 
+const loadCategories = async () => {
+  try {
+    const response = await getCategories()
+    categories.value = response || []
+  } catch (error) {
+    console.error('Ошибка загрузки категорий:', error)
+    categories.value = []
+  }
+}
+
 const refreshSlots = () => {
   loadSlots()
 }
 
 const editSlot = (slot) => {
-  slotForm.value = { ...slot }
+  slotForm.value = {
+    id: slot.id,
+    name: slot.name,
+    description: slot.description || '',
+    provider_id: slot.provider_id,
+    category_id: slot.category_id || '',
+    rtp: slot.rtp,
+    volatility: slot.volatility || '',
+    max_win: slot.max_win,
+    min_bet: slot.min_bet,
+    max_bet: slot.max_bet,
+    reels: slot.reels,
+    rows: slot.rows,
+    paylines: slot.paylines,
+    theme: slot.theme || '',
+    thumbnail_url: slot.thumbnail_url || '',
+    screenshots: slot.screenshots || [],
+    features: slot.features || [],
+    is_active: slot.is_active,
+    is_mobile_compatible: slot.is_mobile_compatible,
+    is_demo_available: slot.is_demo_available,
+    release_date: slot.release_date ? new Date(slot.release_date).toISOString().split('T')[0] : ''
+  }
   showEditModal.value = true
 }
 
@@ -597,13 +730,21 @@ const closeModal = () => {
     name: '',
     description: '',
     provider_id: '',
+    category_id: '',
     rtp: null,
     volatility: '',
     max_win: '',
+    min_bet: null,
+    max_bet: null,
+    reels: null,
+    rows: null,
+    paylines: null,
+    theme: '',
     image_url: '',
     thumbnail_url: '',
     is_active: true,
-    is_featured: false
+    is_featured: false,
+    release_date: ''
   }
 }
 
@@ -629,6 +770,7 @@ watch([searchQuery, selectedProvider, selectedVolatility, selectedStatus], () =>
 onMounted(() => {
   loadSlots()
   loadProviders()
+  loadCategories()
 })
 
 // Page meta
