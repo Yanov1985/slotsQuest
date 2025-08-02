@@ -674,7 +674,8 @@ const confirmDelete = async () => {
   try {
     deleting.value = true
     await deleteSlotApi(slotToDelete.value.id)
-    slots.value = slots.value.filter(slot => slot.id !== slotToDelete.value.id)
+    // Перезагружаем данные с сервера для синхронизации
+    await loadSlots()
     showDeleteModal.value = false
     slotToDelete.value = null
   } catch (error) {
@@ -689,10 +690,8 @@ const toggleSlotStatus = async (slot) => {
   try {
     const updatedSlot = { ...slot, is_active: !slot.is_active }
     await updateSlot(slot.id, updatedSlot)
-    const index = slots.value.findIndex(s => s.id === slot.id)
-    if (index !== -1) {
-      slots.value[index] = updatedSlot
-    }
+    // Перезагружаем данные с сервера для синхронизации
+    await loadSlots()
   } catch (error) {
     console.error('Ошибка изменения статуса слота:', error)
     alert('Ошибка при изменении статуса слота')
@@ -704,16 +703,13 @@ const saveSlot = async () => {
     saving.value = true
     
     if (showAddModal.value) {
-      const newSlot = await createSlot(slotForm.value)
-      slots.value.push(newSlot)
+      await createSlot(slotForm.value)
     } else {
-      const updatedSlot = await updateSlot(slotForm.value.id, slotForm.value)
-      const index = slots.value.findIndex(slot => slot.id === slotForm.value.id)
-      if (index !== -1) {
-        slots.value[index] = updatedSlot
-      }
+      await updateSlot(slotForm.value.id, slotForm.value)
     }
     
+    // Перезагружаем данные с сервера для синхронизации
+    await loadSlots()
     closeModal()
   } catch (error) {
     console.error('Ошибка сохранения слота:', error)

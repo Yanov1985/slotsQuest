@@ -356,18 +356,28 @@ export class SlotsService {
   }
 
   async createSlot(createSlotDto: CreateSlotDto) {
-    // Generate slug from name
-    const slug = createSlotDto.name
-      .toLowerCase()
+    // Generate slug from name with Cyrillic transliteration
+    const translitMap: { [key: string]: string } = {
+      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+      'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+      'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+      'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+      'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    };
+    
+    let transliterated = createSlotDto.name.toLowerCase();
+    for (const [cyrillic, latin] of Object.entries(translitMap)) {
+      transliterated = transliterated.replace(new RegExp(cyrillic, 'g'), latin);
+    }
+    
+    const slug = transliterated
       .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+      .replace(/(^-|-$)/g, '') || Date.now().toString(); // fallback to timestamp if empty
 
     // Prepare data with proper date conversion
     const createData: any = {
       ...createSlotDto,
       slug,
-      created_at: new Date(),
-      updated_at: new Date(),
     };
 
     // Convert release_date string to Date object if provided
@@ -394,10 +404,23 @@ export class SlotsService {
     };
 
     if (updateSlotDto.name) {
-      updateData.slug = updateSlotDto.name
-        .toLowerCase()
+      // Transliterate Cyrillic to Latin for slug generation
+      const translitMap: { [key: string]: string } = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+      };
+      
+      let transliterated = updateSlotDto.name.toLowerCase();
+      for (const [cyrillic, latin] of Object.entries(translitMap)) {
+        transliterated = transliterated.replace(new RegExp(cyrillic, 'g'), latin);
+      }
+      
+      updateData.slug = transliterated
         .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
+        .replace(/(^-|-$)/g, '') || id.substring(0, 8); // fallback to ID prefix if empty
     }
 
     // Convert release_date string to Date object if provided

@@ -33,7 +33,7 @@ model slot_categories {
 }
 
 model slots {
-  id                   String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id                   String           @id @default(cuid())
   name                 String           @db.VarChar(255)
   slug                 String           @unique @db.VarChar(255)
   provider_id          String           @db.Uuid
