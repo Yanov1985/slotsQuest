@@ -38,6 +38,7 @@ model slots {
   slug                 String           @unique @db.VarChar(255)
   provider_id          String           @db.Uuid
   category_id          String?          @db.Uuid
+  theme_id             String?
   description          String?
   thumbnail_url        String?          @db.VarChar(500)
   screenshots          String[]
@@ -61,9 +62,70 @@ model slots {
   updated_at           DateTime?        @default(now()) @db.Timestamptz(6)
   slot_categories      slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   providers            providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  themes               themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")
+  @@index([theme_id], map: "idx_slots_theme_id")
   @@index([is_active], map: "idx_slots_is_active")
   @@index([rating(sort: Desc)], map: "idx_slots_rating")
+  
+  slot_features slot_features[]
+}
+
+model features {
+  id           Int             @id @default(autoincrement())
+  name         String          @db.VarChar(255)
+  slug         String          @unique @db.VarChar(255)
+  description  String?
+  type         String?         @db.VarChar(50)
+  icon         String?         @db.VarChar(10)
+  color        String?         @default("#8b5cf6") @db.VarChar(7)
+  image_url    String?         @db.VarChar(500)
+  sort_order   Int?            @default(0)
+  is_active    Boolean         @default(true)
+  is_popular   Boolean         @default(false)
+  is_featured  Boolean         @default(false)
+  created_at   DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime        @updatedAt @db.Timestamptz(6)
+  
+  slot_features slot_features[]
+  
+  @@index([type], map: "idx_features_type")
+  @@index([is_active], map: "idx_features_is_active")
+  @@index([is_popular], map: "idx_features_is_popular")
+  @@index([sort_order], map: "idx_features_sort_order")
+}
+
+model slot_features {
+  id         Int      @id @default(autoincrement())
+  slot_id    String
+  feature_id Int
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  
+  slots    slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  features features @relation(fields: [feature_id], references: [id], onDelete: Cascade)
+  
+  @@unique([slot_id, feature_id])
+  @@index([slot_id], map: "idx_slot_features_slot_id")
+  @@index([feature_id], map: "idx_slot_features_feature_id")
+}
+
+model themes {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  color       String?
+  icon        String?
+  is_featured Boolean  @default(false)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  slots slots[]
+
+  @@index([is_active])
+  @@index([is_featured])
+  @@index([slug])
 }

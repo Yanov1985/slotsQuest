@@ -6,6 +6,8 @@ import { SupabaseModule } from './supabase/supabase.module';
 import { SlotsModule } from './slots/slots.module';
 import { ProvidersModule } from './providers/providers.module';
 import { CategoriesModule } from './categories/categories.module';
+import { FeaturesModule } from './features/features.module';
+import { ThemesModule } from './themes/themes.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -18,6 +20,8 @@ import { PrismaModule } from './prisma/prisma.module';
     SlotsModule,
     ProvidersModule,
     CategoriesModule,
+    FeaturesModule,
+    ThemesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
