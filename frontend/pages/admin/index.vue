@@ -1,17 +1,18 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div class="min-h-screen bg-gradient-to-br from-[#13161B] via-[#161A21] to-[#13161B]">
     <!-- Header -->
-    <header class="bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-40">
+    <header class="bg-[#1B1E26]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center space-x-4">
-            <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              🎰 SlotQuest Admin
+            <div class="text-2xl font-bold bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
+              <Icon name="heroicons:squares-2x2" class="text-[#FF6E48]" />
+              <span>SlotQuest Admin</span>
             </div>
           </div>
           <div class="flex items-center space-x-4">
-            <span class="text-gray-300">Добро пожаловать, Администратор</span>
-            <button class="p-2 text-gray-400 hover:text-white transition-colors">
+            <span class="text-[#A0AABE]">Добро пожаловать, Администратор</span>
+            <button class="p-2 text-[#A0AABE] hover:text-[#FF6E48] transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
@@ -25,80 +26,80 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Dashboard Stats -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-cyan-400 text-sm font-medium">Всего слотов</p>
-              <p class="text-3xl font-bold text-white">{{ totalSlots }}</p>
+              <p class="text-[#FF6E48] text-sm font-medium">Всего слотов</p>
+              <p class="text-3xl font-bold text-[#A0AABE]">{{ totalSlots }}</p>
             </div>
-            <div class="text-cyan-400 text-3xl">🎰</div>
+            <Icon name="heroicons:squares-2x2" class="text-[#FF6E48] text-3xl" />
           </div>
         </div>
         
-        <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-green-400 text-sm font-medium">Активных слотов</p>
-              <p class="text-3xl font-bold text-white">{{ activeSlots }}</p>
+              <p class="text-[#63F3AB] text-sm font-medium">Активных слотов</p>
+              <p class="text-3xl font-bold text-[#A0AABE]">{{ activeSlots }}</p>
             </div>
-            <div class="text-green-400 text-3xl">✅</div>
+            <Icon name="heroicons:check-circle" class="text-[#63F3AB] text-3xl" />
           </div>
         </div>
         
-        <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-purple-400 text-sm font-medium">Провайдеров</p>
-              <p class="text-3xl font-bold text-white">{{ totalProviders }}</p>
+              <p class="text-[#CD0F8B] text-sm font-medium">Провайдеров</p>
+              <p class="text-3xl font-bold text-[#A0AABE]">{{ totalProviders }}</p>
             </div>
-            <div class="text-purple-400 text-3xl">🏢</div>
+            <Icon name="heroicons:building-office" class="text-[#CD0F8B] text-3xl" />
           </div>
         </div>
         
-        <div class="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-orange-400 text-sm font-medium">Средний RTP</p>
-              <p class="text-3xl font-bold text-white">{{ averageRTP }}%</p>
+              <p class="text-[#00EDFF] text-sm font-medium">Средний RTP</p>
+              <p class="text-3xl font-bold text-[#A0AABE]">{{ averageRTP }}%</p>
             </div>
-            <div class="text-orange-400 text-3xl">📊</div>
+            <Icon name="heroicons:chart-bar" class="text-[#00EDFF] text-3xl" />
           </div>
         </div>
       </div>
 
       <!-- Quick Actions -->
-      <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 mb-8">
-        <h2 class="text-xl font-bold text-white mb-4">Быстрые действия</h2>
+      <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6 mb-8">
+        <h2 class="text-xl font-bold text-[#A0AABE] mb-4">Быстрые действия</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <NuxtLink to="/admin/slots" class="group">
-            <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-lg p-4 hover:border-cyan-400/40 transition-all group-hover:scale-105">
-              <div class="text-cyan-400 text-2xl mb-2">🎰</div>
-              <div class="text-white font-medium">Добавить слот</div>
-              <div class="text-gray-400 text-sm">Новый игровой автомат</div>
+            <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-lg p-4 hover:border-[#FF6E48]/40 transition-all group-hover:scale-105">
+              <Icon name="heroicons:squares-2x2" class="text-[#FF6E48] text-2xl mb-2" />
+              <div class="text-[#A0AABE] font-medium">Добавить слот</div>
+              <div class="text-[#353A4A] text-sm">Новый игровой автомат</div>
             </div>
           </NuxtLink>
           
           <NuxtLink to="/admin/providers" class="group">
-            <div class="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-4 hover:border-purple-400/40 transition-all group-hover:scale-105">
-              <div class="text-purple-400 text-2xl mb-2">🏢</div>
-              <div class="text-white font-medium">Добавить провайдера</div>
-              <div class="text-gray-400 text-sm">Новый поставщик игр</div>
+            <div class="bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-lg p-4 hover:border-[#CD0F8B]/40 transition-all group-hover:scale-105">
+              <Icon name="heroicons:building-office" class="text-[#CD0F8B] text-2xl mb-2" />
+              <div class="text-[#A0AABE] font-medium">Добавить провайдера</div>
+              <div class="text-[#353A4A] text-sm">Новый поставщик игр</div>
             </div>
           </NuxtLink>
           
           <NuxtLink to="/admin/news" class="group">
-            <div class="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-lg p-4 hover:border-green-400/40 transition-all group-hover:scale-105">
-              <div class="text-green-400 text-2xl mb-2">📰</div>
-              <div class="text-white font-medium">Создать новость</div>
-              <div class="text-gray-400 text-sm">Новая статья</div>
+            <div class="bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-lg p-4 hover:border-[#63F3AB]/40 transition-all group-hover:scale-105">
+              <Icon name="heroicons:newspaper" class="text-[#63F3AB] text-2xl mb-2" />
+              <div class="text-[#A0AABE] font-medium">Создать новость</div>
+              <div class="text-[#353A4A] text-sm">Новая статья</div>
             </div>
           </NuxtLink>
           
           <NuxtLink to="/admin/bonuses" class="group">
-            <div class="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-lg p-4 hover:border-orange-400/40 transition-all group-hover:scale-105">
-              <div class="text-orange-400 text-2xl mb-2">🎁</div>
-              <div class="text-white font-medium">Добавить бонус</div>
-              <div class="text-gray-400 text-sm">Новое предложение</div>
+            <div class="bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-lg p-4 hover:border-[#00EDFF]/40 transition-all group-hover:scale-105">
+              <Icon name="heroicons:gift" class="text-[#00EDFF] text-2xl mb-2" />
+              <div class="text-[#A0AABE] font-medium">Добавить бонус</div>
+              <div class="text-[#353A4A] text-sm">Новое предложение</div>
             </div>
           </NuxtLink>
         </div>
@@ -107,181 +108,181 @@
       <!-- Admin Sections -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Content Management -->
-        <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6 flex items-center">
-            <span class="text-2xl mr-3">📝</span>
+        <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6">
+          <h2 class="text-xl font-bold text-[#A0AABE] mb-6 flex items-center">
+            <Icon name="heroicons:document-text" class="text-[#FF6E48] text-2xl mr-3" />
             Управление контентом
           </h2>
           <div class="space-y-3">
-            <NuxtLink to="/admin/slots" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/slots" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🎰</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Слоты</span>
+                <Icon name="heroicons:squares-2x2" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Слоты</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/categories" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/categories" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">📂</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Категории</span>
+                <Icon name="heroicons:folder" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Категории</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/providers" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/providers" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🏢</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Провайдеры</span>
+                <Icon name="heroicons:building-office" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Провайдеры</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/features" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/features" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">⚙️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Механики</span>
+                <Icon name="heroicons:cog-6-tooth" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Механики</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/themes" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/themes" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🎨</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Темы</span>
+                <Icon name="heroicons:paint-brush" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Темы</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
           </div>
         </div>
 
         <!-- User & Community Management -->
-        <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6 flex items-center">
-            <span class="text-2xl mr-3">👥</span>
+        <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6">
+          <h2 class="text-xl font-bold text-[#A0AABE] mb-6 flex items-center">
+            <Icon name="heroicons:users" class="text-[#FF6E48] text-2xl mr-3" />
             Пользователи и сообщество
           </h2>
           <div class="space-y-3">
-            <NuxtLink to="/admin/users" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/users" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">👤</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Пользователи</span>
+                <Icon name="heroicons:user" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Пользователи</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/reviews" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/reviews" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">⭐</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Отзывы</span>
+                <Icon name="heroicons:star" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Отзывы</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/news" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/news" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">📰</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Новости</span>
+                <Icon name="heroicons:newspaper" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Новости</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/bonuses" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/bonuses" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🎁</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Бонусы</span>
+                <Icon name="heroicons:gift" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Бонусы</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/casinos" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/casinos" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🏛️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Казино</span>
+                <Icon name="heroicons:building-library" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Казино</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
           </div>
         </div>
 
         <!-- Marketing & Analytics -->
-        <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6 flex items-center">
-            <span class="text-2xl mr-3">📈</span>
+        <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6">
+          <h2 class="text-xl font-bold text-[#A0AABE] mb-6 flex items-center">
+            <Icon name="heroicons:chart-bar" class="text-[#FF6E48] text-2xl mr-3" />
             Маркетинг и аналитика
           </h2>
           <div class="space-y-3">
-            <NuxtLink to="/admin/marketing/dashboard" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/marketing/dashboard" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">📊</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Дашборд аналитики</span>
+                <Icon name="heroicons:chart-bar-square" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Дашборд аналитики</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/marketing/page-views" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/marketing/page-views" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">👁️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Просмотры страниц</span>
+                <Icon name="heroicons:eye" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Просмотры страниц</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/marketing/slot-interests" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/marketing/slot-interests" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🎯</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Интерес к слотам</span>
+                <Icon name="heroicons:cursor-arrow-rays" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Интерес к слотам</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/marketing/user-activity" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/marketing/user-activity" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🔥</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Активность пользователей</span>
+                <Icon name="heroicons:fire" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Активность пользователей</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
           </div>
         </div>
 
         <!-- SEO & Settings -->
-        <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6">
-          <h2 class="text-xl font-bold text-white mb-6 flex items-center">
-            <span class="text-2xl mr-3">🔧</span>
+        <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6">
+          <h2 class="text-xl font-bold text-[#A0AABE] mb-6 flex items-center">
+            <Icon name="heroicons:wrench-screwdriver" class="text-[#FF6E48] text-2xl mr-3" />
             SEO и настройки
           </h2>
           <div class="space-y-3">
-            <NuxtLink to="/admin/seo/global-settings" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/seo/global-settings" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🌐</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Общие настройки SEO</span>
+                <Icon name="heroicons:globe-alt" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Общие настройки SEO</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/seo/meta-management" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/seo/meta-management" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🏷️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Мета-теги</span>
+                <Icon name="heroicons:tag" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Мета-теги</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/seo/sitemap" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/seo/sitemap" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">🗺️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Sitemap</span>
+                <Icon name="heroicons:map" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Sitemap</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
             
-            <NuxtLink to="/admin/settings" class="flex items-center justify-between p-3 bg-gray-800/50 hover:bg-gray-800 rounded-lg transition-colors group">
+            <NuxtLink to="/admin/settings" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">⚙️</span>
-                <span class="text-white group-hover:text-cyan-400 transition-colors">Настройки сайта</span>
+                <Icon name="heroicons:cog-6-tooth" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#A0AABE] group-hover:text-[#FF6E48] transition-colors">Настройки сайта</span>
               </div>
-              <span class="text-gray-400 group-hover:text-white transition-colors">→</span>
+              <span class="text-[#353A4A] group-hover:text-[#A0AABE] transition-colors">→</span>
             </NuxtLink>
           </div>
         </div>
