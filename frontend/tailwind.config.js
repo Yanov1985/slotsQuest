@@ -15,6 +15,11 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Inter', 'Roboto', ...defaultTheme.fontFamily.sans],
+        'display': ['Montserrat', 'Inter', ...defaultTheme.fontFamily.sans],
+        'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+      },
       animation: {
         aurora: "aurora 60s linear infinite",
         beam: "beam 3s ease-in-out infinite",

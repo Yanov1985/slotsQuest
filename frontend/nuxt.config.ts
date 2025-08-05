@@ -5,8 +5,25 @@ export default defineNuxtConfig({
   
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    '@nuxtjs/google-fonts'
   ],
+  
+  googleFonts: {
+    families: {
+      'Inter': [300, 400, 500, 600, 700, 800, 900],
+      'JetBrains Mono': [300, 400, 500, 600, 700],
+      'Roboto': [300, 400, 500, 700, 900],
+      'Montserrat': [300, 400, 500, 600, 700, 800, 900]
+    },
+    subsets: ['latin', 'cyrillic'],
+    display: 'swap',
+    prefetch: false,
+    preconnect: false,
+    preload: false,
+    download: true,
+    base64: false
+  },
   
   runtimeConfig: {
     public: {
