@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-[#13161B] via-[#161A21] to-[#13161B] font-sans">
+  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans">
     <!-- Header -->
-    <header class="bg-[#1B1E26]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-40">
+    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center space-x-4">
@@ -316,6 +316,7 @@
 </template>
 
 <script setup>
+
 // Composables
 const { getSlots } = useSlotsApi()
 const { getProviders } = useProviders()

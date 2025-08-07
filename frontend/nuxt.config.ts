@@ -2,13 +2,26 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
     '@nuxtjs/google-fonts'
   ],
-  
+
+  icon: {
+     serverBundle: {
+       collections: ['heroicons']
+     },
+     clientBundle: {
+       scan: true,
+       sizeLimitKb: 512
+     },
+     provider: 'iconify',
+     fallbackToApi: true,
+     mode: 'svg'
+   },
+
   googleFonts: {
     families: {
       'Inter': [300, 400, 500, 600, 700, 800, 900],
@@ -24,7 +37,7 @@ export default defineNuxtConfig({
     download: true,
     base64: false
   },
-  
+
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
@@ -32,16 +45,16 @@ export default defineNuxtConfig({
       apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:3001'
     }
   },
-  
+
   css: ['~/assets/css/main.css'],
-  
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  
+
   nitro: {
     experimental: {
       wasm: true

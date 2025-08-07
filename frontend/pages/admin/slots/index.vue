@@ -1,26 +1,39 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white">
+  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans">
     <!-- Header -->
-    <header class="bg-black/50 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
+    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
           <div class="flex items-center space-x-4">
-            <NuxtLink to="/admin" class="text-gray-400 hover:text-white transition-colors">
-              ← Назад к дашборду
+            <NuxtLink to="/admin" class="flex items-center space-x-2 text-[#A0AABE] hover:text-[#FF6E48] transition-colors">
+              <Icon name="heroicons:arrow-left" class="text-xl" />
+              <span>Назад к дашборду</span>
             </NuxtLink>
-            <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              🎰 Управление слотами
-            </h1>
-            <div class="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
+            <div class="h-6 w-px bg-[#353A4A]"></div>
+
+            <div class="px-3 py-1 bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-full text-[#63F3AB] text-sm font-medium">
               {{ totalSlots }} слотов
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <button @click="showAddModal = true" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 rounded-lg font-medium transition-all transform hover:scale-105">
-              ➕ Добавить слот
+          <div class="flex items-center space-x-3">
+            <!-- Add Slot Button -->
+            <button 
+              @click="showAddModal = true" 
+              class="group relative flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] text-white rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 hover:shadow-xl hover:shadow-[#FF6E48]/30"
+            >
+              <Icon name="heroicons:plus-circle" class="w-5 h-5" />
+              <span>Добавить слот</span>
+              <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             </button>
-            <button @click="refreshSlots" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 rounded-lg font-medium transition-all transform hover:scale-105">
-              🔄 Обновить
+            
+            <!-- Refresh Button -->
+            <button 
+              @click="refreshSlots" 
+              class="group relative flex items-center space-x-2 px-5 py-3 bg-[#161A21] border-2 border-[#353A4A] hover:border-[#6366F1] hover:bg-[#1B1E26] text-[#A0AABE] hover:text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
+            >
+              <Icon name="heroicons:arrow-path" class="w-4 h-4" />
+              <span>Обновить</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             </button>
           </div>
         </div>
@@ -28,64 +41,71 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-cyan-400 text-sm font-medium">Всего слотов</p>
+              <p class="text-[#FF6E48] text-sm font-semibold">Всего слотов</p>
               <p class="text-3xl font-bold text-white">{{ totalSlots }}</p>
             </div>
-            <div class="text-4xl">🎰</div>
+            <Icon name="heroicons:squares-2x2" class="text-[#FF6E48] text-3xl" />
           </div>
         </div>
-        <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-purple-400 text-sm font-medium">Провайдеров</p>
+              <p class="text-[#CD0F8B] text-sm font-semibold">Провайдеров</p>
               <p class="text-3xl font-bold text-white">{{ totalProviders }}</p>
             </div>
-            <div class="text-4xl">🏢</div>
+            <Icon name="heroicons:building-office" class="text-[#CD0F8B] text-3xl" />
           </div>
         </div>
-        <div class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-green-400 text-sm font-medium">Активных</p>
+              <p class="text-[#63F3AB] text-sm font-semibold">Активных</p>
               <p class="text-3xl font-bold text-white">{{ activeSlots }}</p>
             </div>
-            <div class="text-4xl">✅</div>
+            <Icon name="heroicons:check-circle" class="text-[#63F3AB] text-3xl" />
           </div>
         </div>
-        <div class="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-xl p-6">
+        <div class="bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-yellow-400 text-sm font-medium">Средний RTP</p>
+              <p class="text-[#00EDFF] text-sm font-semibold">Средний RTP</p>
               <p class="text-3xl font-bold text-white">{{ averageRTP }}%</p>
             </div>
-            <div class="text-4xl">📊</div>
+            <Icon name="heroicons:chart-bar" class="text-[#00EDFF] text-3xl" />
           </div>
         </div>
       </div>
 
       <!-- Search and Filters -->
-      <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 mb-8">
+      <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6 mb-8">
+        <h2 class="text-lg font-bold font-display text-white mb-4 flex items-center">
+          <Icon name="heroicons:funnel" class="text-[#FF6E48] text-xl mr-2" />
+          Поиск и фильтры
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Поиск по названию</label>
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Введите название слота..."
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors"
-            />
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Поиск по названию</label>
+            <div class="relative">
+              <Icon name="heroicons:magnifying-glass" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#A0AABE] text-lg" />
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="Введите название слота..."
+                class="w-full h-12 pl-10 pr-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white placeholder-[#A0AABE] focus:border-[#FF6E48] focus:outline-none transition-colors"
+              />
+            </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Провайдер</label>
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Провайдер</label>
             <select
               v-model="selectedProvider"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="w-full h-12 px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
             >
               <option value="">Все провайдеры</option>
               <option v-for="provider in providers" :key="provider.id" :value="provider.id">
@@ -94,10 +114,10 @@
             </select>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Волатильность</label>
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Волатильность</label>
             <select
               v-model="selectedVolatility"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="w-full h-12 px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
             >
               <option value="">Любая</option>
               <option value="Низкая">Низкая</option>
@@ -106,10 +126,10 @@
             </select>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Статус</label>
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Статус</label>
             <select
               v-model="selectedStatus"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="w-full h-12 px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
             >
               <option value="">Все</option>
               <option value="true">Активные</option>
@@ -120,55 +140,52 @@
       </div>
 
       <!-- Slots Table -->
-      <div class="bg-gray-900/50 border border-gray-700 rounded-xl overflow-hidden">
+      <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full">
-            <thead class="bg-gray-800/50">
+            <thead class="bg-[#1B1E26]/50">
               <tr>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Слот</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Провайдер</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">RTP</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Волатильность</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Макс. выигрыш</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Статус</th>
-                <th class="px-6 py-4 text-left text-sm font-medium text-gray-300">Действия</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Слот</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Провайдер</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">RTP</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Волатильность</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Макс. выигрыш</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Статус</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-[#E5E7EB]">Действия</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-700">
+            <tbody class="divide-y divide-[#353A4A]">
               <tr v-if="loading" class="animate-pulse">
-                <td colspan="7" class="px-6 py-8 text-center text-gray-400">
+                <td colspan="7" class="px-6 py-8 text-center text-[#9CA3AF]">
                   <div class="flex items-center justify-center space-x-2">
-                    <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-cyan-400"></div>
+                    <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-[#00EDFF]"></div>
                     <span>Загрузка слотов...</span>
                   </div>
                 </td>
               </tr>
               <tr v-else-if="filteredSlots.length === 0">
-                <td colspan="7" class="px-6 py-8 text-center text-gray-400">
-                  <div class="text-6xl mb-4">🔍</div>
+                <td colspan="7" class="px-6 py-8 text-center text-[#9CA3AF]">
+                  <div class="mb-4">
+                    <Icon name="heroicons:magnifying-glass" class="text-6xl text-[#A0AABE]" />
+                  </div>
                   <p class="text-lg">Слоты не найдены</p>
                   <p class="text-sm">Попробуйте изменить параметры поиска</p>
                 </td>
               </tr>
-              <tr v-else v-for="slot in paginatedSlots" :key="slot.id" class="hover:bg-gray-800/30 transition-colors">
+              <tr v-else v-for="slot in paginatedSlots" :key="slot.id" class="hover:bg-[#1B1E26]/30 transition-colors">
                 <td class="px-6 py-4">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg flex items-center justify-center border border-purple-500/30">
-                      <span class="text-2xl">🎰</span>
-                    </div>
-                    <div>
-                      <p class="font-medium text-white">{{ slot.name }}</p>
-                      <p class="text-sm text-gray-400">ID: {{ slot.id }}</p>
-                    </div>
+                  <div>
+                    <p class="font-medium text-white">{{ slot.name }}</p>
+                    <p class="text-sm text-[#A0AABE]">ID: {{ slot.id }}</p>
                   </div>
                 </td>
                 <td class="px-6 py-4">
-                  <span class="px-2 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded text-cyan-400 text-sm">
+                  <span class="px-2 py-1 bg-[#00EDFF]/20 border border-[#00EDFF]/30 rounded text-[#00EDFF] text-sm">
                     {{ slot.providers?.name || 'Не указан' }}
                   </span>
                 </td>
                 <td class="px-6 py-4">
-                  <span class="font-medium text-green-400">{{ slot.rtp || 'N/A' }}%</span>
+                  <span class="font-medium text-[#63F3AB]">{{ slot.rtp || 'N/A' }}%</span>
                 </td>
                 <td class="px-6 py-4">
                   <span class="px-2 py-1 rounded text-sm" :class="getVolatilityClass(slot.volatility)">
@@ -176,23 +193,47 @@
                   </span>
                 </td>
                 <td class="px-6 py-4">
-                  <span class="font-medium text-yellow-400">{{ slot.max_win || 'N/A' }}</span>
+                  <span class="font-medium text-[#F59E0B]">{{ slot.max_win || 'N/A' }}</span>
                 </td>
                 <td class="px-6 py-4">
-                  <span class="px-2 py-1 rounded text-sm" :class="slot.is_active ? 'bg-green-500/20 border border-green-500/30 text-green-400' : 'bg-red-500/20 border border-red-500/30 text-red-400'">
+                  <span class="px-2 py-1 rounded text-sm" :class="slot.is_active ? 'bg-[#63F3AB]/20 border border-[#63F3AB]/30 text-[#63F3AB]' : 'bg-[#EF4444]/20 border border-[#EF4444]/30 text-[#EF4444]'">
                     {{ slot.is_active ? 'Активен' : 'Неактивен' }}
                   </span>
                 </td>
                 <td class="px-6 py-4">
-                  <div class="flex items-center space-x-2">
-                    <button @click="editSlot(slot)" class="p-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg transition-colors" title="Редактировать">
-                      ✏️
+                  <div class="flex items-center space-x-3">
+                    <!-- Edit Button -->
+                    <button 
+                      @click="editSlot(slot)" 
+                      class="group relative p-2.5 bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#3B82F6] text-white rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-[#3B82F6]/25" 
+                      title="Редактировать слот"
+                    >
+                      <Icon name="heroicons:cog-6-tooth" class="w-4 h-4" />
+                      <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     </button>
-                    <button @click="toggleSlotStatus(slot)" class="p-2 bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 rounded-lg transition-colors" :title="slot.is_active ? 'Деактивировать' : 'Активировать'">
-                      {{ slot.is_active ? '⏸️' : '▶️' }}
+                    
+                    <!-- Toggle Status Button -->
+                    <button 
+                      @click="toggleSlotStatus(slot)" 
+                      :class="slot.is_active 
+                        ? 'bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#D97706] hover:to-[#F59E0B] text-white' 
+                        : 'bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#10B981] text-white'"
+                      class="group relative p-2.5 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg" 
+                      :style="{ boxShadow: slot.is_active ? '0 4px 20px rgba(245, 158, 11, 0.25)' : '0 4px 20px rgba(16, 185, 129, 0.25)' }"
+                      :title="slot.is_active ? 'Деактивировать слот' : 'Активировать слот'"
+                    >
+                      <Icon :name="slot.is_active ? 'heroicons:eye-slash' : 'heroicons:eye'" class="w-4 h-4" />
+                      <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     </button>
-                    <button @click="deleteSlot(slot)" class="p-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg transition-colors" title="Удалить">
-                      🗑️
+                    
+                    <!-- Delete Button -->
+                    <button 
+                      @click="deleteSlot(slot)" 
+                      class="group relative p-2.5 bg-gradient-to-r from-[#EF4444] to-[#DC2626] hover:from-[#DC2626] hover:to-[#EF4444] text-white rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-[#EF4444]/25" 
+                      title="Удалить слот навсегда"
+                    >
+                      <Icon name="heroicons:x-circle" class="w-4 h-4" />
+                      <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     </button>
                   </div>
                 </td>
@@ -202,27 +243,34 @@
         </div>
         
         <!-- Pagination -->
-        <div v-if="totalPages > 1" class="px-6 py-4 border-t border-gray-700 flex items-center justify-between">
-          <div class="text-sm text-gray-400">
+        <div v-if="totalPages > 1" class="px-6 py-4 border-t border-[#353A4A] flex items-center justify-between">
+          <div class="text-sm text-[#9CA3AF]">
             Показано {{ (currentPage - 1) * itemsPerPage + 1 }}-{{ Math.min(currentPage * itemsPerPage, filteredSlots.length) }} из {{ filteredSlots.length }}
           </div>
           <div class="flex items-center space-x-2">
+            <!-- Previous Button -->
             <button
               @click="currentPage = Math.max(1, currentPage - 1)"
               :disabled="currentPage === 1"
-              class="px-3 py-1 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
+              class="group relative px-4 py-2.5 bg-[#161A21] hover:bg-[#1B1E26] disabled:opacity-50 disabled:cursor-not-allowed border-2 border-[#353A4A] hover:border-[#6366F1] rounded-lg transition-all duration-200 text-[#E5E7EB] hover:text-white transform hover:scale-105 disabled:hover:scale-100"
             >
-              ←
+              <Icon name="heroicons:chevron-left" class="w-4 h-4" />
+              <div class="absolute inset-0 bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             </button>
-            <span class="px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded text-cyan-400">
+            
+            <!-- Current Page Indicator -->
+            <div class="px-4 py-2.5 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white rounded-lg font-semibold shadow-lg">
               {{ currentPage }} / {{ totalPages }}
-            </span>
+            </div>
+            
+            <!-- Next Button -->
             <button
               @click="currentPage = Math.min(totalPages, currentPage + 1)"
               :disabled="currentPage === totalPages"
-              class="px-3 py-1 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
+              class="group relative px-4 py-2.5 bg-[#161A21] hover:bg-[#1B1E26] disabled:opacity-50 disabled:cursor-not-allowed border-2 border-[#353A4A] hover:border-[#6366F1] rounded-lg transition-all duration-200 text-[#E5E7EB] hover:text-white transform hover:scale-105 disabled:hover:scale-100"
             >
-              →
+              <Icon name="heroicons:chevron-right" class="w-4 h-4" />
+              <div class="absolute inset-0 bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             </button>
           </div>
         </div>
@@ -231,35 +279,36 @@
 
     <!-- Add/Edit Modal -->
     <div v-if="showAddModal || showEditModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="bg-[#161A21] border border-[#353A4A] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6">
           <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-white">
-              {{ showAddModal ? '➕ Добавить новый слот' : '✏️ Редактировать слот' }}
+            <h2 class="text-2xl font-bold text-[#E5E7EB] flex items-center">
+              <Icon :name="showAddModal ? 'heroicons:plus-circle' : 'heroicons:cog-6-tooth'" class="w-6 h-6 mr-2 text-[#6366F1]" />
+              {{ showAddModal ? 'Добавить новый слот' : 'Редактировать слот' }}
             </h2>
-            <button @click="closeModal" class="text-gray-400 hover:text-white transition-colors">
-              ✕
+            <button @click="closeModal" class="group relative p-2 text-[#9CA3AF] hover:text-white hover:bg-[#EF4444] rounded-lg transition-all duration-200" title="Закрыть">
+              <Icon name="heroicons:x-circle" class="w-5 h-5" />
             </button>
           </div>
           
           <form @submit.prevent="saveSlot" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Название *</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Название *</label>
                 <input
                   v-model="slotForm.name"
                   type="text"
                   required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                   placeholder="Введите название слота"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Провайдер *</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Провайдер *</label>
                 <select
                   v-model="slotForm.provider_id"
                   required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                 >
                   <option value="">Выберите провайдера</option>
                   <option v-for="provider in providers" :key="provider.id" :value="provider.id">
@@ -271,10 +320,10 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Категория</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Категория</label>
                 <select
                   v-model="slotForm.category_id"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                 >
                   <option value="">Выберите категорию</option>
                   <option v-for="category in categories" :key="category.id" :value="category.id">
@@ -283,44 +332,44 @@
                 </select>
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Тема</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Тема</label>
                 <input
                   v-model="slotForm.theme"
                   type="text"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                   placeholder="Тема слота"
                 />
               </div>
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Описание</label>
+              <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Описание</label>
               <textarea
                 v-model="slotForm.description"
                 rows="3"
-                class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                 placeholder="Описание слота"
               ></textarea>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">RTP (%)</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">RTP (%)</label>
                 <input
                   v-model.number="slotForm.rtp"
                   type="number"
                   min="0"
                   max="100"
                   step="0.01"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                   placeholder="96.5"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Волатильность</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Волатильность</label>
                 <select
                   v-model="slotForm.volatility"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                 >
                   <option value="">Не указана</option>
                   <option value="Низкая">Низкая</option>
@@ -329,13 +378,13 @@
                 </select>
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Макс. выигрыш</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Макс. выигрыш</label>
                 <input
                   v-model.number="slotForm.max_win"
                   type="number"
                   min="0"
                   step="0.01"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                   placeholder="5000"
                 />
               </div>
@@ -444,20 +493,29 @@
               </label>
             </div>
             
-            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-700">
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-[#353A4A]">
               <button
                 type="button"
                 @click="closeModal"
-                class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 rounded-lg transition-colors"
+                class="group relative px-6 py-3 border-2 border-[#353A4A] text-[#A0AABE] hover:text-white hover:border-[#6B7280] rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
               >
-                Отмена
+                <div class="flex items-center space-x-2">
+                  <Icon name="heroicons:arrow-uturn-left" class="w-4 h-4" />
+                  <span class="font-medium">Отмена</span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#374151] to-[#4B5563] rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-200"></div>
               </button>
               <button
                 type="submit"
                 :disabled="saving"
-                class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="group relative px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] text-white rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-xl hover:shadow-[#FF6E48]/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                {{ saving ? 'Сохранение...' : (showAddModal ? 'Добавить' : 'Сохранить') }}
+                <div class="flex items-center space-x-2">
+                  <Icon v-if="saving" name="heroicons:arrow-path" class="w-4 h-4 animate-spin" />
+                  <Icon v-else :name="showAddModal ? 'heroicons:document-plus' : 'heroicons:check-circle'" class="w-4 h-4" />
+                  <span class="font-medium">{{ saving ? 'Сохранение...' : (showAddModal ? 'Добавить' : 'Сохранить') }}</span>
+                </div>
+                <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               </button>
             </div>
           </form>
@@ -467,28 +525,39 @@
 
     <!-- Delete Confirmation Modal -->
     <div v-if="showDeleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-900 border border-red-500/30 rounded-xl max-w-md w-full">
+      <div class="bg-[#161A21] border border-[#EF4444]/30 rounded-xl max-w-md w-full">
         <div class="p-6">
           <div class="text-center">
-            <div class="text-6xl mb-4">⚠️</div>
-            <h2 class="text-2xl font-bold text-white mb-4">Подтвердите удаление</h2>
-            <p class="text-gray-300 mb-6">
-              Вы уверены, что хотите удалить слот <strong>"{{ slotToDelete?.name }}"</strong>?
+            <div class="mb-4">
+              <Icon name="heroicons:shield-exclamation" class="w-16 h-16 text-[#EF4444] mx-auto" />
+            </div>
+            <h2 class="text-2xl font-bold text-[#E5E7EB] mb-4">Подтвердите удаление</h2>
+            <p class="text-[#A0AABE] mb-6">
+              Вы уверены, что хотите удалить слот <strong class="text-[#E5E7EB]">"{{ slotToDelete?.name }}"</strong>?
               Это действие нельзя отменить.
             </p>
             <div class="flex items-center justify-center space-x-4">
               <button
                 @click="showDeleteModal = false"
-                class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 rounded-lg transition-colors"
+                class="group relative px-6 py-3 border-2 border-[#353A4A] text-[#A0AABE] hover:text-white hover:border-[#6B7280] rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
               >
-                Отмена
+                <div class="flex items-center space-x-2">
+                  <Icon name="heroicons:arrow-uturn-left" class="w-4 h-4" />
+                  <span class="font-medium">Отмена</span>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#374151] to-[#4B5563] rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-200"></div>
               </button>
               <button
                 @click="confirmDelete"
                 :disabled="deleting"
-                class="px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="group relative px-6 py-3 bg-gradient-to-r from-[#EF4444] to-[#DC2626] hover:from-[#DC2626] hover:to-[#EF4444] text-white rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-xl hover:shadow-[#EF4444]/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                {{ deleting ? 'Удаление...' : 'Удалить' }}
+                <div class="flex items-center space-x-2">
+                  <Icon v-if="deleting" name="heroicons:arrow-path" class="w-4 h-4 animate-spin" />
+                  <Icon v-else name="heroicons:trash" class="w-4 h-4" />
+                  <span class="font-medium">{{ deleting ? 'Удаление...' : 'Удалить навсегда' }}</span>
+                </div>
+                <div class="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               </button>
             </div>
           </div>
@@ -688,8 +757,11 @@ const confirmDelete = async () => {
 
 const toggleSlotStatus = async (slot) => {
   try {
-    const updatedSlot = { ...slot, is_active: !slot.is_active }
-    await updateSlot(slot.id, updatedSlot)
+    // Отправляем только нужные поля для обновления статуса
+    const updateData = {
+      is_active: !slot.is_active
+    }
+    await updateSlot(slot.id, updateData)
     // Перезагружаем данные с сервера для синхронизации
     await loadSlots()
   } catch (error) {

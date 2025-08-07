@@ -13,7 +13,6 @@
     "@nuxt/icon": "^1.15.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@supabase/supabase-js": "^2.52.0",
-    "@tabler/icons-react": "^3.34.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.9",
     "motion": "^12.23.9",
