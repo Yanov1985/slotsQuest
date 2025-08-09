@@ -1,0 +1,10 @@
+
+# Supabase configuration
+SUPABASE_URL="https://hxwyfdjfugcogpkjpjot.supabase.co"
+SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4d3lmZGpmdWdjb2dwa2pwam90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyNTc1MDIsImV4cCI6MjA2ODgzMzUwMn0.eljiuE2k8zkokrX7M73Xdz1lZ-pK8e1TkE7PFN3iqw0"
+SUPABASE_SERVICE_ROLE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4d3lmZGpmdWdjb2dwa2pwam90Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MzI1NzUwMiwiZXhwIjoyMDY4ODMzNTAyfQ.02LWAZ20WKzqUNKoFDRhewykDX6g66WDBEOCXRhGbJQ"
+
+
+# Prisma configuration
+DATABASE_URL="postgresql://postgres.hxwyfdjfugcogpkjpjot:Guru007-@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
+DIRECT_URL="postgresql://postgres.hxwyfdjfugcogpkjpjot:Guru007-@aws-0-eu-central-1.pooler.supabase.com:5432/postgres"
