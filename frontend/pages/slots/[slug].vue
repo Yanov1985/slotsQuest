@@ -55,197 +55,265 @@
     
     <!-- Основной контент -->
     <div v-else-if="slot" class="container mx-auto px-4 py-8">
-      <!-- Главная секция -->
-      <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          <!-- Изображение и игра -->
-          <div class="relative bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 p-8 lg:p-12">
-            <!-- Декоративные элементы -->
-            <div class="absolute top-4 right-4 text-white/20 text-6xl">⚡</div>
-            <div class="absolute bottom-4 left-4 text-white/10 text-4xl">🏛️</div>
-            
-            <div class="aspect-video bg-black/20 rounded-xl backdrop-blur-sm border border-white/20 flex items-center justify-center mb-6 relative overflow-hidden">
-              <!-- Анимированный фон -->
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
-              
-              <div class="text-center relative z-10">
-                <div class="text-white text-8xl font-bold mb-4 drop-shadow-lg animate-bounce">
-                  {{ getSlotIcon(slot.name) }}
+      <!-- Главная секция - НОВЫЙ ДИЗАЙН -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 rounded-3xl shadow-2xl mb-8">
+        <!-- Анимированный фон -->
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-beam transform skew-x-12"></div>
+          <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+          <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-500/8 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s"></div>
+        </div>
+        
+        <!-- Декоративные элементы -->
+        <div class="absolute top-8 right-8 text-white/10 text-8xl animate-float">⚡</div>
+        <div class="absolute bottom-8 left-8 text-white/5 text-6xl animate-float" style="animation-delay: 1.5s">🏛️</div>
+        <div class="absolute top-1/3 right-1/4 text-white/8 text-4xl animate-float" style="animation-delay: 3s">💎</div>
+        
+        <div class="relative z-10 grid grid-cols-1 xl:grid-cols-5 gap-0 min-h-[700px]">
+          <!-- Левая часть: Игровой экран (3 колонки из 5) -->
+          <div class="xl:col-span-3 p-8 lg:p-12 flex flex-col justify-center">
+            <!-- Заголовок и теги -->
+            <div class="mb-8">
+              <div class="flex items-center gap-3 mb-6 flex-wrap">
+                <div class="flex items-center gap-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-400/30">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span class="text-green-300 text-sm font-bold">ОНЛАЙН</span>
                 </div>
-                <h1 class="text-white text-2xl font-bold drop-shadow-lg mb-2">{{ slot.name }}</h1>
-                <p class="text-white/80 text-sm">{{ slot.provider?.name || 'Pragmatic Play' }}</p>
+                <span class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30">
+                  {{ slot.provider?.name || 'Pragmatic Play' }}
+                </span>
+                <span class="bg-gradient-to-r from-yellow-500/30 to-orange-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-yellow-400/30">
+                  🔥 ТОП-12
+                </span>
               </div>
               
-              <!-- Кнопка Play в центре -->
+              <h1 class="text-4xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-white via-yellow-100 to-blue-100 bg-clip-text text-transparent mb-4 leading-tight drop-shadow-lg">
+                {{ slot.name }}
+              </h1>
+              
+              <p class="text-white/80 text-lg lg:text-xl leading-relaxed mb-6 max-w-2xl">
+                {{ getShortDescription(slot) }}
+              </p>
+              
+              <!-- Рейтинг и статистика -->
+              <div class="flex flex-wrap items-center gap-6 mb-8">
+                <div class="flex items-center gap-2">
+                  <div class="flex text-yellow-400">
+                    <svg v-for="n in 5" :key="n" class="w-7 h-7 drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  </div>
+                  <span class="text-white font-bold text-lg">4.8</span>
+                  <span class="text-white/60">/ 5</span>
+                </div>
+                <div class="text-white/60">•</div>
+                <span class="text-white/80 font-semibold">1,247 отзывов</span>
+                <div class="text-white/60">•</div>
+                <span class="text-emerald-400 font-bold">2M+ игроков</span>
+              </div>
+            </div>
+            
+            <!-- Игровой экран -->
+            <div class="aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-8 relative overflow-hidden group">
+              <!-- Внутренний градиент -->
+              <div class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              
+              <!-- Содержимое экрана -->
+              <div class="text-center relative z-10">
+                <div class="text-white text-9xl lg:text-[12rem] font-black mb-6 drop-shadow-2xl animate-float">
+                  {{ getSlotIcon(slot.name) }}
+                </div>
+                <div class="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20">
+                  <p class="text-white/90 text-lg font-bold mb-2">{{ slot.name }}</p>
+                  <p class="text-white/60 text-sm">{{ slot.provider?.name || 'Pragmatic Play' }}</p>
+                </div>
+              </div>
+              
+              <!-- Кнопка Play -->
               <button 
-                class="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-all duration-300 group"
+                class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group"
                 @click="playSlot"
               >
-                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <div class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500">
+                  <svg class="w-12 h-12 lg:w-14 lg:h-14 text-white ml-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                 </div>
               </button>
+              
+              <!-- Индикатор потенциального выигрыша -->
+              <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-pulse">
+                MAX WIN: x5,000
+              </div>
             </div>
             
             <!-- Кнопки действий -->
             <div class="space-y-4">
               <button 
-                class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-xl font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                class="group relative w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
                 @click="playSlot"
               >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <svg class="w-7 h-7 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                Играть бесплатно
-              </button>
-              <button 
-                class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                @click="playForReal"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                </svg>
-                Играть на деньги
+                <span class="relative z-10">Играть бесплатно</span>
+                <div class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold">DEMO</div>
               </button>
               
-              <!-- Дополнительные кнопки -->
-              <div class="grid grid-cols-2 gap-3">
-                <button class="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg transition-colors backdrop-blur-sm border border-white/20">
-                  📱 Мобильная версия
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button 
+                  class="group relative bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-orange-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 overflow-hidden"
+                  @click="playForReal"
+                >
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  <svg class="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                  </svg>
+                  <span class="relative z-10">Играть на деньги</span>
                 </button>
-                <button class="bg-white/20 hover:bg-white/30 text-white font-medium py-2 px-4 rounded-lg transition-colors backdrop-blur-sm border border-white/20">
-                  🎁 Бонус x100
+                
+                <button 
+                  class="group relative bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-purple-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 overflow-hidden"
+                  @click="findCasino"
+                >
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  <svg class="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                  <span class="relative z-10">Найти казино</span>
+                </button>
+              </div>
+              
+              <!-- Дополнительные возможности -->
+              <div class="grid grid-cols-2 gap-3 mt-4">
+                <button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/40 flex items-center justify-center gap-2">
+                  <span class="text-lg">📱</span>
+                  <span class="text-sm">Мобильная версия</span>
+                </button>
+                <button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/40 flex items-center justify-center gap-2">
+                  <span class="text-lg">🎁</span>
+                  <span class="text-sm">Бонус x100</span>
                 </button>
               </div>
             </div>
           </div>
           
-          <!-- Информация о слоте -->
-          <div class="p-8 lg:p-12">
-            <div class="mb-6">
-              <div class="flex items-center gap-3 mb-4 flex-wrap">
-                <span class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                  {{ slot.provider?.name || 'Pragmatic Play' }}
-                </span>
-                <span class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                  {{ slot.category?.name || 'Видеослоты' }}
-                </span>
-                <span class="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                  🔥 ТОП-12
-                </span>
-              </div>
-              
-              <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">{{ slot.name }}</h1>
-              
-              <div class="flex items-center gap-4 mb-4 flex-wrap">
-                <div class="flex text-yellow-400">
-                  <svg v-for="n in 5" :key="n" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                </div>
-                <span class="text-gray-600 font-medium">4.8/5</span>
-                <span class="text-gray-400">•</span>
-                <span class="text-gray-600 font-medium">1,247 отзывов</span>
-                <span class="text-gray-400">•</span>
-                <span class="text-green-600 font-semibold">2M+ игроков/мес</span>
-              </div>
-              
-              <!-- Краткое описание -->
-              <p class="text-gray-600 text-lg leading-relaxed mb-6">
-                {{ getShortDescription(slot) }}
-              </p>
-            </div>
-            
-            <!-- Статистика -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-xl border border-green-200 hover:shadow-lg transition-shadow">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+          <!-- Правая часть: Статистика и информация (2 колонки из 5) -->
+          <div class="xl:col-span-2 bg-white/10 backdrop-blur-md p-8 lg:p-10 border-l border-white/20">
+            <div class="space-y-8">
+              <!-- Основные характеристики -->
+              <div>
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                   </div>
-                  <h4 class="font-semibold text-green-800">RTP</h4>
-                </div>
-                <p class="text-2xl font-bold text-green-600">{{ slot.rtp || '96.50' }}%</p>
-                <p class="text-xs text-green-700 mt-1">Отдача игроку</p>
-              </div>
-              
-              <div class="bg-gradient-to-br from-orange-50 to-red-50 p-4 rounded-xl border border-orange-200 hover:shadow-lg transition-shadow">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
+                  Характеристики
+                </h3>
+                
+                <div class="grid grid-cols-1 gap-4">
+                  <div class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-5 rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                          </svg>
+                        </div>
+                        <span class="text-white font-bold">RTP</span>
+                      </div>
+                      <span class="text-emerald-300 text-sm font-medium">Отдача</span>
+                    </div>
+                    <div class="text-3xl font-black text-white mb-1">{{ slot.rtp || '96.50' }}%</div>
+                    <div class="text-emerald-300 text-sm">Высокий показатель</div>
                   </div>
-                  <h4 class="font-semibold text-orange-800">Волатильность</h4>
-                </div>
-                <p class="text-lg font-bold text-orange-600 capitalize">{{ getVolatilityText(slot.volatility) }}</p>
-                <p class="text-xs text-orange-700 mt-1">Риск/награда</p>
-              </div>
-              
-              <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200 hover:shadow-lg transition-shadow">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                    </svg>
+                  
+                  <div class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-5 rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                          </svg>
+                        </div>
+                        <span class="text-white font-bold">Волатильность</span>
+                      </div>
+                      <span class="text-orange-300 text-sm font-medium">Риск</span>
+                    </div>
+                    <div class="text-2xl font-black text-white mb-1 capitalize">{{ getVolatilityText(slot.volatility) }}</div>
+                    <div class="text-orange-300 text-sm">Средние риски</div>
                   </div>
-                  <h4 class="font-semibold text-blue-800">Мин. ставка</h4>
-                </div>
-                <p class="text-lg font-bold text-blue-600">{{ slot.min_bet || '€0.20' }}</p>
-                <p class="text-xs text-blue-700 mt-1">За спин</p>
-              </div>
-              
-              <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-xl border border-purple-200 hover:shadow-lg transition-shadow">
-                <div class="flex items-center gap-2 mb-2">
-                  <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                    </svg>
+                  
+                  <div class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                          </svg>
+                        </div>
+                        <span class="text-white font-bold">Макс. выигрыш</span>
+                      </div>
+                      <span class="text-purple-300 text-sm font-medium">Потенциал</span>
+                    </div>
+                    <div class="text-3xl font-black text-white mb-1">{{ getMaxWin(slot) }}</div>
+                    <div class="text-purple-300 text-sm">От ставки</div>
                   </div>
-                  <h4 class="font-semibold text-purple-800">Макс. выигрыш</h4>
+                  
+                  <div class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-5 rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center justify-between mb-3">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                          </svg>
+                        </div>
+                        <span class="text-white font-bold">Мин. ставка</span>
+                      </div>
+                      <span class="text-blue-300 text-sm font-medium">За спин</span>
+                    </div>
+                    <div class="text-2xl font-black text-white mb-1">{{ slot.min_bet || '€0.20' }}</div>
+                    <div class="text-blue-300 text-sm">Доступно всем</div>
+                  </div>
                 </div>
-                <p class="text-lg font-bold text-purple-600">{{ getMaxWin(slot) }}</p>
-                <p class="text-xs text-purple-700 mt-1">От ставки</p>
-              </div>
-            </div>
-            
-            <!-- Дополнительная статистика -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                <h4 class="font-semibold text-gray-800 mb-2">Поле игры</h4>
-                <p class="text-lg font-bold text-gray-600">6×5</p>
-                <p class="text-xs text-gray-500">30 позиций</p>
               </div>
               
-              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                <h4 class="font-semibold text-gray-800 mb-2">Линии выплат</h4>
-                <p class="text-lg font-bold text-gray-600">Scatter Pays</p>
-                <p class="text-xs text-gray-500">8+ символов</p>
+              <!-- Популярность -->
+              <div>
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <span class="text-2xl">📊</span>
+                  Популярность
+                </h3>
+                <div class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-5 rounded-2xl border border-yellow-400/30">
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-white font-semibold">Рейтинг</span>
+                    <span class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm">#12 из 2000+</span>
+                  </div>
+                  <div class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden">
+                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg" style="width: 94%"></div>
+                  </div>
+                  <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
+                </div>
               </div>
               
-              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                <h4 class="font-semibold text-gray-800 mb-2">Дата выхода</h4>
-                <p class="text-lg font-bold text-gray-600">13.02.2021</p>
-                <p class="text-xs text-gray-500">4 года назад</p>
-              </div>
-            </div>
-            
-            <!-- Популярность -->
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <h4 class="font-semibold text-gray-800 mb-3">Популярность слота</h4>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span>Рейтинг популярности</span>
-                  <span class="font-semibold">#12 из 2000+</span>
+              <!-- Дополнительная информация -->
+              <div class="space-y-4">
+                <div class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center">
+                  <span class="text-white/80 font-medium">Поле игры</span>
+                  <span class="text-white font-bold">6×5</span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style="width: 94%"></div>
+                <div class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center">
+                  <span class="text-white/80 font-medium">Линии выплат</span>
+                  <span class="text-white font-bold">Scatter Pays</span>
                 </div>
-                <div class="text-xs text-gray-600">Один из самых популярных слотов 2024 года</div>
+                <div class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center">
+                  <span class="text-white/80 font-medium">Дата выхода</span>
+                  <span class="text-white font-bold">13.02.2021</span>
+                </div>
               </div>
             </div>
           </div>
@@ -322,6 +390,138 @@
           <p class="text-yellow-800 font-medium">
             🏆 {{ slot.name }} удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.
           </p>
+        </div>
+      </div>
+
+      <!-- Рейтинг и награды -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-3xl shadow-2xl backdrop-blur-sm border border-white/20 p-4 sm:p-6 lg:p-10 mb-8">
+        <!-- Декоративные элементы -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-yellow-200/20 to-orange-200/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
+        
+        <!-- Заголовок с анимацией -->
+        <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4 mb-8 text-center sm:text-left">
+          <div class="relative">
+            <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg rotate-3 hover:rotate-0 transition-transform duration-300">
+              <svg class="w-8 h-8 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </div>
+            <div class="absolute -top-1 -right-1 w-6 h-6 bg-yellow-300 rounded-full animate-pulse"></div>
+          </div>
+          <div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent mb-2">
+              Рейтинг и награды
+            </h2>
+            <p class="text-lg text-gray-600 font-medium">{{ slot.name }}</p>
+          </div>
+        </div>
+        
+        <!-- Двухколоночная композиция: слева рейтинг + CTA, справа награды -->
+        <div class="relative z-10 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+          <!-- Левая колонка: рейтинг + кнопки (2/3 ширины) -->
+          <div class="w-full lg:w-2/3 xl:w-3/4 space-y-8">
+            <!-- Основной рейтинг с улучшенным дизайном -->
+            <div class="relative bg-gradient-to-br from-yellow-50 via-orange-50/50 to-amber-50 p-6 sm:p-8 lg:p-10 rounded-3xl border-2 border-yellow-200/50 shadow-xl overflow-hidden">
+              <!-- Блестящий фон -->
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 -translate-x-full animate-beam"></div>
+              
+              <div class="relative z-10 text-center mb-8">
+                <!-- Анимированные звезды -->
+                <div class="flex justify-center mb-6">
+                  <div class="flex gap-1">
+                    <svg v-for="n in 5" :key="n" class="w-10 h-10 sm:w-12 sm:h-12 text-yellow-400 drop-shadow-lg hover:scale-125 transition-all duration-300 cursor-pointer" 
+                         :class="{ 'animate-bounce': n <= 3 }"
+                         :style="{ animationDelay: (n * 0.1) + 's' }"
+                         fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  </div>
+                </div>
+                
+                <div class="text-5xl sm:text-6xl lg:text-7xl font-black bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-4 leading-tight">
+                  4.8<span class="text-3xl sm:text-4xl lg:text-5xl">/5</span>
+                </div>
+                <div class="text-xl sm:text-2xl text-gray-700 font-bold mb-3">Средний рейтинг игроков</div>
+                <div class="text-sm sm:text-base text-gray-600 bg-white/50 rounded-full px-6 py-2 inline-block">
+                  Основано на <span class="font-bold text-gray-800">1,247</span> отзывах
+                </div>
+              </div>
+              
+              <!-- Детализация рейтинга с анимацией -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+                <div v-for="(item, index) in [
+                  { stars: 5, percent: 68, color: 'yellow' },
+                  { stars: 4, percent: 22, color: 'yellow' },
+                  { stars: 3, percent: 7, color: 'orange' },
+                  { stars: 2, percent: 2, color: 'red' },
+                  { stars: 1, percent: 1, color: 'red' }
+                ]" :key="index" class="text-center p-4 bg-white/70 rounded-2xl hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                  <div class="text-sm font-semibold text-gray-700 mb-2">{{ item.stars }} звезд{{ item.stars === 1 ? 'а' : item.stars < 5 ? 'ы' : '' }}</div>
+                  <div class="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
+                    <div class="h-3 rounded-full transition-all duration-1000 ease-out shadow-inner"
+                         :class="{ 'bg-yellow-400': item.color === 'yellow', 'bg-orange-400': item.color === 'orange', 'bg-red-400': item.color === 'red' }"
+                         :style="`width: ${item.percent}%`"></div>
+                  </div>
+                  <div class="text-sm font-bold text-gray-800">{{ item.percent }}%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Кнопки действий под рейтингом -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button class="group relative w-full sm:w-auto bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600 text-white font-bold py-4 px-8 lg:px-10 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 flex items-center justify-center gap-3 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="relative z-10 text-lg">Играть бесплатно</span>
+              </button>
+              
+              <button class="group relative w-full sm:w-auto bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 lg:px-10 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 flex items-center justify-center gap-3 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+                <span class="relative z-10 text-lg">Играть на деньги</span>
+              </button>
+              
+              <button class="group relative w-full sm:w-auto bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 hover:from-purple-600 hover:via-pink-600 hover:to-rose-600 text-white font-bold py-4 px-8 lg:px-10 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 hover:scale-105 flex items-center justify-center gap-3 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+                <span class="relative z-10 text-lg">В избранное</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Правая колонка: награды (1/3 ширины) -->
+          <div class="w-full lg:w-1/3 xl:w-1/4 lg:sticky lg:top-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-6">
+              <div v-for="(award, index) in [
+                { emoji: '🏆', title: 'Слот года 2024', desc: 'Casino Awards', gradient: 'from-yellow-100 to-amber-100', border: 'border-yellow-300', text: 'text-yellow-800' },
+                { emoji: '🎖️', title: 'Лучший дизайн', desc: 'Gaming Excellence', gradient: 'from-purple-100 to-pink-100', border: 'border-purple-300', text: 'text-purple-800' },
+                { emoji: '💎', title: 'Платиновый статус', desc: '10M+ игроков', gradient: 'from-green-100 to-emerald-100', border: 'border-green-300', text: 'text-green-800' },
+                { emoji: '⭐', title: 'Выбор игроков', desc: 'Народное голосование', gradient: 'from-blue-100 to-indigo-100', border: 'border-blue-300', text: 'text-blue-800' }
+              ]" :key="index" 
+              :class="`bg-gradient-to-br ${award.gradient} ${award.border} ${award.text}`"
+              class="relative group p-6 rounded-2xl border-2 text-center hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden">
+                <!-- Блестящий эффект при hover -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></div>
+                
+                <div class="relative z-10">
+                  <div class="text-4xl lg:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{{ award.emoji }}</div>
+                  <h3 class="font-black text-lg lg:text-xl mb-2 leading-tight">{{ award.title }}</h3>
+                  <p class="text-sm font-medium opacity-80">{{ award.desc }}</p>
+                </div>
+                
+                <!-- Декоративные элементы -->
+                <div class="absolute top-2 right-2 w-3 h-3 bg-white/30 rounded-full"></div>
+                <div class="absolute bottom-2 left-2 w-2 h-2 bg-white/20 rounded-full"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1439,98 +1639,169 @@
         </div>
       </div>
 
-      <!-- Призыв к действию -->
-      <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-8 text-center text-white">
-        <!-- Декоративные элементы -->
-        <div class="absolute top-0 left-0 w-full h-full opacity-10">
-          <div class="absolute top-4 left-4 w-16 h-16 bg-white rounded-full animate-pulse"></div>
-          <div class="absolute top-8 right-8 w-8 h-8 bg-yellow-300 rounded-full animate-bounce"></div>
-          <div class="absolute bottom-4 left-1/4 w-12 h-12 bg-white rounded-full animate-pulse" style="animation-delay: 1s"></div>
-          <div class="absolute bottom-8 right-1/4 w-6 h-6 bg-yellow-300 rounded-full animate-bounce" style="animation-delay: 0.5s"></div>
+      <!-- Призыв к действию - Премиум дизайн -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-3xl border border-purple-500/20">
+        <!-- Динамический фон с анимированными элементами -->
+        <div class="absolute inset-0">
+          <!-- Основной градиент-оверлей -->
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/30 to-pink-600/20"></div>
+          
+          <!-- Анимированные орбы -->
+          <div class="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 rounded-full blur-xl animate-pulse"></div>
+          <div class="absolute top-20 right-16 w-24 h-24 bg-gradient-to-r from-purple-400/25 to-pink-500/25 rounded-full blur-lg animate-bounce" style="animation-delay: 1s; animation-duration: 3s"></div>
+          <div class="absolute bottom-16 left-1/4 w-20 h-20 bg-gradient-to-r from-blue-400/20 to-cyan-500/20 rounded-full blur-lg animate-pulse" style="animation-delay: 2s"></div>
+          <div class="absolute bottom-10 right-1/4 w-16 h-16 bg-gradient-to-r from-emerald-400/25 to-teal-500/25 rounded-full blur-md animate-bounce" style="animation-delay: 0.5s; animation-duration: 4s"></div>
+          
+          <!-- Геометрические узоры -->
+          <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <svg class="w-full h-full" viewBox="0 0 400 300" fill="none">
+              <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+              </pattern>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
         </div>
         
-        <div class="relative z-10">
-          <div class="flex items-center justify-center gap-3 mb-4">
-            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
-              <span class="text-2xl">⚡</span>
-            </div>
-            <h2 class="text-4xl font-bold">Готовы испытать силу Олимпа?</h2>
-          </div>
-          
-          <p class="text-xl mb-2 opacity-90">
-            Окунитесь в мир древнегреческих богов и испытайте удачу в {{ slot.name }}
-          </p>
-          <p class="text-lg mb-8 opacity-80">
-            Потенциал выигрыша до <span class="font-bold text-yellow-300">x5,000</span> ждёт вас!
-          </p>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div class="text-2xl mb-2">🎰</div>
-              <h3 class="font-semibold mb-1">Бесплатная игра</h3>
-              <p class="text-sm opacity-80">Изучите механику без риска</p>
+        <!-- Основной контент -->
+        <div class="relative z-10 px-8 py-12 lg:px-16 lg:py-16">
+          <!-- Заголовочный блок -->
+          <div class="text-center mb-12">
+            <!-- Иконка с анимацией -->
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full shadow-2xl mb-6 animate-pulse">
+              <div class="w-16 h-16 bg-gradient-to-br from-yellow-300 via-orange-400 to-red-400 rounded-full flex items-center justify-center shadow-inner">
+                <span class="text-3xl animate-bounce">⚡</span>
+              </div>
             </div>
             
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div class="text-2xl mb-2">💰</div>
-              <h3 class="font-semibold mb-1">Игра на деньги</h3>
-              <p class="text-sm opacity-80">Реальные выигрыши ждут вас</p>
-            </div>
+            <!-- Заголовок -->
+            <h2 class="text-4xl lg:text-6xl font-black mb-4">
+              <span class="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                Время побеждать!
+              </span>
+            </h2>
             
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:col-span-2 lg:col-span-1">
-              <div class="text-2xl mb-2">🎁</div>
-              <h3 class="font-semibold mb-1">Бонусы казино</h3>
-              <p class="text-sm opacity-80">Получите дополнительные средства</p>
+            <!-- Подзаголовок -->
+            <div class="space-y-2">
+              <p class="text-xl lg:text-2xl text-gray-200 font-medium">
+                Окунитесь в легендарный мир <span class="text-yellow-300 font-bold">{{ slot.name }}</span>
+              </p>
+              <div class="flex items-center justify-center gap-2 text-lg lg:text-xl">
+                <span class="text-gray-300">Потенциал выигрыша до</span>
+                <span class="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full font-black text-xl shadow-lg animate-pulse">
+                  x5,000
+                </span>
+                <span class="text-gray-300">ждёт вас!</span>
+              </div>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <!-- Карточки преимуществ -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="group bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:-translate-y-1">
+              <div class="text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl text-white">🎰</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Демо режим</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Изучите все механики игры совершенно бесплатно</p>
+              </div>
+            </div>
+            
+            <div class="group bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:-translate-y-1" style="transition-delay: 100ms">
+              <div class="text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl text-white">💰</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Реальные деньги</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Играйте на деньги в лучших онлайн казино</p>
+              </div>
+            </div>
+            
+            <div class="group bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:-translate-y-1" style="transition-delay: 200ms">
+              <div class="text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-2xl text-white">🎁</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Эксклюзивные бонусы</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">Получите дополнительные средства для игры</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Кнопки действий -->
+          <div class="flex flex-col lg:flex-row gap-4 justify-center items-center mb-10">
+            <!-- Кнопка демо -->
             <button 
-              class="group bg-white text-blue-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center gap-2"
+              class="group relative overflow-hidden bg-white hover:bg-gray-50 text-slate-900 font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-white/20 transform hover:scale-105 flex items-center justify-center gap-3 min-w-[200px]"
               @click="playSlot"
             >
-              <span class="text-2xl group-hover:animate-spin">🎰</span>
-              <span>Играть бесплатно</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <span class="text-2xl group-hover:animate-spin">🎮</span>
+              <span class="text-lg">Играть демо</span>
             </button>
             
+            <!-- Кнопка на деньги -->
             <button 
-              class="group bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center gap-2"
+              class="group relative overflow-hidden bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/30 transform hover:scale-105 flex items-center justify-center gap-3 min-w-[200px]"
               @click="playForReal"
             >
-              <span class="text-2xl group-hover:animate-bounce">💰</span>
-              <span>Играть на деньги</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <span class="text-2xl group-hover:animate-bounce">💎</span>
+              <span class="text-lg">Играть на деньги</span>
             </button>
             
+            <!-- Кнопка поиска казино -->
             <button 
-              class="group bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center gap-2"
+              class="group relative overflow-hidden bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-purple-500/30 transform hover:scale-105 flex items-center justify-center gap-3 min-w-[200px]"
               @click="findCasino"
             >
-              <span class="text-2xl group-hover:animate-pulse">🎁</span>
-              <span>Найти казино</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <span class="text-2xl group-hover:animate-pulse">🏆</span>
+              <span class="text-lg">Найти казино</span>
             </button>
           </div>
           
-          <div class="mt-6 flex items-center justify-center gap-6 text-sm opacity-75">
-            <div class="flex items-center gap-1">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Лицензированные казино</span>
+          <!-- Индикаторы доверия -->
+          <div class="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-400">
+            <div class="flex items-center gap-2 group hover:text-green-400 transition-colors duration-300">
+              <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="font-medium">Лицензированные операторы</span>
             </div>
-            <div class="flex items-center gap-1">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Безопасные платежи</span>
+            
+            <div class="flex items-center gap-2 group hover:text-blue-400 transition-colors duration-300">
+              <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="font-medium">Безопасность SSL</span>
             </div>
-            <div class="flex items-center gap-1">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
-              </svg>
-              <span>Мобильная версия</span>
+            
+            <div class="flex items-center gap-2 group hover:text-purple-400 transition-colors duration-300">
+              <div class="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                </svg>
+              </div>
+              <span class="font-medium">Мобильная версия</span>
+            </div>
+            
+            <div class="flex items-center gap-2 group hover:text-yellow-400 transition-colors duration-300">
+              <div class="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <span class="text-white text-xs font-bold">24</span>
+              </div>
+              <span class="font-medium">Поддержка 24/7</span>
             </div>
           </div>
         </div>
+        
+        <!-- Декоративная нижняя граница -->
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
       </div>
 
       <!-- Похожие слоты -->
