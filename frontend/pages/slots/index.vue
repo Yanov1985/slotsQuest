@@ -69,7 +69,7 @@
                 :value="provider.id"
                 class="bg-gray-800"
               >
-                {{ provider.name }}
+                {{ provider.name || 'Провайдер' }}
               </option>
             </select>
             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">🏢</span>
@@ -89,7 +89,7 @@
                 :value="category.id"
                 class="bg-gray-800"
               >
-                {{ category.name }}
+                {{ category.name || 'Категория' }}
               </option>
             </select>
             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl">📂</span>
@@ -206,12 +206,12 @@
             <div class="relative aspect-video bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 flex items-center justify-center overflow-hidden">
               <div class="absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/40"></div>
               <div class="relative z-10 text-6xl font-black text-white/80 group-hover:scale-110 transition-transform duration-500">
-                {{ getSlotEmoji(slot.name) }}
+                {{ getSlotEmoji(slot.name || '') }}
               </div>
               
               <!-- Hover Overlay -->
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                <span class="text-white font-bold text-lg">{{ slot.name }}</span>
+                <span class="text-white font-bold text-lg">{{ slot.name || 'Слот' }}</span>
               </div>
               
               <!-- RTP Badge -->
@@ -224,7 +224,7 @@
             <div class="p-6">
               <div class="mb-4">
                 <h3 class="font-bold text-xl text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-1">
-                  {{ slot.name }}
+                  {{ slot.name || 'Слот' }}
                 </h3>
                 <p class="text-gray-400 text-sm mb-1 flex items-center">
                   <span class="mr-2">🏢</span>
@@ -278,11 +278,11 @@
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-6">
                 <div class="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl flex items-center justify-center text-2xl">
-                  {{ getSlotEmoji(slot.name) }}
+                  {{ getSlotEmoji(slot.name || '') }}
                 </div>
                 <div>
                   <h3 class="font-bold text-xl text-white group-hover:text-cyan-400 transition-colors duration-300">
-                    {{ slot.name }}
+                    {{ slot.name || 'Слот' }}
                   </h3>
                   <p class="text-gray-400 text-sm">{{ slot.providers?.name || slot.provider?.name }} • {{ slot.slot_categories?.name || slot.category?.name }}</p>
                   <div class="flex items-center space-x-4 mt-2 text-xs">
@@ -367,7 +367,7 @@ const filteredSlots = computed(() => {
     const providerMatch = !selectedProvider.value || slot.provider_id === selectedProvider.value
     const categoryMatch = !selectedCategory.value || slot.category_id === selectedCategory.value
     const searchMatch = !searchQuery.value || 
-      slot.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      (slot.name || '').toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       (slot.providers?.name || slot.provider?.name || '').toLowerCase().includes(searchQuery.value.toLowerCase())
     
     return providerMatch && categoryMatch && searchMatch
@@ -377,7 +377,7 @@ const filteredSlots = computed(() => {
   filtered.sort((a, b) => {
     switch (sortBy.value) {
       case 'name':
-        return a.name.localeCompare(b.name)
+        return (a.name || '').localeCompare(b.name || '')
       case 'rtp':
         return (b.rtp || 0) - (a.rtp || 0)
       case 'provider':
@@ -406,11 +406,11 @@ const getFilterDescription = () => {
   if (searchQuery.value) parts.push(`поиск: "${searchQuery.value}"`)
   if (selectedProvider.value && providers.value && Array.isArray(providers.value)) {
     const provider = providers.value.find(p => p.id === selectedProvider.value)
-    if (provider) parts.push(`провайдер: ${provider.name}`)
+    if (provider) parts.push(`провайдер: ${provider.name || 'неизвестный'}`)
   }
   if (selectedCategory.value && categories.value && Array.isArray(categories.value)) {
     const category = categories.value.find(c => c.id === selectedCategory.value)
-    if (category) parts.push(`категория: ${category.name}`)
+    if (category) parts.push(`категория: ${category.name || 'неизвестная'}`)
   }
   
   return parts.length > 0 ? parts.join(', ') : 'все слоты'
