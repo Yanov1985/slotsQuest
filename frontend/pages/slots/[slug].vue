@@ -196,6 +196,72 @@
                   <span class="text-sm">Бонус x100</span>
                 </button>
               </div>
+
+              <!-- Награды Gates of Olympus (перенесены в левую колонку) -->
+              <div v-if="isGatesOfOlympus" class="mt-5">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center ring-2 ring-white/20">
+                      <span class="text-white text-lg">🏆</span>
+                    </div>
+                    <h3 class="text-white font-extrabold text-lg tracking-wide">Награды и достижения</h3>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="group relative overflow-hidden rounded-xl p-4 border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60 transition-all">
+                      <div class="absolute -top-8 -right-8 w-24 h-24 bg-amber-400/20 rounded-full blur-2xl group-hover:bg-amber-400/30 transition-colors"></div>
+                      <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center shadow">
+                          <span class="text-white text-base">🥇</span>
+                        </div>
+                        <div>
+                          <div class="text-white font-bold text-sm leading-snug">Слот года 2024</div>
+                          <div class="text-amber-200/90 text-xs">Casino Awards</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-xl p-4 border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60 transition-all">
+                      <div class="absolute -top-8 -right-8 w-24 h-24 bg-fuchsia-400/20 rounded-full blur-2xl group-hover:bg-fuchsia-400/30 transition-colors"></div>
+                      <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-r from-fuchsia-400 to-purple-500 flex items-center justify-center shadow">
+                          <span class="text-white text-base">🎖️</span>
+                        </div>
+                        <div>
+                          <div class="text-white font-bold text-sm leading-snug">Лучший дизайн</div>
+                          <div class="text-fuchsia-200/90 text-xs">Gaming Excellence</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-xl p-4 border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60 transition-all">
+                      <div class="absolute -top-8 -right-8 w-24 h-24 bg-emerald-400/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors"></div>
+                      <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-r from-emerald-400 to-green-500 flex items-center justify-center shadow">
+                          <span class="text-white text-base">💎</span>
+                        </div>
+                        <div>
+                          <div class="text-white font-bold text-sm leading-snug">Платиновый статус</div>
+                          <div class="text-emerald-200/90 text-xs">10M+ игроков</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-xl p-4 border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60 transition-all">
+                      <div class="absolute -top-8 -right-8 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors"></div>
+                      <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-9 h-9 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center shadow">
+                          <span class="text-white text-base">⭐</span>
+                        </div>
+                        <div>
+                          <div class="text-white font-bold text-sm leading-snug">Выбор игроков</div>
+                          <div class="text-blue-200/90 text-xs">Народное голосование</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -297,6 +363,8 @@
                   <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
                 </div>
               </div>
+
+
 
               <!-- Дополнительная информация -->
               <div class="space-y-4">
@@ -2879,6 +2947,13 @@ const similarSlots = computed(() => {
       (s.provider_id === slot.value.provider_id || s.category_id === slot.value.category_id)
     )
     .slice(0, 3)
+})
+
+// Показываем награды только для конкретного слота Gates of Olympus
+const isGatesOfOlympus = computed(() => {
+  const name = ((slot.value && slot.value.name) || '').toLowerCase()
+  const slugStr = (typeof slug === 'string' ? slug : '').toLowerCase()
+  return name.includes('gates of olympus') || slugStr.includes('gates-of-olympus')
 })
 
 // SEO (динамический)
