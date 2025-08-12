@@ -447,7 +447,7 @@ const loadSlot = async () => {
     }
     
     // Загружаем данные слота
-    const { data: slotData } = await $fetch(`/api/slots/${slotId}`)
+    const { data: slotData } = await $fetch(`/api/slots/admin/${slotId}`)
     
     if (!slotData) {
       throw new Error('Слот не найден')
