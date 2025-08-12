@@ -277,14 +277,14 @@
       </div>
     </main>
 
-    <!-- Add/Edit Modal -->
-    <div v-if="showAddModal || showEditModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <!-- Add Modal -->
+    <div v-if="showAddModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div class="bg-[#161A21] border border-[#353A4A] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6">
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-2xl font-bold text-[#E5E7EB] flex items-center">
-              <Icon :name="showAddModal ? 'heroicons:plus-circle' : 'heroicons:cog-6-tooth'" class="w-6 h-6 mr-2 text-[#6366F1]" />
-              {{ showAddModal ? 'Добавить новый слот' : 'Редактировать слот' }}
+              <Icon name="heroicons:plus-circle" class="w-6 h-6 mr-2 text-[#6366F1]" />
+              Добавить новый слот
             </h2>
             <button @click="closeModal" class="group relative p-2 text-[#9CA3AF] hover:text-white hover:bg-[#EF4444] rounded-lg transition-all duration-200" title="Закрыть">
               <Icon name="heroicons:x-circle" class="w-5 h-5" />
@@ -583,7 +583,6 @@ const deleting = ref(false)
 
 // Modals
 const showAddModal = ref(false)
-const showEditModal = ref(false)
 const showDeleteModal = ref(false)
 const slotToDelete = ref(null)
 
@@ -706,30 +705,8 @@ const refreshSlots = () => {
 }
 
 const editSlot = (slot) => {
-  slotForm.value = {
-    id: slot.id,
-    name: slot.name,
-    description: slot.description || '',
-    provider_id: slot.provider_id,
-    category_id: slot.category_id || '',
-    rtp: slot.rtp,
-    volatility: slot.volatility || '',
-    max_win: slot.max_win,
-    min_bet: slot.min_bet,
-    max_bet: slot.max_bet,
-    reels: slot.reels,
-    rows: slot.rows,
-    paylines: slot.paylines,
-    theme: slot.theme || '',
-    thumbnail_url: slot.thumbnail_url || '',
-    screenshots: slot.screenshots || [],
-    features: slot.features || [],
-    is_active: slot.is_active,
-    is_mobile_compatible: slot.is_mobile_compatible,
-    is_demo_available: slot.is_demo_available,
-    release_date: slot.release_date ? new Date(slot.release_date).toISOString().split('T')[0] : ''
-  }
-  showEditModal.value = true
+  // Перенаправляем на страницу редактирования слота
+  navigateTo(`/admin/slots/edit?id=${slot.id}`)
 }
 
 const deleteSlot = (slot) => {
@@ -793,7 +770,6 @@ const saveSlot = async () => {
 
 const closeModal = () => {
   showAddModal.value = false
-  showEditModal.value = false
   slotForm.value = {
     name: '',
     description: '',
