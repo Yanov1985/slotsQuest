@@ -136,28 +136,16 @@
           <!-- Заголовок и теги -->
           <div class="mb-8">
             <div class="flex items-center gap-3 mb-6 flex-wrap">
-              <div
-                class="flex items-center gap-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-400/30"
-              >
-                <div
-                  class="w-2 h-2 bg-green-400 rounded-full animate-pulse"
-                ></div>
-                <span class="text-green-300 text-sm font-bold">ОНЛАЙН</span>
-              </div>
               <span
                 class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
               >
                 {{ slot.provider?.name || 'Pragmatic Play' }}
               </span>
-              <span
-                class="bg-gradient-to-r from-yellow-500/30 to-orange-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-yellow-400/30"
-              >
-                🔥 ТОП-12
-              </span>
             </div>
 
             <h1
-              class="text-4xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-white via-yellow-100 to-blue-100 bg-clip-text text-transparent mb-4 leading-tight drop-shadow-lg"
+              class="text-2xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2"
+              style="line-height: 1.3; padding-bottom: 0.5rem"
             >
               {{ slot.name || 'Загрузка...' }}
             </h1>
@@ -187,10 +175,6 @@
                 <span class="text-white font-bold text-lg">4.8</span>
                 <span class="text-white/60">/ 5</span>
               </div>
-              <div class="text-white/60">•</div>
-              <span class="text-white/80 font-semibold">1,247 отзывов</span>
-              <div class="text-white/60">•</div>
-              <span class="text-emerald-400 font-bold">2M+ игроков</span>
             </div>
           </div>
 
@@ -244,11 +228,6 @@
             </button>
 
             <!-- Индикатор потенциального выигрыша -->
-            <div
-              class="absolute top-4 right-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-pulse"
-            >
-              MAX WIN: x5,000
-            </div>
           </div>
 
           <!-- Кнопки действий -->
