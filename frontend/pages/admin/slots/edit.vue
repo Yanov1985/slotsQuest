@@ -107,7 +107,7 @@
               <Icon name="heroicons:information-circle" class="w-5 h-5 text-[#00EDFF]" />
               Основная информация
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Название слота *</label>
@@ -119,7 +119,7 @@
                   placeholder="Введите название слота"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Slug (URL) *</label>
                 <input
@@ -130,7 +130,7 @@
                   placeholder="gates-of-olympus"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Провайдер *</label>
                 <select
@@ -144,7 +144,7 @@
                   </option>
                 </select>
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Категория</label>
                 <select
@@ -158,7 +158,7 @@
                 </select>
               </div>
             </div>
-            
+
             <div class="mt-6">
               <label class="block text-sm font-medium text-[#A0AABE] mb-2">Описание</label>
               <textarea
@@ -176,7 +176,7 @@
               <Icon name="heroicons:chart-bar" class="w-5 h-5 text-[#63F3AB]" />
               Технические характеристики
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">RTP (%)</label>
@@ -190,7 +190,7 @@
                   placeholder="96.50"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Волатильность</label>
                 <select
@@ -203,7 +203,7 @@
                   <option value="Высокая" class="bg-[#161A21] text-white">Высокая</option>
                 </select>
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Макс. выигрыш</label>
                 <input
@@ -213,7 +213,7 @@
                   placeholder="x5000"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Мин. ставка</label>
                 <input
@@ -223,7 +223,7 @@
                   placeholder="0.20"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Макс. ставка</label>
                 <input
@@ -233,7 +233,7 @@
                   placeholder="100.00"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Количество барабанов</label>
                 <input
@@ -245,7 +245,7 @@
                   placeholder="5"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Количество рядов</label>
                 <input
@@ -257,7 +257,7 @@
                   placeholder="3"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Линии выплат</label>
                 <input
@@ -269,7 +269,7 @@
                   placeholder="25"
                 />
               </div>
-              
+
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Хит-частота (%)</label>
                 <input
@@ -291,7 +291,7 @@
               <Icon name="heroicons:tag" class="w-5 h-5 text-[#CD0F8B]" />
               Дополнительная информация
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                <div>
                  <label class="block text-sm font-medium text-[#A0AABE] mb-2">Тема</label>
@@ -302,7 +302,7 @@
                    placeholder="Мифология, Древняя Греция"
                  />
                </div>
-               
+
                <div>
                  <label class="block text-sm font-medium text-[#A0AABE] mb-2">Дата релиза</label>
                  <input
@@ -312,7 +312,7 @@
                  />
                </div>
              </div>
-             
+
              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                <div>
                  <label class="block text-sm font-medium text-[#A0AABE] mb-2">Рейтинг</label>
@@ -326,7 +326,7 @@
                    placeholder="4.5"
                  />
                </div>
-               
+
                <div>
                  <label class="block text-sm font-medium text-[#A0AABE] mb-2">Популярность</label>
                  <select
@@ -341,7 +341,7 @@
                  </select>
                </div>
              </div>
-             
+
              <div class="mt-6">
                <label class="block text-sm font-medium text-[#A0AABE] mb-2">URL изображения</label>
                <input
@@ -351,7 +351,7 @@
                  placeholder="https://example.com/image.jpg"
                />
              </div>
-             
+
              <div class="mt-6">
                <label class="block text-sm font-medium text-[#A0AABE] mb-2">URL демо-игры</label>
                <input
@@ -372,7 +372,7 @@
               <Icon name="heroicons:cog-6-tooth" class="w-5 h-5 text-[#FF6E48]" />
               Статус и управление
             </h2>
-            
+
             <div class="space-y-4">
               <div class="flex items-center justify-between p-4 bg-[#161A21] border border-[#353A4A] rounded-lg">
                 <div>
@@ -388,7 +388,7 @@
                   <div class="w-11 h-6 bg-[#353A4A] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#FF6E48]/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#353A4A] after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF6E48]"></div>
                 </label>
               </div>
-              
+
               <div class="p-4 bg-[#161A21] border border-[#353A4A] rounded-lg">
                 <div class="flex items-center gap-2 mb-2">
                   <Icon name="heroicons:information-circle" class="w-4 h-4 text-[#00EDFF]" />
@@ -406,7 +406,7 @@
               <Icon name="heroicons:photo" class="w-5 h-5 text-[#CD0F8B]" />
               Превью изображения
             </h2>
-            
+
             <div class="aspect-video bg-[#161A21] border border-[#353A4A] rounded-lg overflow-hidden">
               <img
                 v-if="editableSlot.image_url"
@@ -430,7 +430,7 @@
               <Icon name="heroicons:bolt" class="w-5 h-5 text-[#63F3AB]" />
               Быстрые действия
             </h2>
-            
+
             <div class="space-y-3">
               <button
                 @click="duplicateSlot"
@@ -439,7 +439,7 @@
                 <Icon name="heroicons:document-duplicate" class="w-4 h-4" />
                 Дублировать слот
               </button>
-              
+
               <button
                 @click="resetChanges"
                 class="w-full bg-gradient-to-r from-[#6B7280] to-[#4B5563] hover:from-[#4B5563] hover:to-[#6B7280] text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg"
@@ -447,7 +447,7 @@
                 <Icon name="heroicons:arrow-path" class="w-4 h-4" />
                 Сбросить изменения
               </button>
-              
+
               <button
                 @click="deleteSlot"
                 class="w-full bg-gradient-to-r from-[#DC2626] to-[#B91C1C] hover:from-[#B91C1C] hover:to-[#DC2626] text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg hover:shadow-red-500/30"
@@ -497,20 +497,20 @@ const loadSlot = async () => {
   try {
     loading.value = true
     error.value = null
-    
+
     if (!slotId) {
       throw new Error('ID слота не указан')
     }
-    
+
     // Загружаем данные слота
     const { data: slotData } = await $fetch(`/api/slots/admin/${slotId}`)
-    
+
     if (!slotData) {
       throw new Error('Слот не найден')
     }
-    
+
     slot.value = slotData
-    
+
     // Копируем данные в редактируемый объект
     Object.assign(editableSlot, {
       id: slotData.id,
@@ -536,7 +536,7 @@ const loadSlot = async () => {
       image_url: slotData.image_url || '',
       is_active: slotData.is_active || false
     })
-    
+
   } catch (err) {
     console.error('Ошибка загрузки слота:', err)
     error.value = err.message || 'Ошибка загрузки данных слота'
@@ -569,7 +569,7 @@ const loadCategories = async () => {
 const saveSlot = async () => {
   try {
     saving.value = true
-    
+
     // Подготавливаем данные для отправки
     const updateData = {
       name: editableSlot.name,
@@ -594,20 +594,20 @@ const saveSlot = async () => {
       image_url: editableSlot.image_url,
       is_active: editableSlot.is_active
     }
-    
+
     // Отправляем запрос на обновление
     await $fetch(`/api/slots/${slotId}`, {
       method: 'PUT',
       body: updateData
     })
-    
+
     // Показываем уведомление об успехе
     // TODO: Добавить toast уведомление
     alert('Слот успешно обновлен!')
-    
+
     // Перезагружаем данные
     await loadSlot()
-    
+
   } catch (err) {
     console.error('Ошибка сохранения:', err)
     alert('Ошибка при сохранении изменений: ' + (err.message || 'Неизвестная ошибка'))
@@ -656,15 +656,15 @@ const duplicateSlot = async () => {
         name: editableSlot.name + ' (Копия)',
         slug: editableSlot.slug + '-copy-' + Date.now()
       }
-      
+
       const { data } = await $fetch('/api/slots', {
         method: 'POST',
         body: duplicateData
       })
-      
+
       alert('Копия слота создана!')
       router.push(`/admin/slots/edit?id=${data.id}`)
-      
+
     } catch (err) {
       console.error('Ошибка дублирования:', err)
       alert('Ошибка при создании копии: ' + (err.message || 'Неизвестная ошибка'))
@@ -679,10 +679,10 @@ const deleteSlot = async () => {
       await $fetch(`/api/slots/${slotId}`, {
         method: 'DELETE'
       })
-      
+
       alert('Слот удален!')
       router.push('/admin/slots')
-      
+
     } catch (err) {
       console.error('Ошибка удаления:', err)
       alert('Ошибка при удалении: ' + (err.message || 'Неизвестная ошибка'))
