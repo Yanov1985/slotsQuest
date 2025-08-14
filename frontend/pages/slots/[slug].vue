@@ -175,6 +175,72 @@
                 <span class="text-white font-bold text-lg">4.8</span>
                 <span class="text-white/60">/ 5</span>
               </div>
+              <button
+                class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
+                @click="toggleRatingPicker"
+              >
+                Голосовать!
+              </button>
+            </div>
+
+            <div
+              v-if="showRatingPicker"
+              class="mt-3 p-4 bg-white/10 border border-white/20 rounded-xl"
+            >
+              <div class="flex items-center justify-between gap-4 flex-wrap">
+                <div class="flex items-center gap-3">
+                  <button
+                    class="px-3 py-1 rounded-full text-sm font-semibold bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors"
+                    :class="{
+                      'bg-white/20 text-white':
+                        hoverStars === 0 || selectedStars === 0,
+                    }"
+                    @mouseenter="setHover(0)"
+                    @mouseleave="setHover(selectedStars ?? 0)"
+                    @click="pickRating(0)"
+                  >
+                    0
+                  </button>
+                  <div class="flex text-yellow-400">
+                    <svg
+                      v-for="n in 5"
+                      :key="n"
+                      class="w-7 h-7 cursor-pointer transition-all duration-200"
+                      :class="[
+                        hoverStars >= n ||
+                        (hoverStars === 0 && (selectedStars || 0) >= n)
+                          ? 'opacity-100 scale-110'
+                          : 'opacity-40',
+                      ]"
+                      @mouseenter="setHover(n)"
+                      @mouseleave="setHover(selectedStars || 0)"
+                      @click="pickRating(n)"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <button
+                    class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500/90 hover:bg-emerald-500 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    :disabled="selectedStars === null || ratingSubmitting"
+                    @click="submitRating"
+                  >
+                    {{ ratingSubmitting ? 'Отправка…' : 'Голосовать' }}
+                  </button>
+                  <div
+                    v-if="ratingSubmitted"
+                    class="flex items-center gap-2 text-emerald-300 font-semibold"
+                  >
+                    <span>✔</span>
+                    <span>Голос учтён</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -260,30 +326,28 @@
               </div>
             </button>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button
-                class="group relative bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-orange-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 overflow-hidden"
-                @click="playForReal"
+            <button
+              class="group relative w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+              @click="playForReal"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+              ></div>
+              <svg
+                class="w-7 h-7 relative z-10"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                ></div>
-                <svg
-                  class="w-5 h-5 relative z-10"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                  ></path>
-                </svg>
-                <span class="relative z-10">Играть на деньги</span>
-              </button>
-            </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                ></path>
+              </svg>
+              <span class="relative z-10">Играть на деньги</span>
+            </button>
 
             <!-- Награды Gates of Olympus (перенесены в левую колонку) -->
             <div v-if="isGatesOfOlympus" class="mt-5">
@@ -5133,6 +5197,48 @@ const findCasino = () => {
   if (!slot.value) return
   // Здесь будет логика поиска казино с бонусами
   alert(`Поиск лучших казино для игры в ${slot.value.name || 'слот'}`)
+}
+
+// Рейтинг: состояние и обработчики для HERO
+const showRatingPicker = ref(false)
+const selectedStars = ref(null)
+const hoverStars = ref(0)
+const ratingSubmitting = ref(false)
+const ratingSubmitted = ref(false)
+
+const toggleRatingPicker = () => {
+  // Если уже отправлен — заново открыть можно, но сбросим флаг
+  if (!showRatingPicker.value) {
+    ratingSubmitted.value = false
+  }
+  showRatingPicker.value = !showRatingPicker.value
+}
+
+const setHover = (value) => {
+  hoverStars.value = value
+}
+
+const pickRating = (value) => {
+  selectedStars.value = value
+}
+
+const submitRating = async () => {
+  if (selectedStars.value === null) return
+  try {
+    ratingSubmitting.value = true
+    // Имитация отправки. Здесь можно вызвать реальный API
+    await new Promise((r) => setTimeout(r, 800))
+    ratingSubmitted.value = true
+    // Красивое авто-скрытие выбора спустя паузу
+    setTimeout(() => {
+      showRatingPicker.value = false
+      // Сбросить состояние выбора
+      hoverStars.value = 0
+      selectedStars.value = null
+    }, 1200)
+  } finally {
+    ratingSubmitting.value = false
+  }
 }
 
 const getSlotIcon = (name) => {
