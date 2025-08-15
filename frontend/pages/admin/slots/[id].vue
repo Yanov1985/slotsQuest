@@ -367,6 +367,97 @@
                 </div>
               </div>
 
+              <!-- Медиа контент -->
+              <div class="space-y-4">
+                <h3
+                  class="text-lg font-semibold text-pink-400 border-b border-gray-600 pb-2"
+                >
+                  Медиа контент Hero секции
+                </h3>
+
+                <!-- Тип медиа -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Тип медиа контента
+                  </label>
+                  <select
+                    v-model="form.media_type"
+                    class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                  >
+                    <option value="image">Изображение</option>
+                    <option value="video">Видео</option>
+                  </select>
+                  <p class="mt-1 text-xs text-gray-400">
+                    Выберите тип медиа контента для обложки слота
+                  </p>
+                </div>
+
+                <!-- URL изображения (показывается если выбрано изображение) -->
+                <div v-if="form.media_type === 'image'">
+                  <label class="block text-sm font-medium text-gray-300 mb-2">
+                    URL изображения
+                  </label>
+                  <input
+                    v-model="form.image_url"
+                    type="url"
+                    class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                    placeholder="https://example.com/slot-image.jpg"
+                  />
+                  <p class="mt-1 text-xs text-gray-400">
+                    Добавьте ссылку на изображение слота
+                  </p>
+                </div>
+
+                <!-- URL видео (показывается если выбрано видео) -->
+                <div v-if="form.media_type === 'video'">
+                  <label class="block text-sm font-medium text-gray-300 mb-2">
+                    URL видео
+                  </label>
+                  <input
+                    v-model="form.video_url"
+                    type="url"
+                    class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                    placeholder="https://example.com/slot-video.mp4"
+                  />
+                  <p class="mt-1 text-xs text-gray-400">
+                    Добавьте ссылку на видео слота (поддерживаются .mp4, .webm, .ogg)
+                  </p>
+                </div>
+
+                <!-- Превью медиа -->
+                <div v-if="form.image_url || form.video_url" class="mt-4">
+                  <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Превью медиа
+                  </label>
+                  <div class="bg-gray-700 rounded-lg p-4 border border-gray-600">
+                    <!-- Превью изображения -->
+                    <div v-if="form.media_type === 'image' && form.image_url">
+                      <img
+                        :src="form.image_url"
+                        :alt="form.name || 'Слот'"
+                        class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
+                        @error="handleImageError"
+                        @load="handleImageLoad"
+                      />
+                    </div>
+                    <!-- Превью видео -->
+                    <div v-else-if="form.media_type === 'video' && form.video_url">
+                      <video
+                        :src="form.video_url"
+                        class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
+                        controls
+                        muted
+                        preload="metadata"
+                        @error="handleVideoError"
+                        @loadeddata="handleVideoLoad"
+                      >
+                        Ваш браузер не поддерживает воспроизведение видео.
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Кнопки сохранения -->
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
                 <button
@@ -456,6 +547,41 @@
                     'Описание слота будет отображаться здесь...'
                   }}
                 </p>
+
+                <!-- Медиа превью -->
+                <div v-if="form.image_url || form.video_url" class="mb-4">
+                  <!-- Превью изображения -->
+                  <div v-if="form.media_type === 'image' && form.image_url" class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30">
+                    <img
+                      :src="form.image_url"
+                      :alt="form.name || 'Слот'"
+                      class="w-full h-full object-cover"
+                      @error="handlePreviewImageError"
+                    />
+                  </div>
+                  <!-- Превью видео -->
+                  <div v-else-if="form.media_type === 'video' && form.video_url" class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30">
+                    <video
+                      :src="form.video_url"
+                      class="w-full h-full object-cover"
+                      autoplay
+                      loop
+                      muted
+                      preload="metadata"
+                      @error="handlePreviewVideoError"
+                    >
+                      <div class="flex items-center justify-center h-full text-white/60 text-xs">
+                        Видео не поддерживается
+                      </div>
+                    </video>
+                  </div>
+                  <!-- Индикатор типа медиа -->
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="px-2 py-1 bg-purple-500/30 rounded-full text-xs font-bold border border-purple-400/30">
+                      {{ form.media_type === 'image' ? '🖼️ Изображение' : '🎥 Видео' }}
+                    </div>
+                  </div>
+                </div>
 
                 <!-- Рейтинг -->
                 <div class="flex items-center gap-2 mb-4">
@@ -574,6 +700,10 @@ const form = ref({
   popularity_percentage: 94,
   game_field: '6×5',
   paylines: 'Scatter Pays',
+  // Медиа поля
+  media_type: 'image', // 'image' или 'video'
+  image_url: '',
+  video_url: '',
 })
 
 // Заголовок страницы
@@ -682,6 +812,31 @@ const saveSlot = async () => {
   }
 }
 
+// Обработчики медиа событий
+const handleImageError = (event) => {
+  event.target.style.display = 'none'
+}
+
+const handleImageLoad = (event) => {
+  event.target.style.display = 'block'
+}
+
+const handleVideoError = (event) => {
+  event.target.style.display = 'none'
+}
+
+const handleVideoLoad = (event) => {
+  event.target.style.display = 'block'
+}
+
+const handlePreviewImageError = (event) => {
+  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки изображения</div>'
+}
+
+const handlePreviewVideoError = (event) => {
+  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
+}
+
 // Сброс формы к исходному состоянию
 const resetForm = () => {
   if (slot.value) {
@@ -710,6 +865,10 @@ const resetForm = () => {
       popularity_percentage: 94,
       game_field: '6×5',
       paylines: 'Scatter Pays',
+      // Медиа поля
+      media_type: 'image',
+      image_url: '',
+      video_url: '',
     })
   }
 }
