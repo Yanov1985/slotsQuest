@@ -88,13 +88,17 @@
       </div>
     </div>
 
-    <!-- Hero секция на всю ширину -->
-    <div
+    <!-- Hero секция - Семантическая разметка с Schema.org -->
+    <section
       v-else-if="slot"
       class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 shadow-2xl mb-8"
+      itemscope
+      itemtype="https://schema.org/Game"
     >
+
+
       <!-- Анимированный фон -->
-      <div class="absolute inset-0">
+      <div class="absolute inset-0" aria-hidden="true">
         <div
           class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-beam transform skew-x-12"
         ></div>
@@ -112,18 +116,23 @@
       </div>
 
       <!-- Декоративные элементы -->
-      <div class="absolute top-8 right-8 text-white/10 text-8xl animate-float">
+      <div
+        class="absolute top-8 right-8 text-white/10 text-8xl animate-float"
+        aria-hidden="true"
+      >
         ⚡
       </div>
       <div
         class="absolute bottom-8 left-8 text-white/5 text-6xl animate-float"
         style="animation-delay: 1.5s"
+        aria-hidden="true"
       >
         🏛️
       </div>
       <div
         class="absolute top-1/3 right-1/4 text-white/8 text-4xl animate-float"
         style="animation-delay: 3s"
+        aria-hidden="true"
       >
         💎
       </div>
@@ -131,66 +140,112 @@
       <div
         class="relative z-10 grid grid-cols-1 xl:grid-cols-5 gap-0 min-h-[700px]"
       >
-        <!-- Левая часть: Игровой экран (3 колонки из 5) -->
-        <div class="xl:col-span-3 p-8 lg:p-12 flex flex-col justify-center">
-          <!-- Заголовок и теги -->
-          <div class="mb-8">
+        <!-- Левая часть: Игровая информация (3 колонки из 5) -->
+        <main class="xl:col-span-3 p-8 lg:p-12 flex flex-col justify-center">
+          <!-- Заголовок и основная информация -->
+          <header class="mb-8">
+            <!-- Провайдер -->
             <div class="flex items-center gap-3 mb-6 flex-wrap">
               <span
                 class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
+                itemprop="publisher"
+                itemscope
+                itemtype="https://schema.org/Organization"
               >
-                {{ slot.provider?.name || 'Pragmatic Play' }}
+                <span itemprop="name">{{
+                  slot.provider?.name || 'Pragmatic Play'
+                }}</span>
               </span>
             </div>
 
+            <!-- Заголовок слота -->
             <h1
               class="text-2xl lg:text-4xl xl:text-5xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2"
               style="line-height: 1.3; padding-bottom: 0.5rem"
+              itemprop="name"
             >
               {{ slot.name || 'Загрузка...' }}
             </h1>
 
+            <!-- Описание слота -->
             <p
               class="text-white/80 text-lg lg:text-xl leading-relaxed mb-6 max-w-2xl"
+              itemprop="description"
             >
               {{ getShortDescription(slot) }}
             </p>
 
-            <!-- Рейтинг и статистика -->
-            <div class="flex flex-wrap items-center gap-6 mb-8">
-              <div class="flex items-center gap-2">
-                <div class="flex text-yellow-400">
+            <!-- Рейтинг и голосование -->
+            <div
+              class="flex flex-wrap items-center gap-6 mb-8"
+              role="group"
+              aria-label="Рейтинг и голосование"
+            >
+              <!-- Текущий рейтинг -->
+              <div
+                class="flex items-center gap-2"
+                itemprop="aggregateRating"
+                itemscope
+                itemtype="https://schema.org/AggregateRating"
+              >
+                <div
+                  class="flex text-yellow-400"
+                  aria-label="Рейтинг 4.8 из 5 звезд"
+                >
                   <svg
                     v-for="n in 5"
                     :key="n"
                     class="w-7 h-7 drop-shadow-lg"
+                    :class="n <= 4 ? 'text-yellow-400' : 'text-gray-400'"
                     fill="currentColor"
                     viewBox="0 0 20 20"
+                    :aria-hidden="true"
                   >
                     <path
                       d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                     />
                   </svg>
                 </div>
-                <span class="text-white font-bold text-lg">4.8</span>
-                <span class="text-white/60">/ 5</span>
+                <span
+                  class="text-white font-bold text-lg"
+                  itemprop="ratingValue"
+                  >4.8</span
+                >
+                <span class="text-white/60"
+                  >/ <span itemprop="bestRating">5</span></span
+                >
+                <meta itemprop="ratingCount" content="1247" />
+                <meta itemprop="worstRating" content="1" />
               </div>
+
+              <!-- Кнопка голосования -->
               <button
-                class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
+                class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
                 @click="toggleRatingPicker"
+                :aria-expanded="showRatingPicker"
+                aria-controls="rating-picker"
+                type="button"
               >
                 Голосовать!
               </button>
             </div>
 
+            <!-- Панель голосования -->
             <div
               v-if="showRatingPicker"
+              id="rating-picker"
               class="mt-3 p-4 bg-white/10 border border-white/20 rounded-xl"
+              role="dialog"
+              aria-label="Панель оценки слота"
             >
               <div class="flex items-center justify-between gap-4 flex-wrap">
-                <div class="flex items-center gap-3">
+                <div
+                  class="flex items-center gap-3"
+                  role="radiogroup"
+                  aria-label="Выберите оценку от 0 до 5 звезд"
+                >
                   <button
-                    class="px-3 py-1 rounded-full text-sm font-semibold bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors"
+                    class="px-3 py-1 rounded-full text-sm font-semibold bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
                     :class="{
                       'bg-white/20 text-white':
                         hoverStars === 0 || selectedStars === 0,
@@ -198,14 +253,18 @@
                     @mouseenter="setHover(0)"
                     @mouseleave="setHover(selectedStars ?? 0)"
                     @click="pickRating(0)"
+                    role="radio"
+                    :aria-checked="selectedStars === 0"
+                    aria-label="0 звезд"
+                    type="button"
                   >
                     0
                   </button>
                   <div class="flex text-yellow-400">
-                    <svg
+                    <button
                       v-for="n in 5"
                       :key="n"
-                      class="w-7 h-7 cursor-pointer transition-all duration-200"
+                      class="w-7 h-7 cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 rounded"
                       :class="[
                         hoverStars >= n ||
                         (hoverStars === 0 && (selectedStars || 0) >= n)
@@ -215,58 +274,81 @@
                       @mouseenter="setHover(n)"
                       @mouseleave="setHover(selectedStars || 0)"
                       @click="pickRating(n)"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                      role="radio"
+                      :aria-checked="selectedStars === n"
+                      :aria-label="`${n} звезд${n === 1 ? 'а' : n < 5 ? 'ы' : ''}`"
+                      type="button"
                     >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        class="w-full h-full"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
                 <div class="flex items-center gap-3">
                   <button
-                    class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500/90 hover:bg-emerald-500 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500/90 hover:bg-emerald-500 text-white shadow-md disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-emerald-400"
                     :disabled="selectedStars === null || ratingSubmitting"
                     @click="submitRating"
+                    type="button"
+                    :aria-label="
+                      ratingSubmitting ? 'Отправка оценки' : 'Отправить оценку'
+                    "
                   >
                     {{ ratingSubmitting ? 'Отправка…' : 'Голосовать' }}
                   </button>
                   <div
                     v-if="ratingSubmitted"
                     class="flex items-center gap-2 text-emerald-300 font-semibold"
+                    role="status"
+                    aria-live="polite"
                   >
-                    <span>✔</span>
+                    <span aria-hidden="true">✔</span>
                     <span>Голос учтён</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </header>
 
           <!-- Игровой экран -->
           <div
             class="aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-8 relative overflow-hidden group"
+            role="img"
+            :aria-label="`Превью игры ${slot.name || 'слот'}`"
+            itemprop="image"
+            itemscope
+            itemtype="https://schema.org/ImageObject"
           >
             <!-- Внутренний градиент -->
             <div
               class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10"
+              aria-hidden="true"
             ></div>
             <div
               class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+              aria-hidden="true"
             ></div>
 
             <!-- Содержимое экрана -->
             <div class="text-center relative z-10">
               <div
                 class="text-white text-9xl lg:text-[12rem] font-black mb-6 drop-shadow-2xl animate-float"
+                aria-hidden="true"
               >
                 {{ getSlotIcon(slot.name || '') }}
               </div>
               <div
                 class="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20"
               >
-                <p class="text-white/90 text-lg font-bold mb-2">
+                <p class="text-white/90 text-lg font-bold mb-2" itemprop="name">
                   {{ slot.name || 'Загрузка...' }}
                 </p>
                 <p class="text-white/60 text-sm">
@@ -277,8 +359,10 @@
 
             <!-- Кнопка Play -->
             <button
-              class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group"
+              class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
               @click="playSlot"
+              type="button"
+              aria-label="Запустить демо-версию игры"
             >
               <div
                 class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500"
@@ -287,29 +371,32 @@
                   class="w-12 h-12 lg:w-14 lg:h-14 text-white ml-2"
                   fill="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
             </button>
-
-            <!-- Индикатор потенциального выигрыша -->
           </div>
 
           <!-- Кнопки действий -->
-          <div class="space-y-4">
+          <nav class="space-y-4" aria-label="Варианты игры">
             <button
-              class="group relative w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+              class="group relative w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30"
               @click="playSlot"
+              type="button"
+              itemprop="url"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                aria-hidden="true"
               ></div>
               <svg
                 class="w-7 h-7 relative z-10"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   stroke-linecap="round"
@@ -319,25 +406,29 @@
                 ></path>
               </svg>
               <span class="relative z-10">Играть бесплатно</span>
-              <div
+              <span
                 class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
+                aria-label="Демо-режим"
               >
                 DEMO
-              </div>
+              </span>
             </button>
 
             <button
-              class="group relative w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+              class="group relative w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30"
               @click="playForReal"
+              type="button"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                aria-hidden="true"
               ></div>
               <svg
                 class="w-7 h-7 relative z-10"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   stroke-linecap="round"
@@ -349,32 +440,43 @@
               <span class="relative z-10">Играть на деньги</span>
             </button>
 
-            <!-- Награды Gates of Olympus (перенесены в левую колонку) -->
-            <div v-if="isGatesOfOlympus" class="mt-5">
+            <!-- Награды Gates of Olympus (семантическая разметка) -->
+            <aside
+              v-if="isGatesOfOlympus"
+              class="mt-5"
+              aria-label="Награды и достижения"
+            >
               <div
                 class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4"
+                itemprop="award"
+                itemscope
+                itemtype="https://schema.org/CreativeWork"
               >
-                <div class="flex items-center gap-3 mb-4">
+                <header class="flex items-center gap-3 mb-4">
                   <div
                     class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center ring-2 ring-white/20"
+                    aria-hidden="true"
                   >
                     <span class="text-white text-lg">🏆</span>
                   </div>
                   <h3 class="text-white font-extrabold text-lg tracking-wide">
                     Награды и достижения
                   </h3>
-                </div>
+                </header>
 
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-3" role="list">
                   <div
                     class="group relative overflow-hidden rounded-xl p-4 border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60 transition-all"
+                    role="listitem"
                   >
                     <div
                       class="absolute -top-8 -right-8 w-24 h-24 bg-amber-400/20 rounded-full blur-2xl group-hover:bg-amber-400/30 transition-colors"
+                      aria-hidden="true"
                     ></div>
                     <div class="flex items-center gap-3 relative z-10">
                       <div
                         class="w-9 h-9 rounded-lg bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center shadow"
+                        aria-hidden="true"
                       >
                         <span class="text-white text-base">🥇</span>
                       </div>
@@ -391,13 +493,16 @@
 
                   <div
                     class="group relative overflow-hidden rounded-xl p-4 border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60 transition-all"
+                    role="listitem"
                   >
                     <div
                       class="absolute -top-8 -right-8 w-24 h-24 bg-fuchsia-400/20 rounded-full blur-2xl group-hover:bg-fuchsia-400/30 transition-colors"
+                      aria-hidden="true"
                     ></div>
                     <div class="flex items-center gap-3 relative z-10">
                       <div
                         class="w-9 h-9 rounded-lg bg-gradient-to-r from-fuchsia-400 to-purple-500 flex items-center justify-center shadow"
+                        aria-hidden="true"
                       >
                         <span class="text-white text-base">🎖️</span>
                       </div>
@@ -414,13 +519,16 @@
 
                   <div
                     class="group relative overflow-hidden rounded-xl p-4 border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60 transition-all"
+                    role="listitem"
                   >
                     <div
                       class="absolute -top-8 -right-8 w-24 h-24 bg-emerald-400/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors"
+                      aria-hidden="true"
                     ></div>
                     <div class="flex items-center gap-3 relative z-10">
                       <div
                         class="w-9 h-9 rounded-lg bg-gradient-to-r from-emerald-400 to-green-500 flex items-center justify-center shadow"
+                        aria-hidden="true"
                       >
                         <span class="text-white text-base">💎</span>
                       </div>
@@ -437,13 +545,16 @@
 
                   <div
                     class="group relative overflow-hidden rounded-xl p-4 border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60 transition-all"
+                    role="listitem"
                   >
                     <div
                       class="absolute -top-8 -right-8 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors"
+                      aria-hidden="true"
                     ></div>
                     <div class="flex items-center gap-3 relative z-10">
                       <div
                         class="w-9 h-9 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center shadow"
+                        aria-hidden="true"
                       >
                         <span class="text-white text-base">⭐</span>
                       </div>
@@ -459,28 +570,32 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </aside>
+          </nav>
+        </main>
 
-        <!-- Правая часть: Статистика и информация (2 колонки из 5) -->
-        <div
+        <!-- Правая часть: Характеристики и статистика (2 колонки из 5) -->
+        <aside
           class="xl:col-span-2 bg-white/10 backdrop-blur-md p-8 lg:p-10 border-l border-white/20"
+          aria-label="Характеристики и статистика игры"
         >
           <div class="space-y-8">
             <!-- Основные характеристики -->
-            <div>
-              <h3
+            <section aria-labelledby="characteristics-heading">
+              <h2
+                id="characteristics-heading"
                 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"
               >
                 <div
                   class="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center"
+                  aria-hidden="true"
                 >
                   <svg
                     class="w-4 h-4 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       stroke-linecap="round"
@@ -491,22 +606,28 @@
                   </svg>
                 </div>
                 Характеристики
-              </h3>
+              </h2>
 
-              <div class="grid grid-cols-1 gap-4">
+              <dl class="grid grid-cols-1 gap-4">
+                <!-- RTP -->
                 <div
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-5 rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  itemprop="gamePlatform"
+                  itemscope
+                  itemtype="https://schema.org/Thing"
                 >
                   <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center"
+                        aria-hidden="true"
                       >
                         <svg
                           class="w-5 h-5 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
@@ -516,18 +637,20 @@
                           ></path>
                         </svg>
                       </div>
-                      <span class="text-white font-bold">RTP</span>
+                      <dt class="text-white font-bold">RTP</dt>
                     </div>
-                    <span class="text-emerald-300 text-sm font-medium"
-                      >Отдача</span
-                    >
+                    <dd class="text-emerald-300 text-sm font-medium">Отдача</dd>
                   </div>
-                  <div class="text-3xl font-black text-white mb-1">
+                  <dd
+                    class="text-3xl font-black text-white mb-1"
+                    itemprop="name"
+                  >
                     {{ slot.rtp || '96.50' }}%
-                  </div>
-                  <div class="text-emerald-300 text-sm">Высокий показатель</div>
+                  </dd>
+                  <dd class="text-emerald-300 text-sm">Высокий показатель</dd>
                 </div>
 
+                <!-- Волатильность -->
                 <div
                   class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-5 rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02]"
                 >
@@ -535,12 +658,14 @@
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center"
+                        aria-hidden="true"
                       >
                         <svg
                           class="w-5 h-5 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
@@ -550,18 +675,17 @@
                           ></path>
                         </svg>
                       </div>
-                      <span class="text-white font-bold">Волатильность</span>
+                      <dt class="text-white font-bold">Волатильность</dt>
                     </div>
-                    <span class="text-orange-300 text-sm font-medium"
-                      >Риск</span
-                    >
+                    <dd class="text-orange-300 text-sm font-medium">Риск</dd>
                   </div>
-                  <div class="text-2xl font-black text-white mb-1 capitalize">
+                  <dd class="text-2xl font-black text-white mb-1 capitalize">
                     {{ getVolatilityText(slot.volatility) }}
-                  </div>
-                  <div class="text-orange-300 text-sm">Средние риски</div>
+                  </dd>
+                  <dd class="text-orange-300 text-sm">Средние риски</dd>
                 </div>
 
+                <!-- Максимальный выигрыш -->
                 <div
                   class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02]"
                 >
@@ -569,12 +693,14 @@
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center"
+                        aria-hidden="true"
                       >
                         <svg
                           class="w-5 h-5 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
@@ -584,18 +710,19 @@
                           ></path>
                         </svg>
                       </div>
-                      <span class="text-white font-bold">Макс. выигрыш</span>
+                      <dt class="text-white font-bold">Макс. выигрыш</dt>
                     </div>
-                    <span class="text-purple-300 text-sm font-medium"
-                      >Потенциал</span
-                    >
+                    <dd class="text-purple-300 text-sm font-medium">
+                      Потенциал
+                    </dd>
                   </div>
-                  <div class="text-3xl font-black text-white mb-1">
+                  <dd class="text-3xl font-black text-white mb-1">
                     {{ getMaxWin(slot) }}
-                  </div>
-                  <div class="text-purple-300 text-sm">От ставки</div>
+                  </dd>
+                  <dd class="text-purple-300 text-sm">От ставки</dd>
                 </div>
 
+                <!-- Минимальная ставка -->
                 <div
                   class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-5 rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02]"
                 >
@@ -603,12 +730,14 @@
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
+                        aria-hidden="true"
                       >
                         <svg
                           class="w-5 h-5 text-white"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             stroke-linecap="round"
@@ -618,28 +747,27 @@
                           ></path>
                         </svg>
                       </div>
-                      <span class="text-white font-bold">Мин. ставка</span>
+                      <dt class="text-white font-bold">Мин. ставка</dt>
                     </div>
-                    <span class="text-blue-300 text-sm font-medium"
-                      >За спин</span
-                    >
+                    <dd class="text-blue-300 text-sm font-medium">За спин</dd>
                   </div>
-                  <div class="text-2xl font-black text-white mb-1">
+                  <dd class="text-2xl font-black text-white mb-1">
                     {{ slot.min_bet || '€0.20' }}
-                  </div>
-                  <div class="text-blue-300 text-sm">Доступно всем</div>
+                  </dd>
+                  <dd class="text-blue-300 text-sm">Доступно всем</dd>
                 </div>
-              </div>
-            </div>
+              </dl>
+            </section>
 
             <!-- Популярность -->
-            <div>
-              <h3
+            <section aria-labelledby="popularity-heading">
+              <h2
+                id="popularity-heading"
                 class="text-xl font-bold text-white mb-4 flex items-center gap-2"
               >
-                <span class="text-2xl">📊</span>
+                <span class="text-2xl" aria-hidden="true">📊</span>
                 Популярность
-              </h3>
+              </h2>
               <div
                 class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-5 rounded-2xl border border-yellow-400/30"
               >
@@ -652,6 +780,11 @@
                 </div>
                 <div
                   class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
+                  role="progressbar"
+                  aria-valuenow="94"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-label="Рейтинг популярности: 94 из 100"
                 >
                   <div
                     class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
@@ -660,33 +793,42 @@
                 </div>
                 <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
               </div>
-            </div>
+            </section>
 
             <!-- Дополнительная информация -->
-            <div class="space-y-4">
-              <div
-                class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-              >
-                <span class="text-white/80 font-medium">Поле игры</span>
-                <span class="text-white font-bold">6×5</span>
-              </div>
-              <div
-                class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-              >
-                <span class="text-white/80 font-medium">Линии выплат</span>
-                <span class="text-white font-bold">Scatter Pays</span>
-              </div>
-              <div
-                class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-              >
-                <span class="text-white/80 font-medium">Дата выхода</span>
-                <span class="text-white font-bold">13.02.2021</span>
-              </div>
-            </div>
+            <section aria-labelledby="additional-info-heading">
+              <h2 id="additional-info-heading" class="sr-only">
+                Дополнительная информация
+              </h2>
+              <dl class="space-y-4">
+                <div
+                  class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
+                >
+                  <dt class="text-white/80 font-medium">Поле игры</dt>
+                  <dd class="text-white font-bold">6×5</dd>
+                </div>
+                <div
+                  class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
+                >
+                  <dt class="text-white/80 font-medium">Линии выплат</dt>
+                  <dd class="text-white font-bold">Scatter Pays</dd>
+                </div>
+                <div
+                  class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
+                  itemprop="datePublished"
+                  content="2021-02-13"
+                >
+                  <dt class="text-white/80 font-medium">Дата выхода</dt>
+                  <dd class="text-white font-bold">
+                    <time datetime="2021-02-13">13.02.2021</time>
+                  </dd>
+                </div>
+              </dl>
+            </section>
           </div>
-        </div>
+        </aside>
       </div>
-    </div>
+    </section>
 
     <!-- Основной контент -->
     <div class="container mx-auto px-4 py-8">
@@ -5100,6 +5242,13 @@ const allSlots = ref([])
 const loading = ref(true)
 const error = ref(null)
 
+// Состояние для рейтинга
+const showRatingPicker = ref(false)
+const selectedStars = ref(null)
+const hoverStars = ref(0)
+const ratingSubmitting = ref(false)
+const ratingSubmitted = ref(false)
+
 // Вычисляемые свойства
 const similarSlots = computed(() => {
   if (!slot.value || !slot.value.id || !allSlots.value.length) return []
@@ -5128,12 +5277,20 @@ const isGatesOfOlympus = computed(() => {
 // SEO (динамический)
 watchEffect(() => {
   if (slot.value && !loading.value && !error.value) {
+    const structuredData = getStructuredData(slot.value)
+    
     useHead({
       title: `${slot.value.name || 'Слот'} - SlotQuest`,
       meta: [
         {
           name: 'description',
           content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.provider?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+        },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          children: structuredData,
         },
       ],
     })
@@ -5199,23 +5356,22 @@ const findCasino = () => {
   alert(`Поиск лучших казино для игры в ${slot.value.name || 'слот'}`)
 }
 
-// Рейтинг: состояние и обработчики для HERO
-const showRatingPicker = ref(false)
-const selectedStars = ref(null)
-const hoverStars = ref(0)
-const ratingSubmitting = ref(false)
-const ratingSubmitted = ref(false)
-
+// Методы для рейтинга
 const toggleRatingPicker = () => {
-  // Если уже отправлен — заново открыть можно, но сбросим флаг
+  showRatingPicker.value = !showRatingPicker.value
   if (!showRatingPicker.value) {
+    selectedStars.value = null
+    hoverStars.value = 0
     ratingSubmitted.value = false
   }
-  showRatingPicker.value = !showRatingPicker.value
 }
 
 const setHover = (value) => {
   hoverStars.value = value
+}
+
+const clearHover = () => {
+  hoverStars.value = 0
 }
 
 const pickRating = (value) => {
@@ -5223,19 +5379,12 @@ const pickRating = (value) => {
 }
 
 const submitRating = async () => {
-  if (selectedStars.value === null) return
+  if (selectedStars.value === null || !slot.value?.id) return
   try {
     ratingSubmitting.value = true
-    // Имитация отправки. Здесь можно вызвать реальный API
-    await new Promise((r) => setTimeout(r, 800))
+    // Заглушка отправки. При появлении API заменить на реальный вызов
+    await new Promise((resolve) => setTimeout(resolve, 700))
     ratingSubmitted.value = true
-    // Красивое авто-скрытие выбора спустя паузу
-    setTimeout(() => {
-      showRatingPicker.value = false
-      // Сбросить состояние выбора
-      hoverStars.value = 0
-      selectedStars.value = null
-    }, 1200)
   } finally {
     ratingSubmitting.value = false
   }
@@ -5317,6 +5466,71 @@ watch(
     }
   },
 )
+
+// Функция для генерации структурированных данных Schema.org
+const getStructuredData = (slot) => {
+  if (!slot || !slot.name) return '{}'
+
+  const baseUrl = 'https://slotquest.com'
+  const slotUrl = `${baseUrl}/slots/${slot.slug || slug}`
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Game',
+    name: slot.name,
+    description: getShortDescription(slot),
+    url: slotUrl,
+    image: `${baseUrl}/images/slots/${slot.slug || slug}.jpg`,
+    datePublished: slot.release_date || '2021-02-13',
+    genre: 'Casino Slot Game',
+    gamePlatform: 'Web Browser',
+    applicationCategory: 'Game',
+    operatingSystem: 'Any',
+    publisher: {
+      '@type': 'Organization',
+      name: slot.provider?.name || 'Pragmatic Play',
+      url: 'https://pragmaticplay.com',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '1247',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      description: 'Free demo version available',
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '4.8',
+        bestRating: '5',
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'SlotQuest Editorial Team',
+      },
+      reviewBody: getDetailedDescription(slot),
+    },
+    keywords: [
+      slot.name,
+      'онлайн слот',
+      'казино игра',
+      slot.provider?.name || 'Pragmatic Play',
+      'бесплатная игра',
+      'демо версия',
+      'слот машина',
+    ].join(', '),
+  }
+
+  return JSON.stringify(structuredData)
+}
 </script>
 
 <style scoped>
