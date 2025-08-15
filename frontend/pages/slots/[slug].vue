@@ -95,8 +95,6 @@
       itemscope
       itemtype="https://schema.org/Game"
     >
-
-
       <!-- Анимированный фон -->
       <div class="absolute inset-0" aria-hidden="true">
         <div
@@ -581,7 +579,10 @@
         >
           <div class="space-y-8">
             <!-- Медиа контент слота -->
-            <section v-if="slot.image_url || slot.video_url" aria-labelledby="media-heading">
+            <section
+              v-if="slot.image_url || slot.video_url"
+              aria-labelledby="media-heading"
+            >
               <h2
                 id="media-heading"
                 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"
@@ -605,7 +606,11 @@
                     ></path>
                   </svg>
                 </div>
-                {{ slot.media_type === 'video' ? 'Игровое видео' : 'Изображение игры' }}
+                {{
+                  slot.media_type === 'video'
+                    ? 'Игровое видео'
+                    : 'Изображение игры'
+                }}
               </h2>
 
               <div
@@ -615,7 +620,10 @@
                 itemtype="https://schema.org/ImageObject"
               >
                 <!-- Изображение слота -->
-                <div v-if="slot.media_type === 'image' && slot.image_url" class="aspect-video rounded-xl overflow-hidden bg-black/30">
+                <div
+                  v-if="slot.media_type === 'image' && slot.image_url"
+                  class="aspect-video rounded-xl overflow-hidden bg-black/30"
+                >
                   <img
                     :src="slot.image_url"
                     :alt="`Изображение слота ${slot.name}`"
@@ -624,9 +632,12 @@
                     @error="handleSlotImageError"
                   />
                 </div>
-                
+
                 <!-- Видео слота -->
-                <div v-else-if="slot.media_type === 'video' && slot.video_url" class="aspect-video rounded-xl overflow-hidden bg-black/30">
+                <div
+                  v-else-if="slot.media_type === 'video' && slot.video_url"
+                  class="aspect-video rounded-xl overflow-hidden bg-black/30"
+                >
                   <video
                     :src="slot.video_url"
                     class="w-full h-full object-cover"
@@ -638,9 +649,15 @@
                     :poster="slot.image_url || ''"
                     @error="handleSlotVideoError"
                   >
-                    <source :src="slot.video_url" type="video/mp4">
-                    <source :src="slot.video_url.replace('.mp4', '.webm')" type="video/webm">
-                    <source :src="slot.video_url.replace('.mp4', '.ogg')" type="video/ogg">
+                    <source :src="slot.video_url" type="video/mp4" />
+                    <source
+                      :src="slot.video_url.replace('.mp4', '.webm')"
+                      type="video/webm"
+                    />
+                    <source
+                      :src="slot.video_url.replace('.mp4', '.ogg')"
+                      type="video/ogg"
+                    />
                     Ваш браузер не поддерживает воспроизведение видео.
                   </video>
                 </div>
@@ -648,8 +665,14 @@
                 <!-- Индикатор типа медиа -->
                 <div class="mt-3 flex items-center justify-between">
                   <div class="flex items-center gap-2">
-                    <div class="px-3 py-1 bg-white/10 rounded-full text-sm font-semibold text-white/90 border border-white/20">
-                      {{ slot.media_type === 'video' ? '🎥 Видео' : '🖼️ Изображение' }}
+                    <div
+                      class="px-3 py-1 bg-white/10 rounded-full text-sm font-semibold text-white/90 border border-white/20"
+                    >
+                      {{
+                        slot.media_type === 'video'
+                          ? '🎥 Видео'
+                          : '🖼️ Изображение'
+                      }}
                     </div>
                   </div>
                   <button
@@ -5442,33 +5465,37 @@ const findCasino = () => {
 
 // Обработчики медиа событий
 const handleSlotImageError = (event) => {
-  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60"><svg class="w-12 h-12 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><span>Изображение не найдено</span></div>'
+  event.target.parentElement.innerHTML =
+    '<div class="flex items-center justify-center h-full text-white/60"><svg class="w-12 h-12 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><span>Изображение не найдено</span></div>'
 }
 
 const handleSlotVideoError = (event) => {
-  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60"><svg class="w-12 h-12 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span>Видео не найдено</span></div>'
+  event.target.parentElement.innerHTML =
+    '<div class="flex items-center justify-center h-full text-white/60"><svg class="w-12 h-12 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span>Видео не найдено</span></div>'
 }
 
 // Функция для открытия изображения в полноэкранном режиме
 const openImageFullscreen = () => {
   if (!slot.value?.image_url) return
-  
+
   // Создаем модальное окно для полноэкранного изображения
   const modal = document.createElement('div')
-  modal.className = 'fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4'
+  modal.className =
+    'fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4'
   modal.onclick = () => modal.remove()
-  
+
   const img = document.createElement('img')
   img.src = slot.value.image_url
   img.alt = `Изображение слота ${slot.value.name}`
   img.className = 'max-w-full max-h-full object-contain rounded-xl shadow-2xl'
   img.onclick = (e) => e.stopPropagation()
-  
+
   const closeBtn = document.createElement('button')
   closeBtn.innerHTML = '✕'
-  closeBtn.className = 'absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white text-xl font-bold rounded-full transition-colors'
+  closeBtn.className =
+    'absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white text-xl font-bold rounded-full transition-colors'
   closeBtn.onclick = () => modal.remove()
-  
+
   modal.appendChild(img)
   modal.appendChild(closeBtn)
   document.body.appendChild(modal)
