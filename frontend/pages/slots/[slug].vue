@@ -5278,7 +5278,7 @@ const isGatesOfOlympus = computed(() => {
 watchEffect(() => {
   if (slot.value && !loading.value && !error.value) {
     const structuredData = getStructuredData(slot.value)
-    
+
     useHead({
       title: `${slot.value.name || 'Слот'} - SlotQuest`,
       meta: [
