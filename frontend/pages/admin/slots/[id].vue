@@ -420,7 +420,8 @@
                     placeholder="https://example.com/slot-video.mp4"
                   />
                   <p class="mt-1 text-xs text-gray-400">
-                    Добавьте ссылку на видео слота (поддерживаются .mp4, .webm, .ogg)
+                    Добавьте ссылку на видео слота (поддерживаются .mp4, .webm,
+                    .ogg)
                   </p>
                 </div>
 
@@ -429,7 +430,9 @@
                   <label class="block text-sm font-medium text-gray-300 mb-2">
                     Превью медиа
                   </label>
-                  <div class="bg-gray-700 rounded-lg p-4 border border-gray-600">
+                  <div
+                    class="bg-gray-700 rounded-lg p-4 border border-gray-600"
+                  >
                     <!-- Превью изображения -->
                     <div v-if="form.media_type === 'image' && form.image_url">
                       <img
@@ -441,7 +444,9 @@
                       />
                     </div>
                     <!-- Превью видео -->
-                    <div v-else-if="form.media_type === 'video' && form.video_url">
+                    <div
+                      v-else-if="form.media_type === 'video' && form.video_url"
+                    >
                       <video
                         :src="form.video_url"
                         class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
@@ -479,7 +484,8 @@
                       placeholder="https://demo.provider.com/gates-of-olympus"
                     />
                     <p class="mt-1 text-xs text-gray-400">
-                      URL для запуска демо-версии игры. Если не указано, будет показано предупреждение.
+                      URL для запуска демо-версии игры. Если не указано, будет
+                      показано предупреждение.
                     </p>
                   </div>
 
@@ -495,20 +501,37 @@
                       placeholder="https://casino.com/games/gates-of-olympus"
                     />
                     <p class="mt-1 text-xs text-gray-400">
-                      URL для игры на реальные деньги в казино. Если не указано, будет показано предупреждение.
+                      URL для игры на реальные деньги в казино. Если не указано,
+                      будет показано предупреждение.
                     </p>
                   </div>
 
                   <!-- Предупреждение о безопасности -->
-                  <div class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4">
+                  <div
+                    class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4"
+                  >
                     <div class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.084 19c-.77.833.192 2.5 1.732 2.5z"></path>
+                      <svg
+                        class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.084 19c-.77.833.192 2.5 1.732 2.5z"
+                        ></path>
                       </svg>
                       <div>
-                        <h4 class="text-amber-300 font-semibold mb-1">Важно!</h4>
+                        <h4 class="text-amber-300 font-semibold mb-1">
+                          Важно!
+                        </h4>
                         <p class="text-amber-200 text-sm">
-                          Убедитесь, что указываете только проверенные и безопасные ссылки от лицензированных казино и провайдеров игр.
+                          Убедитесь, что указываете только проверенные и
+                          безопасные ссылки от лицензированных казино и
+                          провайдеров игр.
                         </p>
                       </div>
                     </div>
@@ -609,7 +632,10 @@
                 <!-- Медиа превью -->
                 <div v-if="form.image_url || form.video_url" class="mb-4">
                   <!-- Превью изображения -->
-                  <div v-if="form.media_type === 'image' && form.image_url" class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30">
+                  <div
+                    v-if="form.media_type === 'image' && form.image_url"
+                    class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30"
+                  >
                     <img
                       :src="form.image_url"
                       :alt="form.name || 'Слот'"
@@ -618,7 +644,10 @@
                     />
                   </div>
                   <!-- Превью видео -->
-                  <div v-else-if="form.media_type === 'video' && form.video_url" class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30">
+                  <div
+                    v-else-if="form.media_type === 'video' && form.video_url"
+                    class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30"
+                  >
                     <video
                       :src="form.video_url"
                       class="w-full h-full object-cover"
@@ -628,15 +657,23 @@
                       preload="metadata"
                       @error="handlePreviewVideoError"
                     >
-                      <div class="flex items-center justify-center h-full text-white/60 text-xs">
+                      <div
+                        class="flex items-center justify-center h-full text-white/60 text-xs"
+                      >
                         Видео не поддерживается
                       </div>
                     </video>
                   </div>
                   <!-- Индикатор типа медиа -->
                   <div class="mt-2 flex items-center gap-2">
-                    <div class="px-2 py-1 bg-purple-500/30 rounded-full text-xs font-bold border border-purple-400/30">
-                      {{ form.media_type === 'image' ? '🖼️ Изображение' : '🎥 Видео' }}
+                    <div
+                      class="px-2 py-1 bg-purple-500/30 rounded-full text-xs font-bold border border-purple-400/30"
+                    >
+                      {{
+                        form.media_type === 'image'
+                          ? '🖼️ Изображение'
+                          : '🎥 Видео'
+                      }}
                     </div>
                   </div>
                 </div>
@@ -891,11 +928,13 @@ const handleVideoLoad = (event) => {
 }
 
 const handlePreviewImageError = (event) => {
-  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки изображения</div>'
+  event.target.parentElement.innerHTML =
+    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки изображения</div>'
 }
 
 const handlePreviewVideoError = (event) => {
-  event.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
+  event.target.parentElement.innerHTML =
+    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
 }
 
 // Сброс формы к исходному состоянию
