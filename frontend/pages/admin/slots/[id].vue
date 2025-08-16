@@ -548,7 +548,9 @@
                 </h3>
 
                 <!-- Переключатель отображения наград -->
-                <div class="bg-gray-900/50 rounded-lg p-4 border border-gray-600">
+                <div
+                  class="bg-gray-900/50 rounded-lg p-4 border border-gray-600"
+                >
                   <label class="flex items-center gap-3 cursor-pointer">
                     <input
                       v-model="form.show_awards"
@@ -556,8 +558,13 @@
                       class="w-5 h-5 text-yellow-500 bg-gray-700 border-gray-600 rounded focus:ring-yellow-500 focus:ring-2"
                     />
                     <div>
-                      <span class="text-white font-medium">Показывать блок наград</span>
-                      <p class="text-gray-400 text-sm">Включите эту опцию, чтобы отображать награды и достижения в Hero секции</p>
+                      <span class="text-white font-medium"
+                        >Показывать блок наград</span
+                      >
+                      <p class="text-gray-400 text-sm">
+                        Включите эту опцию, чтобы отображать награды и
+                        достижения в Hero секции
+                      </p>
                     </div>
                   </label>
                 </div>
@@ -566,7 +573,9 @@
                 <div v-if="form.show_awards" class="space-y-4">
                   <!-- Заголовок управления наградами -->
                   <div class="flex items-center justify-between">
-                    <h4 class="text-md font-semibold text-yellow-300">Настройка наград (максимум 4)</h4>
+                    <h4 class="text-md font-semibold text-yellow-300">
+                      Настройка наград (максимум 4)
+                    </h4>
                     <button
                       type="button"
                       @click="addAward"
@@ -591,15 +600,21 @@
                             :class="getAwardColorClasses(award.color_scheme)"
                             class="w-16 h-16 rounded-xl flex items-center justify-center border-2"
                           >
-                            <span class="text-2xl">{{ award.emoji || '🏆' }}</span>
+                            <span class="text-2xl">{{
+                              award.emoji || '🏆'
+                            }}</span>
                           </div>
                         </div>
 
                         <!-- Поля награды -->
-                        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div
+                          class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3"
+                        >
                           <!-- Эмодзи -->
                           <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-1"
+                            >
                               Эмодзи
                             </label>
                             <input
@@ -613,7 +628,9 @@
 
                           <!-- Цветовая схема -->
                           <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-1"
+                            >
                               Цветовая схема
                             </label>
                             <select
@@ -622,14 +639,18 @@
                             >
                               <option value="amber">Янтарный (золотой)</option>
                               <option value="fuchsia">Фуксия (розовый)</option>
-                              <option value="emerald">Изумрудный (зеленый)</option>
+                              <option value="emerald">
+                                Изумрудный (зеленый)
+                              </option>
                               <option value="blue">Синий</option>
                             </select>
                           </div>
 
                           <!-- Название -->
                           <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-1"
+                            >
                               Название награды
                             </label>
                             <input
@@ -642,7 +663,9 @@
 
                           <!-- Описание -->
                           <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-1"
+                            >
                               Описание
                             </label>
                             <input
@@ -670,15 +693,29 @@
                   </div>
 
                   <!-- Подсказка -->
-                  <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-4">
+                  <div
+                    class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-4"
+                  >
                     <div class="flex items-start gap-3">
-                      <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      <svg
+                        class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
                       </svg>
                       <div>
                         <h4 class="text-blue-300 font-semibold mb-1">Совет</h4>
                         <p class="text-blue-200 text-sm">
-                          Награды помогают повысить доверие игроков к слоту. Используйте реальные достижения и подчеркивайте уникальные особенности игры.
+                          Награды помогают повысить доверие игроков к слоту.
+                          Используйте реальные достижения и подчеркивайте
+                          уникальные особенности игры.
                         </p>
                       </div>
                     </div>
@@ -956,27 +993,27 @@ const form = ref({
       emoji: '🥇',
       title: 'Слот года 2024',
       description: 'Casino Awards',
-      color_scheme: 'amber' // amber, fuchsia, emerald, blue
+      color_scheme: 'amber', // amber, fuchsia, emerald, blue
     },
     {
       emoji: '🎖️',
       title: 'Лучший дизайн',
       description: 'Gaming Excellence',
-      color_scheme: 'fuchsia'
+      color_scheme: 'fuchsia',
     },
     {
       emoji: '💎',
       title: 'Платиновый статус',
       description: '10M+ игроков',
-      color_scheme: 'emerald'
+      color_scheme: 'emerald',
     },
     {
       emoji: '⭐',
       title: 'Выбор игроков',
       description: 'Народное голосование',
-      color_scheme: 'blue'
-    }
-  ]
+      color_scheme: 'blue',
+    },
+  ],
 })
 
 // Заголовок страницы
@@ -1119,7 +1156,7 @@ const addAward = () => {
       emoji: '🏆',
       title: '',
       description: '',
-      color_scheme: 'amber'
+      color_scheme: 'amber',
     })
   }
 }
@@ -1131,9 +1168,11 @@ const removeAward = (index) => {
 const getAwardColorClasses = (colorScheme) => {
   const colorMap = {
     amber: 'bg-gradient-to-r from-amber-400 to-orange-500 border-amber-400',
-    fuchsia: 'bg-gradient-to-r from-fuchsia-400 to-purple-500 border-fuchsia-400',
-    emerald: 'bg-gradient-to-r from-emerald-400 to-green-500 border-emerald-400',
-    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500 border-blue-400'
+    fuchsia:
+      'bg-gradient-to-r from-fuchsia-400 to-purple-500 border-fuchsia-400',
+    emerald:
+      'bg-gradient-to-r from-emerald-400 to-green-500 border-emerald-400',
+    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500 border-blue-400',
   }
   return colorMap[colorScheme] || colorMap.amber
 }
@@ -1180,27 +1219,27 @@ const resetForm = () => {
           emoji: '🥇',
           title: 'Слот года 2024',
           description: 'Casino Awards',
-          color_scheme: 'amber'
+          color_scheme: 'amber',
         },
         {
           emoji: '🎖️',
           title: 'Лучший дизайн',
           description: 'Gaming Excellence',
-          color_scheme: 'fuchsia'
+          color_scheme: 'fuchsia',
         },
         {
           emoji: '💎',
           title: 'Платиновый статус',
           description: '10M+ игроков',
-          color_scheme: 'emerald'
+          color_scheme: 'emerald',
         },
         {
           emoji: '⭐',
           title: 'Выбор игроков',
           description: 'Народное голосование',
-          color_scheme: 'blue'
-        }
-      ]
+          color_scheme: 'blue',
+        },
+      ],
     })
   }
 }

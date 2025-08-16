@@ -481,13 +481,18 @@
                         class="w-9 h-9 rounded-lg flex items-center justify-center shadow"
                         aria-hidden="true"
                       >
-                        <span class="text-white text-base">{{ award.emoji || '🏆' }}</span>
+                        <span class="text-white text-base">{{
+                          award.emoji || '🏆'
+                        }}</span>
                       </div>
                       <div>
                         <div class="text-white font-bold text-sm leading-snug">
                           {{ award.title || 'Награда' }}
                         </div>
-                        <div :class="getAwardTextClasses(award.color_scheme)" class="text-xs">
+                        <div
+                          :class="getAwardTextClasses(award.color_scheme)"
+                          class="text-xs"
+                        >
                           {{ award.description || 'Описание награды' }}
                         </div>
                       </div>
@@ -5442,10 +5447,13 @@ const openImageFullscreen = () => {
 // Методы для работы с наградами в публичном шаблоне
 const getAwardPublicClasses = (colorScheme) => {
   const colorMap = {
-    amber: 'border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60',
-    fuchsia: 'border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60',
-    emerald: 'border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60',
-    blue: 'border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60'
+    amber:
+      'border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60',
+    fuchsia:
+      'border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60',
+    emerald:
+      'border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60',
+    blue: 'border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60',
   }
   return colorMap[colorScheme] || colorMap.amber
 }
@@ -5455,7 +5463,7 @@ const getAwardBgClasses = (colorScheme) => {
     amber: 'bg-amber-400/20 group-hover:bg-amber-400/30',
     fuchsia: 'bg-fuchsia-400/20 group-hover:bg-fuchsia-400/30',
     emerald: 'bg-emerald-400/20 group-hover:bg-emerald-400/30',
-    blue: 'bg-blue-400/20 group-hover:bg-blue-400/30'
+    blue: 'bg-blue-400/20 group-hover:bg-blue-400/30',
   }
   return colorMap[colorScheme] || colorMap.amber
 }
@@ -5465,7 +5473,7 @@ const getAwardIconClasses = (colorScheme) => {
     amber: 'bg-gradient-to-r from-amber-400 to-orange-500',
     fuchsia: 'bg-gradient-to-r from-fuchsia-400 to-purple-500',
     emerald: 'bg-gradient-to-r from-emerald-400 to-green-500',
-    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500'
+    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500',
   }
   return colorMap[colorScheme] || colorMap.amber
 }
@@ -5475,7 +5483,7 @@ const getAwardTextClasses = (colorScheme) => {
     amber: 'text-amber-200/90',
     fuchsia: 'text-fuchsia-200/90',
     emerald: 'text-emerald-200/90',
-    blue: 'text-blue-200/90'
+    blue: 'text-blue-200/90',
   }
   return colorMap[colorScheme] || colorMap.amber
 }
