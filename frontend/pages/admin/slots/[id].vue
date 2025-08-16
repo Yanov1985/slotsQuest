@@ -458,6 +458,64 @@
                 </div>
               </div>
 
+              <!-- Ссылки кнопок действий -->
+              <div class="space-y-4">
+                <h3
+                  class="text-lg font-semibold text-cyan-400 border-b border-gray-600 pb-2"
+                >
+                  Ссылки кнопок действий Hero секции
+                </h3>
+
+                <div class="grid grid-cols-1 gap-4">
+                  <!-- Ссылка для кнопки "Играть бесплатно" -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                      Ссылка кнопки "Играть бесплатно" (демо-режим)
+                    </label>
+                    <input
+                      v-model="form.demo_url"
+                      type="url"
+                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="https://demo.provider.com/gates-of-olympus"
+                    />
+                    <p class="mt-1 text-xs text-gray-400">
+                      URL для запуска демо-версии игры. Если не указано, будет показано предупреждение.
+                    </p>
+                  </div>
+
+                  <!-- Ссылка для кнопки "Играть на деньги" -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                      Ссылка кнопки "Играть на деньги"
+                    </label>
+                    <input
+                      v-model="form.real_play_url"
+                      type="url"
+                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                      placeholder="https://casino.com/games/gates-of-olympus"
+                    />
+                    <p class="mt-1 text-xs text-gray-400">
+                      URL для игры на реальные деньги в казино. Если не указано, будет показано предупреждение.
+                    </p>
+                  </div>
+
+                  <!-- Предупреждение о безопасности -->
+                  <div class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4">
+                    <div class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.084 19c-.77.833.192 2.5 1.732 2.5z"></path>
+                      </svg>
+                      <div>
+                        <h4 class="text-amber-300 font-semibold mb-1">Важно!</h4>
+                        <p class="text-amber-200 text-sm">
+                          Убедитесь, что указываете только проверенные и безопасные ссылки от лицензированных казино и провайдеров игр.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Кнопки сохранения -->
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
                 <button
@@ -704,6 +762,9 @@ const form = ref({
   media_type: 'image', // 'image' или 'video'
   image_url: '',
   video_url: '',
+  // Ссылки кнопок
+  demo_url: '', // Ссылка для кнопки "Играть бесплатно"
+  real_play_url: '', // Ссылка для кнопки "Играть на деньги"
 })
 
 // Заголовок страницы
@@ -869,6 +930,9 @@ const resetForm = () => {
       media_type: 'image',
       image_url: '',
       video_url: '',
+      // Ссылки кнопок
+      demo_url: '',
+      real_play_url: '',
     })
   }
 }

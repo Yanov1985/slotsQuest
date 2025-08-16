@@ -5447,14 +5447,28 @@ const loadSlot = async () => {
 
 const playSlot = () => {
   if (!slot.value) return
-  // Здесь будет логика запуска игры
-  alert(`Запуск игры: ${slot.value.name || 'слот'}`)
+  
+  // Проверяем, есть ли ссылка для демо-версии
+  if (slot.value.demo_url && slot.value.demo_url.trim()) {
+    // Открываем демо-версию в новой вкладке
+    window.open(slot.value.demo_url, '_blank', 'noopener,noreferrer')
+  } else {
+    // Показываем уведомление, что демо-версия пока недоступна
+    alert(`Демо-версия для игры "${slot.value.name || 'слот'}" временно недоступна. Обратитесь к администратору сайта.`)
+  }
 }
 
 const playForReal = () => {
   if (!slot.value) return
-  // Здесь будет логика перехода к игре на деньги
-  alert(`Переход к игре на деньги: ${slot.value.name || 'слот'}`)
+  
+  // Проверяем, есть ли ссылка для игры на реальные деньги
+  if (slot.value.real_play_url && slot.value.real_play_url.trim()) {
+    // Открываем страницу казино в новой вкладке
+    window.open(slot.value.real_play_url, '_blank', 'noopener,noreferrer')
+  } else {
+    // Показываем уведомление с предложением связаться с поддержкой
+    alert(`Игра на реальные деньги для "${slot.value.name || 'слот'}" временно недоступна. Обратитесь к администратору сайта для получения информации о доступных казино.`)
+  }
 }
 
 const findCasino = () => {
