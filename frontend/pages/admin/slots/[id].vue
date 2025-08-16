@@ -539,6 +539,153 @@
                 </div>
               </div>
 
+              <!-- Награды и достижения -->
+              <div class="space-y-4">
+                <h3
+                  class="text-lg font-semibold text-yellow-400 border-b border-gray-600 pb-2"
+                >
+                  Награды и достижения Hero секции
+                </h3>
+
+                <!-- Переключатель отображения наград -->
+                <div class="bg-gray-900/50 rounded-lg p-4 border border-gray-600">
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input
+                      v-model="form.show_awards"
+                      type="checkbox"
+                      class="w-5 h-5 text-yellow-500 bg-gray-700 border-gray-600 rounded focus:ring-yellow-500 focus:ring-2"
+                    />
+                    <div>
+                      <span class="text-white font-medium">Показывать блок наград</span>
+                      <p class="text-gray-400 text-sm">Включите эту опцию, чтобы отображать награды и достижения в Hero секции</p>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- Управление наградами (показывается только если включен переключатель) -->
+                <div v-if="form.show_awards" class="space-y-4">
+                  <!-- Заголовок управления наградами -->
+                  <div class="flex items-center justify-between">
+                    <h4 class="text-md font-semibold text-yellow-300">Настройка наград (максимум 4)</h4>
+                    <button
+                      type="button"
+                      @click="addAward"
+                      :disabled="form.awards.length >= 4"
+                      class="px-3 py-1 bg-yellow-600 hover:bg-yellow-700 disabled:bg-gray-600 text-white text-sm rounded-lg transition-colors"
+                    >
+                      + Добавить награду
+                    </button>
+                  </div>
+
+                  <!-- Список наград -->
+                  <div class="space-y-3">
+                    <div
+                      v-for="(award, index) in form.awards"
+                      :key="index"
+                      class="bg-gray-800/50 rounded-lg p-4 border border-gray-600"
+                    >
+                      <div class="flex items-start gap-4">
+                        <!-- Превью награды -->
+                        <div class="flex-shrink-0">
+                          <div
+                            :class="getAwardColorClasses(award.color_scheme)"
+                            class="w-16 h-16 rounded-xl flex items-center justify-center border-2"
+                          >
+                            <span class="text-2xl">{{ award.emoji || '🏆' }}</span>
+                          </div>
+                        </div>
+
+                        <!-- Поля награды -->
+                        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <!-- Эмодзи -->
+                          <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                              Эмодзи
+                            </label>
+                            <input
+                              v-model="award.emoji"
+                              type="text"
+                              maxlength="2"
+                              class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-center text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                              placeholder="🏆"
+                            />
+                          </div>
+
+                          <!-- Цветовая схема -->
+                          <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                              Цветовая схема
+                            </label>
+                            <select
+                              v-model="award.color_scheme"
+                              class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                            >
+                              <option value="amber">Янтарный (золотой)</option>
+                              <option value="fuchsia">Фуксия (розовый)</option>
+                              <option value="emerald">Изумрудный (зеленый)</option>
+                              <option value="blue">Синий</option>
+                            </select>
+                          </div>
+
+                          <!-- Название -->
+                          <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                              Название награды
+                            </label>
+                            <input
+                              v-model="award.title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                              placeholder="Слот года 2024"
+                            />
+                          </div>
+
+                          <!-- Описание -->
+                          <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">
+                              Описание
+                            </label>
+                            <input
+                              v-model="award.description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                              placeholder="Casino Awards"
+                            />
+                          </div>
+                        </div>
+
+                        <!-- Кнопка удаления -->
+                        <div class="flex-shrink-0">
+                          <button
+                            type="button"
+                            @click="removeAward(index)"
+                            class="w-8 h-8 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center justify-center transition-colors"
+                            :title="`Удалить награду ${award.title || 'без названия'}`"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Подсказка -->
+                  <div class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-4">
+                    <div class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <div>
+                        <h4 class="text-blue-300 font-semibold mb-1">Совет</h4>
+                        <p class="text-blue-200 text-sm">
+                          Награды помогают повысить доверие игроков к слоту. Используйте реальные достижения и подчеркивайте уникальные особенности игры.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Кнопки сохранения -->
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
                 <button
@@ -802,6 +949,34 @@ const form = ref({
   // Ссылки кнопок
   demo_url: '', // Ссылка для кнопки "Играть бесплатно"
   real_play_url: '', // Ссылка для кнопки "Играть на деньги"
+  // Награды и достижения
+  show_awards: false, // Показывать ли блок наград
+  awards: [
+    {
+      emoji: '🥇',
+      title: 'Слот года 2024',
+      description: 'Casino Awards',
+      color_scheme: 'amber' // amber, fuchsia, emerald, blue
+    },
+    {
+      emoji: '🎖️',
+      title: 'Лучший дизайн',
+      description: 'Gaming Excellence',
+      color_scheme: 'fuchsia'
+    },
+    {
+      emoji: '💎',
+      title: 'Платиновый статус',
+      description: '10M+ игроков',
+      color_scheme: 'emerald'
+    },
+    {
+      emoji: '⭐',
+      title: 'Выбор игроков',
+      description: 'Народное голосование',
+      color_scheme: 'blue'
+    }
+  ]
 })
 
 // Заголовок страницы
@@ -937,6 +1112,32 @@ const handlePreviewVideoError = (event) => {
     '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
 }
 
+// Методы для управления наградами
+const addAward = () => {
+  if (form.value.awards.length < 4) {
+    form.value.awards.push({
+      emoji: '🏆',
+      title: '',
+      description: '',
+      color_scheme: 'amber'
+    })
+  }
+}
+
+const removeAward = (index) => {
+  form.value.awards.splice(index, 1)
+}
+
+const getAwardColorClasses = (colorScheme) => {
+  const colorMap = {
+    amber: 'bg-gradient-to-r from-amber-400 to-orange-500 border-amber-400',
+    fuchsia: 'bg-gradient-to-r from-fuchsia-400 to-purple-500 border-fuchsia-400',
+    emerald: 'bg-gradient-to-r from-emerald-400 to-green-500 border-emerald-400',
+    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500 border-blue-400'
+  }
+  return colorMap[colorScheme] || colorMap.amber
+}
+
 // Сброс формы к исходному состоянию
 const resetForm = () => {
   if (slot.value) {
@@ -972,6 +1173,34 @@ const resetForm = () => {
       // Ссылки кнопок
       demo_url: '',
       real_play_url: '',
+      // Награды и достижения
+      show_awards: false,
+      awards: [
+        {
+          emoji: '🥇',
+          title: 'Слот года 2024',
+          description: 'Casino Awards',
+          color_scheme: 'amber'
+        },
+        {
+          emoji: '🎖️',
+          title: 'Лучший дизайн',
+          description: 'Gaming Excellence',
+          color_scheme: 'fuchsia'
+        },
+        {
+          emoji: '💎',
+          title: 'Платиновый статус',
+          description: '10M+ игроков',
+          color_scheme: 'emerald'
+        },
+        {
+          emoji: '⭐',
+          title: 'Выбор игроков',
+          description: 'Народное голосование',
+          color_scheme: 'blue'
+        }
+      ]
     })
   }
 }

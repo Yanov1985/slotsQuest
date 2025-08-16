@@ -438,9 +438,9 @@
               <span class="relative z-10">Играть на деньги</span>
             </button>
 
-            <!-- Награды Gates of Olympus (семантическая разметка) -->
+            <!-- Награды и достижения (семантическая разметка) -->
             <aside
-              v-if="isGatesOfOlympus"
+              v-if="slot.show_awards && slot.awards && slot.awards.length > 0"
               class="mt-5"
               aria-label="Награды и достижения"
             >
@@ -464,104 +464,31 @@
 
                 <div class="grid grid-cols-2 gap-3" role="list">
                   <div
-                    class="group relative overflow-hidden rounded-xl p-4 border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60 transition-all"
+                    v-for="(award, index) in slot.awards"
+                    :key="index"
+                    :class="getAwardPublicClasses(award.color_scheme)"
+                    class="group relative overflow-hidden rounded-xl p-4 hover:scale-105 transition-all duration-300"
                     role="listitem"
                   >
                     <div
-                      class="absolute -top-8 -right-8 w-24 h-24 bg-amber-400/20 rounded-full blur-2xl group-hover:bg-amber-400/30 transition-colors"
+                      :class="getAwardBgClasses(award.color_scheme)"
+                      class="absolute -top-8 -right-8 w-24 h-24 rounded-full blur-2xl transition-colors"
                       aria-hidden="true"
                     ></div>
                     <div class="flex items-center gap-3 relative z-10">
                       <div
-                        class="w-9 h-9 rounded-lg bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center shadow"
+                        :class="getAwardIconClasses(award.color_scheme)"
+                        class="w-9 h-9 rounded-lg flex items-center justify-center shadow"
                         aria-hidden="true"
                       >
-                        <span class="text-white text-base">🥇</span>
+                        <span class="text-white text-base">{{ award.emoji || '🏆' }}</span>
                       </div>
                       <div>
                         <div class="text-white font-bold text-sm leading-snug">
-                          Слот года 2024
+                          {{ award.title || 'Награда' }}
                         </div>
-                        <div class="text-amber-200/90 text-xs">
-                          Casino Awards
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="group relative overflow-hidden rounded-xl p-4 border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60 transition-all"
-                    role="listitem"
-                  >
-                    <div
-                      class="absolute -top-8 -right-8 w-24 h-24 bg-fuchsia-400/20 rounded-full blur-2xl group-hover:bg-fuchsia-400/30 transition-colors"
-                      aria-hidden="true"
-                    ></div>
-                    <div class="flex items-center gap-3 relative z-10">
-                      <div
-                        class="w-9 h-9 rounded-lg bg-gradient-to-r from-fuchsia-400 to-purple-500 flex items-center justify-center shadow"
-                        aria-hidden="true"
-                      >
-                        <span class="text-white text-base">🎖️</span>
-                      </div>
-                      <div>
-                        <div class="text-white font-bold text-sm leading-snug">
-                          Лучший дизайн
-                        </div>
-                        <div class="text-fuchsia-200/90 text-xs">
-                          Gaming Excellence
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="group relative overflow-hidden rounded-xl p-4 border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60 transition-all"
-                    role="listitem"
-                  >
-                    <div
-                      class="absolute -top-8 -right-8 w-24 h-24 bg-emerald-400/20 rounded-full blur-2xl group-hover:bg-emerald-400/30 transition-colors"
-                      aria-hidden="true"
-                    ></div>
-                    <div class="flex items-center gap-3 relative z-10">
-                      <div
-                        class="w-9 h-9 rounded-lg bg-gradient-to-r from-emerald-400 to-green-500 flex items-center justify-center shadow"
-                        aria-hidden="true"
-                      >
-                        <span class="text-white text-base">💎</span>
-                      </div>
-                      <div>
-                        <div class="text-white font-bold text-sm leading-snug">
-                          Платиновый статус
-                        </div>
-                        <div class="text-emerald-200/90 text-xs">
-                          10M+ игроков
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="group relative overflow-hidden rounded-xl p-4 border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60 transition-all"
-                    role="listitem"
-                  >
-                    <div
-                      class="absolute -top-8 -right-8 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors"
-                      aria-hidden="true"
-                    ></div>
-                    <div class="flex items-center gap-3 relative z-10">
-                      <div
-                        class="w-9 h-9 rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center shadow"
-                        aria-hidden="true"
-                      >
-                        <span class="text-white text-base">⭐</span>
-                      </div>
-                      <div>
-                        <div class="text-white font-bold text-sm leading-snug">
-                          Выбор игроков
-                        </div>
-                        <div class="text-blue-200/90 text-xs">
-                          Народное голосование
+                        <div :class="getAwardTextClasses(award.color_scheme)" class="text-xs">
+                          {{ award.description || 'Описание награды' }}
                         </div>
                       </div>
                     </div>
@@ -5372,14 +5299,7 @@ const similarSlots = computed(() => {
     .slice(0, 3)
 })
 
-// Показываем награды только для конкретного слота Gates of Olympus
-const isGatesOfOlympus = computed(() => {
-  const name = ((slot.value && slot.value.name) || '').toLowerCase()
-  const slugStr = (typeof slug === 'string' ? slug : '').toLowerCase()
-  return (
-    name.includes('gates of olympus') || slugStr.includes('gates-of-olympus')
-  )
-})
+// Награды теперь управляются через админку (убрали хардкод для Gates of Olympus)
 
 // SEO (динамический)
 watchEffect(() => {
@@ -5517,6 +5437,47 @@ const openImageFullscreen = () => {
   modal.appendChild(img)
   modal.appendChild(closeBtn)
   document.body.appendChild(modal)
+}
+
+// Методы для работы с наградами в публичном шаблоне
+const getAwardPublicClasses = (colorScheme) => {
+  const colorMap = {
+    amber: 'border border-amber-400/30 bg-gradient-to-br from-amber-500/20 to-orange-500/20 hover:border-amber-400/60',
+    fuchsia: 'border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/20 hover:border-fuchsia-400/60',
+    emerald: 'border border-emerald-400/30 bg-gradient-to-br from-emerald-500/20 to-green-500/20 hover:border-emerald-400/60',
+    blue: 'border border-blue-400/30 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 hover:border-blue-400/60'
+  }
+  return colorMap[colorScheme] || colorMap.amber
+}
+
+const getAwardBgClasses = (colorScheme) => {
+  const colorMap = {
+    amber: 'bg-amber-400/20 group-hover:bg-amber-400/30',
+    fuchsia: 'bg-fuchsia-400/20 group-hover:bg-fuchsia-400/30',
+    emerald: 'bg-emerald-400/20 group-hover:bg-emerald-400/30',
+    blue: 'bg-blue-400/20 group-hover:bg-blue-400/30'
+  }
+  return colorMap[colorScheme] || colorMap.amber
+}
+
+const getAwardIconClasses = (colorScheme) => {
+  const colorMap = {
+    amber: 'bg-gradient-to-r from-amber-400 to-orange-500',
+    fuchsia: 'bg-gradient-to-r from-fuchsia-400 to-purple-500',
+    emerald: 'bg-gradient-to-r from-emerald-400 to-green-500',
+    blue: 'bg-gradient-to-r from-blue-400 to-indigo-500'
+  }
+  return colorMap[colorScheme] || colorMap.amber
+}
+
+const getAwardTextClasses = (colorScheme) => {
+  const colorMap = {
+    amber: 'text-amber-200/90',
+    fuchsia: 'text-fuchsia-200/90',
+    emerald: 'text-emerald-200/90',
+    blue: 'text-blue-200/90'
+  }
+  return colorMap[colorScheme] || colorMap.amber
 }
 
 // Методы для рейтинга
