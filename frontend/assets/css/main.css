@@ -163,19 +163,19 @@ h3 {
   .container {
     padding: 0 15px;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
-  
+
   .grid {
     gap: 15px;
   }
-  
+
   .card {
     padding: 15px;
   }
@@ -185,13 +185,61 @@ h3 {
   h1 {
     font-size: 1.75rem;
   }
-  
+
   .btn {
     padding: 10px 20px;
     font-size: 14px;
   }
-  
+
   .card {
     padding: 12px;
   }
+}
+
+/* Sticky hero layout styles */
+@media (min-width: 1024px) {
+  .hero-sticky-container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .hero-left-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hero-right-scrollable {
+    min-height: 200vh;
+    flex: 1;
+  }
+}
+
+/* Анимации для декоративных элементов */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes beam {
+  0% {
+    transform: translateX(-100%) skewX(12deg);
+  }
+  100% {
+    transform: translateX(300%) skewX(12deg);
+  }
+}
+
+.animate-beam {
+  animation: beam 8s ease-in-out infinite;
 }

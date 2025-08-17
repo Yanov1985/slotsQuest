@@ -91,7 +91,7 @@
     <!-- Hero секция - Семантическая разметка с Schema.org -->
     <section
       v-else-if="slot"
-      class="relative overflow-x-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 shadow-2xl mb-8"
+      class="relative bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 shadow-2xl mb-8"
       itemscope
       itemtype="https://schema.org/Game"
     >
@@ -135,12 +135,11 @@
         💎
       </div>
 
-      <div class="relative z-10 max-w-full">
-        <div class="flex flex-col lg:flex-row">
-          <!-- Левая часть: Игровая информация (липкая) -->
-          <main
-            class="w-full lg:w-[70%] lg:sticky lg:top-4 p-8 lg:p-12 flex flex-col justify-start min-w-0"
-          >
+      <div class="relative z-10 max-w-full lg:flex lg:min-h-screen">
+        <!-- Левая часть: Игровая информация (липкая) -->
+        <main
+          class="w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start p-8 lg:p-12 flex flex-col justify-start min-w-0"
+        >
             <!-- Заголовок и основная информация -->
             <header class="mb-8 lg:hidden">
               <!-- Провайдер -->
@@ -863,11 +862,12 @@
             </nav>
           </main>
 
-          <!-- Правая часть: Характеристики и информация (прокручиваемая) -->
-          <aside
-            class="w-full lg:w-[30%] bg-white/10 backdrop-blur-md p-8 lg:p-10 border-l border-white/20 min-w-0 min-h-[160vh]"
-            aria-label="Характеристики и дополнительная информация об игре"
-          >
+        <!-- Правая часть: Характеристики и информация (прокручиваемая) -->
+        <aside
+          class="w-full lg:w-[30%] bg-white/10 backdrop-blur-md p-8 lg:p-10 border-l border-white/20 min-w-0"
+          style="min-height: 150vh;"
+          aria-label="Характеристики и дополнительная информация об игре"
+        >
             <div class="space-y-8">
               <!-- Основные характеристики -->
               <section aria-labelledby="characteristics-heading">
@@ -1447,7 +1447,6 @@
               </section>
             </div>
           </aside>
-        </div>
       </div>
     </section>
 
