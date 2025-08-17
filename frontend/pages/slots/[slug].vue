@@ -1386,65 +1386,17 @@
                     </h3>
                     <div class="flex flex-wrap gap-2">
                       <span
+                        v-for="theme in getSlotThemes(slot)"
+                        :key="theme"
                         class="px-3 py-1 bg-yellow-500/30 text-yellow-200 rounded-full text-xs font-medium border border-yellow-400/20"
                       >
-                        Ancient
-                      </span>
-                      <span
-                        class="px-3 py-1 bg-orange-500/30 text-orange-200 rounded-full text-xs font-medium border border-orange-400/20"
-                      >
-                        Greek
-                      </span>
-                      <span
-                        class="px-3 py-1 bg-amber-500/30 text-amber-200 rounded-full text-xs font-medium border border-amber-400/20"
-                      >
-                        Mythology
-                      </span>
-                      <span
-                        class="px-3 py-1 bg-red-500/30 text-red-200 rounded-full text-xs font-medium border border-red-400/20"
-                      >
-                        Gods
-                      </span>
-                      <span
-                        class="px-3 py-1 bg-rose-500/30 text-rose-200 rounded-full text-xs font-medium border border-rose-400/20"
-                      >
-                        Olympus
+                        {{ theme }}
                       </span>
                     </div>
                   </div>
                 </div>
               </section>
 
-              <!-- Дополнительная информация -->
-              <section aria-labelledby="additional-info-heading">
-                <h2 id="additional-info-heading" class="sr-only">
-                  Дополнительная информация
-                </h2>
-                <dl class="space-y-4">
-                  <div
-                    class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-                  >
-                    <dt class="text-white/80 font-medium">Поле игры</dt>
-                    <dd class="text-white font-bold">6×5</dd>
-                  </div>
-                  <div
-                    class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-                  >
-                    <dt class="text-white/80 font-medium">Линии выплат</dt>
-                    <dd class="text-white font-bold">Scatter Pays</dd>
-                  </div>
-                  <div
-                    class="bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 flex justify-between items-center"
-                    itemprop="datePublished"
-                    content="2021-02-13"
-                  >
-                    <dt class="text-white/80 font-medium">Дата выхода</dt>
-                    <dd class="text-white font-bold">
-                      <time datetime="2021-02-13">13.02.2021</time>
-                    </dd>
-                  </div>
-                </dl>
-              </section>
             </div>
           </aside>
       </div>
@@ -6177,6 +6129,42 @@ const getDetailedDescription = (slot) => {
     return 'Главная особенность слота - множители от x2 до x500, которые появляются случайным образом и могут значительно увеличить ваши выигрыши. В бонусной игре действует система Total Multiplier, где все множители суммируются и не сбрасываются между спинами, что может привести к феноменальным выплатам.'
   }
   return `Этот слот отличается высококачественной графикой, продуманной механикой и отличным балансом между частотой выигрышей и их размером. RTP составляет ${slot.rtp || '96'}%, что делает игру привлекательной для большинства игроков.`
+}
+
+const getSlotThemes = (slot) => {
+  if (!slot || !slot.name) return ['Классический']
+
+  const name = (slot.name || '').toLowerCase()
+
+  if (name.includes('gates of olympus') || name.includes('олимп')) {
+    return ['Ancient', 'Greek', 'Mythology', 'Gods', 'Olympus']
+  }
+  if (name.includes('book of dead') || name.includes('египет')) {
+    return ['Ancient', 'Egypt', 'Adventure', 'Archaeology', 'Treasure']
+  }
+  if (name.includes('sweet bonanza') || name.includes('сладкий')) {
+    return ['Fruits', 'Sweet', 'Colorful', 'Fun', 'Candy']
+  }
+  if (name.includes('wolf') || name.includes('волк')) {
+    return ['Animals', 'Wild', 'Nature', 'Adventure']
+  }
+  if (name.includes('pirate') || name.includes('пират')) {
+    return ['Pirates', 'Adventure', 'Treasure', 'Sea', 'Gold']
+  }
+  if (name.includes('fruit') || name.includes('фрукт')) {
+    return ['Fruits', 'Classic', 'Retro', 'Simple']
+  }
+  if (name.includes('diamond') || name.includes('алмаз')) {
+    return ['Gems', 'Luxury', 'Wealth', 'Sparkle']
+  }
+  if (name.includes('fire') || name.includes('огонь')) {
+    return ['Fire', 'Hot', 'Energy', 'Power']
+  }
+  if (name.includes('magic') || name.includes('магия')) {
+    return ['Magic', 'Fantasy', 'Mystical', 'Spells']
+  }
+
+  return ['Классический', 'Развлечения']
 }
 
 // Загружаем данные при монтировании
