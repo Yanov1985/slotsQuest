@@ -96,7 +96,7 @@
       itemtype="https://schema.org/Game"
     >
       <!-- Анимированный фон -->
-      <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-beam transform skew-x-12"
         ></div>
