@@ -356,29 +356,42 @@ export class SlotsService {
   }
 
   async createSlot(createSlotDto: CreateSlotDto) {
-    // Generate slug from name with Cyrillic transliteration
-    const translitMap: { [key: string]: string } = {
-      'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-      'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-      'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-      'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-      'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    // Генерация slug: уважаем переданный slug, иначе генерируем из name
+    const slugify = (value: string) => {
+      const translitMap: { [key: string]: string } = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+      };
+      let text = (value || '').toLowerCase();
+      for (const [cyr, lat] of Object.entries(translitMap)) {
+        text = text.replace(new RegExp(cyr, 'g'), lat);
+      }
+      return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     };
-    
-    let transliterated = createSlotDto.name.toLowerCase();
-    for (const [cyrillic, latin] of Object.entries(translitMap)) {
-      transliterated = transliterated.replace(new RegExp(cyrillic, 'g'), latin);
-    }
-    
-    const slug = transliterated
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '') || Date.now().toString(); // fallback to timestamp if empty
+
+    const preferredSlug = createSlotDto.slug && createSlotDto.slug.trim()
+      ? slugify(createSlotDto.slug)
+      : slugify(createSlotDto.name);
+    const slug = preferredSlug || Date.now().toString();
 
     // Prepare data with proper date conversion
     const createData: any = {
       ...createSlotDto,
       slug,
     };
+
+    // Нормализуем ставки если пришли строками (например, "€0.20")
+    if (typeof createData.min_bet === 'string') {
+      const parsed = parseFloat(createData.min_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
+      if (!Number.isNaN(parsed)) createData.min_bet = parsed; else delete createData.min_bet;
+    }
+    if (typeof createData.max_bet === 'string') {
+      const parsed = parseFloat(createData.max_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
+      if (!Number.isNaN(parsed)) createData.max_bet = parsed; else delete createData.max_bet;
+    }
 
     // Convert release_date string to Date object if provided
     if (createSlotDto.release_date) {
@@ -397,30 +410,54 @@ export class SlotsService {
   }
 
   async updateSlot(id: string, updateSlotDto: UpdateSlotDto) {
-    // Update slug if name changed
+    // Обновляем slug если явно передан, иначе — если изменили name
     const updateData: any = {
       ...updateSlotDto,
       updated_at: new Date(),
     };
 
-    if (updateSlotDto.name) {
-      // Transliterate Cyrillic to Latin for slug generation
-      const translitMap: { [key: string]: string } = {
-        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    // Нормализуем ставки если пришли строками (например, "€0.20")
+    if (typeof updateData.min_bet === 'string') {
+      const parsed = parseFloat(updateData.min_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
+      if (!Number.isNaN(parsed)) updateData.min_bet = parsed; else delete updateData.min_bet;
+    }
+    if (typeof updateData.max_bet === 'string') {
+      const parsed = parseFloat(updateData.max_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
+      if (!Number.isNaN(parsed)) updateData.max_bet = parsed; else delete updateData.max_bet;
+    }
+
+    if (typeof updateSlotDto.slug === 'string' && updateSlotDto.slug.trim()) {
+      const slugify = (value: string) => {
+        const translitMap: { [key: string]: string } = {
+          'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+          'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+          'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+          'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+          'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+        };
+        let text = (value || '').toLowerCase();
+        for (const [cyr, lat] of Object.entries(translitMap)) {
+          text = text.replace(new RegExp(cyr, 'g'), lat);
+        }
+        return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       };
-      
-      let transliterated = updateSlotDto.name.toLowerCase();
-      for (const [cyrillic, latin] of Object.entries(translitMap)) {
-        transliterated = transliterated.replace(new RegExp(cyrillic, 'g'), latin);
-      }
-      
-      updateData.slug = transliterated
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '') || id.substring(0, 8); // fallback to ID prefix if empty
+      updateData.slug = slugify(updateSlotDto.slug);
+    } else if (updateSlotDto.name) {
+      const slugifyName = (value: string) => {
+        const translitMap: { [key: string]: string } = {
+          'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+          'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+          'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+          'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+          'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+        };
+        let text = (value || '').toLowerCase();
+        for (const [cyr, lat] of Object.entries(translitMap)) {
+          text = text.replace(new RegExp(cyr, 'g'), lat);
+        }
+        return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      };
+      updateData.slug = slugifyName(updateSlotDto.name) || id.substring(0, 8);
     }
 
     // Convert release_date string to Date object if provided

@@ -33,64 +33,78 @@ model slot_categories {
 }
 
 model slots {
-  id                   String           @id @default(cuid())
-  name                 String           @db.VarChar(255)
-  slug                 String           @unique @db.VarChar(255)
-  provider_id          String           @db.Uuid
-  category_id          String?          @db.Uuid
-  theme_id             String?
-  description          String?
-  thumbnail_url        String?          @db.VarChar(500)
-  screenshots          String[]
-  rtp                  Decimal?         @db.Decimal(5, 2)
-  volatility           String?          @db.VarChar(20)
-  min_bet              Decimal?         @db.Decimal(10, 2)
-  max_bet              Decimal?         @db.Decimal(10, 2)
-  max_win              Decimal?         @db.Decimal(15, 2)
-  paylines             Int?
-  reels                Int?             @default(5)
-  rows                 Int?             @default(3)
-  theme                String?          @db.VarChar(255)
-  features             String[]
-  release_date         DateTime?        @db.Date
-  is_mobile_compatible Boolean?         @default(true)
-  is_demo_available    Boolean?         @default(true)
-  rating               Decimal?         @default(0.00) @db.Decimal(3, 2)
-  play_count           Int?             @default(0)
-  is_active            Boolean?         @default(true)
-  created_at           DateTime?        @default(now()) @db.Timestamptz(6)
-  updated_at           DateTime?        @default(now()) @db.Timestamptz(6)
-  slot_categories      slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  providers            providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  themes               themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                    String           @id @default(cuid())
+  name                  String           @db.VarChar(255)
+  slug                  String           @unique @db.VarChar(255)
+  provider_id           String           @db.Uuid
+  category_id           String?          @db.Uuid
+  theme_id              String?
+  description           String?
+  thumbnail_url         String?          @db.VarChar(500)
+  // HERO media fields
+  media_type            String?          @db.VarChar(20)
+  image_url             String?          @db.VarChar(500)
+  video_url             String?          @db.VarChar(500)
+  demo_url              String?          @db.VarChar(500)
+  real_play_url         String?          @db.VarChar(500)
+  screenshots           String[]
+  rtp                   Decimal?         @db.Decimal(5, 2)
+  volatility            String?          @db.VarChar(20)
+  min_bet               Decimal?         @db.Decimal(10, 2)
+  max_bet               Decimal?         @db.Decimal(10, 2)
+  max_win               Decimal?         @db.Decimal(15, 2)
+  // Display fields for HERO
+  game_field            String?          @db.VarChar(50)
+  paylines              String?          @db.VarChar(100)
+  reels                 Int?             @default(5)
+  rows                  Int?             @default(3)
+  theme                 String?          @db.VarChar(255)
+  features              String[]
+  release_date          DateTime?        @db.Date
+  is_mobile_compatible  Boolean?         @default(true)
+  is_demo_available     Boolean?         @default(true)
+  rating                Decimal?         @default(0.00) @db.Decimal(3, 2)
+  rating_count          Int?             @default(0)
+  popularity_rank       Int?
+  popularity_percentage Int?
+  // Awards block for HERO
+  show_awards           Boolean?         @default(false)
+  awards                Json?
+  play_count            Int?             @default(0)
+  is_active             Boolean?         @default(true)
+  created_at            DateTime?        @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime?        @default(now()) @db.Timestamptz(6)
+  slot_categories       slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  providers             providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  themes                themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  slot_features slot_features[]
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")
   @@index([theme_id], map: "idx_slots_theme_id")
   @@index([is_active], map: "idx_slots_is_active")
   @@index([rating(sort: Desc)], map: "idx_slots_rating")
-  
-  slot_features slot_features[]
 }
 
 model features {
-  id           Int             @id @default(autoincrement())
-  name         String          @db.VarChar(255)
-  slug         String          @unique @db.VarChar(255)
-  description  String?
-  type         String?         @db.VarChar(50)
-  icon         String?         @db.VarChar(10)
-  color        String?         @default("#8b5cf6") @db.VarChar(7)
-  image_url    String?         @db.VarChar(500)
-  sort_order   Int?            @default(0)
-  is_active    Boolean         @default(true)
-  is_popular   Boolean         @default(false)
-  is_featured  Boolean         @default(false)
-  created_at   DateTime        @default(now()) @db.Timestamptz(6)
-  updated_at   DateTime        @updatedAt @db.Timestamptz(6)
-  
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?
+  type        String?  @db.VarChar(50)
+  icon        String?  @db.VarChar(10)
+  color       String?  @default("#8b5cf6") @db.VarChar(7)
+  image_url   String?  @db.VarChar(500)
+  sort_order  Int?     @default(0)
+  is_active   Boolean  @default(true)
+  is_popular  Boolean  @default(false)
+  is_featured Boolean  @default(false)
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @updatedAt @db.Timestamptz(6)
+
   slot_features slot_features[]
-  
+
   @@index([type], map: "idx_features_type")
   @@index([is_active], map: "idx_features_is_active")
   @@index([is_popular], map: "idx_features_is_popular")
@@ -102,10 +116,10 @@ model slot_features {
   slot_id    String
   feature_id Int
   created_at DateTime @default(now()) @db.Timestamptz(6)
-  
+
   slots    slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
   features features @relation(fields: [feature_id], references: [id], onDelete: Cascade)
-  
+
   @@unique([slot_id, feature_id])
   @@index([slot_id], map: "idx_slot_features_slot_id")
   @@index([feature_id], map: "idx_slot_features_feature_id")

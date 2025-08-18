@@ -63,10 +63,10 @@
     </nav>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <!-- Основной контент с превью -->
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+      <!-- Основной контент -->
+      <div class="grid grid-cols-1 gap-8">
         <!-- Левая панель: Редактирование -->
-        <div class="space-y-8">
+        <div class="space-y-8 max-w-3xl mx-auto w-full">
           <div
             class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
           >
@@ -91,13 +91,22 @@
 
             <form @submit.prevent="saveSlot" class="space-y-6">
               <!-- Основная информация -->
-              <div class="space-y-4">
-                <h3
-                  class="text-lg font-semibold text-blue-400 border-b border-gray-600 pb-2"
-                >
+              <div
+                class="flex items-center justify-between border-b border-gray-600 pb-2"
+              >
+                <h3 class="text-lg font-semibold text-blue-400">
                   Основная информация
                 </h3>
-
+                <button
+                  type="button"
+                  @click="showBasicSection = !showBasicSection"
+                  class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                  :aria-expanded="showBasicSection"
+                >
+                  {{ showBasicSection ? 'Скрыть' : 'Показать' }}
+                </button>
+              </div>
+              <div v-show="showBasicSection" class="space-y-4">
                 <!-- Название слота -->
                 <div>
                   <label class="block text-sm font-medium text-gray-300 mb-2">
@@ -157,105 +166,202 @@
                   <label class="block text-sm font-medium text-gray-300 mb-2">
                     Описание для Hero секции
                   </label>
+                  <div class="text-xs text-gray-400 mb-2">
+                    Максимум 200 символов
+                  </div>
                   <textarea
                     v-model="form.description"
                     rows="4"
+                    maxlength="200"
                     class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                     placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
                   ></textarea>
                 </div>
               </div>
 
+              <!-- Ссылки кнопок действий Hero секции -->
+              <div class="space-y-4">
+                <div
+                  class="flex items-center justify-between border-b border-gray-600 pb-2"
+                >
+                  <h3 class="text-lg font-semibold text-cyan-400">
+                    Ссылки кнопок действий Hero секции
+                  </h3>
+                  <button
+                    type="button"
+                    @click="showHeroLinksSection = !showHeroLinksSection"
+                    class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                    :aria-expanded="showHeroLinksSection"
+                  >
+                    {{ showHeroLinksSection ? 'Скрыть' : 'Показать' }}
+                  </button>
+                </div>
+                <div v-show="showHeroLinksSection" class="space-y-4">
+                  <div class="grid grid-cols-1 gap-4">
+                    <!-- Ссылка для кнопки "Играть бесплатно" -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Ссылка кнопки "Играть бесплатно" (демо-режим)
+                      </label>
+                      <input
+                        v-model="form.demo_url"
+                        type="url"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                        placeholder="https://demo.provider.com/gates-of-olympus"
+                      />
+                      <p class="mt-1 text-xs text-gray-400">
+                        URL для запуска демо-версии игры. Если не указано, будет
+                        показано предупреждение.
+                      </p>
+                    </div>
+
+                    <!-- Ссылка для кнопки "Играть на деньги" -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Ссылка кнопки "Играть на деньги"
+                      </label>
+                      <input
+                        v-model="form.real_play_url"
+                        type="url"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+                        placeholder="https://casino.com/games/gates-of-olympus"
+                      />
+                      <p class="mt-1 text-xs text-gray-400">
+                        URL для игры на реальные деньги в казино. Если не указано,
+                        будет показано предупреждение.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Характеристики игры -->
               <div class="space-y-4">
-                <h3
-                  class="text-lg font-semibold text-purple-400 border-b border-gray-600 pb-2"
-                >
-                  Характеристики игры
-                </h3>
+                <div class="flex items-center justify-between border-b border-gray-600 pb-2">
+                  <h3 class="text-lg font-semibold text-purple-400">
+                    Характеристики игры
+                  </h3>
+                  <button
+                    type="button"
+                    @click="showGameCharacteristicsSection = !showGameCharacteristicsSection"
+                    class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                    :aria-expanded="showGameCharacteristicsSection"
+                  >
+                    {{ showGameCharacteristicsSection ? 'Скрыть' : 'Показать' }}
+                  </button>
+                </div>
+                <div v-show="showGameCharacteristicsSection" class="space-y-4">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- RTP -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        RTP (%)
+                      </label>
+                      <input
+                        v-model.number="form.rtp"
+                        type="number"
+                        step="0.01"
+                        min="50"
+                        max="99"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="96.50"
+                      />
+                    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <!-- RTP -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      RTP (%)
-                    </label>
-                    <input
-                      v-model.number="form.rtp"
-                      type="number"
-                      step="0.01"
-                      min="50"
-                      max="99"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="96.50"
-                    />
-                  </div>
+                    <!-- Волатильность -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Волатильность
+                      </label>
+                      <select
+                        v-model="form.volatility"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      >
+                        <option value="low">Низкая</option>
+                        <option value="medium">Средняя</option>
+                        <option value="high">Высокая</option>
+                      </select>
+                    </div>
 
-                  <!-- Волатильность -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Волатильность
-                    </label>
-                    <select
-                      v-model="form.volatility"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    >
-                      <option value="low">Низкая</option>
-                      <option value="medium">Средняя</option>
-                      <option value="high">Высокая</option>
-                    </select>
-                  </div>
+                    <!-- Минимальная ставка -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Минимальная ставка
+                      </label>
+                      <input
+                        v-model="form.min_bet"
+                        type="text"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="€0.20"
+                      />
+                    </div>
 
-                  <!-- Минимальная ставка -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Минимальная ставка
-                    </label>
-                    <input
-                      v-model="form.min_bet"
-                      type="text"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="€0.20"
-                    />
-                  </div>
+                    <!-- Максимальная ставка -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Максимальная ставка
+                      </label>
+                      <input
+                        v-model="form.max_bet"
+                        type="text"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="€100"
+                      />
+                    </div>
 
-                  <!-- Максимальная ставка -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Максимальная ставка
-                    </label>
-                    <input
-                      v-model="form.max_bet"
-                      type="text"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="€100"
-                    />
-                  </div>
+                    <!-- Максимальный выигрыш -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Максимальный выигрыш (x от ставки)
+                      </label>
+                      <input
+                        v-model.number="form.max_win"
+                        type="number"
+                        min="1"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="5000"
+                      />
+                    </div>
 
-                  <!-- Максимальный выигрыш -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Максимальный выигрыш (x от ставки)
-                    </label>
-                    <input
-                      v-model.number="form.max_win"
-                      type="number"
-                      min="1"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="5000"
-                    />
-                  </div>
+                    <!-- Дата выпуска -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Дата выпуска
+                      </label>
+                      <input
+                        v-model="form.release_date"
+                        type="date"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      />
+                    </div>
 
-                  <!-- Дата выпуска -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Дата выпуска
-                    </label>
-                    <input
-                      v-model="form.release_date"
-                      type="date"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
+                    <!-- Количество барабанов -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Количество барабанов
+                      </label>
+                      <input
+                        v-model.number="form.reels"
+                        type="number"
+                        min="1"
+                        step="1"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="5"
+                      />
+                    </div>
+
+                    <!-- Линии выплат -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Линии выплат
+                      </label>
+                      <input
+                        v-model="form.paylines"
+                        type="text"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="Scatter Pays"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -349,19 +455,6 @@
                       type="text"
                       class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       placeholder="6×5"
-                    />
-                  </div>
-
-                  <!-- Линии выплат -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Линии выплат
-                    </label>
-                    <input
-                      v-model="form.paylines"
-                      type="text"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="Scatter Pays"
                     />
                   </div>
                 </div>
@@ -458,82 +551,6 @@
                       >
                         Ваш браузер не поддерживает воспроизведение видео.
                       </video>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Ссылки кнопок действий -->
-              <div class="space-y-4">
-                <h3
-                  class="text-lg font-semibold text-cyan-400 border-b border-gray-600 pb-2"
-                >
-                  Ссылки кнопок действий Hero секции
-                </h3>
-
-                <div class="grid grid-cols-1 gap-4">
-                  <!-- Ссылка для кнопки "Играть бесплатно" -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Ссылка кнопки "Играть бесплатно" (демо-режим)
-                    </label>
-                    <input
-                      v-model="form.demo_url"
-                      type="url"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
-                      placeholder="https://demo.provider.com/gates-of-olympus"
-                    />
-                    <p class="mt-1 text-xs text-gray-400">
-                      URL для запуска демо-версии игры. Если не указано, будет
-                      показано предупреждение.
-                    </p>
-                  </div>
-
-                  <!-- Ссылка для кнопки "Играть на деньги" -->
-                  <div>
-                    <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Ссылка кнопки "Играть на деньги"
-                    </label>
-                    <input
-                      v-model="form.real_play_url"
-                      type="url"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
-                      placeholder="https://casino.com/games/gates-of-olympus"
-                    />
-                    <p class="mt-1 text-xs text-gray-400">
-                      URL для игры на реальные деньги в казино. Если не указано,
-                      будет показано предупреждение.
-                    </p>
-                  </div>
-
-                  <!-- Предупреждение о безопасности -->
-                  <div
-                    class="bg-amber-900/20 border border-amber-600/30 rounded-lg p-4"
-                  >
-                    <div class="flex items-start gap-3">
-                      <svg
-                        class="w-5 h-5 text-amber-400 mt-0.5 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.084 19c-.77.833.192 2.5 1.732 2.5z"
-                        ></path>
-                      </svg>
-                      <div>
-                        <h4 class="text-amber-300 font-semibold mb-1">
-                          Важно!
-                        </h4>
-                        <p class="text-amber-200 text-sm">
-                          Убедитесь, что указываете только проверенные и
-                          безопасные ссылки от лицензированных казино и
-                          провайдеров игр.
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -745,7 +762,7 @@
         </div>
 
         <!-- Правая панель: Превью -->
-        <div class="xl:sticky xl:top-24 xl:h-fit">
+        <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
           <div
             class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
           >
@@ -774,158 +791,301 @@
               Превью Hero секции
             </h2>
 
-            <!-- Миниатюрное превью Hero секции -->
+            <!-- Новое превью Hero секции (макет, приближенный к клиентскому) -->
             <div
-              class="bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 rounded-xl p-4 min-h-[400px] relative overflow-hidden"
+              class="relative rounded-xl p-4 bg-zinc-950 text-slate-100 border border-white/10 overflow-hidden"
             >
-              <!-- Фоновые эффекты -->
-              <div class="absolute inset-0 opacity-30">
+              <!-- Декоративные подсветки -->
+              <div class="absolute inset-0 opacity-20 pointer-events-none">
                 <div
-                  class="absolute top-2 left-2 w-20 h-20 bg-purple-500/20 rounded-full blur-xl"
+                  class="absolute top-2 left-2 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
                 ></div>
                 <div
-                  class="absolute bottom-2 right-2 w-16 h-16 bg-blue-500/20 rounded-full blur-lg"
+                  class="absolute bottom-2 right-2 w-16 h-16 bg-blue-500/30 rounded-full blur-lg"
                 ></div>
               </div>
 
-              <div class="relative z-10 text-white">
-                <!-- Провайдер -->
-                <div class="mb-3">
-                  <span
-                    class="inline-block bg-purple-500/30 text-white px-2 py-1 rounded-full text-xs font-bold border border-purple-400/30"
-                  >
-                    {{ getProviderName(form.provider_id) || 'Провайдер' }}
-                  </span>
-                </div>
-
-                <!-- Название -->
-                <h1
-                  class="text-lg lg:text-2xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
-                >
-                  {{ form.name || 'Название слота' }}
-                </h1>
-
-                <!-- Описание -->
-                <p class="text-white/80 text-sm mb-4 line-clamp-3">
-                  {{
-                    form.description ||
-                    'Описание слота будет отображаться здесь...'
-                  }}
-                </p>
-
-                <!-- Медиа превью -->
-                <div v-if="form.image_url || form.video_url" class="mb-4">
-                  <!-- Превью изображения -->
-                  <div
-                    v-if="form.media_type === 'image' && form.image_url"
-                    class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30"
-                  >
-                    <img
-                      :src="form.image_url"
-                      :alt="form.name || 'Слот'"
-                      class="w-full h-full object-cover"
-                      @error="handlePreviewImageError"
-                    />
-                  </div>
-                  <!-- Превью видео -->
-                  <div
-                    v-else-if="form.media_type === 'video' && form.video_url"
-                    class="aspect-video bg-gray-800/50 rounded-lg overflow-hidden border border-purple-400/30"
-                  >
-                    <video
-                      :src="form.video_url"
-                      class="w-full h-full object-cover"
-                      autoplay
-                      loop
-                      muted
-                      preload="metadata"
-                      @error="handlePreviewVideoError"
+              <div class="relative z-10">
+                <div class="hidden lg:flex gap-6 items-start">
+                  <!-- Медиа (портрет 3:4) -->
+                  <div class="w-2/5">
+                    <CometCard
+                      :rotate-depth="17.5"
+                      :translate-depth="20"
+                      containerClassName="w-full h-full rounded-2xl"
+                      className="relative aspect-[3/4] rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl"
                     >
-                      <div
-                        class="flex items-center justify-center h-full text-white/60 text-xs"
-                      >
-                        Видео не поддерживается
+                      <div class="absolute inset-0">
+                        <div
+                          v-if="form.media_type === 'image' && form.image_url"
+                          class="absolute inset-0"
+                        >
+                          <img
+                            :src="form.image_url"
+                            :alt="form.name || 'Слот'"
+                            class="w-full h-full object-cover"
+                            @error="handlePreviewImageError"
+                          />
+                        </div>
+                        <div
+                          v-else-if="
+                            form.media_type === 'video' && form.video_url
+                          "
+                          class="absolute inset-0"
+                        >
+                          <video
+                            :src="form.video_url"
+                            class="w-full h-full object-cover"
+                            autoplay
+                            loop
+                            muted
+                            preload="metadata"
+                            @error="handlePreviewVideoError"
+                          >
+                            <source :src="form.video_url" type="video/mp4" />
+                            <source
+                              :src="
+                                form.video_url &&
+                                form.video_url.replace('.mp4', '.webm')
+                              "
+                              type="video/webm"
+                            />
+                          </video>
+                        </div>
+                        <div
+                          v-if="!form.image_url && !form.video_url"
+                          class="flex items-center justify-center h-full text-white/70 bg-black/30"
+                        >
+                          Изображение слота
+                        </div>
                       </div>
-                    </video>
+                    </CometCard>
                   </div>
-                  <!-- Индикатор типа медиа -->
-                  <div class="mt-2 flex items-center gap-2">
-                    <div
-                      class="px-2 py-1 bg-purple-500/30 rounded-full text-xs font-bold border border-purple-400/30"
+
+                  <!-- Правая колонка: провайдер, название, описание, CTA -->
+                  <div class="flex-1 min-w-0">
+                    <div class="mb-3">
+                      <span
+                        class="inline-block bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-purple-400/30"
+                        >{{
+                          getProviderName(form.provider_id) || 'Провайдер'
+                        }}</span
+                      >
+                    </div>
+
+                    <h1
+                      class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
+                    >
+                      {{ form.name || 'Название слота' }}
+                    </h1>
+
+                    <p
+                      class="text-white/80 text-sm lg:text-base mb-4 line-clamp-3"
                     >
                       {{
-                        form.media_type === 'image'
-                          ? '🖼️ Изображение'
-                          : '🎥 Видео'
+                        form.description ||
+                        'Описание слота будет отображаться здесь...'
                       }}
+                    </p>
+
+                    <!-- Кнопки действий -->
+                    <div class="flex flex-col gap-3 w-full max-w-md">
+                      <BackgroundGradient
+                        :animate="true"
+                        className="rounded-2xl"
+                        containerClassName="w-full"
+                      >
+                        <a
+                          v-if="form.demo_url && form.demo_url.trim()"
+                          :href="form.demo_url"
+                          target="_blank"
+                          rel="nofollow noopener"
+                          class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+                        >
+                          <span class="relative z-10">Играть бесплатно</span>
+                          <span
+                            class="relative z-10 bg-emerald-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-emerald-400/50"
+                            >DEMO</span
+                          >
+                        </a>
+                        <button
+                          v-else
+                          type="button"
+                          class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+                        >
+                          Играть бесплатно
+                        </button>
+                      </BackgroundGradient>
+
+                      <BackgroundGradient
+                        :animate="true"
+                        className="rounded-2xl"
+                        containerClassName="w-full"
+                      >
+                        <a
+                          v-if="form.real_play_url && form.real_play_url.trim()"
+                          :href="form.real_play_url"
+                          target="_blank"
+                          rel="nofollow sponsored noopener"
+                          class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+                        >
+                          <span class="relative z-10">Играть на деньги</span>
+                          <span
+                            class="relative z-10 bg-orange-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-orange-400/50"
+                            >REAL</span
+                          >
+                        </a>
+                        <button
+                          v-else
+                          type="button"
+                          class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+                        >
+                          Играть на деньги
+                        </button>
+                      </BackgroundGradient>
                     </div>
-                  </div>
-                </div>
 
-                <!-- Рейтинг -->
-                <div class="flex items-center gap-2 mb-4">
-                  <div class="flex text-yellow-400 text-sm">
-                    <span v-for="n in 5" :key="n" class="text-lg">
-                      {{ (form.rating || 0) >= n ? '★' : '☆' }}
-                    </span>
-                  </div>
-                  <span class="text-white font-bold text-sm">{{
-                    form.rating || '0'
-                  }}</span>
-                  <span class="text-white/60 text-sm">/ 5</span>
-                </div>
+                    <!-- Рейтинг и мини-характеристики -->
+                    <div class="mt-4">
+                      <div class="flex items-center gap-2 mb-3">
+                        <div class="flex text-yellow-400 text-sm">
+                          <span v-for="n in 5" :key="n" class="text-base">{{
+                            (form.rating || 0) >= n ? '★' : '☆'
+                          }}</span>
+                        </div>
+                        <span class="text-white font-bold text-sm">{{
+                          form.rating || '0'
+                        }}</span>
+                        <span class="text-white/60 text-sm">/ 5</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div
+                          class="bg-emerald-500/20 p-2 rounded border border-emerald-400/30"
+                        >
+                          <div class="text-emerald-300 font-bold">RTP</div>
+                          <div class="text-white">
+                            {{ form.rtp || '96.50' }}%
+                          </div>
+                        </div>
+                        <div
+                          class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
+                        >
+                          <div class="text-orange-300 font-bold">
+                            Волатильность
+                          </div>
+                          <div class="text-white capitalize">
+                            {{ getVolatilityText(form.volatility) }}
+                          </div>
+                        </div>
+                        <div
+                          class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
+                        >
+                          <div class="text-purple-300 font-bold">
+                            Макс. выигрыш
+                          </div>
+                          <div class="text-white">
+                            {{ form.max_win || '5000' }}x
+                          </div>
+                        </div>
+                        <div
+                          class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
+                        >
+                          <div class="text-blue-300 font-bold">Мин. ставка</div>
+                          <div class="text-white">
+                            {{ form.min_bet || '€0.20' }}
+                          </div>
+                        </div>
+                      </div>
 
-                <!-- Характеристики в миниатюре -->
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                  <div
-                    class="bg-emerald-500/20 p-2 rounded border border-emerald-400/30"
-                  >
-                    <div class="text-emerald-300 font-bold">RTP</div>
-                    <div class="text-white">{{ form.rtp || '96.50' }}%</div>
-                  </div>
-                  <div
-                    class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
-                  >
-                    <div class="text-orange-300 font-bold">Волатильность</div>
-                    <div class="text-white capitalize">
-                      {{ getVolatilityText(form.volatility) }}
+                      <div
+                        class="mt-3 bg-yellow-500/20 p-2 rounded border border-yellow-400/30"
+                      >
+                        <div class="flex justify-between items-center mb-1">
+                          <span class="text-white font-semibold text-xs"
+                            >Рейтинг</span
+                          >
+                          <span
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
+                            >#{{ form.popularity_rank || '12' }} из 2000+</span
+                          >
+                        </div>
+                        <div
+                          class="w-full bg-white/20 rounded-full h-2 overflow-hidden"
+                        >
+                          <div
+                            class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
+                            :style="`width: ${form.popularity_percentage || 94}%`"
+                          ></div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div
-                    class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
-                  >
-                    <div class="text-purple-300 font-bold">Макс. выигрыш</div>
-                    <div class="text-white">{{ form.max_win || '5000' }}x</div>
-                  </div>
-                  <div
-                    class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
-                  >
-                    <div class="text-blue-300 font-bold">Мин. ставка</div>
-                    <div class="text-white">{{ form.min_bet || '€0.20' }}</div>
-                  </div>
-                </div>
 
-                <!-- Популярность -->
-                <div
-                  class="mt-4 bg-yellow-500/20 p-2 rounded border border-yellow-400/30"
-                >
-                  <div class="flex justify-between items-center mb-1">
-                    <span class="text-white font-semibold text-xs"
-                      >Рейтинг</span
-                    >
-                    <span
-                      class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
-                    >
-                      #{{ form.popularity_rank || '12' }} из 2000+
-                    </span>
-                  </div>
-                  <div
-                    class="w-full bg-white/20 rounded-full h-2 overflow-hidden"
-                  >
+                    <!-- Награды -->
                     <div
-                      class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
-                      :style="`width: ${form.popularity_percentage || 94}%`"
-                    ></div>
+                      v-if="
+                        form.show_awards && form.awards && form.awards.length
+                      "
+                      class="mt-4 space-y-2"
+                    >
+                      <div class="text-yellow-300 text-xs font-semibold">
+                        Награды
+                      </div>
+                      <div class="grid grid-cols-2 gap-2">
+                        <div
+                          v-for="(award, index) in form.awards"
+                          :key="index"
+                          class="flex items-center gap-2 bg-white/5 rounded-lg p-2 border border-white/10"
+                        >
+                          <div
+                            :class="getAwardColorClasses(award.color_scheme)"
+                            class="w-8 h-8 rounded-lg flex items-center justify-center border-2"
+                          >
+                            <span class="text-base">{{
+                              award.emoji || '🏆'
+                            }}</span>
+                          </div>
+                          <div class="min-w-0">
+                            <div
+                              class="text-xs font-semibold text-white truncate"
+                            >
+                              {{ award.title || 'Награда' }}
+                            </div>
+                            <div class="text-[10px] text-white/70 truncate">
+                              {{ award.description || 'Описание' }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Мобильное превью медиа (если нет большого экрана) -->
+                <div
+                  class="lg:hidden mt-2 aspect-video bg-black/30 rounded-xl overflow-hidden border border-white/10"
+                >
+                  <img
+                    v-if="form.media_type === 'image' && form.image_url"
+                    :src="form.image_url"
+                    :alt="form.name || 'Слот'"
+                    class="w-full h-full object-cover"
+                    @error="handlePreviewImageError"
+                  />
+                  <video
+                    v-else-if="form.media_type === 'video' && form.video_url"
+                    :src="form.video_url"
+                    class="w-full h-full object-cover"
+                    autoplay
+                    loop
+                    muted
+                    preload="metadata"
+                    @error="handlePreviewVideoError"
+                  ></video>
+                  <div
+                    v-else
+                    class="w-full h-full flex items-center justify-center text-white/60"
+                  >
+                    Превью недоступно
                   </div>
                 </div>
               </div>
@@ -960,6 +1120,9 @@ const slot = ref(null)
 const providers = ref([])
 const saving = ref(false)
 const loading = ref(true)
+const showBasicSection = ref(true)
+const showHeroLinksSection = ref(true)
+const showGameCharacteristicsSection = ref(true)
 
 // Форма редактирования
 const form = ref({
@@ -973,6 +1136,7 @@ const form = ref({
   max_bet: '€100',
   max_win: 5000,
   release_date: '',
+  reels: 5,
   rating: 4.8,
   rating_count: 1247,
   popularity_rank: 12,
@@ -1112,7 +1276,8 @@ const saveSlot = async () => {
     // Здесь можно добавить toast уведомление
 
     if (slotId === 'new' && response.data?.id) {
-      await router.push(`/admin/slots/edit/${response.data.id}`)
+      // После создания нового слота переходим на его страницу редактирования по корректному маршруту
+      await router.push(`/admin/slots/${response.data.id}`)
     }
   } catch (error) {
     console.error('Ошибка сохранения:', error)
@@ -1199,6 +1364,7 @@ const resetForm = () => {
       max_bet: '€100',
       max_win: 5000,
       release_date: '',
+      reels: 5,
       rating: 4.8,
       rating_count: 1247,
       popularity_rank: 12,
