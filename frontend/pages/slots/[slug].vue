@@ -588,63 +588,68 @@
                 class="flex gap-4 items-stretch"
                 aria-label="Варианты игры (десктоп)"
               >
-                <button
-                  class="group relative flex-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30"
-                  @click="playSlot"
-                  type="button"
-                  itemprop="url"
+                <BackgroundGradient
+                  :animate="true"
+                  className="rounded-2xl"
+                  containerClassName="flex-1"
                 >
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                    aria-hidden="true"
-                  ></div>
-                  <svg
-                    class="w-6 h-6 relative z-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+                  <button
+                    class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30 min-h-[56px]"
+                    @click="playSlot"
+                    type="button"
+                    itemprop="url"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span class="relative z-10">Играть бесплатно</span>
-                  <span
-                    class="relative z-10 bg-white/20 text-xs px-2 py-1 rounded-full font-semibold"
-                    aria-label="Демо-режим"
-                    >DEMO</span
-                  >
-                </button>
+                    <svg
+                      class="w-6 h-6 relative z-10"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span class="relative z-10 whitespace-nowrap">Играть бесплатно</span>
+                    <span
+                      class="relative z-10 bg-white/20 text-xs px-2 py-1 rounded-full font-semibold"
+                      aria-label="Демо-режим"
+                    >
+                      DEMO
+                    </span>
+                  </button>
+                </BackgroundGradient>
 
-                <button
-                  class="group relative flex-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30"
-                  @click="playForReal"
-                  type="button"
+                <BackgroundGradient
+                  :animate="true"
+                  className="rounded-2xl"
+                  containerClassName="flex-1"
                 >
-                  <div
-                    class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                    aria-hidden="true"
-                  ></div>
-                  <svg
-                    class="w-6 h-6 relative z-10"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+                  <button
+                    class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30 min-h-[56px]"
+                    @click="playForReal"
+                    type="button"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                    />
-                  </svg>
-                  <span class="relative z-10">Играть на деньги</span>
-                </button>
+                    <svg
+                      class="w-6 h-6 relative z-10"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                      />
+                    </svg>
+                    <span class="relative z-10 whitespace-nowrap">Играть на деньги</span>
+                  </button>
+                </BackgroundGradient>
               </nav>
             </div>
           </div>
@@ -762,64 +767,68 @@
             class="space-y-4 lg:hidden"
             aria-label="Варианты игры (моб./планшет)"
           >
-            <button
-              class="group relative w-full bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30"
-              @click="playSlot"
-              type="button"
-              itemprop="url"
+            <BackgroundGradient
+              :animate="true"
+              className="rounded-2xl"
+              containerClassName="w-full"
             >
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                aria-hidden="true"
-              ></div>
-              <svg
-                class="w-7 h-7 relative z-10"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+              <button
+                class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30 min-h-[64px]"
+                @click="playSlot"
+                type="button"
+                itemprop="url"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span class="relative z-10">Играть бесплатно</span>
-              <span
-                class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
-                aria-label="Демо-режим"
-              >
-                DEMO
-              </span>
-            </button>
+                <svg
+                  class="w-7 h-7 relative z-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <span class="relative z-10 whitespace-nowrap">Играть бесплатно</span>
+                <span
+                  class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
+                  aria-label="Демо-режим"
+                >
+                  DEMO
+                </span>
+              </button>
+            </BackgroundGradient>
 
-            <button
-              class="group relative w-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30"
-              @click="playForReal"
-              type="button"
+            <BackgroundGradient
+              :animate="true"
+              className="rounded-2xl"
+              containerClassName="w-full"
             >
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                aria-hidden="true"
-              ></div>
-              <svg
-                class="w-7 h-7 relative z-10"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+              <button
+                class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30 min-h-[64px]"
+                @click="playForReal"
+                type="button"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                ></path>
-              </svg>
-              <span class="relative z-10">Играть на деньги</span>
-            </button>
+                <svg
+                  class="w-7 h-7 relative z-10"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                <span class="relative z-10 whitespace-nowrap">Играть на деньги</span>
+              </button>
+            </BackgroundGradient>
 
             <!-- Награды и достижения (семантическая разметка) -->
             <aside
@@ -927,12 +936,24 @@
               <dl class="grid grid-cols-1 gap-4">
                 <!-- RTP -->
                 <div
-                  class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-5 rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-5 rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                   itemprop="gamePlatform"
                   itemscope
                   itemtype="https://schema.org/Thing"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('emerald')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center"
@@ -963,14 +984,27 @@
                   >
                     {{ slot.rtp || '96.50' }}%
                   </dd>
-                  <dd class="text-emerald-300 text-sm">Высокий показатель</dd>
+                    <dd class="text-emerald-300 text-sm">Высокий показатель</dd>
+                  </div>
                 </div>
 
                 <!-- Волатильность -->
                 <div
-                  class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-5 rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-5 rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('orange')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center"
@@ -998,14 +1032,27 @@
                   <dd class="text-2xl font-black text-white mb-1 capitalize">
                     {{ getVolatilityText(slot.volatility) }}
                   </dd>
-                  <dd class="text-orange-300 text-sm">Средние риски</dd>
+                    <dd class="text-orange-300 text-sm">Средние риски</dd>
+                  </div>
                 </div>
 
                 <!-- Максимальный выигрыш -->
                 <div
-                  class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('purple')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center"
@@ -1035,14 +1082,27 @@
                   <dd class="text-3xl font-black text-white mb-1">
                     {{ getMaxWin(slot) }}
                   </dd>
-                  <dd class="text-purple-300 text-sm">От ставки</dd>
+                    <dd class="text-purple-300 text-sm">От ставки</dd>
+                  </div>
                 </div>
 
                 <!-- Минимальная ставка -->
                 <div
-                  class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-5 rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-5 rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('blue')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
@@ -1070,14 +1130,27 @@
                   <dd class="text-2xl font-black text-white mb-1">
                     {{ slot.min_bet || '€0.20' }}
                   </dd>
-                  <dd class="text-blue-300 text-sm">Доступно всем</dd>
+                    <dd class="text-blue-300 text-sm">Доступно всем</dd>
+                  </div>
                 </div>
 
                 <!-- Максимальная ставка -->
                 <div
-                  class="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm p-5 rounded-2xl border border-teal-400/30 hover:border-teal-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm p-5 rounded-2xl border border-teal-400/30 hover:border-teal-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('teal')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center"
@@ -1105,14 +1178,27 @@
                   <dd class="text-2xl font-black text-white mb-1">
                     {{ slot.max_bet || '€100' }}
                   </dd>
-                  <dd class="text-teal-300 text-sm">Хай-роллеры</dd>
+                    <dd class="text-teal-300 text-sm">Хай-роллеры</dd>
+                  </div>
                 </div>
 
                 <!-- Дата релиза -->
                 <div
-                  class="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-sm p-5 rounded-2xl border border-amber-400/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-sm p-5 rounded-2xl border border-amber-400/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('amber')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center"
@@ -1140,14 +1226,27 @@
                   <dd class="text-2xl font-black text-white mb-1">
                     {{ formatReleaseDate(slot.release_date) || '13.02.2021' }}
                   </dd>
-                  <dd class="text-amber-300 text-sm">Pragmatic Play</dd>
+                    <dd class="text-amber-300 text-sm">Pragmatic Play</dd>
+                  </div>
                 </div>
 
                 <!-- Количество барабанов -->
                 <div
-                  class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-rose-400/30 hover:border-rose-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-rose-400/30 hover:border-rose-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('rose')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center"
@@ -1175,14 +1274,27 @@
                   <dd class="text-3xl font-black text-white mb-1">
                     {{ slot.game_field || '6×5' }}
                   </dd>
-                  <dd class="text-rose-300 text-sm">Scatter Pays</dd>
+                    <dd class="text-rose-300 text-sm">Scatter Pays</dd>
+                  </div>
                 </div>
 
                 <!-- Тип выплат -->
                 <div
-                  class="bg-gradient-to-br from-violet-500/20 to-purple-500/20 backdrop-blur-sm p-5 rounded-2xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="bg-gradient-to-br from-violet-500/20 to-purple-500/20 backdrop-blur-sm p-5 rounded-2xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
-                  <div class="flex items-center justify-between mb-3">
+                  <!-- Canvas Reveal Effect -->
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('violet')"
+                    :dotSize="4"
+                    :showGradient="false"
+                    blendMode="overlay"
+                    :intensity="1.4"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-10 h-10 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center"
@@ -1210,7 +1322,8 @@
                   <dd class="text-2xl font-black text-white mb-1">
                     {{ slot.paylines || 'Scatter Pays' }}
                   </dd>
-                  <dd class="text-violet-300 text-sm">Все направления</dd>
+                    <dd class="text-violet-300 text-sm">Все направления</dd>
+                  </div>
                 </div>
               </dl>
             </section>
@@ -1225,99 +1338,159 @@
                 Популярность
               </h2>
               <div
-                class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-5 rounded-2xl border border-yellow-400/30"
+                class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-5 rounded-2xl border border-yellow-400/30 relative overflow-hidden"
               >
-                <div class="flex justify-between items-center mb-3">
-                  <span class="text-white font-semibold">Рейтинг</span>
-                  <span
-                    class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm"
-                    >#12 из 2000+</span
-                  >
-                </div>
-                <div
-                  class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
-                  role="progressbar"
-                  aria-valuenow="94"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  aria-label="Рейтинг популярности: 94 из 100"
-                >
+                <!-- Canvas Reveal Effect -->
+                <CanvasRevealEffect
+                  :animationSpeed="0.5"
+                  :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                  :colors="getEffectColorsFor('amber')"
+                  :dotSize="4"
+                  :showGradient="false"
+                  blendMode="overlay"
+                  :intensity="1.4"
+                  containerClassName="absolute inset-0 pointer-events-none"
+                />
+                <div class="relative z-10">
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-white font-semibold">Рейтинг</span>
+                    <span
+                      class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm"
+                      >#12 из 2000+</span
+                    >
+                  </div>
                   <div
-                    class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
-                    style="width: 94%"
-                  ></div>
+                    class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
+                    role="progressbar"
+                    aria-valuenow="94"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="Рейтинг популярности: 94 из 100"
+                  >
+                    <div
+                      class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
+                      style="width: 94%"
+                    ></div>
+                  </div>
+                  <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
                 </div>
-                <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
               </div>
 
               <!-- Дополнительные метрики популярности -->
               <div class="mt-4 grid grid-cols-2 gap-3">
                 <!-- Место в рейтинге новых слотов -->
                 <div
-                  class="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm p-4 rounded-xl border border-green-400/30"
+                  class="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm p-4 rounded-xl border border-green-400/30 relative overflow-hidden"
                 >
-                  <div class="flex items-center gap-2 mb-2">
-                    <div
-                      class="w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center"
-                    >
-                      <span class="text-white text-xs font-bold">🆕</span>
+                  <CanvasRevealEffect
+                  :animationSpeed="0.5"
+                  :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                  :colors="getEffectColorsFor('emerald')"
+                  :dotSize="4"
+                  :showGradient="false"
+                  blendMode="overlay"
+                  :intensity="1.4"
+                  containerClassName="absolute inset-0 pointer-events-none"
+                />
+                  <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div
+                        class="w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center"
+                      >
+                        <span class="text-white text-xs font-bold">🆕</span>
+                      </div>
+                      <span class="text-green-300 text-xs font-semibold"
+                        >Лучшие новые слоты 2021</span
+                      >
                     </div>
-                    <span class="text-green-300 text-xs font-semibold"
-                      >Лучшие новые слоты 2021</span
-                    >
+                    <div class="text-white font-black text-lg">#1</div>
                   </div>
-                  <div class="text-white font-black text-lg">#1</div>
                 </div>
 
                 <!-- Место среди популярных слотов -->
                 <div
-                  class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-4 rounded-xl border border-blue-400/30"
+                  class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-4 rounded-xl border border-blue-400/30 relative overflow-hidden"
                 >
-                  <div class="flex items-center gap-2 mb-2">
-                    <div
-                      class="w-6 h-6 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
-                    >
-                      <span class="text-white text-xs font-bold">🔥</span>
+                  <CanvasRevealEffect
+                  :animationSpeed="0.5"
+                  :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                  :colors="getEffectColorsFor('blue')"
+                  :dotSize="4"
+                  :showGradient="false"
+                  blendMode="overlay"
+                  :intensity="1.4"
+                  containerClassName="absolute inset-0 pointer-events-none"
+                />
+                  <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div
+                        class="w-6 h-6 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
+                      >
+                        <span class="text-white text-xs font-bold">🔥</span>
+                      </div>
+                      <span class="text-blue-300 text-xs font-semibold"
+                        >Популярные слоты 2023</span
+                      >
                     </div>
-                    <span class="text-blue-300 text-xs font-semibold"
-                      >Популярные слоты 2023</span
-                    >
+                    <div class="text-white font-black text-lg">#1</div>
                   </div>
-                  <div class="text-white font-black text-lg">#1</div>
                 </div>
 
                 <!-- RTP рейтинг -->
                 <div
-                  class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30"
+                  class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 relative overflow-hidden"
                 >
-                  <div class="flex items-center gap-2 mb-2">
-                    <div
-                      class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center"
-                    >
-                      <span class="text-white text-xs font-bold">📊</span>
+                  <CanvasRevealEffect
+                    :animationSpeed="0.5"
+                    :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                    :colors="getEffectColorsFor('purple')"
+                    :dotSize="3"
+                    :showGradient="false"
+                    blendMode="multiply"
+                    containerClassName="absolute inset-0 pointer-events-none"
+                  />
+                  <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div
+                        class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center"
+                      >
+                        <span class="text-white text-xs font-bold">📊</span>
+                      </div>
+                      <span class="text-purple-300 text-xs font-semibold"
+                        >Реальный RTP</span
+                      >
                     </div>
-                    <span class="text-purple-300 text-xs font-semibold"
-                      >Реальный RTP</span
-                    >
+                    <div class="text-white font-black text-lg">97.45%</div>
                   </div>
-                  <div class="text-white font-black text-lg">97.45%</div>
                 </div>
 
                 <!-- Частота бонусов -->
                 <div
-                  class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30"
+                  class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30 relative overflow-hidden"
                 >
-                  <div class="flex items-center gap-2 mb-2">
-                    <div
-                      class="w-6 h-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center"
-                    >
-                      <span class="text-white text-xs font-bold">🎰</span>
+                  <CanvasRevealEffect
+                  :animationSpeed="0.5"
+                  :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                  :colors="getEffectColorsFor('orange')"
+                  :dotSize="4"
+                  :showGradient="false"
+                  blendMode="overlay"
+                  :intensity="1.4"
+                  containerClassName="absolute inset-0 pointer-events-none"
+                />
+                  <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div
+                        class="w-6 h-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center"
+                      >
+                        <span class="text-white text-xs font-bold">🎰</span>
+                      </div>
+                      <span class="text-orange-300 text-xs font-semibold"
+                        >Частота бонуса</span
+                      >
                     </div>
-                    <span class="text-orange-300 text-xs font-semibold"
-                      >Частота бонуса</span
-                    >
+                    <div class="text-white font-black text-lg">1:448</div>
                   </div>
-                  <div class="text-white font-black text-lg">1:448</div>
                 </div>
               </div>
             </section>
@@ -1334,15 +1507,25 @@
               <div class="space-y-3">
                 <!-- Основные особенности -->
                 <div
-                  class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-4 rounded-2xl border border-indigo-400/30"
+                  class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-4 rounded-2xl border border-indigo-400/30 relative overflow-hidden"
                 >
+                  <CanvasRevealEffect
+                :animationSpeed="0.5"
+                :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                :colors="getEffectColorsFor('indigo')"
+                :dotSize="4"
+                :showGradient="false"
+                blendMode="overlay"
+                :intensity="1.4"
+                containerClassName="absolute inset-0 pointer-events-none"
+              />
                   <h3
-                    class="text-white font-semibold mb-3 flex items-center gap-2"
+                    class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🎮</span>
                     Игровая механика
                   </h3>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-2 relative z-10">
                     <span
                       class="px-3 py-1 bg-indigo-500/30 text-indigo-200 rounded-full text-xs font-medium border border-indigo-400/20"
                     >
@@ -1363,15 +1546,25 @@
 
                 <!-- Бонусные функции -->
                 <div
-                  class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-4 rounded-2xl border border-emerald-400/30"
+                  class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-4 rounded-2xl border border-emerald-400/30 relative overflow-hidden"
                 >
+                  <CanvasRevealEffect
+                :animationSpeed="0.5"
+                :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                :colors="getEffectColorsFor('emerald')"
+                :dotSize="4"
+                :showGradient="false"
+                blendMode="overlay"
+                :intensity="1.4"
+                containerClassName="absolute inset-0 pointer-events-none"
+              />
                   <h3
-                    class="text-white font-semibold mb-3 flex items-center gap-2"
+                    class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🎁</span>
                     Бонусы
                   </h3>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-2 relative z-10">
                     <span
                       class="px-3 py-1 bg-emerald-500/30 text-emerald-200 rounded-full text-xs font-medium border border-emerald-400/20"
                     >
@@ -1397,15 +1590,25 @@
 
                 <!-- Тематика -->
                 <div
-                  class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-4 rounded-2xl border border-yellow-400/30"
+                  class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-4 rounded-2xl border border-yellow-400/30 relative overflow-hidden"
                 >
+                  <CanvasRevealEffect
+                :animationSpeed="0.5"
+                :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                :colors="getEffectColorsFor('amber')"
+                :dotSize="4"
+                :showGradient="false"
+                blendMode="overlay"
+                :intensity="1.4"
+                containerClassName="absolute inset-0 pointer-events-none"
+              />
                   <h3
-                    class="text-white font-semibold mb-3 flex items-center gap-2"
+                    class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🏛️</span>
                     Тематика
                   </h3>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-2 relative z-10">
                     <span
                       v-for="theme in getSlotThemes(slot)"
                       :key="theme"
@@ -2624,10 +2827,17 @@
                 :class="`bg-gradient-to-br ${award.gradient} ${award.border} ${award.text}`"
                 class="relative group p-6 rounded-2xl border-2 text-center hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden"
               >
-                <!-- Блестящий эффект при hover -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-all duration-1000"
-                ></div>
+                <!-- Canvas Reveal Effect (максимальная видимость) -->
+                <CanvasRevealEffect
+                  :animationSpeed="0.5"
+                  :opacities="[0.12,0.14,0.16,0.18,0.22,0.28,0.34,0.42,0.5,0.6]"
+                  :colors="getAwardEffectColors(award.gradient)"
+                  :dotSize="4"
+                  :showGradient="false"
+                  blendMode="overlay"
+                  :intensity="1.4"
+                  containerClassName="absolute inset-0 pointer-events-none"
+                />
 
                 <div class="relative z-10">
                   <div
@@ -5826,6 +6036,7 @@ import { ref, computed, onMounted } from 'vue'
 import AuroraBackground from '~/components/ui/AuroraBackground.vue'
 import BackgroundGradient from '~/components/ui/BackgroundGradient.vue'
 import CometCard from '~/components/ui/CometCard.vue'
+import CanvasRevealEffect from '~/components/ui/CanvasRevealEffect.vue'
 
 // Получаем slug из роута
 const route = useRoute()
@@ -5998,6 +6209,45 @@ const openImageFullscreen = () => {
   modal.appendChild(img)
   modal.appendChild(closeBtn)
   document.body.appendChild(modal)
+}
+
+const getAwardEffectColors = (gradient) => {
+  const g = gradient || ''
+  if (g.includes('yellow') || g.includes('amber')) {
+    // жёлто-янтарные карточки — тёмные тёплые оттенки
+    return [[245,158,11],[217,119,6],[146,64,14]]
+  }
+  if (g.includes('purple') || g.includes('pink')) {
+    // фиолетово-розовые — насыщённые пурпурные
+    return [[168,85,247],[236,72,153],[126,34,206]]
+  }
+  if (g.includes('green') || g.includes('emerald')) {
+    // зелёные — глубокие изумрудные/зелёные
+    return [[16,185,129],[5,150,105],[6,95,70]]
+  }
+  if (g.includes('blue') || g.includes('indigo')) {
+    // синие/индиго — насыщённые холодные
+    return [[59,130,246],[79,70,229],[29,78,216]]
+  }
+  // запасной вариант — нейтральные тёмные
+  return [[71,85,105],[51,65,85],[30,41,59]]
+}
+
+const getEffectColorsFor = (theme) => {
+  const t = (theme || '').toLowerCase()
+  if (t.includes('amber') || t.includes('yellow')) return [[245,158,11],[217,119,6],[146,64,14]]
+  if (t.includes('orange')) return [[249,115,22],[234,88,12],[194,65,12]]
+  if (t.includes('red')) return [[239,68,68],[220,38,38],[185,28,28]]
+  if (t.includes('rose')) return [[244,63,94],[225,29,72],[190,18,60]]
+  if (t.includes('pink')) return [[236,72,153],[219,39,119],[190,24,93]]
+  if (t.includes('purple') || t.includes('violet')) return [[168,85,247],[126,34,206],[109,40,217]]
+  if (t.includes('indigo')) return [[99,102,241],[79,70,229],[67,56,202]]
+  if (t.includes('blue')) return [[59,130,246],[37,99,235],[29,78,216]]
+  if (t.includes('cyan')) return [[34,211,238],[6,182,212],[8,145,178]]
+  if (t.includes('teal')) return [[20,184,166],[13,148,136],[15,118,110]]
+  if (t.includes('emerald') || t.includes('green')) return [[16,185,129],[5,150,105],[6,95,70]]
+  // Нейтральная палитра по умолчанию (тёмные холодные)
+  return [[71,85,105],[51,65,85],[30,41,59]]
 }
 
 // Методы для работы с наградами в публичном шаблоне
