@@ -88,29 +88,13 @@
       </div>
     </div>
 
-    <!-- Hero секция - Семантическая разметка с Schema.org -->
+    <!-- Hero секция - Семантическая разметка без микроданных -->
     <section
       v-else-if="slot"
       class="relative shadow-2xl mb-8 bg-zinc-950 text-slate-100 border border-white/10"
-      itemscope
-      itemtype="https://schema.org/Game"
     >
-      <!-- Дополнительные микроданные для игры -->
-      <meta itemprop="inLanguage" content="ru-RU" />
-      <meta itemprop="applicationCategory" content="Game" />
-      <meta itemprop="operatingSystem" content="Any" />
-      <meta itemprop="genre" content="Casino Slot Game" />
-      <meta
-        itemprop="isAccessibleForFree"
-        :content="slot?.demo_url ? 'true' : 'false'"
-      />
-      <meta
-        itemprop="datePublished"
-        :content="slot?.release_date || '2021-02-13'"
-      />
-
       <!-- Единый скрытый H1 для SEO/доступности -->
-      <h1 class="sr-only" itemprop="name">{{ slot.name || 'Слот' }}</h1>
+      <h1 class="sr-only">{{ slot.name || 'Слот' }}</h1>
       <!-- Анимированный фон -->
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
@@ -584,23 +568,20 @@
                 {{ getShortDescription(slot) }}
               </p>
 
-              <nav
-                class="flex gap-4 items-stretch"
-                aria-label="Варианты игры (десктоп)"
-              >
+              <nav class="flex flex-col gap-4 w-full max-w-md mx-auto" aria-label="Варианты игры (десктоп)">
                 <BackgroundGradient
                   :animate="true"
                   className="rounded-2xl"
-                  containerClassName="flex-1"
+                  containerClassName="w-full"
                 >
                   <button
-                    class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30 min-h-[56px]"
+                    class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                     @click="playSlot"
                     type="button"
-                    itemprop="url"
+                    :aria-label="`Играть в ${slot.name} бесплатно в демо-режиме`"
                   >
                     <svg
-                      class="w-6 h-6 relative z-10"
+                      class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -613,9 +594,9 @@
                         d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span class="relative z-10 whitespace-nowrap">Играть бесплатно</span>
+                    <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Играть бесплатно</span>
                     <span
-                      class="relative z-10 bg-white/20 text-xs px-2 py-1 rounded-full font-semibold"
+                      class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
                       aria-label="Демо-режим"
                     >
                       DEMO
@@ -626,15 +607,16 @@
                 <BackgroundGradient
                   :animate="true"
                   className="rounded-2xl"
-                  containerClassName="flex-1"
+                  containerClassName="w-full"
                 >
                   <button
-                    class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30 min-h-[56px]"
+                    class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                     @click="playForReal"
                     type="button"
+                    :aria-label="`Играть в ${slot.name} на реальные деньги`"
                   >
                     <svg
-                      class="w-6 h-6 relative z-10"
+                      class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -647,7 +629,12 @@
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
                       />
                     </svg>
-                    <span class="relative z-10 whitespace-nowrap">Играть на деньги</span>
+                    <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Играть на деньги</span>
+                    <span
+                      class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
+                    >
+                      REAL
+                    </span>
                   </button>
                 </BackgroundGradient>
               </nav>
@@ -6461,82 +6448,170 @@ const getStructuredData = (slot) => {
 
   const baseUrl = 'https://slotquest.com'
   const slotUrl = `${baseUrl}/slots/${slot.slug || slug}`
-  const imageUrl =
-    slot.image_url || `${baseUrl}/images/slots/${slot.slug || slug}.jpg`
+  const imageUrl = slot.image_url || `${baseUrl}/images/slots/${slot.slug || slug}.jpg`
 
-  const structuredData = {
+  // Основная Game сущность
+  const gameSchema = {
     '@context': 'https://schema.org',
     '@type': 'Game',
+    '@id': slotUrl,
     name: slot.name,
-    description: getShortDescription(slot),
+    description: getDetailedDescription(slot),
     url: slotUrl,
     inLanguage: 'ru-RU',
     isAccessibleForFree: Boolean(slot.demo_url),
-    image: [imageUrl],
+    image: {
+      '@type': 'ImageObject',
+      url: imageUrl,
+      width: 800,
+      height: 600,
+      caption: `${slot.name} - скриншот игрового автомата`
+    },
     datePublished: slot.release_date || '2021-02-13',
     genre: 'Casino Slot Game',
-    gamePlatform: 'Web Browser',
+    gamePlatform: ['Web Browser', 'Mobile', 'Desktop'],
     applicationCategory: 'Game',
-    operatingSystem: 'Any',
     publisher: {
       '@type': 'Organization',
+      '@id': 'https://slotquest.com/#organization',
+      name: 'SlotQuest',
+      url: 'https://slotquest.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://slotquest.com/logo.png',
+        width: 200,
+        height: 60
+      },
+      sameAs: [
+        'https://t.me/slotquest',
+        'https://vk.com/slotquest'
+      ]
+    },
+    provider: {
+      '@type': 'Organization',
       name: slot.provider?.name || 'Pragmatic Play',
-      url: 'https://pragmaticplay.com',
+      url: slot.provider?.website || 'https://pragmaticplay.com'
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
+      ratingValue: slot.rating || '4.8',
       bestRating: '5',
       worstRating: '1',
-      ratingCount: '1247',
+      ratingCount: slot.reviews_count || '1247'
     },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
-      description: 'Free demo version available',
-      url: slot.real_play_url || slot.demo_url || slotUrl,
-    },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: 'Демо версия',
+        price: '0',
+        priceCurrency: 'RUB',
+        availability: 'https://schema.org/InStock',
+        description: 'Бесплатная демо версия слота',
+        url: slot.demo_url || slotUrl
+      }
+    ],
     review: {
       '@type': 'Review',
       reviewRating: {
         '@type': 'Rating',
-        ratingValue: '4.8',
-        bestRating: '5',
+        ratingValue: slot.rating || '4.8',
+        bestRating: '5'
       },
       author: {
         '@type': 'Organization',
-        name: 'SlotQuest Editorial Team',
+        name: 'SlotQuest Editorial Team'
       },
       reviewBody: getDetailedDescription(slot),
+      datePublished: slot.release_date || '2021-02-13'
     },
-    keywords: [
+    keywords: getSlotThemes(slot).concat([
       slot.name,
       'онлайн слот',
       'казино игра',
       slot.provider?.name || 'Pragmatic Play',
       'бесплатная игра',
       'демо версия',
-      'слот машина',
-    ].join(', '),
+      'слот машина'
+    ]).join(', ')
   }
 
   // Добавляем видео как трейлер, если есть
   if (slot.video_url) {
-    structuredData.trailer = {
+    gameSchema.trailer = {
       '@type': 'VideoObject',
+      '@id': `${slotUrl}#video`,
       name: `${slot.name} — трейлер геймплея`,
-      description: getShortDescription(slot),
+      description: `Посмотрите геймплей слота ${slot.name} от ${slot.provider?.name || 'Pragmatic Play'}`,
       url: slot.video_url,
       contentUrl: slot.video_url,
       thumbnailUrl: imageUrl,
       uploadDate: slot.release_date || '2021-02-13',
       inLanguage: 'ru-RU',
+      duration: 'PT2M30S',
+      embedUrl: slot.video_url
     }
   }
 
-  return JSON.stringify(structuredData)
+  // Добавляем реальную игру как offer, если есть
+  if (slot.real_play_url) {
+    gameSchema.offers.push({
+      '@type': 'Offer',
+      name: 'Игра на реальные деньги',
+      price: '10',
+      priceCurrency: 'RUB',
+      availability: 'https://schema.org/InStock',
+      description: 'Играть на реальные деньги в лицензированном казино',
+      url: slot.real_play_url
+    })
+  }
+
+  // BreadcrumbList схема
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Главная',
+        item: baseUrl
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Слоты',
+        item: `${baseUrl}/slots`
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: slot.name,
+        item: slotUrl
+      }
+    ]
+  }
+
+  // WebSite схема для поиска
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    name: 'SlotQuest',
+    url: baseUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${baseUrl}/search?q={search_term_string}`
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  }
+
+  // Объединяем все схемы в массив
+  const allSchemas = [gameSchema, breadcrumbSchema, websiteSchema]
+
+  return JSON.stringify(allSchemas)
 }
 </script>
 
