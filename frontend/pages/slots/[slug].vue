@@ -337,71 +337,81 @@
           <!-- Медиа + описание + кнопки (Desktop: в ряд) -->
           <div class="hidden lg:flex gap-6 items-start mb-8">
             <!-- Вертикальная обложка (портрет 3:4) -->
-            <div
-              class="w-2/5 aspect-[3/4] bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl relative overflow-hidden group"
-              role="img"
-              :aria-label="`Превью игры ${slot.name || 'слот'}`"
-              itemprop="image"
-              itemscope
-              itemtype="https://schema.org/ImageObject"
-            >
-              <!-- Микроданные для изображения (desktop) -->
-              <meta itemprop="url" :content="slot.image_url || ''" />
-              <meta itemprop="contentUrl" :content="slot.image_url || ''" />
-              <!-- Внутренний градиент -->
-              <div
-                class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10"
-                aria-hidden="true"
-              ></div>
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                aria-hidden="true"
-              ></div>
-
-              <!-- Медиа контент: изображение или видео -->
-              <div
-                v-if="slot.media_type === 'image' && slot.image_url"
-                class="absolute inset-0"
+            <div class="w-2/5">
+              <CometCard
+                :rotate-depth="17.5"
+                :translate-depth="20"
+                containerClassName="w-full h-full rounded-2xl"
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl"
               >
-                <img
-                  :src="slot.image_url"
-                  :alt="`Изображение слота ${slot.name}`"
-                  class="w-full h-full object-cover"
-                  @error="handleSlotImageError"
-                />
-              </div>
-              <div
-                v-else-if="slot.media_type === 'video' && slot.video_url"
-                class="absolute inset-0"
-              >
-                <video
-                  :src="slot.video_url"
-                  class="w-full h-full object-cover"
-                  controls
-                  autoplay
-                  loop
-                  muted
-                  preload="metadata"
-                  :poster="slot.image_url || ''"
-                  @error="handleSlotVideoError"
+                <div
+                  class="absolute inset-0"
+                  role="img"
+                  :aria-label="`Превью игры ${slot.name || 'слот'}`"
+                  itemprop="image"
+                  itemscope
+                  itemtype="https://schema.org/ImageObject"
                 >
-                  <source :src="slot.video_url" type="video/mp4" />
-                  <source
-                    :src="
-                      slot.video_url && slot.video_url.replace('.mp4', '.webm')
-                    "
-                    type="video/webm"
-                  />
-                </video>
-              </div>
+                  <!-- Микроданные для изображения (desktop) -->
+                  <meta itemprop="url" :content="slot.image_url || ''" />
+                  <meta itemprop="contentUrl" :content="slot.image_url || ''" />
 
-              <!-- Плейсхолдер -->
-              <div
-                v-if="!slot.image_url && !slot.video_url"
-                class="flex items-center justify-center h-full text-white/60"
-              >
-                <span>Изображение слота</span>
-              </div>
+                  <!-- Внутренние градиенты поверх медиаконтента -->
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10 pointer-events-none"
+                    aria-hidden="true"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"
+                    aria-hidden="true"
+                  />
+
+                  <!-- Медиа контент: изображение или видео -->
+                  <div
+                    v-if="slot.media_type === 'image' && slot.image_url"
+                    class="absolute inset-0"
+                  >
+                    <img
+                      :src="slot.image_url"
+                      :alt="`Изображение слота ${slot.name}`"
+                      class="w-full h-full object-cover"
+                      @error="handleSlotImageError"
+                    />
+                  </div>
+                  <div
+                    v-else-if="slot.media_type === 'video' && slot.video_url"
+                    class="absolute inset-0"
+                  >
+                    <video
+                      :src="slot.video_url"
+                      class="w-full h-full object-cover"
+                      controls
+                      autoplay
+                      loop
+                      muted
+                      preload="metadata"
+                      :poster="slot.image_url || ''"
+                      @error="handleSlotVideoError"
+                    >
+                      <source :src="slot.video_url" type="video/mp4" />
+                      <source
+                        :src="
+                          slot.video_url && slot.video_url.replace('.mp4', '.webm')
+                        "
+                        type="video/webm"
+                      />
+                    </video>
+                  </div>
+
+                  <!-- Плейсхолдер -->
+                  <div
+                    v-if="!slot.image_url && !slot.video_url"
+                    class="flex items-center justify-center h-full text-white/70 bg-black/30"
+                  >
+                    <span>Изображение слота</span>
+                  </div>
+                </div>
+              </CometCard>
             </div>
 
             <!-- Правая колонка: провайдер, h1, рейтинг, описание, CTA (desktop) -->
@@ -5814,6 +5824,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import AuroraBackground from '~/components/ui/AuroraBackground.vue'
+import BackgroundGradient from '~/components/ui/BackgroundGradient.vue'
+import CometCard from '~/components/ui/CometCard.vue'
 
 // Получаем slug из роута
 const route = useRoute()
