@@ -91,7 +91,7 @@
     <!-- Hero секция - Семантическая разметка с Schema.org -->
     <section
       v-else-if="slot"
-      class="relative bg-gradient-to-br from-slate-900 via-purple-900 to-blue-900 shadow-2xl mb-8"
+      class="relative shadow-2xl mb-8 bg-zinc-950 text-slate-100 border border-white/10"
       itemscope
       itemtype="https://schema.org/Game"
     >
@@ -114,17 +114,17 @@
       <!-- Анимированный фон -->
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
-          class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-beam transform skew-x-12"
+          class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-beam transform skew-x-12"
         ></div>
         <div
-          class="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+          class="absolute top-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
         ></div>
         <div
-          class="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          class="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse"
           style="animation-delay: 1s"
         ></div>
         <div
-          class="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-500/8 rounded-full blur-2xl animate-pulse"
+          class="absolute top-1/2 left-1/3 w-64 h-64 bg-pink-500/15 rounded-full blur-2xl animate-pulse"
           style="animation-delay: 2s"
         ></div>
       </div>
@@ -137,14 +137,14 @@
         ⚡
       </div>
       <div
-        class="absolute bottom-8 left-8 text-white/5 text-6xl animate-float"
+        class="absolute bottom-8 left-8 text-white/10 text-6xl animate-float"
         style="animation-delay: 1.5s"
         aria-hidden="true"
       >
         🏛️
       </div>
       <div
-        class="absolute top-1/3 right-1/4 text-white/8 text-4xl animate-float"
+        class="absolute top-1/3 right-1/4 text-white/10 text-4xl animate-float"
         style="animation-delay: 3s"
         aria-hidden="true"
       >
@@ -152,10 +152,13 @@
       </div>
 
       <div class="relative z-10 max-w-full lg:flex lg:min-h-screen">
-        <!-- Левая часть: Игровая информация (липкая) -->
-        <article
-          class="w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start p-8 lg:p-12 flex flex-col justify-start min-w-0"
-        >
+        <!-- Левая часть: Игровая информация с Aurora Background (в dark-контейнере) -->
+        <div class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start">
+          <AuroraBackground
+            class="w-full"
+            :show-radial-gradient="true"
+          >
+          <article class="p-8 lg:p-12 flex flex-col justify-start min-w-0 h-full">
           <!-- Заголовок и основная информация -->
           <header class="mb-8 lg:hidden">
             <!-- Провайдер -->
@@ -872,7 +875,9 @@
               </div>
             </aside>
           </nav>
-        </article>
+          </article>
+          </AuroraBackground>
+        </div>
 
         <!-- Правая часть: Характеристики и информация (прокручиваемая) -->
         <aside
@@ -5808,6 +5813,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import AuroraBackground from '~/components/ui/AuroraBackground.vue'
 
 // Получаем slug из роута
 const route = useRoute()

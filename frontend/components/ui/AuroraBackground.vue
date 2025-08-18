@@ -1,32 +1,25 @@
 <template>
   <div
     :class="[
-      'transition-bg relative min-h-screen w-full bg-zinc-900 text-white overflow-hidden',
+      'transition-bg relative flex h-[100vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 dark:bg-zinc-900',
       className
     ]"
     v-bind="$attrs"
   >
-    <!-- Aurora Background -->
-    <div 
+    <div
       class="absolute inset-0 overflow-hidden"
       :style="auroraStyles"
     >
-      <div 
-          class="aurora-element pointer-events-none absolute inset-0 opacity-80"
-          :class="[
-           showRadialGradient && 'mask-radial-gradient'
-         ]"
-        ></div>
-        <div 
-          class="aurora-element-animated pointer-events-none absolute inset-0 opacity-60 animate-aurora"
-          :class="[
-           showRadialGradient && 'mask-radial-gradient'
-         ]"
-        ></div>
+      <div
+        class="aurora-layer pointer-events-none absolute -inset-[10px] opacity-50 blur-[10px] invert filter will-change-transform"
+        :class="[
+          showRadialGradient && 'mask-radial'
+        ]"
+      ></div>
     </div>
-    
+
     <!-- Content -->
-    <div class="relative z-10">
+    <div class="relative z-10 w-full h-full">
       <slot />
     </div>
   </div>
@@ -58,53 +51,49 @@ const auroraStyles = computed(() => ({
   '--white': '#fff',
   '--transparent': 'transparent'
 }))
-
-// Убираем computed стили, используем CSS классы
 </script>
 
 <style scoped>
-.mask-radial-gradient {
+.mask-radial {
   mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%);
 }
 
-.aurora-element {
-  background: linear-gradient(
-    45deg,
-    #3b82f6 0%,
-    #8b5cf6 25%,
-    #06b6d4 50%,
-    #10b981 75%,
-    #f59e0b 100%
-  );
-  filter: blur(40px);
-  mix-blend-mode: screen;
+.aurora-layer {
+  background-image: var(--white-gradient), var(--aurora);
+  background-size: 300%, 200%;
+  background-position: 50% 50%, 50% 50%;
+  animation: aurora 60s linear infinite;
+  --aurora: repeating-linear-gradient(100deg, var(--blue-500) 10%, var(--indigo-300) 15%, var(--blue-300) 20%, var(--violet-200) 25%, var(--blue-400) 30%);
+  --dark-gradient: repeating-linear-gradient(100deg, var(--black) 0%, var(--black) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--black) 16%);
+  --white-gradient: repeating-linear-gradient(100deg, var(--white) 0%, var(--white) 7%, var(--transparent) 10%, var(--transparent) 12%, var(--white) 16%);
 }
 
-.aurora-element-animated {
-  background: linear-gradient(
-    -45deg,
-    #3b82f6,
-    #8b5cf6,
-    #06b6d4,
-    #10b981,
-    #f59e0b,
-    #ef4444,
-    #ec4899
-  );
-  background-size: 400% 400%;
-  filter: blur(60px);
-  mix-blend-mode: color-dodge;
+.aurora-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--white-gradient), var(--aurora);
+  background-size: 200%, 100%;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
+  animation: aurora 60s linear infinite reverse;
+}
+
+.dark .aurora-layer {
+  background-image: var(--dark-gradient), var(--aurora);
+  filter: invert(0);
+}
+
+.dark .aurora-layer::after {
+  background-image: var(--dark-gradient), var(--aurora);
 }
 
 @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
+  from {
+    background-position: 50% 50%, 50% 50%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+  to {
+    background-position: 350% 50%, 350% 50%;
   }
 }
 </style>
