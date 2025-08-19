@@ -1,7 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateFeatureDto, UpdateFeatureDto, FeatureQueryDto } from './dto/feature.dto';
-import { Prisma } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
+
+type Feature = Awaited<ReturnType<PrismaClient['features']['findFirst']>>;
 
 @Injectable()
 export class FeaturesService {
@@ -20,7 +22,7 @@ export class FeaturesService {
       sort_order = 'asc',
     } = query;
 
-    const where: Prisma.featuresWhereInput = {};
+    const where: any = {};
 
     if (search) {
       where.OR = [
@@ -46,7 +48,7 @@ export class FeaturesService {
       where.is_featured = is_featured === 'true';
     }
 
-    const orderBy: Prisma.featuresOrderByWithRelationInput = {};
+    const orderBy: any = {};
     
     switch (sort_by) {
       case 'name':

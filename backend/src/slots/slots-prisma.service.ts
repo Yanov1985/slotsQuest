@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { slots, providers, slot_categories } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
-type SlotWithRelations = slots & {
-  providers: providers;
-  slot_categories: slot_categories | null;
-};
+type Slot = Awaited<ReturnType<PrismaClient['slots']['findFirst']>>;
 
 @Injectable()
 export class SlotsPrismaService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(limit?: number, offset?: number): Promise<SlotWithRelations[]> {
+  async findAll(limit?: number, offset?: number): Promise<Slot[]> {
     return this.prisma.slots.findMany({
       take: limit,
       skip: offset,
@@ -28,7 +25,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async findBySlug(slug: string): Promise<SlotWithRelations | null> {
+  async findBySlug(slug: string): Promise<Slot | null> {
     return this.prisma.slots.findUnique({
       where: { slug },
       include: {
@@ -38,7 +35,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async findByProvider(providerSlug: string, limit?: number): Promise<SlotWithRelations[]> {
+  async findByProvider(providerSlug: string, limit?: number): Promise<Slot[]> {
     return this.prisma.slots.findMany({
       take: limit,
       include: {
@@ -57,7 +54,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async findByCategory(categorySlug: string, limit?: number): Promise<SlotWithRelations[]> {
+  async findByCategory(categorySlug: string, limit?: number): Promise<Slot[]> {
     return this.prisma.slots.findMany({
       take: limit,
       include: {
@@ -76,7 +73,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async incrementPlayCount(slug: string): Promise<SlotWithRelations> {
+  async incrementPlayCount(slug: string): Promise<Slot> {
     return this.prisma.slots.update({
       where: { slug },
       data: {
@@ -91,7 +88,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async updateRating(slug: string, rating: number): Promise<SlotWithRelations> {
+  async updateRating(slug: string, rating: number): Promise<Slot> {
     return this.prisma.slots.update({
       where: { slug },
       data: { rating },
@@ -102,7 +99,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async getPopularSlots(limit: number = 10): Promise<SlotWithRelations[]> {
+  async getPopularSlots(limit: number = 10): Promise<Slot[]> {
     return this.prisma.slots.findMany({
       take: limit,
       include: {
@@ -118,7 +115,7 @@ export class SlotsPrismaService {
     });
   }
 
-  async getTopRatedSlots(limit: number = 10): Promise<SlotWithRelations[]> {
+  async getTopRatedSlots(limit: number = 10): Promise<Slot[]> {
     return this.prisma.slots.findMany({
       take: limit,
       include: {

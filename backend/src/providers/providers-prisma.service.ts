@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { providers, slots } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
-type ProviderWithSlots = providers & {
-  slots: slots[];
+type Provider = Awaited<ReturnType<PrismaClient['providers']['findFirst']>>;
+type ProviderWithSlots = Awaited<ReturnType<PrismaClient['providers']['findFirst']>> & {
+  slots: Awaited<ReturnType<PrismaClient['slots']['findMany']>>;
 };
 
 @Injectable()
 export class ProvidersPrismaService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(): Promise<providers[]> {
+  async findAll(): Promise<Provider[]> {
     return this.prisma.providers.findMany({
       where: {
         is_active: true,
@@ -21,7 +22,7 @@ export class ProvidersPrismaService {
     });
   }
 
-  async findBySlug(slug: string): Promise<providers | null> {
+  async findBySlug(slug: string): Promise<Provider | null> {
     return this.prisma.providers.findUnique({
       where: { slug },
     });
@@ -101,7 +102,7 @@ export class ProvidersPrismaService {
     };
   }
 
-  async getTopProviders(limit: number = 10): Promise<providers[]> {
+  async getTopProviders(limit: number = 10): Promise<Provider[]> {
     // Get providers with their slot counts and average ratings
     const providersData = await this.prisma.providers.findMany({
       where: {
