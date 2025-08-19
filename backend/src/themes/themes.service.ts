@@ -39,12 +39,7 @@ export class ThemesService {
       this.prisma.themes.count({ where }),
     ]);
 
-    return {
-      themes,
-      total,
-      limit: Number(limit),
-      offset: Number(offset),
-    };
+    return themes;
   }
 
   async findOne(id: string) {

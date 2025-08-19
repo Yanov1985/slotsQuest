@@ -432,8 +432,11 @@ const popularThemes = computed(() => themes.value.filter(theme => theme.is_popul
 const loadThemes = async () => {
   try {
     loading.value = true
+    console.log('Загружаем темы...')
     const response = await getThemes()
+    console.log('Получен ответ:', response)
     themes.value = response || []
+    console.log('Темы установлены:', themes.value.length)
   } catch (error) {
     console.error('Ошибка загрузки тем:', error)
     themes.value = []

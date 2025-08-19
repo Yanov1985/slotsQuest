@@ -2,12 +2,13 @@ export const useThemes = () => {
   const themes = ref([])
   const loading = ref(false)
   const error = ref(null)
+  const config = useRuntimeConfig()
 
   const fetchThemes = async () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch('/api/themes')
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`)
       themes.value = data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch themes'
@@ -17,11 +18,21 @@ export const useThemes = () => {
     }
   }
 
+  const getThemes = async () => {
+    try {
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`)
+      return data || []
+    } catch (err) {
+      console.error('Error getting themes:', err)
+      throw err
+    }
+  }
+
   const createTheme = async (themeData) => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch('/api/themes', {
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`, {
         method: 'POST',
         body: themeData
       })
@@ -40,7 +51,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`/api/themes/${id}`, {
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${id}`, {
         method: 'PUT',
         body: themeData
       })
@@ -62,7 +73,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      await $fetch(`/api/themes/${id}`, {
+      await $fetch(`${config.public.apiUrl}/api/themes/${id}`, {
         method: 'DELETE'
       })
       themes.value = themes.value.filter(theme => theme.id !== id)
@@ -79,7 +90,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`/api/themes/${id}`)
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${id}`)
       return data
     } catch (err) {
       error.value = err.message || 'Failed to fetch theme'
@@ -94,7 +105,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch('/api/themes/popular')
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/popular`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch popular themes'
@@ -109,7 +120,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch('/api/themes/featured')
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/featured`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch featured themes'
@@ -124,7 +135,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`/api/themes/${themeId}/slots`)
+      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${themeId}/slots`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch slots by theme'
@@ -140,6 +151,7 @@ export const useThemes = () => {
     loading: readonly(loading),
     error: readonly(error),
     fetchThemes,
+    getThemes,
     createTheme,
     updateTheme,
     deleteTheme,
