@@ -7,7 +7,7 @@ export class ThemesService {
   constructor(private prisma: PrismaService) {}
 
   async findAll(query: ThemeQueryDto) {
-    const { search, status, limit = 50, offset = 0 } = query;
+    const { search, status, limit = 1000, offset = 0 } = query;
 
     const where: any = {};
 
