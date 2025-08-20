@@ -10,11 +10,28 @@ SlotQuest - это современная веб-платформа, котор�
 
 ```
 SlotQuest/
-├── backend/          # NestJS API сервер
-├── frontend/         # Nuxt.js веб-приложение
-├── supabase_data.sql # Основной файл с тестовыми данными
-└── README.md         # Этот файл
+├── backend/                    # NestJS API сервер
+│   ├── src/                   # Исходный код API
+│   ├── prisma/                # Схема и миграции базы данных
+│   ├── providers_and_categories.sql # SQL файл с провайдерами и категориями
+│   ├── add-slots.js           # Скрипт добавления тестовых слотов
+│   └── export-current-data.js # Скрипт экспорта базы данных
+├── frontend/                  # Nuxt.js веб-приложение
+├── current_database_backup.sql # Резервная копия базы данных
+└── README.md                  # Этот файл
 ```
+
+## Текущее состояние проекта
+
+✅ **Завершено:**
+- Настроена база данных PostgreSQL с Prisma ORM
+- Добавлены провайдеры слотов (NetEnt, Microgaming, Pragmatic Play, Play'n GO, Evolution Gaming)
+- Добавлены категории слотов (Video Slots, Classic Slots, Jackpot Slots, Megaways, Live Casino)
+- Добавлены 29 тем для слотов (Adventure, Ancient Egypt, Animals, и др.)
+- Добавлены тестовые слоты: Starburst, Mega Moolah, Sweet Bonanza
+- API `/api/slots` возвращает данные слотов
+- Фронтенд корректно отображает слоты
+- Создана резервная копия базы данных
 
 ## Быстрый старт
 
@@ -35,16 +52,21 @@ npm install
 Создайте файл `.env` в папке backend:
 
 ```env
-SUPABASE_URL=your_supabase_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-DATABASE_URL=your_database_url
+DATABASE_URL="postgresql://username:password@localhost:5432/slotquest"
+DIRECT_URL="postgresql://username:password@localhost:5432/slotquest"
 ```
 
 Инициализируйте базу данных:
 
 ```bash
-node init-with-service-key.js
+# Применить миграции Prisma
+npx prisma migrate deploy
+
+# Добавить провайдеров и категории
+psql -U username -d slotquest -f providers_and_categories.sql
+
+# Добавить тестовые слоты
+node add-slots.js
 ```
 
 Запустите backend:
@@ -54,6 +76,46 @@ npm run start:dev
 ```
 
 API будет доступно по адресу: `http://localhost:3001/api`
+
+### 3. Настройка Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Фронтенд будет доступен по адресу: `http://localhost:3000`
+
+## Восстановление из резервной копии
+
+Для восстановления базы данных из резервной копии:
+
+```bash
+# Восстановить данные из резервной копии
+psql -U username -d slotquest -f current_database_backup.sql
+```
+
+## API Endpoints
+
+- `GET /api/slots` - Получить список всех слотов
+- `GET /api/providers` - Получить список провайдеров
+- `GET /api/categories` - Получить список категорий
+- `GET /api/themes` - Получить список тем
+
+## Технологии
+
+**Backend:**
+- NestJS
+- Prisma ORM
+- PostgreSQL
+- TypeScript
+
+**Frontend:**
+- Nuxt.js 3
+- Vue.js 3
+- Tailwind CSS
+- TypeScript
 
 ### 3. Настройка Frontend
 
