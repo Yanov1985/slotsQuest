@@ -79,6 +79,8 @@ model slots {
   themes                themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   slot_features slot_features[]
+  slot_bonuses slot_bonuses[]
+  slot_mechanics slot_mechanics[]
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")
@@ -142,4 +144,80 @@ model themes {
   @@index([is_active])
   @@index([is_featured])
   @@index([slug])
+}
+
+model bonuses {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?
+  type        String?  @db.VarChar(100)
+  icon        String?  @db.VarChar(255)
+  color       String?  @default("#8b5cf6") @db.VarChar(7)
+  image_url   String?  @db.VarChar(500)
+  sort_order  Int?     @default(0)
+  is_active   Boolean  @default(true)
+  is_popular  Boolean  @default(false)
+  is_featured Boolean  @default(false)
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @updatedAt @db.Timestamptz(6)
+
+  slot_bonuses slot_bonuses[]
+
+  @@index([type], map: "idx_bonuses_type")
+  @@index([is_active], map: "idx_bonuses_is_active")
+  @@index([is_popular], map: "idx_bonuses_is_popular")
+  @@index([sort_order], map: "idx_bonuses_sort_order")
+}
+
+model slot_bonuses {
+  id       Int      @id @default(autoincrement())
+  slot_id  String
+  bonus_id Int
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  slots   slots   @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  bonuses bonuses @relation(fields: [bonus_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, bonus_id])
+  @@index([slot_id], map: "idx_slot_bonuses_slot_id")
+  @@index([bonus_id], map: "idx_slot_bonuses_bonus_id")
+}
+
+model mechanics {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?
+  type        String?  @db.VarChar(100)
+  icon        String?  @db.VarChar(255)
+  color       String?  @default("#8b5cf6") @db.VarChar(7)
+  image_url   String?  @db.VarChar(500)
+  sort_order  Int?     @default(0)
+  is_active   Boolean  @default(true)
+  is_popular  Boolean  @default(false)
+  is_featured Boolean  @default(false)
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @updatedAt @db.Timestamptz(6)
+
+  slot_mechanics slot_mechanics[]
+
+  @@index([type], map: "idx_mechanics_type")
+  @@index([is_active], map: "idx_mechanics_is_active")
+  @@index([is_popular], map: "idx_mechanics_is_popular")
+  @@index([sort_order], map: "idx_mechanics_sort_order")
+}
+
+model slot_mechanics {
+  id          Int      @id @default(autoincrement())
+  slot_id     String
+  mechanic_id Int
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+
+  slots     slots     @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  mechanics mechanics @relation(fields: [mechanic_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, mechanic_id])
+  @@index([slot_id], map: "idx_slot_mechanics_slot_id")
+  @@index([mechanic_id], map: "idx_slot_mechanics_mechanic_id")
 }

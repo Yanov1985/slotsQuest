@@ -15,7 +15,8 @@
   "dependencies": {
     "@playwright/test": "^1.54.1",
     "concurrently": "^9.2.0",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.2.1"
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.2.2"
