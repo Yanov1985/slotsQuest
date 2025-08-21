@@ -1,38 +1,30 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white"
-  >
+  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white">
     <!-- Header -->
-    <header
-      class="bg-black/50 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50"
-    >
+    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
-            <NuxtLink
-              to="/admin"
-              class="text-gray-400 hover:text-white transition-colors"
-            >
-              ← Назад
+            <NuxtLink to="/admin" class="text-[#A0AABE] hover:text-[#FF6E48] transition-colors flex items-center space-x-2">
+              <Icon name="heroicons:arrow-left" />
+              <span>Назад к дашборду</span>
             </NuxtLink>
-            <h1
-              class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
-            >
-              🏢 Управление провайдерами
+            <h1 class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
+              <Icon name="heroicons:building-office" class="text-[#FF6E48]" />
+              <span>Управление провайдерами</span>
             </h1>
+            <div class="px-3 py-1 bg-[#63F3AB]/10 border border-[#63F3AB]/30 rounded-full text-[#63F3AB] text-sm font-medium">
+              {{ totalProviders }} провайдеров
+            </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <button
-              @click="showAddModal = true"
-              class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 rounded-lg font-medium transition-all transform hover:scale-105"
-            >
-              ➕ Добавить провайдера
+          <div class="flex items-center space-x-3">
+            <button @click="showAddModal = true" class="px-4 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
+              <Icon name="heroicons:plus-circle" />
+              <span>Добавить провайдера</span>
             </button>
-            <button
-              @click="refreshProviders"
-              class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 rounded-lg font-medium transition-all transform hover:scale-105"
-            >
-              🔄 Обновить
+            <button @click="refreshProviders" class="px-4 py-2 bg-[#1B1E26]/70 hover:bg-[#1B1E26] border border-[#353A4A] rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
+              <Icon name="heroicons:arrow-path" />
+              <span>Обновить</span>
             </button>
           </div>
         </div>
@@ -42,63 +34,53 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div
-          class="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-6"
-        >
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 mt-5">
+        <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-cyan-400 text-sm font-medium">Всего провайдеров</p>
+              <p class="text-[#FF6E48] text-sm font-semibold">Всего провайдеров</p>
               <p class="text-3xl font-bold text-white">{{ totalProviders }}</p>
             </div>
-            <div class="text-4xl">🏢</div>
+            <Icon name="heroicons:building-office" class="text-[#FF6E48] text-3xl" />
           </div>
         </div>
-        <div
-          class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6"
-        >
+        <div class="bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-purple-400 text-sm font-medium">Активных</p>
+              <p class="text-[#63F3AB] text-sm font-semibold">Активных</p>
               <p class="text-3xl font-bold text-white">{{ activeProviders }}</p>
             </div>
-            <div class="text-4xl">✅</div>
+            <Icon name="heroicons:check-circle" class="text-[#63F3AB] text-3xl" />
           </div>
         </div>
-        <div
-          class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-6"
-        >
+        <div class="bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-green-400 text-sm font-medium">Слотов всего</p>
+              <p class="text-[#00EDFF] text-sm font-semibold">Слотов всего</p>
               <p class="text-3xl font-bold text-white">{{ totalSlots }}</p>
             </div>
-            <div class="text-4xl">🎰</div>
+            <Icon name="heroicons:squares-2x2" class="text-[#00EDFF] text-3xl" />
           </div>
         </div>
       </div>
 
       <!-- Search -->
-      <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 mb-8">
+      <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6 mb-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2"
-              >Поиск по названию</label
-            >
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Поиск по названию</label>
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Введите название провайдера..."
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors"
+              class="w-full px-4 py-2 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white placeholder-[#9CA3AF] focus:border-[#FF6E48] focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2"
-              >Статус</label
-            >
+            <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Статус</label>
             <select
               v-model="selectedStatus"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="w-full px-4 py-2 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
             >
               <option value="">Все</option>
               <option value="true">Активные</option>
@@ -110,200 +92,192 @@
 
       <!-- Providers Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div
-          v-if="loading"
-          v-for="n in 6"
-          :key="n"
-          class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 animate-pulse"
-        >
-          <div class="flex items-center space-x-4 mb-4">
-            <div class="w-16 h-16 bg-gray-700 rounded-lg"></div>
-            <div class="flex-1">
-              <div class="h-4 bg-gray-700 rounded mb-2"></div>
-              <div class="h-3 bg-gray-700 rounded w-2/3"></div>
+        <!-- Skeletons for loading -->
+        <template v-if="loading">
+          <div v-for="i in 6" :key="i" class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6 animate-pulse">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="w-16 h-16 bg-[#1B1E26] rounded-lg"></div>
+              <div class="flex-1">
+                <div class="h-5 bg-[#1B1E26] rounded w-3/4 mb-2"></div>
+                <div class="h-4 bg-[#1B1E26] rounded w-1/2"></div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="h-4 bg-[#1B1E26] rounded w-full"></div>
+              <div class="h-4 bg-[#1B1E26] rounded w-2/3"></div>
             </div>
           </div>
-          <div class="space-y-2">
-            <div class="h-3 bg-gray-700 rounded"></div>
-            <div class="h-3 bg-gray-700 rounded w-3/4"></div>
-          </div>
-        </div>
+        </template>
 
-        <div v-else-if="filteredProviders.length === 0" class="col-span-full">
-          <div
-            class="bg-gray-900/50 border border-gray-700 rounded-xl p-12 text-center"
-          >
-            <div class="text-6xl mb-4">🔍</div>
-            <p class="text-lg text-gray-300 mb-2">Провайдеры не найдены</p>
-            <p class="text-sm text-gray-400">
-              Попробуйте изменить параметры поиска
-            </p>
+        <!-- Empty state -->
+        <template v-else-if="filteredProviders.length === 0">
+          <div class="col-span-full text-center py-12">
+            <Icon name="heroicons:magnifying-glass" class="text-6xl text-[#FF6E48] mb-4" />
+            <p class="text-lg text-[#E5E7EB]">Провайдеры не найдены</p>
+            <p class="text-sm text-[#9CA3AF]">Попробуйте изменить параметры поиска</p>
           </div>
-        </div>
+        </template>
 
-        <div
-          v-else
-          v-for="provider in filteredProviders"
-          :key="provider.id"
-          class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/30 transition-all group"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex items-center space-x-4">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg flex items-center justify-center border border-purple-500/30"
-              >
-                <span class="text-2xl">🏢</span>
+        <!-- Providers cards -->
+        <template v-else>
+          <div v-for="provider in filteredProviders" :key="provider.id" class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all group">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="w-16 h-16 bg-[#1B1E26]/50 rounded-lg flex items-center justify-center border border-[#FF6E48]/30">
+                <Icon name="heroicons:building-office" class="text-2xl text-[#FF6E48]" />
               </div>
-              <div>
-                <h3
-                  class="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors"
-                >
+              <div class="flex-1">
+                <h3 class="text-lg font-semibold text-white group-hover:text-[#FF6E48] transition-colors">
                   {{ provider.name }}
                 </h3>
-                <p class="text-sm text-gray-400">ID: {{ provider.id }}</p>
+                <p class="text-sm text-[#9CA3AF]">ID: {{ provider.id }}</p>
+                <span
+                  class="inline-block px-2 py-1 rounded-full text-xs font-medium mt-1"
+                  :class="
+                    provider.is_active
+                      ? 'bg-[#63F3AB]/10 border border-[#63F3AB]/30 text-[#63F3AB]'
+                      : 'bg-[#CD0F8B]/10 border border-[#CD0F8B]/30 text-[#CD0F8B]'
+                  "
+                >
+                  {{ provider.is_active ? 'Активен' : 'Неактивен' }}
+                </span>
               </div>
             </div>
-            <span
-              class="px-2 py-1 rounded text-sm"
-              :class="
-                provider.is_active
-                  ? 'bg-green-500/20 border border-green-500/30 text-green-400'
-                  : 'bg-red-500/20 border border-red-500/30 text-red-400'
-              "
-            >
-              {{ provider.is_active ? 'Активен' : 'Неактивен' }}
-            </span>
-          </div>
 
-          <div class="space-y-2 mb-4">
-            <p class="text-gray-300 text-sm line-clamp-2">
-              {{ provider.description || 'Описание не указано' }}
-            </p>
-            <div class="flex items-center space-x-4 text-sm text-gray-400">
-              <span>🎰 {{ provider.slots_count || 0 }} слотов</span>
-              <span v-if="provider.website">🌐 Сайт</span>
+            <div class="space-y-3 mb-4">
+              <p class="text-[#D1D5DB] text-sm leading-relaxed">
+                {{ provider.description || 'Описание не указано' }}
+              </p>
+              <div class="flex items-center space-x-4 text-sm text-[#9CA3AF]">
+                <span class="flex items-center space-x-1">
+                  <Icon name="heroicons:squares-2x2" class="text-[#FF6E48]" />
+                  <span>{{ provider.slots_count || 0 }} слотов</span>
+                </span>
+                <span v-if="provider.website" class="flex items-center space-x-1">
+                  <Icon name="heroicons:globe-alt" class="text-[#FF6E48]" />
+                  <span>Сайт</span>
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div
-            class="flex items-center justify-between pt-4 border-t border-gray-700"
-          >
-            <div class="text-xs text-gray-500">
-              Создан: {{ formatDate(provider.created_at) }}
-            </div>
-            <div class="flex items-center space-x-2">
-              <button
-                @click="editProvider(provider)"
-                class="p-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg transition-colors"
-                title="Редактировать"
-              >
-                ✏️
-              </button>
-              <button
-                @click="toggleProviderStatus(provider)"
-                class="p-2 bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 rounded-lg transition-colors"
-                :title="provider.is_active ? 'Деактивировать' : 'Активировать'"
-              >
-                {{ provider.is_active ? '⏸️' : '▶️' }}
-              </button>
-              <button
-                @click="deleteProvider(provider)"
-                class="p-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg transition-colors"
-                title="Удалить"
-              >
-                🗑️
-              </button>
+            <div class="flex items-center justify-between pt-4 border-t border-[#353A4A]">
+              <div class="text-xs text-[#6B7280]">
+                Создан: {{ formatDate(provider.created_at) }}
+              </div>
+              <div class="flex items-center space-x-2">
+                <button
+                  @click="editProvider(provider)"
+                  class="p-2 bg-[#00EDFF]/10 hover:bg-[#00EDFF]/20 border border-[#00EDFF]/30 rounded-lg transition-all hover:scale-105"
+                  title="Редактировать"
+                >
+                  <Icon name="heroicons:pencil" class="text-[#00EDFF]" />
+                </button>
+                <button
+                  @click="toggleProviderStatus(provider)"
+                  class="p-2 bg-[#FFD700]/10 hover:bg-[#FFD700]/20 border border-[#FFD700]/30 rounded-lg transition-all hover:scale-105"
+                  :title="provider.is_active ? 'Деактивировать' : 'Активировать'"
+                >
+                  <Icon :name="provider.is_active ? 'heroicons:pause' : 'heroicons:play'" class="text-[#FFD700]" />
+                </button>
+                <button
+                  @click="deleteProvider(provider)"
+                  class="p-2 bg-[#CD0F8B]/10 hover:bg-[#CD0F8B]/20 border border-[#CD0F8B]/30 rounded-lg transition-all hover:scale-105"
+                  title="Удалить"
+                >
+                  <Icon name="heroicons:trash" class="text-[#CD0F8B]" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </template>
       </div>
     </main>
 
     <!-- Add/Edit Modal -->
     <div
       v-if="showAddModal || showEditModal"
-      class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
     >
       <div
-        class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        class="bg-[#161A21]/95 border border-[#353A4A] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
       >
         <div class="p-6">
           <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-white">
-              {{
+            <h2 class="text-2xl font-bold text-white flex items-center space-x-2">
+              <Icon :name="showAddModal ? 'heroicons:plus' : 'heroicons:pencil'" class="text-[#FF6E48]" />
+              <span>{{
                 showAddModal
-                  ? '➕ Добавить провайдера'
-                  : '✏️ Редактировать провайдера'
-              }}
+                  ? 'Добавить провайдера'
+                  : 'Редактировать провайдера'
+              }}</span>
             </h2>
             <button
               @click="closeModal"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-[#9CA3AF] hover:text-white transition-colors p-2 hover:bg-[#353A4A] rounded-lg"
             >
-              ✕
+              <Icon name="heroicons:x-mark" />
             </button>
           </div>
 
-          <form @submit.prevent="saveProvider" class="space-y-4">
+          <form @submit.prevent="saveProvider" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Название *</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Название *
+                </label>
                 <input
                   v-model="providerForm.name"
                   type="text"
                   required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="Введите название провайдера"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Slug *</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Slug *
+                </label>
                 <input
                   v-model="providerForm.slug"
                   type="text"
                   required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="provider-slug"
                 />
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2"
-                >Описание</label
-              >
+              <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                Описание
+              </label>
               <textarea
                 v-model="providerForm.description"
                 rows="3"
-                class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280] resize-none"
                 placeholder="Описание провайдера"
               ></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Веб-сайт</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Веб-сайт
+                </label>
                 <input
                   v-model="providerForm.website"
                   type="url"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="https://example.com"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Логотип (URL)</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Логотип (URL)
+                </label>
                 <input
                   v-model="providerForm.logo_url"
                   type="url"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="https://example.com/logo.png"
                 />
               </div>
@@ -311,64 +285,64 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Страна</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Страна
+                </label>
                 <input
                   v-model="providerForm.country"
                   type="text"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="Россия"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2"
-                  >Год основания</label
-                >
+                <label class="block text-sm font-medium text-[#D1D5DB] mb-2">
+                  Год основания
+                </label>
                 <input
                   v-model.number="providerForm.founded_year"
                   type="number"
                   min="1900"
                   max="2024"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+                  class="w-full px-4 py-3 bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-all placeholder-[#6B7280]"
                   placeholder="2010"
                 />
               </div>
             </div>
 
-            <div class="flex items-center space-x-4">
-              <label class="flex items-center space-x-2 cursor-pointer">
+            <div class="flex items-center space-x-6">
+              <label class="flex items-center space-x-3 cursor-pointer group">
                 <input
                   v-model="providerForm.is_active"
                   type="checkbox"
-                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
+                  class="w-5 h-5 text-[#63F3AB] bg-[#1B1E26]/50 border-[#353A4A] rounded focus:ring-[#63F3AB] focus:ring-2 transition-all"
                 />
-                <span class="text-gray-300">Активен</span>
+                <span class="text-[#D1D5DB] group-hover:text-white transition-colors">Активен</span>
               </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
+              <label class="flex items-center space-x-3 cursor-pointer group">
                 <input
                   v-model="providerForm.is_featured"
                   type="checkbox"
-                  class="w-4 h-4 text-purple-400 bg-gray-800 border-gray-600 rounded focus:ring-purple-400 focus:ring-2"
+                  class="w-5 h-5 text-[#CD0F8B] bg-[#1B1E26]/50 border-[#353A4A] rounded focus:ring-[#CD0F8B] focus:ring-2 transition-all"
                 />
-                <span class="text-gray-300">Рекомендуемый</span>
+                <span class="text-[#D1D5DB] group-hover:text-white transition-colors">Рекомендуемый</span>
               </label>
             </div>
 
             <div
-              class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-700"
+              class="flex items-center justify-end space-x-4 pt-6 border-t border-[#353A4A]"
             >
               <button
                 type="button"
                 @click="closeModal"
-                class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 rounded-lg transition-colors"
+                class="px-6 py-3 border border-[#353A4A] text-[#9CA3AF] hover:text-white hover:border-[#FF6E48]/50 rounded-lg transition-all hover:bg-[#353A4A]/30"
               >
                 Отмена
               </button>
               <button
                 type="submit"
                 :disabled="saving"
-                class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {{
                   saving
