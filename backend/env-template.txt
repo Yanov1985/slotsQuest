@@ -1,0 +1,17 @@
+# 🔧 Шаблон файла .env для проекта SlotQuest
+# Скопируй содержимое этого файла в новый файл .env и заполни своими данными
+
+# ===== НАСТРОЙКИ SUPABASE =====
+# Найди эти данные в Supabase Dashboard → Settings → API
+SUPABASE_URL=https://твой-проект-id.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=твой_секретный_ключ_service_role
+
+# ===== НАСТРОЙКИ БАЗЫ ДАННЫХ ДЛЯ PRISMA =====
+# Найди в Supabase Dashboard → Settings → Database → Connection string → URI
+# Замени [YOUR-PASSWORD] на свой пароль от базы данных
+DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-ID].supabase.co:5432/postgres"
+DIRECT_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[PROJECT-ID].supabase.co:5432/postgres"
+
+# ===== ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ (опционально) =====
+NODE_ENV=development
+PORT=3000

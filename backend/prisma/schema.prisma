@@ -9,18 +9,19 @@ datasource db {
 }
 
 model providers {
-  id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name         String    @unique @db.VarChar(255)
-  slug         String    @unique @db.VarChar(255)
-  description  String?
-  logo_url     String?   @db.VarChar(500)
-  website_url  String?   @db.VarChar(500)
-  founded_year Int?
-  country      String?   @db.VarChar(100)
-  is_active    Boolean?  @default(true)
-  created_at   DateTime? @default(now()) @db.Timestamptz(6)
-  updated_at   DateTime? @default(now()) @db.Timestamptz(6)
-  slots        slots[]
+  id             String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name           String    @unique @db.VarChar(255)
+  slug           String    @unique @db.VarChar(255)
+  description    String?
+  logo_url       String?   @db.VarChar(500)
+  website_url    String?   @db.VarChar(500)
+  founded_year   Int?
+  country        String?   @db.VarChar(100)
+  is_active      Boolean?  @default(true)
+  is_recommended Boolean?  @default(false)
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  slots          slots[]
 }
 
 model slot_categories {
@@ -80,8 +81,8 @@ model slots {
   providers             providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   themes                themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
-  slot_features slot_features[]
-  slot_bonuses slot_bonuses[]
+  slot_features  slot_features[]
+  slot_bonuses   slot_bonuses[]
   slot_mechanics slot_mechanics[]
 
   @@index([provider_id], map: "idx_slots_provider_id")
@@ -173,9 +174,9 @@ model bonuses {
 }
 
 model slot_bonuses {
-  id       Int      @id @default(autoincrement())
-  slot_id  String
-  bonus_id Int
+  id         Int      @id @default(autoincrement())
+  slot_id    String
+  bonus_id   Int
   created_at DateTime @default(now()) @db.Timestamptz(6)
 
   slots   slots   @relation(fields: [slot_id], references: [id], onDelete: Cascade)

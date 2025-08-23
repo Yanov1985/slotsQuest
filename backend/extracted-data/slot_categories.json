@@ -1,0 +1,250 @@
+[
+  {
+    "id": "50d39e38-4134-4c80-baaa-5e80ca58bb24",
+    "name": "Top Games",
+    "slug": "top-games",
+    "description": "Категория Top Games",
+    "created_at": "2025-08-23T12:29:16.093Z",
+    "updated_at": "2025-08-23T12:29:16.093Z"
+  },
+  {
+    "id": "43854788-3f9b-4816-b09d-ef21eb11ab90",
+    "name": "Popular",
+    "slug": "popular",
+    "description": "Категория Popular",
+    "created_at": "2025-08-23T12:29:16.259Z",
+    "updated_at": "2025-08-23T12:29:16.259Z"
+  },
+  {
+    "id": "5346b20e-0cec-4927-abdf-43841c1e71e5",
+    "name": "Live Casino",
+    "slug": "live-casino",
+    "description": "Категория Live Casino",
+    "created_at": "2025-08-23T12:29:16.344Z",
+    "updated_at": "2025-08-23T12:29:16.344Z"
+  },
+  {
+    "id": "f45f7f57-1e32-4c2a-84a3-4913f2a409b0",
+    "name": "Slots",
+    "slug": "slots",
+    "description": "Категория Slots",
+    "created_at": "2025-08-23T12:29:16.428Z",
+    "updated_at": "2025-08-23T12:29:16.428Z"
+  },
+  {
+    "id": "df030da7-26b9-4d4e-8bb8-01657f1fb81b",
+    "name": "New",
+    "slug": "new",
+    "description": "Категория New",
+    "created_at": "2025-08-23T12:29:16.512Z",
+    "updated_at": "2025-08-23T12:29:16.512Z"
+  },
+  {
+    "id": "2a37a9a4-c279-4140-8df8-0005bb396407",
+    "name": "Kalamba Kash Drops",
+    "slug": "kalamba-kash-drops",
+    "description": "Категория Kalamba Kash Drops",
+    "created_at": "2025-08-23T12:29:16.596Z",
+    "updated_at": "2025-08-23T12:29:16.596Z"
+  },
+  {
+    "id": "2e5d656a-2196-43a1-8f0f-112feb9cc9d1",
+    "name": "Evoplay Big Adventures",
+    "slug": "evoplay-big-adventures",
+    "description": "Категория Evoplay Big Adventures",
+    "created_at": "2025-08-23T12:29:16.682Z",
+    "updated_at": "2025-08-23T12:29:16.682Z"
+  },
+  {
+    "id": "9838454f-816a-4d5f-9405-7cce1accd19c",
+    "name": "Endorphina E-Drops",
+    "slug": "endorphina-e-drops",
+    "description": "Категория Endorphina E-Drops",
+    "created_at": "2025-08-23T12:29:16.766Z",
+    "updated_at": "2025-08-23T12:29:16.766Z"
+  },
+  {
+    "id": "0921c500-0fb8-4bae-929f-34a45d2b8c2f",
+    "name": "€5,000 from GameBeat",
+    "slug": "5000-from-gamebeat",
+    "description": "Категория €5,000 from GameBeat",
+    "created_at": "2025-08-23T12:29:16.850Z",
+    "updated_at": "2025-08-23T12:29:16.850Z"
+  },
+  {
+    "id": "f7a19a1f-81f3-4d93-86de-01b1c1e39050",
+    "name": "Gamzix Spin-O-Mania",
+    "slug": "gamzix-spin-o-mania",
+    "description": "Категория Gamzix Spin-O-Mania",
+    "created_at": "2025-08-23T12:29:16.934Z",
+    "updated_at": "2025-08-23T12:29:16.934Z"
+  },
+  {
+    "id": "cd487b1e-d94a-451b-a722-62ef34dcabd2",
+    "name": "3Oaks Turbo Wins",
+    "slug": "3oaks-turbo-wins",
+    "description": "Категория 3Oaks Turbo Wins",
+    "created_at": "2025-08-23T12:29:17.018Z",
+    "updated_at": "2025-08-23T12:29:17.018Z"
+  },
+  {
+    "id": "63248eca-caad-40ee-9484-574e77fde8b2",
+    "name": "Original games",
+    "slug": "original-games",
+    "description": "Категория Original games",
+    "created_at": "2025-08-23T12:29:17.102Z",
+    "updated_at": "2025-08-23T12:29:17.102Z"
+  },
+  {
+    "id": "0e4ef5f2-087a-4199-995b-92569c50843e",
+    "name": "New Games",
+    "slug": "new-games",
+    "description": "Категория New Games",
+    "created_at": "2025-08-23T12:29:17.185Z",
+    "updated_at": "2025-08-23T12:29:17.185Z"
+  },
+  {
+    "id": "60e0eeae-7252-488b-8a22-934f0901be97",
+    "name": "Recommended Games",
+    "slug": "recommended-games",
+    "description": "Категория Recommended Games",
+    "created_at": "2025-08-23T12:29:17.270Z",
+    "updated_at": "2025-08-23T12:29:17.270Z"
+  },
+  {
+    "id": "43887fff-bc5a-4861-a4a3-84b904bf2fb9",
+    "name": "Crash Games",
+    "slug": "crash-games",
+    "description": "Категория Crash Games",
+    "created_at": "2025-08-23T12:29:17.353Z",
+    "updated_at": "2025-08-23T12:29:17.353Z"
+  },
+  {
+    "id": "2ec34a93-e24e-4a2a-8506-5a963d2192d4",
+    "name": "Roulette",
+    "slug": "roulette",
+    "description": "Категория Roulette",
+    "created_at": "2025-08-23T12:29:17.437Z",
+    "updated_at": "2025-08-23T12:29:17.437Z"
+  },
+  {
+    "id": "c1a5dcad-6519-4dbf-b840-621f0ff2352a",
+    "name": "Discount",
+    "slug": "discount",
+    "description": "Категория Discount",
+    "created_at": "2025-08-23T12:29:17.520Z",
+    "updated_at": "2025-08-23T12:29:17.520Z"
+  },
+  {
+    "id": "afb1c0c5-62b2-4fba-90f8-909d56133486",
+    "name": "Instant Games",
+    "slug": "instant-games",
+    "description": "Категория Instant Games",
+    "created_at": "2025-08-23T12:29:17.604Z",
+    "updated_at": "2025-08-23T12:29:17.604Z"
+  },
+  {
+    "id": "4ff47f5f-fc5b-46c5-91c4-2658d6e7a467",
+    "name": "Quick games",
+    "slug": "quick-games",
+    "description": "Категория Quick games",
+    "created_at": "2025-08-23T12:29:17.688Z",
+    "updated_at": "2025-08-23T12:29:17.688Z"
+  },
+  {
+    "id": "46ecb21d-fcd0-4e16-a974-bf35d8195e68",
+    "name": "Jackpot Games",
+    "slug": "jackpot-games",
+    "description": "Категория Jackpot Games",
+    "created_at": "2025-08-23T12:29:17.773Z",
+    "updated_at": "2025-08-23T12:29:17.773Z"
+  },
+  {
+    "id": "c589ef73-0160-4bb0-8b01-eeb281f2d63a",
+    "name": "Buy Bonus",
+    "slug": "buy-bonus",
+    "description": "Категория Buy Bonus",
+    "created_at": "2025-08-23T12:29:17.857Z",
+    "updated_at": "2025-08-23T12:29:17.857Z"
+  },
+  {
+    "id": "5259d1d8-22d9-41ae-99ab-c7508709fa8c",
+    "name": "Megaways",
+    "slug": "megaways",
+    "description": "Категория Megaways",
+    "created_at": "2025-08-23T12:29:17.943Z",
+    "updated_at": "2025-08-23T12:29:17.943Z"
+  },
+  {
+    "id": "a6e8605d-b1cc-4676-ac9a-bc7d54d4e4ec",
+    "name": "Table Games",
+    "slug": "table-games",
+    "description": "Категория Table Games",
+    "created_at": "2025-08-23T12:29:18.031Z",
+    "updated_at": "2025-08-23T12:29:18.031Z"
+  },
+  {
+    "id": "6a14b501-46fd-4305-be29-aab2cdc483ff",
+    "name": "TV Games",
+    "slug": "tv-games",
+    "description": "Категория TV Games",
+    "created_at": "2025-08-23T12:29:18.117Z",
+    "updated_at": "2025-08-23T12:29:18.117Z"
+  },
+  {
+    "id": "2742f447-a416-418b-940a-a962b0ac0400",
+    "name": "1w Games",
+    "slug": "1w-games",
+    "description": "Категория 1w Games",
+    "created_at": "2025-08-23T12:29:18.201Z",
+    "updated_at": "2025-08-23T12:29:18.201Z"
+  },
+  {
+    "id": "b27ad856-a6d0-4fe8-9a55-1e77e35b8a05",
+    "name": "Best Year 2020",
+    "slug": "best-year-2020",
+    "description": "Категория Best Year 2020",
+    "created_at": "2025-08-23T12:29:18.293Z",
+    "updated_at": "2025-08-23T12:29:18.293Z"
+  },
+  {
+    "id": "5397017e-cdd9-4bfe-855f-2a340321e24f",
+    "name": "Best Year 2021",
+    "slug": "best-year-2021",
+    "description": "Категория Best Year 2021",
+    "created_at": "2025-08-23T12:29:18.377Z",
+    "updated_at": "2025-08-23T12:29:18.377Z"
+  },
+  {
+    "id": "0e229623-4688-430f-af28-089323f2cd0c",
+    "name": "Best Year 2022",
+    "slug": "best-year-2022",
+    "description": "Категория Best Year 2022",
+    "created_at": "2025-08-23T12:29:18.469Z",
+    "updated_at": "2025-08-23T12:29:18.469Z"
+  },
+  {
+    "id": "7557985e-82c4-4d03-98e2-672b8723c3ba",
+    "name": "Best Year 2023",
+    "slug": "best-year-2023",
+    "description": "Категория Best Year 2023",
+    "created_at": "2025-08-23T12:29:18.554Z",
+    "updated_at": "2025-08-23T12:29:18.554Z"
+  },
+  {
+    "id": "b6a384c1-8b51-442c-ab16-69d3b6f3785e",
+    "name": "Best Year 2024",
+    "slug": "best-year-2024",
+    "description": "Категория Best Year 2024",
+    "created_at": "2025-08-23T12:29:18.639Z",
+    "updated_at": "2025-08-23T12:29:18.639Z"
+  },
+  {
+    "id": "5aceb9eb-6b4e-40c2-af87-4dfdf6137f64",
+    "name": "All Games",
+    "slug": "all-games",
+    "description": "Категория All Games",
+    "created_at": "2025-08-23T12:29:18.724Z",
+    "updated_at": "2025-08-23T12:29:18.724Z"
+  }
+]

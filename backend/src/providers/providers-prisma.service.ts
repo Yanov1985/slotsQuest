@@ -166,6 +166,7 @@ export class ProvidersPrismaService {
       founded_year: item.founded_year,
       country: item.country,
       is_active: item.is_active,
+      is_recommended: item.is_recommended,
       created_at: item.created_at,
       updated_at: item.updated_at,
     }));

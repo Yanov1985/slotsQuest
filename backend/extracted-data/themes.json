@@ -1,0 +1,1930 @@
+[
+  {
+    "id": "cmeob7j4q0000u5xgxxd6fasa",
+    "name": "Action",
+    "slug": "action",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0001u5xgpptohore",
+    "name": "Adventure",
+    "slug": "adventure",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0002u5xg7j6ld3zp",
+    "name": "Ancient",
+    "slug": "ancient",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0003u5xg6ogzfz4s",
+    "name": "Animals",
+    "slug": "animals",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0004u5xgi05iixdz",
+    "name": "Anime",
+    "slug": "anime",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0005u5xg47oiepeu",
+    "name": "Apocalypse",
+    "slug": "apocalypse",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0006u5xg5vhp8vcy",
+    "name": "Arabian",
+    "slug": "arabian",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0007u5xgp2odvh73",
+    "name": "Asian",
+    "slug": "asian",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0008u5xg6o9bp5fz",
+    "name": "Aztec",
+    "slug": "aztec",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q0009u5xg6igdinha",
+    "name": "Bars",
+    "slug": "bars",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000au5xgzfihmbob",
+    "name": "Battle",
+    "slug": "battle",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000bu5xg52a9osic",
+    "name": "Beach",
+    "slug": "beach",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000cu5xgrx50a4ge",
+    "name": "Bells",
+    "slug": "bells",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000du5xgjqr35f1q",
+    "name": "Best American Style Slots",
+    "slug": "best-american-style-slots",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000eu5xgqfx65qq5",
+    "name": "Bet Slip",
+    "slug": "bet-slip",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000fu5xge62psvym",
+    "name": "Bombs",
+    "slug": "bombs",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000gu5xgxef01ojq",
+    "name": "Bonus Bet",
+    "slug": "bonus-bet",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000hu5xgtz0pjpar",
+    "name": "Bonus Buy",
+    "slug": "bonus-buy",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000iu5xgcy2y0okh",
+    "name": "Bonus Multiplier",
+    "slug": "bonus-multiplier",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000ju5xg91qcovdp",
+    "name": "Bonus Wheel",
+    "slug": "bonus-wheel",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000ku5xgojanbch7",
+    "name": "Books",
+    "slug": "books",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000lu5xg8kct7tk2",
+    "name": "Branded",
+    "slug": "branded",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000mu5xg43midlzy",
+    "name": "Buffalos",
+    "slug": "buffalos",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000nu5xgzbmrsac3",
+    "name": "Candy",
+    "slug": "candy",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000ou5xgbkdeqb4b",
+    "name": "Carnival",
+    "slug": "carnival",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000pu5xg6ni00k49",
+    "name": "Cars",
+    "slug": "cars",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000qu5xg2y7ro64l",
+    "name": "Cascading Reels",
+    "slug": "cascading-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000ru5xg45zyhy1s",
+    "name": "Cashpots",
+    "slug": "cashpots",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000su5xg9rd0dkzm",
+    "name": "Cats",
+    "slug": "cats",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000tu5xg6znal3s1",
+    "name": "Christmas",
+    "slug": "christmas",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000uu5xgjlsa23uy",
+    "name": "Circus",
+    "slug": "circus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000vu5xgmhzta2su",
+    "name": "Classic",
+    "slug": "classic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000wu5xggml9i8s5",
+    "name": "Clover",
+    "slug": "clover",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000xu5xgzjnwj2nh",
+    "name": "Cluster Pays",
+    "slug": "cluster-pays",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4q000yu5xg26l1c2d5",
+    "name": "Coin Win",
+    "slug": "coin-win",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r000zu5xg662cv1gv",
+    "name": "Collect Symbols",
+    "slug": "collect-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0010u5xg2wuogrwy",
+    "name": "Colossal Symbols",
+    "slug": "colossal-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0011u5xgdzbgea51",
+    "name": "Colossal Wilds",
+    "slug": "colossal-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0012u5xg6hi96oqv",
+    "name": "Comics",
+    "slug": "comics",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0013u5xgp7pqz84g",
+    "name": "Cowboys",
+    "slug": "cowboys",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0014u5xggyxycn5d",
+    "name": "Cyberpunk",
+    "slug": "cyberpunk",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0015u5xgijpf0g1x",
+    "name": "Dance",
+    "slug": "dance",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0016u5xg25t91l83",
+    "name": "Demons",
+    "slug": "demons",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0017u5xgdn01tnej",
+    "name": "Detective",
+    "slug": "detective",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0018u5xgph3orgjt",
+    "name": "Devil",
+    "slug": "devil",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0019u5xgc4styyom",
+    "name": "Diamonds",
+    "slug": "diamonds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001au5xg6rhe6qh6",
+    "name": "Disco",
+    "slug": "disco",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001bu5xgebef32uv",
+    "name": "Double Symbols",
+    "slug": "double-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001cu5xgo3sv7fxj",
+    "name": "Dragons",
+    "slug": "dragons",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001du5xgdcghgaye",
+    "name": "Dream Drop",
+    "slug": "dream-drop",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001eu5xgjnvz7imn",
+    "name": "Dual Spin",
+    "slug": "dual-spin",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001fu5xgb8jcctiu",
+    "name": "Dynamite",
+    "slug": "dynamite",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001gu5xglhq9a4rb",
+    "name": "Eagles",
+    "slug": "eagles",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001hu5xga32rfvwn",
+    "name": "Egyptian",
+    "slug": "egyptian",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001iu5xggzz0pxcu",
+    "name": "Expanding Reels",
+    "slug": "expanding-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001ju5xgsa4tu9x1",
+    "name": "Expanding Symbols",
+    "slug": "expanding-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001ku5xgk532ihws",
+    "name": "Expanding Wilds",
+    "slug": "expanding-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001lu5xg6b7n56qm",
+    "name": "Extra Reels",
+    "slug": "extra-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001mu5xgyp5cuw2x",
+    "name": "Extra Spins",
+    "slug": "extra-spins",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001nu5xgwjqlq1k8",
+    "name": "Extra Wilds",
+    "slug": "extra-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001ou5xghs3shepq",
+    "name": "Fairy Tales",
+    "slug": "fairy-tales",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001pu5xg6ipdmcxo",
+    "name": "Fantastic",
+    "slug": "fantastic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001qu5xgxi8v77gw",
+    "name": "Fantasy",
+    "slug": "fantasy",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001ru5xghfbskz2b",
+    "name": "Festival",
+    "slug": "festival",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001su5xgbp193bbs",
+    "name": "Fire",
+    "slug": "fire",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001tu5xgpx4z6vhl",
+    "name": "Fish",
+    "slug": "fish",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001uu5xg3oygfvj7",
+    "name": "Fishing",
+    "slug": "fishing",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001vu5xgcvh4z8pg",
+    "name": "Flowers",
+    "slug": "flowers",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001wu5xg3eno6090",
+    "name": "Food",
+    "slug": "food",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001xu5xgs3eu9qnc",
+    "name": "Football",
+    "slug": "football",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001yu5xgh39nz5ki",
+    "name": "Forest",
+    "slug": "forest",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r001zu5xgu28wf0eb",
+    "name": "FreeSpins Multiplier",
+    "slug": "freespins-multiplier",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0020u5xg4dr2zpjy",
+    "name": "Fruits",
+    "slug": "fruits",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0021u5xgy8kf2w7s",
+    "name": "Future",
+    "slug": "future",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0022u5xggcjhvsbr",
+    "name": "Futuristic",
+    "slug": "futuristic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0023u5xga7jyiwoi",
+    "name": "Gamble",
+    "slug": "gamble",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0024u5xg2ixu96xn",
+    "name": "Gangsters",
+    "slug": "gangsters",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0025u5xgz9rqva06",
+    "name": "Gems",
+    "slug": "gems",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0026u5xgg8vscdhh",
+    "name": "Gigablox",
+    "slug": "gigablox",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0027u5xg9dfbldc6",
+    "name": "Girls",
+    "slug": "girls",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0028u5xgpub79n2q",
+    "name": "Gladiators",
+    "slug": "gladiators",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0029u5xg2pn81531",
+    "name": "Goblins",
+    "slug": "goblins",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002au5xg6ufl7z35",
+    "name": "Gods",
+    "slug": "gods",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002bu5xgnkqhq973",
+    "name": "Gold",
+    "slug": "gold",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002cu5xgje7c1b1a",
+    "name": "Greek",
+    "slug": "greek",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002du5xgklw0vn4a",
+    "name": "Guns",
+    "slug": "guns",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002eu5xg7vxsl5uk",
+    "name": "Halloween",
+    "slug": "halloween",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002fu5xg8latd2ru",
+    "name": "Hold and Spin",
+    "slug": "hold-and-spin",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002gu5xgszj7wkt6",
+    "name": "Hold and Win",
+    "slug": "hold-and-win",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002hu5xgynexjpc5",
+    "name": "Holiday",
+    "slug": "holiday",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002iu5xgzu0bdmz3",
+    "name": "Horror",
+    "slug": "horror",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002ju5xg6kekxoic",
+    "name": "Hyper Clusters",
+    "slug": "hyper-clusters",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002ku5xg795nl46h",
+    "name": "Hyper Hold",
+    "slug": "hyper-hold",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002lu5xgr857daog",
+    "name": "Increasing Multiplier",
+    "slug": "increasing-multiplier",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002mu5xg3t8qw3qv",
+    "name": "Infinity Reels",
+    "slug": "infinity-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002nu5xg7st9n2i6",
+    "name": "Jackpot",
+    "slug": "jackpot",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002ou5xgebktld97",
+    "name": "Japanese",
+    "slug": "japanese",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002pu5xgwqgr4d1n",
+    "name": "Jewels",
+    "slug": "jewels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002qu5xg3kkq7qfv",
+    "name": "Joker",
+    "slug": "joker",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002ru5xgoo0yczgf",
+    "name": "Jungle",
+    "slug": "jungle",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002su5xg1oqco2or",
+    "name": "Legend",
+    "slug": "legend",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002tu5xgrhokb687",
+    "name": "Leprechauns",
+    "slug": "leprechauns",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002uu5xgayd2brnw",
+    "name": "Level Up",
+    "slug": "level-up",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002vu5xgrg0bic32",
+    "name": "Linked Reels",
+    "slug": "linked-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002wu5xgzczkxtzo",
+    "name": "Locked Reels",
+    "slug": "locked-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002xu5xgxj0f21s3",
+    "name": "Locked Symbols",
+    "slug": "locked-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002yu5xge405ee09",
+    "name": "Locked Wilds",
+    "slug": "locked-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r002zu5xgqyksu2tx",
+    "name": "Luxury",
+    "slug": "luxury",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0030u5xgl9n0ixgz",
+    "name": "Mafia",
+    "slug": "mafia",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0031u5xgiq2w7ziq",
+    "name": "Magic",
+    "slug": "magic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0032u5xguahkn7l0",
+    "name": "Mayan",
+    "slug": "mayan",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0033u5xg29xens47",
+    "name": "Mega Fire Blaze",
+    "slug": "mega-fire-blaze",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0034u5xgt1qklpc5",
+    "name": "Mega Symbols",
+    "slug": "mega-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0035u5xglgdj87ys",
+    "name": "Megaclusters",
+    "slug": "megaclusters",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0036u5xgbilvxr9o",
+    "name": "Megaquads",
+    "slug": "megaquads",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0037u5xgrajs2n2v",
+    "name": "Megaways",
+    "slug": "megaways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0038u5xgjqotui5f",
+    "name": "Millionways",
+    "slug": "millionways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r0039u5xg5zyh5beh",
+    "name": "Mining",
+    "slug": "mining",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003au5xgkfpr6rwx",
+    "name": "Monsters",
+    "slug": "monsters",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003bu5xguyntaq31",
+    "name": "MultiJump",
+    "slug": "multijump",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003cu5xg4cnvyvro",
+    "name": "Multiplier Wilds",
+    "slug": "multiplier-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003du5xg7r4jl1dt",
+    "name": "Multiplier",
+    "slug": "multiplier",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003eu5xg01bdk3y7",
+    "name": "Music",
+    "slug": "music",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003fu5xgdt1vcmfb",
+    "name": "Mystery Symbols",
+    "slug": "mystery-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003gu5xgqzegcf9d",
+    "name": "Mystic",
+    "slug": "mystic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003hu5xgpvrpuc8q",
+    "name": "Mythical",
+    "slug": "mythical",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003iu5xgpst7qfmm",
+    "name": "Mythology",
+    "slug": "mythology",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003ju5xgjb3la3op",
+    "name": "Nature",
+    "slug": "nature",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003ku5xgzf04u06y",
+    "name": "Neon",
+    "slug": "neon",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003lu5xgsva7yahq",
+    "name": "Nordic",
+    "slug": "nordic",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003mu5xg66qgswpf",
+    "name": "Norse",
+    "slug": "norse",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003nu5xgl99f2rd3",
+    "name": "Nudges",
+    "slug": "nudges",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003ou5xguysj66bk",
+    "name": "Ocean",
+    "slug": "ocean",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003pu5xgakci3120",
+    "name": "Olympus",
+    "slug": "olympus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003qu5xgwc58i1sp",
+    "name": "Oriental",
+    "slug": "oriental",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003ru5xgfoqdtgp1",
+    "name": "Party",
+    "slug": "party",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003su5xgmoue5b4l",
+    "name": "Pick Bonus",
+    "slug": "pick-bonus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4r003tu5xgvwfowbly",
+    "name": "Piggy bank",
+    "slug": "piggy-bank",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003uu5xgjit87t9p",
+    "name": "Pirates",
+    "slug": "pirates",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003vu5xg2c2ae5mp",
+    "name": "Pixel Art Slot Machines",
+    "slug": "pixel-art-slot-machines",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003wu5xge17l30k7",
+    "name": "PopWins",
+    "slug": "popwins",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003xu5xg4dhia8xm",
+    "name": "Power Reels",
+    "slug": "power-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003yu5xggedgv0z5",
+    "name": "Random Multiplier",
+    "slug": "random-multiplier",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s003zu5xg8kew4be8",
+    "name": "Random Wilds",
+    "slug": "random-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0040u5xgmgqookeb",
+    "name": "Respin Wild",
+    "slug": "respin-wild",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0041u5xgvhiifrm1",
+    "name": "Respins",
+    "slug": "respins",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0042u5xg9xpu73aj",
+    "name": "Retrigger",
+    "slug": "retrigger",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0043u5xgqmy0a03w",
+    "name": "Retro",
+    "slug": "retro",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0044u5xg3kepg6v2",
+    "name": "Riches",
+    "slug": "riches",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0045u5xg9khil7jg",
+    "name": "Robots",
+    "slug": "robots",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0046u5xgcp853wb7",
+    "name": "Rock",
+    "slug": "rock",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0047u5xgxditj6ys",
+    "name": "Rome",
+    "slug": "rome",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0048u5xgsbsqa1vp",
+    "name": "Santa Claus",
+    "slug": "santa-claus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0049u5xgu1yz37fo",
+    "name": "Scatter Pays",
+    "slug": "scatter-pays",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004au5xgzplfx0p5",
+    "name": "Sea",
+    "slug": "sea",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004bu5xg3few08um",
+    "name": "Sevens",
+    "slug": "sevens",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004cu5xgcs4jqgqw",
+    "name": "Ships",
+    "slug": "ships",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004du5xgbhpd3wio",
+    "name": "Slingo",
+    "slug": "slingo",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004eu5xgkl4ra8ma",
+    "name": "Snow",
+    "slug": "snow",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004fu5xgq5993dgu",
+    "name": "Space",
+    "slug": "space",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004gu5xguqbwm5d1",
+    "name": "Special Symbol",
+    "slug": "special-symbol",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004hu5xgos2v1yck",
+    "name": "Split Symbols",
+    "slug": "split-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004iu5xgx9vlumkk",
+    "name": "Sports",
+    "slug": "sports",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004ju5xgbiehihht",
+    "name": "Spreading Wilds",
+    "slug": "spreading-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004ku5xgm7jhi9po",
+    "name": "Stacked Symbols",
+    "slug": "stacked-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004lu5xgty9b5wir",
+    "name": "Stacked Wilds",
+    "slug": "stacked-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004mu5xgbxmnz2nu",
+    "name": "Stars",
+    "slug": "stars",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004nu5xgm4jwdhj9",
+    "name": "Steampunk",
+    "slug": "steampunk",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004ou5xgrk10i2fo",
+    "name": "Sticky Symbols",
+    "slug": "sticky-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004pu5xgcs641j5g",
+    "name": "Sticky Wilds",
+    "slug": "sticky-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004qu5xgsvclhu19",
+    "name": "Substitution Symbols",
+    "slug": "substitution-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004ru5xg88f0gzak",
+    "name": "Superheroes",
+    "slug": "superheroes",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004su5xgkined5wn",
+    "name": "Symbol Removal",
+    "slug": "symbol-removal",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004tu5xgdgost6ag",
+    "name": "Symbol Swap",
+    "slug": "symbol-swap",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004uu5xg52ou6wol",
+    "name": "Symbol Upgrade",
+    "slug": "symbol-upgrade",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004vu5xgeym6vokd",
+    "name": "Synchronizing Reels",
+    "slug": "synchronizing-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004wu5xgnd5jrey7",
+    "name": "Temple",
+    "slug": "temple",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004xu5xgqsco1606",
+    "name": "Tiki",
+    "slug": "tiki",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004yu5xggtzfy015",
+    "name": "TNT",
+    "slug": "tnt",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s004zu5xg7uks2ze0",
+    "name": "Totem",
+    "slug": "totem",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0050u5xgzhyaqlmq",
+    "name": "Trailing Wilds",
+    "slug": "trailing-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0051u5xg9chldfb5",
+    "name": "Transforming Symbols",
+    "slug": "transforming-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0052u5xg6s5veblf",
+    "name": "Treasures",
+    "slug": "treasures",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0053u5xglv6dd6ec",
+    "name": "Trolls",
+    "slug": "trolls",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0054u5xgg2i65ngj",
+    "name": "Vampires",
+    "slug": "vampires",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0055u5xgqqye5axg",
+    "name": "Vikings",
+    "slug": "vikings",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0056u5xgujtly77p",
+    "name": "Walking Symbols",
+    "slug": "walking-symbols",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0057u5xga080s58t",
+    "name": "Walking Wilds",
+    "slug": "walking-wilds",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0058u5xgbbvy3q90",
+    "name": "Warriors",
+    "slug": "warriors",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0059u5xgwisqwc5n",
+    "name": "Water",
+    "slug": "water",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005au5xgz5jnrwrs",
+    "name": "Wild Nudge",
+    "slug": "wild-nudge",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005bu5xg2it5m5yc",
+    "name": "Wild Reels",
+    "slug": "wild-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005cu5xgvf4wakgp",
+    "name": "Wild West",
+    "slug": "wild-west",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005du5xggmng29zb",
+    "name": "Win Both Ways",
+    "slug": "win-both-ways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005eu5xgomtae0db",
+    "name": "Winter",
+    "slug": "winter",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005fu5xg6jzs6a46",
+    "name": "Wolf",
+    "slug": "wolf",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005gu5xg44wkluim",
+    "name": "xNudge",
+    "slug": "xnudge",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005hu5xghgjsrx5l",
+    "name": "xWays Slots",
+    "slug": "xways-slots",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005iu5xgtt2rr83x",
+    "name": "Zombies",
+    "slug": "zombies",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005ju5xgmouzl22s",
+    "name": "Blitzways",
+    "slug": "blitzways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005ku5xgm3hrdkxp",
+    "name": "Bonus",
+    "slug": "bonus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005lu5xgbn1b0lv1",
+    "name": "Burst Mode",
+    "slug": "burst-mode",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005mu5xgte0c1wvd",
+    "name": "DoubleMax",
+    "slug": "doublemax",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005nu5xgumecaixu",
+    "name": "gem",
+    "slug": "gem",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005ou5xge4j47yam",
+    "name": "gol",
+    "slug": "gol",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005pu5xgcr4yrccy",
+    "name": "Hyperspins",
+    "slug": "hyperspins",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005qu5xgamzgyphr",
+    "name": "Megadozer",
+    "slug": "megadozer",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005ru5xgkt2h82cm",
+    "name": "Megapays",
+    "slug": "megapays",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005su5xgh5cfmm8q",
+    "name": "Meter Pay",
+    "slug": "meter-pay",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005tu5xgq87jbng2",
+    "name": "MultiMax",
+    "slug": "multimax",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005uu5xg4ebi8atd",
+    "name": "Multipop",
+    "slug": "multipop",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005vu5xgo1fn57ei",
+    "name": "ni",
+    "slug": "ni",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005wu5xgoetinnp1",
+    "name": "Nitro Reels",
+    "slug": "nitro-reels",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005xu5xg6bughb6z",
+    "name": "NobleWays",
+    "slug": "nobleways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005yu5xg6t8m6k43",
+    "name": "Odin",
+    "slug": "odin",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s005zu5xgeujuf0gk",
+    "name": "Poseidon",
+    "slug": "poseidon",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0060u5xg5uxh2je2",
+    "name": "PowerWays",
+    "slug": "powerways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0061u5xg95awk4uv",
+    "name": "Queen",
+    "slug": "queen",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0062u5xg370ebm60",
+    "name": "Second Chance",
+    "slug": "second-chance",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0063u5xgrfm5936z",
+    "name": "Splitz",
+    "slug": "splitz",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0064u5xg9yyn4pto",
+    "name": "Thor",
+    "slug": "thor",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0065u5xgsqdpjjdq",
+    "name": "Trueways",
+    "slug": "trueways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0066u5xgyep3f5hf",
+    "name": "Voodoo",
+    "slug": "voodoo",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0067u5xgi1s63nvp",
+    "name": "Ways Boost",
+    "slug": "ways-boost",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0068u5xgb3wu931k",
+    "name": "Ways Plus",
+    "slug": "ways-plus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s0069u5xggkxrcqxt",
+    "name": "Wild Zones",
+    "slug": "wild-zones",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006au5xgpw6f3qie",
+    "name": "Wonderways",
+    "slug": "wonderways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006bu5xgsjsijgov",
+    "name": "WowPot",
+    "slug": "wowpot",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006cu5xgcnnroaz8",
+    "name": "xBet",
+    "slug": "xbet",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006du5xgteg21lin",
+    "name": "xBomb",
+    "slug": "xbomb",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006eu5xgisod2ei2",
+    "name": "xGOD",
+    "slug": "xgod",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006fu5xgbew71tx0",
+    "name": "xHole",
+    "slug": "xhole",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006gu5xgbhtnww7u",
+    "name": "xMental",
+    "slug": "xmental",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006hu5xg6kqem233",
+    "name": "xMount",
+    "slug": "xmount",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006iu5xgrq1h2v7p",
+    "name": "xPays",
+    "slug": "xpays",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006ju5xgjw1voffn",
+    "name": "xSplit",
+    "slug": "xsplit",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006ku5xgrw9ex81b",
+    "name": "XtraHold",
+    "slug": "xtrahold",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006lu5xgfpfaq359",
+    "name": "XtraWays",
+    "slug": "xtraways",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006mu5xgwhmvc5yq",
+    "name": "xZone",
+    "slug": "xzone",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006nu5xg02cpieh3",
+    "name": "Zeus",
+    "slug": "zeus",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  },
+  {
+    "id": "cmeob7j4s006ou5xgqaovc8g6",
+    "name": "Zevs",
+    "slug": "zevs",
+    "description": null,
+    "created_at": "2025-08-23T13:42:58.202Z",
+    "updated_at": "2025-08-23T13:42:58.202Z"
+  }
+]
