@@ -48,6 +48,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  devServer: {
+    port: 3000,
+    host: 'localhost'
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -63,7 +68,7 @@ export default defineNuxtConfig({
       '/api': {
         target: 'http://localhost:3001/api',
         changeOrigin: true,
-        prependPath: true
+        pathRewrite: { '^/api': '' }
       }
     }
   }
