@@ -118,7 +118,7 @@
               <!-- Provider -->
               <p class="text-cyan-400 text-sm font-medium mb-4 flex items-center">
                 <span class="mr-2">🏢</span>
-                {{ slot.provider?.name || 'Provider' }}
+                {{ slot.providers?.name || 'Provider' }}
               </p>
               
               <!-- Description -->

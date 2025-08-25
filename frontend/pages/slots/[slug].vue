@@ -147,7 +147,7 @@
                   <span
                     class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
                   >
-                    <span>{{ slot.provider?.name || 'Pragmatic Play' }}</span>
+                    <span>{{ slot.providers?.name || 'Pragmatic Play' }}</span>
                   </span>
                 </div>
 
@@ -398,7 +398,7 @@
                         itemtype="https://schema.org/Organization"
                       >
                         <span itemprop="name">{{
-                          slot.provider?.name || 'Pragmatic Play'
+                          slot.providers?.name || 'Pragmatic Play'
                         }}</span>
                       </span>
                     </div>
@@ -791,7 +791,7 @@
                       {{ slot.name || 'Слот' }}
                     </h3>
                     <p class="text-white/60 text-sm">
-                      {{ slot.provider?.name || 'Pragmatic Play' }}
+                      {{ slot.providers?.name || 'Pragmatic Play' }}
                     </p>
                   </div>
                 </div>
@@ -6104,6 +6104,19 @@
                 <span class="text-2xl group-hover:animate-bounce">💎</span>
                 <span class="text-lg">Играть на деньги</span>
               </button>
+
+              <!-- Кнопка обновления данных -->
+              <button
+                class="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/30 transform hover:scale-105 flex items-center justify-center gap-2"
+                @click="refreshSlot"
+                :disabled="loading"
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                ></div>
+                <span class="text-lg" :class="{ 'animate-spin': loading }">🔄</span>
+                <span class="text-sm">{{ loading ? 'Обновление...' : 'Обновить' }}</span>
+              </button>
             </div>
 
             <!-- Индикаторы доверия -->
@@ -6193,7 +6206,7 @@
                   {{ similarSlot.name || 'Слот' }}
                 </h3>
                 <p class="text-gray-600 mb-3">
-                  {{ similarSlot.provider?.name || 'Провайдер' }}
+                  {{ similarSlot.providers?.name || 'Провайдер' }}
                 </p>
                 <div class="flex justify-between items-center mb-4">
                   <span
@@ -6255,7 +6268,7 @@ const similarSlots = computed(() => {
         s &&
         s.id &&
         s.id !== slot.value.id &&
-        (s.provider_id === slot.value.provider_id ||
+        (s.providers?.id === slot.value.providers?.id ||
           s.category_id === slot.value.category_id),
     )
     .slice(0, 3)
@@ -6273,7 +6286,7 @@ watchEffect(() => {
       meta: [
         {
           name: 'description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.provider?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
         },
         // Open Graph
         {
@@ -6282,7 +6295,7 @@ watchEffect(() => {
         },
         {
           property: 'og:description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.provider?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
         },
         { property: 'og:type', content: 'website' },
         {
@@ -6303,7 +6316,7 @@ watchEffect(() => {
         },
         {
           name: 'twitter:description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.provider?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
         },
         {
           name: 'twitter:image',
@@ -6369,7 +6382,12 @@ const loadSlot = async () => {
     error.value = null
 
     // Загружаем все слоты для поиска по slug
-    const slotsResponse = await $fetch('http://localhost:3001/api/slots')
+    const slotsResponse = await $fetch('http://localhost:3001/api/slots', {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
 
     // API возвращает объект с полем data, содержащим массив слотов
     const slotsData = slotsResponse.data || slotsResponse
@@ -6389,6 +6407,11 @@ const loadSlot = async () => {
   } finally {
     loading.value = false
   }
+}
+
+// Функция для принудительного обновления данных слота
+const refreshSlot = async () => {
+  await loadSlot()
 }
 
 const playSlot = () => {
@@ -6710,7 +6733,7 @@ const getSlotDescription = (slot) => {
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
     return `${slot.name || 'Слот'} - это революционный слот от Pragmatic Play, который перевернул представление о видеослотах. Игра с полем 6x5 и системой Scatter Pays предлагает уникальный геймплей, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана.`
   }
-  return `${slot.name || 'Слот'} - увлекательный видеослот от ${slot.provider?.name || 'известного провайдера'}, который предлагает захватывающий геймплей и отличные возможности для выигрыша.`
+  return `${slot.name || 'Слот'} - увлекательный видеослот от ${slot.providers?.name || 'известного провайдера'}, который предлагает захватывающий геймплей и отличные возможности для выигрыша.`
 }
 
 const getShortDescription = (slot) => {
@@ -6725,7 +6748,7 @@ const getShortDescription = (slot) => {
   if ((slot.name || '').toLowerCase().includes('sweet bonanza')) {
     return 'Яркий и сладкий слот от Pragmatic Play с каскадными выигрышами и бонусными множителями. Соберите 4+ леденца для активации бесплатных вращений!'
   }
-  return `Захватывающий видеослот от ${slot.provider?.name || 'ведущего провайдера'} с отличными возможностями для выигрыша и увлекательным геймплеем.`
+  return `Захватывающий видеослот от ${slot.providers?.name || 'ведущего провайдера'} с отличными возможностями для выигрыша и увлекательным геймплеем.`
 }
 
 const getDetailedDescription = (slot) => {
@@ -6878,8 +6901,8 @@ const getStructuredData = (slot) => {
     },
     provider: {
       '@type': 'Organization',
-      name: slot.provider?.name || 'Pragmatic Play',
-      url: slot.provider?.website || 'https://pragmaticplay.com',
+      name: slot.providers?.name || 'Pragmatic Play',
+        url: slot.providers?.website || 'https://pragmaticplay.com',
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -6918,7 +6941,7 @@ const getStructuredData = (slot) => {
         slot.name,
         'онлайн слот',
         'казино игра',
-        slot.provider?.name || 'Pragmatic Play',
+        slot.providers?.name || 'Pragmatic Play',
         'бесплатная игра',
         'демо версия',
         'слот машина',
@@ -6932,7 +6955,7 @@ const getStructuredData = (slot) => {
       '@type': 'VideoObject',
       '@id': `${slotUrl}#video`,
       name: `${slot.name} — трейлер геймплея`,
-      description: `Посмотрите геймплей слота ${slot.name} от ${slot.provider?.name || 'Pragmatic Play'}`,
+      description: `Посмотрите геймплей слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}`,
       url: slot.video_url,
       contentUrl: slot.video_url,
       thumbnailUrl: imageUrl,

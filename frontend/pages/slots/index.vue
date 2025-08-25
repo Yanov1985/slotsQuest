@@ -228,7 +228,7 @@
                 </h3>
                 <p class="text-gray-400 text-sm mb-1 flex items-center">
                   <span class="mr-2">🏢</span>
-                  {{ slot.providers?.name || slot.provider?.name || 'Provider' }}
+                  {{ slot.providers?.name || 'Provider' }}
                 </p>
                 <p class="text-gray-500 text-xs flex items-center">
                   <span class="mr-2">📂</span>
@@ -284,7 +284,7 @@
                   <h3 class="font-bold text-xl text-white group-hover:text-cyan-400 transition-colors duration-300">
                     {{ slot.name || 'Слот' }}
                   </h3>
-                  <p class="text-gray-400 text-sm">{{ slot.providers?.name || slot.provider?.name }} • {{ slot.slot_categories?.name || slot.category?.name }}</p>
+                  <p class="text-gray-400 text-sm">{{ slot.providers?.name }} • {{ slot.slot_categories?.name || slot.category?.name }}</p>
                   <div class="flex items-center space-x-4 mt-2 text-xs">
                     <span class="text-green-400 font-medium">RTP: {{ slot.rtp }}%</span>
                     <span class="text-gray-500">{{ slot.volatility }}</span>
@@ -364,11 +364,11 @@ const filteredSlots = computed(() => {
   }
   
   let filtered = slots.value.filter(slot => {
-    const providerMatch = !selectedProvider.value || slot.provider_id === selectedProvider.value
+    const providerMatch = !selectedProvider.value || slot.providers?.id === selectedProvider.value
     const categoryMatch = !selectedCategory.value || slot.category_id === selectedCategory.value
     const searchMatch = !searchQuery.value || 
       (slot.name || '').toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      (slot.providers?.name || slot.provider?.name || '').toLowerCase().includes(searchQuery.value.toLowerCase())
+      (slot.providers?.name || '').toLowerCase().includes(searchQuery.value.toLowerCase())
     
     return providerMatch && categoryMatch && searchMatch
   })
@@ -381,7 +381,7 @@ const filteredSlots = computed(() => {
       case 'rtp':
         return (b.rtp || 0) - (a.rtp || 0)
       case 'provider':
-        return (a.provider?.name || '').localeCompare(b.provider?.name || '')
+        return (a.providers?.name || '').localeCompare(b.providers?.name || '')
       case 'newest':
         return new Date(b.created_at || 0) - new Date(a.created_at || 0)
       default:
