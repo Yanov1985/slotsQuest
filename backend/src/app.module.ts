@@ -8,6 +8,7 @@ import { ProvidersModule } from './providers/providers.module';
 import { CategoriesModule } from './categories/categories.module';
 import { FeaturesModule } from './features/features.module';
 import { ThemesModule } from './themes/themes.module';
+import { MechanicsModule } from './mechanics/mechanics.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -22,6 +23,7 @@ import { PrismaModule } from './prisma/prisma.module';
     CategoriesModule,
     FeaturesModule,
     ThemesModule,
+    MechanicsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

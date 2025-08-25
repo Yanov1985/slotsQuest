@@ -1,26 +1,30 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white">
+  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white">
     <!-- Header -->
-    <header class="bg-black/50 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
+    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50">
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
-            <NuxtLink to="/admin" class="text-gray-400 hover:text-white transition-colors">
-              ← Назад к дашборду
+            <NuxtLink to="/admin" class="text-[#A0AABE] hover:text-[#FF6E48] transition-colors flex items-center space-x-2">
+              <Icon name="heroicons:arrow-left" />
+              <span>Назад к дашборду</span>
             </NuxtLink>
-            <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              ⚙️ Управление механиками
+            <h1 class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
+              <Icon name="heroicons:cog-6-tooth" class="text-[#FF6E48]" />
+              <span>Управление механиками</span>
             </h1>
-            <div class="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium">
-              {{ features.length }} механик
+            <div class="px-3 py-1 bg-[#63F3AB]/10 border border-[#63F3AB]/30 rounded-full text-[#63F3AB] text-sm font-medium">
+              {{ mechanics.length }} механик
             </div>
           </div>
           <div class="flex items-center space-x-4">
-            <button @click="showAddModal = true" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 rounded-lg font-medium transition-all transform hover:scale-105">
-              ➕ Добавить механику
+            <button @click="showAddModal = true" class="px-4 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
+              <Icon name="heroicons:plus-circle" />
+              <span>Добавить механику</span>
             </button>
-            <button @click="loadFeatures" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 rounded-lg font-medium transition-all transform hover:scale-105">
-              🔄 Обновить
+            <button @click="loadMechanics" class="px-4 py-2 bg-[#1B1E26]/70 hover:bg-[#1B1E26] border border-[#353A4A] rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
+              <Icon name="heroicons:arrow-path" />
+              <span>Обновить</span>
             </button>
           </div>
         </div>
@@ -30,73 +34,83 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 mt-5">
+        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-cyan-400 text-sm font-medium">Всего механик</p>
-              <p class="text-3xl font-bold text-white">{{ features.length }}</p>
+              <p class="text-[#A0AABE] text-sm font-medium">Всего механик</p>
+              <p class="text-2xl font-bold text-white">{{ mechanics.length }}</p>
             </div>
-            <div class="text-4xl">⚙️</div>
+            <div class="text-[#FF6E48] text-2xl">
+              <Icon name="heroicons:cog-6-tooth" />
+            </div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6">
+        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-purple-400 text-sm font-medium">Активных</p>
-              <p class="text-3xl font-bold text-white">{{ activeFeatures }}</p>
+              <p class="text-[#A0AABE] text-sm font-medium">Активных</p>
+              <p class="text-2xl font-bold text-white">{{ activeMechanics }}</p>
             </div>
-            <div class="text-4xl">✅</div>
+            <div class="text-[#63F3AB] text-2xl">
+              <Icon name="heroicons:check-circle" />
+            </div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-6">
+        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-green-400 text-sm font-medium">Со слотами</p>
-              <p class="text-3xl font-bold text-white">{{ featuresWithSlots }}</p>
+              <p class="text-[#A0AABE] text-sm font-medium">Со слотами</p>
+              <p class="text-2xl font-bold text-white">{{ mechanicsWithSlots }}</p>
             </div>
-            <div class="text-4xl">🎰</div>
+            <div class="text-[#FFD700] text-2xl">
+              <Icon name="heroicons:star" />
+            </div>
           </div>
         </div>
-        <div class="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-xl p-6">
+        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-yellow-400 text-sm font-medium">Популярных</p>
-              <p class="text-3xl font-bold text-white">{{ popularFeatures }}</p>
+              <p class="text-[#A0AABE] text-sm font-medium">Популярных</p>
+              <p class="text-2xl font-bold text-white">{{ popularMechanics }}</p>
             </div>
-            <div class="text-4xl">🔥</div>
+            <div class="text-[#FF6E48] text-2xl">
+              <Icon name="heroicons:chart-bar" />
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Search -->
-      <div class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 mb-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Поиск по названию</label>
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Введите название механики..."
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors"
-            />
+      <!-- Search and Filters -->
+      <div class="bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mb-8">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1">
+            <div class="relative">
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="Поиск механик..."
+                class="w-full bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 pl-10 text-white placeholder-[#A0AABE] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
+              >
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Icon name="heroicons:magnifying-glass" class="text-[#A0AABE]" />
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Статус</label>
+          
+          <div class="flex gap-3">
             <select
               v-model="selectedStatus"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
-              <option value="">Все</option>
+              <option value="">Все статусы</option>
               <option value="true">Активные</option>
               <option value="false">Неактивные</option>
             </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Тип</label>
+            
             <select
               v-model="selectedType"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="">Все типы</option>
               <option value="bonus">Бонусные</option>
@@ -107,99 +121,186 @@
               <option value="scatter">Скаттеры</option>
               <option value="progressive">Прогрессивные</option>
             </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-300 mb-2">Сортировка</label>
+            
             <select
               v-model="sortBy"
-              class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
+              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="name">По названию</option>
               <option value="created_at">По дате создания</option>
               <option value="slots_count">По количеству слотов</option>
               <option value="sort_order">По порядку</option>
             </select>
+            
+            <button
+              @click="sortOrder = sortOrder === 'asc' ? 'desc' : 'asc'"
+              class="px-4 py-3 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white hover:bg-[#1B1E26] transition-all flex items-center"
+            >
+              <Icon :name="sortOrder === 'asc' ? 'heroicons:chevron-up' : 'heroicons:chevron-down'" />
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Features Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-if="loading" v-for="n in 6" :key="n" class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 animate-pulse">
+      <!-- Mechanics Grid -->
+      <div class="mt-5"></div>
+      <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div v-for="n in 8" :key="n" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 animate-pulse">
           <div class="flex items-center space-x-4 mb-4">
-            <div class="w-16 h-16 bg-gray-700 rounded-lg"></div>
+            <div class="w-16 h-16 bg-[#353A4A] rounded-lg"></div>
             <div class="flex-1">
-              <div class="h-4 bg-gray-700 rounded mb-2"></div>
-              <div class="h-3 bg-gray-700 rounded w-2/3"></div>
+              <div class="h-4 bg-[#353A4A] rounded mb-2"></div>
+              <div class="h-3 bg-[#353A4A] rounded w-2/3"></div>
             </div>
           </div>
           <div class="space-y-2">
-            <div class="h-3 bg-gray-700 rounded"></div>
-            <div class="h-3 bg-gray-700 rounded w-3/4"></div>
+            <div class="h-3 bg-[#353A4A] rounded"></div>
+            <div class="h-3 bg-[#353A4A] rounded w-3/4"></div>
           </div>
         </div>
-        
-        <div v-else-if="filteredFeatures.length === 0" class="col-span-full text-center py-12">
-          <div class="text-6xl mb-4">🔍</div>
-          <p class="text-lg text-gray-400">Механики не найдены</p>
-          <p class="text-sm text-gray-500">Попробуйте изменить параметры поиска</p>
-        </div>
-        
-        <div v-else v-for="feature in filteredFeatures" :key="feature.id" class="bg-gray-900/50 border border-gray-700 rounded-xl p-6 hover:border-cyan-500/30 transition-all group">
+      </div>
+      
+      <div v-else-if="paginatedMechanics.length === 0" class="text-center py-12">
+         <div class="text-6xl mb-4 text-[#FF6E48]">
+           <Icon name="heroicons:cog-6-tooth" class="w-16 h-16 mx-auto" />
+         </div>
+         <h3 class="text-xl font-semibold text-[#A0AABE] mb-2">Механики не найдены</h3>
+         <p class="text-[#6B7280] mb-6">{{ searchQuery ? 'Попробуйте изменить поисковый запрос' : 'Добавьте первую механику' }}</p>
+         <button @click="openCreateModal" class="px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
+           <Icon name="heroicons:plus-circle" />
+           <span>Добавить механику</span>
+         </button>
+       </div>
+      
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-for="mechanic in paginatedMechanics" :key="mechanic.id" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 hover:border-[#FF6E48]/30 transition-all group backdrop-blur-sm">
           <div class="flex items-center space-x-4 mb-4">
-            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border border-indigo-500/30">
-              <span class="text-2xl">{{ feature.icon || '⚙️' }}</span>
+            <div
+              class="w-16 h-16 rounded-lg flex items-center justify-center text-white font-bold text-xl"
+              :style="{ backgroundColor: mechanic.color || '#6B7280' }"
+            >
+              {{ mechanic.icon || mechanic.name.charAt(0).toUpperCase() }}
             </div>
             <div class="flex-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">{{ feature.name }}</h3>
-              <p class="text-sm text-gray-400">{{ feature.slug }}</p>
+              <h3 class="text-lg font-semibold text-white group-hover:text-[#FF6E48] transition-colors">{{ mechanic.name }}</h3>
+              <p class="text-sm text-[#A0AABE]">{{ mechanic.slug }}</p>
             </div>
             <div class="flex items-center space-x-2">
-              <span class="px-2 py-1 rounded text-xs" :class="feature.is_active ? 'bg-green-500/20 border border-green-500/30 text-green-400' : 'bg-red-500/20 border border-red-500/30 text-red-400'">
-                {{ feature.is_active ? 'Активна' : 'Неактивна' }}
-              </span>
+              <span
+                :class="[
+                  'w-3 h-3 rounded-full',
+                  mechanic.is_active ? 'bg-[#63F3AB]' : 'bg-red-400'
+                ]"
+                :title="mechanic.is_active ? 'Активна' : 'Неактивна'"
+              ></span>
             </div>
           </div>
           
           <div class="space-y-3 mb-4">
             <div class="flex items-center justify-between text-sm">
-              <span class="text-gray-400">Тип:</span>
-              <span class="text-cyan-400 font-medium capitalize">{{ feature.type || 'Не указан' }}</span>
+              <span class="text-[#A0AABE]">Тип:</span>
+              <span class="px-2 py-1 bg-[#FF6E48]/10 border border-[#FF6E48]/30 rounded-full text-[#FF6E48] text-xs font-medium">
+                {{ mechanic.type || 'Не указан' }}
+              </span>
+            </div>
+            <div class="text-sm">
+              <span class="text-[#A0AABE] block mb-1">Описание:</span>
+              <p class="text-white text-sm leading-relaxed line-clamp-2">{{ mechanic.description || 'Нет описания' }}</p>
             </div>
             <div class="flex items-center justify-between text-sm">
-              <span class="text-gray-400">Слотов:</span>
-              <span class="text-cyan-400 font-medium">{{ feature.slots_count || 0 }}</span>
+              <span class="text-[#A0AABE]">Слотов:</span>
+              <div class="flex items-center space-x-2">
+                <Icon name="heroicons:squares-2x2" class="w-4 h-4 text-[#A0AABE]" />
+                <span class="text-white font-medium">{{ mechanic.slots_count || 0 }}</span>
+              </div>
             </div>
             <div class="flex items-center justify-between text-sm">
-              <span class="text-gray-400">Порядок:</span>
-              <span class="text-gray-300">{{ feature.sort_order || 0 }}</span>
-            </div>
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-gray-400">Популярность:</span>
-              <span class="text-yellow-400">{{ feature.is_popular ? '🔥 Популярная' : '📊 Обычная' }}</span>
+              <span class="text-[#A0AABE]">Цвет:</span>
+              <div class="flex items-center space-x-2">
+                <div
+                  class="w-4 h-4 rounded-full border border-[#353A4A]"
+                  :style="{ backgroundColor: mechanic.color || '#6B7280' }"
+                ></div>
+                <span class="text-[#A0AABE] text-xs font-mono">{{ mechanic.color || '#6B7280' }}</span>
+              </div>
             </div>
           </div>
           
-          <div v-if="feature.description" class="text-sm text-gray-400 mb-4 line-clamp-2">
-            {{ feature.description }}
-          </div>
-          
-          <div class="flex items-center justify-between pt-4 border-t border-gray-700">
+          <div class="flex items-center justify-between pt-4 border-t border-[#353A4A]">
             <div class="flex items-center space-x-2">
-              <button @click="editFeature(feature)" class="p-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg transition-colors" title="Редактировать">
-                ✏️
+              <button
+                @click="editMechanic(mechanic)"
+                class="p-2 text-[#A0AABE] hover:text-[#FF6E48] hover:bg-[#FF6E48]/10 rounded-lg transition-all duration-200"
+                title="Редактировать"
+              >
+                <Icon name="heroicons:pencil" class="w-4 h-4" />
               </button>
-              <button @click="toggleFeatureStatus(feature)" class="p-2 bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 rounded-lg transition-colors" :title="feature.is_active ? 'Деактивировать' : 'Активировать'">
-                {{ feature.is_active ? '⏸️' : '▶️' }}
+              <button
+                @click="toggleMechanicStatus(mechanic)"
+                class="p-2 text-[#A0AABE] hover:text-[#63F3AB] hover:bg-[#63F3AB]/10 rounded-lg transition-all duration-200"
+                :title="mechanic.is_active ? 'Деактивировать' : 'Активировать'"
+              >
+                <Icon :name="mechanic.is_active ? 'heroicons:pause' : 'heroicons:play'" class="w-4 h-4" />
               </button>
-              <button @click="deleteFeature(feature)" class="p-2 bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-lg transition-colors" title="Удалить">
-                🗑️
+              <button
+                @click="deleteMechanic(mechanic)"
+                class="p-2 text-[#A0AABE] hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all duration-200"
+                title="Удалить"
+              >
+                <Icon name="heroicons:trash" class="w-4 h-4" />
               </button>
+              <NuxtLink
+                :to="`/admin/mechanics/${mechanic.id}/slots`"
+                class="p-2 text-[#A0AABE] hover:text-[#63F3AB] hover:bg-[#63F3AB]/10 rounded-lg transition-all duration-200"
+                title="Просмотреть слоты"
+              >
+                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
+              </NuxtLink>
             </div>
-            <NuxtLink :to="`/admin/features/${feature.id}/slots`" class="text-xs text-cyan-400 hover:text-cyan-300 transition-colors">
-              Просмотреть слоты →
-            </NuxtLink>
+            <div class="text-xs" :class="mechanic.is_active ? 'text-[#63F3AB]' : 'text-red-400'">
+              {{ mechanic.is_active ? 'Активна' : 'Неактивна' }}
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div v-if="totalPages > 1" class="flex items-center justify-between bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mt-8">
+        <div class="text-sm text-[#A0AABE]">
+          Показано {{ (currentPage - 1) * itemsPerPage + 1 }}-{{ Math.min(currentPage * itemsPerPage, filteredMechanics.length) }} из {{ filteredMechanics.length }} механик
+        </div>
+        <div class="flex items-center space-x-2">
+          <button
+            @click="currentPage = Math.max(1, currentPage - 1)"
+            :disabled="currentPage === 1"
+            class="p-2 text-[#A0AABE] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            <Icon name="heroicons:chevron-left" class="w-5 h-5" />
+          </button>
+          
+          <template v-for="page in visiblePages" :key="page">
+            <button
+              v-if="page !== '...'"
+              @click="currentPage = page"
+              :class="[
+                'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
+                currentPage === page
+                  ? 'bg-gradient-to-r from-[#FF6E48] to-[#FF4757] text-white'
+                  : 'text-[#A0AABE] hover:text-white hover:bg-[#0F1117]'
+              ]"
+            >
+              {{ page }}
+            </button>
+            <span v-else class="px-2 text-[#A0AABE]/50">...</span>
+          </template>
+          
+          <button
+            @click="currentPage = Math.min(totalPages, currentPage + 1)"
+            :disabled="currentPage === totalPages"
+            class="p-2 text-[#A0AABE] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            <Icon name="heroicons:chevron-right" class="w-5 h-5" />
+          </button>
         </div>
       </div>
     </main>
@@ -217,12 +318,12 @@
             </button>
           </div>
           
-          <form @submit.prevent="saveFeature" class="space-y-4">
+          <form @submit.prevent="saveMechanic" class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Название *</label>
                 <input
-                  v-model="featureForm.name"
+                  v-model="mechanicForm.name"
                   type="text"
                   required
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
@@ -232,11 +333,11 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Slug *</label>
                 <input
-                  v-model="featureForm.slug"
+                  v-model="mechanicForm.slug"
                   type="text"
                   required
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="feature-slug"
+                  placeholder="mechanic-slug"
                 />
               </div>
             </div>
@@ -245,7 +346,7 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Тип *</label>
                 <select
-                  v-model="featureForm.type"
+                  v-model="mechanicForm.type"
                   required
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
                 >
@@ -262,7 +363,7 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Иконка</label>
                 <input
-                  v-model="featureForm.icon"
+                  v-model="mechanicForm.icon"
                   type="text"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
                   placeholder="⚙️ (эмодзи или символ)"
@@ -271,7 +372,7 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Порядок сортировки</label>
                 <input
-                  v-model.number="featureForm.sort_order"
+                  v-model.number="mechanicForm.sort_order"
                   type="number"
                   min="0"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
@@ -283,7 +384,7 @@
             <div>
               <label class="block text-sm font-medium text-gray-300 mb-2">Описание</label>
               <textarea
-                v-model="featureForm.description"
+                v-model="mechanicForm.description"
                 rows="3"
                 class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
                 placeholder="Описание механики"
@@ -294,7 +395,7 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Цвет (HEX)</label>
                 <input
-                  v-model="featureForm.color"
+                  v-model="mechanicForm.color"
                   type="color"
                   class="w-full h-10 px-2 py-1 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors"
                 />
@@ -302,7 +403,7 @@
               <div>
                 <label class="block text-sm font-medium text-gray-300 mb-2">URL изображения</label>
                 <input
-                  v-model="featureForm.image_url"
+                  v-model="mechanicForm.image_url"
                   type="url"
                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
                   placeholder="https://example.com/image.jpg"
@@ -313,7 +414,7 @@
             <div class="flex items-center space-x-4">
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input
-                  v-model="featureForm.is_active"
+                  v-model="mechanicForm.is_active"
                   type="checkbox"
                   class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
                 />
@@ -321,7 +422,7 @@
               </label>
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input
-                  v-model="featureForm.is_popular"
+                  v-model="mechanicForm.is_popular"
                   type="checkbox"
                   class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
                 />
@@ -329,7 +430,7 @@
               </label>
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input
-                  v-model="featureForm.is_featured"
+                  v-model="mechanicForm.is_featured"
                   type="checkbox"
                   class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
                 />
@@ -366,7 +467,7 @@
             <div class="text-6xl mb-4">⚠️</div>
             <h2 class="text-2xl font-bold text-white mb-4">Подтвердите удаление</h2>
             <p class="text-gray-300 mb-6">
-              Вы уверены, что хотите удалить механику <strong>"{{ featureToDelete?.name }}"</strong>?
+              Вы уверены, что хотите удалить механику <strong>"{{ mechanicToDelete?.name }}"</strong>?
               Это действие нельзя отменить.
             </p>
             <div class="flex items-center justify-center space-x-4">
@@ -393,10 +494,10 @@
 
 <script setup>
 // Composables
-const { getFeatures, createFeature, updateFeature, deleteFeature: deleteFeatureApi } = useFeatures()
+const { getMechanics, createMechanic, updateMechanic, deleteMechanic: deleteMechanicApi } = useMechanics()
 
 // Reactive data
-const features = ref([])
+const mechanics = ref([])
 const loading = ref(true)
 const saving = ref(false)
 const deleting = ref(false)
@@ -405,16 +506,21 @@ const deleting = ref(false)
 const showAddModal = ref(false)
 const showEditModal = ref(false)
 const showDeleteModal = ref(false)
-const featureToDelete = ref(null)
+const mechanicToDelete = ref(null)
 
 // Search and filters
 const searchQuery = ref('')
 const selectedStatus = ref('')
 const selectedType = ref('')
 const sortBy = ref('sort_order')
+const sortOrder = ref('asc')
+
+// Pagination
+const currentPage = ref(1)
+const itemsPerPage = ref(20)
 
 // Form data
-const featureForm = ref({
+const mechanicForm = ref({
   name: '',
   slug: '',
   description: '',
@@ -429,94 +535,170 @@ const featureForm = ref({
 })
 
 // Computed properties
-const filteredFeatures = computed(() => {
-  let filtered = features.value
+const filteredMechanics = computed(() => {
+  let filtered = mechanics.value
   
   if (searchQuery.value) {
-    filtered = filtered.filter(feature => 
-      feature.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      feature.slug.toLowerCase().includes(searchQuery.value.toLowerCase())
+    filtered = filtered.filter(mechanic => 
+      mechanic.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      mechanic.slug.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      (mechanic.description && mechanic.description.toLowerCase().includes(searchQuery.value.toLowerCase()))
     )
   }
   
   if (selectedStatus.value !== '') {
     const isActive = selectedStatus.value === 'true'
-    filtered = filtered.filter(feature => feature.is_active === isActive)
+    filtered = filtered.filter(mechanic => mechanic.is_active === isActive)
   }
   
   if (selectedType.value) {
-    filtered = filtered.filter(feature => feature.type === selectedType.value)
+    filtered = filtered.filter(mechanic => mechanic.type === selectedType.value)
   }
   
   // Sort
   filtered.sort((a, b) => {
+    let aValue, bValue
+    
     switch (sortBy.value) {
       case 'name':
-        return a.name.localeCompare(b.name)
+        aValue = a.name.toLowerCase()
+        bValue = b.name.toLowerCase()
+        break
       case 'created_at':
-        return new Date(b.created_at) - new Date(a.created_at)
+        aValue = new Date(a.created_at)
+        bValue = new Date(b.created_at)
+        break
       case 'slots_count':
-        return (b.slots_count || 0) - (a.slots_count || 0)
+        aValue = a.slots_count || 0
+        bValue = b.slots_count || 0
+        break
       case 'sort_order':
-        return (a.sort_order || 0) - (b.sort_order || 0)
+        aValue = a.sort_order || 0
+        bValue = b.sort_order || 0
+        break
       default:
         return 0
+    }
+    
+    if (sortOrder.value === 'asc') {
+      return aValue > bValue ? 1 : -1
+    } else {
+      return aValue < bValue ? 1 : -1
     }
   })
   
   return filtered
 })
 
-const activeFeatures = computed(() => features.value.filter(feature => feature.is_active).length)
-const featuresWithSlots = computed(() => features.value.filter(feature => (feature.slots_count || 0) > 0).length)
-const popularFeatures = computed(() => features.value.filter(feature => feature.is_popular).length)
+const paginatedMechanics = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return filteredMechanics.value.slice(start, end)
+})
+
+const totalPages = computed(() => {
+  return Math.ceil(filteredMechanics.value.length / itemsPerPage.value)
+})
+
+const visiblePages = computed(() => {
+  const pages = []
+  const total = totalPages.value
+  const current = currentPage.value
+  
+  if (total <= 7) {
+    for (let i = 1; i <= total; i++) {
+      pages.push(i)
+    }
+  } else {
+    if (current <= 4) {
+      for (let i = 1; i <= 5; i++) {
+        pages.push(i)
+      }
+      pages.push('...')
+      pages.push(total)
+    } else if (current >= total - 3) {
+      pages.push(1)
+      pages.push('...')
+      for (let i = total - 4; i <= total; i++) {
+        pages.push(i)
+      }
+    } else {
+      pages.push(1)
+      pages.push('...')
+      for (let i = current - 1; i <= current + 1; i++) {
+        pages.push(i)
+      }
+      pages.push('...')
+      pages.push(total)
+    }
+  }
+  
+  return pages
+})
+
+const activeMechanics = computed(() => mechanics.value.filter(mechanic => mechanic.is_active).length)
+const mechanicsWithSlots = computed(() => mechanics.value.filter(mechanic => (mechanic.slots_count || 0) > 0).length)
+const popularMechanics = computed(() => mechanics.value.filter(mechanic => mechanic.is_popular).length)
 
 // Methods
-const loadFeatures = async () => {
+const getTypeLabel = (type) => {
+  const typeLabels = {
+    bonus: 'Бонусные',
+    special: 'Специальные',
+    multiplier: 'Множители',
+    free_spins: 'Фриспины',
+    wild: 'Вайлды',
+    scatter: 'Скаттеры',
+    progressive: 'Прогрессивные'
+  }
+  return typeLabels[type] || type || 'Не указан'
+}
+
+const loadMechanics = async () => {
   try {
     loading.value = true
-    const response = await getFeatures()
-    features.value = response || []
+    const response = await getMechanics()
+    mechanics.value = response?.data || []
   } catch (error) {
     console.error('Ошибка загрузки механик:', error)
-    features.value = []
+    mechanics.value = []
   } finally {
     loading.value = false
   }
 }
 
-const editFeature = (feature) => {
-  featureForm.value = {
-    id: feature.id,
-    name: feature.name,
-    slug: feature.slug,
-    description: feature.description || '',
-    type: feature.type || '',
-    icon: feature.icon || '',
-    color: feature.color || '#8b5cf6',
-    image_url: feature.image_url || '',
-    sort_order: feature.sort_order || 0,
-    is_active: feature.is_active,
-    is_popular: feature.is_popular || false,
-    is_featured: feature.is_featured || false
+const editMechanic = (mechanic) => {
+  mechanicForm.value = {
+    id: mechanic.id,
+    name: mechanic.name,
+    slug: mechanic.slug,
+    description: mechanic.description || '',
+    type: mechanic.type || '',
+    icon: mechanic.icon || '',
+    color: mechanic.color || '#8b5cf6',
+    image_url: mechanic.image_url || '',
+    sort_order: mechanic.sort_order || 0,
+    is_active: mechanic.is_active,
+    is_popular: mechanic.is_popular || false,
+    is_featured: mechanic.is_featured || false
   }
   showEditModal.value = true
 }
 
-const deleteFeature = (feature) => {
-  featureToDelete.value = feature
+const deleteMechanic = (mechanic) => {
+  mechanicToDelete.value = mechanic
   showDeleteModal.value = true
 }
 
 const confirmDelete = async () => {
-  if (!featureToDelete.value) return
+  if (!mechanicToDelete.value) return
   
   try {
     deleting.value = true
-    await deleteFeatureApi(featureToDelete.value.id)
-    await loadFeatures()
+    await deleteMechanicApi(mechanicToDelete.value.id)
+    await loadMechanics()
     showDeleteModal.value = false
-    featureToDelete.value = null
+    mechanicToDelete.value = null
   } catch (error) {
     console.error('Ошибка удаления механики:', error)
     alert('Ошибка при удалении механики')
@@ -525,28 +707,28 @@ const confirmDelete = async () => {
   }
 }
 
-const toggleFeatureStatus = async (feature) => {
+const toggleMechanicStatus = async (mechanic) => {
   try {
-    const updatedFeature = { ...feature, is_active: !feature.is_active }
-    await updateFeature(feature.id, updatedFeature)
-    await loadFeatures()
+    const updatedMechanic = { ...mechanic, is_active: !mechanic.is_active }
+    await updateMechanic(mechanic.id, updatedMechanic)
+    await loadMechanics()
   } catch (error) {
     console.error('Ошибка изменения статуса механики:', error)
     alert('Ошибка при изменении статуса механики')
   }
 }
 
-const saveFeature = async () => {
+const saveMechanic = async () => {
   try {
     saving.value = true
     
     if (showAddModal.value) {
-      await createFeature(featureForm.value)
+      await createMechanic(mechanicForm.value)
     } else {
-      await updateFeature(featureForm.value.id, featureForm.value)
+      await updateMechanic(mechanicForm.value.id, mechanicForm.value)
     }
     
-    await loadFeatures()
+    await loadMechanics()
     closeModal()
   } catch (error) {
     console.error('Ошибка сохранения механики:', error)
@@ -556,10 +738,27 @@ const saveFeature = async () => {
   }
 }
 
+const openCreateModal = () => {
+  mechanicForm.value = {
+    name: '',
+    slug: '',
+    description: '',
+    type: '',
+    icon: '',
+    color: '#8b5cf6',
+    image_url: '',
+    sort_order: 0,
+    is_active: true,
+    is_popular: false,
+    is_featured: false
+  }
+  showAddModal.value = true
+}
+
 const closeModal = () => {
   showAddModal.value = false
   showEditModal.value = false
-  featureForm.value = {
+  mechanicForm.value = {
     name: '',
     slug: '',
     description: '',
@@ -575,9 +774,9 @@ const closeModal = () => {
 }
 
 // Auto-generate slug from name
-watch(() => featureForm.value.name, (newName) => {
+watch(() => mechanicForm.value.name, (newName) => {
   if (showAddModal.value && newName) {
-    featureForm.value.slug = newName
+    mechanicForm.value.slug = newName
       .toLowerCase()
       .replace(/[^a-z0-9а-я]/g, '-')
       .replace(/-+/g, '-')
@@ -587,7 +786,7 @@ watch(() => featureForm.value.name, (newName) => {
 
 // Load data on mount
 onMounted(() => {
-  loadFeatures()
+  loadMechanics()
 })
 
 // Page meta
@@ -621,6 +820,13 @@ useHead({
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

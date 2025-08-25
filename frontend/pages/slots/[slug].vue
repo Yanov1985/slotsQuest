@@ -1708,19 +1708,22 @@
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
                     <span
-                      class="px-3 py-1 bg-indigo-500/30 text-indigo-200 rounded-full text-xs font-medium border border-indigo-400/20"
+                      v-for="slotMechanic in slot?.slot_mechanics || []"
+                      :key="slotMechanic.mechanics.id"
+                      class="px-3 py-1 rounded-full text-xs font-medium border"
+                      :style="{
+                        backgroundColor: `${slotMechanic.mechanics.color}30`,
+                        color: `${slotMechanic.mechanics.color}`,
+                        borderColor: `${slotMechanic.mechanics.color}40`
+                      }"
                     >
-                      Cascading Reels
+                      {{ slotMechanic.mechanics.icon }} {{ slotMechanic.mechanics.name }}
                     </span>
                     <span
-                      class="px-3 py-1 bg-purple-500/30 text-purple-200 rounded-full text-xs font-medium border border-purple-400/20"
+                      v-if="!slot?.slot_mechanics?.length"
+                      class="px-3 py-1 bg-gray-500/30 text-gray-400 rounded-full text-xs font-medium border border-gray-500/40"
                     >
-                      Scatter Pays
-                    </span>
-                    <span
-                      class="px-3 py-1 bg-pink-500/30 text-pink-200 rounded-full text-xs font-medium border border-pink-400/20"
-                    >
-                      Random Multiplier
+                      Механики не указаны
                     </span>
                   </div>
                 </div>

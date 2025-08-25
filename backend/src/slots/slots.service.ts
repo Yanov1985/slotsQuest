@@ -135,6 +135,11 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
       },
     });
 
