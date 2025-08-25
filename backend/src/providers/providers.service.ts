@@ -10,11 +10,30 @@ export class ProvidersService {
       where: {
         is_active: true,
       },
+      include: {
+        _count: {
+          select: {
+            slots: {
+              where: {
+                is_active: true,
+              },
+            },
+          },
+        },
+      },
       orderBy: {
         name: 'asc',
       },
     });
-    return { data };
+    
+    // Transform data to include slots_count
+    const transformedData = data.map(provider => ({
+      ...provider,
+      slots_count: provider._count.slots,
+      _count: undefined, // Remove _count from response
+    }));
+    
+    return { data: transformedData };
   }
 
   async getProviderBySlug(slug: string) {

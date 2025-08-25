@@ -1437,9 +1437,9 @@
                       </dd>
                     </div>
                     <dd class="text-3xl font-black text-white mb-1">
-                      {{ slot.game_field || '6×5' }}
+                      {{ (slot.reels && slot.rows) ? `${slot.reels}×${slot.rows}` : (slot.game_field || '5×3') }}
                     </dd>
-                    <dd class="text-rose-300 text-sm">Scatter Pays</dd>
+                    <dd class="text-rose-300 text-sm">{{ slot.paylines || 'Scatter Pays' }}</dd>
                   </div>
                 </div>
 
@@ -4012,9 +4012,11 @@
                       </h4>
                     </div>
                     <p class="text-teal-600 font-semibold text-xl mb-1">
-                      Scatter Pays
+                      {{ slot.paylines || 'Scatter Pays' }}
                     </p>
-                    <p class="text-teal-500 text-sm">Кластерные выплаты</p>
+                    <p class="text-teal-500 text-sm">
+                      {{ typeof slot.paylines === 'number' || (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines)) ? 'Фиксированные линии' : 'Кластерные выплаты' }}
+                    </p>
                   </div>
                 </div>
 
@@ -6737,8 +6739,20 @@ const getSlotDescription = (slot) => {
 }
 
 const getShortDescription = (slot) => {
-  if (!slot || !slot.name)
+  if (!slot) {
     return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
+  }
+  
+  // Используем описание из базы данных, если оно есть
+  if (slot.description && slot.description.trim()) {
+    return slot.description.trim()
+  }
+  
+  // Fallback к старой логике, если описание не задано
+  if (!slot.name) {
+    return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
+  }
+  
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
     return 'Легендарный слот от Pragmatic Play с уникальной механикой Scatter Pays и множителями до x500. Окунитесь в мир древнегреческих богов и сражайтесь за джекпот до x5,000 от ставки!'
   }
@@ -6752,8 +6766,20 @@ const getShortDescription = (slot) => {
 }
 
 const getDetailedDescription = (slot) => {
-  if (!slot || !slot.name)
+  if (!slot) {
     return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
+  }
+  
+  // Используем описание из базы данных, если оно есть
+  if (slot.description && slot.description.trim()) {
+    return slot.description.trim()
+  }
+  
+  // Fallback к старой логике, если описание не задано
+  if (!slot.name) {
+    return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
+  }
+  
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
     return 'Главная особенность слота - множители от x2 до x500, которые появляются случайным образом и могут значительно увеличить ваши выигрыши. В бонусной игре действует система Total Multiplier, где все множители суммируются и не сбрасываются между спинами, что может привести к феноменальным выплатам.'
   }
@@ -6867,7 +6893,9 @@ const getStructuredData = (slot) => {
       {
         '@type': 'Thing',
         name: 'Линии выплат',
-        description: `${slot.paylines || '20'} активных линий`,
+        description: typeof slot.paylines === 'number' || (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines)) 
+          ? `${slot.paylines} активных линий` 
+          : `${slot.paylines || 'Scatter Pays'} система выплат`,
       },
     ],
 

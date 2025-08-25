@@ -350,17 +350,51 @@
                       />
                     </div>
 
+                    <!-- Количество рядов -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Количество рядов
+                      </label>
+                      <input
+                        v-model.number="form.rows"
+                        type="number"
+                        min="1"
+                        step="1"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        placeholder="3"
+                      />
+                    </div>
+
                     <!-- Линии выплат -->
                     <div>
                       <label class="block text-sm font-medium text-gray-300 mb-2">
                         Линии выплат
                       </label>
-                      <input
-                        v-model="form.paylines"
-                        type="text"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                        placeholder="Scatter Pays"
-                      />
+                      <div class="relative">
+                        <select
+                          v-model="paylineType"
+                          class="absolute right-2 top-2 z-10 px-2 py-1 bg-gray-600 border border-gray-500 rounded text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        >
+                          <option value="number">Число</option>
+                          <option value="text">Текст</option>
+                        </select>
+                        <input
+                          v-if="paylineType === 'number'"
+                          v-model.number="form.paylines"
+                          type="number"
+                          min="1"
+                          max="1024"
+                          class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="25"
+                        />
+                        <input
+                          v-else
+                          v-model="form.paylines"
+                          type="text"
+                          class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          placeholder="Scatter Pays"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -445,16 +479,17 @@
                 </h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <!-- Поле игры -->
+                  <!-- Поле игры (автоматически формируется из reels × rows) -->
                   <div>
                     <label class="block text-sm font-medium text-gray-300 mb-2">
-                      Поле игры
+                      Поле игры (автоматически)
                     </label>
                     <input
-                      v-model="form.game_field"
+                      :value="gameFieldDisplay"
                       type="text"
-                      class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      placeholder="6×5"
+                      readonly
+                      class="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-gray-300 cursor-not-allowed"
+                      placeholder="Заполните количество барабанов и рядов"
                     />
                   </div>
                 </div>
@@ -1123,6 +1158,7 @@ const loading = ref(true)
 const showBasicSection = ref(true)
 const showHeroLinksSection = ref(true)
 const showGameCharacteristicsSection = ref(true)
+const paylineType = ref('text') // 'number' или 'text'
 
 // Форма редактирования
 const form = ref({
@@ -1137,6 +1173,7 @@ const form = ref({
   max_win: 5000,
   release_date: '',
   reels: 5,
+  rows: 3,
   rating: 4.8,
   rating_count: 1247,
   popularity_rank: 12,
@@ -1180,6 +1217,14 @@ const form = ref({
   ],
 })
 
+// Computed свойство для автоматического формирования поля игры
+const gameFieldDisplay = computed(() => {
+  if (form.value.reels && form.value.rows) {
+    return `${form.value.reels}×${form.value.rows}`
+  }
+  return ''
+})
+
 // Заголовок страницы
 useHead({
   title: 'Редактирование Hero секции слота - SlotQuest Admin',
@@ -1217,6 +1262,25 @@ const loadSlot = async () => {
         form.value[key] = slot.value[key]
       }
     })
+
+    // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
+    if (slot.value.game_field && (!slot.value.reels || !slot.value.rows)) {
+      const match = slot.value.game_field.match(/(\d+)×(\d+)/);
+      if (match) {
+        if (!slot.value.reels) form.value.reels = parseInt(match[1]);
+        if (!slot.value.rows) form.value.rows = parseInt(match[2]);
+      }
+    }
+
+    // Определяем тип paylines (число или текст)
+    if (slot.value.paylines !== undefined) {
+      const paylineValue = slot.value.paylines;
+      if (typeof paylineValue === 'number' || (typeof paylineValue === 'string' && /^\d+$/.test(paylineValue))) {
+        paylineType.value = 'number';
+      } else {
+        paylineType.value = 'text';
+      }
+    }
   } catch (error) {
     console.error('Ошибка загрузки слота:', error)
     await router.push('/admin/slots')
@@ -1267,9 +1331,16 @@ const saveSlot = async () => {
 
     const method = slotId === 'new' ? 'POST' : 'PUT'
 
+    // Подготавливаем данные для отправки
+    const dataToSend = {
+      ...form.value,
+      // Автоматически формируем game_field из reels и rows
+      game_field: form.value.reels && form.value.rows ? `${form.value.reels}×${form.value.rows}` : form.value.game_field
+    }
+
     const response = await $fetch(url, {
       method,
-      body: form.value,
+      body: dataToSend,
     })
 
     // Показываем уведомление об успешном сохранении
