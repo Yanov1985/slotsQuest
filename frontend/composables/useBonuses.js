@@ -1,7 +1,5 @@
 export const useBonuses = () => {
-  const config = useRuntimeConfig()
-  const baseURL = config.public.apiBase || 'http://localhost:3001'
-
+  // Используем прокси настройку из nuxt.config.ts
   const getBonuses = async (params = {}) => {
     try {
       const query = new URLSearchParams()
@@ -17,7 +15,7 @@ export const useBonuses = () => {
       if (params.sort_order) query.append('sort_order', params.sort_order)
       
       const queryString = query.toString()
-      const url = `${baseURL}/api/bonuses${queryString ? `?${queryString}` : ''}`
+      const url = `/api/bonuses${queryString ? `?${queryString}` : ''}`
       
       const response = await fetch(url, {
         method: 'GET',
@@ -40,7 +38,7 @@ export const useBonuses = () => {
 
   const getBonus = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses/${id}`, {
+      const response = await fetch(`/api/bonuses/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -61,7 +59,7 @@ export const useBonuses = () => {
 
   const createBonus = async (bonusData) => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses`, {
+      const response = await fetch(`/api/bonuses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -83,7 +81,7 @@ export const useBonuses = () => {
 
   const updateBonus = async (id, bonusData) => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses/${id}`, {
+      const response = await fetch(`/api/bonuses/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -105,7 +103,7 @@ export const useBonuses = () => {
 
   const deleteBonus = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses/${id}`, {
+      const response = await fetch(`/api/bonuses/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -126,7 +124,7 @@ export const useBonuses = () => {
 
   const toggleBonusStatus = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses/${id}/toggle`, {
+      const response = await fetch(`/api/bonuses/${id}/toggle`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -147,7 +145,7 @@ export const useBonuses = () => {
 
   const getBonusStats = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/bonuses/stats`, {
+      const response = await fetch(`/api/bonuses/stats`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

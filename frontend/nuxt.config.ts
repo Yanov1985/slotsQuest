@@ -53,6 +53,19 @@ export default defineNuxtConfig({
     host: 'localhost'
   },
 
+  nitro: {
+    devProxy: {
+      '/api': {
+        target: 'http://localhost:3001/api',
+        changeOrigin: true,
+        prependPath: true
+      }
+    },
+    experimental: {
+      wasm: true
+    }
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -60,16 +73,5 @@ export default defineNuxtConfig({
     },
   },
 
-  nitro: {
-    experimental: {
-      wasm: true
-    },
-    devProxy: {
-      '/api': {
-        target: 'http://localhost:3001/api',
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' }
-      }
-    }
-  }
+
 })

@@ -9,6 +9,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { FeaturesModule } from './features/features.module';
 import { ThemesModule } from './themes/themes.module';
 import { MechanicsModule } from './mechanics/mechanics.module';
+import { BonusesModule } from './bonuses/bonuses.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
@@ -24,6 +25,7 @@ import { PrismaModule } from './prisma/prisma.module';
     FeaturesModule,
     ThemesModule,
     MechanicsModule,
+    BonusesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

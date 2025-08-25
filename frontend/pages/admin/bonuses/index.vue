@@ -1,242 +1,289 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans">
     <!-- Header -->
-    <div class="bg-white shadow-sm border-b">
+    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
           <div class="flex items-center space-x-4">
-            <NuxtLink to="/admin" class="text-blue-600 hover:text-blue-800">
-              ← Назад к панели управления
+            <NuxtLink to="/admin" class="text-[#FF6E48] hover:text-[#CD5A3C] transition-colors flex items-center space-x-2">
+              <Icon name="heroicons:arrow-left" class="text-lg" />
+              <span>Назад к панели управления</span>
             </NuxtLink>
-            <h1 class="text-2xl font-bold text-gray-900">Управление бонусами</h1>
+            <div class="h-6 w-px bg-[#353A4A]"></div>
+            <h1 class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
+              <Icon name="heroicons:gift" class="text-[#FF6E48]" />
+              <span>Управление бонусами</span>
+            </h1>
           </div>
           <div class="flex space-x-3">
             <button
-              @click="refreshBonuses"
-              class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+              @click="loadBonuses"
+              :disabled="loading"
+              class="bg-gradient-to-r from-[#353A4A] to-[#2A2F3A] border border-[#4A5568] text-white px-4 py-2 rounded-lg hover:from-[#4A5568] hover:to-[#353A4A] transition-all flex items-center space-x-2 disabled:opacity-50"
             >
-              🔄 Обновить
+              <Icon name="heroicons:arrow-path" class="text-lg" :class="{ 'animate-spin': loading }" />
+              <span>Обновить</span>
             </button>
             <button
               @click="openAddModal"
-              class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              class="bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white px-4 py-2 rounded-lg hover:from-[#CD5A3C] hover:to-[#FF6E48] transition-all flex items-center space-x-2 font-semibold"
             >
-              + Добавить бонус
+              <Icon name="heroicons:plus" class="text-lg" />
+              <span>Добавить бонус</span>
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </header>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-lg shadow p-6">
-          <div class="flex items-center">
-            <div class="p-2 bg-blue-100 rounded-lg">
-              <span class="text-2xl">🎁</span>
+        <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-[#FF6E48] text-sm font-semibold">Всего бонусов</p>
+              <p class="text-3xl font-bold text-white">{{ totalBonuses }}</p>
             </div>
-            <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Всего бонусов</p>
-              <p class="text-2xl font-bold text-gray-900">{{ totalBonuses }}</p>
-            </div>
+            <Icon name="heroicons:gift" class="text-[#FF6E48] text-3xl" />
           </div>
         </div>
-        <div class="bg-white rounded-lg shadow p-6">
-          <div class="flex items-center">
-            <div class="p-2 bg-green-100 rounded-lg">
-              <span class="text-2xl">✅</span>
+        <div class="bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-[#63F3AB] text-sm font-semibold">Активные</p>
+              <p class="text-3xl font-bold text-white">{{ activeBonuses }}</p>
             </div>
-            <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Активные</p>
-              <p class="text-2xl font-bold text-gray-900">{{ activeBonuses }}</p>
-            </div>
+            <Icon name="heroicons:check-circle" class="text-[#63F3AB] text-3xl" />
           </div>
         </div>
-        <div class="bg-white rounded-lg shadow p-6">
-          <div class="flex items-center">
-            <div class="p-2 bg-yellow-100 rounded-lg">
-              <span class="text-2xl">⏰</span>
+        <div class="bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-[#FF6E48] text-sm font-semibold">Популярные</p>
+              <p class="text-3xl font-bold text-white">{{ popularBonuses }}</p>
             </div>
-            <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Истекающие</p>
-              <p class="text-2xl font-bold text-gray-900">{{ expiringBonuses }}</p>
-            </div>
+            <Icon name="heroicons:star" class="text-[#FF6E48] text-3xl" />
           </div>
         </div>
-        <div class="bg-white rounded-lg shadow p-6">
-          <div class="flex items-center">
-            <div class="p-2 bg-purple-100 rounded-lg">
-              <span class="text-2xl">💰</span>
+        <div class="bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-[#CD0F8B] text-sm font-semibold">Рекомендуемые</p>
+              <p class="text-3xl font-bold text-white">{{ featuredBonuses }}</p>
             </div>
-            <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Общая сумма</p>
-              <p class="text-2xl font-bold text-gray-900">{{ totalBonusAmount.toLocaleString() }}</p>
-            </div>
+            <Icon name="heroicons:heart" class="text-[#CD0F8B] text-3xl" />
           </div>
         </div>
       </div>
 
       <!-- Search and Filters -->
-      <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Поиск</label>
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Поиск по названию, коду..."
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+      <div class="bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mb-8">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1">
+            <div class="relative">
+              <input 
+                v-model="searchQuery" 
+                type="text" 
+                placeholder="Поиск бонусов..." 
+                class="w-full bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 pl-10 text-white placeholder-[#A0AABE] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
+              >
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Icon name="heroicons:magnifying-glass" class="text-[#A0AABE]" />
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Тип</label>
-            <select
-              v-model="typeFilter"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          
+          <div class="flex gap-3">
+            <select 
+              v-model="typeFilter" 
+              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="">Все типы</option>
-              <option value="welcome">Приветственный</option>
-              <option value="deposit">За депозит</option>
-              <option value="free_spins">Фриспины</option>
-              <option value="cashback">Кэшбэк</option>
-              <option value="loyalty">Лояльность</option>
+              <option value="free_spins">Free Spins</option>
+              <option value="multiplier">Multiplier</option>
+              <option value="cash_bonus">Cash Bonus</option>
+              <option value="pick_bonus">Pick Bonus</option>
+              <option value="wheel_bonus">Wheel Bonus</option>
+              <option value="mini_game">Mini Game</option>
+              <option value="progressive_jackpot">Progressive Jackpot</option>
             </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Статус</label>
-            <select
-              v-model="statusFilter"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            
+            <select 
+              v-model="statusFilter" 
+              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="">Все статусы</option>
-              <option value="active">Активные</option>
-              <option value="inactive">Неактивные</option>
-              <option value="expired">Истекшие</option>
+              <option value="true">Активные</option>
+              <option value="false">Неактивные</option>
             </select>
-          </div>
-          <div class="flex items-end">
-            <button
-              @click="clearFilters"
-              class="w-full bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors"
+            
+            <button 
+              @click="clearFilters" 
+              class="px-4 py-3 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white hover:bg-[#1B1E26] transition-all flex items-center"
             >
-              Очистить фильтры
+              <Icon name="heroicons:x-mark" />
             </button>
           </div>
         </div>
       </div>
 
       <!-- Bonuses Table -->
-      <div class="bg-white rounded-lg shadow overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+      <div class="bg-[#161A21]/50 border border-[#353A4A] rounded-xl overflow-hidden">
+        <div class="px-6 py-4 border-b border-[#353A4A]">
+          <h3 class="text-lg font-bold font-display text-white flex items-center space-x-2">
+            <Icon name="heroicons:table-cells" class="text-[#00EDFF]" />
+            <span>Список бонусов</span>
+          </h3>
+        </div>
+        
+        <div v-if="loading" class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div v-for="n in 6" :key="n" class="bg-[#0F1117] border border-[#353A4A] rounded-xl p-6 animate-pulse">
+              <div class="flex items-center space-x-4 mb-4">
+                <div class="w-12 h-12 bg-[#353A4A] rounded-lg"></div>
+                <div class="flex-1">
+                  <div class="h-4 bg-[#353A4A] rounded mb-2"></div>
+                  <div class="h-3 bg-[#353A4A] rounded w-2/3"></div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="h-3 bg-[#353A4A] rounded"></div>
+                <div class="h-3 bg-[#353A4A] rounded w-3/4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-else-if="paginatedBonuses.length === 0" class="text-center py-12">
+          <div class="text-6xl mb-4 text-[#FF6E48]">
+            <Icon name="heroicons:gift" class="w-16 h-16 mx-auto" />
+          </div>
+          <h3 class="text-xl font-semibold text-[#A0AABE] mb-2">Бонусы не найдены</h3>
+          <p class="text-[#6B7280] mb-6">
+            {{ searchQuery ? 'Попробуйте изменить поисковый запрос' : 'Добавьте первый бонус' }}
+          </p>
+          <button 
+            @click="openAddModal" 
+            class="px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto"
+          >
+            <Icon name="heroicons:plus-circle" />
+            <span>Добавить бонус</span>
+          </button>
+        </div>
+
+        <div v-else class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-[#353A4A]">
+            <thead class="bg-[#2A2F3A]">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
                   Бонус
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
                   Тип
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Значение
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
                   Статус
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Период действия
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
+                  Слоты
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Использований
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
+                  Порядок
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-[#E5E7EB] uppercase tracking-wider">
                   Действия
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="bonus in filteredBonuses" :key="bonus.id" class="hover:bg-gray-50">
+            <tbody class="bg-[#161A21]/30 divide-y divide-[#353A4A]">
+              <tr v-for="bonus in paginatedBonuses" :key="bonus.id" class="hover:bg-[#2A2F3A]/50 transition-colors">
                 <td class="px-6 py-4">
-                  <div>
-                    <div class="text-sm font-medium text-gray-900">{{ bonus.name }}</div>
-                    <div class="text-sm text-gray-500">{{ bonus.description }}</div>
-                    <div v-if="bonus.code" class="text-xs text-blue-600 font-mono bg-blue-50 px-2 py-1 rounded mt-1 inline-block">
-                      Код: {{ bonus.code }}
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3" :style="{ color: bonus.color || '#8b5cf6' }">
+                      {{ bonus.icon || '🎁' }}
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-white">{{ bonus.name }}</div>
+                      <div class="text-sm text-[#9CA3AF]">{{ bonus.description }}</div>
+                      <div class="text-xs text-[#6B7280] mt-1">Slug: {{ bonus.slug }}</div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <span :class="{
-                    'bg-green-100 text-green-800': bonus.type === 'welcome',
-                    'bg-blue-100 text-blue-800': bonus.type === 'deposit',
-                    'bg-purple-100 text-purple-800': bonus.type === 'free_spins',
-                    'bg-yellow-100 text-yellow-800': bonus.type === 'cashback',
-                    'bg-gray-100 text-gray-800': bonus.type === 'loyalty'
-                  }" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                  <span 
+                    :class="getBonusTypeClass(bonus.type)" 
+                    class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full"
+                  >
                     {{ getBonusTypeName(bonus.type) }}
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">
-                    <span v-if="bonus.type === 'free_spins'">
-                      {{ bonus.value }} фриспинов
+                  <div class="flex flex-col space-y-1">
+                    <span 
+                      :class="{
+                        'bg-green-500/20 text-green-300 border border-green-500/30': bonus.is_active,
+                        'bg-gray-500/20 text-gray-300 border border-gray-500/30': !bonus.is_active
+                      }" 
+                      class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full w-fit"
+                    >
+                      {{ bonus.is_active ? 'Активный' : 'Неактивный' }}
                     </span>
-                    <span v-else-if="bonus.value_type === 'percentage'">
-                      {{ bonus.value }}%
-                    </span>
-                    <span v-else>
-                      {{ bonus.value.toLocaleString() }} монет
-                    </span>
-                  </div>
-                  <div v-if="bonus.max_amount" class="text-xs text-gray-500">
-                    Макс: {{ bonus.max_amount.toLocaleString() }}
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span :class="{
-                    'bg-green-100 text-green-800': bonus.status === 'active',
-                    'bg-gray-100 text-gray-800': bonus.status === 'inactive',
-                    'bg-red-100 text-red-800': bonus.status === 'expired'
-                  }" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-                    {{ getBonusStatusName(bonus.status) }}
-                  </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div>{{ formatDate(bonus.start_date) }}</div>
-                  <div>{{ formatDate(bonus.end_date) }}</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div>{{ bonus.used_count }} / {{ bonus.max_uses || '∞' }}</div>
-                  <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
-                    <div 
-                      class="bg-blue-600 h-2 rounded-full" 
-                      :style="{ width: bonus.max_uses ? (bonus.used_count / bonus.max_uses * 100) + '%' : '0%' }"
-                    ></div>
+                    <div class="flex space-x-1">
+                      <span 
+                        v-if="bonus.is_popular" 
+                        class="px-2 py-1 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-xs leading-5 font-semibold rounded-full"
+                      >
+                        Популярный
+                      </span>
+                      <span 
+                        v-if="bonus.is_featured" 
+                        class="px-2 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs leading-5 font-semibold rounded-full"
+                      >
+                        Рекомендуемый
+                      </span>
+                    </div>
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                  <button
-                    @click="editBonus(bonus)"
-                    class="text-blue-600 hover:text-blue-900"
-                  >
-                    Редактировать
-                  </button>
-                  <button
-                    @click="toggleBonusStatus(bonus)"
-                    :class="{
-                      'text-green-600 hover:text-green-900': bonus.status === 'inactive',
-                      'text-yellow-600 hover:text-yellow-900': bonus.status === 'active'
-                    }"
-                  >
-                    {{ bonus.status === 'active' ? 'Деактивировать' : 'Активировать' }}
-                  </button>
-                  <button
-                    @click="confirmDelete(bonus)"
-                    class="text-red-600 hover:text-red-900"
-                  >
-                    Удалить
-                  </button>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[#9CA3AF]">
+                  <div class="flex items-center space-x-2">
+                    <span class="text-white font-semibold">{{ bonus.slots_count || 0 }}</span>
+                    <span>слотов</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[#9CA3AF]">
+                  {{ bonus.sort_order || 0 }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <div class="flex flex-col space-y-2">
+                    <button
+                      @click="editBonus(bonus)"
+                      class="text-[#00EDFF] hover:text-[#01BFCF] transition-colors flex items-center space-x-1"
+                    >
+                      <Icon name="heroicons:pencil" class="text-sm" />
+                      <span>Редактировать</span>
+                    </button>
+                    <button
+                      @click="toggleBonusStatus(bonus)"
+                      :disabled="saving"
+                      :class="{
+                        'text-[#63F3AB] hover:text-[#51C58B]': !bonus.is_active,
+                        'text-[#FFD700] hover:text-[#FFC107]': bonus.is_active
+                      }"
+                      class="transition-colors flex items-center space-x-1 disabled:opacity-50"
+                    >
+                      <Icon :name="bonus.is_active ? 'heroicons:pause' : 'heroicons:play'" class="text-sm" />
+                      <span>{{ bonus.is_active ? 'Деактивировать' : 'Активировать' }}</span>
+                    </button>
+                    <button
+                      @click="confirmDelete(bonus)"
+                      :disabled="deleting"
+                      class="text-[#FF6E48] hover:text-[#CD5A3C] transition-colors flex items-center space-x-1 disabled:opacity-50"
+                    >
+                      <Icon name="heroicons:trash" class="text-sm" />
+                      <span>Удалить</span>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -244,58 +291,42 @@
         </div>
 
         <!-- Pagination -->
-        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-          <div class="flex-1 flex justify-between sm:hidden">
-            <button
-              @click="previousPage"
-              :disabled="currentPage === 1"
-              class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
-            >
-              Предыдущая
-            </button>
-            <button
-              @click="nextPage"
-              :disabled="currentPage === totalPages"
-              class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
-            >
-              Следующая
-            </button>
-          </div>
-          <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-              <p class="text-sm text-gray-700">
-                Показано <span class="font-medium">{{ startIndex }}</span> - <span class="font-medium">{{ endIndex }}</span> из <span class="font-medium">{{ totalBonuses }}</span> результатов
-              </p>
+        <div v-if="totalPages > 1" class="px-6 py-4 border-t border-[#353A4A]">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-[#6B7280]">
+                Показано {{ startIndex }}-{{ endIndex }} из {{ totalBonuses }} бонусов
+              </span>
             </div>
-            <div>
-              <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-                <button
-                  @click="previousPage"
-                  :disabled="currentPage === 1"
-                  class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
-                >
-                  ←
-                </button>
+            <div class="flex items-center space-x-2">
+              <button
+                @click="previousPage"
+                :disabled="currentPage === 1"
+                class="px-3 py-2 text-sm font-medium text-[#A0AABE] bg-[#1B1E26] border border-[#353A4A] rounded-lg hover:bg-[#252A35] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                Предыдущая
+              </button>
+              <div class="flex items-center space-x-1">
                 <button
                   v-for="page in visiblePages"
                   :key="page"
                   @click="goToPage(page)"
                   :class="{
-                    'bg-blue-50 border-blue-500 text-blue-600': page === currentPage,
-                    'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': page !== currentPage
+                    'bg-[#FF6E48] text-white border-[#FF6E48]': page === currentPage,
+                    'bg-[#1B1E26] text-[#A0AABE] border-[#353A4A] hover:bg-[#252A35]': page !== currentPage
                   }"
-                  class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  class="px-3 py-2 text-sm font-medium border rounded-lg transition-colors"
                 >
                   {{ page }}
                 </button>
-                <button
-                  @click="nextPage"
-                  :disabled="currentPage === totalPages"
-                  class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
-                >
-                  →
-                </button>
-              </nav>
+              </div>
+              <button
+                @click="nextPage"
+                :disabled="currentPage === totalPages"
+                class="px-3 py-2 text-sm font-medium text-[#A0AABE] bg-[#1B1E26] border border-[#353A4A] rounded-lg hover:bg-[#252A35] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                Следующая
+              </button>
             </div>
           </div>
         </div>
@@ -304,152 +335,149 @@
 
     <!-- Add/Edit Bonus Modal -->
     <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-white">
+      <div class="relative top-10 mx-auto p-5 border w-full max-w-4xl shadow-lg rounded-md bg-[#161A21] border-[#353A4A]">
         <div class="mt-3">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">
+          <h3 class="text-lg font-medium text-white mb-4">
             {{ editingBonus ? 'Редактировать бонус' : 'Добавить бонус' }}
           </h3>
           <form @submit.prevent="saveBonus">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="md:col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Название</label>
+              <div>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Название *</label>
                 <input
                   v-model="bonusForm.name"
                   type="text"
                   required
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="Введите название бонуса"
                 />
               </div>
-              <div class="md:col-span-2">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Описание</label>
-                <textarea
-                  v-model="bonusForm.description"
-                  rows="2"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </div>
+              
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Тип бонуса</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Slug *</label>
+                <input
+                  v-model="bonusForm.slug"
+                  type="text"
+                  required
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="bonus-slug"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Тип бонуса</label>
                 <select
                   v-model="bonusForm.type"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
                 >
-                  <option value="welcome">Приветственный</option>
-                  <option value="deposit">За депозит</option>
-                  <option value="free_spins">Фриспины</option>
-                  <option value="cashback">Кэшбэк</option>
-                  <option value="loyalty">Лояльность</option>
+                  <option value="">Выберите тип</option>
+                  <option value="free_spins">Free Spins</option>
+                  <option value="multiplier">Multiplier</option>
+                  <option value="cash_bonus">Cash Bonus</option>
+                  <option value="pick_bonus">Pick Bonus</option>
+                  <option value="wheel_bonus">Wheel Bonus</option>
+                  <option value="mini_game">Mini Game</option>
+                  <option value="progressive_jackpot">Progressive Jackpot</option>
                 </select>
               </div>
+              
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Промокод (опционально)</label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Иконка</label>
                 <input
-                  v-model="bonusForm.code"
+                  v-model="bonusForm.icon"
                   type="text"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="🎰"
                 />
               </div>
+              
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Тип значения</label>
-                <select
-                  v-model="bonusForm.value_type"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="fixed">Фиксированная сумма</option>
-                  <option value="percentage">Процент</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
-                  {{ bonusForm.type === 'free_spins' ? 'Количество фриспинов' : 'Значение' }}
-                </label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Цвет</label>
                 <input
-                  v-model.number="bonusForm.value"
-                  type="number"
-                  required
-                  min="0"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  v-model="bonusForm.color"
+                  type="color"
+                  class="w-full h-10 bg-[#0F1117] border border-[#353A4A] rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
                 />
               </div>
-              <div v-if="bonusForm.value_type === 'percentage'">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Максимальная сумма</label>
+              
+              <div>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Порядок сортировки</label>
                 <input
-                  v-model.number="bonusForm.max_amount"
+                  v-model.number="bonusForm.sort_order"
                   type="number"
                   min="0"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="0"
                 />
               </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Максимальное количество использований</label>
-                <input
-                  v-model.number="bonusForm.max_uses"
-                  type="number"
-                  min="1"
-                  placeholder="Оставьте пустым для неограниченного"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Дата начала</label>
-                <input
-                  v-model="bonusForm.start_date"
-                  type="datetime-local"
-                  required
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Дата окончания</label>
-                <input
-                  v-model="bonusForm.end_date"
-                  type="datetime-local"
-                  required
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Минимальный депозит</label>
-                <input
-                  v-model.number="bonusForm.min_deposit"
-                  type="number"
-                  min="0"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Требования по отыгрышу (x)</label>
-                <input
-                  v-model.number="bonusForm.wagering_requirement"
-                  type="number"
-                  min="1"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
+              
               <div class="md:col-span-2">
-                <label class="flex items-center">
-                  <input
-                    v-model="bonusForm.is_active"
-                    type="checkbox"
-                    class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                  />
-                  <span class="ml-2 text-sm text-gray-600">Активный бонус</span>
-                </label>
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">Описание</label>
+                <textarea
+                  v-model="bonusForm.description"
+                  rows="3"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="Введите описание бонуса"
+                ></textarea>
+              </div>
+              
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-[#E5E7EB] mb-2">URL изображения</label>
+                <input
+                  v-model="bonusForm.image_url"
+                  type="url"
+                  class="w-full px-3 py-2 bg-[#0F1117] border border-[#353A4A] rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48]"
+                  placeholder="https://example.com/image.jpg"
+                />
+              </div>
+              
+              <div class="md:col-span-2">
+                <div class="flex flex-wrap gap-6">
+                  <label class="flex items-center space-x-2">
+                    <input
+                      v-model="bonusForm.is_active"
+                      type="checkbox"
+                      class="w-4 h-4 text-[#FF6E48] bg-[#0F1117] border-[#353A4A] rounded focus:ring-[#FF6E48] focus:ring-2"
+                    />
+                    <span class="text-sm text-[#E5E7EB]">Активный</span>
+                  </label>
+                  
+                  <label class="flex items-center space-x-2">
+                    <input
+                      v-model="bonusForm.is_popular"
+                      type="checkbox"
+                      class="w-4 h-4 text-[#FF6E48] bg-[#0F1117] border-[#353A4A] rounded focus:ring-[#FF6E48] focus:ring-2"
+                    />
+                    <span class="text-sm text-[#E5E7EB]">Популярный</span>
+                  </label>
+                  
+                  <label class="flex items-center space-x-2">
+                    <input
+                      v-model="bonusForm.is_featured"
+                      type="checkbox"
+                      class="w-4 h-4 text-[#FF6E48] bg-[#0F1117] border-[#353A4A] rounded focus:ring-[#FF6E48] focus:ring-2"
+                    />
+                    <span class="text-sm text-[#E5E7EB]">Рекомендуемый</span>
+                  </label>
+                </div>
               </div>
             </div>
+            
             <div class="flex justify-end space-x-3 mt-6">
               <button
                 type="button"
                 @click="closeModal"
-                class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
+                class="px-4 py-2 bg-[#353A4A] text-white rounded-lg hover:bg-[#4A5568] transition-colors"
               >
                 Отмена
               </button>
               <button
                 type="submit"
-                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                :disabled="saving"
+                class="px-4 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white rounded-lg hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 transition-all disabled:opacity-50 flex items-center space-x-2"
               >
-                {{ editingBonus ? 'Обновить' : 'Создать' }}
+                <Icon v-if="saving" name="heroicons:arrow-path" class="animate-spin" />
+                <span>{{ editingBonus ? 'Сохранить' : 'Создать' }}</span>
               </button>
             </div>
           </form>
@@ -459,24 +487,29 @@
 
     <!-- Delete Confirmation Modal -->
     <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-[#161A21] border-[#353A4A]">
         <div class="mt-3 text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">Подтвердите удаление</h3>
-          <p class="text-sm text-gray-500 mb-6">
+          <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+            <Icon name="heroicons:exclamation-triangle" class="h-6 w-6 text-red-600" />
+          </div>
+          <h3 class="text-lg font-medium text-white mb-2">Удалить бонус</h3>
+          <p class="text-sm text-[#9CA3AF] mb-4">
             Вы уверены, что хотите удалить бонус "{{ bonusToDelete?.name }}"? Это действие нельзя отменить.
           </p>
           <div class="flex justify-center space-x-3">
             <button
-              @click="showDeleteModal = false"
-              class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
+              @click="closeDeleteModal"
+              class="px-4 py-2 bg-[#353A4A] text-white rounded-lg hover:bg-[#4A5568] transition-colors"
             >
               Отмена
             </button>
             <button
-              @click="deleteBonus"
-              class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+              @click="deleteBonusAction"
+              :disabled="deleting"
+              class="px-4 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white rounded-lg hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 transition-all disabled:opacity-50 flex items-center space-x-2"
             >
-              Удалить
+              <Icon v-if="deleting" name="heroicons:arrow-path" class="animate-spin" />
+              <span>Удалить</span>
             </button>
           </div>
         </div>
@@ -486,123 +519,56 @@
 </template>
 
 <script setup>
-// Mock data for demonstration
-const bonuses = ref([
-  {
-    id: '1',
-    name: 'Приветственный бонус 200%',
-    description: 'Удвойте свой первый депозит до 50,000 монет',
-    type: 'welcome',
-    code: 'WELCOME200',
-    value: 200,
-    value_type: 'percentage',
-    max_amount: 50000,
-    status: 'active',
-    start_date: '2024-01-01T00:00:00Z',
-    end_date: '2024-12-31T23:59:59Z',
-    min_deposit: 1000,
-    wagering_requirement: 35,
-    max_uses: null,
-    used_count: 1250,
-    is_active: true,
-    created_at: '2024-01-01T10:30:00Z'
-  },
-  {
-    id: '2',
-    name: '50 фриспинов за депозит',
-    description: 'Получите 50 бесплатных вращений на популярных слотах',
-    type: 'free_spins',
-    code: 'FREESPINS50',
-    value: 50,
-    value_type: 'fixed',
-    max_amount: null,
-    status: 'active',
-    start_date: '2024-01-15T00:00:00Z',
-    end_date: '2024-02-15T23:59:59Z',
-    min_deposit: 500,
-    wagering_requirement: 25,
-    max_uses: 1000,
-    used_count: 750,
-    is_active: true,
-    created_at: '2024-01-15T10:30:00Z'
-  },
-  {
-    id: '3',
-    name: 'Кэшбэк 10% по выходным',
-    description: 'Возврат 10% от проигранных средств каждые выходные',
-    type: 'cashback',
-    code: null,
-    value: 10,
-    value_type: 'percentage',
-    max_amount: 10000,
-    status: 'active',
-    start_date: '2024-01-01T00:00:00Z',
-    end_date: '2024-12-31T23:59:59Z',
-    min_deposit: 0,
-    wagering_requirement: 15,
-    max_uses: null,
-    used_count: 3200,
-    is_active: true,
-    created_at: '2024-01-01T10:30:00Z'
-  }
-])
+import { ref, computed, onMounted, watch } from 'vue'
+import { useBonuses } from '~/composables/useBonuses'
 
-const loading = ref(false)
-const searchQuery = ref('')
-const typeFilter = ref('')
-const statusFilter = ref('')
-const currentPage = ref(1)
-const itemsPerPage = ref(10)
+// Composables
+const { getBonuses, createBonus, updateBonus, deleteBonus: deleteBonusApi } = useBonuses()
+
+// Reactive state
+const loading = ref(true)
+const saving = ref(false)
+const deleting = ref(false)
+const bonuses = ref([])
 const showModal = ref(false)
 const showDeleteModal = ref(false)
 const editingBonus = ref(null)
 const bonusToDelete = ref(null)
 
+// Search and filters
+const searchQuery = ref('')
+const typeFilter = ref('')
+const statusFilter = ref('')
+
+// Pagination
+const currentPage = ref(1)
+const itemsPerPage = ref(10)
+
+// Form data
 const bonusForm = ref({
   name: '',
+  slug: '',
   description: '',
-  type: 'welcome',
-  code: '',
-  value: 0,
-  value_type: 'percentage',
-  max_amount: null,
-  start_date: '',
-  end_date: '',
-  min_deposit: 0,
-  wagering_requirement: 1,
-  max_uses: null,
-  is_active: true
+  type: '',
+  icon: '',
+  color: '#8b5cf6',
+  image_url: '',
+  sort_order: 0,
+  is_active: true,
+  is_popular: false,
+  is_featured: false
 })
 
 // Computed properties
-const totalBonuses = computed(() => bonuses.value.length)
-const activeBonuses = computed(() => bonuses.value.filter(bonus => bonus.status === 'active').length)
-const expiringBonuses = computed(() => {
-  const now = new Date()
-  const weekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
-  return bonuses.value.filter(bonus => {
-    const endDate = new Date(bonus.end_date)
-    return endDate > now && endDate <= weekFromNow
-  }).length
-})
-const totalBonusAmount = computed(() => {
-  return bonuses.value.reduce((total, bonus) => {
-    if (bonus.value_type === 'fixed') {
-      return total + (bonus.value * bonus.used_count)
-    }
-    return total + ((bonus.max_amount || 0) * bonus.used_count)
-  }, 0)
-})
-
 const filteredBonuses = computed(() => {
   let filtered = bonuses.value
 
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(bonus => 
-      bonus.name.toLowerCase().includes(query) ||
-      bonus.description.toLowerCase().includes(query) ||
-      (bonus.code && bonus.code.toLowerCase().includes(query))
+      bonus.name?.toLowerCase().includes(query) ||
+      bonus.slug?.toLowerCase().includes(query) ||
+      bonus.description?.toLowerCase().includes(query)
     )
   }
 
@@ -610,16 +576,28 @@ const filteredBonuses = computed(() => {
     filtered = filtered.filter(bonus => bonus.type === typeFilter.value)
   }
 
-  if (statusFilter.value) {
-    filtered = filtered.filter(bonus => bonus.status === statusFilter.value)
+  if (statusFilter.value !== '') {
+    const isActive = statusFilter.value === 'true'
+    filtered = filtered.filter(bonus => bonus.is_active === isActive)
   }
 
   return filtered
 })
 
-const totalPages = computed(() => Math.ceil(filteredBonuses.value.length / itemsPerPage.value))
+const paginatedBonuses = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value
+  const end = start + itemsPerPage.value
+  return filteredBonuses.value.slice(start, end)
+})
+
+const totalBonuses = computed(() => filteredBonuses.value.length)
+const activeBonuses = computed(() => bonuses.value.filter(b => b.is_active).length)
+const popularBonuses = computed(() => bonuses.value.filter(b => b.is_popular).length)
+const featuredBonuses = computed(() => bonuses.value.filter(b => b.is_featured).length)
+
+const totalPages = computed(() => Math.ceil(totalBonuses.value / itemsPerPage.value))
 const startIndex = computed(() => (currentPage.value - 1) * itemsPerPage.value + 1)
-const endIndex = computed(() => Math.min(currentPage.value * itemsPerPage.value, filteredBonuses.value.length))
+const endIndex = computed(() => Math.min(currentPage.value * itemsPerPage.value, totalBonuses.value))
 
 const visiblePages = computed(() => {
   const pages = []
@@ -634,49 +612,33 @@ const visiblePages = computed(() => {
 })
 
 // Methods
-const getBonusTypeName = (type) => {
-  const types = {
-    welcome: 'Приветственный',
-    deposit: 'За депозит',
-    free_spins: 'Фриспины',
-    cashback: 'Кэшбэк',
-    loyalty: 'Лояльность'
+const loadBonuses = async () => {
+  try {
+    loading.value = true
+    const response = await getBonuses()
+    bonuses.value = response.data || []
+  } catch (error) {
+    console.error('Ошибка загрузки бонусов:', error)
+    bonuses.value = []
+  } finally {
+    loading.value = false
   }
-  return types[type] || type
-}
-
-const getBonusStatusName = (status) => {
-  const statuses = {
-    active: 'Активный',
-    inactive: 'Неактивный',
-    expired: 'Истекший'
-  }
-  return statuses[status] || status
-}
-
-const refreshBonuses = async () => {
-  loading.value = true
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  loading.value = false
 }
 
 const openAddModal = () => {
   editingBonus.value = null
   bonusForm.value = {
     name: '',
+    slug: '',
     description: '',
-    type: 'welcome',
-    code: '',
-    value: 0,
-    value_type: 'percentage',
-    max_amount: null,
-    start_date: '',
-    end_date: '',
-    min_deposit: 0,
-    wagering_requirement: 1,
-    max_uses: null,
-    is_active: true
+    type: '',
+    icon: '',
+    color: '#8b5cf6',
+    image_url: '',
+    sort_order: 0,
+    is_active: true,
+    is_popular: false,
+    is_featured: false
   }
   showModal.value = true
 }
@@ -684,73 +646,49 @@ const openAddModal = () => {
 const editBonus = (bonus) => {
   editingBonus.value = bonus
   bonusForm.value = {
-    name: bonus.name,
-    description: bonus.description,
-    type: bonus.type,
-    code: bonus.code || '',
-    value: bonus.value,
-    value_type: bonus.value_type,
-    max_amount: bonus.max_amount,
-    start_date: bonus.start_date ? new Date(bonus.start_date).toISOString().slice(0, 16) : '',
-    end_date: bonus.end_date ? new Date(bonus.end_date).toISOString().slice(0, 16) : '',
-    min_deposit: bonus.min_deposit,
-    wagering_requirement: bonus.wagering_requirement,
-    max_uses: bonus.max_uses,
-    is_active: bonus.is_active
+    name: bonus.name || '',
+    slug: bonus.slug || '',
+    description: bonus.description || '',
+    type: bonus.type || '',
+    icon: bonus.icon || '',
+    color: bonus.color || '#8b5cf6',
+    image_url: bonus.image_url || '',
+    sort_order: bonus.sort_order || 0,
+    is_active: bonus.is_active ?? true,
+    is_popular: bonus.is_popular ?? false,
+    is_featured: bonus.is_featured ?? false
   }
   showModal.value = true
 }
 
 const saveBonus = async () => {
-  loading.value = true
-  
   try {
+    saving.value = true
+    
     if (editingBonus.value) {
-      // Update existing bonus
-      const index = bonuses.value.findIndex(b => b.id === editingBonus.value.id)
-      if (index !== -1) {
-        bonuses.value[index] = {
-          ...bonuses.value[index],
-          ...bonusForm.value,
-          status: bonusForm.value.is_active ? 'active' : 'inactive',
-          updated_at: new Date().toISOString()
-        }
-      }
+      await updateBonus(editingBonus.value.id, bonusForm.value)
     } else {
-      // Create new bonus
-      const newBonus = {
-        id: Date.now().toString(),
-        ...bonusForm.value,
-        status: bonusForm.value.is_active ? 'active' : 'inactive',
-        used_count: 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }
-      bonuses.value.unshift(newBonus)
+      await createBonus(bonusForm.value)
     }
     
+    await loadBonuses()
     closeModal()
   } catch (error) {
-    console.error('Error saving bonus:', error)
+    console.error('Ошибка сохранения бонуса:', error)
   } finally {
-    loading.value = false
+    saving.value = false
   }
 }
 
 const toggleBonusStatus = async (bonus) => {
-  loading.value = true
-  
   try {
-    const index = bonuses.value.findIndex(b => b.id === bonus.id)
-    if (index !== -1) {
-      bonuses.value[index].status = bonuses.value[index].status === 'active' ? 'inactive' : 'active'
-      bonuses.value[index].is_active = bonuses.value[index].status === 'active'
-      bonuses.value[index].updated_at = new Date().toISOString()
-    }
+    saving.value = true
+    await updateBonus(bonus.id, { is_active: !bonus.is_active })
+    await loadBonuses()
   } catch (error) {
-    console.error('Error toggling bonus status:', error)
+    console.error('Ошибка изменения статуса бонуса:', error)
   } finally {
-    loading.value = false
+    saving.value = false
   }
 }
 
@@ -759,38 +697,29 @@ const confirmDelete = (bonus) => {
   showDeleteModal.value = true
 }
 
-const deleteBonus = async () => {
-  loading.value = true
+const deleteBonusAction = async () => {
+  if (!bonusToDelete.value) return
   
   try {
-    bonuses.value = bonuses.value.filter(b => b.id !== bonusToDelete.value.id)
-    showDeleteModal.value = false
-    bonusToDelete.value = null
+    deleting.value = true
+    await deleteBonusApi(bonusToDelete.value.id)
+    await loadBonuses()
+    closeDeleteModal()
   } catch (error) {
-    console.error('Error deleting bonus:', error)
+    console.error('Ошибка удаления бонуса:', error)
   } finally {
-    loading.value = false
+    deleting.value = false
   }
 }
 
 const closeModal = () => {
   showModal.value = false
   editingBonus.value = null
-  bonusForm.value = {
-    name: '',
-    description: '',
-    type: 'welcome',
-    code: '',
-    value: 0,
-    value_type: 'percentage',
-    max_amount: null,
-    start_date: '',
-    end_date: '',
-    min_deposit: 0,
-    wagering_requirement: 1,
-    max_uses: null,
-    is_active: true
-  }
+}
+
+const closeDeleteModal = () => {
+  showDeleteModal.value = false
+  bonusToDelete.value = null
 }
 
 const clearFilters = () => {
@@ -798,6 +727,10 @@ const clearFilters = () => {
   typeFilter.value = ''
   statusFilter.value = ''
   currentPage.value = 1
+}
+
+const goToPage = (page) => {
+  currentPage.value = page
 }
 
 const previousPage = () => {
@@ -812,16 +745,30 @@ const nextPage = () => {
   }
 }
 
-const goToPage = (page) => {
-  currentPage.value = page
+const getBonusTypeName = (type) => {
+  const types = {
+    free_spins: 'Free Spins',
+    multiplier: 'Multiplier',
+    cash_bonus: 'Cash Bonus',
+    pick_bonus: 'Pick Bonus',
+    wheel_bonus: 'Wheel Bonus',
+    mini_game: 'Mini Game',
+    progressive_jackpot: 'Progressive Jackpot'
+  }
+  return types[type] || type || 'Не указан'
 }
 
-const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('ru-RU', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
+const getBonusTypeClass = (type) => {
+  const classes = {
+    free_spins: 'bg-purple-500/20 text-purple-300 border border-purple-500/30',
+    multiplier: 'bg-green-500/20 text-green-300 border border-green-500/30',
+    cash_bonus: 'bg-blue-500/20 text-blue-300 border border-blue-500/30',
+    pick_bonus: 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30',
+    wheel_bonus: 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30',
+    mini_game: 'bg-pink-500/20 text-pink-300 border border-pink-500/30',
+    progressive_jackpot: 'bg-red-500/20 text-red-300 border border-red-500/30'
+  }
+  return classes[type] || 'bg-gray-500/20 text-gray-300 border border-gray-500/30'
 }
 
 // Watchers
@@ -829,9 +776,19 @@ watch([searchQuery, typeFilter, statusFilter], () => {
   currentPage.value = 1
 })
 
-// Page meta
-definePageMeta({
-  title: 'Управление бонусами - Админ панель',
-  description: 'Управление бонусами в админ панели SlotQuest'
+// Auto-generate slug from name
+watch(() => bonusForm.value.name, (newName) => {
+  if (newName && !editingBonus.value) {
+    bonusForm.value.slug = newName
+      .toLowerCase()
+      .replace(/[^a-z0-9а-я]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+  }
+})
+
+// Lifecycle
+onMounted(() => {
+  loadBonuses()
 })
 </script>
