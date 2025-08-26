@@ -1527,23 +1527,25 @@
                     <span class="text-white font-semibold">Рейтинг</span>
                     <span
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm"
-                      >#12 из 2000+</span
+                      >#{{ slot.popularity_rank || '12' }} из 2000+</span
                     >
                   </div>
                   <div
                     class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
                     role="progressbar"
-                    aria-valuenow="94"
+                    :aria-valuenow="Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)"
                     aria-valuemin="0"
                     aria-valuemax="100"
-                    aria-label="Рейтинг популярности: 94 из 100"
+                    :aria-label="`Рейтинг популярности: ${Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)}%`"
                   >
                     <div
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
-                      style="width: 94%"
+                      :style="`width: ${Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)}%`"
                     ></div>
                   </div>
-                  <div class="text-yellow-300 text-sm">Топ слот 2024 года</div>
+                  <div class="text-yellow-300 text-sm font-medium">
+                    {{ Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100) }}% популярности
+                  </div>
                 </div>
               </div>
 
@@ -1637,7 +1639,7 @@
                         >Реальный RTP</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">97.45%</div>
+                    <div class="text-white font-black text-lg">{{ slot.real_rtp || '97.45' }}%</div>
                   </div>
                 </div>
 
@@ -1668,7 +1670,7 @@
                         >Частота бонуса</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">1:448</div>
+                    <div class="text-white font-black text-lg">{{ slot.bonus_frequency || '1:448' }}</div>
                   </div>
                 </div>
               </div>
@@ -2115,7 +2117,7 @@
                     <div class="w-16 text-right">
                       <span
                         class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-bold"
-                        >#12</span
+                        >#{{ slot.popularity_rank || '12' }}</span
                       >
                     </div>
                     <div class="text-sm text-gray-600 w-32">Стабильный хит</div>
@@ -2736,7 +2738,7 @@
           <div
             class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl"
           >
-            <div class="text-3xl font-bold text-blue-600 mb-2">#12</div>
+            <div class="text-3xl font-bold text-blue-600 mb-2">#{{ slot.popularity_rank || '12' }}</div>
             <div class="text-sm text-gray-600">Рейтинг 2024</div>
           </div>
           <div

@@ -70,6 +70,9 @@ model slots {
   rating_count          Int?             @default(0)
   popularity_rank       Int?
   popularity_percentage Int?
+  // Rating and popularity fields
+  real_rtp              Decimal?         @db.Decimal(5, 2)
+  bonus_frequency       String?          @db.VarChar(50)
   // Awards block for HERO
   show_awards           Boolean?         @default(false)
   awards                Json?

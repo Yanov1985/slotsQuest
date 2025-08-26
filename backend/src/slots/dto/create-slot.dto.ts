@@ -34,6 +34,8 @@ export class CreateSlotDto {
   rating_count?: number;
   popularity_rank?: number;
   popularity_percentage?: number;
+  real_rtp?: number;
+  bonus_frequency?: string;
   // HERO: награды
   show_awards?: boolean;
   awards?: any;
