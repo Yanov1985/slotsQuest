@@ -44,6 +44,74 @@ const START_THEMES: string[] = [
   'Cats'
 ]
 
+// Список стартовых бонусов слотов
+const START_BONUSES = [
+  {
+    name: 'Free Spins',
+    type: 'free_spins',
+    description: 'Бесплатные вращения барабанов без дополнительных ставок',
+    icon: '🎰',
+    color: '#10b981',
+    is_popular: true
+  },
+  {
+    name: 'Bonus Buy',
+    type: 'bonus_buy',
+    description: 'Возможность купить бонусную функцию за определенную сумму',
+    icon: '💰',
+    color: '#f59e0b',
+    is_popular: true
+  },
+  {
+    name: 'Retrigger',
+    type: 'retrigger',
+    description: 'Повторная активация бонусной функции во время ее выполнения',
+    icon: '🔄',
+    color: '#3b82f6',
+    is_popular: true
+  },
+  {
+    name: 'Increasing Multiplier',
+    type: 'multiplier',
+    description: 'Множитель, который увеличивается с каждым выигрышем',
+    icon: '📈',
+    color: '#ef4444',
+    is_popular: true
+  },
+  {
+    name: 'Pick Bonus',
+    type: 'pick_bonus',
+    description: 'Бонусная игра с выбором предметов для получения призов',
+    icon: '🎁',
+    color: '#8b5cf6',
+    is_popular: false
+  },
+  {
+    name: 'Wheel Bonus',
+    type: 'wheel_bonus',
+    description: 'Колесо фортуны с различными призами',
+    icon: '🎡',
+    color: '#06b6d4',
+    is_popular: false
+  },
+  {
+    name: 'Cash Collect',
+    type: 'cash_collect',
+    description: 'Сбор денежных призов с символов на барабанах',
+    icon: '💵',
+    color: '#84cc16',
+    is_popular: false
+  },
+  {
+    name: 'Progressive Bonus',
+    type: 'progressive',
+    description: 'Прогрессивный бонус, который увеличивается со временем',
+    icon: '🚀',
+    color: '#f97316',
+    is_popular: true
+  }
+]
+
 // Список стартовых механик слотов
 const START_MECHANICS = [
   {
@@ -203,6 +271,43 @@ async function main() {
 
   const mechanicsTotal = await prisma.mechanics.count()
   console.log(`Mechanics seeding completed. Total mechanics in DB: ${mechanicsTotal}`)
+
+  console.log('Seeding bonuses...')
+
+  // Проходим по всем бонусам и создаём их, если их ещё нет в БД
+  for (let i = 0; i < START_BONUSES.length; i++) {
+    const bonus = START_BONUSES[i]
+    const slug = toSlug(bonus.name)
+
+    // upsert по уникальному slug — безопасно повторно запускать скрипт
+    await prisma.bonuses.upsert({
+      where: { slug },
+      update: {
+        // если бонус уже есть — синхронизируем данные
+        name: bonus.name,
+        type: bonus.type,
+        description: bonus.description,
+        icon: bonus.icon,
+        color: bonus.color,
+        is_popular: bonus.is_popular,
+        is_active: true
+      },
+      create: {
+        name: bonus.name,
+        slug,
+        type: bonus.type,
+        description: bonus.description,
+        icon: bonus.icon,
+        color: bonus.color,
+        is_popular: bonus.is_popular,
+        is_active: true,
+        sort_order: i + 1
+      }
+    })
+  }
+
+  const bonusesTotal = await prisma.bonuses.count()
+  console.log(`Bonuses seeding completed. Total bonuses in DB: ${bonusesTotal}`)
 }
 
 main()

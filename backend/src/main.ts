@@ -13,7 +13,7 @@ async function bootstrap() {
 
   // Global prefix removed - using controller-level prefixes
 
-  const port = 3001;
+  const port = process.env.PORT || 3001;
   await app.listen(port);
 
   console.log(`🚀 Backend server running on http://localhost:${port}`);

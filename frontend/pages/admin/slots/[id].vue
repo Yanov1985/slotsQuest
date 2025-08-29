@@ -64,9 +64,9 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Основной контент -->
-      <div class="grid grid-cols-1 gap-8">
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
         <!-- Левая панель: Редактирование -->
-        <div class="space-y-8 max-w-3xl mx-auto w-full">
+        <div class="xl:col-span-2 space-y-8">
           <div
             class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
           >
@@ -200,7 +200,9 @@
                   <div class="grid grid-cols-1 gap-4">
                     <!-- Ссылка для кнопки "Играть бесплатно" -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Ссылка кнопки "Играть бесплатно" (демо-режим)
                       </label>
                       <input
@@ -217,7 +219,9 @@
 
                     <!-- Ссылка для кнопки "Играть на деньги" -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Ссылка кнопки "Играть на деньги"
                       </label>
                       <input
@@ -227,8 +231,8 @@
                         placeholder="https://casino.com/games/gates-of-olympus"
                       />
                       <p class="mt-1 text-xs text-gray-400">
-                        URL для игры на реальные деньги в казино. Если не указано,
-                        будет показано предупреждение.
+                        URL для игры на реальные деньги в казино. Если не
+                        указано, будет показано предупреждение.
                       </p>
                     </div>
                   </div>
@@ -237,13 +241,18 @@
 
               <!-- Характеристики игры -->
               <div class="space-y-4">
-                <div class="flex items-center justify-between border-b border-gray-600 pb-2">
+                <div
+                  class="flex items-center justify-between border-b border-gray-600 pb-2"
+                >
                   <h3 class="text-lg font-semibold text-purple-400">
                     Характеристики игры
                   </h3>
                   <button
                     type="button"
-                    @click="showGameCharacteristicsSection = !showGameCharacteristicsSection"
+                    @click="
+                      showGameCharacteristicsSection =
+                        !showGameCharacteristicsSection
+                    "
                     class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
                     :aria-expanded="showGameCharacteristicsSection"
                   >
@@ -254,7 +263,9 @@
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- RTP -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         RTP (%)
                       </label>
                       <input
@@ -270,7 +281,9 @@
 
                     <!-- Волатильность -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Волатильность
                       </label>
                       <select
@@ -285,7 +298,9 @@
 
                     <!-- Минимальная ставка -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Минимальная ставка
                       </label>
                       <input
@@ -298,7 +313,9 @@
 
                     <!-- Максимальная ставка -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Максимальная ставка
                       </label>
                       <input
@@ -311,7 +328,9 @@
 
                     <!-- Максимальный выигрыш -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Максимальный выигрыш (x от ставки)
                       </label>
                       <input
@@ -325,7 +344,9 @@
 
                     <!-- Дата выпуска -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Дата выпуска
                       </label>
                       <input
@@ -337,7 +358,9 @@
 
                     <!-- Количество барабанов -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Количество барабанов
                       </label>
                       <input
@@ -352,7 +375,9 @@
 
                     <!-- Количество рядов -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Количество рядов
                       </label>
                       <input
@@ -367,7 +392,9 @@
 
                     <!-- Линии выплат -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Линии выплат
                       </label>
                       <div class="relative">
@@ -414,7 +441,12 @@
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
 
@@ -436,7 +468,9 @@
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Реальный RTP -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Реальный RTP (%)
                       </label>
                       <input
@@ -452,7 +486,9 @@
 
                     <!-- Частота бонуса -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-300 mb-2">
+                      <label
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
                         Частота бонуса
                       </label>
                       <input
@@ -465,8 +501,6 @@
                   </div>
                 </div>
               </div>
-
-
 
               <!-- Медиа контент -->
               <div class="space-y-4">
@@ -564,7 +598,435 @@
                 </div>
               </div>
 
+              <!-- Игровые механики Hero секции -->
+              <div class="space-y-4">
+                <div
+                  class="flex items-center justify-between border-b border-gray-600 pb-2"
+                >
+                  <h3 class="text-lg font-semibold text-indigo-400">
+                    Игровые механики Hero секции
+                  </h3>
+                  <button
+                    type="button"
+                    @click="showMechanicsSection = !showMechanicsSection"
+                    class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                    :aria-expanded="showMechanicsSection"
+                  >
+                    {{ showMechanicsSection ? 'Скрыть' : 'Показать' }}
+                  </button>
+                </div>
+                <div v-show="showMechanicsSection" class="space-y-4">
+                  <p class="text-sm text-gray-400">
+                    Выберите игровые механики, которые будут отображаться в Hero
+                    секции слота
+                  </p>
 
+                  <!-- Список доступных механик -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div
+                      v-for="mechanic in availableMechanics"
+                      :key="mechanic.id"
+                      class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors"
+                    >
+                      <input
+                        :id="`mechanic-${mechanic.id}`"
+                        v-model="selectedMechanics"
+                        :value="mechanic.id"
+                        type="checkbox"
+                        class="w-4 h-4 text-indigo-600 bg-gray-600 border-gray-500 rounded focus:ring-indigo-500 focus:ring-2"
+                      />
+                      <label
+                        :for="`mechanic-${mechanic.id}`"
+                        class="ml-3 flex-1 cursor-pointer"
+                      >
+                        <div class="flex items-center gap-2">
+                          <span
+                            v-if="mechanic.icon"
+                            class="text-lg"
+                            v-html="mechanic.icon"
+                          ></span>
+                          <div>
+                            <div class="text-sm font-medium text-white">
+                              {{ mechanic.name }}
+                            </div>
+                            <div
+                              class="text-xs text-gray-400"
+                              v-if="mechanic.description"
+                            >
+                              {{ mechanic.description }}
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Выбранные механики -->
+                  <div
+                    v-if="selectedMechanics && selectedMechanics.length > 0"
+                    class="mt-4"
+                  >
+                    <h4 class="text-sm font-medium text-gray-300 mb-2">
+                      Выбранные механики:
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        v-for="mechanicId in selectedMechanics"
+                        :key="mechanicId"
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
+                      >
+                        {{ getMechanicName(mechanicId) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Бонусы Hero секции -->
+              <div class="space-y-4">
+                <div
+                  class="flex items-center justify-between border-b border-gray-600 pb-2"
+                >
+                  <h3
+                    class="text-lg font-semibold text-amber-400 flex items-center gap-2"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                      ></path>
+                    </svg>
+                    Бонусы Hero секции
+                    <span
+                      class="text-xs bg-amber-500/20 text-amber-300 px-2 py-1 rounded-full"
+                    >
+                      {{ selectedBonuses.length }} выбрано
+                    </span>
+                  </h3>
+                  <button
+                    type="button"
+                    @click="showBonusesSection = !showBonusesSection"
+                    class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                    :aria-expanded="showBonusesSection"
+                  >
+                    {{ showBonusesSection ? 'Скрыть' : 'Показать' }}
+                  </button>
+                </div>
+                <div v-show="showBonusesSection" class="space-y-4">
+                  <div
+                    class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4"
+                  >
+                    <p class="text-sm text-amber-200 flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-amber-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                      Выберите бонусы, которые будут отображаться в Hero секции
+                      слота на клиентской странице
+                    </p>
+                  </div>
+
+                  <!-- Поиск бонусов -->
+                  <div class="relative">
+                    <input
+                      v-model="bonusSearchQuery"
+                      type="text"
+                      placeholder="Поиск бонусов..."
+                      class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-gray-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                    />
+                    <svg
+                      class="w-4 h-4 text-gray-400 absolute left-3 top-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+
+                  <!-- Быстрые фильтры -->
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      @click="selectAllBonuses"
+                      type="button"
+                      class="text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md transition-colors"
+                    >
+                      Выбрать все
+                    </button>
+                    <button
+                      @click="clearAllBonuses"
+                      type="button"
+                      class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
+                    >
+                      Очистить все
+                    </button>
+                    <button
+                      @click="selectPopularBonuses"
+                      type="button"
+                      class="text-xs px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
+                    >
+                      Только популярные
+                    </button>
+                  </div>
+
+                  <!-- Список доступных бонусов -->
+                  <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
+                  >
+                    <div
+                      v-for="bonus in filteredBonuses"
+                      :key="bonus.id"
+                      class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-amber-500 transition-all duration-200"
+                      :class="
+                        selectedBonuses.includes(bonus.id)
+                          ? 'border-amber-500 bg-amber-500/10'
+                          : ''
+                      "
+                    >
+                      <input
+                        :id="`bonus-${bonus.id}`"
+                        v-model="selectedBonuses"
+                        :value="bonus.id"
+                        type="checkbox"
+                        class="w-4 h-4 text-amber-600 bg-gray-600 border-gray-500 rounded focus:ring-amber-500 focus:ring-2"
+                      />
+                      <label
+                        :for="`bonus-${bonus.id}`"
+                        class="ml-3 flex-1 cursor-pointer"
+                      >
+                        <div class="flex items-center gap-2">
+                          <span
+                            v-if="bonus.icon"
+                            class="text-lg"
+                            v-html="bonus.icon"
+                          ></span>
+                          <div>
+                            <div class="text-sm font-medium text-white">
+                              {{ bonus.name }}
+                            </div>
+                            <div
+                              class="text-xs text-gray-400"
+                              v-if="bonus.description"
+                            >
+                              {{ bonus.description }}
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Выбранные бонусы -->
+                  <div
+                    v-if="selectedBonuses && selectedBonuses.length > 0"
+                    class="mt-4"
+                  >
+                    <h4 class="text-sm font-medium text-gray-300 mb-2">
+                      Выбранные бонусы:
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        v-for="bonusId in selectedBonuses"
+                        :key="bonusId"
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-600/20 text-amber-300 border border-amber-500/30"
+                      >
+                        {{ getBonusName(bonusId) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Тематики Hero секции -->
+              <div class="space-y-4">
+                <div
+                  class="flex items-center justify-between border-b border-gray-600 pb-2"
+                >
+                  <h3
+                    class="text-lg font-semibold text-emerald-400 flex items-center gap-2"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M11 7l-6.3 6.3"
+                      ></path>
+                    </svg>
+                    Тематики Hero секции
+                    <span
+                      class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded-full"
+                    >
+                      {{ selectedThemes.length }} выбрано
+                    </span>
+                  </h3>
+                  <button
+                    type="button"
+                    @click="showThemesSection = !showThemesSection"
+                    class="text-xs px-3 py-1 rounded-md border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200 transition-colors"
+                    :aria-expanded="showThemesSection"
+                  >
+                    {{ showThemesSection ? 'Скрыть' : 'Показать' }}
+                  </button>
+                </div>
+                <div v-show="showThemesSection" class="space-y-4">
+                  <div
+                    class="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4"
+                  >
+                    <p class="text-sm text-emerald-200 flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4 text-emerald-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                      Выберите тематики, которые будут отображаться в Hero
+                      секции слота на клиентской странице
+                    </p>
+                  </div>
+
+                  <!-- Поиск тематик -->
+                  <div class="relative">
+                    <input
+                      v-model="themeSearchQuery"
+                      type="text"
+                      placeholder="Поиск тематик..."
+                      class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 pl-10 text-white placeholder-gray-400 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    />
+                    <svg
+                      class="w-4 h-4 text-gray-400 absolute left-3 top-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      ></path>
+                    </svg>
+                  </div>
+
+                  <!-- Быстрые фильтры -->
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      @click="clearAllThemes"
+                      type="button"
+                      class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
+                    >
+                      Очистить выбор
+                    </button>
+                    <span
+                      class="text-xs text-emerald-300 px-3 py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30"
+                    >
+                      ℹ️ Можно выбрать только одну тематику
+                    </span>
+                  </div>
+
+                  <!-- Список доступных тематик -->
+                  <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
+                  >
+                    <div
+                      v-for="theme in filteredThemes"
+                      :key="theme.id"
+                      class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-emerald-500 transition-all duration-200"
+                      :class="
+                        selectedThemes[0] === theme.id
+                          ? 'border-emerald-500 bg-emerald-500/10'
+                          : ''
+                      "
+                    >
+                      <input
+                        :id="`theme-${theme.id}`"
+                        v-model="selectedThemes[0]"
+                        :value="theme.id"
+                        type="radio"
+                        name="theme"
+                        class="w-4 h-4 text-emerald-600 bg-gray-600 border-gray-500 focus:ring-emerald-500 focus:ring-2"
+                      />
+                      <label
+                        :for="`theme-${theme.id}`"
+                        class="ml-3 flex-1 cursor-pointer"
+                      >
+                        <div class="flex items-center gap-2">
+                          <span
+                            v-if="theme.icon"
+                            class="text-lg"
+                            v-html="theme.icon"
+                          ></span>
+                          <div>
+                            <div class="text-sm font-medium text-white">
+                              {{ theme.name }}
+                            </div>
+                            <div
+                              class="text-xs text-gray-400"
+                              v-if="theme.description"
+                            >
+                              {{ theme.description }}
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Выбранная тематика -->
+                  <div
+                    v-if="
+                      selectedThemes &&
+                      selectedThemes.length > 0 &&
+                      selectedThemes[0]
+                    "
+                    class="mt-4"
+                  >
+                    <h4 class="text-sm font-medium text-gray-300 mb-2">
+                      Выбранная тематика:
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-500/30"
+                      >
+                        {{ getThemeName(selectedThemes[0]) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Кнопки сохранения -->
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
@@ -693,9 +1155,7 @@
                     <div class="mb-3">
                       <span
                         class="inline-block bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-purple-400/30"
-                        >{{
-                          getProviderName(form.provider_id) || 'Провайдер'
-                        }}</span
+                        >{{ currentProviderName }}</span
                       >
                     </div>
 
@@ -800,7 +1260,7 @@
                             Волатильность
                           </div>
                           <div class="text-white capitalize">
-                            {{ getVolatilityText(form.volatility) }}
+                            {{ currentVolatilityText }}
                           </div>
                         </div>
                         <div
@@ -847,7 +1307,6 @@
                     </div>
 
                     <!-- Награды -->
-
                   </div>
                 </div>
 
@@ -892,6 +1351,20 @@
               </p>
             </div>
           </div>
+
+          <!-- Правая панель: Предпросмотр Hero секции -->
+          <div class="xl:col-span-1">
+            <div class="sticky top-24">
+              <HeroPreview
+                :slot-data="form"
+                :selected-bonuses="selectedBonuses"
+                :selected-themes="selectedThemes"
+                :available-bonuses="availableBonuses"
+                :available-themes="availableThemes"
+                :providers="providers"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -900,6 +1373,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import HeroPreview from '~/components/admin/HeroPreview.vue'
 
 // Получаем ID слота из роута
 const route = useRoute()
@@ -915,7 +1389,19 @@ const showBasicSection = ref(true)
 const showHeroLinksSection = ref(true)
 const showGameCharacteristicsSection = ref(true)
 const showRatingSection = ref(true)
+const showMechanicsSection = ref(false)
+const showBonusesSection = ref(false)
+const showThemesSection = ref(false)
 const paylineType = ref('text') // 'number' или 'text'
+
+// Поиск и фильтры для бонусов и тематик
+const bonusSearchQuery = ref('')
+const themeSearchQuery = ref('')
+
+// Данные для механик, бонусов и тематик
+const availableMechanics = ref([])
+const availableBonuses = ref([])
+const availableThemes = ref([])
 
 // Форма редактирования
 const form = ref({
@@ -943,10 +1429,12 @@ const form = ref({
   // Ссылки кнопок
   demo_url: '', // Ссылка для кнопки "Играть бесплатно"
   real_play_url: '', // Ссылка для кнопки "Играть на деньги"
-
 })
 
-
+// Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
+const selectedMechanics = ref([])
+const selectedBonuses = ref([])
+const selectedThemes = ref([])
 
 // Заголовок страницы
 useHead({
@@ -955,7 +1443,13 @@ useHead({
 
 // Загрузка данных при монтировании
 onMounted(async () => {
-  await Promise.all([loadProviders(), slotId !== 'new' ? loadSlot() : null])
+  await Promise.all([
+    loadProviders(),
+    loadMechanics(),
+    loadBonuses(),
+    loadThemes(),
+    slotId !== 'new' ? loadSlot() : null,
+  ])
   loading.value = false
 })
 
@@ -963,9 +1457,43 @@ onMounted(async () => {
 const loadProviders = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/providers')
-    providers.value = response.data || response
+    const data = response.data || response
+    providers.value = JSON.parse(JSON.stringify(data))
   } catch (error) {
     console.error('Ошибка загрузки провайдеров:', error)
+  }
+}
+
+// Загрузка списка механик
+const loadMechanics = async () => {
+  try {
+    const response = await $fetch('http://localhost:3001/api/mechanics')
+    const data = response.data || response
+    availableMechanics.value = JSON.parse(JSON.stringify(data))
+  } catch (error) {
+    console.error('Ошибка загрузки механик:', error)
+  }
+}
+
+// Загрузка списка бонусов
+const loadBonuses = async () => {
+  try {
+    const response = await $fetch('http://localhost:3001/api/bonuses')
+    const data = response.data || response
+    availableBonuses.value = JSON.parse(JSON.stringify(data))
+  } catch (error) {
+    console.error('Ошибка загрузки бонусов:', error)
+  }
+}
+
+// Загрузка списка тематик
+const loadThemes = async () => {
+  try {
+    const response = await $fetch('http://localhost:3001/api/themes')
+    const data = response.data || response
+    availableThemes.value = JSON.parse(JSON.stringify(data))
+  } catch (error) {
+    console.error('Ошибка загрузки тематик:', error)
   }
 }
 
@@ -977,7 +1505,8 @@ const loadSlot = async () => {
     const response = await $fetch(
       `http://localhost:3001/api/slots/admin/${slotId}`,
     )
-    slot.value = response.data || response
+    const data = response.data || response
+    slot.value = JSON.parse(JSON.stringify(data))
 
     // Заполняем форму данными слота
     Object.keys(form.value).forEach((key) => {
@@ -986,22 +1515,38 @@ const loadSlot = async () => {
       }
     })
 
+    // Заполняем отдельные массивы для механик, бонусов и тематик
+    if (slot.value.slot_mechanics && Array.isArray(slot.value.slot_mechanics)) {
+      selectedMechanics.value = slot.value.slot_mechanics.map(
+        (sm) => sm.mechanic_id,
+      )
+    }
+    if (slot.value.slot_bonuses && Array.isArray(slot.value.slot_bonuses)) {
+      selectedBonuses.value = slot.value.slot_bonuses.map((sb) => sb.bonus_id)
+    }
+    if (slot.value.themes) {
+      selectedThemes.value = [slot.value.themes.id]
+    }
+
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
     if (slot.value.game_field && (!slot.value.reels || !slot.value.rows)) {
-      const match = slot.value.game_field.match(/(\d+)×(\d+)/);
+      const match = slot.value.game_field.match(/(\d+)×(\d+)/)
       if (match) {
-        if (!slot.value.reels) form.value.reels = parseInt(match[1]);
-        if (!slot.value.rows) form.value.rows = parseInt(match[2]);
+        if (!slot.value.reels) form.value.reels = parseInt(match[1])
+        if (!slot.value.rows) form.value.rows = parseInt(match[2])
       }
     }
 
     // Определяем тип paylines (число или текст)
     if (slot.value.paylines !== undefined) {
-      const paylineValue = slot.value.paylines;
-      if (typeof paylineValue === 'number' || (typeof paylineValue === 'string' && /^\d+$/.test(paylineValue))) {
-        paylineType.value = 'number';
+      const paylineValue = slot.value.paylines
+      if (
+        typeof paylineValue === 'number' ||
+        (typeof paylineValue === 'string' && /^\d+$/.test(paylineValue))
+      ) {
+        paylineType.value = 'number'
       } else {
-        paylineType.value = 'text';
+        paylineType.value = 'text'
       }
     }
   } catch (error) {
@@ -1024,20 +1569,87 @@ watch(
   },
 )
 
-// Получение названия провайдера
-const getProviderName = (providerId) => {
-  const provider = providers.value.find((p) => p.id === providerId)
+// Computed свойства для получения названий (избегаем проблем с сериализацией функций)
+const currentProviderName = computed(() => {
+  const provider = providers.value.find((p) => p.id === form.value.provider_id)
   return provider?.name || 'Провайдер'
-}
+})
 
-// Получение текста волатильности
-const getVolatilityText = (volatility) => {
+const currentVolatilityText = computed(() => {
   const map = {
     low: 'Низкая',
     medium: 'Средняя',
     high: 'Высокая',
   }
-  return map[volatility] || 'Средняя'
+  return map[form.value.volatility] || 'Средняя'
+})
+
+// Функции для получения названий по ID (используются только в шаблоне)
+const getMechanicName = (mechanicId) => {
+  const mechanic = availableMechanics.value.find((m) => m.id === mechanicId)
+  return mechanic?.name || 'Неизвестная механика'
+}
+
+const getBonusName = (bonusId) => {
+  const bonus = availableBonuses.value.find((b) => b.id === bonusId)
+  return bonus?.name || 'Неизвестный бонус'
+}
+
+const getThemeName = (themeId) => {
+  const theme = availableThemes.value.find((t) => t.id === themeId)
+  return theme?.name || 'Неизвестная тематика'
+}
+
+// Computed свойства для фильтрации бонусов и тематик
+const filteredBonuses = computed(() => {
+  let filtered = availableBonuses.value
+
+  if (bonusSearchQuery.value) {
+    const query = bonusSearchQuery.value.toLowerCase()
+    filtered = filtered.filter(
+      (bonus) =>
+        bonus.name?.toLowerCase().includes(query) ||
+        bonus.description?.toLowerCase().includes(query) ||
+        bonus.type?.toLowerCase().includes(query),
+    )
+  }
+
+  return filtered
+})
+
+const filteredThemes = computed(() => {
+  let filtered = availableThemes.value
+
+  if (themeSearchQuery.value) {
+    const query = themeSearchQuery.value.toLowerCase()
+    filtered = filtered.filter(
+      (theme) =>
+        theme.name?.toLowerCase().includes(query) ||
+        theme.description?.toLowerCase().includes(query),
+    )
+  }
+
+  return filtered
+})
+
+// Функции для управления бонусами
+const selectAllBonuses = () => {
+  selectedBonuses.value = filteredBonuses.value.map((bonus) => bonus.id)
+}
+
+const clearAllBonuses = () => {
+  selectedBonuses.value = []
+}
+
+const selectPopularBonuses = () => {
+  selectedBonuses.value = filteredBonuses.value
+    .filter((bonus) => bonus.is_popular)
+    .map((bonus) => bonus.id)
+}
+
+// Функции для управления тематиками (только одна тематика)
+const clearAllThemes = () => {
+  selectedThemes.value = []
 }
 
 // Сохранение изменений
@@ -1057,8 +1669,15 @@ const saveSlot = async () => {
     // Подготавливаем данные для отправки
     const dataToSend = {
       ...form.value,
+      // Добавляем данные из отдельных переменных
+      selected_mechanics: selectedMechanics.value,
+      selected_bonuses: selectedBonuses.value,
+      selected_themes: selectedThemes.value,
       // Автоматически формируем game_field из reels и rows
-      game_field: form.value.reels && form.value.rows ? `${form.value.reels}×${form.value.rows}` : form.value.game_field
+      game_field:
+        form.value.reels && form.value.rows
+          ? `${form.value.reels}×${form.value.rows}`
+          : form.value.game_field,
     }
 
     const response = await $fetch(url, {
@@ -1067,7 +1686,7 @@ const saveSlot = async () => {
     })
 
     // Показываем уведомление об успешном сохранении
-    // Здесь можно добавить toast уведомление
+    alert('Слот успешно сохранен!')
 
     if (slotId === 'new' && response.data?.id) {
       // После создания нового слота переходим на его страницу редактирования по корректному маршруту
@@ -1075,7 +1694,7 @@ const saveSlot = async () => {
     }
   } catch (error) {
     console.error('Ошибка сохранения:', error)
-    // Показываем уведомление об ошибке
+    alert(`Ошибка сохранения: ${error.message || error}`)
   } finally {
     saving.value = false
   }
@@ -1107,8 +1726,6 @@ const handlePreviewVideoError = (event) => {
   event.target.parentElement.innerHTML =
     '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
 }
-
-
 
 // Сброс формы к исходному состоянию
 const resetForm = () => {
@@ -1143,7 +1760,6 @@ const resetForm = () => {
       // Ссылки кнопок
       demo_url: '',
       real_play_url: '',
-
     })
   }
 }

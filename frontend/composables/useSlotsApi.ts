@@ -132,6 +132,17 @@ export const useSlotsApi = () => {
     }
   }
 
+  // Get slot by ID for admin
+  const getSlotById = async (id: string) => {
+    try {
+      const response = await $fetch<{ data: any }>(`${baseURL}/api/slots/admin/${id}`)
+      return response.data || response
+    } catch (error) {
+      console.error('Error fetching slot by ID:', error)
+      throw error
+    }
+  }
+
   return {
     getSlots,
     getFeaturedSlots,
@@ -144,6 +155,7 @@ export const useSlotsApi = () => {
     getSlotRating,
     createSlot,
     updateSlot,
-    deleteSlot
+    deleteSlot,
+    getSlotById
   }
 }

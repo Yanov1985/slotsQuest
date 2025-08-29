@@ -39,6 +39,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
       orderBy: {
         created_at: 'desc',
@@ -60,6 +71,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
       orderBy: {
         rating: 'desc',
@@ -78,6 +100,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
       orderBy: {
         play_count: 'desc',
@@ -140,6 +173,12 @@ export class SlotsService {
             mechanics: true,
           },
         },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
     });
 
@@ -382,9 +421,12 @@ export class SlotsService {
       : slugify(createSlotDto.name);
     const slug = preferredSlug || Date.now().toString();
 
+    // Извлекаем связанные данные из DTO
+    const { selected_mechanics, selected_bonuses, selected_themes, ...restDto } = createSlotDto;
+
     // Prepare data with proper date conversion
     const createData: any = {
-      ...createSlotDto,
+      ...restDto,
       slug,
     };
 
@@ -403,23 +445,129 @@ export class SlotsService {
       createData.release_date = new Date(createSlotDto.release_date);
     }
 
+    // Обработка связи с темой (прямая связь, не через промежуточную таблицу)
+    if (selected_themes !== undefined) {
+      if (Array.isArray(selected_themes) && selected_themes.length > 0) {
+        // Берем первую тему из массива, так как связь один-к-одному
+        // theme_id в схеме имеет тип String, поэтому не используем parseInt
+        createData.theme_id = selected_themes[0];
+      }
+    }
+
     const slot = await this.prisma.slots.create({
       data: createData,
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
     });
 
-    return slot;
+    // Обработка связей с механиками
+    if (selected_mechanics !== undefined && Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
+      const mechanicsData = selected_mechanics.map(mechanicId => ({
+        slot_id: slot.id,
+        mechanic_id: parseInt(mechanicId),
+        created_at: new Date()
+      }));
+
+      await this.prisma.slot_mechanics.createMany({
+        data: mechanicsData
+      });
+    }
+
+    // Обработка связей с бонусами
+    if (selected_bonuses !== undefined && Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
+      const bonusesData = selected_bonuses.map(bonusId => ({
+        slot_id: slot.id,
+        bonus_id: parseInt(bonusId),
+        created_at: new Date()
+      }));
+
+      await this.prisma.slot_bonuses.createMany({
+        data: bonusesData
+      });
+    }
+
+    // Возвращаем обновленный слот с включенными связями
+    return await this.getSlotById(slot.id);
   }
 
   async updateSlot(id: string, updateSlotDto: UpdateSlotDto) {
     // Обновляем slug если явно передан, иначе — если изменили name
+    const { provider_id, selected_mechanics, selected_bonuses, selected_themes, ...restDto } = updateSlotDto;
     const updateData: any = {
-      ...updateSlotDto,
+      ...restDto,
       updated_at: new Date(),
     };
+
+    // Обрабатываем provider_id отдельно
+    if (provider_id) {
+      updateData.provider_id = provider_id;
+    }
+
+    // Обработка связей с механиками
+    if (selected_mechanics !== undefined) {
+      // Удаляем все существующие связи с механиками
+      await this.prisma.slot_mechanics.deleteMany({
+        where: { slot_id: id }
+      });
+
+      // Создаем новые связи
+      if (Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
+        const mechanicsData = selected_mechanics.map(mechanicId => ({
+          slot_id: id,
+          mechanic_id: parseInt(mechanicId),
+          created_at: new Date()
+        }));
+
+        await this.prisma.slot_mechanics.createMany({
+          data: mechanicsData
+        });
+      }
+    }
+
+    // Обработка связей с бонусами
+    if (selected_bonuses !== undefined) {
+      // Удаляем все существующие связи с бонусами
+      await this.prisma.slot_bonuses.deleteMany({
+        where: { slot_id: id }
+      });
+
+      // Создаем новые связи
+      if (Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
+        const bonusesData = selected_bonuses.map(bonusId => ({
+          slot_id: id,
+          bonus_id: parseInt(bonusId),
+          created_at: new Date()
+        }));
+
+        await this.prisma.slot_bonuses.createMany({
+          data: bonusesData
+        });
+      }
+    }
+
+    // Обработка связи с темой (прямая связь, не через промежуточную таблицу)
+    if (selected_themes !== undefined) {
+      if (Array.isArray(selected_themes) && selected_themes.length > 0) {
+        // Берем первую тему из массива, так как связь один-к-одному
+        // theme_id в схеме имеет тип String, поэтому не используем parseInt
+        updateData.theme_id = selected_themes[0];
+      } else {
+        updateData.theme_id = null;
+      }
+    }
 
     // Нормализуем ставки если пришли строками (например, "€0.20")
     if (typeof updateData.min_bet === 'string') {
@@ -476,6 +624,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
     });
 
@@ -496,6 +655,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
     });
 
@@ -507,6 +677,17 @@ export class SlotsService {
       include: {
         providers: true,
         slot_categories: true,
+        slot_mechanics: {
+          include: {
+            mechanics: true,
+          },
+        },
+        slot_bonuses: {
+          include: {
+            bonuses: true,
+          },
+        },
+        themes: true,
       },
       orderBy: {
         created_at: 'desc',

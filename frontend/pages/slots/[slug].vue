@@ -1437,9 +1437,15 @@
                       </dd>
                     </div>
                     <dd class="text-3xl font-black text-white mb-1">
-                      {{ (slot.reels && slot.rows) ? `${slot.reels}×${slot.rows}` : (slot.game_field || '5×3') }}
+                      {{
+                        slot.reels && slot.rows
+                          ? `${slot.reels}×${slot.rows}`
+                          : slot.game_field || '5×3'
+                      }}
                     </dd>
-                    <dd class="text-rose-300 text-sm">{{ slot.paylines || 'Scatter Pays' }}</dd>
+                    <dd class="text-rose-300 text-sm">
+                      {{ slot.paylines || 'Scatter Pays' }}
+                    </dd>
                   </div>
                 </div>
 
@@ -1533,86 +1539,32 @@
                   <div
                     class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
                     role="progressbar"
-                    :aria-valuenow="Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)"
+                    :aria-valuenow="
+                      Math.round(
+                        ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
+                      )
+                    "
                     aria-valuemin="0"
                     aria-valuemax="100"
-                    :aria-label="`Рейтинг популярности: ${Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)}%`"
+                    :aria-label="`Рейтинг популярности: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
                   >
                     <div
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
-                      :style="`width: ${Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100)}%`"
+                      :style="`width: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
                     ></div>
                   </div>
                   <div class="text-yellow-300 text-sm font-medium">
-                    {{ Math.round((2000 - (slot.popularity_rank || 12)) / 2000 * 100) }}% популярности
+                    {{
+                      Math.round(
+                        ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
+                      )
+                    }}% популярности
                   </div>
                 </div>
               </div>
 
               <!-- Дополнительные метрики популярности -->
               <div class="mt-4 grid grid-cols-2 gap-3">
-                <!-- Место в рейтинге новых слотов -->
-                <div
-                  class="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm p-4 rounded-xl border border-green-400/30 relative overflow-hidden"
-                >
-                  <CanvasRevealEffect
-                    :animationSpeed="0.5"
-                    :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
-                    ]"
-                    :colors="getEffectColorsFor('emerald')"
-                    :dotSize="4"
-                    :showGradient="false"
-                    blendMode="overlay"
-                    :intensity="1.4"
-                    containerClassName="absolute inset-0 pointer-events-none"
-                  />
-                  <div class="relative z-10">
-                    <div class="flex items-center gap-2 mb-2">
-                      <div
-                        class="w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center"
-                      >
-                        <span class="text-white text-xs font-bold">🆕</span>
-                      </div>
-                      <span class="text-green-300 text-xs font-semibold"
-                        >Лучшие новые слоты 2021</span
-                      >
-                    </div>
-                    <div class="text-white font-black text-lg">#1</div>
-                  </div>
-                </div>
-
-                <!-- Место среди популярных слотов -->
-                <div
-                  class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-4 rounded-xl border border-blue-400/30 relative overflow-hidden"
-                >
-                  <CanvasRevealEffect
-                    :animationSpeed="0.5"
-                    :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
-                    ]"
-                    :colors="getEffectColorsFor('blue')"
-                    :dotSize="4"
-                    :showGradient="false"
-                    blendMode="overlay"
-                    :intensity="1.4"
-                    containerClassName="absolute inset-0 pointer-events-none"
-                  />
-                  <div class="relative z-10">
-                    <div class="flex items-center gap-2 mb-2">
-                      <div
-                        class="w-6 h-6 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center"
-                      >
-                        <span class="text-white text-xs font-bold">🔥</span>
-                      </div>
-                      <span class="text-blue-300 text-xs font-semibold"
-                        >Популярные слоты 2023</span
-                      >
-                    </div>
-                    <div class="text-white font-black text-lg">#1</div>
-                  </div>
-                </div>
-
                 <!-- RTP рейтинг -->
                 <div
                   class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 relative overflow-hidden"
@@ -1639,7 +1591,9 @@
                         >Реальный RTP</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">{{ slot.real_rtp || '97.45' }}%</div>
+                    <div class="text-white font-black text-lg">
+                      {{ slot.real_rtp || '97.45' }}%
+                    </div>
                   </div>
                 </div>
 
@@ -1670,7 +1624,9 @@
                         >Частота бонуса</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">{{ slot.bonus_frequency || '1:448' }}</div>
+                    <div class="text-white font-black text-lg">
+                      {{ slot.bonus_frequency || '1:448' }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1716,10 +1672,11 @@
                       :style="{
                         backgroundColor: `${slotMechanic.mechanics.color}30`,
                         color: `${slotMechanic.mechanics.color}`,
-                        borderColor: `${slotMechanic.mechanics.color}40`
+                        borderColor: `${slotMechanic.mechanics.color}40`,
                       }"
                     >
-                      {{ slotMechanic.mechanics.icon }} {{ slotMechanic.mechanics.name }}
+                      {{ slotMechanic.mechanics.icon }}
+                      {{ slotMechanic.mechanics.name }}
                     </span>
                     <span
                       v-if="!slot?.slot_mechanics?.length"
@@ -1753,25 +1710,42 @@
                     Бонусы
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
+                    <!-- Новая реализация: используем slot_bonuses напрямую как в механиках -->
                     <span
+                      v-for="slotBonus in slot?.slot_bonuses || []"
+                      :key="slotBonus.bonuses?.id || slotBonus.id"
                       class="px-3 py-1 bg-emerald-500/30 text-emerald-200 rounded-full text-xs font-medium border border-emerald-400/20"
                     >
-                      Free Spins
+                      {{ slotBonus.bonuses?.icon }}
+                      {{ slotBonus.bonuses?.name }}
                     </span>
-                    <span
-                      class="px-3 py-1 bg-green-500/30 text-green-200 rounded-full text-xs font-medium border border-green-400/20"
+                    <!-- Фолбэк через функцию для совместимости -->
+                    <template
+                      v-if="
+                        (!slot?.slot_bonuses ||
+                          slot.slot_bonuses.length === 0) &&
+                        getSlotBonuses(slot).length > 0
+                      "
                     >
-                      Bonus Buy
-                    </span>
+                      <span
+                        v-for="bonus in getSlotBonuses(slot)"
+                        :key="bonus.id || bonus.name"
+                        class="px-3 py-1 bg-emerald-500/30 text-emerald-200 rounded-full text-xs font-medium border border-emerald-400/20"
+                      >
+                        {{ bonus.name }}
+                      </span>
+                    </template>
+                    <!-- Показываем сообщение если нет бонусов -->
                     <span
-                      class="px-3 py-1 bg-teal-500/30 text-teal-200 rounded-full text-xs font-medium border border-teal-400/20"
+                      v-if="
+                        (!slot?.slot_bonuses ||
+                          slot.slot_bonuses.length === 0) &&
+                        (!getSlotBonuses(slot) ||
+                          getSlotBonuses(slot).length === 0)
+                      "
+                      class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
                     >
-                      Retrigger
-                    </span>
-                    <span
-                      class="px-3 py-1 bg-cyan-500/30 text-cyan-200 rounded-full text-xs font-medium border border-cyan-400/20"
-                    >
-                      Increasing Multiplier
+                      Бонусы не указаны
                     </span>
                   </div>
                 </div>
@@ -1799,12 +1773,38 @@
                     Тематика
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
+                    <!-- Новая реализация: используем themes напрямую -->
                     <span
-                      v-for="theme in getSlotThemes(slot)"
-                      :key="theme"
+                      v-if="slot?.themes"
+                      :key="slot.themes.id"
                       class="px-3 py-1 bg-yellow-500/30 text-yellow-200 rounded-full text-xs font-medium border border-yellow-400/20"
                     >
-                      {{ theme }}
+                      {{ slot.themes.icon }} {{ slot.themes.name }}
+                    </span>
+                    <!-- Фолбэк через функцию для совместимости -->
+                    <template
+                      v-if="
+                        !slot?.themes && getSlotThemesFromDB(slot).length > 0
+                      "
+                    >
+                      <span
+                        v-for="theme in getSlotThemesFromDB(slot)"
+                        :key="theme.id || theme.name"
+                        class="px-3 py-1 bg-yellow-500/30 text-yellow-200 rounded-full text-xs font-medium border border-yellow-400/20"
+                      >
+                        {{ theme.name }}
+                      </span>
+                    </template>
+                    <!-- Сообщение если нет тематик -->
+                    <span
+                      v-if="
+                        !slot?.themes &&
+                        (!getSlotThemesFromDB(slot) ||
+                          getSlotThemesFromDB(slot).length === 0)
+                      "
+                      class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
+                    >
+                      Тематики не указаны
                     </span>
                   </div>
                 </div>
@@ -2738,7 +2738,9 @@
           <div
             class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl"
           >
-            <div class="text-3xl font-bold text-blue-600 mb-2">#{{ slot.popularity_rank || '12' }}</div>
+            <div class="text-3xl font-bold text-blue-600 mb-2">
+              #{{ slot.popularity_rank || '12' }}
+            </div>
             <div class="text-sm text-gray-600">Рейтинг 2024</div>
           </div>
           <div
@@ -4017,7 +4019,13 @@
                       {{ slot.paylines || 'Scatter Pays' }}
                     </p>
                     <p class="text-teal-500 text-sm">
-                      {{ typeof slot.paylines === 'number' || (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines)) ? 'Фиксированные линии' : 'Кластерные выплаты' }}
+                      {{
+                        typeof slot.paylines === 'number' ||
+                        (typeof slot.paylines === 'string' &&
+                          /^\d+$/.test(slot.paylines))
+                          ? 'Фиксированные линии'
+                          : 'Кластерные выплаты'
+                      }}
                     </p>
                   </div>
                 </div>
@@ -6118,8 +6126,12 @@
                 <div
                   class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
                 ></div>
-                <span class="text-lg" :class="{ 'animate-spin': loading }">🔄</span>
-                <span class="text-sm">{{ loading ? 'Обновление...' : 'Обновить' }}</span>
+                <span class="text-lg" :class="{ 'animate-spin': loading }"
+                  >🔄</span
+                >
+                <span class="text-sm">{{
+                  loading ? 'Обновление...' : 'Обновить'
+                }}</span>
               </button>
             </div>
 
@@ -6385,12 +6397,12 @@ const loadSlot = async () => {
     loading.value = true
     error.value = null
 
-    // Загружаем все слоты для поиска по slug
+    // Загружаем все слоты для поиска по slug (используем основной API с полными данными)
     const slotsResponse = await $fetch('http://localhost:3001/api/slots', {
       headers: {
         'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      }
+        Pragma: 'no-cache',
+      },
     })
 
     // API возвращает объект с полем data, содержащим массив слотов
@@ -6744,17 +6756,17 @@ const getShortDescription = (slot) => {
   if (!slot) {
     return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
   }
-  
+
   // Используем описание из базы данных, если оно есть
   if (slot.description && slot.description.trim()) {
     return slot.description.trim()
   }
-  
+
   // Fallback к старой логике, если описание не задано
   if (!slot.name) {
     return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
   }
-  
+
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
     return 'Легендарный слот от Pragmatic Play с уникальной механикой Scatter Pays и множителями до x500. Окунитесь в мир древнегреческих богов и сражайтесь за джекпот до x5,000 от ставки!'
   }
@@ -6771,17 +6783,17 @@ const getDetailedDescription = (slot) => {
   if (!slot) {
     return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
   }
-  
+
   // Используем описание из базы данных, если оно есть
   if (slot.description && slot.description.trim()) {
     return slot.description.trim()
   }
-  
+
   // Fallback к старой логике, если описание не задано
   if (!slot.name) {
     return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
   }
-  
+
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
     return 'Главная особенность слота - множители от x2 до x500, которые появляются случайным образом и могут значительно увеличить ваши выигрыши. В бонусной игре действует система Total Multiplier, где все множители суммируются и не сбрасываются между спинами, что может привести к феноменальным выплатам.'
   }
@@ -6789,39 +6801,23 @@ const getDetailedDescription = (slot) => {
 }
 
 const getSlotThemes = (slot) => {
-  if (!slot || !slot.name) return ['Классический']
+  // Возвращаем пустой массив, чтобы использовались только тематики из базы данных
+  // через функцию getSlotThemesFromDB
+  return []
+}
 
-  const name = (slot.name || '').toLowerCase()
+// Функция для получения бонусов слота из базы данных
+const getSlotBonuses = (slot) => {
+  if (!slot || !slot.slot_bonuses) return []
+  // Исправляем: bonuses вместо bonus
+  return slot.slot_bonuses.map((sb) => sb.bonuses).filter(Boolean)
+}
 
-  if (name.includes('gates of olympus') || name.includes('олимп')) {
-    return ['Ancient', 'Greek', 'Mythology', 'Gods', 'Olympus']
-  }
-  if (name.includes('book of dead') || name.includes('египет')) {
-    return ['Ancient', 'Egypt', 'Adventure', 'Archaeology', 'Treasure']
-  }
-  if (name.includes('sweet bonanza') || name.includes('сладкий')) {
-    return ['Fruits', 'Sweet', 'Colorful', 'Fun', 'Candy']
-  }
-  if (name.includes('wolf') || name.includes('волк')) {
-    return ['Animals', 'Wild', 'Nature', 'Adventure']
-  }
-  if (name.includes('pirate') || name.includes('пират')) {
-    return ['Pirates', 'Adventure', 'Treasure', 'Sea', 'Gold']
-  }
-  if (name.includes('fruit') || name.includes('фрукт')) {
-    return ['Fruits', 'Classic', 'Retro', 'Simple']
-  }
-  if (name.includes('diamond') || name.includes('алмаз')) {
-    return ['Gems', 'Luxury', 'Wealth', 'Sparkle']
-  }
-  if (name.includes('fire') || name.includes('огонь')) {
-    return ['Fire', 'Hot', 'Energy', 'Power']
-  }
-  if (name.includes('magic') || name.includes('магия')) {
-    return ['Magic', 'Fantasy', 'Mystical', 'Spells']
-  }
-
-  return ['Классический', 'Развлечения']
+// Функция для получения тематик слота из базы данных
+const getSlotThemesFromDB = (slot) => {
+  if (!slot || !slot.themes) return []
+  // themes - это объект темы, а не массив
+  return slot.themes ? [slot.themes] : []
 }
 
 // Загружаем данные при монтировании
@@ -6895,9 +6891,11 @@ const getStructuredData = (slot) => {
       {
         '@type': 'Thing',
         name: 'Линии выплат',
-        description: typeof slot.paylines === 'number' || (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines)) 
-          ? `${slot.paylines} активных линий` 
-          : `${slot.paylines || 'Scatter Pays'} система выплат`,
+        description:
+          typeof slot.paylines === 'number' ||
+          (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines))
+            ? `${slot.paylines} активных линий`
+            : `${slot.paylines || 'Scatter Pays'} система выплат`,
       },
     ],
 
@@ -6932,7 +6930,7 @@ const getStructuredData = (slot) => {
     provider: {
       '@type': 'Organization',
       name: slot.providers?.name || 'Pragmatic Play',
-        url: slot.providers?.website || 'https://pragmaticplay.com',
+      url: slot.providers?.website || 'https://pragmaticplay.com',
     },
     aggregateRating: {
       '@type': 'AggregateRating',

@@ -39,4 +39,8 @@ export class CreateSlotDto {
   // HERO: награды
   show_awards?: boolean;
   awards?: any;
+  // Связи с другими сущностями
+  selected_mechanics?: any[];
+  selected_bonuses?: any[];
+  selected_themes?: any[];
 }

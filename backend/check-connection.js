@@ -181,3 +181,4 @@ runDiagnostics().catch(error => {
   console.error('💥 Ошибка диагностики:', error.message);
   process.exit(1);
 });
+
