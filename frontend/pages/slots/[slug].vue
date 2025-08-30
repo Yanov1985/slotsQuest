@@ -136,7 +136,10 @@
       <div class="relative z-10 max-w-full lg:flex lg:min-h-screen">
         <!-- Левая часть: Игровая информация с Aurora Background (в dark-контейнере) -->
         <div class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start">
-          <AuroraBackground class="w-full" :show-radial-gradient="true">
+          <AuroraBackground
+            class="!h-auto !min-h-screen !flex-col !justify-start !items-stretch"
+            :show-radial-gradient="true"
+          >
             <article
               class="p-8 lg:p-12 flex flex-col justify-start min-w-0 h-full"
             >
