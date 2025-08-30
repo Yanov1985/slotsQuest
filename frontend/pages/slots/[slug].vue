@@ -1090,15 +1090,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('emerald')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1145,15 +1145,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('orange')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1195,15 +1195,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('purple')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1247,15 +1247,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('blue')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1297,15 +1297,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('teal')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1347,15 +1347,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('amber')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1397,15 +1397,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('rose')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1455,15 +1455,15 @@
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('violet')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1570,14 +1570,15 @@
                   class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 relative overflow-hidden"
                 >
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('purple')"
-                    :dotSize="3"
+                    :dotSize="5"
                     :showGradient="false"
                     blendMode="multiply"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1602,15 +1603,15 @@
                   class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30 relative overflow-hidden"
                 >
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('orange')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <div class="relative z-10">
@@ -1647,15 +1648,15 @@
                   class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-4 rounded-2xl border border-indigo-400/30 relative overflow-hidden"
                 >
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('indigo')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <h3
@@ -1668,10 +1669,9 @@
                     <span
                       v-for="slotMechanic in slot?.slot_mechanics || []"
                       :key="slotMechanic.mechanics.id"
-                      class="px-3 py-1 rounded-full text-xs font-medium border"
+                      class="px-3 py-1 rounded-full text-xs font-medium border text-white"
                       :style="{
                         backgroundColor: `${slotMechanic.mechanics.color}30`,
-                        color: `${slotMechanic.mechanics.color}`,
                         borderColor: `${slotMechanic.mechanics.color}40`,
                       }"
                     >
@@ -1692,15 +1692,15 @@
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-4 rounded-2xl border border-emerald-400/30 relative overflow-hidden"
                 >
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('emerald')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <h3
@@ -1714,7 +1714,7 @@
                     <span
                       v-for="slotBonus in slot?.slot_bonuses || []"
                       :key="slotBonus.bonuses?.id || slotBonus.id"
-                      class="px-3 py-1 bg-emerald-500/30 text-emerald-200 rounded-full text-xs font-medium border border-emerald-400/20"
+                      class="px-3 py-1 bg-emerald-500/30 text-white rounded-full text-xs font-medium border border-emerald-400/20"
                     >
                       {{ slotBonus.bonuses?.icon }}
                       {{ slotBonus.bonuses?.name }}
@@ -1730,7 +1730,7 @@
                       <span
                         v-for="bonus in getSlotBonuses(slot)"
                         :key="bonus.id || bonus.name"
-                        class="px-3 py-1 bg-emerald-500/30 text-emerald-200 rounded-full text-xs font-medium border border-emerald-400/20"
+                        class="px-3 py-1 bg-emerald-500/30 text-white rounded-full text-xs font-medium border border-emerald-400/20"
                       >
                         {{ bonus.name }}
                       </span>
@@ -1755,15 +1755,15 @@
                   class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-4 rounded-2xl border border-yellow-400/30 relative overflow-hidden"
                 >
                   <CanvasRevealEffect
-                    :animationSpeed="0.5"
+                    :animationSpeed="0.8"
                     :opacities="[
-                      0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
                     ]"
                     :colors="getEffectColorsFor('amber')"
-                    :dotSize="4"
+                    :dotSize="6"
                     :showGradient="false"
                     blendMode="overlay"
-                    :intensity="1.4"
+                    :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <h3
@@ -1777,7 +1777,7 @@
                     <span
                       v-if="slot?.themes"
                       :key="slot.themes.id"
-                      class="px-3 py-1 bg-yellow-500/30 text-yellow-200 rounded-full text-xs font-medium border border-yellow-400/20"
+                      class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20"
                     >
                       {{ slot.themes.icon }} {{ slot.themes.name }}
                     </span>
@@ -1790,7 +1790,7 @@
                       <span
                         v-for="theme in getSlotThemesFromDB(slot)"
                         :key="theme.id || theme.name"
-                        class="px-3 py-1 bg-yellow-500/30 text-yellow-200 rounded-full text-xs font-medium border border-yellow-400/20"
+                        class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20"
                       >
                         {{ theme.name }}
                       </span>
@@ -3021,15 +3021,15 @@
               >
                 <!-- Canvas Reveal Effect (максимальная видимость) -->
                 <CanvasRevealEffect
-                  :animationSpeed="0.5"
+                  :animationSpeed="1.0"
                   :opacities="[
-                    0.12, 0.14, 0.16, 0.18, 0.22, 0.28, 0.34, 0.42, 0.5, 0.6,
+                    0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95,
                   ]"
                   :colors="getAwardEffectColors(award.gradient)"
-                  :dotSize="4"
-                  :showGradient="false"
+                  :dotSize="8"
+                  :showGradient="true"
                   blendMode="overlay"
-                  :intensity="1.4"
+                  :intensity="2.5"
                   containerClassName="absolute inset-0 pointer-events-none"
                 />
 
