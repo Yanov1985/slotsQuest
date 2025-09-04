@@ -143,345 +143,51 @@
                       class="h-1 w-28 bg-gradient-to-r from-[#FF6E48] to-[#00EDFF] rounded-full mt-2"
                     ></div>
                   </div>
+                  <!-- Кнопка сворачивания/разворачивания Hero секции -->
+                  <button
+                    type="button"
+                    @click="showHeroSection = !showHeroSection"
+                    class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-purple-400/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                    :aria-expanded="showHeroSection"
+                  >
+                    <span class="flex items-center gap-2">
+                      <svg
+                        class="w-4 h-4"
+                        :class="{ 'rotate-180': !showHeroSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                      {{
+                        showHeroSection
+                          ? 'Свернуть Hero секцию'
+                          : 'Развернуть Hero секцию'
+                      }}
+                    </span>
+                  </button>
                 </div>
 
                 <form @submit.prevent="saveSlot" class="space-y-6">
-                  <!-- Основная информация -->
-                  <div
-                    class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display"
-                          >
-                            Основная информация
-                          </h3>
-                          <p class="text-sm text-[#FF6E48]">
-                            Базовые данные слота
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showBasicSection = !showBasicSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showBasicSection"
-                      >
-                        {{ showBasicSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
-                    <div v-show="showBasicSection" class="space-y-4">
-                      <!-- Название слота -->
-                      <div>
-                        <label
-                          class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                        >
-                          <svg
-                            class="w-4 h-4 text-[#FF6E48]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                            ></path>
-                          </svg>
-                          Название слота *
-                        </label>
-                        <input
-                          v-model="form.name"
-                          type="text"
-                          required
-                          class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
-                          placeholder="Например: Gates of Olympus"
-                        />
-                      </div>
-
-                      <!-- Slug (URL) -->
-                      <div>
-                        <label
-                          class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                        >
-                          <svg
-                            class="w-4 h-4 text-[#00EDFF]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                            ></path>
-                          </svg>
-                          URL адрес (slug) *
-                        </label>
-                        <input
-                          v-model="form.slug"
-                          type="text"
-                          required
-                          class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
-                          placeholder="gates-of-olympus"
-                        />
-                        <p class="mt-1 text-xs text-[#9CA3AF]">
-                          Будет доступен по адресу: /slots/{{
-                            form.slug || 'your-slug'
-                          }}
-                        </p>
-                      </div>
-
-                      <!-- Провайдер -->
-                      <div>
-                        <label
-                          class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                        >
-                          <svg
-                            class="w-4 h-4 text-[#CD0F8B]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Провайдер *
-                        </label>
-                        <select
-                          v-model="form.provider_id"
-                          required
-                          class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
-                        >
-                          <option value="">Выберите провайдера</option>
-                          <option
-                            v-for="provider in providers"
-                            :key="provider.id"
-                            :value="provider.id"
-                          >
-                            {{ provider.name }}
-                          </option>
-                        </select>
-                      </div>
-
-                      <!-- Описание -->
-                      <div>
-                        <label
-                          class="block text-sm font-medium text-gray-300 mb-2"
-                        >
-                          Описание для Hero секции
-                        </label>
-                        <div class="text-xs text-gray-400 mb-2">
-                          Максимум 200 символов
-                        </div>
-                        <textarea
-                          v-model="form.description"
-                          rows="4"
-                          maxlength="200"
-                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                          placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Ссылки кнопок действий Hero секции -->
-                  <div
-                    class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display"
-                          >
-                            Ссылки кнопок действий
-                          </h3>
-                          <p class="text-sm text-[#00EDFF]">
-                            Кнопки в Hero секции
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showHeroLinksSection = !showHeroLinksSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showHeroLinksSection"
-                      >
-                        {{ showHeroLinksSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
-                    <div v-show="showHeroLinksSection" class="space-y-4">
-                      <div class="grid grid-cols-1 gap-4">
-                        <!-- Ссылка для кнопки "Играть бесплатно" -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#00EDFF]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-5.5 2a3 3 0 105 0m-5 0a3 3 0 105 0m7.744-1.245l-.001.001m-7.743-1.245l-.001.001"
-                              ></path>
-                            </svg>
-                            Ссылка кнопки "Играть бесплатно" (демо-режим)
-                          </label>
-                          <input
-                            v-model="form.demo_url"
-                            type="url"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
-                            placeholder="https://demo.provider.com/gates-of-olympus"
-                          />
-                          <p class="mt-1 text-xs text-[#9CA3AF]">
-                            URL для запуска демо-версии игры. Если не указано,
-                            будет показано предупреждение.
-                          </p>
-                        </div>
-
-                        <!-- Ссылка для кнопки "Играть на деньги" -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#00EDFF]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                            Ссылка кнопки "Играть на деньги"
-                          </label>
-                          <input
-                            v-model="form.real_play_url"
-                            type="url"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
-                            placeholder="https://casino.com/games/gates-of-olympus"
-                          />
-                          <p class="mt-1 text-xs text-[#9CA3AF]">
-                            URL для игры на реальные деньги в казино. Если не
-                            указано, будет показано предупреждение.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Характеристики игры -->
-                  <div
-                    class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display"
-                          >
-                            Характеристики игры
-                          </h3>
-                          <p class="text-sm text-[#63F3AB]">
-                            Технические параметры
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="
-                          showGameCharacteristicsSection =
-                            !showGameCharacteristicsSection
-                        "
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showGameCharacteristicsSection"
-                      >
-                        {{
-                          showGameCharacteristicsSection ? 'Скрыть' : 'Показать'
-                        }}
-                      </button>
-                    </div>
+                  <!-- Все Hero секции (управляемые через v-show) -->
+                  <div v-show="showHeroSection" class="space-y-6">
+                    <!-- Основная информация -->
                     <div
-                      v-show="showGameCharacteristicsSection"
-                      class="space-y-4"
+                      class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
                     >
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- RTP -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
                           >
                             <svg
-                              class="w-4 h-4 text-[#63F3AB]"
+                              class="w-6 h-6 text-white"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -490,296 +196,95 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                               ></path>
                             </svg>
-                            RTP (%)
-                          </label>
-                          <input
-                            v-model.number="form.rtp"
-                            type="number"
-                            step="0.01"
-                            min="50"
-                            max="99"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
-                            placeholder="96.50"
-                          />
-                        </div>
-
-                        <!-- Волатильность -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#63F3AB]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
                             >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                              ></path>
-                            </svg>
-                            Волатильность
-                          </label>
-                          <select
-                            v-model="form.volatility"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
-                          >
-                            <option value="low">Низкая</option>
-                            <option value="medium">Средняя</option>
-                            <option value="high">Высокая</option>
-                          </select>
-                        </div>
-
-                        <!-- Минимальная ставка -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#63F3AB]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                              ></path>
-                            </svg>
-                            Минимальная ставка
-                          </label>
-                          <input
-                            v-model="form.min_bet"
-                            type="text"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
-                            placeholder="€0.20"
-                          />
-                        </div>
-
-                        <!-- Максимальная ставка -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#63F3AB]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 10l7-7m0 0l7 7m-7-7v18"
-                              ></path>
-                            </svg>
-                            Максимальная ставка
-                          </label>
-                          <input
-                            v-model="form.max_bet"
-                            type="text"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
-                            placeholder="€100"
-                          />
-                        </div>
-
-                        <!-- Максимальный выигрыш -->
-                        <div>
-                          <label
-                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#63F3AB]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                            Максимальный выигрыш (x от ставки)
-                          </label>
-                          <input
-                            v-model.number="form.max_win"
-                            type="number"
-                            min="1"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
-                            placeholder="5000"
-                          />
-                        </div>
-
-                        <!-- Дата выпуска -->
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-gray-300 mb-2"
-                          >
-                            Дата выпуска
-                          </label>
-                          <input
-                            v-model="form.release_date"
-                            type="date"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                          />
-                        </div>
-
-                        <!-- Количество барабанов -->
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-gray-300 mb-2"
-                          >
-                            Количество барабанов
-                          </label>
-                          <input
-                            v-model.number="form.reels"
-                            type="number"
-                            min="1"
-                            step="1"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="5"
-                          />
-                        </div>
-
-                        <!-- Количество рядов -->
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-gray-300 mb-2"
-                          >
-                            Количество рядов
-                          </label>
-                          <input
-                            v-model.number="form.rows"
-                            type="number"
-                            min="1"
-                            step="1"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="3"
-                          />
-                        </div>
-
-                        <!-- Линии выплат -->
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-gray-300 mb-2"
-                          >
-                            Линии выплат
-                          </label>
-                          <div class="relative">
-                            <select
-                              v-model="paylineType"
-                              class="absolute right-2 top-2 z-10 px-2 py-1 bg-gray-600 border border-gray-500 rounded text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                            >
-                              <option value="number">Число</option>
-                              <option value="text">Текст</option>
-                            </select>
-                            <input
-                              v-if="paylineType === 'number'"
-                              v-model.number="form.paylines"
-                              type="number"
-                              min="1"
-                              max="1024"
-                              class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                              placeholder="25"
-                            />
-                            <input
-                              v-else
-                              v-model="form.paylines"
-                              type="text"
-                              class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                              placeholder="Scatter Pays"
-                            />
+                              Основная информация
+                            </h3>
+                            <p class="text-sm text-[#FF6E48]">
+                              Базовые данные слота
+                            </p>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Рейтинг и популярность -->
-                  <div
-                    class="group bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6 hover:border-[#CD0F8B]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#CD0F8B] to-[#CD0F8B] rounded-xl flex items-center justify-center"
+                        <button
+                          type="button"
+                          @click="showBasicSection = !showBasicSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showBasicSection"
                         >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                            ></path>
-                          </svg>
-                        </div>
+                          {{ showBasicSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showBasicSection" class="space-y-4">
+                        <!-- Название слота -->
                         <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display"
+                          <label
+                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Рейтинг и популярность
-                          </h3>
-                          <p class="text-sm text-[#CD0F8B]">Позиции и оценки</p>
+                            <svg
+                              class="w-4 h-4 text-[#FF6E48]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                            Название слота *
+                          </label>
+                          <input
+                            v-model="form.name"
+                            type="text"
+                            required
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
+                            placeholder="Например: Gates of Olympus"
+                          />
                         </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showRatingSection = !showRatingSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#CD0F8B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showRatingSection"
-                      >
-                        {{ showRatingSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
 
-                    <div v-show="showRatingSection" class="space-y-4">
-                      <!-- Позиция в рейтинге -->
-                      <div>
-                        <label
-                          class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
-                        >
-                          <svg
-                            class="w-4 h-4 text-[#CD0F8B]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                        <!-- Slug (URL) -->
+                        <div>
+                          <label
+                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
-                            ></path>
-                          </svg>
-                          Позиция в рейтинге
-                        </label>
-                        <input
-                          v-model.number="form.popularity_rank"
-                          type="number"
-                          min="1"
-                          class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
-                          placeholder="12"
-                        />
-                      </div>
+                            <svg
+                              class="w-4 h-4 text-[#00EDFF]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                              ></path>
+                            </svg>
+                            URL адрес (slug) *
+                          </label>
+                          <input
+                            v-model="form.slug"
+                            type="text"
+                            required
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                            placeholder="gates-of-olympus"
+                          />
+                          <p class="mt-1 text-xs text-[#9CA3AF]">
+                            Будет доступен по адресу: /slots/{{
+                              form.slug || 'your-slug'
+                            }}
+                          </p>
+                        </div>
 
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Реальный RTP -->
+                        <!-- Провайдер -->
                         <div>
                           <label
                             class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
@@ -794,59 +299,912 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                               ></path>
                             </svg>
-                            Реальный RTP (%)
+                            Провайдер *
                           </label>
-                          <input
-                            v-model.number="form.real_rtp"
-                            type="number"
-                            step="0.01"
-                            min="50"
-                            max="99"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
-                            placeholder="97.45"
-                          />
+                          <select
+                            v-model="form.provider_id"
+                            required
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                          >
+                            <option value="">Выберите провайдера</option>
+                            <option
+                              v-for="provider in providers"
+                              :key="provider.id"
+                              :value="provider.id"
+                            >
+                              {{ provider.name }}
+                            </option>
+                          </select>
                         </div>
 
-                        <!-- Частота бонуса -->
+                        <!-- Описание -->
                         <div>
                           <label
                             class="block text-sm font-medium text-gray-300 mb-2"
                           >
-                            Частота бонуса
+                            Описание для Hero секции
                           </label>
-                          <input
-                            v-model="form.bonus_frequency"
-                            type="text"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                            placeholder="1:448"
-                          />
+                          <div class="text-xs text-gray-400 mb-2">
+                            Максимум 200 символов
+                          </div>
+                          <textarea
+                            v-model="form.description"
+                            rows="4"
+                            maxlength="200"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                            placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
+                          ></textarea>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <!-- Медиа контент -->
-                  <div class="space-y-4">
-                    <h3
-                      class="text-lg font-semibold text-pink-400 border-b border-gray-600 pb-2"
-                    >
-                      Медиа контент Hero секции
-                    </h3>
-
-                    <!-- Ремарка с размерами -->
+                    <!-- Ссылки кнопок действий Hero секции -->
                     <div
-                      class="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4"
+                      class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
                     >
-                      <div class="flex items-start gap-3">
-                        <div class="flex-shrink-0">
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
                           <div
-                            class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
+                            class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
                           >
                             <svg
-                              class="w-4 h-4 text-white"
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Ссылки кнопок действий
+                            </h3>
+                            <p class="text-sm text-[#00EDFF]">
+                              Кнопки в Hero секции
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showHeroLinksSection = !showHeroLinksSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showHeroLinksSection"
+                        >
+                          {{ showHeroLinksSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showHeroLinksSection" class="space-y-4">
+                        <div class="grid grid-cols-1 gap-4">
+                          <!-- Ссылка для кнопки "Играть бесплатно" -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#00EDFF]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-5.5 2a3 3 0 105 0m-5 0a3 3 0 105 0m7.744-1.245l-.001.001m-7.743-1.245l-.001.001"
+                                ></path>
+                              </svg>
+                              Ссылка кнопки "Играть бесплатно" (демо-режим)
+                            </label>
+                            <input
+                              v-model="form.demo_url"
+                              type="url"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                              placeholder="https://demo.provider.com/gates-of-olympus"
+                            />
+                            <p class="mt-1 text-xs text-[#9CA3AF]">
+                              URL для запуска демо-версии игры. Если не указано,
+                              будет показано предупреждение.
+                            </p>
+                          </div>
+
+                          <!-- Ссылка для кнопки "Играть на деньги" -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#00EDFF]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                              </svg>
+                              Ссылка кнопки "Играть на деньги"
+                            </label>
+                            <input
+                              v-model="form.real_play_url"
+                              type="url"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                              placeholder="https://casino.com/games/gates-of-olympus"
+                            />
+                            <p class="mt-1 text-xs text-[#9CA3AF]">
+                              URL для игры на реальные деньги в казино. Если не
+                              указано, будет показано предупреждение.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Характеристики игры -->
+                    <div
+                      class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Характеристики игры
+                            </h3>
+                            <p class="text-sm text-[#63F3AB]">
+                              Технические параметры
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showGameCharacteristicsSection =
+                              !showGameCharacteristicsSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showGameCharacteristicsSection"
+                        >
+                          {{
+                            showGameCharacteristicsSection
+                              ? 'Скрыть'
+                              : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showGameCharacteristicsSection"
+                        class="space-y-4"
+                      >
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <!-- RTP -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#63F3AB]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                                ></path>
+                              </svg>
+                              RTP (%)
+                            </label>
+                            <input
+                              v-model.number="form.rtp"
+                              type="number"
+                              step="0.01"
+                              min="50"
+                              max="99"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              placeholder="96.50"
+                            />
+                          </div>
+
+                          <!-- Волатильность -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#63F3AB]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                                ></path>
+                              </svg>
+                              Волатильность
+                            </label>
+                            <select
+                              v-model="form.volatility"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                            >
+                              <option value="low">Низкая</option>
+                              <option value="medium">Средняя</option>
+                              <option value="high">Высокая</option>
+                            </select>
+                          </div>
+
+                          <!-- Минимальная ставка -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#63F3AB]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                                ></path>
+                              </svg>
+                              Минимальная ставка
+                            </label>
+                            <input
+                              v-model="form.min_bet"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              placeholder="€0.20"
+                            />
+                          </div>
+
+                          <!-- Максимальная ставка -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#63F3AB]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 10l7-7m0 0l7 7m-7-7v18"
+                                ></path>
+                              </svg>
+                              Максимальная ставка
+                            </label>
+                            <input
+                              v-model="form.max_bet"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              placeholder="€100"
+                            />
+                          </div>
+
+                          <!-- Максимальный выигрыш -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#63F3AB]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                              </svg>
+                              Максимальный выигрыш (x от ставки)
+                            </label>
+                            <input
+                              v-model.number="form.max_win"
+                              type="number"
+                              min="1"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              placeholder="5000"
+                            />
+                          </div>
+
+                          <!-- Дата выпуска -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-2"
+                            >
+                              Дата выпуска
+                            </label>
+                            <input
+                              v-model="form.release_date"
+                              type="date"
+                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            />
+                          </div>
+
+                          <!-- Количество барабанов -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-2"
+                            >
+                              Количество барабанов
+                            </label>
+                            <input
+                              v-model.number="form.reels"
+                              type="number"
+                              min="1"
+                              step="1"
+                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              placeholder="5"
+                            />
+                          </div>
+
+                          <!-- Количество рядов -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-2"
+                            >
+                              Количество рядов
+                            </label>
+                            <input
+                              v-model.number="form.rows"
+                              type="number"
+                              min="1"
+                              step="1"
+                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              placeholder="3"
+                            />
+                          </div>
+
+                          <!-- Линии выплат -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-2"
+                            >
+                              Линии выплат
+                            </label>
+                            <div class="relative">
+                              <select
+                                v-model="paylineType"
+                                class="absolute right-2 top-2 z-10 px-2 py-1 bg-gray-600 border border-gray-500 rounded text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                              >
+                                <option value="number">Число</option>
+                                <option value="text">Текст</option>
+                              </select>
+                              <input
+                                v-if="paylineType === 'number'"
+                                v-model.number="form.paylines"
+                                type="number"
+                                min="1"
+                                max="1024"
+                                class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                placeholder="25"
+                              />
+                              <input
+                                v-else
+                                v-model="form.paylines"
+                                type="text"
+                                class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                placeholder="Scatter Pays"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Рейтинг и популярность -->
+                    <div
+                      class="group bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6 hover:border-[#CD0F8B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#CD0F8B] to-[#CD0F8B] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Рейтинг и популярность
+                            </h3>
+                            <p class="text-sm text-[#CD0F8B]">
+                              Позиции и оценки
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showRatingSection = !showRatingSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#CD0F8B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showRatingSection"
+                        >
+                          {{ showRatingSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+
+                      <div v-show="showRatingSection" class="space-y-4">
+                        <!-- Позиция в рейтинге -->
+                        <div>
+                          <label
+                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            <svg
+                              class="w-4 h-4 text-[#CD0F8B]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+                              ></path>
+                            </svg>
+                            Позиция в рейтинге
+                          </label>
+                          <input
+                            v-model.number="form.popularity_rank"
+                            type="number"
+                            min="1"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                            placeholder="12"
+                          />
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <!-- Реальный RTP -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#CD0F8B]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                ></path>
+                              </svg>
+                              Реальный RTP (%)
+                            </label>
+                            <input
+                              v-model.number="form.real_rtp"
+                              type="number"
+                              step="0.01"
+                              min="50"
+                              max="99"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                              placeholder="97.45"
+                            />
+                          </div>
+
+                          <!-- Частота бонуса -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-gray-300 mb-2"
+                            >
+                              Частота бонуса
+                            </label>
+                            <input
+                              v-model="form.bonus_frequency"
+                              type="text"
+                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              placeholder="1:448"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Медиа контент -->
+                    <div class="space-y-4">
+                      <h3
+                        class="text-lg font-semibold text-pink-400 border-b border-gray-600 pb-2"
+                      >
+                        Медиа контент Hero секции
+                      </h3>
+
+                      <!-- Ремарка с размерами -->
+                      <div
+                        class="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4"
+                      >
+                        <div class="flex items-start gap-3">
+                          <div class="flex-shrink-0">
+                            <div
+                              class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-4 h-4 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <div>
+                            <h4
+                              class="text-sm font-semibold text-blue-300 mb-2"
+                            >
+                              📐 Рекомендуемые размеры медиа
+                            </h4>
+                            <div class="text-xs text-blue-200 space-y-1">
+                              <div>
+                                <strong>🖼️ Изображение:</strong> 1200x1600
+                                пикселей (соотношение 3:4)
+                              </div>
+                              <div>
+                                <strong>🎬 Видео:</strong> 1200x1600 пикселей,
+                                длительность до 30 секунд
+                              </div>
+                              <div>
+                                <strong>📱 Мобильная версия:</strong>
+                                Автоматически адаптируется под экран
+                              </div>
+                              <div>
+                                <strong>💾 Размер файла:</strong> Изображения до
+                                2MB, видео до 10MB
+                              </div>
+                            </div>
+                            <div class="mt-2 text-xs text-blue-300">
+                              💡 <strong>Совет:</strong> Используйте
+                              высококачественные изображения для лучшего
+                              отображения на ретина-дисплеях
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Тип медиа -->
+                      <div>
+                        <label
+                          class="block text-sm font-medium text-gray-300 mb-2"
+                        >
+                          Тип медиа контента
+                        </label>
+                        <select
+                          v-model="form.media_type"
+                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                        >
+                          <option value="image">Изображение</option>
+                          <option value="video">Видео</option>
+                        </select>
+                        <p class="mt-1 text-xs text-gray-400">
+                          Выберите тип медиа контента для обложки слота
+                        </p>
+                      </div>
+
+                      <!-- URL изображения (показывается если выбрано изображение) -->
+                      <div v-if="form.media_type === 'image'">
+                        <label
+                          class="block text-sm font-medium text-gray-300 mb-2"
+                        >
+                          URL изображения
+                        </label>
+                        <input
+                          v-model="form.image_url"
+                          type="url"
+                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          placeholder="https://example.com/slot-image.jpg"
+                        />
+                        <p class="mt-1 text-xs text-gray-400">
+                          Добавьте ссылку на изображение слота. Рекомендуемый
+                          размер: 1200x1600px (3:4)
+                        </p>
+                      </div>
+
+                      <!-- URL видео (показывается если выбрано видео) -->
+                      <div v-if="form.media_type === 'video'">
+                        <label
+                          class="block text-sm font-medium text-gray-300 mb-2"
+                        >
+                          URL видео
+                        </label>
+                        <input
+                          v-model="form.video_url"
+                          type="url"
+                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          placeholder="https://example.com/slot-video.mp4"
+                        />
+                        <p class="mt-1 text-xs text-gray-400">
+                          Добавьте ссылку на видео слота. Рекомендуемый размер:
+                          1200x1600px, до 30 сек. Поддерживаются форматы: .mp4,
+                          .webm, .ogg
+                        </p>
+                      </div>
+
+                      <!-- Превью медиа -->
+                      <div v-if="form.image_url || form.video_url" class="mt-4">
+                        <label
+                          class="block text-sm font-medium text-gray-300 mb-2"
+                        >
+                          Превью медиа
+                        </label>
+                        <div
+                          class="bg-gray-700 rounded-lg p-4 border border-gray-600"
+                        >
+                          <!-- Превью изображения -->
+                          <div
+                            v-if="form.media_type === 'image' && form.image_url"
+                          >
+                            <img
+                              :src="form.image_url"
+                              :alt="form.name || 'Слот'"
+                              class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
+                              @error="handleImageError"
+                              @load="handleImageLoad"
+                            />
+                          </div>
+                          <!-- Превью видео -->
+                          <div
+                            v-else-if="
+                              form.media_type === 'video' && form.video_url
+                            "
+                          >
+                            <video
+                              :src="form.video_url"
+                              class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
+                              controls
+                              muted
+                              preload="metadata"
+                              @error="handleVideoError"
+                              @loadeddata="handleVideoLoad"
+                            >
+                              Ваш браузер не поддерживает воспроизведение видео.
+                            </video>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Игровые механики Hero секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                              ></path>
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Игровые механики
+                            </h3>
+                            <p class="text-sm text-[#FF6E48]">
+                              Hero секция механик
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showMechanicsSection = !showMechanicsSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showMechanicsSection"
+                        >
+                          {{ showMechanicsSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showMechanicsSection" class="space-y-4">
+                        <p class="text-sm text-gray-400">
+                          Выберите игровые механики, которые будут отображаться
+                          в Hero секции слота
+                        </p>
+
+                        <!-- Список доступных механик -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          <div
+                            v-for="mechanic in availableMechanics"
+                            :key="mechanic.id"
+                            class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors"
+                          >
+                            <input
+                              :id="`mechanic-${mechanic.id}`"
+                              v-model="selectedMechanics"
+                              :value="mechanic.id"
+                              type="checkbox"
+                              class="w-4 h-4 text-indigo-600 bg-gray-600 border-gray-500 rounded focus:ring-indigo-500 focus:ring-2"
+                            />
+                            <label
+                              :for="`mechanic-${mechanic.id}`"
+                              class="ml-3 flex-1 cursor-pointer"
+                            >
+                              <div class="flex items-center gap-2">
+                                <span
+                                  v-if="mechanic.icon"
+                                  class="text-lg"
+                                  v-html="mechanic.icon"
+                                ></span>
+                                <div>
+                                  <div class="text-sm font-medium text-white">
+                                    {{ mechanic.name }}
+                                  </div>
+                                  <div
+                                    class="text-xs text-gray-400"
+                                    v-if="mechanic.description"
+                                  >
+                                    {{ mechanic.description }}
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <!-- Выбранные механики -->
+                        <div
+                          v-if="
+                            selectedMechanics && selectedMechanics.length > 0
+                          "
+                          class="mt-4"
+                        >
+                          <h4 class="text-sm font-medium text-gray-300 mb-2">
+                            Выбранные механики:
+                          </h4>
+                          <div class="flex flex-wrap gap-2">
+                            <span
+                              v-for="mechanicId in selectedMechanics"
+                              :key="mechanicId"
+                              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
+                            >
+                              {{ getMechanicName(mechanicId) }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Бонусы Hero секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
+                            >
+                              Бонусы Hero секции
+                              <span
+                                class="text-xs bg-[#63F3AB]/20 text-[#63F3AB] px-3 py-1 rounded-full border border-[#63F3AB]/30"
+                              >
+                                {{ selectedBonuses.length }} выбрано
+                              </span>
+                            </h3>
+                            <p class="text-sm text-[#63F3AB]">
+                              Управление бонусными предложениями
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showBonusesSection = !showBonusesSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showBonusesSection"
+                        >
+                          {{ showBonusesSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showBonusesSection" class="space-y-4">
+                        <div
+                          class="bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg p-4"
+                        >
+                          <p
+                            class="text-sm text-[#63F3AB] flex items-center gap-2"
+                          >
+                            <svg
+                              class="w-4 h-4 text-[#63F3AB]"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -858,503 +1216,210 @@
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                               ></path>
                             </svg>
+                            Выберите бонусы, которые будут отображаться в Hero
+                            секции слота на клиентской странице
+                          </p>
+                        </div>
+
+                        <!-- Поиск бонусов -->
+                        <div class="relative">
+                          <input
+                            v-model="bonusSearchQuery"
+                            type="text"
+                            placeholder="Поиск бонусов..."
+                            class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#63F3AB] focus:ring-1 focus:ring-[#63F3AB] transition-all duration-200"
+                          />
+                          <svg
+                            class="w-4 h-4 text-gray-400 absolute left-3 top-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            ></path>
+                          </svg>
+                        </div>
+
+                        <!-- Быстрые фильтры -->
+                        <div class="flex flex-wrap gap-2">
+                          <button
+                            @click="selectAllBonuses"
+                            type="button"
+                            class="text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md transition-colors"
+                          >
+                            Выбрать все
+                          </button>
+                          <button
+                            @click="clearAllBonuses"
+                            type="button"
+                            class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
+                          >
+                            Очистить все
+                          </button>
+                          <button
+                            @click="selectPopularBonuses"
+                            type="button"
+                            class="text-xs px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
+                          >
+                            Только популярные
+                          </button>
+                        </div>
+
+                        <!-- Список доступных бонусов -->
+                        <div
+                          class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
+                        >
+                          <div
+                            v-for="bonus in filteredBonuses"
+                            :key="bonus.id"
+                            class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-amber-500 transition-all duration-200"
+                            :class="
+                              selectedBonuses.includes(bonus.id)
+                                ? 'border-amber-500 bg-amber-500/10'
+                                : ''
+                            "
+                          >
+                            <input
+                              :id="`bonus-${bonus.id}`"
+                              v-model="selectedBonuses"
+                              :value="bonus.id"
+                              type="checkbox"
+                              class="w-4 h-4 text-amber-600 bg-gray-600 border-gray-500 rounded focus:ring-amber-500 focus:ring-2"
+                            />
+                            <label
+                              :for="`bonus-${bonus.id}`"
+                              class="ml-3 flex-1 cursor-pointer"
+                            >
+                              <div class="flex items-center gap-2">
+                                <span
+                                  v-if="bonus.icon"
+                                  class="text-lg"
+                                  v-html="bonus.icon"
+                                ></span>
+                                <div>
+                                  <div class="text-sm font-medium text-white">
+                                    {{ bonus.name }}
+                                  </div>
+                                  <div
+                                    class="text-xs text-gray-400"
+                                    v-if="bonus.description"
+                                  >
+                                    {{ bonus.description }}
+                                  </div>
+                                </div>
+                              </div>
+                            </label>
                           </div>
                         </div>
-                        <div>
-                          <h4 class="text-sm font-semibold text-blue-300 mb-2">
-                            📐 Рекомендуемые размеры медиа
+
+                        <!-- Выбранные бонусы -->
+                        <div
+                          v-if="selectedBonuses && selectedBonuses.length > 0"
+                          class="mt-4"
+                        >
+                          <h4 class="text-sm font-medium text-gray-300 mb-2">
+                            Выбранные бонусы:
                           </h4>
-                          <div class="text-xs text-blue-200 space-y-1">
-                            <div>
-                              <strong>🖼️ Изображение:</strong> 1200x1600
-                              пикселей (соотношение 3:4)
-                            </div>
-                            <div>
-                              <strong>🎬 Видео:</strong> 1200x1600 пикселей,
-                              длительность до 30 секунд
-                            </div>
-                            <div>
-                              <strong>📱 Мобильная версия:</strong>
-                              Автоматически адаптируется под экран
-                            </div>
-                            <div>
-                              <strong>💾 Размер файла:</strong> Изображения до
-                              2MB, видео до 10MB
-                            </div>
-                          </div>
-                          <div class="mt-2 text-xs text-blue-300">
-                            💡 <strong>Совет:</strong> Используйте
-                            высококачественные изображения для лучшего
-                            отображения на ретина-дисплеях
+                          <div class="flex flex-wrap gap-2">
+                            <span
+                              v-for="bonusId in selectedBonuses"
+                              :key="bonusId"
+                              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-600/20 text-amber-300 border border-amber-500/30"
+                            >
+                              {{ getBonusName(bonusId) }}
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <!-- Тип медиа -->
-                    <div>
-                      <label
-                        class="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        Тип медиа контента
-                      </label>
-                      <select
-                        v-model="form.media_type"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                      >
-                        <option value="image">Изображение</option>
-                        <option value="video">Видео</option>
-                      </select>
-                      <p class="mt-1 text-xs text-gray-400">
-                        Выберите тип медиа контента для обложки слота
-                      </p>
-                    </div>
-
-                    <!-- URL изображения (показывается если выбрано изображение) -->
-                    <div v-if="form.media_type === 'image'">
-                      <label
-                        class="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        URL изображения
-                      </label>
-                      <input
-                        v-model="form.image_url"
-                        type="url"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                        placeholder="https://example.com/slot-image.jpg"
-                      />
-                      <p class="mt-1 text-xs text-gray-400">
-                        Добавьте ссылку на изображение слота. Рекомендуемый
-                        размер: 1200x1600px (3:4)
-                      </p>
-                    </div>
-
-                    <!-- URL видео (показывается если выбрано видео) -->
-                    <div v-if="form.media_type === 'video'">
-                      <label
-                        class="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        URL видео
-                      </label>
-                      <input
-                        v-model="form.video_url"
-                        type="url"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
-                        placeholder="https://example.com/slot-video.mp4"
-                      />
-                      <p class="mt-1 text-xs text-gray-400">
-                        Добавьте ссылку на видео слота. Рекомендуемый размер:
-                        1200x1600px, до 30 сек. Поддерживаются форматы: .mp4,
-                        .webm, .ogg
-                      </p>
-                    </div>
-
-                    <!-- Превью медиа -->
-                    <div v-if="form.image_url || form.video_url" class="mt-4">
-                      <label
-                        class="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        Превью медиа
-                      </label>
-                      <div
-                        class="bg-gray-700 rounded-lg p-4 border border-gray-600"
-                      >
-                        <!-- Превью изображения -->
-                        <div
-                          v-if="form.media_type === 'image' && form.image_url"
-                        >
-                          <img
-                            :src="form.image_url"
-                            :alt="form.name || 'Слот'"
-                            class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
-                            @error="handleImageError"
-                            @load="handleImageLoad"
-                          />
-                        </div>
-                        <!-- Превью видео -->
-                        <div
-                          v-else-if="
-                            form.media_type === 'video' && form.video_url
-                          "
-                        >
-                          <video
-                            :src="form.video_url"
-                            class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
-                            controls
-                            muted
-                            preload="metadata"
-                            @error="handleVideoError"
-                            @loadeddata="handleVideoLoad"
+                    <!-- Тематики Hero секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
                           >
-                            Ваш браузер не поддерживает воспроизведение видео.
-                          </video>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Игровые механики Hero секции -->
-                  <div
-                    class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                            ></path>
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display"
-                          >
-                            Игровые механики
-                          </h3>
-                          <p class="text-sm text-[#FF6E48]">
-                            Hero секция механик
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showMechanicsSection = !showMechanicsSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showMechanicsSection"
-                      >
-                        {{ showMechanicsSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
-                    <div v-show="showMechanicsSection" class="space-y-4">
-                      <p class="text-sm text-gray-400">
-                        Выберите игровые механики, которые будут отображаться в
-                        Hero секции слота
-                      </p>
-
-                      <!-- Список доступных механик -->
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div
-                          v-for="mechanic in availableMechanics"
-                          :key="mechanic.id"
-                          class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors"
-                        >
-                          <input
-                            :id="`mechanic-${mechanic.id}`"
-                            v-model="selectedMechanics"
-                            :value="mechanic.id"
-                            type="checkbox"
-                            class="w-4 h-4 text-indigo-600 bg-gray-600 border-gray-500 rounded focus:ring-indigo-500 focus:ring-2"
-                          />
-                          <label
-                            :for="`mechanic-${mechanic.id}`"
-                            class="ml-3 flex-1 cursor-pointer"
-                          >
-                            <div class="flex items-center gap-2">
-                              <span
-                                v-if="mechanic.icon"
-                                class="text-lg"
-                                v-html="mechanic.icon"
-                              ></span>
-                              <div>
-                                <div class="text-sm font-medium text-white">
-                                  {{ mechanic.name }}
-                                </div>
-                                <div
-                                  class="text-xs text-gray-400"
-                                  v-if="mechanic.description"
-                                >
-                                  {{ mechanic.description }}
-                                </div>
-                              </div>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-
-                      <!-- Выбранные механики -->
-                      <div
-                        v-if="selectedMechanics && selectedMechanics.length > 0"
-                        class="mt-4"
-                      >
-                        <h4 class="text-sm font-medium text-gray-300 mb-2">
-                          Выбранные механики:
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                          <span
-                            v-for="mechanicId in selectedMechanics"
-                            :key="mechanicId"
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
-                          >
-                            {{ getMechanicName(mechanicId) }}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Бонусы Hero секции -->
-                  <div
-                    class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
-                          >
-                            Бонусы Hero секции
-                            <span
-                              class="text-xs bg-[#63F3AB]/20 text-[#63F3AB] px-3 py-1 rounded-full border border-[#63F3AB]/30"
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
                             >
-                              {{ selectedBonuses.length }} выбрано
-                            </span>
-                          </h3>
-                          <p class="text-sm text-[#63F3AB]">
-                            Управление бонусными предложениями
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showBonusesSection = !showBonusesSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showBonusesSection"
-                      >
-                        {{ showBonusesSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
-                    <div v-show="showBonusesSection" class="space-y-4">
-                      <div
-                        class="bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg p-4"
-                      >
-                        <p
-                          class="text-sm text-[#63F3AB] flex items-center gap-2"
-                        >
-                          <svg
-                            class="w-4 h-4 text-[#63F3AB]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                          Выберите бонусы, которые будут отображаться в Hero
-                          секции слота на клиентской странице
-                        </p>
-                      </div>
-
-                      <!-- Поиск бонусов -->
-                      <div class="relative">
-                        <input
-                          v-model="bonusSearchQuery"
-                          type="text"
-                          placeholder="Поиск бонусов..."
-                          class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#63F3AB] focus:ring-1 focus:ring-[#63F3AB] transition-all duration-200"
-                        />
-                        <svg
-                          class="w-4 h-4 text-gray-400 absolute left-3 top-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                          ></path>
-                        </svg>
-                      </div>
-
-                      <!-- Быстрые фильтры -->
-                      <div class="flex flex-wrap gap-2">
-                        <button
-                          @click="selectAllBonuses"
-                          type="button"
-                          class="text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md transition-colors"
-                        >
-                          Выбрать все
-                        </button>
-                        <button
-                          @click="clearAllBonuses"
-                          type="button"
-                          class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
-                        >
-                          Очистить все
-                        </button>
-                        <button
-                          @click="selectPopularBonuses"
-                          type="button"
-                          class="text-xs px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
-                        >
-                          Только популярные
-                        </button>
-                      </div>
-
-                      <!-- Список доступных бонусов -->
-                      <div
-                        class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
-                      >
-                        <div
-                          v-for="bonus in filteredBonuses"
-                          :key="bonus.id"
-                          class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-amber-500 transition-all duration-200"
-                          :class="
-                            selectedBonuses.includes(bonus.id)
-                              ? 'border-amber-500 bg-amber-500/10'
-                              : ''
-                          "
-                        >
-                          <input
-                            :id="`bonus-${bonus.id}`"
-                            v-model="selectedBonuses"
-                            :value="bonus.id"
-                            type="checkbox"
-                            class="w-4 h-4 text-amber-600 bg-gray-600 border-gray-500 rounded focus:ring-amber-500 focus:ring-2"
-                          />
-                          <label
-                            :for="`bonus-${bonus.id}`"
-                            class="ml-3 flex-1 cursor-pointer"
-                          >
-                            <div class="flex items-center gap-2">
-                              <span
-                                v-if="bonus.icon"
-                                class="text-lg"
-                                v-html="bonus.icon"
-                              ></span>
-                              <div>
-                                <div class="text-sm font-medium text-white">
-                                  {{ bonus.name }}
-                                </div>
-                                <div
-                                  class="text-xs text-gray-400"
-                                  v-if="bonus.description"
-                                >
-                                  {{ bonus.description }}
-                                </div>
-                              </div>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-
-                      <!-- Выбранные бонусы -->
-                      <div
-                        v-if="selectedBonuses && selectedBonuses.length > 0"
-                        class="mt-4"
-                      >
-                        <h4 class="text-sm font-medium text-gray-300 mb-2">
-                          Выбранные бонусы:
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                          <span
-                            v-for="bonusId in selectedBonuses"
-                            :key="bonusId"
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-600/20 text-amber-300 border border-amber-500/30"
-                          >
-                            {{ getBonusName(bonusId) }}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Тематики Hero секции -->
-                  <div
-                    class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-between mb-4">
-                      <div class="flex items-center gap-3">
-                        <div
-                          class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
-                        >
-                          <svg
-                            class="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M11 7l-6.3 6.3"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3
-                            class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
-                          >
-                            Тематики Hero секции
-                            <span
-                              class="text-xs bg-[#00EDFF]/20 text-[#00EDFF] px-3 py-1 rounded-full border border-[#00EDFF]/30"
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M11 7l-6.3 6.3"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
                             >
-                              {{ selectedThemes.length }} выбрано
-                            </span>
-                          </h3>
-                          <p class="text-sm text-[#00EDFF]">
-                            Управление тематическими категориями
+                              Тематики Hero секции
+                              <span
+                                class="text-xs bg-[#00EDFF]/20 text-[#00EDFF] px-3 py-1 rounded-full border border-[#00EDFF]/30"
+                              >
+                                {{ selectedThemes.length }} выбрано
+                              </span>
+                            </h3>
+                            <p class="text-sm text-[#00EDFF]">
+                              Управление тематическими категориями
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showThemesSection = !showThemesSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showThemesSection"
+                        >
+                          {{ showThemesSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showThemesSection" class="space-y-4">
+                        <div
+                          class="bg-[#00EDFF]/10 border border-[#00EDFF]/20 rounded-lg p-4"
+                        >
+                          <p
+                            class="text-sm text-[#00EDFF] flex items-center gap-2"
+                          >
+                            <svg
+                              class="w-4 h-4 text-[#00EDFF]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              ></path>
+                            </svg>
+                            Выберите тематики, которые будут отображаться в Hero
+                            секции слота на клиентской странице
                           </p>
                         </div>
-                      </div>
-                      <button
-                        type="button"
-                        @click="showThemesSection = !showThemesSection"
-                        class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        :aria-expanded="showThemesSection"
-                      >
-                        {{ showThemesSection ? 'Скрыть' : 'Показать' }}
-                      </button>
-                    </div>
-                    <div v-show="showThemesSection" class="space-y-4">
-                      <div
-                        class="bg-[#00EDFF]/10 border border-[#00EDFF]/20 rounded-lg p-4"
-                      >
-                        <p
-                          class="text-sm text-[#00EDFF] flex items-center gap-2"
-                        >
+
+                        <!-- Поиск тематик -->
+                        <div class="relative">
+                          <input
+                            v-model="themeSearchQuery"
+                            type="text"
+                            placeholder="Поиск тематик..."
+                            class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#00EDFF] focus:ring-1 focus:ring-[#00EDFF] transition-all duration-200"
+                          />
                           <svg
-                            class="w-4 h-4 text-[#00EDFF]"
+                            class="w-4 h-4 text-gray-400 absolute left-3 top-3"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -1363,123 +1428,99 @@
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
-                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                             ></path>
                           </svg>
-                          Выберите тематики, которые будут отображаться в Hero
-                          секции слота на клиентской странице
-                        </p>
-                      </div>
+                        </div>
 
-                      <!-- Поиск тематик -->
-                      <div class="relative">
-                        <input
-                          v-model="themeSearchQuery"
-                          type="text"
-                          placeholder="Поиск тематик..."
-                          class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#00EDFF] focus:ring-1 focus:ring-[#00EDFF] transition-all duration-200"
-                        />
-                        <svg
-                          class="w-4 h-4 text-gray-400 absolute left-3 top-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                          ></path>
-                        </svg>
-                      </div>
-
-                      <!-- Быстрые фильтры -->
-                      <div class="flex flex-wrap gap-2">
-                        <button
-                          @click="clearAllThemes"
-                          type="button"
-                          class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
-                        >
-                          Очистить выбор
-                        </button>
-                        <span
-                          class="text-xs text-emerald-300 px-3 py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30"
-                        >
-                          ℹ️ Можно выбрать только одну тематику
-                        </span>
-                      </div>
-
-                      <!-- Список доступных тематик -->
-                      <div
-                        class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
-                      >
-                        <div
-                          v-for="theme in filteredThemes"
-                          :key="theme.id"
-                          class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-emerald-500 transition-all duration-200"
-                          :class="
-                            selectedThemes[0] === theme.id
-                              ? 'border-emerald-500 bg-emerald-500/10'
-                              : ''
-                          "
-                        >
-                          <input
-                            :id="`theme-${theme.id}`"
-                            v-model="selectedThemes[0]"
-                            :value="theme.id"
-                            type="radio"
-                            name="theme"
-                            class="w-4 h-4 text-emerald-600 bg-gray-600 border-gray-500 focus:ring-emerald-500 focus:ring-2"
-                          />
-                          <label
-                            :for="`theme-${theme.id}`"
-                            class="ml-3 flex-1 cursor-pointer"
+                        <!-- Быстрые фильтры -->
+                        <div class="flex flex-wrap gap-2">
+                          <button
+                            @click="clearAllThemes"
+                            type="button"
+                            class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
                           >
-                            <div class="flex items-center gap-2">
-                              <span
-                                v-if="theme.icon"
-                                class="text-lg"
-                                v-html="theme.icon"
-                              ></span>
-                              <div>
-                                <div class="text-sm font-medium text-white">
-                                  {{ theme.name }}
-                                </div>
-                                <div
-                                  class="text-xs text-gray-400"
-                                  v-if="theme.description"
-                                >
-                                  {{ theme.description }}
+                            Очистить выбор
+                          </button>
+                          <span
+                            class="text-xs text-emerald-300 px-3 py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30"
+                          >
+                            ℹ️ Можно выбрать только одну тематику
+                          </span>
+                        </div>
+
+                        <!-- Список доступных тематик -->
+                        <div
+                          class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
+                        >
+                          <div
+                            v-for="theme in filteredThemes"
+                            :key="theme.id"
+                            class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-emerald-500 transition-all duration-200"
+                            :class="
+                              selectedThemes[0] === theme.id
+                                ? 'border-emerald-500 bg-emerald-500/10'
+                                : ''
+                            "
+                          >
+                            <input
+                              :id="`theme-${theme.id}`"
+                              v-model="selectedThemes[0]"
+                              :value="theme.id"
+                              type="radio"
+                              name="theme"
+                              class="w-4 h-4 text-emerald-600 bg-gray-600 border-gray-500 focus:ring-emerald-500 focus:ring-2"
+                            />
+                            <label
+                              :for="`theme-${theme.id}`"
+                              class="ml-3 flex-1 cursor-pointer"
+                            >
+                              <div class="flex items-center gap-2">
+                                <span
+                                  v-if="theme.icon"
+                                  class="text-lg"
+                                  v-html="theme.icon"
+                                ></span>
+                                <div>
+                                  <div class="text-sm font-medium text-white">
+                                    {{ theme.name }}
+                                  </div>
+                                  <div
+                                    class="text-xs text-gray-400"
+                                    v-if="theme.description"
+                                  >
+                                    {{ theme.description }}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </label>
+                            </label>
+                          </div>
                         </div>
-                      </div>
 
-                      <!-- Выбранная тематика -->
-                      <div
-                        v-if="
-                          selectedThemes &&
-                          selectedThemes.length > 0 &&
-                          selectedThemes[0]
-                        "
-                        class="mt-4"
-                      >
-                        <h4 class="text-sm font-medium text-gray-300 mb-2">
-                          Выбранная тематика:
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                          <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-500/30"
-                          >
-                            {{ getThemeName(selectedThemes[0]) }}
-                          </span>
+                        <!-- Выбранная тематика -->
+                        <div
+                          v-if="
+                            selectedThemes &&
+                            selectedThemes.length > 0 &&
+                            selectedThemes[0]
+                          "
+                          class="mt-4"
+                        >
+                          <h4 class="text-sm font-medium text-gray-300 mb-2">
+                            Выбранная тематика:
+                          </h4>
+                          <div class="flex flex-wrap gap-2">
+                            <span
+                              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-500/30"
+                            >
+                              {{ getThemeName(selectedThemes[0]) }}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- Конец Hero секций -->
 
                   <!-- Кнопки сохранения -->
                   <div
@@ -1823,9 +1864,128 @@
                 </div>
               </div>
 
-              <!-- Правая панель: Предпросмотр Hero секции -->
+              <!-- Правая панель: Навигация и Предпросмотр -->
               <div class="xl:col-span-1">
-                <div class="sticky top-24">
+                <div class="sticky top-24 space-y-6">
+                  <!-- Навигация по секциям -->
+                  <div
+                    class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#353A4A]"
+                  >
+                    <h3
+                      class="text-lg font-bold text-[#E5E7EB] mb-4 flex items-center gap-2"
+                    >
+                      <svg
+                        class="w-5 h-5 text-[#FF6E48]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                        ></path>
+                      </svg>
+                      Навигация по секциям
+                    </h3>
+                    <div class="space-y-2">
+                      <!-- Главная Hero секция (коллапсируемая) -->
+                      <button
+                        @click="showHeroSection = !showHeroSection"
+                        class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-purple-400/40 transition-all duration-200"
+                        :class="
+                          showHeroSection
+                            ? 'border-purple-400/40 bg-purple-500/10'
+                            : ''
+                        "
+                      >
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]"
+                        >
+                          <svg
+                            class="w-4 h-4 text-purple-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            ></path>
+                          </svg>
+                          Hero секция
+                        </span>
+                        <svg
+                          class="w-4 h-4 text-gray-400 transition-transform"
+                          :class="{ 'rotate-180': !showHeroSection }"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                      </button>
+
+                      <!-- Подразделы Hero секции (показываются только если Hero открыт) -->
+                      <div
+                        v-show="showHeroSection"
+                        class="ml-4 space-y-1 border-l-2 border-purple-400/20 pl-3"
+                      >
+                        <button
+                          @click="scrollToSection('basic-info')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Основная информация
+                        </button>
+                        <button
+                          @click="scrollToSection('hero-links')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Hero ссылки
+                        </button>
+                        <button
+                          @click="scrollToSection('game-characteristics')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Характеристики игры
+                        </button>
+                        <button
+                          @click="scrollToSection('rating-popularity')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Рейтинг и популярность
+                        </button>
+                        <button
+                          @click="scrollToSection('game-mechanics')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Игровые механики
+                        </button>
+                        <button
+                          @click="scrollToSection('bonuses')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Бонусы
+                        </button>
+                        <button
+                          @click="scrollToSection('themes')"
+                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                        >
+                          Тематики
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Предпросмотр Hero секции -->
                   <HeroPreview
                     :slot-data="form"
                     :selected-bonuses="selectedBonuses"
@@ -1860,6 +2020,7 @@ const slot = ref(null)
 const providers = ref([])
 const saving = ref(false)
 const loading = ref(true)
+const showHeroSection = ref(true)
 const showBasicSection = ref(true)
 const showHeroLinksSection = ref(true)
 const showGameCharacteristicsSection = ref(true)
@@ -2125,6 +2286,14 @@ const selectPopularBonuses = () => {
 // Функции для управления тематиками (только одна тематика)
 const clearAllThemes = () => {
   selectedThemes.value = []
+}
+
+// Функция для прокрутки к секции
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 }
 
 // Сохранение изменений
