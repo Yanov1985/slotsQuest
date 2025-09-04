@@ -2875,6 +2875,889 @@
               </div>
             </div>
 
+            <!-- Секция "Насколько популярен" -->
+            <div id="popularity-section" class="mt-8">
+              <div
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#059669]/5 via-transparent to-[#10B981]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#059669]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#059669] to-[#10B981] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <span class="text-2xl">📊</span>
+                      </div>
+                      <div
+                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center animate-bounce"
+                      >
+                        <span class="text-white text-xs font-bold">📈</span>
+                      </div>
+                    </div>
+                    <div>
+                      <h2
+                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#059669] to-[#10B981] bg-clip-text text-transparent font-display"
+                      >
+                        Насколько популярен
+                      </h2>
+                      <div
+                        class="h-1 w-28 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-full mt-2"
+                      ></div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="showPopularitySection = !showPopularitySection"
+                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      :aria-expanded="showPopularitySection"
+                    >
+                      <span class="flex items-center gap-2">
+                        <svg
+                          class="w-4 h-4"
+                          :class="{ 'rotate-180': !showPopularitySection }"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                        {{
+                          showPopularitySection
+                            ? 'Свернуть секцию'
+                            : 'Развернуть секцию'
+                        }}
+                      </span>
+                    </button>
+                  </div>
+
+                  <div v-show="showPopularitySection" class="space-y-6">
+                    <!-- Заголовок секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#059669]/10 to-[#10B981]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#10B981] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Заголовок секции
+                            </h3>
+                            <p class="text-sm text-[#059669]">
+                              Основной заголовок
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showPopularityTitleSection =
+                              !showPopularityTitleSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showPopularityTitleSection"
+                        >
+                          {{
+                            showPopularityTitleSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showPopularityTitleSection"
+                        class="space-y-4"
+                      >
+                        <!-- Заголовок секции -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.popularity_section_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                            placeholder="Насколько популярен"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Метрики популярности -->
+                    <div
+                      class="group bg-gradient-to-r from-[#059669]/10 to-[#10B981]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#10B981] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Метрики популярности
+                            </h3>
+                            <p class="text-sm text-[#059669]">
+                              Основные показатели (3 карточки)
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showPopularityMetricsSection =
+                              !showPopularityMetricsSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showPopularityMetricsSection"
+                        >
+                          {{
+                            showPopularityMetricsSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showPopularityMetricsSection"
+                        class="space-y-4"
+                      >
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                          <!-- Рейтинг 2024 -->
+                          <div class="space-y-2">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Рейтинг 2024
+                            </h4>
+                            <input
+                              v-model="form.popularity_rank_2024"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="12"
+                            />
+                            <input
+                              v-model="form.popularity_rank_2024_label"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="Рейтинг 2024"
+                            />
+                          </div>
+
+                          <!-- Пользовательский рейтинг -->
+                          <div class="space-y-2">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Пользовательский рейтинг
+                            </h4>
+                            <input
+                              v-model="form.popularity_user_rating"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="4.8/5"
+                            />
+                            <input
+                              v-model="form.popularity_user_rating_label"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="Пользовательский рейтинг"
+                            />
+                          </div>
+
+                          <!-- Игроков в месяц -->
+                          <div class="space-y-2">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Игроков в месяц
+                            </h4>
+                            <input
+                              v-model="form.popularity_monthly_players"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="2M+"
+                            />
+                            <input
+                              v-model="form.popularity_monthly_players_label"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm"
+                              placeholder="Игроков в месяц"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Заключение о популярности -->
+                    <div
+                      class="group bg-gradient-to-r from-[#059669]/10 to-[#10B981]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#10B981] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Заключение о популярности
+                            </h3>
+                            <p class="text-sm text-[#059669]">
+                              Итоговый текст секции
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showPopularityConclusionSection =
+                              !showPopularityConclusionSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showPopularityConclusionSection"
+                        >
+                          {{
+                            showPopularityConclusionSection
+                              ? 'Скрыть'
+                              : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showPopularityConclusionSection"
+                        class="space-y-4"
+                      >
+                        <!-- Заключение о популярности -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Текст заключения
+                          </label>
+                          <textarea
+                            v-model="form.popularity_conclusion"
+                            rows="3"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#059669] focus:border-[#059669] transition-all duration-200 text-sm resize-none"
+                            placeholder="🏆 Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд..."
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Секция "Рейтинг и награды" -->
+            <div id="rating-awards-section" class="mt-8">
+              <div
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/5 via-transparent to-[#D97706]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#F59E0B]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <span class="text-2xl">🏆</span>
+                      </div>
+                      <div
+                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center animate-bounce"
+                      >
+                        <span class="text-white text-xs font-bold">⭐</span>
+                      </div>
+                    </div>
+                    <div>
+                      <h2
+                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#F59E0B] to-[#D97706] bg-clip-text text-transparent font-display"
+                      >
+                        Рейтинг и награды
+                      </h2>
+                      <div
+                        class="h-1 w-28 bg-gradient-to-r from-[#F59E0B] to-[#D97706] rounded-full mt-2"
+                      ></div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="
+                        showRatingAwardsSection = !showRatingAwardsSection
+                      "
+                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      :aria-expanded="showRatingAwardsSection"
+                    >
+                      <span class="flex items-center gap-2">
+                        <svg
+                          class="w-4 h-4"
+                          :class="{ 'rotate-180': !showRatingAwardsSection }"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                        {{
+                          showRatingAwardsSection
+                            ? 'Свернуть секцию'
+                            : 'Развернуть секцию'
+                        }}
+                      </span>
+                    </button>
+                  </div>
+
+                  <div v-show="showRatingAwardsSection" class="space-y-6">
+                    <!-- Заголовок секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Заголовок секции
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Основной заголовок
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showRatingTitleSection = !showRatingTitleSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showRatingTitleSection"
+                        >
+                          {{ showRatingTitleSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showRatingTitleSection" class="space-y-4">
+                        <!-- Заголовок секции -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.rating_awards_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Рейтинг и награды"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Основной рейтинг -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Основной рейтинг
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Средний рейтинг и отзывы
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showRatingMainSection = !showRatingMainSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showRatingMainSection"
+                        >
+                          {{ showRatingMainSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showRatingMainSection" class="space-y-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                          <!-- Основной рейтинг -->
+                          <div class="space-y-4">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Основной рейтинг
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                              <div>
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1"
+                                >
+                                  Оценка
+                                </label>
+                                <input
+                                  v-model="form.rating_main_score"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                  placeholder="4.8"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1"
+                                >
+                                  Макс. оценка
+                                </label>
+                                <input
+                                  v-model="form.rating_main_max"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                  placeholder="5"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Описание и отзывы -->
+                          <div class="space-y-4">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Описание и статистика
+                            </h4>
+                            <input
+                              v-model="form.rating_description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Средний рейтинг игроков"
+                            />
+                            <div class="grid grid-cols-2 gap-3">
+                              <input
+                                v-model="form.rating_reviews_count"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                placeholder="1,247"
+                              />
+                              <input
+                                v-model="form.rating_reviews_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                placeholder="отзывах"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Детализация рейтинга (5 звезд) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Детализация рейтинга
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Процентное распределение оценок
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showRatingDetailsSection = !showRatingDetailsSection
+                          "
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showRatingDetailsSection"
+                        >
+                          {{ showRatingDetailsSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showRatingDetailsSection" class="space-y-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+                          <!-- 5 звезд -->
+                          <div class="text-center">
+                            <label class="block text-xs text-[#9CA3AF] mb-2">
+                              5 звезд (%)
+                            </label>
+                            <input
+                              v-model="form.rating_5_stars_percent"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                              placeholder="68"
+                            />
+                          </div>
+
+                          <!-- 4 звезды -->
+                          <div class="text-center">
+                            <label class="block text-xs text-[#9CA3AF] mb-2">
+                              4 звезды (%)
+                            </label>
+                            <input
+                              v-model="form.rating_4_stars_percent"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                              placeholder="22"
+                            />
+                          </div>
+
+                          <!-- 3 звезды -->
+                          <div class="text-center">
+                            <label class="block text-xs text-[#9CA3AF] mb-2">
+                              3 звезды (%)
+                            </label>
+                            <input
+                              v-model="form.rating_3_stars_percent"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                              placeholder="7"
+                            />
+                          </div>
+
+                          <!-- 2 звезды -->
+                          <div class="text-center">
+                            <label class="block text-xs text-[#9CA3AF] mb-2">
+                              2 звезды (%)
+                            </label>
+                            <input
+                              v-model="form.rating_2_stars_percent"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                              placeholder="2"
+                            />
+                          </div>
+
+                          <!-- 1 звезда -->
+                          <div class="text-center">
+                            <label class="block text-xs text-[#9CA3AF] mb-2">
+                              1 звезда (%)
+                            </label>
+                            <input
+                              v-model="form.rating_1_stars_percent"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                              placeholder="1"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Награды -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                            >
+                              Награды
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              4 награды и достижения
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showAwardsSection = !showAwardsSection"
+                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showAwardsSection"
+                        >
+                          {{ showAwardsSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showAwardsSection" class="space-y-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          <!-- Награда 1 -->
+                          <div class="space-y-3">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Награда 1
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                              <input
+                                v-model="form.award_1_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                                placeholder="🏆"
+                              />
+                              <select
+                                v-model="form.award_1_color"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              >
+                                <option value="yellow">Желтый</option>
+                                <option value="purple">Фиолетовый</option>
+                                <option value="green">Зеленый</option>
+                                <option value="blue">Синий</option>
+                              </select>
+                            </div>
+                            <input
+                              v-model="form.award_1_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Слот года 2024"
+                            />
+                            <input
+                              v-model="form.award_1_description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Casino Awards"
+                            />
+                          </div>
+
+                          <!-- Награда 2 -->
+                          <div class="space-y-3">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Награда 2
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                              <input
+                                v-model="form.award_2_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                                placeholder="🎖️"
+                              />
+                              <select
+                                v-model="form.award_2_color"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              >
+                                <option value="yellow">Желтый</option>
+                                <option value="purple">Фиолетовый</option>
+                                <option value="green">Зеленый</option>
+                                <option value="blue">Синий</option>
+                              </select>
+                            </div>
+                            <input
+                              v-model="form.award_2_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Лучший дизайн"
+                            />
+                            <input
+                              v-model="form.award_2_description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Gaming Excellence"
+                            />
+                          </div>
+
+                          <!-- Награда 3 -->
+                          <div class="space-y-3">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Награда 3
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                              <input
+                                v-model="form.award_3_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                                placeholder="💎"
+                              />
+                              <select
+                                v-model="form.award_3_color"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              >
+                                <option value="yellow">Желтый</option>
+                                <option value="purple">Фиолетовый</option>
+                                <option value="green">Зеленый</option>
+                                <option value="blue">Синий</option>
+                              </select>
+                            </div>
+                            <input
+                              v-model="form.award_3_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Платиновый статус"
+                            />
+                            <input
+                              v-model="form.award_3_description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="10M+ игроков"
+                            />
+                          </div>
+
+                          <!-- Награда 4 -->
+                          <div class="space-y-3">
+                            <h4 class="text-sm font-medium text-[#E5E7EB]">
+                              Награда 4
+                            </h4>
+                            <div class="grid grid-cols-2 gap-3">
+                              <input
+                                v-model="form.award_4_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm text-center"
+                                placeholder="⭐"
+                              />
+                              <select
+                                v-model="form.award_4_color"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              >
+                                <option value="yellow">Желтый</option>
+                                <option value="purple">Фиолетовый</option>
+                                <option value="green">Зеленый</option>
+                                <option value="blue">Синий</option>
+                              </select>
+                            </div>
+                            <input
+                              v-model="form.award_4_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Выбор игроков"
+                            />
+                            <input
+                              v-model="form.award_4_description"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="Народное голосование"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Кнопки сохранения -->
             <form @submit.prevent="saveSlot" class="mt-8">
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
@@ -3423,6 +4306,106 @@
                         </button>
                       </div>
                     </div>
+
+                    <!-- Секция "Насколько популярен" -->
+                    <button
+                      @click="scrollToSection('popularity-section')"
+                      class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#059669]/10 hover:border-[#059669]/40 transition-all duration-200"
+                      :class="
+                        showPopularitySection
+                          ? 'border-[#059669]/40 bg-[#059669]/10'
+                          : ''
+                      "
+                    >
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-8 h-8 bg-gradient-to-br from-[#059669] to-[#10B981] rounded-lg flex items-center justify-center"
+                        >
+                          <span class="text-white text-xs font-bold">📊</span>
+                        </div>
+                        <div>
+                          <div class="text-sm font-medium text-[#E5E7EB]">
+                            Насколько популярен
+                          </div>
+                          <div class="text-xs text-[#9CA3AF]">
+                            Показатели популярности
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <div
+                          class="w-2 h-2 rounded-full"
+                          :class="
+                            showPopularitySection
+                              ? 'bg-[#059669]'
+                              : 'bg-[#353A4A]'
+                          "
+                        ></div>
+                        <svg
+                          class="w-4 h-4 text-[#9CA3AF]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                          ></path>
+                        </svg>
+                      </div>
+                    </button>
+
+                    <!-- Секция "Рейтинг и награды" -->
+                    <button
+                      @click="scrollToSection('rating-awards-section')"
+                      class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#F59E0B]/10 hover:border-[#F59E0B]/40 transition-all duration-200"
+                      :class="
+                        showRatingAwardsSection
+                          ? 'border-[#F59E0B]/40 bg-[#F59E0B]/10'
+                          : ''
+                      "
+                    >
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-8 h-8 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-lg flex items-center justify-center"
+                        >
+                          <span class="text-white text-xs font-bold">🏆</span>
+                        </div>
+                        <div>
+                          <div class="text-sm font-medium text-[#E5E7EB]">
+                            Рейтинг и награды
+                          </div>
+                          <div class="text-xs text-[#9CA3AF]">
+                            Оценки и достижения
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <div
+                          class="w-2 h-2 rounded-full"
+                          :class="
+                            showRatingAwardsSection
+                              ? 'bg-[#F59E0B]'
+                              : 'bg-[#353A4A]'
+                          "
+                        ></div>
+                        <svg
+                          class="w-4 h-4 text-[#9CA3AF]"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                          ></path>
+                        </svg>
+                      </div>
+                    </button>
                   </div>
 
                   <!-- Предпросмотр Hero секции -->
@@ -3476,6 +4459,19 @@ const showOverviewSuccessSecretSection = ref(true)
 const showOverviewMechanicsSection = ref(true)
 const showOverviewFreeSpinsSection = ref(true)
 const showOverviewStrategiesSection = ref(true)
+
+// Состояние для секции "Насколько популярен"
+const showPopularitySection = ref(true)
+const showPopularityTitleSection = ref(true)
+const showPopularityMetricsSection = ref(true)
+const showPopularityConclusionSection = ref(true)
+
+// Состояние для секции "Рейтинг и награды"
+const showRatingAwardsSection = ref(true)
+const showRatingTitleSection = ref(true)
+const showRatingMainSection = ref(true)
+const showRatingDetailsSection = ref(true)
+const showAwardsSection = ref(true)
 
 const paylineType = ref('text') // 'number' или 'text'
 
@@ -3675,6 +4671,63 @@ const form = ref({
     'Размер ставки не должен превышать 1-5% от общего банкролла',
   strategy_bankroll_3: 'Установите дневные, недельные и месячные лимиты',
   strategy_bankroll_4: 'Делайте перерывы каждые 30-60 минут',
+
+  // === Секция "Насколько популярен" ===
+  // Заголовок секции
+  popularity_section_title: 'Насколько популярен',
+
+  // Основные метрики популярности (3 карточки)
+  popularity_rank_2024: '12',
+  popularity_rank_2024_label: 'Рейтинг 2024',
+
+  popularity_user_rating: '4.8/5',
+  popularity_user_rating_label: 'Пользовательский рейтинг',
+
+  popularity_monthly_players: '2M+',
+  popularity_monthly_players_label: 'Игроков в месяц',
+
+  // Заключение о популярности
+  popularity_conclusion:
+    '🏆 Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
+
+  // === Секция "Рейтинг и награды" ===
+  // Заголовок секции
+  rating_awards_title: 'Рейтинг и награды',
+
+  // Основной рейтинг
+  rating_main_score: '4.8',
+  rating_main_max: '5',
+  rating_description: 'Средний рейтинг игроков',
+  rating_reviews_count: '1,247',
+  rating_reviews_text: 'отзывах',
+
+  // Детализация рейтинга (5 строк)
+  rating_5_stars_percent: '68',
+  rating_4_stars_percent: '22',
+  rating_3_stars_percent: '7',
+  rating_2_stars_percent: '2',
+  rating_1_stars_percent: '1',
+
+  // Награды (4 награды)
+  award_1_emoji: '🏆',
+  award_1_title: 'Слот года 2024',
+  award_1_description: 'Casino Awards',
+  award_1_color: 'yellow', // yellow, purple, green, blue
+
+  award_2_emoji: '🎖️',
+  award_2_title: 'Лучший дизайн',
+  award_2_description: 'Gaming Excellence',
+  award_2_color: 'purple',
+
+  award_3_emoji: '💎',
+  award_3_title: 'Платиновый статус',
+  award_3_description: '10M+ игроков',
+  award_3_color: 'green',
+
+  award_4_emoji: '⭐',
+  award_4_title: 'Выбор игроков',
+  award_4_description: 'Народное голосование',
+  award_4_color: 'blue',
 })
 
 // Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
