@@ -174,7 +174,7 @@
                   </button>
                 </div>
 
-                <form @submit.prevent="saveSlot" class="space-y-6">
+                <div class="space-y-6">
                   <!-- Все Hero секции (управляемые через v-show) -->
                   <div v-show="showHeroSection" class="space-y-6">
                     <!-- Основная информация -->
@@ -1521,361 +1521,1746 @@
                     </div>
                   </div>
                   <!-- Конец Hero секций -->
-
-                  <!-- Кнопки сохранения -->
-                  <div
-                    class="flex justify-end gap-4 pt-6 border-t border-gray-600"
-                  >
-                    <button
-                      type="button"
-                      @click="resetForm"
-                      class="px-6 py-3 border border-gray-600 text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 hover:border-gray-500 font-medium transition-all duration-200"
-                    >
-                      Сброс формы
-                    </button>
-                    <button
-                      type="submit"
-                      :disabled="saving"
-                      class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-600 text-white rounded-lg font-semibold transition-all duration-200"
-                    >
-                      {{ saving ? 'Сохранение...' : 'Сохранить изменения' }}
-                    </button>
-                  </div>
-                </form>
+                </div>
               </div>
             </div>
 
-            <!-- Правая панель: Превью -->
-            <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
+            <!-- Секция "Полный обзор слота 2025" -->
+            <div class="mt-8">
               <div
-                class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
               >
-                <h2
-                  class="text-xl font-bold text-white mb-4 flex items-center gap-3"
-                >
-                  <svg
-                    class="w-6 h-6 text-emerald-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                  Превью Hero секции
-                </h2>
-
-                <!-- Новое превью Hero секции (макет, приближенный к клиентскому) -->
+                <!-- Декоративный фон -->
                 <div
-                  class="relative rounded-xl p-4 bg-zinc-950 text-slate-100 border border-white/10 overflow-hidden"
-                >
-                  <!-- Декоративные подсветки -->
-                  <div class="absolute inset-0 opacity-20 pointer-events-none">
-                    <div
-                      class="absolute top-2 left-2 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
-                    ></div>
-                    <div
-                      class="absolute bottom-2 right-2 w-16 h-16 bg-blue-500/30 rounded-full blur-lg"
-                    ></div>
-                  </div>
+                  class="absolute inset-0 bg-gradient-to-br from-[#4F46E5]/5 via-transparent to-[#7C3AED]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#4F46E5]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
 
-                  <div class="relative z-10">
-                    <div class="hidden lg:flex gap-6 items-start">
-                      <!-- Медиа (портрет 3:4) -->
-                      <div class="w-2/5">
-                        <CometCard
-                          :rotate-depth="17.5"
-                          :translate-depth="20"
-                          containerClassName="w-full h-full rounded-2xl"
-                          className="relative aspect-[3/4] rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl"
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <svg
+                          class="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          <div class="absolute inset-0">
-                            <div
-                              v-if="
-                                form.media_type === 'image' && form.image_url
-                              "
-                              class="absolute inset-0"
-                            >
-                              <img
-                                :src="form.image_url"
-                                :alt="form.name || 'Слот'"
-                                class="w-full h-full object-cover"
-                                @error="handlePreviewImageError"
-                              />
-                            </div>
-                            <div
-                              v-else-if="
-                                form.media_type === 'video' && form.video_url
-                              "
-                              class="absolute inset-0"
-                            >
-                              <video
-                                :src="form.video_url"
-                                class="w-full h-full object-cover"
-                                autoplay
-                                loop
-                                muted
-                                preload="metadata"
-                                @error="handlePreviewVideoError"
-                              >
-                                <source
-                                  :src="form.video_url"
-                                  type="video/mp4"
-                                />
-                                <source
-                                  :src="
-                                    form.video_url &&
-                                    form.video_url.replace('.mp4', '.webm')
-                                  "
-                                  type="video/webm"
-                                />
-                              </video>
-                            </div>
-                            <div
-                              v-if="!form.image_url && !form.video_url"
-                              class="flex items-center justify-center h-full text-white/70 bg-black/30"
-                            >
-                              Изображение слота
-                            </div>
-                          </div>
-                        </CometCard>
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          ></path>
+                        </svg>
                       </div>
-
-                      <!-- Правая колонка: провайдер, название, описание, CTA -->
-                      <div class="flex-1 min-w-0">
-                        <div class="mb-3">
-                          <span
-                            class="inline-block bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-purple-400/30"
-                            >{{ currentProviderName }}</span
-                          >
-                        </div>
-
-                        <h1
-                          class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
-                        >
-                          {{ form.name || 'Название слота' }}
-                        </h1>
-
-                        <p
-                          class="text-white/80 text-sm lg:text-base mb-4 line-clamp-3"
-                        >
-                          {{
-                            form.description ||
-                            'Описание слота будет отображаться здесь...'
-                          }}
-                        </p>
-
-                        <!-- Кнопки действий -->
-                        <div class="flex flex-col gap-3 w-full max-w-md">
-                          <BackgroundGradient
-                            :animate="true"
-                            className="rounded-2xl"
-                            containerClassName="w-full"
-                          >
-                            <a
-                              v-if="form.demo_url && form.demo_url.trim()"
-                              :href="form.demo_url"
-                              target="_blank"
-                              rel="nofollow noopener"
-                              class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
-                            >
-                              <span class="relative z-10"
-                                >Играть бесплатно</span
-                              >
-                              <span
-                                class="relative z-10 bg-emerald-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-emerald-400/50"
-                                >DEMO</span
-                              >
-                            </a>
-                            <button
-                              v-else
-                              type="button"
-                              class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
-                            >
-                              Играть бесплатно
-                            </button>
-                          </BackgroundGradient>
-
-                          <BackgroundGradient
-                            :animate="true"
-                            className="rounded-2xl"
-                            containerClassName="w-full"
-                          >
-                            <a
-                              v-if="
-                                form.real_play_url && form.real_play_url.trim()
-                              "
-                              :href="form.real_play_url"
-                              target="_blank"
-                              rel="nofollow sponsored noopener"
-                              class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
-                            >
-                              <span class="relative z-10"
-                                >Играть на деньги</span
-                              >
-                              <span
-                                class="relative z-10 bg-orange-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-orange-400/50"
-                                >REAL</span
-                              >
-                            </a>
-                            <button
-                              v-else
-                              type="button"
-                              class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
-                            >
-                              Играть на деньги
-                            </button>
-                          </BackgroundGradient>
-                        </div>
-
-                        <!-- Рейтинг и мини-характеристики -->
-                        <div class="mt-4">
-                          <div class="flex items-center gap-2 mb-3">
-                            <div class="flex text-yellow-400 text-sm">
-                              <span v-for="n in 5" :key="n" class="text-base">{{
-                                (form.rating || 0) >= n ? '★' : '☆'
-                              }}</span>
-                            </div>
-                            <span class="text-white font-bold text-sm">{{
-                              form.rating || '0'
-                            }}</span>
-                            <span class="text-white/60 text-sm">/ 5</span>
-                          </div>
-                          <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div
-                              class="bg-emerald-500/20 p-2 rounded border border-emerald-400/30"
-                            >
-                              <div class="text-emerald-300 font-bold">RTP</div>
-                              <div class="text-white">
-                                {{ form.rtp || '96.50' }}%
-                              </div>
-                            </div>
-                            <div
-                              class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
-                            >
-                              <div class="text-orange-300 font-bold">
-                                Волатильность
-                              </div>
-                              <div class="text-white capitalize">
-                                {{ currentVolatilityText }}
-                              </div>
-                            </div>
-                            <div
-                              class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
-                            >
-                              <div class="text-purple-300 font-bold">
-                                Макс. выигрыш
-                              </div>
-                              <div class="text-white">
-                                {{ form.max_win || '5000' }}x
-                              </div>
-                            </div>
-                            <div
-                              class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
-                            >
-                              <div class="text-blue-300 font-bold">
-                                Мин. ставка
-                              </div>
-                              <div class="text-white">
-                                {{ form.min_bet || '€0.20' }}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div
-                            class="mt-3 bg-yellow-500/20 p-2 rounded border border-yellow-400/30"
-                          >
-                            <div class="flex justify-between items-center mb-1">
-                              <span class="text-white font-semibold text-xs"
-                                >Рейтинг</span
-                              >
-                              <span
-                                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
-                                >#{{ form.popularity_rank || '12' }} из
-                                2000+</span
-                              >
-                            </div>
-                            <div
-                              class="w-full bg-white/20 rounded-full h-2 overflow-hidden"
-                            >
-                              <div
-                                class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
-                                :style="`width: ${form.popularity_percentage || 94}%`"
-                              ></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- Награды -->
+                      <div
+                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center animate-bounce"
+                      >
+                        <span class="text-white text-xs font-bold">📄</span>
                       </div>
                     </div>
-
-                    <!-- Мобильное превью медиа (если нет большого экрана) -->
-                    <div
-                      class="lg:hidden mt-2 aspect-video bg-black/30 rounded-xl overflow-hidden border border-white/10"
-                    >
-                      <img
-                        v-if="form.media_type === 'image' && form.image_url"
-                        :src="form.image_url"
-                        :alt="form.name || 'Слот'"
-                        class="w-full h-full object-cover"
-                        @error="handlePreviewImageError"
-                      />
-                      <video
-                        v-else-if="
-                          form.media_type === 'video' && form.video_url
-                        "
-                        :src="form.video_url"
-                        class="w-full h-full object-cover"
-                        autoplay
-                        loop
-                        muted
-                        preload="metadata"
-                        @error="handlePreviewVideoError"
-                      ></video>
-                      <div
-                        v-else
-                        class="w-full h-full flex items-center justify-center text-white/60"
+                    <div>
+                      <h2
+                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#4F46E5] to-[#7C3AED] bg-clip-text text-transparent font-display"
                       >
-                        Превью недоступно
+                        Полный обзор слота 2025
+                      </h2>
+                      <div
+                        class="h-1 w-32 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] rounded-full mt-2"
+                      ></div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания -->
+                    <button
+                      type="button"
+                      @click="
+                        showFullOverviewSection = !showFullOverviewSection
+                      "
+                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      :aria-expanded="showFullOverviewSection"
+                    >
+                      <span class="flex items-center gap-2">
+                        <svg
+                          class="w-4 h-4"
+                          :class="{ 'rotate-180': !showFullOverviewSection }"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          ></path>
+                        </svg>
+                        {{
+                          showFullOverviewSection
+                            ? 'Свернуть секцию'
+                            : 'Развернуть секцию'
+                        }}
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="space-y-6">
+                    <!-- Все подсекции "Полный обзор слота 2025" -->
+                    <div v-show="showFullOverviewSection" class="space-y-6">
+                      <!-- Основное описание обзора -->
+                      <div
+                        class="group bg-gradient-to-r from-[#4F46E5]/10 to-[#7C3AED]/10 border border-[#4F46E5]/20 rounded-xl p-6 hover:border-[#4F46E5]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                Основное описание
+                              </h3>
+                              <p class="text-sm text-[#4F46E5]">
+                                Главный текст обзора
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewMainSection = !showOverviewMainSection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewMainSection"
+                          >
+                            {{
+                              showOverviewMainSection ? 'Скрыть' : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div v-show="showOverviewMainSection" class="space-y-4">
+                          <!-- Заголовок обзора -->
+                          <div>
+                            <label
+                              class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              <svg
+                                class="w-4 h-4 text-[#4F46E5]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                                ></path>
+                              </svg>
+                              Заголовок обзора
+                            </label>
+                            <input
+                              v-model="form.overview_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200"
+                              placeholder="Полный обзор слота 2025"
+                            />
+                          </div>
+
+                          <!-- Первый абзац описания -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Первый абзац описания
+                            </label>
+                            <textarea
+                              v-model="form.overview_description_1"
+                              rows="4"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 resize-none"
+                              placeholder="Основное описание слота..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Второй абзац описания -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Второй абзац описания
+                            </label>
+                            <textarea
+                              v-model="form.overview_description_2"
+                              rows="3"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 resize-none"
+                              placeholder="Дополнительная информация..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Ключевые особенности (6 пунктов) -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
+                            >
+                              Ключевые особенности (6 пунктов)
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div v-for="i in 6" :key="i">
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1"
+                                >
+                                  Особенность {{ i }}
+                                </label>
+                                <input
+                                  :value="form[`overview_features_${i}`] || ''"
+                                  @input="
+                                    form[`overview_features_${i}`] =
+                                      $event.target.value
+                                  "
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 text-sm"
+                                  :placeholder="`Особенность ${i}...`"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Подсекция "Насколько популярен" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                Насколько популярен
+                              </h3>
+                              <p class="text-sm text-[#10B981]">
+                                Статистика популярности
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewPopularitySection =
+                                !showOverviewPopularitySection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewPopularitySection"
+                          >
+                            {{
+                              showOverviewPopularitySection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewPopularitySection"
+                          class="space-y-4"
+                        >
+                          <!-- Заголовок популярности -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <input
+                              v-model="form.popularity_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200"
+                              placeholder="Насколько популярен этот слот?"
+                            />
+                          </div>
+
+                          <!-- Статистика (3 блока) -->
+                          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                Позиция в рейтинге
+                              </label>
+                              <input
+                                v-model="form.popularity_ranking_position"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="12"
+                              />
+                            </div>
+                            <div>
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                Пользовательский рейтинг
+                              </label>
+                              <input
+                                v-model="form.popularity_user_rating"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="4.8"
+                              />
+                            </div>
+                            <div>
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                Игроков в месяц
+                              </label>
+                              <input
+                                v-model="form.popularity_monthly_players"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="2M+"
+                              />
+                            </div>
+                          </div>
+
+                          <!-- Описание популярности -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Описание популярности
+                            </label>
+                            <textarea
+                              v-model="form.popularity_description"
+                              rows="3"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 resize-none"
+                              placeholder="Описание почему слот популярен..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Детальные карточки метрик (3 блока) -->
+                          <div>
+                            <h4
+                              class="text-lg font-semibold text-[#E5E7EB] mb-4 flex items-center gap-2"
+                            >
+                              <span class="text-2xl">🎯</span>
+                              Детальные метрики популярности
+                            </h4>
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                              <!-- Глобальный рейтинг -->
+                              <div
+                                class="space-y-3 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  🌟 Глобальный рейтинг
+                                </label>
+                                <input
+                                  v-model="form.popularity_global_rank_title"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Глобальный рейтинг"
+                                />
+                                <input
+                                  v-model="form.popularity_global_rank_value"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="TOP 3"
+                                />
+                                <textarea
+                                  v-model="
+                                    form.popularity_global_rank_description
+                                  "
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 resize-none text-sm"
+                                  placeholder="Входит в ТОП-3 самых популярных слотов мира уже 3 года подряд"
+                                ></textarea>
+                              </div>
+
+                              <!-- Активные игроки -->
+                              <div
+                                class="space-y-3 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  👥 Активные игроки
+                                </label>
+                                <input
+                                  v-model="form.popularity_active_players_title"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Активные игроки"
+                                />
+                                <input
+                                  v-model="form.popularity_active_players_value"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="2.4M+"
+                                />
+                                <textarea
+                                  v-model="
+                                    form.popularity_active_players_description
+                                  "
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 resize-none text-sm"
+                                  placeholder="Ежемесячно играют более 2.4 млн уникальных игроков"
+                                ></textarea>
+                              </div>
+
+                              <!-- RTP + Волатильность -->
+                              <div
+                                class="space-y-3 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  ⚡ RTP + Волатильность
+                                </label>
+                                <input
+                                  v-model="form.popularity_rtp_volatility_title"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="RTP + Волатильность"
+                                />
+                                <input
+                                  v-model="form.popularity_rtp_volatility_value"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="96.5%"
+                                />
+                                <textarea
+                                  v-model="
+                                    form.popularity_rtp_volatility_description
+                                  "
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 resize-none text-sm"
+                                  placeholder="Высокая отдача и захватывающие колебания выигрышей"
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Статистика по годам -->
+                          <div>
+                            <h4
+                              class="text-lg font-semibold text-[#E5E7EB] mb-4 flex items-center gap-2"
+                            >
+                              <span class="text-2xl">📈</span>
+                              Статистика популярности по годам
+                            </h4>
+                            <input
+                              v-model="form.popularity_stats_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 mb-4"
+                              placeholder="Статистика популярности по годам"
+                            />
+                            <div
+                              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+                            >
+                              <!-- 2021 -->
+                              <div
+                                class="space-y-2 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  📅 2021 год
+                                </label>
+                                <input
+                                  v-model="form.popularity_2021_rank"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="#1"
+                                />
+                                <input
+                                  v-model="form.popularity_2021_description"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Лучший новый слот"
+                                />
+                                <input
+                                  v-model="form.popularity_2021_width"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="100%"
+                                />
+                              </div>
+
+                              <!-- 2022 -->
+                              <div
+                                class="space-y-2 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  📅 2022 год
+                                </label>
+                                <input
+                                  v-model="form.popularity_2022_rank"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="#1"
+                                />
+                                <input
+                                  v-model="form.popularity_2022_description"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Самый популярный"
+                                />
+                                <input
+                                  v-model="form.popularity_2022_width"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="95%"
+                                />
+                              </div>
+
+                              <!-- 2023 -->
+                              <div
+                                class="space-y-2 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  📅 2023 год
+                                </label>
+                                <input
+                                  v-model="form.popularity_2023_rank"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="#1"
+                                />
+                                <input
+                                  v-model="form.popularity_2023_description"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Рекордсмен"
+                                />
+                                <input
+                                  v-model="form.popularity_2023_width"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="90%"
+                                />
+                              </div>
+
+                              <!-- 2024 -->
+                              <div
+                                class="space-y-2 p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                              >
+                                <label
+                                  class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  📅 2024 год
+                                </label>
+                                <input
+                                  v-model="form.popularity_2024_rank"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="#12"
+                                />
+                                <input
+                                  v-model="form.popularity_2024_description"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="Стабильный хит"
+                                />
+                                <input
+                                  v-model="form.popularity_2024_width"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                  placeholder="70%"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Тренд популярности -->
+                          <div>
+                            <h4
+                              class="text-lg font-semibold text-[#E5E7EB] mb-4 flex items-center gap-2"
+                            >
+                              <span class="text-2xl">📊</span>
+                              Тренд популярности
+                            </h4>
+                            <input
+                              v-model="form.popularity_trend_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 mb-3"
+                              placeholder="Тренд популярности (симулированный график)"
+                            />
+                            <textarea
+                              v-model="form.popularity_trend_description"
+                              rows="2"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 resize-none"
+                              placeholder="График показывает устойчивый рост популярности"
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Подсекция "В чем секрет такого огромного успеха?" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                В чем секрет успеха?
+                              </h3>
+                              <p class="text-sm text-[#F59E0B]">
+                                Анализ факторов успеха
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewSuccessSecretSection =
+                                !showOverviewSuccessSecretSection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewSuccessSecretSection"
+                          >
+                            {{
+                              showOverviewSuccessSecretSection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewSuccessSecretSection"
+                          class="space-y-4"
+                        >
+                          <!-- Заголовок секрета успеха -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <input
+                              v-model="form.success_secret_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200"
+                              placeholder="В чем секрет такого огромного успеха?"
+                            />
+                          </div>
+
+                          <!-- Введение -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Вводный текст
+                            </label>
+                            <textarea
+                              v-model="form.success_secret_intro"
+                              rows="4"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none"
+                              placeholder="Основное объяснение секрета успеха..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Два основных блока -->
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Sweet Bonanza блок -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Связь с Sweet Bonanza
+                              </label>
+                              <input
+                                v-model="form.success_sweetbonanza_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                placeholder="🍭 Связь с Sweet Bonanza"
+                              />
+                              <textarea
+                                v-model="form.success_sweetbonanza_description"
+                                rows="4"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание связи с Sweet Bonanza..."
+                              ></textarea>
+                            </div>
+
+                            <!-- Идеальный баланс блок -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Идеальный баланс
+                              </label>
+                              <input
+                                v-model="form.success_balance_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                                placeholder="⚖️ Идеальный баланс"
+                              />
+                              <textarea
+                                v-model="form.success_balance_description"
+                                rows="4"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание идеального баланса..."
+                              ></textarea>
+                            </div>
+                          </div>
+
+                          <!-- Заключение -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заключительный текст
+                            </label>
+                            <textarea
+                              v-model="form.success_conclusion"
+                              rows="3"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none"
+                              placeholder="Заключительные выводы..."
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Подсекция "Основные особенности и механики игры" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                ></path>
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                Основные механики
+                              </h3>
+                              <p class="text-sm text-[#8B5CF6]">
+                                Игровые особенности
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewMechanicsSection =
+                                !showOverviewMechanicsSection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewMechanicsSection"
+                          >
+                            {{
+                              showOverviewMechanicsSection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewMechanicsSection"
+                          class="space-y-4"
+                        >
+                          <!-- Заголовок механик -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <input
+                              v-model="form.mechanics_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200"
+                              placeholder="Основные особенности и механики игры"
+                            />
+                          </div>
+
+                          <!-- Введение -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Вводный текст
+                            </label>
+                            <textarea
+                              v-model="form.mechanics_intro"
+                              rows="2"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none"
+                              placeholder="Введение к механикам..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Три основные механики -->
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <!-- Scatter Pays -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🎯 Scatter Pays
+                              </label>
+                              <input
+                                v-model="form.mechanics_scatter_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Scatter Pays"
+                              />
+                              <textarea
+                                v-model="form.mechanics_scatter_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание scatter pays..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_scatter_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали scatter pays..."
+                              ></textarea>
+                            </div>
+
+                            <!-- Tumbles -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                ⬇️ Tumbles (Каскады)
+                              </label>
+                              <input
+                                v-model="form.mechanics_cascade_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Tumbles (Каскады)"
+                              />
+                              <textarea
+                                v-model="form.mechanics_cascade_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание каскадов..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_cascade_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали каскадов..."
+                              ></textarea>
+                            </div>
+
+                            <!-- Множители -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                ✨ Множители
+                              </label>
+                              <input
+                                v-model="form.mechanics_multipliers_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Множители от x2 до x500"
+                              />
+                              <textarea
+                                v-model="form.mechanics_multipliers_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание множителей..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_multipliers_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали множителей..."
+                              ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Подсекция "Бесплатные спины Gates of Olympus" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#EF4444]/10 to-[#DC2626]/10 border border-[#EF4444]/20 rounded-xl p-6 hover:border-[#EF4444]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#EF4444] to-[#DC2626] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                Бесплатные спины
+                              </h3>
+                              <p class="text-sm text-[#EF4444]">
+                                Бонусная игра
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewFreeSpinsSection =
+                                !showOverviewFreeSpinsSection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EF4444]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewFreeSpinsSection"
+                          >
+                            {{
+                              showOverviewFreeSpinsSection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewFreeSpinsSection"
+                          class="space-y-4"
+                        >
+                          <!-- Заголовок бесплатных спинов -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <input
+                              v-model="form.free_spins_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200"
+                              placeholder="Бесплатные спины Gates of Olympus"
+                            />
+                          </div>
+
+                          <!-- Введение -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Вводный текст
+                            </label>
+                            <textarea
+                              v-model="form.free_spins_intro"
+                              rows="4"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none"
+                              placeholder="Описание активации бесплатных спинов..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Мгновенные выплаты и особенности -->
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Мгновенные выплаты -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                💰 Мгновенные выплаты за Scatter
+                              </label>
+                              <input
+                                v-model="form.free_spins_instant_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                placeholder="💰 Мгновенные выплаты за Scatter"
+                              />
+                              <div class="space-y-2">
+                                <input
+                                  v-model="form.free_spins_4_scatter"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="4 символа Зевса: x3 от ставки"
+                                />
+                                <input
+                                  v-model="form.free_spins_5_scatter"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="5 символов Зевса: x5 от ставки"
+                                />
+                                <input
+                                  v-model="form.free_spins_6_scatter"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="6 символов Зевса: x100 от ставки"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Особенности бонусной игры -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🚀 Особенности бонусной игры
+                              </label>
+                              <input
+                                v-model="form.free_spins_features_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                placeholder="🚀 Особенности бонусной игры"
+                              />
+                              <div class="space-y-2">
+                                <input
+                                  v-model="form.free_spins_feature_1"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="15 бесплатных спинов независимо от количества scatter-символов"
+                                />
+                                <input
+                                  v-model="form.free_spins_feature_2"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="Total Multiplier не сбрасывается между раундами"
+                                />
+                                <input
+                                  v-model="form.free_spins_feature_3"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="Возможность получить дополнительные бесплатные спины"
+                                />
+                                <input
+                                  v-model="form.free_spins_feature_4"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                  placeholder="Опция купить бонус за 100x от общей ставки"
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Ante Bet и покупка бонуса -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              🎯 Ante Bet и покупка бонуса
+                            </label>
+                            <input
+                              v-model="form.free_spins_ante_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 mb-3"
+                              placeholder="🎯 Ante Bet и покупка бонуса"
+                            />
+                            <textarea
+                              v-model="form.free_spins_ante_description"
+                              rows="2"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none mb-3"
+                              placeholder="Описание Ante Bet и покупки бонуса..."
+                            ></textarea>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <input
+                                v-model="form.free_spins_ante_bet_value"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                placeholder="25% дополнительно к ставке"
+                              />
+                              <input
+                                v-model="form.free_spins_ante_bet_effect"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                placeholder="удваивает шансы получить бесплатные спины"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Подсекция "Стратегии и советы для игры" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#06B6D4]/10 to-[#0891B2]/10 border border-[#06B6D4]/20 rounded-xl p-6 hover:border-[#06B6D4]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#06B6D4] to-[#0891B2] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                              >
+                                Стратегии и советы
+                              </h3>
+                              <p class="text-sm text-[#06B6D4]">
+                                Практические рекомендации
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewStrategiesSection =
+                                !showOverviewStrategiesSection
+                            "
+                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#06B6D4]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewStrategiesSection"
+                          >
+                            {{
+                              showOverviewStrategiesSection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewStrategiesSection"
+                          class="space-y-4"
+                        >
+                          <!-- Заголовок стратегий -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <input
+                              v-model="form.strategies_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200"
+                              placeholder="Стратегии и советы для игры"
+                            />
+                          </div>
+
+                          <!-- Введение -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Вводный текст
+                            </label>
+                            <textarea
+                              v-model="form.strategies_intro"
+                              rows="2"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 resize-none"
+                              placeholder="Введение к стратегиям..."
+                            ></textarea>
+                          </div>
+
+                          <!-- Три группы стратегий -->
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <!-- Рекомендации для новичков -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                💡 Рекомендации для новичков
+                              </label>
+                              <input
+                                v-model="form.strategies_beginners_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                placeholder="💡 Рекомендации для новичков"
+                              />
+                              <div class="space-y-2">
+                                <input
+                                  v-model="form.strategy_beginner_1"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Начните с демо-версии для изучения механик"
+                                />
+                                <input
+                                  v-model="form.strategy_beginner_2"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Устанавливайте лимиты перед началом игры"
+                                />
+                                <input
+                                  v-model="form.strategy_beginner_3"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Начинайте с минимальных ставок"
+                                />
+                                <input
+                                  v-model="form.strategy_beginner_4"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Изучите таблицу выплат и правила"
+                                />
+                                <input
+                                  v-model="form.strategy_beginner_5"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Играйте только на проверенных сайтах"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Продвинутые стратегии -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🎯 Продвинутые стратегии
+                              </label>
+                              <input
+                                v-model="form.strategies_advanced_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                placeholder="🎯 Продвинутые стратегии"
+                              />
+                              <div class="space-y-2">
+                                <input
+                                  v-model="form.strategy_advanced_1"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Используйте Ante Bet для увеличения шансов на бонус"
+                                />
+                                <input
+                                  v-model="form.strategy_advanced_2"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Рассчитайте соотношение риска и вознаграждения при покупке бонуса"
+                                />
+                                <input
+                                  v-model="form.strategy_advanced_3"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Ведите статистику своих игровых сессий"
+                                />
+                                <input
+                                  v-model="form.strategy_advanced_4"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Изучите паттерны выпадения множителей"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- Управление банкроллом -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                💰 Управление банкроллом
+                              </label>
+                              <input
+                                v-model="form.strategies_bankroll_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                placeholder="💰 Управление банкроллом"
+                              />
+                              <div class="space-y-2">
+                                <input
+                                  v-model="form.strategy_bankroll_1"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Никогда не играйте на деньги, которые не можете позволить себе потерять"
+                                />
+                                <input
+                                  v-model="form.strategy_bankroll_2"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Размер ставки не должен превышать 1-5% от общего банкролла"
+                                />
+                                <input
+                                  v-model="form.strategy_bankroll_3"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Установите дневные, недельные и месячные лимиты"
+                                />
+                                <input
+                                  v-model="form.strategy_bankroll_4"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
+                                  placeholder="Делайте перерывы каждые 30-60 минут"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <!-- Информация о превью -->
-                <div
-                  class="mt-4 p-3 bg-blue-500/10 border border-blue-400/30 rounded-lg"
+            <!-- Кнопки сохранения -->
+            <form @submit.prevent="saveSlot" class="mt-8">
+              <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
+                <button
+                  type="button"
+                  @click="resetForm"
+                  class="px-6 py-3 border border-gray-600 text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 hover:border-gray-500 font-medium transition-all duration-200"
                 >
-                  <p class="text-blue-300 text-sm">
-                    💡 Это миниатюрное превью Hero секции. Полный вид можно
-                    посмотреть по кнопке "Предпросмотр" выше.
-                  </p>
+                  Сброс формы
+                </button>
+                <button
+                  type="submit"
+                  :disabled="saving"
+                  class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-600 text-white rounded-lg font-semibold transition-all duration-200"
+                >
+                  {{ saving ? 'Сохранение...' : 'Сохранить изменения' }}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Правая панель: Превью -->
+          <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
+            <div
+              class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
+            >
+              <h2
+                class="text-xl font-bold text-white mb-4 flex items-center gap-3"
+              >
+                <svg
+                  class="w-6 h-6 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                Превью Hero секции
+              </h2>
+
+              <!-- Новое превью Hero секции (макет, приближенный к клиентскому) -->
+              <div
+                class="relative rounded-xl p-4 bg-zinc-950 text-slate-100 border border-white/10 overflow-hidden"
+              >
+                <!-- Декоративные подсветки -->
+                <div class="absolute inset-0 opacity-20 pointer-events-none">
+                  <div
+                    class="absolute top-2 left-2 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
+                  ></div>
+                  <div
+                    class="absolute bottom-2 right-2 w-16 h-16 bg-blue-500/30 rounded-full blur-lg"
+                  ></div>
+                </div>
+
+                <div class="relative z-10">
+                  <div class="hidden lg:flex gap-6 items-start">
+                    <!-- Медиа (портрет 3:4) -->
+                    <div class="w-2/5">
+                      <CometCard
+                        :rotate-depth="17.5"
+                        :translate-depth="20"
+                        containerClassName="w-full h-full rounded-2xl"
+                        className="relative aspect-[3/4] rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl"
+                      >
+                        <div class="absolute inset-0">
+                          <div
+                            v-if="form.media_type === 'image' && form.image_url"
+                            class="absolute inset-0"
+                          >
+                            <img
+                              :src="form.image_url"
+                              :alt="form.name || 'Слот'"
+                              class="w-full h-full object-cover"
+                              @error="handlePreviewImageError"
+                            />
+                          </div>
+                          <div
+                            v-else-if="
+                              form.media_type === 'video' && form.video_url
+                            "
+                            class="absolute inset-0"
+                          >
+                            <video
+                              :src="form.video_url"
+                              class="w-full h-full object-cover"
+                              autoplay
+                              loop
+                              muted
+                              preload="metadata"
+                              @error="handlePreviewVideoError"
+                            >
+                              <source :src="form.video_url" type="video/mp4" />
+                              <source
+                                :src="
+                                  form.video_url &&
+                                  form.video_url.replace('.mp4', '.webm')
+                                "
+                                type="video/webm"
+                              />
+                            </video>
+                          </div>
+                          <div
+                            v-if="!form.image_url && !form.video_url"
+                            class="flex items-center justify-center h-full text-white/70 bg-black/30"
+                          >
+                            Изображение слота
+                          </div>
+                        </div>
+                      </CometCard>
+                    </div>
+
+                    <!-- Правая колонка: провайдер, название, описание, CTA -->
+                    <div class="flex-1 min-w-0">
+                      <div class="mb-3">
+                        <span
+                          class="inline-block bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-purple-400/30"
+                          >{{ currentProviderName }}</span
+                        >
+                      </div>
+
+                      <h1
+                        class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
+                      >
+                        {{ form.name || 'Название слота' }}
+                      </h1>
+
+                      <p
+                        class="text-white/80 text-sm lg:text-base mb-4 line-clamp-3"
+                      >
+                        {{
+                          form.description ||
+                          'Описание слота будет отображаться здесь...'
+                        }}
+                      </p>
+
+                      <!-- Кнопки действий -->
+                      <div class="flex flex-col gap-3 w-full max-w-md">
+                        <BackgroundGradient
+                          :animate="true"
+                          className="rounded-2xl"
+                          containerClassName="w-full"
+                        >
+                          <a
+                            v-if="form.demo_url && form.demo_url.trim()"
+                            :href="form.demo_url"
+                            target="_blank"
+                            rel="nofollow noopener"
+                            class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+                          >
+                            <span class="relative z-10">Играть бесплатно</span>
+                            <span
+                              class="relative z-10 bg-emerald-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-emerald-400/50"
+                              >DEMO</span
+                            >
+                          </a>
+                          <button
+                            v-else
+                            type="button"
+                            class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+                          >
+                            Играть бесплатно
+                          </button>
+                        </BackgroundGradient>
+
+                        <BackgroundGradient
+                          :animate="true"
+                          className="rounded-2xl"
+                          containerClassName="w-full"
+                        >
+                          <a
+                            v-if="
+                              form.real_play_url && form.real_play_url.trim()
+                            "
+                            :href="form.real_play_url"
+                            target="_blank"
+                            rel="nofollow sponsored noopener"
+                            class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+                          >
+                            <span class="relative z-10">Играть на деньги</span>
+                            <span
+                              class="relative z-10 bg-orange-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-orange-400/50"
+                              >REAL</span
+                            >
+                          </a>
+                          <button
+                            v-else
+                            type="button"
+                            class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+                          >
+                            Играть на деньги
+                          </button>
+                        </BackgroundGradient>
+                      </div>
+
+                      <!-- Рейтинг и мини-характеристики -->
+                      <div class="mt-4">
+                        <div class="flex items-center gap-2 mb-3">
+                          <div class="flex text-yellow-400 text-sm">
+                            <span v-for="n in 5" :key="n" class="text-base">{{
+                              (form.rating || 0) >= n ? '★' : '☆'
+                            }}</span>
+                          </div>
+                          <span class="text-white font-bold text-sm">{{
+                            form.rating || '0'
+                          }}</span>
+                          <span class="text-white/60 text-sm">/ 5</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                          <div
+                            class="bg-emerald-500/20 p-2 rounded border border-emerald-400/30"
+                          >
+                            <div class="text-emerald-300 font-bold">RTP</div>
+                            <div class="text-white">
+                              {{ form.rtp || '96.50' }}%
+                            </div>
+                          </div>
+                          <div
+                            class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
+                          >
+                            <div class="text-orange-300 font-bold">
+                              Волатильность
+                            </div>
+                            <div class="text-white capitalize">
+                              {{ currentVolatilityText }}
+                            </div>
+                          </div>
+                          <div
+                            class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
+                          >
+                            <div class="text-purple-300 font-bold">
+                              Макс. выигрыш
+                            </div>
+                            <div class="text-white">
+                              {{ form.max_win || '5000' }}x
+                            </div>
+                          </div>
+                          <div
+                            class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
+                          >
+                            <div class="text-blue-300 font-bold">
+                              Мин. ставка
+                            </div>
+                            <div class="text-white">
+                              {{ form.min_bet || '€0.20' }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          class="mt-3 bg-yellow-500/20 p-2 rounded border border-yellow-400/30"
+                        >
+                          <div class="flex justify-between items-center mb-1">
+                            <span class="text-white font-semibold text-xs"
+                              >Рейтинг</span
+                            >
+                            <span
+                              class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
+                              >#{{ form.popularity_rank || '12' }} из
+                              2000+</span
+                            >
+                          </div>
+                          <div
+                            class="w-full bg-white/20 rounded-full h-2 overflow-hidden"
+                          >
+                            <div
+                              class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
+                              :style="`width: ${form.popularity_percentage || 94}%`"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Награды -->
+                    </div>
+                  </div>
+
+                  <!-- Мобильное превью медиа (если нет большого экрана) -->
+                  <div
+                    class="lg:hidden mt-2 aspect-video bg-black/30 rounded-xl overflow-hidden border border-white/10"
+                  >
+                    <img
+                      v-if="form.media_type === 'image' && form.image_url"
+                      :src="form.image_url"
+                      :alt="form.name || 'Слот'"
+                      class="w-full h-full object-cover"
+                      @error="handlePreviewImageError"
+                    />
+                    <video
+                      v-else-if="form.media_type === 'video' && form.video_url"
+                      :src="form.video_url"
+                      class="w-full h-full object-cover"
+                      autoplay
+                      loop
+                      muted
+                      preload="metadata"
+                      @error="handlePreviewVideoError"
+                    ></video>
+                    <div
+                      v-else
+                      class="w-full h-full flex items-center justify-center text-white/60"
+                    >
+                      Превью недоступно
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Правая панель: Навигация и Предпросмотр -->
-              <div class="xl:col-span-1">
-                <div class="sticky top-24 space-y-6">
-                  <!-- Навигация по секциям -->
-                  <div
-                    class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#353A4A]"
+              <!-- Информация о превью -->
+              <div
+                class="mt-4 p-3 bg-blue-500/10 border border-blue-400/30 rounded-lg"
+              >
+                <p class="text-blue-300 text-sm">
+                  💡 Это миниатюрное превью Hero секции. Полный вид можно
+                  посмотреть по кнопке "Предпросмотр" выше.
+                </p>
+              </div>
+            </div>
+
+            <!-- Правая панель: Навигация и Предпросмотр -->
+            <div class="xl:col-span-1">
+              <div class="sticky top-24 space-y-6">
+                <!-- Навигация по секциям -->
+                <div
+                  class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#353A4A]"
+                >
+                  <h3
+                    class="text-lg font-bold text-[#E5E7EB] mb-4 flex items-center gap-2"
                   >
-                    <h3
-                      class="text-lg font-bold text-[#E5E7EB] mb-4 flex items-center gap-2"
+                    <svg
+                      class="w-5 h-5 text-[#FF6E48]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      ></path>
+                    </svg>
+                    Навигация по секциям
+                  </h3>
+                  <div class="space-y-2">
+                    <!-- Главная Hero секция (коллапсируемая) -->
+                    <button
+                      @click="showHeroSection = !showHeroSection"
+                      class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-purple-400/40 transition-all duration-200"
+                      :class="
+                        showHeroSection
+                          ? 'border-purple-400/40 bg-purple-500/10'
+                          : ''
+                      "
+                    >
+                      <span
+                        class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]"
+                      >
+                        <svg
+                          class="w-4 h-4 text-purple-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          ></path>
+                        </svg>
+                        Hero секция
+                      </span>
                       <svg
-                        class="w-5 h-5 text-[#FF6E48]"
+                        class="w-4 h-4 text-gray-400 transition-transform"
+                        :class="{ 'rotate-180': !showHeroSection }"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1884,19 +3269,68 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                          d="M19 9l-7 7-7-7"
                         ></path>
                       </svg>
-                      Навигация по секциям
-                    </h3>
-                    <div class="space-y-2">
-                      <!-- Главная Hero секция (коллапсируемая) -->
+                    </button>
+
+                    <!-- Подразделы Hero секции (показываются только если Hero открыт) -->
+                    <div
+                      v-show="showHeroSection"
+                      class="ml-4 space-y-1 border-l-2 border-purple-400/20 pl-3"
+                    >
                       <button
-                        @click="showHeroSection = !showHeroSection"
-                        class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-purple-400/40 transition-all duration-200"
+                        @click="scrollToSection('basic-info')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Основная информация
+                      </button>
+                      <button
+                        @click="scrollToSection('hero-links')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Hero ссылки
+                      </button>
+                      <button
+                        @click="scrollToSection('game-characteristics')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Характеристики игры
+                      </button>
+                      <button
+                        @click="scrollToSection('rating-popularity')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Рейтинг и популярность
+                      </button>
+                      <button
+                        @click="scrollToSection('game-mechanics')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Игровые механики
+                      </button>
+                      <button
+                        @click="scrollToSection('bonuses')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Бонусы
+                      </button>
+                      <button
+                        @click="scrollToSection('themes')"
+                        class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
+                      >
+                        Тематики
+                      </button>
+
+                      <!-- Секция "Полный обзор слота 2025" -->
+                      <button
+                        @click="
+                          showFullOverviewSection = !showFullOverviewSection
+                        "
+                        class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-[#4F46E5]/40 transition-all duration-200"
                         :class="
-                          showHeroSection
-                            ? 'border-purple-400/40 bg-purple-500/10'
+                          showFullOverviewSection
+                            ? 'border-[#4F46E5]/40 bg-[#4F46E5]/10'
                             : ''
                         "
                       >
@@ -1904,7 +3338,7 @@
                           class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]"
                         >
                           <svg
-                            class="w-4 h-4 text-purple-400"
+                            class="w-4 h-4 text-[#4F46E5]"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -1913,14 +3347,14 @@
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
-                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                             ></path>
                           </svg>
-                          Hero секция
+                          Полный обзор слота 2025
                         </span>
                         <svg
                           class="w-4 h-4 text-gray-400 transition-transform"
-                          :class="{ 'rotate-180': !showHeroSection }"
+                          :class="{ 'rotate-180': !showFullOverviewSection }"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -1934,52 +3368,58 @@
                         </svg>
                       </button>
 
-                      <!-- Подразделы Hero секции (показываются только если Hero открыт) -->
+                      <!-- Подразделы секции "Полный обзор слота 2025" (показываются только если секция открыта) -->
                       <div
-                        v-show="showHeroSection"
-                        class="ml-4 space-y-1 border-l-2 border-purple-400/20 pl-3"
+                        v-show="showFullOverviewSection"
+                        class="ml-4 space-y-1 border-l-2 border-[#4F46E5]/20 pl-3"
                       >
                         <button
-                          @click="scrollToSection('basic-info')"
+                          @click="scrollToSection('overview-main')"
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Основная информация
+                          Основное описание
                         </button>
                         <button
-                          @click="scrollToSection('hero-links')"
+                          @click="scrollToSection('overview-popularity')"
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Hero ссылки
+                          Насколько популярен
                         </button>
                         <button
-                          @click="scrollToSection('game-characteristics')"
+                          @click="
+                            showOverviewSuccessSecretSection =
+                              !showOverviewSuccessSecretSection
+                          "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Характеристики игры
+                          В чем секрет успеха
                         </button>
                         <button
-                          @click="scrollToSection('rating-popularity')"
+                          @click="
+                            showOverviewMechanicsSection =
+                              !showOverviewMechanicsSection
+                          "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Рейтинг и популярность
+                          Основные механики
                         </button>
                         <button
-                          @click="scrollToSection('game-mechanics')"
+                          @click="
+                            showOverviewFreeSpinsSection =
+                              !showOverviewFreeSpinsSection
+                          "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Игровые механики
+                          Бесплатные спины
                         </button>
                         <button
-                          @click="scrollToSection('bonuses')"
+                          @click="
+                            showOverviewStrategiesSection =
+                              !showOverviewStrategiesSection
+                          "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Бонусы
-                        </button>
-                        <button
-                          @click="scrollToSection('themes')"
-                          class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
-                        >
-                          Тематики
+                          Стратегии и советы
                         </button>
                       </div>
                     </div>
@@ -2001,7 +3441,6 @@
         </div>
       </div>
     </div>
-    <!-- Закрываем div для основного контента -->
   </div>
 </template>
 
@@ -2028,6 +3467,16 @@ const showRatingSection = ref(true)
 const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
 const showThemesSection = ref(false)
+
+// Состояние для секции "Полный обзор слота 2025"
+const showFullOverviewSection = ref(true)
+const showOverviewMainSection = ref(true)
+const showOverviewPopularitySection = ref(true)
+const showOverviewSuccessSecretSection = ref(true)
+const showOverviewMechanicsSection = ref(true)
+const showOverviewFreeSpinsSection = ref(true)
+const showOverviewStrategiesSection = ref(true)
+
 const paylineType = ref('text') // 'number' или 'text'
 
 // Поиск и фильтры для бонусов и тематик
@@ -2065,6 +3514,167 @@ const form = ref({
   // Ссылки кнопок
   demo_url: '', // Ссылка для кнопки "Играть бесплатно"
   real_play_url: '', // Ссылка для кнопки "Играть на деньги"
+
+  // Поля для секции "Полный обзор слота 2025"
+  // Основное описание
+  overview_title: 'Полный обзор слота 2025',
+  overview_description_1:
+    'Этот невероятный слот от Pragmatic Play произвел настоящую революцию в мире онлайн-гемблинга. Благодаря уникальной механике Tumble, случайным множителям и захватывающим бонусным функциям, игра стала абсолютным хитом среди игроков по всему миру.',
+  overview_description_2:
+    'Слот отличается высоким RTP 96.50%, средней волатильностью и потенциалом выигрыша до 5,000x от ставки. Игровое поле 6×5 с системой Scatter Pays создает бесконечные возможности для выигрышных комбинаций.',
+  overview_features_1: 'Механика Tumble с каскадными выигрышами',
+  overview_features_2: 'Случайные множители от x2 до x500',
+  overview_features_3: '15 бесплатных спинов в бонусной игре',
+  overview_features_4: 'Возможность купить бонус за 100x ставки',
+  overview_features_5: 'Максимальный выигрыш 5,000x от ставки',
+  overview_features_6: 'Один крупный выигрыш на 697,350 спинов',
+
+  // Подсекция "Насколько популярен"
+  popularity_title: 'Насколько популярен этот слот?',
+  popularity_ranking_position: '12',
+  popularity_user_rating: '4.8',
+  popularity_monthly_players: '2M+',
+  popularity_description:
+    'Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
+
+  // Детальные метрики популярности (3 карточки)
+  popularity_global_rank_title: 'Глобальный рейтинг',
+  popularity_global_rank_value: 'TOP 3',
+  popularity_global_rank_description:
+    'Входит в ТОП-3 самых популярных слотов мира уже 3 года подряд',
+
+  popularity_active_players_title: 'Активные игроки',
+  popularity_active_players_value: '2.4M+',
+  popularity_active_players_description:
+    'Ежемесячно играют более 2.4 млн уникальных игроков',
+
+  popularity_rtp_volatility_title: 'RTP + Волатильность',
+  popularity_rtp_volatility_value: '96.5%',
+  popularity_rtp_volatility_description:
+    'Высокая отдача и захватывающие колебания выигрышей',
+
+  // Статистика по годам (4 года: 2021-2024)
+  popularity_stats_title: 'Статистика популярности по годам',
+  popularity_2021_rank: '#1',
+  popularity_2021_description: 'Лучший новый слот',
+  popularity_2021_width: '100%',
+
+  popularity_2022_rank: '#1',
+  popularity_2022_description: 'Самый популярный',
+  popularity_2022_width: '95%',
+
+  popularity_2023_rank: '#1',
+  popularity_2023_description: 'Рекордсмен',
+  popularity_2023_width: '90%',
+
+  popularity_2024_rank: '#12',
+  popularity_2024_description: 'Стабильный хит',
+  popularity_2024_width: '70%',
+
+  // Тренд популярности
+  popularity_trend_title: 'Тренд популярности (симулированный график)',
+  popularity_trend_description:
+    'График показывает устойчивый рост популярности',
+
+  // Подсекция "В чем секрет такого огромного успеха?"
+  success_secret_title: 'В чем секрет такого огромного успеха?',
+  success_secret_intro:
+    'Одним из ключей к такому огромному успеху является механика Scatter Pays — то, что объединяет многие популярные онлайн-слоты. Вам не нужны линии выплат, кластеры или способы выигрыша... Одинаковые символы могут появиться в любом месте сетки и принести вам выигрыши.',
+
+  // Два основных блока объяснения
+  success_sweetbonanza_title: '🍭 Связь с Sweet Bonanza',
+  success_sweetbonanza_description:
+    'Sweet Bonanza был тайтлом, который протестировал воды для Gates of Olympus. Эти две игры имеют много общих геймплейных сходств. И кажется, что игроки больше любят эпическую тему греческих богов, чем сладкую природу Sweet Bonanza.',
+
+  success_balance_title: '⚖️ Идеальный баланс',
+  success_balance_description:
+    'Pragmatic Play использовала проверенный и испытанный рецепт для достижения идеального баланса между сложностью и простотой. Три элемента — scatter pays, tumbles и множители — создают идеальную основу для захватывающего, но не слишком сложного геймплея.',
+
+  // Заключительное объяснение
+  success_conclusion:
+    'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.',
+
+  // Подсекция "Основные особенности и механики игры"
+  mechanics_title: 'Основные особенности и механики игры',
+  mechanics_intro:
+    'Слот предлагает уникальный игровой опыт благодаря инновационным механикам:',
+
+  // Scatter Pays (детальное описание)
+  mechanics_scatter_title: 'Scatter Pays',
+  mechanics_scatter_description:
+    'Движок scatter pays довольно популярен, поскольку делает все намного проще. Вам не нужно ждать, пока символы приземлятся на определенные позиции.',
+  mechanics_scatter_details:
+    '8+ одинаковых символов = выигрыш! Scatter символ (Зевс) срабатывает от 4+ символов.',
+
+  // Tumbles (каскады)
+  mechanics_cascade_title: 'Tumbles (Каскады)',
+  mechanics_cascade_description:
+    'Любой выигрыш в Gates of Olympus запускает каскад. Выигрышные символы удаляются, а гравитация заполняет пробелы новыми символами.',
+  mechanics_cascade_details:
+    'Каскады могут продолжаться бесконечно, создавая цепочки выигрышей в одном спине.',
+
+  // Множители
+  mechanics_multipliers_title: 'Множители от x2 до x500',
+  mechanics_multipliers_description:
+    'На каждом спине случайные множители от x2 до x500 могут появиться на барабанах в виде красочных сфер.',
+  mechanics_multipliers_details:
+    'В бесплатных спинах множители накапливаются и не сбрасываются между раундами.',
+
+  // Подсекция "Бесплатные спины Gates of Olympus"
+  free_spins_title: 'Бесплатные спины Gates of Olympus',
+  free_spins_intro:
+    'Четыре символа Зевса предоставляют игрокам вход в самую сочную часть игры. Не важно, получите ли вы 4 или больше символов — количество спинов всегда составляет 15. Но больше scatter-символов все же предпочтительнее, поскольку они дают мгновенную выплату.',
+
+  // Мгновенные выплаты за scatter
+  free_spins_instant_title: '💰 Мгновенные выплаты за Scatter',
+  free_spins_4_scatter: '4 символа Зевса: x3 от ставки',
+  free_spins_5_scatter: '5 символов Зевса: x5 от ставки',
+  free_spins_6_scatter: '6 символов Зевса: x100 от ставки',
+
+  // Особенности бонусной игры
+  free_spins_features_title: '🚀 Особенности бонусной игры',
+  free_spins_feature_1:
+    '15 бесплатных спинов независимо от количества scatter-символов',
+  free_spins_feature_2: 'Total Multiplier не сбрасывается между раундами',
+  free_spins_feature_3: 'Возможность получить дополнительные бесплатные спины',
+  free_spins_feature_4: 'Опция купить бонус за 100x от общей ставки',
+
+  // Ante Bet и покупка бонуса
+  free_spins_ante_title: '🎯 Ante Bet и покупка бонуса',
+  free_spins_ante_description:
+    'Игроки могут купить бесплатные спины, заплатив 100x от общей ставки, или активировать Ante Bet.',
+  free_spins_ante_bet_value: '25% дополнительно к ставке',
+  free_spins_ante_bet_effect: 'удваивает шансы получить бесплатные спины',
+
+  // Подсекция "Стратегии и советы для игры"
+  strategies_title: 'Стратегии и советы для игры',
+  strategies_intro:
+    'Эффективные подходы для максимизации удовольствия от игры:',
+
+  // Рекомендации для новичков
+  strategies_beginners_title: '💡 Рекомендации для новичков',
+  strategy_beginner_1: 'Начните с демо-версии для изучения механик',
+  strategy_beginner_2: 'Устанавливайте лимиты перед началом игры',
+  strategy_beginner_3: 'Начинайте с минимальных ставок',
+  strategy_beginner_4: 'Изучите таблицу выплат и правила',
+  strategy_beginner_5: 'Играйте только на проверенных сайтах',
+
+  // Продвинутые стратегии
+  strategies_advanced_title: '🎯 Продвинутые стратегии',
+  strategy_advanced_1: 'Используйте Ante Bet для увеличения шансов на бонус',
+  strategy_advanced_2:
+    'Рассчитайте соотношение риска и вознаграждения при покупке бонуса',
+  strategy_advanced_3: 'Ведите статистику своих игровых сессий',
+  strategy_advanced_4: 'Изучите паттерны выпадения множителей',
+
+  // Управление банкроллом
+  strategies_bankroll_title: '💰 Управление банкроллом',
+  strategy_bankroll_1:
+    'Никогда не играйте на деньги, которые не можете позволить себе потерять',
+  strategy_bankroll_2:
+    'Размер ставки не должен превышать 1-5% от общего банкролла',
+  strategy_bankroll_3: 'Установите дневные, недельные и месячные лимиты',
+  strategy_bankroll_4: 'Делайте перерывы каждые 30-60 минут',
 })
 
 // Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
