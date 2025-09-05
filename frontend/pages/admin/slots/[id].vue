@@ -54,7 +54,7 @@
                   </svg>
                 </div>
                 <div>
-                  <h1 class="text-xl font-bold text-[#E5E7EB] font-display">
+                  <h1 class="text-lg font-medium text-[#E5E7EB] font-display">
                     Редактирование Hero секции
                   </h1>
                   <p class="text-sm text-[#9CA3AF]">
@@ -66,6 +66,52 @@
 
             <!-- Кнопки действий -->
             <div class="flex items-center gap-3">
+              <!-- Управление секциями -->
+              <div
+                class="flex items-center gap-2 border-r border-[#353A4A] pr-3"
+              >
+                <button
+                  @click="closeAllSections"
+                  class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                  title="Закрыть все секции"
+                >
+                  <svg
+                    class="w-4 h-4 mr-1 inline-block"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                  Закрыть все
+                </button>
+                <button
+                  @click="openAllSections"
+                  class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#10B981]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                  title="Открыть все секции"
+                >
+                  <svg
+                    class="w-4 h-4 mr-1 inline-block"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 15l7-7 7 7"
+                    />
+                  </svg>
+                  Открыть все
+                </button>
+              </div>
+
               <button
                 @click="resetForm"
                 class="px-4 py-2 border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#63F3AB]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
@@ -127,15 +173,10 @@
                         ></path>
                       </svg>
                     </div>
-                    <div
-                      class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center animate-bounce"
-                    >
-                      <span class="text-white text-xs font-bold">🏆</span>
-                    </div>
                   </div>
                   <div>
                     <h2
-                      class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#FF6E48] to-[#00EDFF] bg-clip-text text-transparent font-display"
+                      class="text-2xl font-semibold text-[#E5E7EB] font-display"
                     >
                       Hero Секция
                     </h2>
@@ -147,36 +188,29 @@
                   <button
                     type="button"
                     @click="showHeroSection = !showHeroSection"
-                    class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-purple-400/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-purple-400/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
                     :aria-expanded="showHeroSection"
                   >
-                    <span class="flex items-center gap-2">
-                      <svg
-                        class="w-4 h-4"
-                        :class="{ 'rotate-180': !showHeroSection }"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
-                      {{
-                        showHeroSection
-                          ? 'Свернуть Hero секцию'
-                          : 'Развернуть Hero секцию'
-                      }}
-                    </span>
+                    <svg
+                      class="w-4 h-4 transform transition-transform duration-200"
+                      :class="{ 'rotate-180': showHeroSection }"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </button>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-8">
                   <!-- Все Hero секции (управляемые через v-show) -->
-                  <div v-show="showHeroSection" class="space-y-6">
+                  <div v-show="showHeroSection" class="space-y-8">
                     <!-- Основная информация -->
                     <div
                       class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
@@ -202,7 +236,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Основная информация
                             </h3>
@@ -214,10 +248,26 @@
                         <button
                           type="button"
                           @click="showBasicSection = !showBasicSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showBasicSection"
                         >
-                          {{ showBasicSection ? 'Скрыть' : 'Показать' }}
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showBasicSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                          <span>{{
+                            showBasicSection ? 'Скрыть' : 'Показать'
+                          }}</span>
                         </button>
                       </div>
                       <div v-show="showBasicSection" class="space-y-4">
@@ -366,7 +416,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Ссылки кнопок действий
                             </h3>
@@ -378,10 +428,26 @@
                         <button
                           type="button"
                           @click="showHeroLinksSection = !showHeroLinksSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showHeroLinksSection"
                         >
-                          {{ showHeroLinksSection ? 'Скрыть' : 'Показать' }}
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showHeroLinksSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                          <span>{{
+                            showHeroLinksSection ? 'Скрыть' : 'Показать'
+                          }}</span>
                         </button>
                       </div>
                       <div v-show="showHeroLinksSection" class="space-y-4">
@@ -478,7 +544,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Характеристики игры
                             </h3>
@@ -493,14 +559,30 @@
                             showGameCharacteristicsSection =
                               !showGameCharacteristicsSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showGameCharacteristicsSection"
                         >
-                          {{
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{
+                              'rotate-180': showGameCharacteristicsSection,
+                            }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                          <span>{{
                             showGameCharacteristicsSection
                               ? 'Скрыть'
                               : 'Показать'
-                          }}
+                          }}</span>
                         </button>
                       </div>
                       <div
@@ -764,7 +846,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Рейтинг и популярность
                             </h3>
@@ -776,7 +858,7 @@
                         <button
                           type="button"
                           @click="showRatingSection = !showRatingSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#CD0F8B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#CD0F8B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showRatingSection"
                         >
                           {{ showRatingSection ? 'Скрыть' : 'Показать' }}
@@ -1061,7 +1143,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Игровые механики
                             </h3>
@@ -1073,7 +1155,7 @@
                         <button
                           type="button"
                           @click="showMechanicsSection = !showMechanicsSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showMechanicsSection"
                         >
                           {{ showMechanicsSection ? 'Скрыть' : 'Показать' }}
@@ -1173,7 +1255,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
+                              class="text-lg font-medium text-[#E5E7EB] font-display flex items-center gap-2"
                             >
                               Бонусы Hero секции
                               <span
@@ -1190,7 +1272,7 @@
                         <button
                           type="button"
                           @click="showBonusesSection = !showBonusesSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showBonusesSection"
                         >
                           {{ showBonusesSection ? 'Скрыть' : 'Показать' }}
@@ -1362,7 +1444,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display flex items-center gap-2"
+                              class="text-lg font-medium text-[#E5E7EB] font-display flex items-center gap-2"
                             >
                               Тематики Hero секции
                               <span
@@ -1379,7 +1461,7 @@
                         <button
                           type="button"
                           @click="showThemesSection = !showThemesSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showThemesSection"
                         >
                           {{ showThemesSection ? 'Скрыть' : 'Показать' }}
@@ -1526,7 +1608,7 @@
             </div>
 
             <!-- Секция "Полный обзор слота 2025" -->
-            <div class="mt-8">
+            <div>
               <div
                 class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
               >
@@ -1558,15 +1640,10 @@
                           ></path>
                         </svg>
                       </div>
-                      <div
-                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center animate-bounce"
-                      >
-                        <span class="text-white text-xs font-bold">📄</span>
-                      </div>
                     </div>
                     <div>
                       <h2
-                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#4F46E5] to-[#7C3AED] bg-clip-text text-transparent font-display"
+                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
                       >
                         Полный обзор слота 2025
                       </h2>
@@ -1580,36 +1657,29 @@
                       @click="
                         showFullOverviewSection = !showFullOverviewSection
                       "
-                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
                       :aria-expanded="showFullOverviewSection"
                     >
-                      <span class="flex items-center gap-2">
-                        <svg
-                          class="w-4 h-4"
-                          :class="{ 'rotate-180': !showFullOverviewSection }"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                        {{
-                          showFullOverviewSection
-                            ? 'Свернуть секцию'
-                            : 'Развернуть секцию'
-                        }}
-                      </span>
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showFullOverviewSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </button>
                   </div>
 
-                  <div class="space-y-6">
+                  <div class="space-y-8">
                     <!-- Все подсекции "Полный обзор слота 2025" -->
-                    <div v-show="showFullOverviewSection" class="space-y-6">
+                    <div v-show="showFullOverviewSection" class="space-y-8">
                       <!-- Основное описание обзора -->
                       <div
                         class="group bg-gradient-to-r from-[#4F46E5]/10 to-[#7C3AED]/10 border border-[#4F46E5]/20 rounded-xl p-6 hover:border-[#4F46E5]/40 transition-all duration-300"
@@ -1635,7 +1705,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 Основное описание
                               </h3>
@@ -1649,7 +1719,7 @@
                             @click="
                               showOverviewMainSection = !showOverviewMainSection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewMainSection"
                           >
                             {{
@@ -1771,7 +1841,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 Насколько популярен
                               </h3>
@@ -1786,7 +1856,7 @@
                               showOverviewPopularitySection =
                                 !showOverviewPopularitySection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewPopularitySection"
                           >
                             {{
@@ -2155,7 +2225,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 В чем секрет успеха?
                               </h3>
@@ -2170,7 +2240,7 @@
                               showOverviewSuccessSecretSection =
                                 !showOverviewSuccessSecretSection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewSuccessSecretSection"
                           >
                             {{
@@ -2307,7 +2377,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 Основные механики
                               </h3>
@@ -2322,7 +2392,7 @@
                               showOverviewMechanicsSection =
                                 !showOverviewMechanicsSection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewMechanicsSection"
                           >
                             {{
@@ -2477,7 +2547,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 Бесплатные спины
                               </h3>
@@ -2492,7 +2562,7 @@
                               showOverviewFreeSpinsSection =
                                 !showOverviewFreeSpinsSection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EF4444]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EF4444]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewFreeSpinsSection"
                           >
                             {{
@@ -2677,7 +2747,7 @@
                             </div>
                             <div>
                               <h3
-                                class="text-xl font-bold text-[#E5E7EB] font-display"
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
                               >
                                 Стратегии и советы
                               </h3>
@@ -2692,7 +2762,7 @@
                               showOverviewStrategiesSection =
                                 !showOverviewStrategiesSection
                             "
-                            class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#06B6D4]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#06B6D4]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewStrategiesSection"
                           >
                             {{
@@ -2876,7 +2946,7 @@
             </div>
 
             <!-- Секция "Насколько популярен" -->
-            <div id="popularity-section" class="mt-8">
+            <div id="popularity-section">
               <div
                 class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
               >
@@ -2896,15 +2966,10 @@
                       >
                         <span class="text-2xl">📊</span>
                       </div>
-                      <div
-                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center animate-bounce"
-                      >
-                        <span class="text-white text-xs font-bold">📈</span>
-                      </div>
                     </div>
                     <div>
                       <h2
-                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#059669] to-[#10B981] bg-clip-text text-transparent font-display"
+                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
                       >
                         Насколько популярен
                       </h2>
@@ -2916,34 +2981,27 @@
                     <button
                       type="button"
                       @click="showPopularitySection = !showPopularitySection"
-                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
                       :aria-expanded="showPopularitySection"
                     >
-                      <span class="flex items-center gap-2">
-                        <svg
-                          class="w-4 h-4"
-                          :class="{ 'rotate-180': !showPopularitySection }"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                        {{
-                          showPopularitySection
-                            ? 'Свернуть секцию'
-                            : 'Развернуть секцию'
-                        }}
-                      </span>
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showPopularitySection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </button>
                   </div>
 
-                  <div v-show="showPopularitySection" class="space-y-6">
+                  <div v-show="showPopularitySection" class="space-y-8">
                     <!-- Заголовок секции -->
                     <div
                       class="group bg-gradient-to-r from-[#059669]/10 to-[#10B981]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
@@ -2969,7 +3027,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Заголовок секции
                             </h3>
@@ -2984,7 +3042,7 @@
                             showPopularityTitleSection =
                               !showPopularityTitleSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showPopularityTitleSection"
                         >
                           {{
@@ -3038,7 +3096,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Метрики популярности
                             </h3>
@@ -3053,7 +3111,7 @@
                             showPopularityMetricsSection =
                               !showPopularityMetricsSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showPopularityMetricsSection"
                         >
                           {{
@@ -3151,7 +3209,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Заключение о популярности
                             </h3>
@@ -3166,7 +3224,7 @@
                             showPopularityConclusionSection =
                               !showPopularityConclusionSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showPopularityConclusionSection"
                         >
                           {{
@@ -3202,7 +3260,7 @@
             </div>
 
             <!-- Секция "Рейтинг и награды" -->
-            <div id="rating-awards-section" class="mt-8">
+            <div id="rating-awards-section">
               <div
                 class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
               >
@@ -3222,15 +3280,10 @@
                       >
                         <span class="text-2xl">🏆</span>
                       </div>
-                      <div
-                        class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center animate-bounce"
-                      >
-                        <span class="text-white text-xs font-bold">⭐</span>
-                      </div>
                     </div>
                     <div>
                       <h2
-                        class="text-4xl font-bold bg-gradient-to-r from-[#E5E7EB] via-[#F59E0B] to-[#D97706] bg-clip-text text-transparent font-display"
+                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
                       >
                         Рейтинг и награды
                       </h2>
@@ -3244,34 +3297,27 @@
                       @click="
                         showRatingAwardsSection = !showRatingAwardsSection
                       "
-                      class="text-sm px-6 py-3 rounded-xl border border-[#353A4A] bg-[#1B1E26]/80 hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium backdrop-blur-sm"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
                       :aria-expanded="showRatingAwardsSection"
                     >
-                      <span class="flex items-center gap-2">
-                        <svg
-                          class="w-4 h-4"
-                          :class="{ 'rotate-180': !showRatingAwardsSection }"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                        {{
-                          showRatingAwardsSection
-                            ? 'Свернуть секцию'
-                            : 'Развернуть секцию'
-                        }}
-                      </span>
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showRatingAwardsSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </button>
                   </div>
 
-                  <div v-show="showRatingAwardsSection" class="space-y-6">
+                  <div v-show="showRatingAwardsSection" class="space-y-8">
                     <!-- Заголовок секции -->
                     <div
                       class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
@@ -3297,7 +3343,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Заголовок секции
                             </h3>
@@ -3311,7 +3357,7 @@
                           @click="
                             showRatingTitleSection = !showRatingTitleSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showRatingTitleSection"
                         >
                           {{ showRatingTitleSection ? 'Скрыть' : 'Показать' }}
@@ -3360,7 +3406,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Основной рейтинг
                             </h3>
@@ -3374,7 +3420,7 @@
                           @click="
                             showRatingMainSection = !showRatingMainSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showRatingMainSection"
                         >
                           {{ showRatingMainSection ? 'Скрыть' : 'Показать' }}
@@ -3472,7 +3518,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Детализация рейтинга
                             </h3>
@@ -3486,7 +3532,7 @@
                           @click="
                             showRatingDetailsSection = !showRatingDetailsSection
                           "
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showRatingDetailsSection"
                         >
                           {{ showRatingDetailsSection ? 'Скрыть' : 'Показать' }}
@@ -3587,7 +3633,7 @@
                           </div>
                           <div>
                             <h3
-                              class="text-xl font-bold text-[#E5E7EB] font-display"
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
                               Награды
                             </h3>
@@ -3599,7 +3645,7 @@
                         <button
                           type="button"
                           @click="showAwardsSection = !showAwardsSection"
-                          class="text-xs px-4 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showAwardsSection"
                         >
                           {{ showAwardsSection ? 'Скрыть' : 'Показать' }}
@@ -4442,36 +4488,36 @@ const slot = ref(null)
 const providers = ref([])
 const saving = ref(false)
 const loading = ref(true)
-const showHeroSection = ref(true)
-const showBasicSection = ref(true)
-const showHeroLinksSection = ref(true)
-const showGameCharacteristicsSection = ref(true)
-const showRatingSection = ref(true)
+const showHeroSection = ref(false)
+const showBasicSection = ref(false)
+const showHeroLinksSection = ref(false)
+const showGameCharacteristicsSection = ref(false)
+const showRatingSection = ref(false)
 const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
 const showThemesSection = ref(false)
 
 // Состояние для секции "Полный обзор слота 2025"
-const showFullOverviewSection = ref(true)
-const showOverviewMainSection = ref(true)
-const showOverviewPopularitySection = ref(true)
-const showOverviewSuccessSecretSection = ref(true)
-const showOverviewMechanicsSection = ref(true)
-const showOverviewFreeSpinsSection = ref(true)
-const showOverviewStrategiesSection = ref(true)
+const showFullOverviewSection = ref(false)
+const showOverviewMainSection = ref(false)
+const showOverviewPopularitySection = ref(false)
+const showOverviewSuccessSecretSection = ref(false)
+const showOverviewMechanicsSection = ref(false)
+const showOverviewFreeSpinsSection = ref(false)
+const showOverviewStrategiesSection = ref(false)
 
 // Состояние для секции "Насколько популярен"
-const showPopularitySection = ref(true)
-const showPopularityTitleSection = ref(true)
-const showPopularityMetricsSection = ref(true)
-const showPopularityConclusionSection = ref(true)
+const showPopularitySection = ref(false)
+const showPopularityTitleSection = ref(false)
+const showPopularityMetricsSection = ref(false)
+const showPopularityConclusionSection = ref(false)
 
 // Состояние для секции "Рейтинг и награды"
-const showRatingAwardsSection = ref(true)
-const showRatingTitleSection = ref(true)
-const showRatingMainSection = ref(true)
-const showRatingDetailsSection = ref(true)
-const showAwardsSection = ref(true)
+const showRatingAwardsSection = ref(false)
+const showRatingTitleSection = ref(false)
+const showRatingMainSection = ref(false)
+const showRatingDetailsSection = ref(false)
+const showAwardsSection = ref(false)
 
 const paylineType = ref('text') // 'number' или 'text'
 
@@ -5069,6 +5115,75 @@ const resetForm = () => {
       real_play_url: '',
     })
   }
+}
+
+// Функции для управления секциями
+const closeAllSections = () => {
+  // Основные секции
+  showHeroSection.value = false
+  showBasicSection.value = false
+  showHeroLinksSection.value = false
+  showGameCharacteristicsSection.value = false
+  showRatingSection.value = false
+  showMechanicsSection.value = false
+  showBonusesSection.value = false
+  showThemesSection.value = false
+
+  // Overview секции
+  showFullOverviewSection.value = false
+  showOverviewMainSection.value = false
+  showOverviewPopularitySection.value = false
+  showOverviewSuccessSecretSection.value = false
+  showOverviewMechanicsSection.value = false
+  showOverviewFreeSpinsSection.value = false
+  showOverviewStrategiesSection.value = false
+
+  // Popularity секции
+  showPopularitySection.value = false
+  showPopularityTitleSection.value = false
+  showPopularityMetricsSection.value = false
+  showPopularityConclusionSection.value = false
+
+  // Rating & Awards секции
+  showRatingAwardsSection.value = false
+  showRatingTitleSection.value = false
+  showRatingMainSection.value = false
+  showRatingDetailsSection.value = false
+  showAwardsSection.value = false
+}
+
+const openAllSections = () => {
+  // Основные секции
+  showHeroSection.value = true
+  showBasicSection.value = true
+  showHeroLinksSection.value = true
+  showGameCharacteristicsSection.value = true
+  showRatingSection.value = true
+  showMechanicsSection.value = true
+  showBonusesSection.value = true
+  showThemesSection.value = true
+
+  // Overview секции
+  showFullOverviewSection.value = true
+  showOverviewMainSection.value = true
+  showOverviewPopularitySection.value = true
+  showOverviewSuccessSecretSection.value = true
+  showOverviewMechanicsSection.value = true
+  showOverviewFreeSpinsSection.value = true
+  showOverviewStrategiesSection.value = true
+
+  // Popularity секции
+  showPopularitySection.value = true
+  showPopularityTitleSection.value = true
+  showPopularityMetricsSection.value = true
+  showPopularityConclusionSection.value = true
+
+  // Rating & Awards секции
+  showRatingAwardsSection.value = true
+  showRatingTitleSection.value = true
+  showRatingMainSection.value = true
+  showRatingDetailsSection.value = true
+  showAwardsSection.value = true
 }
 </script>
 
