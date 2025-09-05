@@ -173,16 +173,16 @@
                         ></path>
                       </svg>
                     </div>
-                  </div>
-                  <div>
-                    <h2
-                      class="text-2xl font-semibold text-[#E5E7EB] font-display"
-                    >
-                      Hero Секция
-                    </h2>
-                    <div
-                      class="h-1 w-28 bg-gradient-to-r from-[#FF6E48] to-[#00EDFF] rounded-full mt-2"
-                    ></div>
+                    <div>
+                      <h2
+                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                      >
+                        Hero Секция
+                      </h2>
+                      <div
+                        class="h-1 w-28 bg-gradient-to-r from-[#FF6E48] to-[#00EDFF] rounded-full mt-2"
+                      ></div>
+                    </div>
                   </div>
                   <!-- Кнопка сворачивания/разворачивания Hero секции -->
                   <button
@@ -1640,16 +1640,16 @@
                           ></path>
                         </svg>
                       </div>
-                    </div>
-                    <div>
-                      <h2
-                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
-                      >
-                        Полный обзор слота 2025
-                      </h2>
-                      <div
-                        class="h-1 w-32 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] rounded-full mt-2"
-                      ></div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Полный обзор слота 2025
+                        </h2>
+                        <div
+                          class="h-1 w-32 bg-gradient-to-r from-[#4F46E5] to-[#7C3AED] rounded-full mt-2"
+                        ></div>
+                      </div>
                     </div>
                     <!-- Кнопка сворачивания/разворачивания -->
                     <button
@@ -2966,16 +2966,16 @@
                       >
                         <span class="text-2xl">📊</span>
                       </div>
-                    </div>
-                    <div>
-                      <h2
-                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
-                      >
-                        Насколько популярен
-                      </h2>
-                      <div
-                        class="h-1 w-28 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-full mt-2"
-                      ></div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Насколько популярен
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-full mt-2"
+                        ></div>
+                      </div>
                     </div>
                     <!-- Кнопка сворачивания/разворачивания секции -->
                     <button
@@ -3280,16 +3280,16 @@
                       >
                         <span class="text-2xl">🏆</span>
                       </div>
-                    </div>
-                    <div>
-                      <h2
-                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
-                      >
-                        Рейтинг и награды
-                      </h2>
-                      <div
-                        class="h-1 w-28 bg-gradient-to-r from-[#F59E0B] to-[#D97706] rounded-full mt-2"
-                      ></div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Рейтинг и награды
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#F59E0B] to-[#D97706] rounded-full mt-2"
+                        ></div>
+                      </div>
                     </div>
                     <!-- Кнопка сворачивания/разворачивания секции -->
                     <button
