@@ -13,12 +13,14 @@
       >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div class="flex items-center justify-between">
+            <!-- Навигация назад -->
             <NuxtLink
               to="/admin/slots"
-              class="inline-flex items-center text-[#9CA3AF] hover:text-[#FF6E48] transition-colors font-medium"
+              class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:text-[#FF6E48] hover:border-[#FF6E48]/40 hover:bg-[#353A4A] transition-all duration-200"
+              title="Назад к управлению слотами"
             >
               <svg
-                class="w-5 h-5 mr-2"
+                class="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -30,46 +32,22 @@
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Назад к управлению слотами
             </NuxtLink>
 
-            <!-- Заголовок -->
+            <!-- Заголовок слота -->
             <div class="flex items-center">
-              <div class="flex items-center space-x-3">
-                <div
-                  class="w-10 h-10 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
-                >
-                  <svg
-                    class="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <h1 class="text-lg font-medium text-[#E5E7EB] font-display">
-                    Редактирование Hero секции
-                  </h1>
-                  <p class="text-sm text-[#9CA3AF]">
-                    {{ slot?.name || 'Новый слот' }}
-                  </p>
-                </div>
+              <div class="text-center">
+                <h1 class="text-xl font-semibold text-[#E5E7EB] font-display">
+                  {{ slot?.name || 'Новый слот' }}
+                </h1>
+                <p class="text-sm text-[#9CA3AF]">Редактирование слота</p>
               </div>
             </div>
 
             <!-- Кнопки действий -->
             <div class="flex items-center gap-3">
               <!-- Управление секциями -->
-              <div
-                class="flex items-center gap-2 border-r border-[#353A4A] pr-3"
-              >
+              <div class="flex items-center gap-2">
                 <button
                   @click="closeAllSections"
                   class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
@@ -177,21 +155,69 @@
               <button
                 @click="resetForm"
                 class="px-4 py-2 border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#63F3AB]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                title="Сбросить все изменения"
               >
+                <svg
+                  class="w-4 h-4 mr-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
                 Сброс
               </button>
               <button
                 @click="saveSlot"
                 :disabled="saving"
                 class="px-6 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] disabled:from-[#353A4A] disabled:to-[#353A4A] text-white rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 disabled:scale-100"
+                title="Сохранить изменения (Ctrl+S)"
               >
-                {{ saving ? 'Сохранение...' : 'Сохранить изменения' }}
+                <svg
+                  class="w-4 h-4 mr-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"
+                  />
+                </svg>
+                {{ saving ? 'Сохранение...' : 'Сохранить' }}
               </button>
               <NuxtLink
                 :to="`/slots/${slot?.slug || 'preview'}`"
                 target="_blank"
                 class="px-4 py-2 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
+                title="Открыть предпросмотр в новой вкладке"
               >
+                <svg
+                  class="w-4 h-4 mr-1 inline-block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
                 Предпросмотр
               </NuxtLink>
             </div>
@@ -5037,7 +5063,7 @@ const selectedThemes = ref([])
 
 // Заголовок страницы
 useHead({
-  title: 'Редактирование Hero секции слота - SlotQuest Admin',
+  title: 'Редактирование слота - SlotQuest Admin',
 })
 
 // Загрузка данных при монтировании
