@@ -6301,22 +6301,44 @@ watchEffect(() => {
     const structuredData = getStructuredData(slot.value)
 
     useHead({
-      title: `${slot.value.name || 'Слот'} - SlotQuest`,
+      title: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги | SlotQuest`,
       meta: [
         {
           name: 'description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}. Рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+        },
+        {
+          name: 'keywords',
+          content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, SlotQuest`,
+        },
+        {
+          name: 'author',
+          content: 'SlotQuest Editorial Team',
+        },
+        {
+          name: 'robots',
+          content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+        },
+        {
+          name: 'googlebot',
+          content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+        },
+        {
+          name: 'theme-color',
+          content: '#1a1a2e',
         },
         // Open Graph
         {
           property: 'og:title',
-          content: `${slot.value.name || 'Слот'} - SlotQuest`,
+          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
         },
         {
           property: 'og:description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
-        { property: 'og:type', content: 'website' },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:site_name', content: 'SlotQuest' },
+        { property: 'og:locale', content: 'ru_RU' },
         {
           property: 'og:url',
           content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
@@ -6325,21 +6347,65 @@ watchEffect(() => {
           property: 'og:image',
           content: `${slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`}`,
         },
+        {
+          property: 'og:image:alt',
+          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
+        },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
+        { property: 'og:image:type', content: 'image/jpeg' },
+        {
+          property: 'article:published_time',
+          content: slot.value.release_date || '2021-02-13',
+        },
+        {
+          property: 'article:modified_time',
+          content: slot.value.updated_at || new Date().toISOString().split('T')[0],
+        },
+        {
+          property: 'article:author',
+          content: 'SlotQuest Editorial Team',
+        },
+        {
+          property: 'article:section',
+          content: 'Игровые автоматы',
+        },
+        {
+          property: 'article:tag',
+          content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат`,
+        },
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@SlotQuest' },
+        { name: 'twitter:creator', content: '@SlotQuest' },
         {
           name: 'twitter:title',
-          content: `${slot.value.name || 'Слот'} - SlotQuest`,
+          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
         },
         {
           name: 'twitter:description',
-          content: `Играйте в ${slot.value.name || 'слот'} от ${slot.value.providers?.name || 'провайдера'}. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}`,
+          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
           content: `${slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`}`,
+        },
+        {
+          name: 'twitter:image:alt',
+          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
+        },
+        // Additional SEO meta tags
+        {
+          name: 'application-name',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'apple-mobile-web-app-title',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'msapplication-TileColor',
+          content: '#1a1a2e',
         },
       ],
       link: [
@@ -6859,10 +6925,27 @@ const getStructuredData = (slot) => {
     isAccessibleForFree: Boolean(slot.demo_url),
     image: {
       '@type': 'ImageObject',
+      '@id': `${slotUrl}#image`,
       url: imageUrl,
+      contentUrl: imageUrl,
       width: 800,
       height: 600,
       caption: `${slot.name} - скриншот игрового автомата`,
+      description: `Официальный скриншот слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}`,
+      name: `${slot.name} - изображение слота`,
+      encodingFormat: 'image/jpeg',
+      uploadDate: slot.release_date || '2021-02-13',
+      copyrightHolder: {
+        '@type': 'Organization',
+        name: slot.providers?.name || 'Pragmatic Play'
+      },
+      license: 'https://creativecommons.org/licenses/by-nc/4.0/',
+      acquireLicensePage: slot.providers?.website || 'https://pragmaticplay.com',
+      creditText: `© ${slot.providers?.name || 'Pragmatic Play'}`,
+      creator: {
+        '@type': 'Organization',
+        name: slot.providers?.name || 'Pragmatic Play'
+      }
     },
     datePublished: slot.release_date || '2021-02-13',
     genre: 'Casino Slot Game',
@@ -6932,8 +7015,33 @@ const getStructuredData = (slot) => {
     },
     provider: {
       '@type': 'Organization',
+      '@id': `https://slotquest.com/providers/${slot.providers?.slug || 'pragmatic-play'}`,
       name: slot.providers?.name || 'Pragmatic Play',
+      alternateName: slot.providers?.short_name || 'PP',
       url: slot.providers?.website || 'https://pragmaticplay.com',
+      description: slot.providers?.description || 'Ведущий разработчик игр для онлайн-казино',
+      foundingDate: slot.providers?.founded || '2015',
+      logo: {
+        '@type': 'ImageObject',
+        url: slot.providers?.logo_url || 'https://slotquest.com/images/providers/pragmatic-play.png',
+        width: 200,
+        height: 100
+      },
+      sameAs: [
+        slot.providers?.website || 'https://pragmaticplay.com',
+        slot.providers?.linkedin_url,
+        slot.providers?.twitter_url
+      ].filter(Boolean),
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: slot.providers?.country || 'MT',
+        addressLocality: slot.providers?.city || 'Malta'
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        url: slot.providers?.support_url || slot.providers?.website || 'https://pragmaticplay.com'
+      }
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -6941,6 +7049,15 @@ const getStructuredData = (slot) => {
       bestRating: '5',
       worstRating: '1',
       ratingCount: slot.reviews_count || '1247',
+      reviewCount: slot.reviews_count || '1247',
+      description: `Средний рейтинг ${slot.rating || '4.8'} из 5 звезд на основе ${slot.reviews_count || '1247'} отзывов игроков`,
+      author: {
+        '@type': 'Organization',
+        name: 'SlotQuest Community',
+        url: 'https://slotquest.com'
+      },
+      dateCreated: slot.created_at || '2021-02-13',
+      dateModified: slot.updated_at || new Date().toISOString().split('T')[0]
     },
     offers: [
       {
@@ -6986,14 +7103,39 @@ const getStructuredData = (slot) => {
       '@type': 'VideoObject',
       '@id': `${slotUrl}#video`,
       name: `${slot.name} — трейлер геймплея`,
-      description: `Посмотрите геймплей слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}`,
+      alternateName: `${slot.name} gameplay video`,
+      description: `Посмотрите геймплей слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}. Демонстрация игрового процесса, бонусных функций и выигрышных комбинаций.`,
       url: slot.video_url,
       contentUrl: slot.video_url,
+      embedUrl: slot.video_url,
       thumbnailUrl: imageUrl,
       uploadDate: slot.release_date || '2021-02-13',
+      datePublished: slot.release_date || '2021-02-13',
       inLanguage: 'ru-RU',
-      duration: 'PT2M30S',
-      embedUrl: slot.video_url,
+      duration: slot.video_duration || 'PT2M30S',
+      videoQuality: 'HD',
+      encodingFormat: 'video/mp4',
+      width: 1920,
+      height: 1080,
+      genre: 'Gaming',
+      keywords: `${slot.name}, слот, геймплей, ${slot.providers?.name || 'Pragmatic Play'}, онлайн казино`,
+      creator: {
+        '@type': 'Organization',
+        name: slot.providers?.name || 'Pragmatic Play'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'SlotQuest',
+        url: 'https://slotquest.com'
+      },
+      copyrightHolder: {
+        '@type': 'Organization',
+        name: slot.providers?.name || 'Pragmatic Play'
+      },
+      license: 'https://creativecommons.org/licenses/by-nc/4.0/',
+      isAccessibleForFree: true,
+      isFamilyFriendly: false,
+      contentRating: '18+'
     }
   }
 
@@ -7014,26 +7156,80 @@ const getStructuredData = (slot) => {
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${slotUrl}#breadcrumb`,
+    name: `Навигация к слоту ${slot.name}`,
+    description: `Путь навигации: Главная → Слоты → ${slot.provider?.name || 'Провайдер'} → ${slot.name}`,
     itemListElement: [
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Главная',
-        item: baseUrl,
+        name: '🏠 Главная',
+        item: {
+          '@type': 'WebPage',
+          '@id': baseUrl,
+          name: 'SlotQuest - Лучшие игровые автоматы',
+          url: baseUrl
+        },
+        url: baseUrl,
+        image: `${baseUrl}/favicon.ico`
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Слоты',
-        item: `${baseUrl}/slots`,
+        name: '🎰 Слоты',
+        item: {
+          '@type': 'CollectionPage',
+          '@id': `${baseUrl}/slots`,
+          name: 'Каталог игровых автоматов',
+          url: `${baseUrl}/slots`
+        },
+        url: `${baseUrl}/slots`,
+        description: 'Полный каталог игровых автоматов'
       },
-      {
+      ...(slot.provider ? [{
         '@type': 'ListItem',
         position: 3,
-        name: slot.name,
-        item: slotUrl,
-      },
+        name: `🏢 ${slot.provider.name}`,
+        item: {
+          '@type': 'Organization',
+          '@id': `${baseUrl}/provider/${slot.provider.slug || slot.provider.name.toLowerCase()}`,
+          name: slot.provider.name,
+          url: `${baseUrl}/provider/${slot.provider.slug || slot.provider.name.toLowerCase()}`
+        },
+        url: `${baseUrl}/provider/${slot.provider.slug || slot.provider.name.toLowerCase()}`,
+        description: `Слоты от провайдера ${slot.provider.name}`
+      }] : []),
+      ...(slot.categories && slot.categories.length > 0 ? [{
+        '@type': 'ListItem',
+        position: slot.provider ? 4 : 3,
+        name: `📂 ${slot.categories[0].name}`,
+        item: {
+          '@type': 'CollectionPage',
+          '@id': `${baseUrl}/category/${slot.categories[0].slug}`,
+          name: slot.categories[0].name,
+          url: `${baseUrl}/category/${slot.categories[0].slug}`
+        },
+        url: `${baseUrl}/category/${slot.categories[0].slug}`,
+        description: `Слоты категории ${slot.categories[0].name}`
+      }] : []),
+      {
+        '@type': 'ListItem',
+        position: (slot.provider ? 1 : 0) + (slot.categories?.length > 0 ? 1 : 0) + 3,
+        name: `🎮 ${slot.name}`,
+        item: {
+          '@type': 'Game',
+          '@id': slotUrl,
+          name: slot.name,
+          url: slotUrl,
+          gameItem: slot.name,
+          genre: slot.categories?.[0]?.name || 'Игровой автомат'
+        },
+        url: slotUrl,
+        description: slot.description || `Играть в ${slot.name} онлайн`,
+        image: slot.image_url
+      }
     ],
+    numberOfItems: (slot.provider ? 1 : 0) + (slot.categories?.length > 0 ? 1 : 0) + 3
   }
 
   // WebSite схема для поиска

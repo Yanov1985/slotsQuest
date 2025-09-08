@@ -38,7 +38,7 @@
             <div class="flex items-center">
               <div class="text-center">
                 <h1 class="text-xl font-semibold text-[#E5E7EB] font-display">
-                  {{ slot?.name || 'Новый слот' }}
+                  {{ form.name || 'Новый слот' }}
                 </h1>
                 <p class="text-sm text-[#9CA3AF]">Редактирование слота</p>
               </div>
@@ -194,7 +194,7 @@
                 {{ saving ? 'Сохранение...' : 'Сохранить' }}
               </button>
               <NuxtLink
-                :to="`/slots/${slot?.slug || 'preview'}`"
+                :to="`/slots/${form.slug || 'preview'}`"
                 target="_blank"
                 class="px-4 py-2 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
                 title="Открыть предпросмотр в новой вкладке"
@@ -330,7 +330,7 @@
         <!-- Основной контент -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Левая панель: Редактирование -->
-          <div class="lg:col-span-2 space-y-8">
+          <form @submit.prevent="saveSlot" class="lg:col-span-2 space-y-8">
             <div
               id="hero"
               data-section="hero"
@@ -756,7 +756,7 @@
                           <svg
                             class="w-3 h-3 transform transition-transform duration-200"
                             :class="{
-                              'rotate-180': showGameCharacteristicsSection,
+                              'rotate-180': showGameCharacteristicsSection
                             }"
                             fill="none"
                             stroke="currentColor"
@@ -4002,7 +4002,7 @@
             </div>
 
             <!-- Кнопки сохранения -->
-            <form @submit.prevent="saveSlot" class="mt-8">
+            <div class="mt-8">
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
                 <button
                   type="button"
@@ -4019,8 +4019,741 @@
                   {{ saving ? 'Сохранение...' : 'Сохранить изменения' }}
                 </button>
               </div>
-            </form>
-          </div>
+            </div>
+
+            <!-- SEO Секция -->
+            <div
+              id="seo"
+              data-section="seo"
+              class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+            >
+              <!-- Декоративный фон -->
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 via-transparent to-[#3B82F6]/5"
+              ></div>
+              <div
+                class="absolute top-0 right-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+              ></div>
+
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-8">
+                  <div class="flex items-center gap-4">
+                    <div
+                      class="w-16 h-16 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                    >
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h2
+                        class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                      >
+                        SEO Оптимизация
+                      </h2>
+                      <div
+                        class="h-1 w-28 bg-gradient-to-r from-[#10B981] to-[#3B82F6] rounded-full mt-2"
+                      ></div>
+                    </div>
+                  </div>
+                  <!-- Кнопка сворачивания/разворачивания SEO секции -->
+                  <button
+                    type="button"
+                    @click="showSeoSection = !showSeoSection"
+                    class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
+                    :aria-expanded="showSeoSection"
+                  >
+                    <svg
+                      class="w-4 h-4 transform transition-transform duration-200"
+                      :class="{ 'rotate-180': showSeoSection }"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="space-y-8">
+                  <!-- Все SEO секции (управляемые через v-show) -->
+                  <div v-show="showSeoSection" class="space-y-8">
+                    <!-- Meta теги -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Meta теги
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              Основные SEO meta теги
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showMetaSection = !showMetaSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showMetaSection"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showMetaSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                          {{ showMetaSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+
+                      <div v-show="showMetaSection" class="space-y-6">
+                        <!-- SEO Title -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            SEO Заголовок
+                            <span class="text-[#10B981] ml-1">*</span>
+                          </label>
+                          <input
+                            v-model="form.seo_title"
+                            type="text"
+                            placeholder="Играть в [Название слота] онлайн бесплатно | SlotQuest"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                            maxlength="60"
+                          />
+                          <div class="flex justify-between text-xs">
+                            <span class="text-[#9CA3AF]">Рекомендуется: 50-60 символов</span>
+                            <span
+                              class="text-[#9CA3AF]"
+                              :class="{
+                                'text-[#EF4444]': (form.seo_title || '').length > 60,
+                                'text-[#10B981]': (form.seo_title || '').length <= 60 && (form.seo_title || '').length >= 50
+                              }"
+                            >
+                              {{ (form.seo_title || '').length }}/60
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- SEO Description -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            SEO Описание
+                            <span class="text-[#10B981] ml-1">*</span>
+                          </label>
+                          <textarea
+                            v-model="form.seo_description"
+                            rows="3"
+                            placeholder="Играйте в [Название слота] от [Провайдер] бесплатно и на реальные деньги. RTP [%], волатильность [уровень]. Бонусы, фриспины и джекпоты."
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
+                            maxlength="160"
+                          ></textarea>
+                          <div class="flex justify-between text-xs">
+                            <span class="text-[#9CA3AF]">Рекомендуется: 150-160 символов</span>
+                            <span
+                              class="text-[#9CA3AF]"
+                              :class="{
+                                'text-[#EF4444]': (form.seo_description || '').length > 160,
+                                'text-[#10B981]': (form.seo_description || '').length <= 160 && (form.seo_description || '').length >= 150
+                              }"
+                            >
+                              {{ (form.seo_description || '').length }}/160
+                            </span>
+                          </div>
+                        </div>
+
+                        <!-- SEO Keywords -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            Ключевые слова
+                          </label>
+                          <input
+                            v-model="form.seo_keywords"
+                            type="text"
+                            placeholder="игровой автомат, слот, онлайн казино, бесплатно, [название слота], [провайдер]"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            Разделяйте ключевые слова запятыми
+                          </p>
+                        </div>
+
+                        <!-- Canonical URL -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            Canonical URL
+                          </label>
+                          <input
+                            v-model="form.canonical_url"
+                            type="url"
+                            placeholder="https://slotquest.com/slots/slot-name"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            Оставьте пустым для автоматической генерации
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Open Graph -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#1D4ED8]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Open Graph
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">
+                              Социальные сети и мессенджеры
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showOpenGraphSection = !showOpenGraphSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showOpenGraphSection"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showOpenGraphSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                          {{ showOpenGraphSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+
+                      <div v-show="showOpenGraphSection" class="space-y-6">
+                        <!-- OG Title -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            OG Заголовок
+                          </label>
+                          <input
+                            v-model="form.og_title"
+                            type="text"
+                            placeholder="Автоматически из SEO заголовка"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                          />
+                        </div>
+
+                        <!-- OG Description -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            OG Описание
+                          </label>
+                          <textarea
+                            v-model="form.og_description"
+                            rows="2"
+                            placeholder="Автоматически из SEO описания"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200 resize-none"
+                          ></textarea>
+                        </div>
+
+                        <!-- OG Image -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            OG Изображение
+                          </label>
+                          <input
+                            v-model="form.og_image"
+                            type="url"
+                            placeholder="Автоматически из основного изображения слота"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            Рекомендуемый размер: 1200x630 пикселей
+                          </p>
+                        </div>
+                      </div>
+                     </div>
+
+                     <!-- Twitter Card -->
+                     <div
+                       class="group bg-gradient-to-r from-[#1DA1F2]/10 to-[#0D8BD9]/10 border border-[#1DA1F2]/20 rounded-xl p-6 hover:border-[#1DA1F2]/40 transition-all duration-300"
+                     >
+                       <div class="flex items-center justify-between mb-4">
+                         <div class="flex items-center gap-3">
+                           <div
+                             class="w-12 h-12 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-xl flex items-center justify-center"
+                           >
+                             <svg
+                               class="w-6 h-6 text-white"
+                               fill="currentColor"
+                               viewBox="0 0 24 24"
+                             >
+                               <path
+                                 d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                               />
+                             </svg>
+                           </div>
+                           <div>
+                             <h3
+                               class="text-lg font-medium text-[#E5E7EB] font-display"
+                             >
+                               Twitter Card
+                             </h3>
+                             <p class="text-sm text-[#1DA1F2]">
+                               Настройки для отображения в Twitter
+                             </p>
+                           </div>
+                         </div>
+                         <button
+                           type="button"
+                           @click="showTwitterSection = !showTwitterSection"
+                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#1DA1F2]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                           :aria-expanded="showTwitterSection"
+                         >
+                           <svg
+                             class="w-3 h-3 transform transition-transform duration-200"
+                             :class="{ 'rotate-180': showTwitterSection }"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24"
+                           >
+                             <path
+                               stroke-linecap="round"
+                               stroke-linejoin="round"
+                               stroke-width="2"
+                               d="M19 9l-7 7-7-7"
+                             />
+                           </svg>
+                           {{ showTwitterSection ? 'Скрыть' : 'Показать' }}
+                         </button>
+                       </div>
+
+                       <div v-show="showTwitterSection" class="space-y-6">
+                         <!-- Twitter Card Type -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                             Тип карточки
+                           </label>
+                           <select
+                             v-model="form.twitter_card"
+                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                           >
+                             <option value="summary">Summary</option>
+                             <option value="summary_large_image">Summary Large Image</option>
+                             <option value="app">App</option>
+                             <option value="player">Player</option>
+                           </select>
+                           <p class="text-xs text-[#9CA3AF] mt-2">
+                             Рекомендуется: Summary Large Image для игровых слотов
+                           </p>
+                         </div>
+
+                         <!-- Twitter Title -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                             Twitter Заголовок
+                           </label>
+                           <input
+                             v-model="form.twitter_title"
+                             type="text"
+                             placeholder="Автоматически из SEO заголовка"
+                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                           />
+                           <div class="flex justify-between items-center mt-2">
+                             <p class="text-xs text-[#9CA3AF]">
+                               Максимум 70 символов для лучшего отображения
+                             </p>
+                             <span
+                               class="text-xs"
+                               :class="{
+                                 'text-[#10B981]': (form.twitter_title || '').length <= 70,
+                                'text-[#F59E0B]': (form.twitter_title || '').length > 70 && (form.twitter_title || '').length <= 100,
+                                'text-[#EF4444]': (form.twitter_title || '').length > 100
+                               }"
+                             >
+                               {{ (form.twitter_title || '').length }}/70
+                             </span>
+                           </div>
+                         </div>
+
+                         <!-- Twitter Description -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                             Twitter Описание
+                           </label>
+                           <textarea
+                             v-model="form.twitter_description"
+                             rows="3"
+                             placeholder="Автоматически из SEO описания"
+                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
+                           ></textarea>
+                           <div class="flex justify-between items-center mt-2">
+                             <p class="text-xs text-[#9CA3AF]">
+                               Максимум 200 символов для лучшего отображения
+                             </p>
+                             <span
+                               class="text-xs"
+                               :class="{
+                                 'text-[#10B981]': (form.twitter_description || '').length <= 200,
+                                'text-[#F59E0B]': (form.twitter_description || '').length > 200 && (form.twitter_description || '').length <= 300,
+                                'text-[#EF4444]': (form.twitter_description || '').length > 300
+                               }"
+                             >
+                               {{ (form.twitter_description || '').length }}/200
+                             </span>
+                           </div>
+                         </div>
+
+                         <!-- Twitter Image -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                             Twitter Изображение
+                           </label>
+                           <input
+                             v-model="form.twitter_image"
+                             type="url"
+                             placeholder="Автоматически из Open Graph изображения"
+                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                           />
+                           <p class="text-xs text-[#9CA3AF] mt-2">
+                             Рекомендуемый размер: 1200x628 пикселей (соотношение 1.91:1)
+                           </p>
+                         </div>
+
+                         <!-- Twitter Site -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                             Twitter аккаунт сайта
+                           </label>
+                           <input
+                             v-model="form.twitter_site"
+                             type="text"
+                             placeholder="@slotquest"
+                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                           />
+                           <p class="text-xs text-[#9CA3AF] mt-2">
+                             Twitter username сайта (с символом @)
+                           </p>
+                         </div>
+                       </div>
+                     </div>
+
+                     <!-- JSON-LD Схемы -->
+                     <div
+                       class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                     >
+                       <div class="flex items-center justify-between mb-4">
+                         <div class="flex items-center gap-3">
+                           <div
+                             class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
+                           >
+                             <svg
+                               class="w-6 h-6 text-white"
+                               fill="none"
+                               stroke="currentColor"
+                               viewBox="0 0 24 24"
+                             >
+                               <path
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 stroke-width="2"
+                                 d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                               ></path>
+                             </svg>
+                           </div>
+                           <div>
+                             <h3
+                               class="text-lg font-medium text-[#E5E7EB] font-display"
+                             >
+                               JSON-LD Схемы
+                             </h3>
+                             <p class="text-sm text-[#8B5CF6]">
+                               Структурированные данные для поисковых систем
+                             </p>
+                           </div>
+                         </div>
+                         <button
+                           type="button"
+                           @click="showJsonLdSection = !showJsonLdSection"
+                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                           :aria-expanded="showJsonLdSection"
+                         >
+                           <svg
+                             class="w-3 h-3 transform transition-transform duration-200"
+                             :class="{ 'rotate-180': showJsonLdSection }"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24"
+                           >
+                             <path
+                               stroke-linecap="round"
+                               stroke-linejoin="round"
+                               stroke-width="2"
+                               d="M19 9l-7 7-7-7"
+                             />
+                           </svg>
+                           {{ showJsonLdSection ? 'Скрыть' : 'Показать' }}
+                         </button>
+                       </div>
+
+                       <div v-show="showJsonLdSection" class="space-y-6">
+                         <!-- VideoGame Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                             </svg>
+                             VideoGame Schema
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Жанр игры
+                               </label>
+                               <input
+                                 v-model="form.schema_game_genre"
+                                 type="text"
+                                 placeholder="Casino Game, Slot Machine"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Платформа
+                               </label>
+                               <input
+                                 v-model="form.schema_game_platform"
+                                 type="text"
+                                 placeholder="Web Browser, Mobile"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Издатель
+                               </label>
+                               <input
+                                 v-model="form.schema_game_publisher"
+                                 type="text"
+                                 placeholder="Автоматически из провайдера"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Возрастной рейтинг
+                               </label>
+                               <select
+                                 v-model="form.schema_content_rating"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               >
+                                 <option value="">Выберите рейтинг</option>
+                                 <option value="18+">18+</option>
+                                 <option value="21+">21+</option>
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- AggregateRating Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                             </svg>
+                             Рейтинг и Отзывы
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Средний рейтинг
+                               </label>
+                               <input
+                                 v-model="form.schema_rating_value"
+                                 type="number"
+                                 step="0.1"
+                                 min="1"
+                                 max="5"
+                                 placeholder="4.8"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Количество отзывов
+                               </label>
+                               <input
+                                 v-model="form.schema_review_count"
+                                 type="number"
+                                 min="0"
+                                 placeholder="1250"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Лучший рейтинг
+                               </label>
+                               <input
+                                 v-model="form.schema_best_rating"
+                                 type="number"
+                                 min="1"
+                                 max="5"
+                                 placeholder="5"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Organization Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                             </svg>
+                             Информация об организации
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Название организации
+                               </label>
+                               <input
+                                 v-model="form.schema_org_name"
+                                 type="text"
+                                 placeholder="SlotQuest"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 URL организации
+                               </label>
+                               <input
+                                 v-model="form.schema_org_url"
+                                 type="url"
+                                 placeholder="https://slotquest.com"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Логотип организации
+                               </label>
+                               <input
+                                 v-model="form.schema_org_logo"
+                                 type="url"
+                                 placeholder="https://slotquest.com/logo.png"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Тип организации
+                               </label>
+                               <select
+                                 v-model="form.schema_org_type"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               >
+                                 <option value="">Выберите тип</option>
+                                 <option value="Organization">Organization</option>
+                                 <option value="Corporation">Corporation</option>
+                                 <option value="LocalBusiness">LocalBusiness</option>
+                               </select>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </form>
 
           <!-- Правая панель: Превью -->
           <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
@@ -4791,6 +5524,16 @@ const showRatingMainSection = ref(false)
 const showRatingDetailsSection = ref(false)
 const showAwardsSection = ref(false)
 
+// Состояние для SEO секции
+const showSeoSection = ref(false)
+const showMetaSection = ref(false)
+const showOpenGraphSection = ref(false)
+const showTwitterSection = ref(false)
+const showJsonLdSection = ref(false)
+const showBreadcrumbSection = ref(false)
+const showImageObjectSection = ref(false)
+const showVideoObjectSection = ref(false)
+
 const paylineType = ref('text') // 'number' или 'text'
 
 // Поиск и фильтры для бонусов и тематик
@@ -5054,6 +5797,60 @@ const form = ref({
   award_4_title: 'Выбор игроков',
   award_4_description: 'Народное голосование',
   award_4_color: 'blue',
+
+  // SEO поля
+  seo_title: '',
+  seo_description: '',
+  seo_keywords: '',
+  canonical_url: '',
+  
+  // Open Graph поля
+  og_title: '',
+  og_description: '',
+  og_image: '',
+  
+  // Twitter Card поля
+  twitter_card: 'summary_large_image',
+  twitter_title: '',
+  twitter_description: '',
+  twitter_image: '',
+  twitter_site: '@slotquest',
+  
+  // JSON-LD Schema fields
+  schema_game_genre: '',
+  schema_game_platform: '',
+  schema_game_publisher: '',
+  schema_content_rating: '',
+  schema_rating_value: '',
+  schema_review_count: '',
+  schema_best_rating: '5',
+  schema_org_name: 'SlotQuest',
+  schema_org_url: 'https://slotquest.com',
+  schema_org_logo: 'https://slotquest.com/logo.png',
+  schema_org_type: 'Organization',
+  
+  // Breadcrumb Schema fields
+  breadcrumb_enabled: true,
+  breadcrumb_items: [
+    { name: 'Главная', url: 'https://slotquest.com' },
+    { name: 'Слоты', url: 'https://slotquest.com/slots' }
+  ],
+  
+  // ImageObject Schema fields
+  image_object_enabled: true,
+  image_object_url: '',
+  image_object_width: '',
+  image_object_height: '',
+  image_object_alt: '',
+  image_object_caption: '',
+  
+  // VideoObject Schema fields
+  video_object_enabled: false,
+  video_object_url: '',
+  video_object_thumbnail_url: '',
+  video_object_duration: '',
+  video_object_upload_date: '',
+  video_object_description: '',
 })
 
 // Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
@@ -5135,35 +5932,35 @@ const loadSlot = async () => {
 
     // Заполняем форму данными слота
     Object.keys(form.value).forEach((key) => {
-      if (slot.value[key] !== undefined) {
-        form.value[key] = slot.value[key]
+      if (slot.value?.[key] !== undefined) {
+          form.value[key] = slot.value[key]
       }
     })
 
     // Заполняем отдельные массивы для механик, бонусов и тематик
-    if (slot.value.slot_mechanics && Array.isArray(slot.value.slot_mechanics)) {
-      selectedMechanics.value = slot.value.slot_mechanics.map(
-        (sm) => sm.mechanic_id,
-      )
-    }
-    if (slot.value.slot_bonuses && Array.isArray(slot.value.slot_bonuses)) {
-      selectedBonuses.value = slot.value.slot_bonuses.map((sb) => sb.bonus_id)
-    }
-    if (slot.value.themes) {
-      selectedThemes.value = [slot.value.themes.id]
-    }
+    if (slot.value?.slot_mechanics && Array.isArray(slot.value.slot_mechanics)) {
+        selectedMechanics.value = slot.value.slot_mechanics.map(
+          (sm) => sm.mechanic_id,
+        )
+      }
+      if (slot.value?.slot_bonuses && Array.isArray(slot.value.slot_bonuses)) {
+        selectedBonuses.value = slot.value.slot_bonuses.map((sb) => sb.bonus_id)
+      }
+      if (slot.value?.themes) {
+        selectedThemes.value = [slot.value.themes.id]
+      }
 
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
-    if (slot.value.game_field && (!slot.value.reels || !slot.value.rows)) {
+    if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
       const match = slot.value.game_field.match(/(\d+)×(\d+)/)
       if (match) {
-        if (!slot.value.reels) form.value.reels = parseInt(match[1])
-        if (!slot.value.rows) form.value.rows = parseInt(match[2])
+        if (!slot.value?.reels) form.value.reels = parseInt(match[1])
+        if (!slot.value?.rows) form.value.rows = parseInt(match[2])
       }
     }
 
     // Определяем тип paylines (число или текст)
-    if (slot.value.paylines !== undefined) {
+    if (slot.value?.paylines !== undefined) {
       const paylineValue = slot.value.paylines
       if (
         typeof paylineValue === 'number' ||
@@ -5365,7 +6162,7 @@ const resetForm = () => {
   if (slot.value) {
     // Восстанавливаем из исходных данных слота
     Object.keys(form.value).forEach((key) => {
-      if (slot.value[key] !== undefined) {
+      if (slot.value?.[key] !== undefined) {
         form.value[key] = slot.value[key]
       }
     })
