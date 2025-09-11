@@ -7445,8 +7445,116 @@ const getStructuredData = (slot) => {
     ],
   }
 
+  // Схема полного обзора слота (Article)
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${slotUrl}#review`,
+    headline: slot.schema_review_title || `Полный обзор слота ${slot.name} 2025`,
+    alternativeHeadline: `Детальный анализ игрового автомата ${slot.name}`,
+    description: slot.schema_review_description_1 || `Подробный обзор слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}. Анализ RTP, волатильности, бонусных функций и стратегий игры.`,
+    articleBody: [
+      slot.schema_review_description_1 || `Слот ${slot.name} представляет собой инновационную игру от ${slot.providers?.name || 'Pragmatic Play'}, которая завоевала популярность благодаря уникальной механике и высокому потенциалу выигрыша.`,
+      slot.schema_review_description_2 || `Игра отличается качественной графикой, захватывающим саундтреком и множеством бонусных функций, которые делают каждый спин увлекательным.`
+    ].join(' '),
+    url: slotUrl,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': slotUrl
+    },
+    image: {
+      '@type': 'ImageObject',
+      url: imageUrl,
+      width: 800,
+      height: 600,
+      caption: `${slot.name} - обзор слота`
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'SlotQuest Editorial Team',
+      url: 'https://slotquest.com/about',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://slotquest.com/logo.png'
+      }
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'SlotQuest',
+      url: 'https://slotquest.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://slotquest.com/logo.png',
+        width: 200,
+        height: 60
+      }
+    },
+    datePublished: slot.release_date || '2021-02-13',
+    dateModified: slot.updated_at || new Date().toISOString().split('T')[0],
+    inLanguage: 'ru-RU',
+    wordCount: 1500,
+    articleSection: 'Обзоры слотов',
+    keywords: [
+      slot.name,
+      'обзор слота',
+      'игровой автомат',
+      slot.providers?.name || 'Pragmatic Play',
+      'онлайн казино',
+      'RTP',
+      'волатильность',
+      'бонусные функции'
+    ].join(', '),
+    about: {
+      '@type': 'Game',
+      name: slot.name,
+      description: `Игровой автомат ${slot.name}`
+    },
+    mentions: [
+      slot.schema_review_feature_1 || 'Высокий RTP',
+      slot.schema_review_feature_2 || 'Инновательная механика',
+      slot.schema_review_feature_3 || 'Бонусные функции',
+      slot.schema_review_feature_4 || 'Качественная графика',
+      slot.schema_review_feature_5 || 'Мобильная совместимость',
+      slot.schema_review_feature_6 || 'Демо версия'
+    ].filter(Boolean).map(feature => ({
+      '@type': 'Thing',
+      name: feature,
+      description: `Ключевая особенность слота ${slot.name}`
+    })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: slot.schema_user_rating || slot.rating || '4.8',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: slot.reviews_count || '1247',
+      reviewCount: slot.reviews_count || '1247'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: slot.schema_global_rating || slot.rating || '4.8',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'SlotQuest Editorial Team'
+      },
+      reviewBody: slot.schema_popularity_description || `${slot.name} занимает ${slot.schema_ranking_position || 'топовые'} позиции в рейтинге популярности благодаря своим уникальным особенностям и высокому качеству игрового процесса.`
+    },
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'SlotQuest',
+      url: 'https://slotquest.com'
+    },
+    potentialAction: {
+      '@type': 'ReadAction',
+      target: slotUrl
+    }
+  }
+
   // Объединяем все схемы в массив
-  const allSchemas = [gameSchema, breadcrumbSchema, websiteSchema, faqSchema]
+  const allSchemas = [gameSchema, breadcrumbSchema, websiteSchema, faqSchema, reviewSchema]
 
   return JSON.stringify(allSchemas)
 }

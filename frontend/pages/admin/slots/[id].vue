@@ -5217,6 +5217,198 @@
                              </div>
                            </div>
                          </div>
+
+                         <!-- Full Review Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#10B981]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                             </svg>
+                             Полный обзор слота
+                           </h4>
+                           <div class="space-y-6">
+                             <!-- Основная информация обзора -->
+                             <div class="grid grid-cols-1 gap-4">
+                               <div class="space-y-2">
+                                 <label class="block text-sm font-medium text-[#E5E7EB]">
+                                   Заголовок обзора
+                                 </label>
+                                 <input
+                                   v-model="form.schema_review_title"
+                                   type="text"
+                                   placeholder="Полный обзор слота Gates of Olympus 2025"
+                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                 />
+                               </div>
+                               <div class="space-y-2">
+                                 <label class="block text-sm font-medium text-[#E5E7EB]">
+                                   Первый абзац описания
+                                 </label>
+                                 <textarea
+                                   v-model="form.schema_review_description_1"
+                                   rows="3"
+                                   placeholder="Первый абзац подробного описания слота"
+                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                                 ></textarea>
+                               </div>
+                               <div class="space-y-2">
+                                 <label class="block text-sm font-medium text-[#E5E7EB]">
+                                   Второй абзац описания
+                                 </label>
+                                 <textarea
+                                   v-model="form.schema_review_description_2"
+                                   rows="3"
+                                   placeholder="Второй абзац подробного описания слота"
+                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                                 ></textarea>
+                               </div>
+                             </div>
+
+                             <!-- Ключевые особенности -->
+                             <div class="space-y-4">
+                               <h5 class="text-sm font-medium text-[#E5E7EB] border-b border-[#353A4A] pb-2">
+                                 Ключевые особенности (6 пунктов)
+                               </h5>
+                               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 1
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_1"
+                                     type="text"
+                                     placeholder="Первая ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 2
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_2"
+                                     type="text"
+                                     placeholder="Вторая ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 3
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_3"
+                                     type="text"
+                                     placeholder="Третья ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 4
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_4"
+                                     type="text"
+                                     placeholder="Четвертая ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 5
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_5"
+                                     type="text"
+                                     placeholder="Пятая ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Особенность 6
+                                   </label>
+                                   <input
+                                     v-model="form.schema_review_feature_6"
+                                     type="text"
+                                     placeholder="Шестая ключевая особенность"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                               </div>
+                             </div>
+
+                             <!-- Популярность -->
+                             <div class="space-y-4">
+                               <h5 class="text-sm font-medium text-[#E5E7EB] border-b border-[#353A4A] pb-2">
+                                 Популярность слота
+                               </h5>
+                               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Заголовок популярности
+                                   </label>
+                                   <input
+                                     v-model="form.schema_popularity_title"
+                                     type="text"
+                                     placeholder="Насколько популярен Gates of Olympus?"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Позиция в рейтинге
+                                   </label>
+                                   <input
+                                     v-model="form.schema_ranking_position"
+                                     type="number"
+                                     min="1"
+                                     placeholder="5"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Пользовательский рейтинг
+                                   </label>
+                                   <input
+                                     v-model="form.schema_user_rating"
+                                     type="number"
+                                     step="0.1"
+                                     min="1"
+                                     max="5"
+                                     placeholder="4.8"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                                 <div class="space-y-2">
+                                   <label class="block text-xs font-medium text-[#9CA3AF]">
+                                     Глобальный рейтинг
+                                   </label>
+                                   <input
+                                     v-model="form.schema_global_rating"
+                                     type="number"
+                                     min="1"
+                                     placeholder="15"
+                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                                   />
+                                 </div>
+                               </div>
+                               <div class="space-y-2">
+                                 <label class="block text-xs font-medium text-[#9CA3AF]">
+                                   Описание популярности
+                                 </label>
+                                 <textarea
+                                   v-model="form.schema_popularity_description"
+                                   rows="3"
+                                   placeholder="Подробное описание популярности слота"
+                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                                 ></textarea>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
                        </div>
                      </div>
                    </div>
@@ -6363,6 +6555,22 @@ const form = ref({
   video_object_duration: '',
   video_object_upload_date: '',
   video_object_description: '',
+  
+  // Full Review Schema fields
+  schema_review_title: '',
+  schema_review_description_1: '',
+  schema_review_description_2: '',
+  schema_review_feature_1: '',
+  schema_review_feature_2: '',
+  schema_review_feature_3: '',
+  schema_review_feature_4: '',
+  schema_review_feature_5: '',
+  schema_review_feature_6: '',
+  schema_popularity_title: '',
+  schema_ranking_position: '',
+  schema_user_rating: '',
+  schema_global_rating: '',
+  schema_popularity_description: '',
 })
 
 // Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
