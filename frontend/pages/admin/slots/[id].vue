@@ -4521,6 +4521,203 @@
                        </div>
                      </div>
 
+                     <!-- Технический SEO -->
+                     <div
+                       class="group bg-gradient-to-r from-[#059669]/10 to-[#047857]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
+                     >
+                       <div class="flex items-center justify-between mb-4">
+                         <div class="flex items-center gap-3">
+                           <div
+                             class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#047857] rounded-xl flex items-center justify-center"
+                           >
+                             <svg
+                               class="w-6 h-6 text-white"
+                               fill="none"
+                               stroke="currentColor"
+                               viewBox="0 0 24 24"
+                             >
+                               <path
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"
+                                 stroke-width="2"
+                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                               ></path>
+                             </svg>
+                           </div>
+                           <div>
+                             <h3
+                               class="text-lg font-medium text-[#E5E7EB] font-display"
+                             >
+                               Технический SEO
+                             </h3>
+                             <p class="text-sm text-[#059669]">
+                               Дополнительные настройки для поисковой оптимизации
+                             </p>
+                           </div>
+                         </div>
+                         <button
+                           type="button"
+                           @click="showTechnicalSeoSection = !showTechnicalSeoSection"
+                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                           :aria-expanded="showTechnicalSeoSection"
+                         >
+                           <svg
+                             class="w-3 h-3 transform transition-transform duration-200"
+                             :class="{ 'rotate-180': showTechnicalSeoSection }"
+                             fill="none"
+                             stroke="currentColor"
+                             viewBox="0 0 24 24"
+                           >
+                             <path
+                               stroke-linecap="round"
+                               stroke-linejoin="round"
+                               stroke-width="2"
+                               d="M19 9l-7 7-7-7"
+                             />
+                           </svg>
+                           {{ showTechnicalSeoSection ? 'Скрыть' : 'Показать' }}
+                         </button>
+                       </div>
+
+                       <div v-show="showTechnicalSeoSection" class="space-y-6">
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                           <!-- Robots Meta -->
+                           <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                             <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                               Robots Meta
+                             </label>
+                             <select
+                               v-model="form.robots_meta"
+                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                             >
+                               <option value="index, follow">index, follow (по умолчанию)</option>
+                               <option value="noindex, follow">noindex, follow</option>
+                               <option value="index, nofollow">index, nofollow</option>
+                               <option value="noindex, nofollow">noindex, nofollow</option>
+                             </select>
+                             <p class="text-xs text-[#9CA3AF] mt-2">
+                               Указания для поисковых роботов
+                             </p>
+                           </div>
+
+                           <!-- Viewport -->
+                           <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                             <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                               Viewport
+                             </label>
+                             <input
+                               v-model="form.viewport_meta"
+                               type="text"
+                               placeholder="width=device-width, initial-scale=1"
+                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                             />
+                             <p class="text-xs text-[#9CA3AF] mt-2">
+                               Настройки отображения на мобильных устройствах
+                             </p>
+                           </div>
+
+                           <!-- Charset -->
+                           <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                             <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                               Кодировка
+                             </label>
+                             <select
+                               v-model="form.charset_meta"
+                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                             >
+                               <option value="UTF-8">UTF-8 (рекомендуется)</option>
+                               <option value="ISO-8859-1">ISO-8859-1</option>
+                               <option value="Windows-1251">Windows-1251</option>
+                             </select>
+                             <p class="text-xs text-[#9CA3AF] mt-2">
+                               Кодировка символов страницы
+                             </p>
+                           </div>
+
+                           <!-- Language -->
+                           <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                             <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
+                               Язык страницы
+                             </label>
+                             <select
+                               v-model="form.language_meta"
+                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                             >
+                               <option value="ru">Русский (ru)</option>
+                               <option value="en">English (en)</option>
+                               <option value="uk">Українська (uk)</option>
+                               <option value="kk">Қазақша (kk)</option>
+                             </select>
+                             <p class="text-xs text-[#9CA3AF] mt-2">
+                               Основной язык контента страницы
+                             </p>
+                           </div>
+                         </div>
+
+                         <!-- Дополнительные мета-теги -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                             </svg>
+                             Дополнительные мета-теги
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <!-- Author -->
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Автор
+                               </label>
+                               <input
+                                 v-model="form.author_meta"
+                                 type="text"
+                                 placeholder="SlotQuest Team"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+
+                             <!-- Copyright -->
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Авторские права
+                               </label>
+                               <input
+                                 v-model="form.copyright_meta"
+                                 type="text"
+                                 placeholder="© 2025 SlotQuest. Все права защищены."
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+
+                             <!-- Generator -->
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Генератор
+                               </label>
+                               <input
+                                 v-model="form.generator_meta"
+                                 type="text"
+                                 placeholder="Nuxt.js"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+
+                             <!-- Theme Color -->
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Цвет темы
+                               </label>
+                               <input
+                                 v-model="form.theme_color_meta"
+                                 type="color"
+                                 class="w-full h-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                               />
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+
                      <!-- JSON-LD Схемы -->
                      <div
                        class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
@@ -4744,6 +4941,279 @@
                                  <option value="Corporation">Corporation</option>
                                  <option value="LocalBusiness">LocalBusiness</option>
                                </select>
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Slot Characteristics Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                             </svg>
+                             Характеристики слота
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 RTP (%)
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_rtp"
+                                 type="number"
+                                 step="0.01"
+                                 min="0"
+                                 max="100"
+                                 placeholder="96.5"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Волатильность
+                               </label>
+                               <select
+                                 v-model="form.schema_slot_volatility"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               >
+                                 <option value="">Выберите волатильность</option>
+                                 <option value="Low">Низкая</option>
+                                 <option value="Medium">Средняя</option>
+                                 <option value="High">Высокая</option>
+                               </select>
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Максимальный выигрыш
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_max_win"
+                                 type="text"
+                                 placeholder="5000x"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Минимальная ставка
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_min_bet"
+                                 type="number"
+                                 step="0.01"
+                                 min="0"
+                                 placeholder="0.10"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Максимальная ставка
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_max_bet"
+                                 type="number"
+                                 step="0.01"
+                                 min="0"
+                                 placeholder="100.00"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Дата релиза
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_release_date"
+                                 type="date"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Slot Popularity Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#EF4444]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                             </svg>
+                             Популярность слота
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Рейтинг популярности
+                               </label>
+                               <input
+                                 v-model="form.schema_popularity_rating"
+                                 type="number"
+                                 step="0.1"
+                                 min="1"
+                                 max="10"
+                                 placeholder="8.5"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Частота бонуса
+                               </label>
+                               <input
+                                 v-model="form.schema_bonus_frequency"
+                                 type="text"
+                                 placeholder="1:150"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Реальный RTP (%)
+                               </label>
+                               <input
+                                 v-model="form.schema_real_rtp"
+                                 type="number"
+                                 step="0.01"
+                                 min="0"
+                                 max="100"
+                                 placeholder="96.2"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Slot Features Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#06B6D4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                             </svg>
+                             Особенности слота
+                           </h4>
+                           <div class="grid grid-cols-1 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Игровые механики (через запятую)
+                               </label>
+                               <textarea
+                                 v-model="form.schema_game_mechanics"
+                                 rows="2"
+                                 placeholder="Cascading Reels, Free Spins, Wild Symbols"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                               ></textarea>
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Виды бонусов (через запятую)
+                               </label>
+                               <textarea
+                                 v-model="form.schema_bonus_types"
+                                 rows="2"
+                                 placeholder="Free Spins, Multipliers, Bonus Games"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                               ></textarea>
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Тематика слота
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_theme"
+                                 type="text"
+                                 placeholder="Ancient Egypt, Adventure, Fantasy"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Provider & Basic Info Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#F59E0B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                             </svg>
+                             Провайдер и основная информация
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Название провайдера
+                               </label>
+                               <input
+                                 v-model="form.schema_provider_name"
+                                 type="text"
+                                 placeholder="Автоматически из провайдера"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 URL обложки слота
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_cover"
+                                 type="url"
+                                 placeholder="https://example.com/slot-cover.jpg"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Название слота
+                               </label>
+                               <input
+                                 v-model="form.schema_slot_name"
+                                 type="text"
+                                 placeholder="Автоматически из названия"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 Описание слота
+                               </label>
+                               <textarea
+                                 v-model="form.schema_slot_description"
+                                 rows="3"
+                                 placeholder="Краткое описание игрового слота"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm resize-none"
+                               ></textarea>
+                             </div>
+                           </div>
+                         </div>
+
+                         <!-- Game Actions Schema -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M15 14h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                             </svg>
+                             Действия игры
+                           </h4>
+                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 URL демо версии
+                               </label>
+                               <input
+                                 v-model="form.schema_demo_url"
+                                 type="url"
+                                 placeholder="https://example.com/demo"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
+                             </div>
+                             <div class="space-y-2">
+                               <label class="block text-sm font-medium text-[#E5E7EB]">
+                                 URL игры на деньги
+                               </label>
+                               <input
+                                 v-model="form.schema_real_play_url"
+                                 type="url"
+                                 placeholder="https://example.com/real-play"
+                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-200 text-sm"
+                               />
                              </div>
                            </div>
                          </div>
@@ -5529,6 +5999,7 @@ const showSeoSection = ref(false)
 const showMetaSection = ref(false)
 const showOpenGraphSection = ref(false)
 const showTwitterSection = ref(false)
+const showTechnicalSeoSection = ref(false)
 const showJsonLdSection = ref(false)
 const showBreadcrumbSection = ref(false)
 const showImageObjectSection = ref(false)
@@ -5816,6 +6287,16 @@ const form = ref({
   twitter_image: '',
   twitter_site: '@slotquest',
   
+  // Технический SEO поля
+  robots_meta: 'index, follow',
+  viewport_meta: 'width=device-width, initial-scale=1',
+  charset_meta: 'UTF-8',
+  language_meta: 'ru',
+  author_meta: 'SlotQuest Team',
+  copyright_meta: '© 2025 SlotQuest. Все права защищены.',
+  generator_meta: 'Nuxt.js',
+  theme_color_meta: '#1F2937',
+  
   // JSON-LD Schema fields
   schema_game_genre: '',
   schema_game_platform: '',
@@ -5828,6 +6309,37 @@ const form = ref({
   schema_org_url: 'https://slotquest.com',
   schema_org_logo: 'https://slotquest.com/logo.png',
   schema_org_type: 'Organization',
+  
+  // Slot Characteristics Schema
+  schema_slot_rtp: '',
+  schema_slot_volatility: '',
+  schema_slot_max_win: '',
+  schema_slot_min_bet: '',
+  schema_slot_max_bet: '',
+  schema_slot_release_date: '',
+  schema_slot_reels: '',
+  schema_slot_paylines: '',
+  
+  // Slot Popularity Schema
+  schema_slot_rating: '',
+  schema_slot_bonus_frequency: '',
+  schema_slot_real_rtp: '',
+  
+  // Slot Features Schema
+  schema_slot_mechanics: '',
+  schema_slot_bonus_types: '',
+  schema_slot_theme: '',
+  
+  // Provider Schema
+  schema_provider_name: '',
+  schema_provider_url: '',
+  schema_provider_logo: '',
+  
+  // Game Actions Schema
+  schema_demo_action_name: 'Играть в демо',
+  schema_demo_action_url: '',
+  schema_real_action_name: 'Играть на деньги',
+  schema_real_action_url: '',
   
   // Breadcrumb Schema fields
   breadcrumb_enabled: true,

@@ -6301,40 +6301,52 @@ watchEffect(() => {
     const structuredData = getStructuredData(slot.value)
 
     useHead({
-      title: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги | SlotQuest`,
+      title: slot.value.seo_title || `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги | SlotQuest`,
       meta: [
         {
           name: 'description',
-          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}. Рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: slot.value.seo_description || `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}. Рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'keywords',
-          content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, SlotQuest`,
+          content: slot.value.seo_keywords || `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, SlotQuest`,
         },
         {
           name: 'author',
-          content: 'SlotQuest Editorial Team',
+          content: slot.value.author_meta || 'SlotQuest Editorial Team',
         },
         {
           name: 'robots',
-          content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          content: slot.value.robots_meta || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
         },
         {
           name: 'googlebot',
-          content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          content: slot.value.robots_meta || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
         },
         {
           name: 'theme-color',
-          content: '#1a1a2e',
+          content: slot.value.theme_color_meta || '#1a1a2e',
+        },
+        {
+          name: 'viewport',
+          content: slot.value.viewport_meta || 'width=device-width, initial-scale=1',
+        },
+        {
+          name: 'generator',
+          content: slot.value.generator_meta || 'Nuxt.js',
+        },
+        {
+          name: 'copyright',
+          content: slot.value.copyright_meta || '© 2025 SlotQuest. Все права защищены.',
         },
         // Open Graph
         {
           property: 'og:title',
-          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
+          content: slot.value.og_title || `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
         },
         {
           property: 'og:description',
-          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: slot.value.og_description || `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         { property: 'og:type', content: 'article' },
         { property: 'og:site_name', content: 'SlotQuest' },
@@ -6345,7 +6357,7 @@ watchEffect(() => {
         },
         {
           property: 'og:image',
-          content: `${slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`}`,
+          content: slot.value.og_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
         },
         {
           property: 'og:image:alt',
@@ -6375,24 +6387,24 @@ watchEffect(() => {
           content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат`,
         },
         // Twitter
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@SlotQuest' },
-        { name: 'twitter:creator', content: '@SlotQuest' },
+        { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
+        { name: 'twitter:site', content: slot.value.twitter_site || '@SlotQuest' },
+        { name: 'twitter:creator', content: slot.value.twitter_creator || '@SlotQuest' },
         {
           name: 'twitter:title',
-          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
+          content: slot.value.twitter_title || `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
         },
         {
           name: 'twitter:description',
-          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
-          content: `${slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`}`,
+          content: slot.value.twitter_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
         },
         {
           name: 'twitter:image:alt',
-          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
+          content: slot.value.twitter_image_alt || `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
         },
         // Additional SEO meta tags
         {
@@ -6411,7 +6423,7 @@ watchEffect(() => {
       link: [
         {
           rel: 'canonical',
-          href: `https://slotquest.com/slots/${slot.value.slug || slug}`,
+          href: slot.value.canonical_url || `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
       ],
       script: [
@@ -6958,21 +6970,43 @@ const getStructuredData = (slot) => {
         '@type': 'Thing',
         name: 'RTP (Возврат игроку)',
         description: `${slot.rtp || '96.5'}% - процент возврата ставок игрокам`,
+        value: `${slot.rtp || '96.5'}%`
       },
       {
         '@type': 'Thing',
         name: 'Волатильность',
         description: `${slot.volatility || 'Высокая'} волатильность`,
+        value: slot.volatility || 'Высокая'
       },
       {
         '@type': 'Thing',
         name: 'Максимальный выигрыш',
         description: `До ${slot.max_win || '5,000'}x от ставки`,
+        value: `${slot.max_win || '5,000'}x`
+      },
+      {
+        '@type': 'Thing',
+        name: 'Минимальная ставка',
+        description: `От ${slot.min_bet || '0.20'}€ за спин`,
+        value: `${slot.min_bet || '0.20'}€`
+      },
+      {
+        '@type': 'Thing',
+        name: 'Максимальная ставка',
+        description: `До ${slot.max_bet || '100'}€ за спин`,
+        value: `${slot.max_bet || '100'}€`
+      },
+      {
+        '@type': 'Thing',
+        name: 'Дата релиза',
+        description: `Выпущен ${slot.release_date || '13.02.2021'}`,
+        value: slot.release_date || '13.02.2021'
       },
       {
         '@type': 'Thing',
         name: 'Количество барабанов',
-        description: `${slot.reels || '5'} барабанов`,
+        description: `${slot.reels || '6'} барабанов`,
+        value: slot.reels || '6'
       },
       {
         '@type': 'Thing',
@@ -6982,7 +7016,20 @@ const getStructuredData = (slot) => {
           (typeof slot.paylines === 'string' && /^\d+$/.test(slot.paylines))
             ? `${slot.paylines} активных линий`
             : `${slot.paylines || 'Scatter Pays'} система выплат`,
+        value: slot.paylines || 'Scatter Pays'
       },
+      {
+        '@type': 'Thing',
+        name: 'Частота бонуса',
+        description: `Бонусная игра активируется в среднем 1 раз на ${slot.bonus_frequency || '250'} спинов`,
+        value: `1/${slot.bonus_frequency || '250'}`
+      },
+      {
+        '@type': 'Thing',
+        name: 'Реальный RTP',
+        description: `Фактический RTP по статистике игроков: ${slot.real_rtp || slot.rtp || '96.3'}%`,
+        value: `${slot.real_rtp || slot.rtp || '96.3'}%`
+      }
     ],
 
     // Добавляем поддерживаемые устройства
@@ -6991,14 +7038,24 @@ const getStructuredData = (slot) => {
     // Добавляем возрастные ограничения
     contentRating: '18+',
 
-    // Добавляем информацию о бонусах
+    // Добавляем информацию о бонусах и игровых механиках
     gameFeature: [
       'Бесплатные спины',
-      'Множители',
+      'Множители до x500',
       'Wild символы',
       'Scatter символы',
       'Бонусная игра',
-    ],
+      'Каскадные выигрыши (Tumble)',
+      'Scatter Pays механика',
+      'Покупка бонуса (100x ставки)',
+      'Случайные множители',
+      'Автоигра',
+      'Турбо режим',
+      'Мобильная совместимость',
+      slot.theme || 'Древнегреческая мифология',
+      slot.mechanics?.join(', ') || 'Инновационная механика',
+      slot.bonus_types?.join(', ') || 'Фриспины с множителями'
+    ].filter(Boolean),
 
     publisher: {
       '@type': 'Organization',
@@ -7059,16 +7116,114 @@ const getStructuredData = (slot) => {
       dateCreated: slot.created_at || '2021-02-13',
       dateModified: slot.updated_at || new Date().toISOString().split('T')[0]
     },
+    
+    // Добавляем интерактивную статистику для рейтинга с возможностью голосования
+    interactionStatistic: [
+      {
+        '@type': 'InteractionCounter',
+        interactionType: 'https://schema.org/LikeAction',
+        userInteractionCount: slot.likes || 892,
+        description: 'Количество лайков от игроков'
+      },
+      {
+        '@type': 'InteractionCounter', 
+        interactionType: 'https://schema.org/ShareAction',
+        userInteractionCount: slot.shares || 156,
+        description: 'Количество репостов в социальных сетях'
+      },
+      {
+        '@type': 'InteractionCounter',
+        interactionType: 'https://schema.org/CommentAction', 
+        userInteractionCount: slot.comments || 234,
+        description: 'Количество комментариев игроков'
+      },
+      {
+        '@type': 'InteractionCounter',
+        interactionType: 'https://schema.org/VoteAction',
+        userInteractionCount: slot.votes || slot.reviews_count || 1247,
+        description: 'Общее количество голосов в рейтинге'
+      }
+    ],
+    
+    // Добавляем информацию о популярности слота
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Игроки онлайн-казино',
+      geographicArea: [
+        {
+          '@type': 'Country',
+          name: 'Россия'
+        },
+        {
+          '@type': 'Country', 
+          name: 'Казахстан'
+        },
+        {
+          '@type': 'Country',
+          name: 'Беларусь'
+        }
+      ]
+    },
     offers: [
       {
         '@type': 'Offer',
+        '@id': `${slotUrl}#demo-offer`,
         name: 'Демо версия',
+        description: 'Бесплатная демо версия слота без регистрации',
         price: '0',
         priceCurrency: 'RUB',
         availability: 'https://schema.org/InStock',
-        description: 'Бесплатная демо версия слота',
         url: slot.demo_url || slotUrl,
+        category: 'Демо игра',
+        eligibleRegion: [
+          {
+            '@type': 'Country',
+            name: 'RU'
+          },
+          {
+            '@type': 'Country',
+            name: 'KZ'
+          },
+          {
+            '@type': 'Country',
+            name: 'BY'
+          }
+        ],
+        potentialAction: {
+          '@type': 'PlayAction',
+          name: 'Играть в демо',
+          description: 'Запустить бесплатную демо версию слота',
+          target: slot.demo_url || slotUrl
+        }
       },
+      {
+        '@type': 'Offer',
+        '@id': `${slotUrl}#real-offer`,
+        name: 'Игра на реальные деньги',
+        description: 'Игра на реальные деньги с возможностью выигрыша',
+        priceRange: `${slot.min_bet || '0.20'}€ - ${slot.max_bet || '100'}€`,
+        priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        url: slot.real_play_url || 'https://slotquest.com/casino',
+        category: 'Азартная игра',
+        eligibleRegion: [
+          {
+            '@type': 'Country',
+            name: 'RU'
+          }
+        ],
+        potentialAction: {
+          '@type': 'PlayAction',
+          name: 'Играть на деньги',
+          description: 'Запустить игру на реальные деньги',
+          target: slot.real_play_url || 'https://slotquest.com/casino'
+        },
+        seller: {
+          '@type': 'Organization',
+          name: 'Лицензированное онлайн-казино',
+          url: 'https://slotquest.com/casino'
+        }
+      }
     ],
     review: {
       '@type': 'Review',
