@@ -4715,6 +4715,30 @@
                              </div>
                            </div>
                          </div>
+
+                         <!-- Целевые локации -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                           <h4 class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2">
+                             <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                             </svg>
+                             Целевые локации
+                           </h4>
+                           <div class="space-y-3">
+                             <label class="block text-sm font-medium text-[#E5E7EB]">
+                               Страны и регионы для таргетинга
+                             </label>
+                             <textarea
+                               v-model="form.target_locations"
+                               rows="6"
+                               placeholder="🇷🇺 Россия&#10;🇮🇳 Индия&#10;🇧🇷 Бразилия&#10;🇺🇿 Узбекистан&#10;🇦🇿 Азербайджан&#10;🇹🇷 Турция&#10;🇨🇱 Чили&#10;🇦🇷 Аргентина&#10;🇨🇦 Канада&#10;🇨🇴 Колумбия&#10;🇮🇩 Индонезия&#10;🇧🇩 Бангладеш&#10;🇸🇳 Сенегал&#10;🇺🇬 Уганда"
+                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm leading-relaxed"
+                             ></textarea>
+                             <p class="text-xs text-[#9CA3AF]">
+                               Укажите целевые страны и регионы для геотаргетинга. Каждая страна с новой строки с флагом и названием.
+                             </p>
+                           </div>
+                         </div>
                        </div>
                      </div>
 
@@ -6488,6 +6512,7 @@ const form = ref({
   copyright_meta: '© 2025 SlotQuest. Все права защищены.',
   generator_meta: 'Nuxt.js',
   theme_color_meta: '#1F2937',
+  target_locations: '🇷🇺 Россия\n🇮🇳 Индия\n🇧🇷 Бразилия\n🇺🇿 Узбекистан\n🇦🇿 Азербайджан\n🇹🇷 Турция\n🇨🇱 Чили\n🇦🇷 Аргентина\n🇨🇦 Канада\n🇨🇴 Колумбия\n🇮🇩 Индонезия\n🇧🇩 Бангладеш\n🇸🇳 Сенегал\n🇺🇬 Уганда',
   
   // JSON-LD Schema fields
   schema_game_genre: '',

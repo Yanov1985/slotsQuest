@@ -2989,38 +2989,42 @@
                     emoji: '🏆',
                     title: 'Слот года 2024',
                     desc: 'Casino Awards',
-                    gradient: 'from-yellow-100 to-amber-100',
-                    border: 'border-yellow-300',
-                    text: 'text-yellow-800',
+                    gradient: 'from-yellow-500 via-amber-500 to-orange-500',
+                    border: 'border-yellow-400/50',
+                    text: 'text-white',
+                    shadow: 'shadow-yellow-500/25',
                   },
                   {
                     emoji: '🎖️',
                     title: 'Лучший дизайн',
                     desc: 'Gaming Excellence',
-                    gradient: 'from-purple-100 to-pink-100',
-                    border: 'border-purple-300',
-                    text: 'text-purple-800',
+                    gradient: 'from-purple-500 via-violet-500 to-purple-600',
+                    border: 'border-purple-400/50',
+                    text: 'text-white',
+                    shadow: 'shadow-purple-500/25',
                   },
                   {
                     emoji: '💎',
                     title: 'Платиновый статус',
                     desc: '10M+ игроков',
-                    gradient: 'from-green-100 to-emerald-100',
-                    border: 'border-green-300',
-                    text: 'text-green-800',
+                    gradient: 'from-emerald-500 via-green-500 to-teal-500',
+                    border: 'border-emerald-400/50',
+                    text: 'text-white',
+                    shadow: 'shadow-emerald-500/25',
                   },
                   {
                     emoji: '⭐',
                     title: 'Выбор игроков',
                     desc: 'Народное голосование',
-                    gradient: 'from-blue-100 to-indigo-100',
-                    border: 'border-blue-300',
-                    text: 'text-blue-800',
+                    gradient: 'from-blue-500 via-indigo-500 to-blue-600',
+                    border: 'border-blue-400/50',
+                    text: 'text-white',
+                    shadow: 'shadow-blue-500/25',
                   },
                 ]"
                 :key="index"
-                :class="`bg-gradient-to-br ${award.gradient} ${award.border} ${award.text}`"
-                class="relative group p-6 rounded-2xl border-2 text-center hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden"
+                :class="`bg-gradient-to-br ${award.gradient} ${award.border} ${award.text} ${award.shadow}`"
+                class="relative group p-6 rounded-2xl border-2 text-center hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 cursor-pointer overflow-hidden backdrop-blur-sm"
               >
                 <!-- Canvas Reveal Effect (максимальная видимость) -->
                 <CanvasRevealEffect
