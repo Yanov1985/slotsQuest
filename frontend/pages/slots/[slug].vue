@@ -89,8 +89,9 @@
     </div>
 
     <!-- Hero секция - Семантическая разметка без микроданных -->
-    <section
+    <main
       v-else-if="slot"
+      role="main"
       class="relative shadow-2xl mb-8 bg-zinc-950 text-slate-100 border border-white/10"
     >
       <!-- Анимированный фон -->
@@ -306,7 +307,7 @@
               <!-- Медиа + описание + кнопки (Desktop: в ряд) -->
               <div class="hidden lg:flex gap-6 items-start mb-8">
                 <!-- Вертикальная обложка (портрет 3:4) -->
-                <div class="w-2/5">
+                <figure class="w-2/5">
                   <CometCard
                     :rotate-depth="17.5"
                     :translate-depth="20"
@@ -318,12 +319,7 @@
                       role="img"
                       :aria-label="`Превью игры ${slot.name || 'слот'}`"
                     >
-                      <!-- Микроданные для изображения (desktop) -->
-                      <meta itemprop="url" :content="slot.image_url || ''" />
-                      <meta
-                        itemprop="contentUrl"
-                        :content="slot.image_url || ''"
-                      />
+                      <!-- Изображение слота (desktop) -->
 
                       <!-- Внутренние градиенты поверх медиаконтента -->
                       <div
@@ -387,20 +383,17 @@
                       </div>
                     </div>
                   </CometCard>
-                </div>
+                </figure>
 
                 <!-- Правая колонка: провайдер, h1, рейтинг, описание, CTA (desktop) -->
-                <div class="flex-1 min-w-0">
+                <section class="flex-1 min-w-0">
                   <!-- Провайдер, Заголовок, Рейтинг (Desktop) -->
                   <div class="mb-4">
                     <div class="flex items-center gap-3 mb-3 flex-wrap">
                       <span
                         class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
-                        itemprop="publisher"
-                        itemscope
-                        itemtype="https://schema.org/Organization"
                       >
-                        <span itemprop="name">{{
+                        <span>{{
                           slot.providers?.name || 'Pragmatic Play'
                         }}</span>
                       </span>
@@ -417,9 +410,6 @@
                     >
                       <div
                         class="flex items-center gap-2"
-                        itemprop="aggregateRating"
-                        itemscope
-                        itemtype="https://schema.org/AggregateRating"
                       >
                         <div
                           class="flex text-yellow-400"
@@ -443,14 +433,11 @@
                         </div>
                         <span
                           class="text-white font-bold text-lg"
-                          itemprop="ratingValue"
                           >4.8</span
                         >
                         <span class="text-white/60"
-                          >/ <span itemprop="bestRating">5</span></span
+                          >/ <span>5</span></span
                         >
-                        <meta itemprop="ratingCount" content="1247" />
-                        <meta itemprop="worstRating" content="1" />
                       </div>
 
                       <button
@@ -558,7 +545,6 @@
                   </div>
                   <p
                     class="text-white/80 text-lg leading-relaxed mb-4"
-                    itemprop="description"
                   >
                     {{ getShortDescription(slot) }}
                   </p>
@@ -709,7 +695,7 @@
                       </button>
                     </BackgroundGradient>
                   </nav>
-                </div>
+                </section>
               </div>
 
               <!-- Игровой экран -->
@@ -1816,7 +1802,7 @@
           </div>
         </aside>
       </div>
-    </section>
+    </main>
 
     <!-- Основной контент -->
     <div class="container mx-auto px-4 py-8">
@@ -7120,7 +7106,7 @@ const getStructuredData = (slot) => {
       dateCreated: slot.created_at || '2021-02-13',
       dateModified: slot.updated_at || new Date().toISOString().split('T')[0]
     },
-    
+
     // Добавляем интерактивную статистику для рейтинга с возможностью голосования
     interactionStatistic: [
       {
@@ -7130,14 +7116,14 @@ const getStructuredData = (slot) => {
         description: 'Количество лайков от игроков'
       },
       {
-        '@type': 'InteractionCounter', 
+        '@type': 'InteractionCounter',
         interactionType: 'https://schema.org/ShareAction',
         userInteractionCount: slot.shares || 156,
         description: 'Количество репостов в социальных сетях'
       },
       {
         '@type': 'InteractionCounter',
-        interactionType: 'https://schema.org/CommentAction', 
+        interactionType: 'https://schema.org/CommentAction',
         userInteractionCount: slot.comments || 234,
         description: 'Количество комментариев игроков'
       },
@@ -7148,7 +7134,7 @@ const getStructuredData = (slot) => {
         description: 'Общее количество голосов в рейтинге'
       }
     ],
-    
+
     // Добавляем информацию о популярности слота
     audience: {
       '@type': 'Audience',
@@ -7159,7 +7145,7 @@ const getStructuredData = (slot) => {
           name: 'Россия'
         },
         {
-          '@type': 'Country', 
+          '@type': 'Country',
           name: 'Казахстан'
         },
         {
