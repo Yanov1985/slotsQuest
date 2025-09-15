@@ -6841,19 +6841,36 @@ const saveSlot = async () => {
 
     const method = slotId === 'new' ? 'POST' : 'PUT'
 
-    // Подготавливаем данные для отправки
-    const dataToSend = {
-      ...form.value,
-      // Добавляем данные из отдельных переменных
-      selected_mechanics: selectedMechanics.value,
-      selected_bonuses: selectedBonuses.value,
-      selected_themes: selectedThemes.value,
-      // Автоматически формируем game_field из reels и rows
-      game_field:
-        form.value.reels && form.value.rows
-          ? `${form.value.reels}×${form.value.rows}`
-          : form.value.game_field,
-    }
+    // Список полей, которые разрешены в UpdateSlotDto
+    const allowedFields = [
+      'slug', 'name', 'description', 'provider_id', 'category_id',
+      'media_type', 'image_url', 'video_url', 'demo_url', 'real_play_url',
+      'rtp', 'volatility', 'max_win', 'min_bet', 'max_bet', 'reels', 'rows',
+      'game_field', 'paylines', 'theme', 'thumbnail_url', 'screenshots', 'features',
+      'is_active', 'is_mobile_compatible', 'is_demo_available', 'release_date',
+      'rating', 'rating_count', 'popularity_rank', 'popularity_percentage',
+      'real_rtp', 'bonus_frequency', 'show_awards', 'awards'
+    ];
+
+    // Подготавливаем данные для отправки - только разрешенные поля
+    const dataToSend = {};
+    
+    // Копируем только разрешенные поля из формы
+    allowedFields.forEach(field => {
+      if (form.value[field] !== undefined) {
+        dataToSend[field] = form.value[field];
+      }
+    });
+
+    // Добавляем данные из отдельных переменных
+    dataToSend.selected_mechanics = selectedMechanics.value;
+    dataToSend.selected_bonuses = selectedBonuses.value;
+    dataToSend.selected_themes = selectedThemes.value;
+    
+    // Автоматически формируем game_field из reels и rows
+    dataToSend.game_field = form.value.reels && form.value.rows
+      ? `${form.value.reels}×${form.value.rows}`
+      : form.value.game_field;
 
     const response = await $fetch(url, {
       method,

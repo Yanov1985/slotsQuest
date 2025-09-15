@@ -525,15 +525,22 @@ export class SlotsService {
 
       // Создаем новые связи
       if (Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
-        const mechanicsData = selected_mechanics.map(mechanicId => ({
-          slot_id: id,
-          mechanic_id: parseInt(mechanicId),
-          created_at: new Date()
-        }));
+        const mechanicsData = selected_mechanics
+          .map(mechanicId => {
+            const parsedId = parseInt(mechanicId);
+            return !isNaN(parsedId) ? {
+              slot_id: id,
+              mechanic_id: parsedId,
+              created_at: new Date()
+            } : null;
+          })
+          .filter(item => item !== null);
 
-        await this.prisma.slot_mechanics.createMany({
-          data: mechanicsData
-        });
+        if (mechanicsData.length > 0) {
+          await this.prisma.slot_mechanics.createMany({
+            data: mechanicsData
+          });
+        }
       }
     }
 
@@ -546,15 +553,22 @@ export class SlotsService {
 
       // Создаем новые связи
       if (Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
-        const bonusesData = selected_bonuses.map(bonusId => ({
-          slot_id: id,
-          bonus_id: parseInt(bonusId),
-          created_at: new Date()
-        }));
+        const bonusesData = selected_bonuses
+          .map(bonusId => {
+            const parsedId = parseInt(bonusId);
+            return !isNaN(parsedId) ? {
+              slot_id: id,
+              bonus_id: parsedId,
+              created_at: new Date()
+            } : null;
+          })
+          .filter(item => item !== null);
 
-        await this.prisma.slot_bonuses.createMany({
-          data: bonusesData
-        });
+        if (bonusesData.length > 0) {
+          await this.prisma.slot_bonuses.createMany({
+            data: bonusesData
+          });
+        }
       }
     }
 
