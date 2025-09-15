@@ -569,12 +569,12 @@
                             Описание для Hero секции
                           </label>
                           <div class="text-xs text-gray-400 mb-2">
-                            Максимум 200 символов
+                            Максимум 400 символов
                           </div>
                           <textarea
                             v-model="form.description"
                             rows="4"
-                            maxlength="200"
+                            maxlength="400"
                             class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                             placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
                           ></textarea>
