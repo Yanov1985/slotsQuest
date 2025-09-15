@@ -101,6 +101,25 @@
       <meta itemprop="applicationCategory" content="Game" />
       <meta itemprop="operatingSystem" content="Web Browser" />
       <meta itemprop="url" :content="`https://slotquest.com/slots/${slot.slug}`" />
+      <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString()" />
+      <meta itemprop="gamePlatform" content="Web Browser" />
+      <meta itemprop="playMode" content="SinglePlayer" />
+      
+      <!-- Schema.org Offers (бесплатная игра) -->
+      <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="display: none;">
+        <meta itemprop="price" content="0" />
+        <meta itemprop="priceCurrency" content="USD" />
+        <meta itemprop="availability" content="https://schema.org/InStock" />
+        <meta itemprop="category" content="Free Game" />
+      </div>
+      
+      <!-- Schema.org AggregateRating -->
+      <div v-if="slot.rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" style="display: none;">
+        <meta itemprop="ratingValue" :content="slot.rating" />
+        <meta itemprop="bestRating" content="5" />
+        <meta itemprop="worstRating" content="1" />
+        <meta itemprop="ratingCount" :content="slot.votes_count || 1" />
+      </div>
       
       <!-- Анимированный фон -->
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -151,9 +170,11 @@
           >
             <article
               class="p-8 lg:p-12 flex flex-col justify-start min-w-0 h-full"
+              role="article"
+              aria-labelledby="slot-title"
             >
               <!-- Заголовок и основная информация -->
-              <header class="mb-8">
+              <header class="mb-8" role="banner">
                 <!-- Провайдер (мобильная версия) -->
                 <div class="flex items-center gap-3 mb-6 flex-wrap lg:hidden">
                   <span
@@ -165,22 +186,42 @@
                   </span>
                 </div>
 
-                <!-- Главный заголовок - мобильная версия -->
+                <!-- Главный заголовок - унифицированный адаптивный -->
                 <h1
-                  class="text-2xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2 lg:hidden"
+                  id="slot-title"
+                  class="text-2xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2"
                   style="line-height: 1.3; padding-bottom: 0.5rem"
                   itemprop="name"
+                  tabindex="0"
                 >
                   {{ slot.name || 'Слот' }}
                 </h1>
 
-                <!-- Описание слота (мобильная версия) -->
-                <p
-                  class="text-white/80 text-lg lg:text-xl leading-relaxed mb-6 max-w-2xl lg:hidden"
-                  itemprop="description"
+                <!-- Описание слота (мобильная версия) - SEO оптимизированное -->
+                <section
+                  class="lg:hidden mb-6"
+                  role="region"
+                  aria-labelledby="slot-description"
+                  itemscope
+                  itemtype="https://schema.org/CreativeWork"
                 >
-                  {{ getShortDescription(slot) }}
-                </p>
+                  <p
+                    id="slot-description"
+                    class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl"
+                    itemprop="description"
+                    itemtype="https://schema.org/Text"
+                    role="text"
+                    aria-label="Описание игрового автомата"
+                  >
+                    <span itemprop="about" itemscope itemtype="https://schema.org/Game">
+                      <strong itemprop="name">{{ slot.name }}</strong> - 
+                      <span itemprop="description">{{ getShortDescription(slot) }}</span>
+                    </span>
+                    <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />
+                    <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}`" />
+                    <meta itemprop="inLanguage" content="ru" />
+                  </p>
+                </section>
 
                 <!-- Рейтинг и голосование с Schema.org разметкой (мобильная версия) -->
                 <div
@@ -402,14 +443,7 @@
 
                 <!-- Правая колонка: провайдер, h1, рейтинг, описание, CTA (desktop) -->
                 <section class="flex-1 min-w-0">
-                  <!-- Главный заголовок (десктоп) -->
-                  <h1
-                    class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500 py-1"
-                    style="line-height: 1.3; padding-bottom: 0.5rem"
-                    itemprop="name"
-                  >
-                    {{ slot.name || 'Слот' }}
-                  </h1>
+
 
                   <!-- Провайдер (десктоп) -->
                   <div class="flex items-center gap-3 mb-6 flex-wrap">
@@ -421,6 +455,16 @@
                       <span itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
                     </span>
                   </div>
+
+                  <!-- Главный заголовок (десктоп) -->
+                  <h1
+                    class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500"
+                    style="line-height: 1.3"
+                    itemprop="name"
+                    tabindex="0"
+                  >
+                    {{ slot.name || 'Слот' }}
+                  </h1>
 
 
 
@@ -553,16 +597,37 @@
                     </div>
                   </div>
 
-                  <p
-                    class="text-white/80 text-lg leading-relaxed mb-4"
-                    itemprop="description"
+                  <!-- Описание слота (десктопная версия) - SEO оптимизированное -->
+                  <section
+                    class="mb-4"
+                    role="region"
+                    aria-labelledby="slot-description-desktop"
+                    itemscope
+                    itemtype="https://schema.org/CreativeWork"
                   >
-                    {{ getShortDescription(slot) }}
-                  </p>
+                    <p
+                      id="slot-description-desktop"
+                      class="text-white/80 text-lg leading-relaxed"
+                      itemprop="description"
+                      itemtype="https://schema.org/Text"
+                      role="text"
+                      aria-label="Подробное описание игрового автомата"
+                    >
+                      <span itemprop="about" itemscope itemtype="https://schema.org/Game">
+                        <strong itemprop="name">{{ slot.name }}</strong> - 
+                        <span itemprop="description">{{ getShortDescription(slot) }}</span>
+                      </span>
+                      <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />
+                      <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}, демо игра, бесплатно`" />
+                      <meta itemprop="inLanguage" content="ru" />
+                      <meta itemprop="audience" content="adults" />
+                    </p>
+                  </section>
 
                   <nav
                     class="flex flex-col gap-4 w-full max-w-md mx-auto"
-                    aria-label="Варианты игры (десктоп)"
+                    role="navigation"
+                    aria-label="Варианты игры"
                   >
                     <BackgroundGradient
                       :animate="true"
@@ -6310,7 +6375,23 @@ watchEffect(() => {
         },
         {
           name: 'keywords',
-          content: slot.value.seo_keywords || `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, SlotQuest`,
+          content: slot.value.seo_keywords || `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, ${slot.value.category?.name || 'слоты'}, игра на деньги, бонусы, фриспины, SlotQuest`,
+        },
+        {
+          name: 'classification',
+          content: 'Gaming, Entertainment, Online Casino',
+        },
+        {
+          name: 'subject',
+          content: `${slot.value.name} - Игровой автомат онлайн`,
+        },
+        {
+          name: 'rating',
+          content: 'General',
+        },
+        {
+          name: 'distribution',
+          content: 'Global',
         },
         {
           name: 'author',
