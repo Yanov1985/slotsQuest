@@ -1,7 +1,11 @@
 import {
   Controller,
   Get,
+  Post,
+  Put,
+  Delete,
   Param,
+  Body,
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
@@ -22,6 +26,11 @@ export class ProvidersController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @Get('admin/all')
+  async getAllProvidersForAdmin() {
+    return this.providersService.getAllProvidersForAdmin();
   }
 
   @Get(':slug')
@@ -53,5 +62,20 @@ export class ProvidersController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @Post()
+  async createProvider(@Body() providerData: any) {
+    return this.providersService.createProvider(providerData);
+  }
+
+  @Put(':id')
+  async updateProvider(@Param('id') id: string, @Body() providerData: any) {
+    return this.providersService.updateProvider(id, providerData);
+  }
+
+  @Delete(':id')
+  async deleteProvider(@Param('id') id: string) {
+    return this.providersService.deleteProvider(id);
   }
 }

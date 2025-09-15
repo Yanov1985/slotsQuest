@@ -3,8 +3,9 @@ export const useProviders = () => {
   const baseURL = config.public.apiUrl
 
   // Get all providers
-  const getProviders = async () => {
-    const response = await $fetch<{ data: any }>(`${baseURL}/api/providers`)
+  const getProviders = async (isAdmin = false) => {
+    const endpoint = isAdmin ? '/api/providers/admin/all' : '/api/providers'
+    const response = await $fetch<{ data: any }>(`${baseURL}${endpoint}`)
     return response.data
   }
 

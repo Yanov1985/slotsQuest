@@ -104,7 +104,7 @@
       <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString()" />
       <meta itemprop="gamePlatform" content="Web Browser" />
       <meta itemprop="playMode" content="SinglePlayer" />
-      
+
       <!-- Schema.org Offers (бесплатная игра) -->
       <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="display: none;">
         <meta itemprop="price" content="0" />
@@ -112,7 +112,7 @@
         <meta itemprop="availability" content="https://schema.org/InStock" />
         <meta itemprop="category" content="Free Game" />
       </div>
-      
+
       <!-- Schema.org AggregateRating -->
       <div v-if="slot.rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" style="display: none;">
         <meta itemprop="ratingValue" :content="slot.rating" />
@@ -120,7 +120,7 @@
         <meta itemprop="worstRating" content="1" />
         <meta itemprop="ratingCount" :content="slot.votes_count || 1" />
       </div>
-      
+
       <!-- Анимированный фон -->
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
@@ -175,16 +175,35 @@
             >
               <!-- Заголовок и основная информация -->
               <header class="mb-8" role="banner">
-                <!-- Провайдер (мобильная версия) -->
-                <div class="flex items-center gap-3 mb-6 flex-wrap lg:hidden">
-                  <span
-                    class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
+                <!-- Провайдер (мобильная версия) - SEO оптимизированный -->
+                <section 
+                  class="flex items-center gap-3 mb-6 flex-wrap lg:hidden"
+                  aria-labelledby="provider-label"
+                  role="region"
+                >
+                  <h2 id="provider-label" class="sr-only">Game Provider Information</h2>
+                  <address
+                    class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50"
                     itemscope
                     itemtype="https://schema.org/Organization"
+                    itemref="slot-title"
+                    role="contentinfo"
+                    aria-label="Game developer and publisher information"
                   >
-                    <span itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
-                  </span>
-                </div>
+                    <span 
+                      itemprop="name"
+                      class="font-semibold"
+                      title="Game Provider"
+                    >
+                      {{ slot.providers?.name || 'Pragmatic Play' }}
+                    </span>
+                    <meta itemprop="url" :content="slot.providers?.website || 'https://www.pragmaticplay.com'" />
+                    <meta itemprop="description" :content="`${slot.providers?.name || 'Pragmatic Play'} - leading casino game provider`" />
+                    <meta itemprop="foundingDate" :content="slot.providers?.founded || '2015'" />
+                    <meta itemprop="industry" content="Online Casino Games" />
+                    <meta itemprop="areaServed" content="Global" />
+                  </address>
+                </section>
 
                 <!-- Главный заголовок - унифицированный адаптивный -->
                 <h1
@@ -214,7 +233,7 @@
                     aria-label="Описание игрового автомата"
                   >
                     <span itemprop="about" itemscope itemtype="https://schema.org/Game">
-                      <strong itemprop="name">{{ slot.name }}</strong> - 
+                      <strong itemprop="name">{{ slot.name }}</strong> -
                       <span itemprop="description">{{ getShortDescription(slot) }}</span>
                     </span>
                     <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />
@@ -614,7 +633,7 @@
                       aria-label="Подробное описание игрового автомата"
                     >
                       <span itemprop="about" itemscope itemtype="https://schema.org/Game">
-                        <strong itemprop="name">{{ slot.name }}</strong> - 
+                        <strong itemprop="name">{{ slot.name }}</strong> -
                         <span itemprop="description">{{ getShortDescription(slot) }}</span>
                       </span>
                       <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />

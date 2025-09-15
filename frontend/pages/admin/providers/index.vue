@@ -34,7 +34,7 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8 mb-8">
         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
           <div class="flex items-center justify-between">
             <div>
@@ -171,7 +171,7 @@
             <div class="flex items-center space-x-2">
               <span v-if="provider.is_active" class="w-3 h-3 bg-[#63F3AB] rounded-full" title="Активен"></span>
               <span v-else class="w-3 h-3 bg-[#FF4757] rounded-full" title="Неактивен"></span>
-              <Icon v-if="provider.is_featured" name="heroicons:star" class="w-4 h-4 text-[#FFD700]" title="Рекомендуемый" />
+              <Icon v-if="provider.is_recommended" name="heroicons:star" class="w-4 h-4 text-[#FFD700]" title="Рекомендуемый" />
             </div>
           </div>
           
@@ -184,10 +184,7 @@
               <span class="text-[#A0AABE]">Основан:</span>
               <span class="text-white">{{ provider.founded_year || 'Не указан' }}</span>
             </div>
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-[#A0AABE]">Лицензия:</span>
-              <span class="text-white">{{ provider.license || 'Не указана' }}</span>
-            </div>
+
           </div>
           
           <div class="flex items-center justify-between pt-4 border-t border-[#353A4A]">
@@ -300,15 +297,7 @@
                   placeholder="2010"
                 />
               </div>
-              <div>
-                <label class="block text-sm font-medium text-[#A0AABE] mb-2">Лицензия</label>
-                <input
-                  v-model="providerForm.license"
-                  type="text"
-                  class="w-full px-4 py-2 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white placeholder-[#6B7280] focus:border-[#FF6E48] focus:outline-none focus:ring-2 focus:ring-[#FF6E48]/20 transition-all"
-                  placeholder="MGA, UKGC, etc."
-                />
-              </div>
+
             </div>
             
             <div>
@@ -325,7 +314,7 @@
               <div>
                 <label class="block text-sm font-medium text-[#A0AABE] mb-2">Веб-сайт</label>
                 <input
-                  v-model="providerForm.website"
+                  v-model="providerForm.website_url"
                   type="url"
                   class="w-full px-4 py-2 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white placeholder-[#6B7280] focus:border-[#FF6E48] focus:outline-none focus:ring-2 focus:ring-[#FF6E48]/20 transition-all"
                   placeholder="https://example.com"
@@ -353,7 +342,7 @@
               </label>
               <label class="flex items-center space-x-2 cursor-pointer">
                 <input
-                  v-model="providerForm.is_featured"
+                  v-model="providerForm.is_recommended"
                   type="checkbox"
                   class="w-4 h-4 text-[#FFD700] bg-[#0F1117] border-[#353A4A] rounded focus:ring-[#FFD700] focus:ring-2"
                 />
@@ -444,11 +433,10 @@ const providerForm = ref({
   description: '',
   country: '',
   founded_year: null,
-  license: '',
-  website: '',
+  website_url: '',
   logo_url: '',
   is_active: true,
-  is_featured: false
+  is_recommended: false
 })
 
 // Computed properties
@@ -495,7 +483,7 @@ const newProvidersThisMonth = computed(() => {
 const loadProviders = async () => {
   try {
     loading.value = true
-    const response = await getProviders()
+    const response = await getProviders(true) // true для админского эндпоинта
     providers.value = response || []
   } catch (error) {
     console.error('Ошибка загрузки провайдеров:', error)
@@ -512,11 +500,10 @@ const editProvider = (provider) => {
     description: provider.description || '',
     country: provider.country || '',
     founded_year: provider.founded_year,
-    license: provider.license || '',
-    website: provider.website || '',
+    website_url: provider.website_url || '',
     logo_url: provider.logo_url || '',
     is_active: provider.is_active,
-    is_featured: provider.is_featured || false
+    is_recommended: provider.is_recommended || false
   }
   showEditModal.value = true
 }
@@ -582,11 +569,10 @@ const closeModal = () => {
     description: '',
     country: '',
     founded_year: null,
-    license: '',
-    website: '',
+    website_url: '',
     logo_url: '',
     is_active: true,
-    is_featured: false
+    is_recommended: false
   }
 }
 
