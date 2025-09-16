@@ -163,7 +163,7 @@
 
       <div class="relative z-10 max-w-full lg:flex lg:min-h-screen">
         <!-- Левая часть: Игровая информация с Aurora Background (в dark-контейнере) -->
-        <div class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start">
+        <section class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start">
           <AuroraBackground
             class="!h-auto !min-h-screen !flex-col !justify-start !items-stretch"
             :show-radial-gradient="true"
@@ -485,10 +485,8 @@
                     {{ slot.name || 'Слот' }}
                   </h1>
 
-
-
                   <!-- Рейтинг и голосование (десктоп) -->
-                  <div
+                  <section
                     class="flex flex-wrap items-center gap-6 mb-8"
                     role="group"
                     aria-label="Рейтинг и голосование"
@@ -528,9 +526,9 @@
                       aria-controls="rating-picker-desktop"
                       type="button"
                     >
-                      Голосовать!
+                      Vote!
                     </button>
-                  </div>
+                  </section>
 
                   <!-- Панель голосования (десктоп) -->
                   <div
@@ -677,7 +675,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Играть бесплатно</span
+                          >Demo slot</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
@@ -709,7 +707,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Играть бесплатно</span
+                          >Demo Slot</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
@@ -749,7 +747,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Играть на деньги</span
+                          >Real Slot</span
                         >
                         <span
                           class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
@@ -780,7 +778,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Играть на деньги</span
+                          >Real Slot</span
                         >
                         <span
                           class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
@@ -1127,16 +1125,16 @@
               </nav>
             </article>
           </AuroraBackground>
-        </div>
+        </section>
 
         <!-- Правая часть: Характеристики и информация (прокручиваемая) -->
         <aside
           class="w-full lg:w-[30%] bg-white/10 backdrop-blur-md p-8 lg:p-10 border-l border-white/20 min-w-0"
           style="min-height: 150vh"
-          aria-label="Характеристики и дополнительная информация об игре"
+          aria-label="Game characteristics and additional information"
         >
           <div class="space-y-8">
-            <!-- Основные характеристики -->
+            <!-- Main characteristics -->
             <section aria-labelledby="characteristics-heading">
               <h2
                 id="characteristics-heading"
@@ -1161,7 +1159,7 @@
                     ></path>
                   </svg>
                 </div>
-                Характеристики
+                Characteristics
               </h2>
 
               <dl class="grid grid-cols-1 gap-4">
@@ -1210,7 +1208,7 @@
                         <dt class="text-white font-bold">RTP</dt>
                       </div>
                       <dd class="text-emerald-300 text-sm font-medium">
-                        Отдача
+                        Return
                       </dd>
                     </div>
                     <dd
@@ -1219,11 +1217,11 @@
                     >
                       {{ slot.rtp || '96.50' }}%
                     </dd>
-                    <dd class="text-emerald-300 text-sm">Высокий показатель</dd>
+                    <dd class="text-emerald-300 text-sm">High rate</dd>
                   </div>
                 </div>
 
-                <!-- Волатильность -->
+                <!-- Volatility -->
                 <div
                   class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-5 rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1262,18 +1260,18 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Волатильность</dt>
+                        <dt class="text-white font-bold">Volatility</dt>
                       </div>
-                      <dd class="text-orange-300 text-sm font-medium">Риск</dd>
+                      <dd class="text-orange-300 text-sm font-medium">Risk</dd>
                     </div>
                     <dd class="text-2xl font-black text-white mb-1 capitalize">
                       {{ getVolatilityText(slot.volatility) }}
                     </dd>
-                    <dd class="text-orange-300 text-sm">Средние риски</dd>
+                    <dd class="text-orange-300 text-sm">Medium risk</dd>
                   </div>
                 </div>
 
-                <!-- Максимальный выигрыш -->
+                <!-- Maximum win -->
                 <div
                   class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1312,20 +1310,20 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Макс. выигрыш</dt>
+                        <dt class="text-white font-bold">Max win</dt>
                       </div>
                       <dd class="text-purple-300 text-sm font-medium">
-                        Потенциал
+                        Potential
                       </dd>
                     </div>
                     <dd class="text-3xl font-black text-white mb-1">
                       {{ getMaxWin(slot) }}
                     </dd>
-                    <dd class="text-purple-300 text-sm">От ставки</dd>
+                    <dd class="text-purple-300 text-sm">Per bet</dd>
                   </div>
                 </div>
 
-                <!-- Минимальная ставка -->
+                <!-- Minimum bet -->
                 <div
                   class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-5 rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1364,18 +1362,18 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Мин. ставка</dt>
+                        <dt class="text-white font-bold">Min bet</dt>
                       </div>
-                      <dd class="text-blue-300 text-sm font-medium">За спин</dd>
+                      <dd class="text-blue-300 text-sm font-medium">Per spin</dd>
                     </div>
                     <dd class="text-2xl font-black text-white mb-1">
                       {{ slot.min_bet || '€0.20' }}
                     </dd>
-                    <dd class="text-blue-300 text-sm">Доступно всем</dd>
+                    <dd class="text-blue-300 text-sm">Available to all</dd>
                   </div>
                 </div>
 
-                <!-- Максимальная ставка -->
+                <!-- Maximum bet -->
                 <div
                   class="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm p-5 rounded-2xl border border-teal-400/30 hover:border-teal-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1414,18 +1412,18 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Макс. ставка</dt>
+                        <dt class="text-white font-bold">Max bet</dt>
                       </div>
-                      <dd class="text-teal-300 text-sm font-medium">За спин</dd>
+                      <dd class="text-teal-300 text-sm font-medium">Per spin</dd>
                     </div>
                     <dd class="text-2xl font-black text-white mb-1">
                       {{ slot.max_bet || '€100' }}
                     </dd>
-                    <dd class="text-teal-300 text-sm">Хай-роллеры</dd>
+                    <dd class="text-teal-300 text-sm">High rollers</dd>
                   </div>
                 </div>
 
-                <!-- Дата релиза -->
+                <!-- Release date -->
                 <div
                   class="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-sm p-5 rounded-2xl border border-amber-400/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1464,9 +1462,9 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Дата релиза</dt>
+                        <dt class="text-white font-bold">Release date</dt>
                       </div>
-                      <dd class="text-amber-300 text-sm font-medium">Запуск</dd>
+                      <dd class="text-amber-300 text-sm font-medium">Launch</dd>
                     </div>
                     <dd class="text-2xl font-black text-white mb-1">
                       {{ formatReleaseDate(slot.release_date) || '13.02.2021' }}
@@ -1475,7 +1473,7 @@
                   </div>
                 </div>
 
-                <!-- Количество барабанов -->
+                <!-- Number of reels -->
                 <div
                   class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-sm p-5 rounded-2xl border border-rose-400/30 hover:border-rose-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1514,10 +1512,10 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Барабаны</dt>
+                        <dt class="text-white font-bold">Reels</dt>
                       </div>
                       <dd class="text-rose-300 text-sm font-medium">
-                        Структура
+                        Structure
                       </dd>
                     </div>
                     <dd class="text-3xl font-black text-white mb-1">
@@ -1533,7 +1531,7 @@
                   </div>
                 </div>
 
-                <!-- Тип выплат -->
+                <!-- Payout type -->
                 <div
                   class="bg-gradient-to-br from-violet-500/20 to-purple-500/20 backdrop-blur-sm p-5 rounded-2xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                 >
@@ -1572,29 +1570,29 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold">Линии выплат</dt>
+                        <dt class="text-white font-bold">Paylines</dt>
                       </div>
                       <dd class="text-violet-300 text-sm font-medium">
-                        Система
+                        System
                       </dd>
                     </div>
                     <dd class="text-2xl font-black text-white mb-1">
                       {{ slot.paylines || 'Scatter Pays' }}
                     </dd>
-                    <dd class="text-violet-300 text-sm">Все направления</dd>
+                    <dd class="text-violet-300 text-sm">All directions</dd>
                   </div>
                 </div>
               </dl>
             </section>
 
-            <!-- Популярность -->
+            <!-- Popularity -->
             <section aria-labelledby="popularity-heading">
               <h2
                 id="popularity-heading"
                 class="text-xl font-bold text-white mb-4 flex items-center gap-2"
               >
                 <span class="text-2xl" aria-hidden="true">📊</span>
-                Популярность
+                Popularity
               </h2>
               <div
                 class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-5 rounded-2xl border border-yellow-400/30 relative overflow-hidden"
@@ -1614,10 +1612,10 @@
                 />
                 <div class="relative z-10">
                   <div class="flex justify-between items-center mb-3">
-                    <span class="text-white font-semibold">Рейтинг</span>
+                    <span class="text-white font-semibold">Rating</span>
                     <span
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm"
-                      >#{{ slot.popularity_rank || '12' }} из 2000+</span
+                      >#{{ slot.popularity_rank || '12' }} of 2000+</span
                     >
                   </div>
                   <div
@@ -1630,7 +1628,7 @@
                     "
                     aria-valuemin="0"
                     aria-valuemax="100"
-                    :aria-label="`Рейтинг популярности: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
+                    :aria-label="`Popularity rating: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
                   >
                     <div
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full shadow-lg"
@@ -1642,14 +1640,14 @@
                       Math.round(
                         ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
                       )
-                    }}% популярности
+                    }}% popularity
                   </div>
                 </div>
               </div>
 
-              <!-- Дополнительные метрики популярности -->
+              <!-- Additional popularity metrics -->
               <div class="mt-4 grid grid-cols-2 gap-3">
-                <!-- RTP рейтинг -->
+                <!-- RTP rating -->
                 <div
                   class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 relative overflow-hidden"
                 >
@@ -1673,7 +1671,7 @@
                         <span class="text-white text-xs font-bold">📊</span>
                       </div>
                       <span class="text-purple-300 text-xs font-semibold"
-                        >Реальный RTP</span
+                        >Real RTP</span
                       >
                     </div>
                     <div class="text-white font-black text-lg">
@@ -1682,7 +1680,7 @@
                   </div>
                 </div>
 
-                <!-- Частота бонусов -->
+                <!-- Bonus frequency -->
                 <div
                   class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30 relative overflow-hidden"
                 >
@@ -1706,7 +1704,7 @@
                         <span class="text-white text-xs font-bold">🎰</span>
                       </div>
                       <span class="text-orange-300 text-xs font-semibold"
-                        >Частота бонуса</span
+                        >Bonus frequency</span
                       >
                     </div>
                     <div class="text-white font-black text-lg">
@@ -1717,17 +1715,17 @@
               </div>
             </section>
 
-            <!-- Особенности игры -->
+            <!-- Game features -->
             <section aria-labelledby="features-heading">
               <h2
                 id="features-heading"
                 class="text-xl font-bold text-white mb-4 flex items-center gap-2"
               >
                 <span class="text-2xl" aria-hidden="true">⚡</span>
-                Особенности
+                Features
               </h2>
               <div class="space-y-3">
-                <!-- Основные особенности -->
+                <!-- Main features -->
                 <div
                   class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-4 rounded-2xl border border-indigo-400/30 relative overflow-hidden"
                 >
@@ -1747,7 +1745,7 @@
                     class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🎮</span>
-                    Игровая механика
+                    Game mechanics
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
                     <span
@@ -1766,12 +1764,12 @@
                       v-if="!slot?.slot_mechanics?.length"
                       class="px-3 py-1 bg-gray-500/30 text-gray-400 rounded-full text-xs font-medium border border-gray-500/40"
                     >
-                      Механики не указаны
+                      Mechanics not specified
                     </span>
                   </div>
                 </div>
 
-                <!-- Бонусные функции -->
+                <!-- Bonus features -->
                 <div
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-4 rounded-2xl border border-emerald-400/30 relative overflow-hidden"
                 >
@@ -1791,10 +1789,10 @@
                     class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🎁</span>
-                    Бонусы
+                    Bonuses
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
-                    <!-- Новая реализация: используем slot_bonuses напрямую как в механиках -->
+                    <!-- New implementation: use slot_bonuses directly like in mechanics -->
                     <span
                       v-for="slotBonus in slot?.slot_bonuses || []"
                       :key="slotBonus.bonuses?.id || slotBonus.id"
@@ -1803,7 +1801,7 @@
                       {{ slotBonus.bonuses?.icon }}
                       {{ slotBonus.bonuses?.name }}
                     </span>
-                    <!-- Фолбэк через функцию для совместимости -->
+                    <!-- Fallback through function for compatibility -->
                     <template
                       v-if="
                         (!slot?.slot_bonuses ||
@@ -1819,7 +1817,7 @@
                         {{ bonus.name }}
                       </span>
                     </template>
-                    <!-- Показываем сообщение если нет бонусов -->
+                    <!-- Show message if no bonuses -->
                     <span
                       v-if="
                         (!slot?.slot_bonuses ||
@@ -1829,12 +1827,12 @@
                       "
                       class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
                     >
-                      Бонусы не указаны
+                      Bonuses not specified
                     </span>
                   </div>
                 </div>
 
-                <!-- Тематика -->
+                <!-- Themes -->
                 <div
                   class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-4 rounded-2xl border border-yellow-400/30 relative overflow-hidden"
                 >
@@ -1854,10 +1852,10 @@
                     class="text-white font-semibold mb-3 flex items-center gap-2 relative z-10"
                   >
                     <span class="text-lg">🏛️</span>
-                    Тематика
+                    Themes
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
-                    <!-- Новая реализация: используем themes напрямую -->
+                    <!-- New implementation: use themes directly -->
                     <span
                       v-if="slot?.themes"
                       :key="slot.themes.id"
@@ -1865,7 +1863,7 @@
                     >
                       {{ slot.themes.icon }} {{ slot.themes.name }}
                     </span>
-                    <!-- Фолбэк через функцию для совместимости -->
+                    <!-- Fallback through function for compatibility -->
                     <template
                       v-if="
                         !slot?.themes && getSlotThemesFromDB(slot).length > 0
@@ -1879,7 +1877,7 @@
                         {{ theme.name }}
                       </span>
                     </template>
-                    <!-- Сообщение если нет тематик -->
+                    <!-- Message if no themes -->
                     <span
                       v-if="
                         !slot?.themes &&
@@ -1888,7 +1886,7 @@
                       "
                       class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
                     >
-                      Тематики не указаны
+                      Themes not specified
                     </span>
                   </div>
                 </div>
@@ -3088,7 +3086,7 @@
             </details>
           </div>
         </section>
-        
+
         <!-- Отзывы игроков - Модернизированный дизайн -->
         <section
           class="bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 rounded-3xl shadow-2xl p-8 mb-8 border border-blue-100/50"
@@ -4961,11 +4959,24 @@ watchEffect(() => {
         },
         {
           property: 'og:image:alt',
-          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
+          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата от ${slot.value.providers?.name || 'провайдера'}`,
         },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:image:type', content: 'image/jpeg' },
+        {
+          property: 'og:image:secure_url',
+          content: slot.value.og_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
+        },
+        // Дополнительные изображения для карусели в социальных сетях
+        {
+          property: 'og:image',
+          content: slot.value.screenshot_url || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}-screenshot.jpg`,
+        },
+        {
+          property: 'og:image:alt',
+          content: `${slot.value.name || 'Слот'} - игровой процесс и интерфейс`,
+        },
         {
           property: 'article:published_time',
           content: slot.value.release_date || '2021-02-13',
@@ -5004,12 +5015,315 @@ watchEffect(() => {
         },
         {
           name: 'twitter:image:alt',
-          content: slot.value.twitter_image_alt || `${slot.value.name || 'Слот'} - скриншот игрового автомата`,
+          content: slot.value.twitter_image_alt || `${slot.value.name || 'Слот'} - скриншот игрового автомата от ${slot.value.providers?.name || 'провайдера'}`,
         },
+        {
+          name: 'twitter:image:width',
+          content: '1200',
+        },
+        {
+          name: 'twitter:image:height',
+          content: '630',
+        },
+        // Game Action meta tags
+        {
+          name: 'game:demo_url',
+          content: slot.value.demo_url || '',
+        },
+        {
+          name: 'game:real_play_url',
+          content: slot.value.real_play_url || '',
+        },
+        {
+          name: 'game:play_mode',
+          content: 'demo,real',
+        },
+        {
+          name: 'game:platform',
+          content: 'web,mobile,desktop',
+        },
+        {
+          name: 'game:category',
+          content: 'slot,casino',
+        },
+        {
+          name: 'game:provider',
+          content: slot.value.providers?.name || 'провайдер',
+        },
+        {
+          name: 'game:rtp',
+          content: slot.value.rtp || '96',
+        },
+        {
+          name: 'game:volatility',
+          content: slot.value.volatility || 'medium',
+        },
+        {
+          name: 'game:max_win',
+          content: slot.value.max_win || '1000x',
+        },
+        {
+          name: 'game:min_bet',
+          content: slot.value.min_bet || '0.01',
+        },
+        {
+          name: 'game:max_bet',
+          content: slot.value.max_bet || '100',
+        },
+        // Social Actions meta tags
+        {
+          property: 'og:see_also',
+          content: slot.value.demo_url || '',
+        },
+        {
+          property: 'og:video',
+          content: slot.value.video_url || '',
+        },
+        {
+          property: 'og:video:type',
+          content: 'video/mp4',
+        },
+        {
+          property: 'og:video:width',
+          content: '1280',
+        },
+        {
+          property: 'og:video:height',
+          content: '720',
+        },
+        // Twitter Actions
+        {
+          name: 'twitter:app:name:iphone',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'twitter:app:name:ipad',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'twitter:app:name:googleplay',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'twitter:player',
+          content: slot.value.demo_url || '',
+        },
+        {
+          name: 'twitter:player:width',
+          content: '1280',
+        },
+        {
+          name: 'twitter:player:height',
+          content: '720',
+        },
+
+        // Gaming Platform Meta Tags
+        {
+          name: 'game:platform',
+          content: 'Web Browser, Mobile, Desktop',
+        },
+        {
+          name: 'game:engine',
+          content: slot.value?.providers?.name || 'HTML5',
+        },
+        {
+          name: 'game:category',
+          content: 'Casino Slot Game',
+        },
+        {
+          name: 'game:genre',
+          content: 'Gambling, Entertainment',
+        },
+        {
+          name: 'game:rating',
+          content: '18+',
+        },
+        {
+          name: 'game:developer',
+          content: slot.value?.providers?.name || 'Pragmatic Play',
+        },
+        {
+          name: 'game:publisher',
+          content: 'SlotQuest',
+        },
+        {
+          name: 'game:release_date',
+          content: slot.value?.release_date || '2021-02-13',
+        },
+        {
+          name: 'game:version',
+          content: slot.value?.version || '1.0',
+        },
+        {
+          name: 'game:language',
+          content: 'ru-RU, en-US',
+        },
+        {
+          name: 'game:mode',
+          content: 'Single Player',
+        },
+        {
+          name: 'game:controls',
+          content: 'Touch, Mouse, Keyboard',
+        },
+        {
+          name: 'game:requirements',
+          content: 'HTML5 Browser, JavaScript Enabled',
+        },
+
+        // Mobile App Meta Tags
+        {
+          name: 'mobile-web-app-capable',
+          content: 'yes',
+        },
+        {
+          name: 'mobile-web-app-status-bar-style',
+          content: 'black-translucent',
+        },
+        {
+          name: 'mobile-web-app-title',
+          content: `${slot.value?.name || 'Слот'} - SlotQuest`,
+        },
+        {
+          name: 'apple-mobile-web-app-capable',
+          content: 'yes',
+        },
+        {
+          name: 'apple-mobile-web-app-status-bar-style',
+          content: 'black-translucent',
+        },
+        {
+          name: 'apple-mobile-web-app-title',
+          content: `${slot.value?.name || 'Слот'} - SlotQuest`,
+        },
+        {
+          name: 'apple-touch-fullscreen',
+          content: 'yes',
+        },
+        {
+          name: 'format-detection',
+          content: 'telephone=no',
+        },
+        {
+          name: 'msapplication-tap-highlight',
+          content: 'no',
+        },
+        {
+          name: 'msapplication-TileColor',
+          content: '#1a1a2e',
+        },
+        {
+          name: 'theme-color',
+          content: '#1a1a2e',
+        },
+
+        // Progressive Web App Meta Tags
+        {
+          name: 'msapplication-tooltip',
+          content: `Играть в ${slot.value?.name || 'слот'} онлайн`,
+        },
+        {
+          name: 'msapplication-starturl',
+          content: `https://slotquest.com/slots/${slot.value?.slug || slug}`,
+        },
+        {
+          name: 'msapplication-window',
+          content: 'width=1024;height=768',
+        },
+
+        // Platform Specific Meta Tags
+        {
+          name: 'google-play-app',
+          content: 'app-id=com.slotquest.app',
+        },
+        {
+          name: 'apple-itunes-app',
+          content: `app-id=123456789, app-argument=slotquest://slots/${slot.value?.slug || slug}`,
+        },
+        {
+          name: 'microsoft-store-app',
+          content: 'app-id=9NBLGGH4MSV6',
+        },
+
+        // Gaming SEO Meta Tags
+        {
+          name: 'game:min_bet',
+          content: slot.value?.min_bet || '0.20',
+        },
+        {
+          name: 'game:max_bet',
+          content: slot.value?.max_bet || '100',
+        },
+        {
+          name: 'game:max_win',
+          content: slot.value?.max_win || '5000',
+        },
+        {
+          name: 'game:rtp',
+          content: slot.value?.rtp || '96.5',
+        },
+        {
+          name: 'game:volatility',
+          content: slot.value?.volatility || 'High',
+        },
+        {
+          name: 'game:reels',
+          content: slot.value?.reels || '6',
+        },
+        {
+          name: 'game:paylines',
+          content: slot.value?.paylines || 'Scatter Pays',
+        },
+        {
+          name: 'game:theme',
+          content: slot.value?.theme || 'Ancient Greece',
+        },
+        {
+          name: 'game:features',
+          content: 'Free Spins, Multipliers, Wild, Scatter, Bonus Game',
+        },
+        {
+          name: 'game:demo_available',
+          content: slot.value?.demo_url ? 'true' : 'false',
+        },
+        {
+          name: 'game:real_play_available',
+          content: 'true',
+        },
+        {
+          name: 'game:mobile_optimized',
+          content: 'true',
+        },
+        {
+          name: 'game:html5',
+          content: 'true',
+        },
+        {
+          name: 'game:no_download',
+          content: 'true',
+        },
+        {
+          name: 'game:instant_play',
+          content: 'true',
+        },
+
         // Additional SEO meta tags
         {
           name: 'application-name',
           content: 'SlotQuest',
+        },
+        // Мета-теги для изображений
+        {
+          name: 'image',
+          content: slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
+        },
+        {
+          name: 'image_src',
+          content: slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
+        },
+        {
+          name: 'thumbnail',
+          content: slot.value.thumbnail_url || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}-thumb.jpg`,
         },
         {
           name: 'apple-mobile-web-app-title',
@@ -5024,6 +5338,26 @@ watchEffect(() => {
         {
           rel: 'canonical',
           href: slot.value.canonical_url || `https://slotquest.com/slots/${slot.value.slug || slug}`,
+        },
+        {
+          rel: 'preload',
+          href: slot.value.image_url || slot.value.og_image || '/images/default-slot.jpg',
+          as: 'image',
+          type: 'image/jpeg',
+          media: '(min-width: 768px)',
+        },
+        {
+          rel: 'preload',
+          href: slot.value.thumbnail_url || slot.value.image_url || '/images/default-slot-thumb.jpg',
+          as: 'image',
+          type: 'image/jpeg',
+          media: '(max-width: 767px)',
+        },
+        {
+          rel: 'prefetch',
+          href: slot.value.screenshot_url || slot.value.image_url || '/images/default-slot.jpg',
+          as: 'image',
+          type: 'image/jpeg',
         },
       ],
       script: [
@@ -5535,30 +5869,52 @@ const getStructuredData = (slot) => {
     url: slotUrl,
     inLanguage: 'ru-RU',
     isAccessibleForFree: Boolean(slot.demo_url),
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${slotUrl}#image`,
-      url: imageUrl,
-      contentUrl: imageUrl,
-      width: 800,
-      height: 600,
-      caption: `${slot.name} - скриншот игрового автомата`,
-      description: `Официальный скриншот слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}`,
-      name: `${slot.name} - изображение слота`,
-      encodingFormat: 'image/jpeg',
-      uploadDate: slot.release_date || '2021-02-13',
-      copyrightHolder: {
-        '@type': 'Organization',
-        name: slot.providers?.name || 'Pragmatic Play'
+    image: [
+      {
+        '@type': 'ImageObject',
+        '@id': `${slotUrl}#primaryImage`,
+        url: imageUrl,
+        contentUrl: imageUrl,
+        width: 1200,
+        height: 630,
+        caption: `${slot.name} - официальный скриншот игрового автомата`,
+        description: `Высококачественный скриншот слота ${slot.name} от ${slot.providers?.name || 'провайдера'}, показывающий игровой интерфейс, барабаны и символы`,
+        name: `${slot.name} - главное изображение слота`,
+        encodingFormat: 'image/jpeg',
+        uploadDate: slot.release_date || '2021-02-13',
+        copyrightHolder: {
+          '@type': 'Organization',
+          name: slot.providers?.name || 'провайдер'
+        },
+        license: 'https://creativecommons.org/licenses/by-nc/4.0/',
+        acquireLicensePage: slot.providers?.website || 'https://slotquest.com',
+        creditText: `© ${slot.providers?.name || 'провайдер'}`,
+        creator: {
+          '@type': 'Organization',
+          name: slot.providers?.name || 'провайдер'
+        },
+        keywords: `${slot.name}, слот, игровой автомат, ${slot.providers?.name || 'провайдер'}, скриншот, интерфейс`,
+        representativeOfPage: true,
+        thumbnail: {
+          '@type': 'ImageObject',
+          url: slot.thumbnail_url || imageUrl,
+          width: 300,
+          height: 200
+        }
       },
-      license: 'https://creativecommons.org/licenses/by-nc/4.0/',
-      acquireLicensePage: slot.providers?.website || 'https://pragmaticplay.com',
-      creditText: `© ${slot.providers?.name || 'Pragmatic Play'}`,
-      creator: {
-        '@type': 'Organization',
-        name: slot.providers?.name || 'Pragmatic Play'
+      {
+        '@type': 'ImageObject',
+        '@id': `${slotUrl}#screenshotImage`,
+        url: slot.screenshot_url || imageUrl,
+        contentUrl: slot.screenshot_url || imageUrl,
+        width: 800,
+        height: 600,
+        caption: `${slot.name} - игровой процесс`,
+        description: `Скриншот игрового процесса в слоте ${slot.name}, демонстрирующий активные линии выплат и бонусные функции`,
+        name: `${slot.name} - скриншот игрового процесса`,
+        encodingFormat: 'image/jpeg'
       }
-    },
+    ],
     datePublished: slot.release_date || '2021-02-13',
     genre: 'Casino Slot Game',
     gamePlatform: ['Web Browser', 'Mobile', 'Desktop'],
@@ -5716,6 +6072,180 @@ const getStructuredData = (slot) => {
       dateCreated: slot.created_at || '2021-02-13',
       dateModified: slot.updated_at || new Date().toISOString().split('T')[0]
     },
+
+    // Добавляем потенциальные действия для игры
+    potentialAction: [
+      {
+        '@type': 'PlayAction',
+        '@id': `${slotUrl}#playDemo`,
+        name: 'Играть в демо',
+        description: 'Играть в демо-версию слота бесплатно без регистрации',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: slot.demo_url || `${baseUrl}/slots/${slot.slug || slug}/demo`,
+          inLanguage: 'ru-RU',
+          actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+          contentType: 'text/html'
+        },
+        result: {
+          '@type': 'Game',
+          name: `${slot.name} - Демо версия`,
+          description: 'Бесплатная демо-версия игры'
+        },
+        object: {
+          '@type': 'Game',
+          '@id': slotUrl
+        },
+        agent: {
+          '@type': 'Person',
+          name: 'Игрок'
+        },
+        instrument: {
+          '@type': 'SoftwareApplication',
+          name: 'Веб-браузер',
+          operatingSystem: 'Any'
+        },
+        location: {
+          '@type': 'VirtualLocation',
+          name: 'SlotQuest Demo Platform',
+          url: baseUrl
+        }
+      },
+      {
+        '@type': 'PlayAction',
+        '@id': `${slotUrl}#playReal`,
+        name: 'Играть на деньги',
+        description: 'Играть в слот на реальные деньги в лицензированных казино',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: slot.real_play_url || `${baseUrl}/casinos/best-for-${slot.slug || slug}`,
+          inLanguage: 'ru-RU',
+          actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+          contentType: 'text/html'
+        },
+        result: {
+          '@type': 'MonetaryGrant',
+          name: 'Возможность выигрыша',
+          description: `Возможность выиграть до ${slot.max_win || '5,000'}x от ставки`
+        },
+        object: {
+          '@type': 'Game',
+          '@id': slotUrl
+        },
+        expectsAcceptanceOf: {
+          '@type': 'Offer',
+          name: 'Условия игры',
+          description: 'Игра только для лиц старше 18 лет. Играйте ответственно.',
+          eligibleRegion: 'RU',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: slot.min_bet || '0.20',
+            maxPrice: slot.max_bet || '100',
+            priceCurrency: 'EUR'
+          }
+        }
+      },
+      {
+        '@type': 'ShareAction',
+        '@id': `${slotUrl}#share`,
+        name: 'Поделиться слотом',
+        description: 'Поделиться информацией о слоте в социальных сетях',
+        target: [
+          {
+            '@type': 'EntryPoint',
+            urlTemplate: `https://vk.com/share.php?url=${encodeURIComponent(slotUrl)}&title=${encodeURIComponent(slot.name)}`,
+            inLanguage: 'ru-RU',
+            actionPlatform: 'http://schema.org/DesktopWebPlatform',
+            name: 'ВКонтакте'
+          },
+          {
+            '@type': 'EntryPoint',
+            urlTemplate: `https://t.me/share/url?url=${encodeURIComponent(slotUrl)}&text=${encodeURIComponent(slot.name)}`,
+            inLanguage: 'ru-RU',
+            actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+            name: 'Telegram'
+          },
+          {
+            '@type': 'EntryPoint',
+            urlTemplate: `https://twitter.com/intent/tweet?url=${encodeURIComponent(slotUrl)}&text=${encodeURIComponent(slot.name)}`,
+            inLanguage: 'ru-RU',
+            actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+            name: 'Twitter'
+          }
+        ],
+        object: {
+          '@type': 'Game',
+          '@id': slotUrl
+        }
+      },
+      {
+        '@type': 'ReviewAction',
+        '@id': `${slotUrl}#review`,
+        name: 'Оставить отзыв',
+        description: 'Оставить отзыв о слоте и поставить оценку',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${slotUrl}#reviews`,
+          inLanguage: 'ru-RU',
+          actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+          contentType: 'text/html'
+        },
+        result: {
+          '@type': 'Review',
+          itemReviewed: {
+            '@type': 'Game',
+            '@id': slotUrl
+          }
+        },
+        object: {
+          '@type': 'Game',
+          '@id': slotUrl
+        }
+      },
+      {
+        '@type': 'WatchAction',
+        '@id': `${slotUrl}#watch`,
+        name: 'Смотреть видео',
+        description: 'Посмотреть видео-обзор слота и геймплей',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: slot.video_url || `${baseUrl}/slots/${slot.slug || slug}/video`,
+          inLanguage: 'ru-RU',
+          actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'],
+          contentType: 'video/mp4'
+        },
+        object: {
+          '@type': 'VideoObject',
+          name: `${slot.name} - Видео обзор`,
+          description: `Подробный видео-обзор слота ${slot.name} с демонстрацией игрового процесса`
+        }
+      },
+      {
+        '@type': 'DownloadAction',
+        '@id': `${slotUrl}#download`,
+        name: 'Скачать приложение',
+        description: 'Скачать мобильное приложение для игры в слоты',
+        target: [
+          {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://apps.apple.com/app/slotquest',
+            actionPlatform: 'http://schema.org/IOSPlatform',
+            name: 'App Store'
+          },
+          {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://play.google.com/store/apps/details?id=com.slotquest',
+            actionPlatform: 'http://schema.org/AndroidPlatform',
+            name: 'Google Play'
+          }
+        ],
+        object: {
+          '@type': 'MobileApplication',
+          name: 'SlotQuest Mobile',
+          operatingSystem: ['iOS', 'Android']
+        }
+      }
+    ],
 
     // Добавляем интерактивную статистику для рейтинга с возможностью голосования
     interactionStatistic: [
