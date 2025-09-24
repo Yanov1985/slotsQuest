@@ -230,7 +230,7 @@
                       <span>{{ slot.rtp }}%</span>
                     </span>
                   </span>
-                  
+
                   <!-- Скрытые SEO метаданные для Schema.org -->
                   <meta itemprop="description" :content="`Играйте в ${slot.name || 'слот'} от ${slot.provider?.name || 'провайдера'} онлайн. RTP: ${slot.rtp || '96'}%, волатильность: ${slot.volatility || 'средняя'}. Бесплатная демо-версия доступна.`" />
                   <meta itemprop="genre" :content="slot.category?.name || 'Видеослот'" />
@@ -241,7 +241,7 @@
                   <meta itemprop="inLanguage" content="ru" />
                   <meta itemprop="isAccessibleForFree" content="true" />
                   <meta itemprop="interactionType" content="https://schema.org/PlayAction" />
-                  
+
                   <!-- Дополнительные микроданные для игры -->
                   <div style="display: none;" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
                     <meta itemprop="price" content="0" />
@@ -249,7 +249,7 @@
                     <meta itemprop="availability" content="https://schema.org/InStock" />
                     <meta itemprop="category" content="Free Online Casino Game" />
                   </div>
-                  
+
                   <div style="display: none;" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
                     <meta itemprop="ratingValue" :content="slot.average_rating || '4.5'" />
                     <meta itemprop="bestRating" content="5" />
@@ -264,24 +264,57 @@
                   role="region"
                   aria-labelledby="slot-description"
                   itemscope
-                  itemtype="https://schema.org/CreativeWork"
+                  itemtype="https://schema.org/Review"
+                  itemprop="itemReviewed"
+                  itemref="main-slot-game"
                 >
-                  <p
+                  <div
                     id="slot-description"
-                    class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl"
-                    itemprop="description"
-                    itemtype="https://schema.org/Text"
+                    class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl space-y-2"
+                    itemprop="reviewBody"
                     role="text"
-                    aria-label="Описание игрового автомата"
+                    aria-label="Подробное описание игрового автомата с характеристиками"
                   >
-                    <span itemprop="about" itemscope itemtype="https://schema.org/Game">
-                      <strong itemprop="name">{{ slot.name }}</strong> -
-                      <span itemprop="description">{{ getShortDescription(slot) }}</span>
-                    </span>
-                    <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />
-                    <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}`" />
+                    <!-- Основное SEO-описание -->
+                    <p class="font-medium">
+                      <strong class="text-white">{{ slot.name }}</strong>
+                      <span v-if="slot.provider?.name" class="text-white/90">
+                        от <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
+                          <span itemprop="name">{{ slot.provider.name }}</span>
+                        </span>
+                      </span>
+                      — {{ getShortDescription(slot) }}
+                    </p>
+
+                    <!-- SEO-характеристики -->
+                    <p class="text-base text-white/70" v-if="slot.rtp || slot.volatility || slot.min_bet">
+                      <span v-if="slot.rtp" class="inline-block mr-4">
+                        <span class="font-medium text-white/80">RTP:</span>
+                        <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                          <meta itemprop="price" :content="slot.rtp" />
+                          <span class="text-green-400">{{ slot.rtp }}%</span>
+                        </span>
+                      </span>
+                      <span v-if="slot.volatility" class="inline-block mr-4">
+                        <span class="font-medium text-white/80">Волатильность:</span>
+                        <span class="text-blue-400">{{ slot.volatility }}</span>
+                      </span>
+                      <span v-if="slot.min_bet" class="inline-block">
+                        <span class="font-medium text-white/80">Мин. ставка:</span>
+                        <span class="text-yellow-400">{{ slot.min_bet }}</span>
+                      </span>
+                    </p>
+
+                    <!-- Скрытые SEO метаданные -->
+                    <meta itemprop="genre" :content="slot.category?.name || 'Игровой автомат'" />
+                    <meta itemprop="keywords" :content="`${slot.name}, игровой автомат онлайн, слот ${slot.provider?.name || ''}, ${slot.category?.name || ''}, RTP ${slot.rtp || ''}%, казино игра, бесплатная игра`" />
                     <meta itemprop="inLanguage" content="ru" />
-                  </p>
+                    <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString()" />
+                    <meta itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                    <meta itemprop="ratingValue" :content="slot.rating || '4.5'" />
+                    <meta itemprop="bestRating" content="5" />
+                    <meta itemprop="worstRating" content="1" />
+                  </div>
                 </section>
 
                 <!-- Рейтинг и голосование с Schema.org разметкой (мобильная версия) -->
@@ -536,14 +569,14 @@
                       <meta itemprop="areaServed" content="Global" />
                       <meta itemprop="knowsAbout" content="Slot Games, Casino Games, Online Gaming" />
                       <meta itemprop="sameAs" :content="slot.providers?.social_media || 'https://www.pragmaticplay.com'" />
-                      
+
                       <!-- Связь с игрой через Schema.org -->
                       <div itemprop="makesOffer" itemscope itemtype="https://schema.org/Offer" style="display: none;">
                         <meta itemprop="itemOffered" :content="slot.name" />
                         <meta itemprop="category" content="Casino Game" />
                         <meta itemprop="availability" content="https://schema.org/InStock" />
                       </div>
-                      
+
                       <!-- Контактная информация -->
                       <div itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint" style="display: none;">
                         <meta itemprop="contactType" content="customer service" />
@@ -557,9 +590,46 @@
                     class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500"
                     style="line-height: 1.3"
                     itemprop="name"
+                    itemscope
+                    itemtype="https://schema.org/VideoGame"
                     tabindex="0"
+                    :data-game-name="slot.name"
+                    :data-game-provider="slot.providers?.name"
+                    :data-game-category="slot.slot_categories?.name"
+                    :data-game-rtp="slot.rtp"
+                    :data-game-volatility="slot.volatility"
+                    :data-game-min-bet="slot.min_bet"
+                    :data-game-max-bet="slot.max_bet"
+                    :data-game-max-win="slot.max_win"
+                    :data-game-reels="slot.reels"
+                    :data-game-rows="slot.rows"
+                    :data-game-paylines="slot.paylines"
+                    :data-game-release-date="slot.release_date"
+                    :data-game-mobile="slot.is_mobile_compatible"
+                    :data-game-demo="slot.is_demo_available"
+                    :data-game-rating="slot.rating"
+                    :data-game-play-count="slot.play_count"
+                    role="heading"
+                    aria-level="1"
+                    aria-describedby="game-description"
                   >
-                    {{ slot.name || 'Слот' }}
+                    <span itemprop="name">{{ slot.name || 'Слот' }}</span>
+                    <meta itemprop="applicationCategory" content="Game" />
+                    <meta itemprop="operatingSystem" content="Web Browser" />
+                    <meta itemprop="gamePlatform" content="Web" />
+                    <meta itemprop="genre" content="Casino Slot" />
+                    <meta itemprop="isAccessibleForFree" :content="slot.is_demo_available ? 'true' : 'false'" />
+                    <meta itemprop="datePublished" :content="slot.release_date" />
+                    <meta itemprop="inLanguage" content="ru" />
+                    <meta v-if="slot.providers?.name" itemprop="publisher" :content="slot.providers.name" />
+                    <meta v-if="slot.rtp" itemprop="gameFeature" :content="`RTP: ${slot.rtp}%`" />
+                    <meta v-if="slot.volatility" itemprop="gameFeature" :content="`Волатильность: ${slot.volatility}`" />
+                    <meta v-if="slot.min_bet" itemprop="gameFeature" :content="`Мин. ставка: ${slot.min_bet}`" />
+                    <meta v-if="slot.max_bet" itemprop="gameFeature" :content="`Макс. ставка: ${slot.max_bet}`" />
+                    <meta v-if="slot.max_win" itemprop="gameFeature" :content="`Макс. выигрыш: ${slot.max_win}`" />
+                    <meta v-if="slot.reels" itemprop="gameFeature" :content="`Барабаны: ${slot.reels}`" />
+                    <meta v-if="slot.rows" itemprop="gameFeature" :content="`Ряды: ${slot.rows}`" />
+                    <meta v-if="slot.paylines" itemprop="gameFeature" :content="`Линии выплат: ${slot.paylines}`" />
                   </h1>
 
                   <!-- Рейтинг и голосование (десктоп) -->
@@ -691,7 +761,7 @@
                     </div>
                   </div>
 
-                  <!-- Описание слота (десктопная версия) - SEO оптимизированное -->
+                  <!-- Описание слота (десктоп) - SEO оптимизированное -->
                   <section
                     class="mb-4"
                     role="region"
@@ -716,8 +786,10 @@
                       <meta itemprop="inLanguage" content="ru" />
                       <meta itemprop="audience" content="adults" />
                     </p>
+
                   </section>
 
+                  <!-- Кнопки варианты игры -->
                   <nav
                     class="flex flex-col gap-4 w-full max-w-md mx-auto"
                     role="navigation"
@@ -5409,6 +5481,146 @@ watchEffect(() => {
         {
           name: 'msapplication-TileColor',
           content: '#1a1a2e',
+        },
+
+        // Расширенные игровые метаданные
+        {
+          name: 'game:bonus_features',
+          content: 'Free Spins, Multipliers, Wild Symbols, Scatter Pays, Bonus Buy',
+        },
+        {
+          name: 'game:theme',
+          content: slot.value.theme || 'Ancient Greece Mythology',
+        },
+        {
+          name: 'game:mechanics',
+          content: 'Tumble Feature, Scatter Pays, Random Multipliers',
+        },
+        {
+          name: 'game:bonus_frequency',
+          content: `1/${slot.value.bonus_frequency || '250'}`,
+        },
+        {
+          name: 'game:hit_frequency',
+          content: slot.value.hit_frequency || '22.5%',
+        },
+        {
+          name: 'game:variance',
+          content: slot.value.variance || 'High',
+        },
+        {
+          name: 'game:paylines_type',
+          content: slot.value.paylines_type || 'Scatter Pays',
+        },
+        {
+          name: 'game:autoplay',
+          content: 'true',
+        },
+        {
+          name: 'game:turbo_mode',
+          content: 'true',
+        },
+        {
+          name: 'game:sound_effects',
+          content: 'true',
+        },
+        {
+          name: 'game:animations',
+          content: 'true',
+        },
+        {
+          name: 'game:age_rating',
+          content: '18+',
+        },
+        {
+          name: 'game:license',
+          content: slot.value.license || 'Malta Gaming Authority',
+        },
+        {
+          name: 'game:certification',
+          content: slot.value.certification || 'eCOGRA Certified',
+        },
+        {
+          name: 'game:fairness',
+          content: 'RNG Tested',
+        },
+        {
+          name: 'game:responsible_gaming',
+          content: 'true',
+        },
+
+        // Дополнительные SEO метаданные для лучшей индексации
+        {
+          name: 'news_keywords',
+          content: `${slot.value.name}, новый слот, игровой автомат, ${slot.value.providers?.name || 'провайдер'}, онлайн казино`,
+        },
+        {
+          name: 'standout',
+          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
+        },
+        {
+          name: 'original-source',
+          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
+        },
+        {
+          name: 'syndication-source',
+          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
+        },
+        {
+          name: 'coverage',
+          content: 'Worldwide',
+        },
+        {
+          name: 'target',
+          content: 'all',
+        },
+        {
+          name: 'medium',
+          content: 'mult',
+        },
+        {
+          name: 'audience',
+          content: 'all',
+        },
+        {
+          name: 'pragma',
+          content: 'no-cache',
+        },
+        {
+          name: 'cache-control',
+          content: 'no-cache',
+        },
+        {
+          name: 'expires',
+          content: '0',
+        },
+        {
+          name: 'revisit-after',
+          content: '1 day',
+        },
+        {
+          name: 'distribution',
+          content: 'global',
+        },
+        {
+          name: 'language',
+          content: 'Russian',
+        },
+        {
+          name: 'geo.region',
+          content: 'RU',
+        },
+        {
+          name: 'geo.country',
+          content: 'Russia',
+        },
+        {
+          name: 'ICBM',
+          content: '55.7558, 37.6176',
+        },
+        {
+          name: 'geo.position',
+          content: '55.7558;37.6176',
         },
       ],
       link: [
