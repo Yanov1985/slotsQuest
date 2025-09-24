@@ -205,15 +205,57 @@
                   </address>
                 </section>
 
-                <!-- Главный заголовок - унифицированный адаптивный -->
+                <!-- Главный заголовок - SEO оптимизированный с Schema.org разметкой -->
                 <h1
                   id="slot-title"
                   class="text-2xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2"
                   style="line-height: 1.3; padding-bottom: 0.5rem"
+                  itemscope
+                  itemtype="https://schema.org/Game"
                   itemprop="name"
                   tabindex="0"
+                  role="heading"
+                  aria-level="1"
+                  aria-label="Название игрового автомата"
                 >
-                  {{ slot.name || 'Слот' }}
+                  <span itemprop="name">{{ slot.name || 'Слот' }}</span>
+                  <span v-if="slot.provider?.name" class="text-lg font-medium opacity-90">
+                    от <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                      <span itemprop="name">{{ slot.provider.name }}</span>
+                    </span>
+                  </span>
+                  <span v-if="slot.rtp" class="text-base font-normal opacity-80">
+                    • RTP <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                      <meta itemprop="price" :content="slot.rtp" />
+                      <span>{{ slot.rtp }}%</span>
+                    </span>
+                  </span>
+                  
+                  <!-- Скрытые SEO метаданные для Schema.org -->
+                  <meta itemprop="description" :content="`Играйте в ${slot.name || 'слот'} от ${slot.provider?.name || 'провайдера'} онлайн. RTP: ${slot.rtp || '96'}%, волатильность: ${slot.volatility || 'средняя'}. Бесплатная демо-версия доступна.`" />
+                  <meta itemprop="genre" :content="slot.category?.name || 'Видеослот'" />
+                  <meta itemprop="gamePlatform" content="Web Browser" />
+                  <meta itemprop="applicationCategory" content="Game" />
+                  <meta itemprop="operatingSystem" content="Any" />
+                  <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}, RTP ${slot.rtp || '96'}%, ${slot.volatility || 'средняя'} волатильность, бесплатно, демо`" />
+                  <meta itemprop="inLanguage" content="ru" />
+                  <meta itemprop="isAccessibleForFree" content="true" />
+                  <meta itemprop="interactionType" content="https://schema.org/PlayAction" />
+                  
+                  <!-- Дополнительные микроданные для игры -->
+                  <div style="display: none;" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="price" content="0" />
+                    <meta itemprop="priceCurrency" content="EUR" />
+                    <meta itemprop="availability" content="https://schema.org/InStock" />
+                    <meta itemprop="category" content="Free Online Casino Game" />
+                  </div>
+                  
+                  <div style="display: none;" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                    <meta itemprop="ratingValue" :content="slot.average_rating || '4.5'" />
+                    <meta itemprop="bestRating" content="5" />
+                    <meta itemprop="worstRating" content="1" />
+                    <meta itemprop="ratingCount" :content="slot.rating_count || '100'" />
+                  </div>
                 </h1>
 
                 <!-- Описание слота (мобильная версия) - SEO оптимизированное -->
