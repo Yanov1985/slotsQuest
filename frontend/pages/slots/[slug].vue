@@ -464,16 +464,51 @@
                 <section class="flex-1 min-w-0">
 
 
-                  <!-- Провайдер (десктоп) -->
-                  <div class="flex items-center gap-3 mb-6 flex-wrap">
-                    <span
-                      class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30"
+                  <!-- Провайдер (десктоп) - SEO оптимизированный -->
+                  <section
+                    class="flex items-center gap-3 mb-6 flex-wrap"
+                    aria-labelledby="provider-label-desktop"
+                    role="region"
+                  >
+                    <h3 id="provider-label-desktop" class="sr-only">Game Provider Information</h3>
+                    <address
+                      class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50"
                       itemscope
                       itemtype="https://schema.org/Organization"
+                      itemref="slot-title"
+                      role="contentinfo"
+                      aria-label="Game developer and publisher information"
                     >
-                      <span itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
-                    </span>
-                  </div>
+                      <span
+                        itemprop="name"
+                        class="font-semibold"
+                        title="Game Provider"
+                      >
+                        {{ slot.providers?.name || 'Pragmatic Play' }}
+                      </span>
+                      <!-- Расширенные Schema.org метаданные для провайдера -->
+                      <meta itemprop="url" :content="slot.providers?.website || 'https://www.pragmaticplay.com'" />
+                      <meta itemprop="description" :content="`${slot.providers?.name || 'Pragmatic Play'} - leading casino game provider`" />
+                      <meta itemprop="foundingDate" :content="slot.providers?.founded || '2015'" />
+                      <meta itemprop="industry" content="Online Casino Games" />
+                      <meta itemprop="areaServed" content="Global" />
+                      <meta itemprop="knowsAbout" content="Slot Games, Casino Games, Online Gaming" />
+                      <meta itemprop="sameAs" :content="slot.providers?.social_media || 'https://www.pragmaticplay.com'" />
+                      
+                      <!-- Связь с игрой через Schema.org -->
+                      <div itemprop="makesOffer" itemscope itemtype="https://schema.org/Offer" style="display: none;">
+                        <meta itemprop="itemOffered" :content="slot.name" />
+                        <meta itemprop="category" content="Casino Game" />
+                        <meta itemprop="availability" content="https://schema.org/InStock" />
+                      </div>
+                      
+                      <!-- Контактная информация -->
+                      <div itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint" style="display: none;">
+                        <meta itemprop="contactType" content="customer service" />
+                        <meta itemprop="availableLanguage" content="English, Russian" />
+                      </div>
+                    </address>
+                  </section>
 
                   <!-- Главный заголовок (десктоп) -->
                   <h1
