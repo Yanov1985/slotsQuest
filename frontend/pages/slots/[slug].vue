@@ -1077,12 +1077,27 @@
               <!-- Игровой экран -->
               <div
                 class="lg:hidden aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-8 relative overflow-hidden group"
+                itemscope
+                :itemtype="slot.media_type === 'video' ? 'https://schema.org/VideoObject' : 'https://schema.org/ImageObject'"
                 role="img"
                 :aria-label="`Превью игры ${slot.name || 'слот'}`"
+                :data-media-type="slot.media_type"
+                :data-slot-name="slot.name"
               >
-                <!-- Микроданные для изображения (mobile) -->
-                <meta itemprop="url" :content="slot.image_url || ''" />
-                <meta itemprop="contentUrl" :content="slot.image_url || ''" />
+                <!-- Микроданные для медиа объекта -->
+                <meta itemprop="name" :content="`${slot.name || 'Слот'} - Превью игры`" />
+                <meta itemprop="description" :content="`Демонстрация игрового автомата ${slot.name || 'слот'} от ${slot.providers?.name || 'Pragmatic Play'}`" />
+                <meta itemprop="url" :content="slot.image_url || slot.video_url || ''" />
+                <meta itemprop="contentUrl" :content="slot.image_url || slot.video_url || ''" />
+                <meta itemprop="thumbnailUrl" :content="slot.image_url || ''" />
+                <meta itemprop="encodingFormat" :content="slot.media_type === 'video' ? 'video/mp4' : 'image/jpeg'" />
+                <meta itemprop="width" content="800" />
+                <meta itemprop="height" content="450" />
+                <meta itemprop="uploadDate" :content="slot.created_at || new Date().toISOString()" />
+                <meta itemprop="genre" content="Игровые автоматы" />
+                <meta itemprop="keywords" :content="`${slot.name}, слот, игровой автомат, ${slot.providers?.name}, демо, превью`" />
+                <meta v-if="slot.media_type === 'video'" itemprop="duration" content="PT30S" />
+                <meta v-if="slot.media_type === 'video'" itemprop="embedUrl" :content="slot.demo_url || ''" />
                 <!-- Внутренний градиент -->
                 <div
                   class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10"
@@ -1097,17 +1112,34 @@
                 <div
                   v-if="slot.media_type === 'image' && slot.image_url"
                   class="absolute inset-0"
+                  itemscope
+                  itemtype="https://schema.org/ImageObject"
                 >
                   <img
                     :src="slot.image_url"
-                    :alt="`Изображение слота ${slot.name}`"
+                    :alt="`Изображение слота ${slot.name} - Превью игрового автомата от ${slot.providers?.name || 'Pragmatic Play'}`"
+                    :title="`${slot.name} - Демо версия игрового автомата`"
                     class="w-full h-full object-contain"
+                    itemprop="contentUrl"
+                    loading="lazy"
+                    decoding="async"
+                    :data-slot-id="slot.id"
+                    :data-provider="slot.providers?.name"
                     @error="handleSlotImageError"
                   />
+                  <meta itemprop="name" :content="`${slot.name} - Изображение слота`" />
+                  <meta itemprop="description" :content="`Превью изображение игрового автомата ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
+                  <meta itemprop="url" :content="slot.image_url" />
+                  <meta itemprop="width" content="800" />
+                  <meta itemprop="height" content="450" />
+                  <meta itemprop="encodingFormat" content="image/jpeg" />
+                  <meta itemprop="representativeOfPage" content="true" />
                 </div>
                 <div
                   v-else-if="slot.media_type === 'video' && slot.video_url"
                   class="absolute inset-0"
+                  itemscope
+                  itemtype="https://schema.org/VideoObject"
                 >
                   <video
                     :src="slot.video_url"
@@ -1118,6 +1150,11 @@
                     muted
                     preload="metadata"
                     :poster="slot.image_url || ''"
+                    :title="`${slot.name} - Демо видео игрового автомата`"
+                    :aria-label="`Демонстрационное видео слота ${slot.name}`"
+                    itemprop="contentUrl"
+                    :data-slot-id="slot.id"
+                    :data-provider="slot.providers?.name"
                     @error="handleSlotVideoError"
                   >
                     <source :src="slot.video_url" type="video/mp4" />
@@ -1136,18 +1173,37 @@
                     />
                     Ваш браузер не поддерживает воспроизведение видео.
                   </video>
+                  <meta itemprop="name" :content="`${slot.name} - Демо видео`" />
+                  <meta itemprop="description" :content="`Демонстрационное видео игрового автомата ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
+                  <meta itemprop="url" :content="slot.video_url" />
+                  <meta itemprop="thumbnailUrl" :content="slot.image_url || ''" />
+                  <meta itemprop="uploadDate" :content="slot.created_at || new Date().toISOString()" />
+                  <meta itemprop="duration" content="PT30S" />
+                  <meta itemprop="width" content="800" />
+                  <meta itemprop="height" content="450" />
+                  <meta itemprop="encodingFormat" content="video/mp4" />
+                  <meta itemprop="embedUrl" :content="slot.demo_url || ''" />
+                  <meta itemprop="genre" content="Игровые автоматы" />
+                  <meta itemprop="inLanguage" content="ru" />
                 </div>
 
                 <!-- Содержимое экрана -->
-                <div class="text-center relative z-10">
+                <div 
+                  class="text-center relative z-10"
+                  itemscope
+                  itemtype="https://schema.org/Game"
+                >
                   <div
                     class="text-white text-9xl lg:text-[12rem] font-black mb-6 drop-shadow-2xl animate-float"
                     aria-hidden="true"
+                    role="presentation"
                   >
                     {{ getSlotIcon(slot.name || '') }}
                   </div>
                   <div
                     class="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20"
+                    itemscope
+                    itemtype="https://schema.org/Product"
                   >
                     <h3
                       class="text-white/90 text-lg font-bold mb-2"
@@ -1155,9 +1211,24 @@
                     >
                       {{ slot.name || 'Слот' }}
                     </h3>
-                    <p class="text-white/60 text-sm">
-                      {{ slot.providers?.name || 'Pragmatic Play' }}
+                    <p 
+                      class="text-white/60 text-sm"
+                      itemscope
+                      itemtype="https://schema.org/Organization"
+                    >
+                      <span itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
                     </p>
+                    <!-- Дополнительные микроданные для игры -->
+                    <meta itemprop="description" :content="`Игровой автомат ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
+                    <meta itemprop="category" content="Игровые автоматы" />
+                    <meta itemprop="gameLocation" content="Онлайн казино" />
+                    <meta itemprop="numberOfPlayers" content="1" />
+                    <meta itemprop="playMode" content="SinglePlayer" />
+                    <meta itemprop="applicationCategory" content="Game" />
+                    <meta itemprop="operatingSystem" content="Web Browser" />
+                    <meta itemprop="url" :content="slot.demo_url || ''" />
+                    <meta itemprop="image" :content="slot.image_url || ''" />
+                    <meta itemprop="dateCreated" :content="slot.created_at || new Date().toISOString()" />
                   </div>
                 </div>
 
@@ -1168,16 +1239,36 @@
                   target="_blank"
                   rel="nofollow noopener"
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
-                  aria-label="Запустить демо-версию игры"
+                  itemscope
+                  itemtype="https://schema.org/GameAction"
+                  :aria-label="`Запустить демо-версию игры ${slot.name}`"
+                  :title="`Играть в ${slot.name} - Демо версия`"
+                  :data-game-name="slot.name"
+                  :data-game-provider="slot.providers?.name"
+                  :data-action-type="demo"
                 >
+                  <!-- Микроданные для игрового действия -->
+                  <meta itemprop="name" :content="`Играть в ${slot.name}`" />
+                  <meta itemprop="description" :content="`Запустить демо-версию игрового автомата ${slot.name}`" />
+                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
+                  <meta itemprop="object" :content="slot.name" />
+                  <meta itemprop="agent" content="Игрок" />
+                  <meta itemprop="instrument" content="Веб-браузер" />
+                  <meta itemprop="location" content="Онлайн казино" />
+                  <meta itemprop="result" content="Демо игра" />
+                  <meta itemprop="url" :content="slot.demo_url" />
+                  
                   <div
                     class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500"
+                    role="button"
+                    tabindex="-1"
                   >
                     <svg
                       class="w-12 h-12 lg:w-14 lg:h-14 text-white ml-2"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
+                      role="presentation"
                     >
                       <path d="M8 5v14l11-7z" />
                     </svg>
@@ -1188,16 +1279,34 @@
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
                   @click="playSlot"
                   type="button"
-                  aria-label="Запустить демо-версию игры"
+                  itemscope
+                  itemtype="https://schema.org/GameAction"
+                  :aria-label="`Запустить демо-версию игры ${slot.name}`"
+                  :title="`Играть в ${slot.name} - Демо версия`"
+                  :data-game-name="slot.name"
+                  :data-game-provider="slot.providers?.name"
+                  :data-action-type="demo"
                 >
+                  <!-- Микроданные для игрового действия -->
+                  <meta itemprop="name" :content="`Играть в ${slot.name}`" />
+                  <meta itemprop="description" :content="`Запустить демо-версию игрового автомата ${slot.name}`" />
+                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
+                  <meta itemprop="object" :content="slot.name" />
+                  <meta itemprop="agent" content="Игрок" />
+                  <meta itemprop="instrument" content="Веб-браузер" />
+                  <meta itemprop="location" content="Онлайн казино" />
+                  <meta itemprop="result" content="Демо игра" />
+                  
                   <div
                     class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500"
+                    role="presentation"
                   >
                     <svg
                       class="w-12 h-12 lg:w-14 lg:h-14 text-white ml-2"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
+                      role="presentation"
                     >
                       <path d="M8 5v14l11-7z" />
                     </svg>
