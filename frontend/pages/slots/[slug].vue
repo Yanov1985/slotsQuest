@@ -639,30 +639,78 @@
                     aria-label="Рейтинг и голосование"
                     itemscope
                     itemtype="https://schema.org/AggregateRating"
+                    :data-rating-value="4.8"
+                    :data-rating-count="1247"
+                    :data-best-rating="5"
+                    :data-worst-rating="1"
                   >
+                    <!-- Скрытые микроданные для AggregateRating -->
+                    <meta itemprop="itemReviewed" :content="slot?.name || 'Slot Game'" />
+                    <meta itemprop="ratingValue" content="4.8" />
+                    <meta itemprop="bestRating" content="5" />
+                    <meta itemprop="worstRating" content="1" />
+                    <meta itemprop="ratingCount" content="1247" />
+                    <meta itemprop="reviewCount" content="1247" />
+                    <meta itemprop="description" content="Пользовательский рейтинг игрового автомата" />
+                    <meta itemprop="author" content="SlotQuest Users" />
+                    <meta itemprop="dateCreated" :content="new Date().toISOString()" />
+                    <meta itemprop="url" :content="`/slots/${slot?.slug}`" />
                     <!-- Текущий рейтинг -->
-                    <div class="flex items-center gap-2">
+                    <div 
+                      class="flex items-center gap-2"
+                      itemscope
+                      itemtype="https://schema.org/Rating"
+                      role="img"
+                      :aria-label="`Рейтинг ${4.8} из ${5} звезд на основе ${1247} отзывов`"
+                      :data-rating="4.8"
+                      :data-max-rating="5"
+                      :data-review-count="1247"
+                    >
+                      <!-- Микроданные для Rating -->
+                      <meta itemprop="ratingValue" content="4.8" />
+                      <meta itemprop="bestRating" content="5" />
+                      <meta itemprop="worstRating" content="1" />
+                      <meta itemprop="author" content="SlotQuest Community" />
+                      <meta itemprop="name" content="Пользовательский рейтинг слота" />
+                      
                       <div
                         class="flex text-yellow-400"
-                        aria-label="Рейтинг 4.8 из 5 звезд"
+                        role="presentation"
+                        aria-hidden="true"
+                        :title="`${4.8} звезд из ${5}`"
                       >
                         <svg
                           v-for="n in 5"
                           :key="n"
-                          class="w-6 h-6 drop-shadow-lg"
+                          class="w-6 h-6 drop-shadow-lg transition-colors duration-200"
                           :class="n <= 4 ? 'text-yellow-400' : 'text-gray-400'"
                           fill="currentColor"
                           viewBox="0 0 20 20"
-                          :aria-hidden="true"
+                          aria-hidden="true"
+                          :data-star-number="n"
+                          :data-star-filled="n <= 4"
+                          role="presentation"
                         >
                           <path
                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                           />
                         </svg>
                       </div>
-                      <span class="text-white font-bold text-lg" itemprop="ratingValue">4.8</span>
-                      <span class="text-white/60">/ <span itemprop="bestRating">5</span></span>
-                      <meta itemprop="ratingCount" content="1247" />
+                      <span 
+                        class="text-white font-bold text-lg" 
+                        itemprop="ratingValue"
+                        aria-label="Рейтинг 4.8"
+                      >4.8</span>
+                      <span class="text-white/60" aria-label="из 5 максимум">
+                        / <span itemprop="bestRating" aria-label="максимальный рейтинг">5</span>
+                      </span>
+                      <span 
+                        class="text-white/40 text-sm ml-2" 
+                        aria-label="количество отзывов"
+                        :title="`Основано на ${1247} отзывах пользователей`"
+                      >
+                        ({{ 1247 }} отзывов)
+                      </span>
                     </div>
 
                     <!-- Кнопка голосования -->
@@ -672,8 +720,29 @@
                       :aria-expanded="showRatingPicker"
                       aria-controls="rating-picker-desktop"
                       type="button"
+                      itemscope
+                      itemtype="https://schema.org/VoteAction"
+                      :aria-label="`Проголосовать за слот ${slot?.name || 'игру'}`"
+                      :title="`Оценить ${slot?.name || 'игру'} - текущий рейтинг ${4.8}/5`"
+                      role="button"
+                      :data-action-type="'vote'"
+                      :data-target-item="slot?.name"
+                      :data-current-rating="4.8"
+                      :data-vote-count="1247"
                     >
-                      Vote!
+                      <!-- Микроданные для VoteAction -->
+                      <meta itemprop="name" content="Голосование за слот" />
+                      <meta itemprop="description" content="Проголосовать и оценить игровой автомат" />
+                      <meta itemprop="actionStatus" content="PotentialActionStatus" />
+                      <meta itemprop="object" :content="slot?.name || 'Slot Game'" />
+                      <meta itemprop="agent" content="SlotQuest User" />
+                      <meta itemprop="instrument" content="Rating System" />
+                      <meta itemprop="location" content="SlotQuest Platform" />
+                      <meta itemprop="result" content="User Rating Submission" />
+                      <meta itemprop="target" :content="`/slots/${slot?.slug}/vote`" />
+                      <meta itemprop="startTime" :content="new Date().toISOString()" />
+                      
+                      <span role="presentation" aria-hidden="true">Vote!</span>
                     </button>
                   </section>
 
