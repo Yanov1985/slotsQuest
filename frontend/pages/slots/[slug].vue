@@ -88,38 +88,12 @@
       </div>
     </div>
 
-    <!-- Hero секция - Семантическая разметка с Schema.org -->
+    <!-- Hero секция -->
     <main
       v-else-if="slot"
       role="main"
       class="relative shadow-2xl mb-8 bg-zinc-950 text-slate-100 border border-white/10"
-      itemscope
-      itemtype="https://schema.org/VideoGame"
     >
-      <!-- Schema.org метаданные -->
-      <meta itemprop="genre" content="Slot Machine" />
-      <meta itemprop="applicationCategory" content="Game" />
-      <meta itemprop="operatingSystem" content="Web Browser" />
-      <meta itemprop="url" :content="`https://slotquest.com/slots/${slot.slug}`" />
-      <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString()" />
-      <meta itemprop="gamePlatform" content="Web Browser" />
-      <meta itemprop="playMode" content="SinglePlayer" />
-
-      <!-- Schema.org Offers (бесплатная игра) -->
-      <div itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="display: none;">
-        <meta itemprop="price" content="0" />
-        <meta itemprop="priceCurrency" content="USD" />
-        <meta itemprop="availability" content="https://schema.org/InStock" />
-        <meta itemprop="category" content="Free Game" />
-      </div>
-
-      <!-- Schema.org AggregateRating -->
-      <div v-if="slot.rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" style="display: none;">
-        <meta itemprop="ratingValue" :content="slot.rating" />
-        <meta itemprop="bestRating" content="5" />
-        <meta itemprop="worstRating" content="1" />
-        <meta itemprop="ratingCount" :content="slot.votes_count || 1" />
-      </div>
 
       <!-- Анимированный фон -->
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -175,7 +149,7 @@
             >
               <!-- Заголовок и основная информация -->
               <header class="mb-8" role="banner">
-                <!-- Провайдер (мобильная версия) - SEO оптимизированный -->
+                <!-- Провайдер (мобильная версия) -->
                 <section
                   class="flex items-center gap-3 mb-6 flex-wrap lg:hidden"
                   aria-labelledby="provider-label"
@@ -184,94 +158,46 @@
                   <h2 id="provider-label" class="sr-only">Game Provider Information</h2>
                   <address
                     class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50"
-                    itemscope
-                    itemtype="https://schema.org/Organization"
-                    itemref="slot-title"
                     role="contentinfo"
                     aria-label="Game developer and publisher information"
                   >
                     <span
-                      itemprop="name"
                       class="font-semibold"
                       title="Game Provider"
                     >
                       {{ slot.providers?.name || 'Pragmatic Play' }}
                     </span>
-                    <meta itemprop="url" :content="slot.providers?.website || 'https://www.pragmaticplay.com'" />
-                    <meta itemprop="description" :content="`${slot.providers?.name || 'Pragmatic Play'} - leading casino game provider`" />
-                    <meta itemprop="foundingDate" :content="slot.providers?.founded || '2015'" />
-                    <meta itemprop="industry" content="Online Casino Games" />
-                    <meta itemprop="areaServed" content="Global" />
                   </address>
                 </section>
 
-                <!-- Главный заголовок - SEO оптимизированный с Schema.org разметкой -->
+                <!-- Главный заголовок -->
                 <h1
                   id="slot-title"
                   class="text-2xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-relaxed drop-shadow-md transition-all duration-500 py-2"
                   style="line-height: 1.3; padding-bottom: 0.5rem"
-                  itemscope
-                  itemtype="https://schema.org/Game"
-                  itemprop="name"
                   tabindex="0"
                   role="heading"
                   aria-level="1"
                   aria-label="Название игрового автомата"
                 >
-                  <span itemprop="name">{{ slot.name || 'Слот' }}</span>
+                  <span>{{ slot.name || 'Слот' }}</span>
                   <span v-if="slot.provider?.name" class="text-lg font-medium opacity-90">
-                    от <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                      <span itemprop="name">{{ slot.provider.name }}</span>
-                    </span>
+                    от <span>{{ slot.provider.name }}</span>
                   </span>
                   <span v-if="slot.rtp" class="text-base font-normal opacity-80">
-                    • RTP <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                      <meta itemprop="price" :content="slot.rtp" />
-                      <span>{{ slot.rtp }}%</span>
-                    </span>
+                    • RTP <span>{{ slot.rtp }}%</span>
                   </span>
-
-                  <!-- Скрытые SEO метаданные для Schema.org -->
-                  <meta itemprop="description" :content="`Играйте в ${slot.name || 'слот'} от ${slot.provider?.name || 'провайдера'} онлайн. RTP: ${slot.rtp || '96'}%, волатильность: ${slot.volatility || 'средняя'}. Бесплатная демо-версия доступна.`" />
-                  <meta itemprop="genre" :content="slot.category?.name || 'Видеослот'" />
-                  <meta itemprop="gamePlatform" content="Web Browser" />
-                  <meta itemprop="applicationCategory" content="Game" />
-                  <meta itemprop="operatingSystem" content="Any" />
-                  <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}, RTP ${slot.rtp || '96'}%, ${slot.volatility || 'средняя'} волатильность, бесплатно, демо`" />
-                  <meta itemprop="inLanguage" content="ru" />
-                  <meta itemprop="isAccessibleForFree" content="true" />
-                  <meta itemprop="interactionType" content="https://schema.org/PlayAction" />
-
-                  <!-- Дополнительные микроданные для игры -->
-                  <div style="display: none;" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                    <meta itemprop="price" content="0" />
-                    <meta itemprop="priceCurrency" content="EUR" />
-                    <meta itemprop="availability" content="https://schema.org/InStock" />
-                    <meta itemprop="category" content="Free Online Casino Game" />
-                  </div>
-
-                  <div style="display: none;" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" :content="slot.average_rating || '4.5'" />
-                    <meta itemprop="bestRating" content="5" />
-                    <meta itemprop="worstRating" content="1" />
-                    <meta itemprop="ratingCount" :content="slot.rating_count || '100'" />
-                  </div>
                 </h1>
 
-                <!-- Описание слота (мобильная версия) - SEO оптимизированное -->
+                <!-- Описание слота (мобильная версия) -->
                 <section
                   class="lg:hidden mb-6"
                   role="region"
                   aria-labelledby="slot-description"
-                  itemscope
-                  itemtype="https://schema.org/Review"
-                  itemprop="itemReviewed"
-                  itemref="main-slot-game"
                 >
                   <div
                     id="slot-description"
                     class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl space-y-2"
-                    itemprop="reviewBody"
                     role="text"
                     aria-label="Подробное описание игрового автомата с характеристиками"
                   >
@@ -279,21 +205,16 @@
                     <p class="font-medium">
                       <strong class="text-white">{{ slot.name }}</strong>
                       <span v-if="slot.provider?.name" class="text-white/90">
-                        от <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
-                          <span itemprop="name">{{ slot.provider.name }}</span>
-                        </span>
+                        от <span>{{ slot.provider.name }}</span>
                       </span>
                       — {{ getShortDescription(slot) }}
                     </p>
 
-                    <!-- SEO-характеристики -->
+                    <!-- Характеристики -->
                     <p class="text-base text-white/70" v-if="slot.rtp || slot.volatility || slot.min_bet">
                       <span v-if="slot.rtp" class="inline-block mr-4">
                         <span class="font-medium text-white/80">RTP:</span>
-                        <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                          <meta itemprop="price" :content="slot.rtp" />
-                          <span class="text-green-400">{{ slot.rtp }}%</span>
-                        </span>
+                        <span class="text-green-400">{{ slot.rtp }}%</span>
                       </span>
                       <span v-if="slot.volatility" class="inline-block mr-4">
                         <span class="font-medium text-white/80">Волатильность:</span>
@@ -305,25 +226,15 @@
                       </span>
                     </p>
 
-                    <!-- Скрытые SEO метаданные -->
-                    <meta itemprop="genre" :content="slot.category?.name || 'Игровой автомат'" />
-                    <meta itemprop="keywords" :content="`${slot.name}, игровой автомат онлайн, слот ${slot.provider?.name || ''}, ${slot.category?.name || ''}, RTP ${slot.rtp || ''}%, казино игра, бесплатная игра`" />
-                    <meta itemprop="inLanguage" content="ru" />
-                    <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString()" />
-                    <meta itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                    <meta itemprop="ratingValue" :content="slot.rating || '4.5'" />
-                    <meta itemprop="bestRating" content="5" />
-                    <meta itemprop="worstRating" content="1" />
+
                   </div>
                 </section>
 
-                <!-- Рейтинг и голосование с Schema.org разметкой (мобильная версия) -->
+                <!-- Рейтинг и голосование (мобильная версия) -->
                 <div
                   class="flex flex-wrap items-center gap-6 mb-8 lg:hidden"
                   role="group"
                   aria-label="Рейтинг и голосование"
-                  itemscope
-                  itemtype="https://schema.org/AggregateRating"
                 >
                   <!-- Текущий рейтинг -->
                   <div class="flex items-center gap-2">
@@ -345,9 +256,8 @@
                         />
                       </svg>
                     </div>
-                    <span class="text-white font-bold text-lg" itemprop="ratingValue">4.8</span>
-                    <span class="text-white/60">/ <span itemprop="bestRating">5</span></span>
-                    <meta itemprop="ratingCount" content="1247" />
+                    <span class="text-white font-bold text-lg">4.8</span>
+                    <span class="text-white/60">/ 5</span>
                   </div>
 
                   <!-- Кнопка голосования -->
@@ -548,40 +458,16 @@
                     <h3 id="provider-label-desktop" class="sr-only">Game Provider Information</h3>
                     <address
                       class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50"
-                      itemscope
-                      itemtype="https://schema.org/Organization"
-                      itemref="slot-title"
                       role="contentinfo"
                       aria-label="Game developer and publisher information"
                     >
                       <span
-                        itemprop="name"
                         class="font-semibold"
                         title="Game Provider"
                       >
                         {{ slot.providers?.name || 'Pragmatic Play' }}
                       </span>
-                      <!-- Расширенные Schema.org метаданные для провайдера -->
-                      <meta itemprop="url" :content="slot.providers?.website || 'https://www.pragmaticplay.com'" />
-                      <meta itemprop="description" :content="`${slot.providers?.name || 'Pragmatic Play'} - leading casino game provider`" />
-                      <meta itemprop="foundingDate" :content="slot.providers?.founded || '2015'" />
-                      <meta itemprop="industry" content="Online Casino Games" />
-                      <meta itemprop="areaServed" content="Global" />
-                      <meta itemprop="knowsAbout" content="Slot Games, Casino Games, Online Gaming" />
-                      <meta itemprop="sameAs" :content="slot.providers?.social_media || 'https://www.pragmaticplay.com'" />
 
-                      <!-- Связь с игрой через Schema.org -->
-                      <div itemprop="makesOffer" itemscope itemtype="https://schema.org/Offer" style="display: none;">
-                        <meta itemprop="itemOffered" :content="slot.name" />
-                        <meta itemprop="category" content="Casino Game" />
-                        <meta itemprop="availability" content="https://schema.org/InStock" />
-                      </div>
-
-                      <!-- Контактная информация -->
-                      <div itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint" style="display: none;">
-                        <meta itemprop="contactType" content="customer service" />
-                        <meta itemprop="availableLanguage" content="English, Russian" />
-                      </div>
                     </address>
                   </section>
 
@@ -589,9 +475,6 @@
                   <h1
                     class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500"
                     style="line-height: 1.3"
-                    itemprop="name"
-                    itemscope
-                    itemtype="https://schema.org/VideoGame"
                     tabindex="0"
                     :data-game-name="slot.name"
                     :data-game-provider="slot.providers?.name"
@@ -613,23 +496,7 @@
                     aria-level="1"
                     aria-describedby="game-description"
                   >
-                    <span itemprop="name">{{ slot.name || 'Слот' }}</span>
-                    <meta itemprop="applicationCategory" content="Game" />
-                    <meta itemprop="operatingSystem" content="Web Browser" />
-                    <meta itemprop="gamePlatform" content="Web" />
-                    <meta itemprop="genre" content="Casino Slot" />
-                    <meta itemprop="isAccessibleForFree" :content="slot.is_demo_available ? 'true' : 'false'" />
-                    <meta itemprop="datePublished" :content="slot.release_date" />
-                    <meta itemprop="inLanguage" content="ru" />
-                    <meta v-if="slot.providers?.name" itemprop="publisher" :content="slot.providers.name" />
-                    <meta v-if="slot.rtp" itemprop="gameFeature" :content="`RTP: ${slot.rtp}%`" />
-                    <meta v-if="slot.volatility" itemprop="gameFeature" :content="`Волатильность: ${slot.volatility}`" />
-                    <meta v-if="slot.min_bet" itemprop="gameFeature" :content="`Мин. ставка: ${slot.min_bet}`" />
-                    <meta v-if="slot.max_bet" itemprop="gameFeature" :content="`Макс. ставка: ${slot.max_bet}`" />
-                    <meta v-if="slot.max_win" itemprop="gameFeature" :content="`Макс. выигрыш: ${slot.max_win}`" />
-                    <meta v-if="slot.reels" itemprop="gameFeature" :content="`Барабаны: ${slot.reels}`" />
-                    <meta v-if="slot.rows" itemprop="gameFeature" :content="`Ряды: ${slot.rows}`" />
-                    <meta v-if="slot.paylines" itemprop="gameFeature" :content="`Линии выплат: ${slot.paylines}`" />
+                    {{ slot.name || 'Слот' }}
                   </h1>
 
                   <!-- Рейтинг и голосование (десктоп) -->
@@ -637,41 +504,22 @@
                     class="flex flex-wrap items-center gap-6 mb-8"
                     role="group"
                     aria-label="Рейтинг и голосование"
-                    itemscope
-                    itemtype="https://schema.org/AggregateRating"
                     :data-rating-value="4.8"
                     :data-rating-count="1247"
                     :data-best-rating="5"
                     :data-worst-rating="1"
                   >
-                    <!-- Скрытые микроданные для AggregateRating -->
-                    <meta itemprop="itemReviewed" :content="slot?.name || 'Slot Game'" />
-                    <meta itemprop="ratingValue" content="4.8" />
-                    <meta itemprop="bestRating" content="5" />
-                    <meta itemprop="worstRating" content="1" />
-                    <meta itemprop="ratingCount" content="1247" />
-                    <meta itemprop="reviewCount" content="1247" />
-                    <meta itemprop="description" content="Пользовательский рейтинг игрового автомата" />
-                    <meta itemprop="author" content="SlotQuest Users" />
-                    <meta itemprop="dateCreated" :content="new Date().toISOString()" />
-                    <meta itemprop="url" :content="`/slots/${slot?.slug}`" />
+
                     <!-- Текущий рейтинг -->
                     <div 
                       class="flex items-center gap-2"
-                      itemscope
-                      itemtype="https://schema.org/Rating"
                       role="img"
                       :aria-label="`Рейтинг ${4.8} из ${5} звезд на основе ${1247} отзывов`"
                       :data-rating="4.8"
                       :data-max-rating="5"
                       :data-review-count="1247"
                     >
-                      <!-- Микроданные для Rating -->
-                      <meta itemprop="ratingValue" content="4.8" />
-                      <meta itemprop="bestRating" content="5" />
-                      <meta itemprop="worstRating" content="1" />
-                      <meta itemprop="author" content="SlotQuest Community" />
-                      <meta itemprop="name" content="Пользовательский рейтинг слота" />
+
                       
                       <div
                         class="flex text-yellow-400"
@@ -698,11 +546,11 @@
                       </div>
                       <span 
                         class="text-white font-bold text-lg" 
-                        itemprop="ratingValue"
+
                         aria-label="Рейтинг 4.8"
                       >4.8</span>
                       <span class="text-white/60" aria-label="из 5 максимум">
-                        / <span itemprop="bestRating" aria-label="максимальный рейтинг">5</span>
+                        / <span aria-label="максимальный рейтинг">5</span>
                       </span>
                       <span 
                         class="text-white/40 text-sm ml-2" 
@@ -720,8 +568,7 @@
                       :aria-expanded="showRatingPicker"
                       aria-controls="rating-picker-desktop"
                       type="button"
-                      itemscope
-                      itemtype="https://schema.org/VoteAction"
+
                       :aria-label="`Проголосовать за слот ${slot?.name || 'игру'}`"
                       :title="`Оценить ${slot?.name || 'игру'} - текущий рейтинг ${4.8}/5`"
                       role="button"
@@ -730,17 +577,8 @@
                       :data-current-rating="4.8"
                       :data-vote-count="1247"
                     >
-                      <!-- Микроданные для VoteAction -->
-                      <meta itemprop="name" content="Голосование за слот" />
-                      <meta itemprop="description" content="Проголосовать и оценить игровой автомат" />
-                      <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                      <meta itemprop="object" :content="slot?.name || 'Slot Game'" />
-                      <meta itemprop="agent" content="SlotQuest User" />
-                      <meta itemprop="instrument" content="Rating System" />
-                      <meta itemprop="location" content="SlotQuest Platform" />
-                      <meta itemprop="result" content="User Rating Submission" />
-                      <meta itemprop="target" :content="`/slots/${slot?.slug}/vote`" />
-                      <meta itemprop="startTime" :content="new Date().toISOString()" />
+
+
                       
                       <span role="presentation" aria-hidden="true">Vote!</span>
                     </button>
@@ -835,36 +673,25 @@
                     class="mb-4"
                     role="region"
                     aria-labelledby="slot-description-desktop"
-                    itemscope
-                    itemtype="https://schema.org/CreativeWork"
+
                   >
                     <p
                       id="slot-description-desktop"
                       class="text-white/80 text-lg leading-relaxed"
-                      itemprop="description"
-                      itemtype="https://schema.org/Text"
+
                       role="text"
                       aria-label="Подробное описание игрового автомата"
                     >
-                      <span itemprop="about" itemscope itemtype="https://schema.org/Game">
-                        <strong itemprop="name">{{ slot.name }}</strong> -
-                        <span itemprop="description">{{ getShortDescription(slot) }}</span>
-                      </span>
-                      <meta itemprop="genre" :content="slot.category?.name || 'Слот'" />
-                      <meta itemprop="keywords" :content="`${slot.name}, игровой автомат, онлайн слот, ${slot.provider?.name || ''}, ${slot.category?.name || ''}, демо игра, бесплатно`" />
-                      <meta itemprop="inLanguage" content="ru" />
-                      <meta itemprop="audience" content="adults" />
+                      <strong>{{ slot.name }}</strong> - {{ getShortDescription(slot) }}
                     </p>
 
                   </section>
 
-                  <!-- Кнопки варианты игры - SEO оптимизированные (десктоп) -->
+                  <!-- Кнопки варианты игры (десктоп) -->
                   <nav
                     class="flex flex-col gap-4 w-full max-w-md mx-auto"
                     role="navigation"
                     aria-label="Варианты игры"
-                    itemscope
-                    itemtype="https://schema.org/GameAction"
                   >
                     <!-- Кнопка демо-игры с полной SEO-разметкой -->
                     <BackgroundGradient
@@ -879,9 +706,6 @@
                         rel="nofollow noopener"
                         class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                         :aria-label="`Играть в ${slot.name} бесплатно в демо-режиме`"
-                        itemscope
-                        itemtype="https://schema.org/PlayAction"
-                        itemprop="potentialAction"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -896,30 +720,6 @@
                         data-requires-registration="false"
                         data-requires-deposit="false"
                       >
-                        <!-- Микроданные для действия -->
-                        <meta itemprop="name" :content="`Играть в ${slot.name} демо`" />
-                        <meta itemprop="description" :content="`Бесплатная демо-версия игрового автомата ${slot.name}`" />
-                        <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                        <meta itemprop="target" :content="slot.demo_url" />
-                        <span itemprop="object" itemscope itemtype="https://schema.org/VideoGame" style="display: none;">
-                          <meta itemprop="name" :content="slot.name" />
-                          <meta itemprop="gameLocation" content="online" />
-                          <meta itemprop="playMode" content="demo" />
-                        </span>
-                        <span itemprop="agent" itemscope itemtype="https://schema.org/Person" style="display: none;">
-                          <meta itemprop="name" content="Игрок" />
-                        </span>
-                        <span itemprop="instrument" itemscope itemtype="https://schema.org/SoftwareApplication" style="display: none;">
-                          <meta itemprop="name" content="Веб-браузер" />
-                          <meta itemprop="applicationCategory" content="Game" />
-                        </span>
-                        <span itemprop="location" itemscope itemtype="https://schema.org/Place" style="display: none;">
-                          <meta itemprop="name" content="Онлайн казино" />
-                        </span>
-                        <span itemprop="result" itemscope itemtype="https://schema.org/GamePlayMode" style="display: none;">
-                          <meta itemprop="name" content="Демо-игра" />
-                          <meta itemprop="description" content="Бесплатная игра без риска" />
-                        </span>
 
                         <svg
                           class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -937,13 +737,13 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          itemprop="name"
+
                           >Demo slot</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
                           aria-label="Демо-режим"
-                          itemprop="gamePlayMode"
+
                         >
                           DEMO
                         </span>
@@ -954,9 +754,6 @@
                         @click="playSlot"
                         type="button"
                         :aria-label="`Играть в ${slot.name} бесплатно в демо-режиме`"
-                        itemscope
-                        itemtype="https://schema.org/PlayAction"
-                        itemprop="potentialAction"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -970,29 +767,6 @@
                         data-requires-registration="false"
                         data-requires-deposit="false"
                       >
-                        <!-- Микроданные для действия -->
-                        <meta itemprop="name" :content="`Играть в ${slot.name} демо`" />
-                        <meta itemprop="description" :content="`Бесплатная демо-версия игрового автомата ${slot.name}`" />
-                        <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                        <span itemprop="object" itemscope itemtype="https://schema.org/VideoGame" style="display: none;">
-                          <meta itemprop="name" :content="slot.name" />
-                          <meta itemprop="gameLocation" content="online" />
-                          <meta itemprop="playMode" content="demo" />
-                        </span>
-                        <span itemprop="agent" itemscope itemtype="https://schema.org/Person" style="display: none;">
-                          <meta itemprop="name" content="Игрок" />
-                        </span>
-                        <span itemprop="instrument" itemscope itemtype="https://schema.org/SoftwareApplication" style="display: none;">
-                          <meta itemprop="name" content="Веб-браузер" />
-                          <meta itemprop="applicationCategory" content="Game" />
-                        </span>
-                        <span itemprop="location" itemscope itemtype="https://schema.org/Place" style="display: none;">
-                          <meta itemprop="name" content="Онлайн казино" />
-                        </span>
-                        <span itemprop="result" itemscope itemtype="https://schema.org/GamePlayMode" style="display: none;">
-                          <meta itemprop="name" content="Демо-игра" />
-                          <meta itemprop="description" content="Бесплатная игра без риска" />
-                        </span>
 
                         <svg
                           class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -1010,13 +784,13 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          itemprop="name"
+
                           >Demo Slot</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
                           aria-label="Демо-режим"
-                          itemprop="gamePlayMode"
+
                         >
                           DEMO
                         </span>
@@ -1036,9 +810,6 @@
                         rel="nofollow sponsored noopener"
                         class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                         :aria-label="`Играть в ${slot.name} на реальные деньги`"
-                        itemscope
-                        itemtype="https://schema.org/PlayAction"
-                        itemprop="potentialAction"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -1054,30 +825,6 @@
                         data-requires-deposit="true"
                         data-gambling-warning="true"
                       >
-                        <!-- Микроданные для действия -->
-                        <meta itemprop="name" :content="`Играть в ${slot.name} на деньги`" />
-                        <meta itemprop="description" :content="`Игра на реальные деньги в ${slot.name} с возможностью выигрыша`" />
-                        <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                        <meta itemprop="target" :content="slot.real_play_url" />
-                        <span itemprop="object" itemscope itemtype="https://schema.org/VideoGame" style="display: none;">
-                          <meta itemprop="name" :content="slot.name" />
-                          <meta itemprop="gameLocation" content="online" />
-                          <meta itemprop="playMode" content="real-money" />
-                        </span>
-                        <span itemprop="agent" itemscope itemtype="https://schema.org/Person" style="display: none;">
-                          <meta itemprop="name" content="Игрок" />
-                        </span>
-                        <span itemprop="instrument" itemscope itemtype="https://schema.org/SoftwareApplication" style="display: none;">
-                          <meta itemprop="name" content="Веб-браузер" />
-                          <meta itemprop="applicationCategory" content="Game" />
-                        </span>
-                        <span itemprop="location" itemscope itemtype="https://schema.org/Place" style="display: none;">
-                          <meta itemprop="name" content="Онлайн казино" />
-                        </span>
-                        <span itemprop="result" itemscope itemtype="https://schema.org/GamePlayMode" style="display: none;">
-                          <meta itemprop="name" content="Реальная игра" />
-                          <meta itemprop="description" content="Игра на деньги с возможностью выигрыша" />
-                        </span>
 
                         <svg
                           class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -1095,7 +842,6 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          itemprop="name"
                           >Real Slot</span
                         >
                         <span
@@ -1127,13 +873,11 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          itemprop="name"
                           >Real Slot</span
                         >
                         <span
                           class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
                           aria-label="Реальная игра"
-                          itemprop="gamePlayMode"
                         >
                           REAL
                         </span>
@@ -1146,27 +890,13 @@
               <!-- Игровой экран -->
               <div
                 class="lg:hidden aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-8 relative overflow-hidden group"
-                itemscope
-                :itemtype="slot.media_type === 'video' ? 'https://schema.org/VideoObject' : 'https://schema.org/ImageObject'"
+
                 role="img"
                 :aria-label="`Превью игры ${slot.name || 'слот'}`"
                 :data-media-type="slot.media_type"
                 :data-slot-name="slot.name"
               >
-                <!-- Микроданные для медиа объекта -->
-                <meta itemprop="name" :content="`${slot.name || 'Слот'} - Превью игры`" />
-                <meta itemprop="description" :content="`Демонстрация игрового автомата ${slot.name || 'слот'} от ${slot.providers?.name || 'Pragmatic Play'}`" />
-                <meta itemprop="url" :content="slot.image_url || slot.video_url || ''" />
-                <meta itemprop="contentUrl" :content="slot.image_url || slot.video_url || ''" />
-                <meta itemprop="thumbnailUrl" :content="slot.image_url || ''" />
-                <meta itemprop="encodingFormat" :content="slot.media_type === 'video' ? 'video/mp4' : 'image/jpeg'" />
-                <meta itemprop="width" content="800" />
-                <meta itemprop="height" content="450" />
-                <meta itemprop="uploadDate" :content="slot.created_at || new Date().toISOString()" />
-                <meta itemprop="genre" content="Игровые автоматы" />
-                <meta itemprop="keywords" :content="`${slot.name}, слот, игровой автомат, ${slot.providers?.name}, демо, превью`" />
-                <meta v-if="slot.media_type === 'video'" itemprop="duration" content="PT30S" />
-                <meta v-if="slot.media_type === 'video'" itemprop="embedUrl" :content="slot.demo_url || ''" />
+
                 <!-- Внутренний градиент -->
                 <div
                   class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10"
@@ -1181,34 +911,25 @@
                 <div
                   v-if="slot.media_type === 'image' && slot.image_url"
                   class="absolute inset-0"
-                  itemscope
-                  itemtype="https://schema.org/ImageObject"
+
                 >
                   <img
                     :src="slot.image_url"
                     :alt="`Изображение слота ${slot.name} - Превью игрового автомата от ${slot.providers?.name || 'Pragmatic Play'}`"
                     :title="`${slot.name} - Демо версия игрового автомата`"
                     class="w-full h-full object-contain"
-                    itemprop="contentUrl"
+
                     loading="lazy"
                     decoding="async"
                     :data-slot-id="slot.id"
                     :data-provider="slot.providers?.name"
                     @error="handleSlotImageError"
                   />
-                  <meta itemprop="name" :content="`${slot.name} - Изображение слота`" />
-                  <meta itemprop="description" :content="`Превью изображение игрового автомата ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
-                  <meta itemprop="url" :content="slot.image_url" />
-                  <meta itemprop="width" content="800" />
-                  <meta itemprop="height" content="450" />
-                  <meta itemprop="encodingFormat" content="image/jpeg" />
-                  <meta itemprop="representativeOfPage" content="true" />
+
                 </div>
                 <div
                   v-else-if="slot.media_type === 'video' && slot.video_url"
                   class="absolute inset-0"
-                  itemscope
-                  itemtype="https://schema.org/VideoObject"
                 >
                   <video
                     :src="slot.video_url"
@@ -1221,7 +942,6 @@
                     :poster="slot.image_url || ''"
                     :title="`${slot.name} - Демо видео игрового автомата`"
                     :aria-label="`Демонстрационное видео слота ${slot.name}`"
-                    itemprop="contentUrl"
                     :data-slot-id="slot.id"
                     :data-provider="slot.providers?.name"
                     @error="handleSlotVideoError"
@@ -1242,25 +962,11 @@
                     />
                     Ваш браузер не поддерживает воспроизведение видео.
                   </video>
-                  <meta itemprop="name" :content="`${slot.name} - Демо видео`" />
-                  <meta itemprop="description" :content="`Демонстрационное видео игрового автомата ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
-                  <meta itemprop="url" :content="slot.video_url" />
-                  <meta itemprop="thumbnailUrl" :content="slot.image_url || ''" />
-                  <meta itemprop="uploadDate" :content="slot.created_at || new Date().toISOString()" />
-                  <meta itemprop="duration" content="PT30S" />
-                  <meta itemprop="width" content="800" />
-                  <meta itemprop="height" content="450" />
-                  <meta itemprop="encodingFormat" content="video/mp4" />
-                  <meta itemprop="embedUrl" :content="slot.demo_url || ''" />
-                  <meta itemprop="genre" content="Игровые автоматы" />
-                  <meta itemprop="inLanguage" content="ru" />
                 </div>
 
                 <!-- Содержимое экрана -->
                 <div 
                   class="text-center relative z-10"
-                  itemscope
-                  itemtype="https://schema.org/Game"
                 >
                   <div
                     class="text-white text-9xl lg:text-[12rem] font-black mb-6 drop-shadow-2xl animate-float"
@@ -1271,33 +977,17 @@
                   </div>
                   <div
                     class="bg-black/30 backdrop-blur-sm rounded-2xl px-6 py-4 border border-white/20"
-                    itemscope
-                    itemtype="https://schema.org/Product"
                   >
                     <h3
                       class="text-white/90 text-lg font-bold mb-2"
-                      itemprop="name"
                     >
                       {{ slot.name || 'Слот' }}
                     </h3>
                     <p 
                       class="text-white/60 text-sm"
-                      itemscope
-                      itemtype="https://schema.org/Organization"
                     >
-                      <span itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
+                      {{ slot.providers?.name || 'Pragmatic Play' }}
                     </p>
-                    <!-- Дополнительные микроданные для игры -->
-                    <meta itemprop="description" :content="`Игровой автомат ${slot.name} от провайдера ${slot.providers?.name || 'Pragmatic Play'}`" />
-                    <meta itemprop="category" content="Игровые автоматы" />
-                    <meta itemprop="gameLocation" content="Онлайн казино" />
-                    <meta itemprop="numberOfPlayers" content="1" />
-                    <meta itemprop="playMode" content="SinglePlayer" />
-                    <meta itemprop="applicationCategory" content="Game" />
-                    <meta itemprop="operatingSystem" content="Web Browser" />
-                    <meta itemprop="url" :content="slot.demo_url || ''" />
-                    <meta itemprop="image" :content="slot.image_url || ''" />
-                    <meta itemprop="dateCreated" :content="slot.created_at || new Date().toISOString()" />
                   </div>
                 </div>
 
@@ -1308,24 +998,14 @@
                   target="_blank"
                   rel="nofollow noopener"
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
-                  itemscope
-                  itemtype="https://schema.org/GameAction"
+
                   :aria-label="`Запустить демо-версию игры ${slot.name}`"
                   :title="`Играть в ${slot.name} - Демо версия`"
                   :data-game-name="slot.name"
                   :data-game-provider="slot.providers?.name"
                   :data-action-type="demo"
                 >
-                  <!-- Микроданные для игрового действия -->
-                  <meta itemprop="name" :content="`Играть в ${slot.name}`" />
-                  <meta itemprop="description" :content="`Запустить демо-версию игрового автомата ${slot.name}`" />
-                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                  <meta itemprop="object" :content="slot.name" />
-                  <meta itemprop="agent" content="Игрок" />
-                  <meta itemprop="instrument" content="Веб-браузер" />
-                  <meta itemprop="location" content="Онлайн казино" />
-                  <meta itemprop="result" content="Демо игра" />
-                  <meta itemprop="url" :content="slot.demo_url" />
+
                   
                   <div
                     class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500"
@@ -1348,23 +1028,12 @@
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
                   @click="playSlot"
                   type="button"
-                  itemscope
-                  itemtype="https://schema.org/GameAction"
                   :aria-label="`Запустить демо-версию игры ${slot.name}`"
                   :title="`Играть в ${slot.name} - Демо версия`"
                   :data-game-name="slot.name"
                   :data-game-provider="slot.providers?.name"
                   :data-action-type="demo"
                 >
-                  <!-- Микроданные для игрового действия -->
-                  <meta itemprop="name" :content="`Играть в ${slot.name}`" />
-                  <meta itemprop="description" :content="`Запустить демо-версию игрового автомата ${slot.name}`" />
-                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                  <meta itemprop="object" :content="slot.name" />
-                  <meta itemprop="agent" content="Игрок" />
-                  <meta itemprop="instrument" content="Веб-браузер" />
-                  <meta itemprop="location" content="Онлайн казино" />
-                  <meta itemprop="result" content="Демо игра" />
                   
                   <div
                     class="w-24 h-24 lg:w-28 lg:h-28 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500"
@@ -1388,27 +1057,14 @@
               <nav
                 class="space-y-4 lg:hidden"
                 aria-label="Варианты игры (моб./планшет)"
-                itemscope
-                itemtype="https://schema.org/GameAction"
                 role="navigation"
               >
                 <!-- Демо-игра -->
                 <section
-                  itemscope
-                  itemtype="https://schema.org/PlayAction"
                   class="relative"
                   aria-labelledby="demo-play-heading"
                 >
                   <h3 id="demo-play-heading" class="sr-only">Демо-версия игры</h3>
-                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                  <meta itemprop="name" content="Играть в демо-версию" />
-                  <meta itemprop="description" :content="`Играть в ${slot.name || 'слот'} бесплатно в демо-режиме без регистрации`" />
-                  <meta itemprop="target" :content="slot.demo_url || '#'" />
-                  <meta itemprop="object" :content="slot.name" />
-                  <meta itemprop="agent" content="Player" />
-                  <meta itemprop="instrument" content="Web Browser" />
-                  <meta itemprop="location" content="Online Casino" />
-                  <meta itemprop="result" content="Demo Game Experience" />
                   
                   <BackgroundGradient
                     :animate="true"
@@ -1421,7 +1077,6 @@
                       target="_blank"
                       rel="nofollow noopener"
                       class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30 min-h-[64px]"
-                      itemprop="url"
                       :data-game-name="slot.name"
                       :data-game-type="'demo'"
                       :data-game-provider="slot.providers?.name"
@@ -1450,14 +1105,13 @@
                           d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         ></path>
                       </svg>
-                      <span class="relative z-10 whitespace-nowrap" itemprop="name"
+                      <span class="relative z-10 whitespace-nowrap"
                         >Играть бесплатно</span
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
                         aria-label="Демо-режим"
-                        itemprop="additionalType"
-                        content="Demo"
+
                       >
                         DEMO
                       </span>
@@ -1467,7 +1121,6 @@
                       class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-emerald-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/30 min-h-[64px]"
                       @click="playSlot"
                       type="button"
-                      itemprop="url"
                       :data-game-name="slot.name"
                       :data-game-type="'demo'"
                       :data-game-provider="slot.providers?.name"
@@ -1496,14 +1149,12 @@
                           d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         ></path>
                       </svg>
-                      <span class="relative z-10 whitespace-nowrap" itemprop="name"
+                      <span class="relative z-10 whitespace-nowrap"
                         >Играть бесплатно</span
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
                         aria-label="Демо-режим"
-                        itemprop="additionalType"
-                        content="Demo"
                       >
                         DEMO
                       </span>
@@ -1513,23 +1164,10 @@
 
                 <!-- Реальная игра -->
                 <section
-                  itemscope
-                  itemtype="https://schema.org/PlayAction"
                   class="relative"
                   aria-labelledby="real-play-heading"
                 >
                   <h3 id="real-play-heading" class="sr-only">Игра на реальные деньги</h3>
-                  <meta itemprop="actionStatus" content="PotentialActionStatus" />
-                  <meta itemprop="name" content="Играть на реальные деньги" />
-                  <meta itemprop="description" :content="`Играть в ${slot.name || 'слот'} на реальные деньги в лицензированном казино`" />
-                  <meta itemprop="target" :content="slot.real_play_url || '#'" />
-                  <meta itemprop="object" :content="slot.name" />
-                  <meta itemprop="agent" content="Player" />
-                  <meta itemprop="instrument" content="Web Browser" />
-                  <meta itemprop="location" content="Licensed Online Casino" />
-                  <meta itemprop="result" content="Real Money Gaming Experience" />
-                  <meta itemprop="price" :content="slot.min_bet ? `от ${slot.min_bet}` : 'Минимальная ставка'" />
-                  <meta itemprop="priceCurrency" content="RUB" />
                   
                   <BackgroundGradient
                     :animate="true"
@@ -1542,7 +1180,6 @@
                       target="_blank"
                       rel="nofollow sponsored noopener"
                       class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30 min-h-[64px]"
-                      itemprop="url"
                       :data-game-name="slot.name"
                       :data-game-type="'real-money'"
                       :data-game-provider="slot.providers?.name"
@@ -1578,14 +1215,12 @@
                           d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
                         ></path>
                       </svg>
-                      <span class="relative z-10 whitespace-nowrap" itemprop="name"
+                      <span class="relative z-10 whitespace-nowrap"
                         >Играть на деньги</span
                       >
                       <span
                         class="relative z-10 bg-orange-500/20 text-xs px-3 py-1 rounded-full font-semibold"
                         aria-label="Реальные деньги"
-                        itemprop="additionalType"
-                        content="RealMoney"
                       >
                         18+
                       </span>
@@ -1595,7 +1230,6 @@
                       class="group relative w-full bg-black/30 backdrop-blur-sm border border-white/10 text-white text-xl font-black py-5 px-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-2 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/30 min-h-[64px]"
                       @click="playForReal"
                       type="button"
-                      itemprop="url"
                       :data-game-name="slot.name"
                       :data-game-type="'real-money'"
                       :data-game-provider="slot.providers?.name"
@@ -1631,14 +1265,12 @@
                           d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
                         ></path>
                       </svg>
-                      <span class="relative z-10 whitespace-nowrap" itemprop="name"
+                      <span class="relative z-10 whitespace-nowrap"
                         >Играть на деньги</span
                       >
                       <span
                         class="relative z-10 bg-orange-500/20 text-xs px-3 py-1 rounded-full font-semibold"
                         aria-label="Реальные деньги"
-                        itemprop="additionalType"
-                        content="RealMoney"
                       >
                         18+
                       </span>
@@ -1646,74 +1278,46 @@
                   </BackgroundGradient>
                 </section>
 
-                <!-- Награды и достижения (семантическая разметка) -->
+                <!-- Награды и достижения -->
                 <aside
                   v-if="
                     slot.show_awards && slot.awards && slot.awards.length > 0
                   "
                   class="mt-5"
                   aria-label="Награды и достижения"
-                  itemscope
-                  itemtype="https://schema.org/ItemList"
                 >
-                  <!-- Микроданные для списка наград -->
-                  <meta itemprop="name" content="Награды и достижения слота" />
-                  <meta itemprop="description" :content="`Список наград и достижений для игры ${slot.name || 'слот'}`" />
-                  <meta itemprop="numberOfItems" :content="slot.awards?.length || 0" />
-                  
                   <div
                     class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4"
-                    itemprop="mainEntity"
-                    itemscope
-                    itemtype="https://schema.org/CreativeWork"
                   >
-                    <!-- Микроданные для основной сущности -->
-                    <meta itemprop="name" :content="`Награды ${slot.name || 'слота'}`" />
-                    <meta itemprop="description" :content="`Коллекция наград и достижений для игры ${slot.name || 'слот'}`" />
-                    <meta itemprop="genre" content="Игровые награды" />
-                    <meta itemprop="category" content="Достижения" />
                     
                     <header class="flex items-center gap-3 mb-4">
                       <div
                         class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center ring-2 ring-white/20"
                         aria-hidden="true"
-                        itemprop="image"
-                        itemscope
-                        itemtype="https://schema.org/ImageObject"
+
                       >
-                        <meta itemprop="contentUrl" content="data:text/plain;charset=utf-8,🏆" />
-                        <meta itemprop="description" content="Иконка трофея для наград" />
+
                         <span class="text-white text-lg">🏆</span>
                       </div>
                       <h3
                         class="text-white font-extrabold text-lg tracking-wide"
-                        itemprop="headline"
+
                       >
                         Награды и достижения
                       </h3>
                     </header>
 
-                    <div class="grid grid-cols-2 gap-3" role="list" itemprop="hasPart">
+                    <div class="grid grid-cols-2 gap-3" role="list">
                       <div
                         v-for="(award, index) in slot.awards"
                         :key="index"
                         :class="getAwardPublicClasses(award.color_scheme)"
                         class="group relative overflow-hidden rounded-xl p-4 hover:scale-105 transition-all duration-300"
                         role="listitem"
-                        itemprop="listItem"
-                        itemscope
-                        itemtype="https://schema.org/Achievement"
                         :data-award-index="index"
                         :data-award-type="award.type || 'achievement'"
                         :data-award-category="award.category || 'general'"
                       >
-                        <!-- Микроданные для награды -->
-                        <meta itemprop="position" :content="index + 1" />
-                        <meta itemprop="name" :content="award.title || 'Награда'" />
-                        <meta itemprop="description" :content="award.description || 'Описание награды'" />
-                        <meta itemprop="category" :content="award.category || 'Игровые достижения'" />
-                        <meta itemprop="dateCreated" :content="award.created_at || new Date().toISOString()" />
-                        <meta itemprop="isPartOf" :content="`Награды игры ${slot.name || 'слот'}`" />
                         
                         <div
                           :class="getAwardBgClasses(award.color_scheme)"
@@ -1725,27 +1329,20 @@
                             :class="getAwardIconClasses(award.color_scheme)"
                             class="w-9 h-9 rounded-lg flex items-center justify-center shadow"
                             aria-hidden="true"
-                            itemprop="image"
-                            itemscope
-                            itemtype="https://schema.org/ImageObject"
                           >
-                            <meta itemprop="contentUrl" :content="`data:text/plain;charset=utf-8,${award.emoji || '🏆'}`" />
-                            <meta itemprop="description" :content="`Иконка для награды ${award.title || 'Награда'}`" />
-                            <span class="text-white text-base" itemprop="caption">{{
+                            <span class="text-white text-base">{{
                               award.emoji || '🏆'
                             }}</span>
                           </div>
-                          <div itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                          <div>
                             <div
                               class="text-white font-bold text-sm leading-snug"
-                              itemprop="name"
                             >
                               {{ award.title || 'Награда' }}
                             </div>
                             <div
                               :class="getAwardTextClasses(award.color_scheme)"
                               class="text-xs"
-                              itemprop="description"
                             >
                               {{ award.description || 'Описание награды' }}
                             </div>
@@ -1800,9 +1397,7 @@
                 <!-- RTP -->
                 <div
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-5 rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
-                  itemprop="gamePlatform"
-                  itemscope
-                  itemtype="https://schema.org/Thing"
+
                 >
                   <!-- Canvas Reveal Effect -->
                   <CanvasRevealEffect
@@ -1847,7 +1442,7 @@
                     </div>
                     <dd
                       class="text-3xl font-black text-white mb-1"
-                      itemprop="name"
+
                     >
                       {{ slot.rtp || '96.50' }}%
                     </dd>
@@ -6634,6 +6229,39 @@ const getStructuredData = (slot) => {
   const imageUrl =
     slot.image_url || `${baseUrl}/images/slots/${slot.slug || slug}.jpg`
 
+  // Создаем переиспользуемые объекты организаций
+  const organizationSlotQuest = {
+    '@type': 'Organization',
+    '@id': `${baseUrl}/#organization`,
+    name: 'SlotQuest',
+    url: baseUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}/logo.png`,
+      width: 200,
+      height: 60
+    },
+    sameAs: [
+      'https://vk.com/slotquest',
+      'https://t.me/slotquest',
+      'https://twitter.com/slotquest'
+    ]
+  }
+
+  const providerOrganization = {
+    '@type': 'Organization',
+    '@id': `${baseUrl}/provider/${slot.providers?.slug || 'provider'}`,
+    name: slot.providers?.name || 'провайдер',
+    url: slot.providers?.website || 'https://slotquest.com',
+    description: slot.providers?.description || `${slot.providers?.name || 'провайдер'} - разработчик игр для онлайн-казино`,
+    logo: slot.providers?.logo ? {
+      '@type': 'ImageObject',
+      url: slot.providers.logo,
+      width: 200,
+      height: 100
+    } : undefined
+  }
+
   // Основная Game сущность с расширенными свойствами
   const gameSchema = {
     '@context': 'https://schema.org',
@@ -6657,17 +6285,11 @@ const getStructuredData = (slot) => {
         name: `${slot.name} - главное изображение слота`,
         encodingFormat: 'image/jpeg',
         uploadDate: slot.release_date || '2021-02-13',
-        copyrightHolder: {
-          '@type': 'Organization',
-          name: slot.providers?.name || 'провайдер'
-        },
+        copyrightHolder: providerOrganization,
         license: 'https://creativecommons.org/licenses/by-nc/4.0/',
         acquireLicensePage: slot.providers?.website || 'https://slotquest.com',
         creditText: `© ${slot.providers?.name || 'провайдер'}`,
-        creator: {
-          '@type': 'Organization',
-          name: slot.providers?.name || 'провайдер'
-        },
+        creator: providerOrganization,
         keywords: `${slot.name}, слот, игровой автомат, ${slot.providers?.name || 'провайдер'}, скриншот, интерфейс`,
         representativeOfPage: true,
         thumbnail: {
@@ -6788,35 +6410,13 @@ const getStructuredData = (slot) => {
       slot.bonus_types?.join(', ') || 'Фриспины с множителями'
     ].filter(Boolean),
 
-    publisher: {
-      '@type': 'Organization',
-      '@id': 'https://slotquest.com/#organization',
-      name: 'SlotQuest',
-      url: 'https://slotquest.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://slotquest.com/logo.png',
-        width: 200,
-        height: 60,
-      },
-      sameAs: ['https://t.me/slotquest', 'https://vk.com/slotquest'],
-    },
+    publisher: organizationSlotQuest,
     provider: {
-      '@type': 'Organization',
-      '@id': `https://slotquest.com/providers/${slot.providers?.slug || 'pragmatic-play'}`,
-      name: slot.providers?.name || 'Pragmatic Play',
+      ...providerOrganization,
       alternateName: slot.providers?.short_name || 'PP',
-      url: slot.providers?.website || 'https://pragmaticplay.com',
-      description: slot.providers?.description || 'Ведущий разработчик игр для онлайн-казино',
       foundingDate: slot.providers?.founded || '2015',
-      logo: {
-        '@type': 'ImageObject',
-        url: slot.providers?.logo_url || 'https://slotquest.com/images/providers/pragmatic-play.png',
-        width: 200,
-        height: 100
-      },
       sameAs: [
-        slot.providers?.website || 'https://pragmaticplay.com',
+        slot.providers?.website || 'https://slotquest.com',
         slot.providers?.linkedin_url,
         slot.providers?.twitter_url
       ].filter(Boolean),
@@ -6828,7 +6428,7 @@ const getStructuredData = (slot) => {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        url: slot.providers?.support_url || slot.providers?.website || 'https://pragmaticplay.com'
+        url: slot.providers?.support_url || slot.providers?.website || 'https://slotquest.com'
       }
     },
     aggregateRating: {
@@ -6839,11 +6439,7 @@ const getStructuredData = (slot) => {
       ratingCount: slot.reviews_count || '1247',
       reviewCount: slot.reviews_count || '1247',
       description: `Средний рейтинг ${slot.rating || '4.8'} из 5 звезд на основе ${slot.reviews_count || '1247'} отзывов игроков`,
-      author: {
-        '@type': 'Organization',
-        name: 'SlotQuest Community',
-        url: 'https://slotquest.com'
-      },
+      author: organizationSlotQuest,
       dateCreated: slot.created_at || '2021-02-13',
       dateModified: slot.updated_at || new Date().toISOString().split('T')[0]
     },
@@ -7137,10 +6733,7 @@ const getStructuredData = (slot) => {
         ratingValue: slot.rating || '4.8',
         bestRating: '5',
       },
-      author: {
-        '@type': 'Organization',
-        name: 'SlotQuest Editorial Team',
-      },
+      author: organizationSlotQuest,
       reviewBody: getDetailedDescription(slot),
       datePublished: slot.release_date || '2021-02-13',
     },
@@ -7179,19 +6772,9 @@ const getStructuredData = (slot) => {
       height: 1080,
       genre: 'Gaming',
       keywords: `${slot.name}, слот, геймплей, ${slot.providers?.name || 'Pragmatic Play'}, онлайн казино`,
-      creator: {
-        '@type': 'Organization',
-        name: slot.providers?.name || 'Pragmatic Play'
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'SlotQuest',
-        url: 'https://slotquest.com'
-      },
-      copyrightHolder: {
-        '@type': 'Organization',
-        name: slot.providers?.name || 'Pragmatic Play'
-      },
+      creator: providerOrganization,
+      publisher: organizationSlotQuest,
+      copyrightHolder: providerOrganization,
       license: 'https://creativecommons.org/licenses/by-nc/4.0/',
       isAccessibleForFree: true,
       isFamilyFriendly: false,
@@ -7374,26 +6957,8 @@ const getStructuredData = (slot) => {
       height: 600,
       caption: `${slot.name} - обзор слота`
     },
-    author: {
-      '@type': 'Organization',
-      name: 'SlotQuest Editorial Team',
-      url: 'https://slotquest.com/about',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://slotquest.com/logo.png'
-      }
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'SlotQuest',
-      url: 'https://slotquest.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://slotquest.com/logo.png',
-        width: 200,
-        height: 60
-      }
-    },
+    author: organizationSlotQuest,
+    publisher: organizationSlotQuest,
     datePublished: slot.release_date || '2021-02-13',
     dateModified: slot.updated_at || new Date().toISOString().split('T')[0],
     inLanguage: 'ru-RU',
@@ -7441,10 +7006,7 @@ const getStructuredData = (slot) => {
         ratingValue: slot.schema_global_rating || slot.rating || '4.8',
         bestRating: '5'
       },
-      author: {
-        '@type': 'Organization',
-        name: 'SlotQuest Editorial Team'
-      },
+      author: organizationSlotQuest,
       reviewBody: slot.schema_popularity_description || `${slot.name} занимает ${slot.schema_ranking_position || 'топовые'} позиции в рейтинге популярности благодаря своим уникальным особенностям и высокому качеству игрового процесса.`
     },
     isPartOf: {
