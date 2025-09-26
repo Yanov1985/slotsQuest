@@ -5115,6 +5115,7 @@ watchEffect(() => {
     useHead({
       title: slot.value.seo_title || `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги | SlotQuest`,
       meta: [
+        // Основные SEO мета-теги
         {
           name: 'description',
           content: slot.value.seo_description || `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}. Рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
@@ -5124,48 +5125,20 @@ watchEffect(() => {
           content: slot.value.seo_keywords || `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.value.rtp || '96'}%, ${slot.value.volatility || 'средняя'} волатильность, ${slot.value.category?.name || 'слоты'}, игра на деньги, бонусы, фриспины, SlotQuest`,
         },
         {
-          name: 'classification',
-          content: 'Gaming, Entertainment, Online Casino',
-        },
-        {
-          name: 'subject',
-          content: `${slot.value.name} - Игровой автомат онлайн`,
-        },
-        {
-          name: 'rating',
-          content: 'General',
-        },
-        {
-          name: 'distribution',
-          content: 'Global',
-        },
-        {
           name: 'author',
-          content: slot.value.author_meta || 'SlotQuest Editorial Team',
+          content: 'SlotQuest Editorial Team',
         },
         {
           name: 'robots',
-          content: slot.value.robots_meta || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-        },
-        {
-          name: 'googlebot',
-          content: slot.value.robots_meta || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
         },
         {
           name: 'theme-color',
-          content: slot.value.theme_color_meta || '#1a1a2e',
+          content: '#1a1a2e',
         },
         {
           name: 'viewport',
-          content: slot.value.viewport_meta || 'width=device-width, initial-scale=1',
-        },
-        {
-          name: 'generator',
-          content: slot.value.generator_meta || 'Nuxt.js',
-        },
-        {
-          name: 'copyright',
-          content: slot.value.copyright_meta || '© 2025 SlotQuest. Все права защищены.',
+          content: 'width=device-width, initial-scale=1',
         },
         // Open Graph
         {
@@ -5195,19 +5168,6 @@ watchEffect(() => {
         { property: 'og:image:height', content: '630' },
         { property: 'og:image:type', content: 'image/jpeg' },
         {
-          property: 'og:image:secure_url',
-          content: slot.value.og_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
-        },
-        // Дополнительные изображения для карусели в социальных сетях
-        {
-          property: 'og:image',
-          content: slot.value.screenshot_url || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}-screenshot.jpg`,
-        },
-        {
-          property: 'og:image:alt',
-          content: `${slot.value.name || 'Слот'} - игровой процесс и интерфейс`,
-        },
-        {
           property: 'article:published_time',
           content: slot.value.release_date || '2021-02-13',
         },
@@ -5228,54 +5188,21 @@ watchEffect(() => {
           content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат`,
         },
         // Twitter
-        { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
-        { name: 'twitter:site', content: slot.value.twitter_site || '@SlotQuest' },
-        { name: 'twitter:creator', content: slot.value.twitter_creator || '@SlotQuest' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@SlotQuest' },
         {
           name: 'twitter:title',
-          content: slot.value.twitter_title || `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
+          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
         },
         {
           name: 'twitter:description',
-          content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
-          content: slot.value.twitter_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
+          content: slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
         },
-        {
-          name: 'twitter:image:alt',
-          content: slot.value.twitter_image_alt || `${slot.value.name || 'Слот'} - скриншот игрового автомата от ${slot.value.providers?.name || 'провайдера'}`,
-        },
-        {
-          name: 'twitter:image:width',
-          content: '1200',
-        },
-        {
-          name: 'twitter:image:height',
-          content: '630',
-        },
-        // Game Action meta tags
-        {
-          name: 'game:demo_url',
-          content: slot.value.demo_url || '',
-        },
-        {
-          name: 'game:real_play_url',
-          content: slot.value.real_play_url || '',
-        },
-        {
-          name: 'game:play_mode',
-          content: 'demo,real',
-        },
-        {
-          name: 'game:platform',
-          content: 'web,mobile,desktop',
-        },
-        {
-          name: 'game:category',
-          content: 'slot,casino',
-        },
+        // Игровые мета-теги
         {
           name: 'game:provider',
           content: slot.value.providers?.name || 'провайдер',
@@ -5293,416 +5220,15 @@ watchEffect(() => {
           content: slot.value.max_win || '1000x',
         },
         {
-          name: 'game:min_bet',
-          content: slot.value.min_bet || '0.01',
-        },
-        {
-          name: 'game:max_bet',
-          content: slot.value.max_bet || '100',
-        },
-        // Social Actions meta tags
-        {
-          property: 'og:see_also',
-          content: slot.value.demo_url || '',
-        },
-        {
-          property: 'og:video',
-          content: slot.value.video_url || '',
-        },
-        {
-          property: 'og:video:type',
-          content: 'video/mp4',
-        },
-        {
-          property: 'og:video:width',
-          content: '1280',
-        },
-        {
-          property: 'og:video:height',
-          content: '720',
-        },
-        // Twitter Actions
-        {
-          name: 'twitter:app:name:iphone',
-          content: 'SlotQuest',
-        },
-        {
-          name: 'twitter:app:name:ipad',
-          content: 'SlotQuest',
-        },
-        {
-          name: 'twitter:app:name:googleplay',
-          content: 'SlotQuest',
-        },
-        {
-          name: 'twitter:player',
-          content: slot.value.demo_url || '',
-        },
-        {
-          name: 'twitter:player:width',
-          content: '1280',
-        },
-        {
-          name: 'twitter:player:height',
-          content: '720',
-        },
-
-        // Gaming Platform Meta Tags
-        {
-          name: 'game:platform',
-          content: 'Web Browser, Mobile, Desktop',
-        },
-        {
-          name: 'game:engine',
-          content: slot.value?.providers?.name || 'HTML5',
-        },
-        {
           name: 'game:category',
-          content: 'Casino Slot Game',
-        },
-        {
-          name: 'game:genre',
-          content: 'Gambling, Entertainment',
+          content: 'slot,casino',
         },
         {
           name: 'game:rating',
           content: '18+',
         },
-        {
-          name: 'game:developer',
-          content: slot.value?.providers?.name || 'Pragmatic Play',
-        },
-        {
-          name: 'game:publisher',
-          content: 'SlotQuest',
-        },
-        {
-          name: 'game:release_date',
-          content: slot.value?.release_date || '2021-02-13',
-        },
-        {
-          name: 'game:version',
-          content: slot.value?.version || '1.0',
-        },
-        {
-          name: 'game:language',
-          content: 'ru-RU, en-US',
-        },
-        {
-          name: 'game:mode',
-          content: 'Single Player',
-        },
-        {
-          name: 'game:controls',
-          content: 'Touch, Mouse, Keyboard',
-        },
-        {
-          name: 'game:requirements',
-          content: 'HTML5 Browser, JavaScript Enabled',
-        },
 
-        // Mobile App Meta Tags
-        {
-          name: 'mobile-web-app-capable',
-          content: 'yes',
-        },
-        {
-          name: 'mobile-web-app-status-bar-style',
-          content: 'black-translucent',
-        },
-        {
-          name: 'mobile-web-app-title',
-          content: `${slot.value?.name || 'Слот'} - SlotQuest`,
-        },
-        {
-          name: 'apple-mobile-web-app-capable',
-          content: 'yes',
-        },
-        {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
-        },
-        {
-          name: 'apple-mobile-web-app-title',
-          content: `${slot.value?.name || 'Слот'} - SlotQuest`,
-        },
-        {
-          name: 'apple-touch-fullscreen',
-          content: 'yes',
-        },
-        {
-          name: 'format-detection',
-          content: 'telephone=no',
-        },
-        {
-          name: 'msapplication-tap-highlight',
-          content: 'no',
-        },
-        {
-          name: 'msapplication-TileColor',
-          content: '#1a1a2e',
-        },
-        {
-          name: 'theme-color',
-          content: '#1a1a2e',
-        },
 
-        // Progressive Web App Meta Tags
-        {
-          name: 'msapplication-tooltip',
-          content: `Играть в ${slot.value?.name || 'слот'} онлайн`,
-        },
-        {
-          name: 'msapplication-starturl',
-          content: `https://slotquest.com/slots/${slot.value?.slug || slug}`,
-        },
-        {
-          name: 'msapplication-window',
-          content: 'width=1024;height=768',
-        },
-
-        // Platform Specific Meta Tags
-        {
-          name: 'google-play-app',
-          content: 'app-id=com.slotquest.app',
-        },
-        {
-          name: 'apple-itunes-app',
-          content: `app-id=123456789, app-argument=slotquest://slots/${slot.value?.slug || slug}`,
-        },
-        {
-          name: 'microsoft-store-app',
-          content: 'app-id=9NBLGGH4MSV6',
-        },
-
-        // Gaming SEO Meta Tags
-        {
-          name: 'game:min_bet',
-          content: slot.value?.min_bet || '0.20',
-        },
-        {
-          name: 'game:max_bet',
-          content: slot.value?.max_bet || '100',
-        },
-        {
-          name: 'game:max_win',
-          content: slot.value?.max_win || '5000',
-        },
-        {
-          name: 'game:rtp',
-          content: slot.value?.rtp || '96.5',
-        },
-        {
-          name: 'game:volatility',
-          content: slot.value?.volatility || 'High',
-        },
-        {
-          name: 'game:reels',
-          content: slot.value?.reels || '6',
-        },
-        {
-          name: 'game:paylines',
-          content: slot.value?.paylines || 'Scatter Pays',
-        },
-        {
-          name: 'game:theme',
-          content: slot.value?.theme || 'Ancient Greece',
-        },
-        {
-          name: 'game:features',
-          content: 'Free Spins, Multipliers, Wild, Scatter, Bonus Game',
-        },
-        {
-          name: 'game:demo_available',
-          content: slot.value?.demo_url ? 'true' : 'false',
-        },
-        {
-          name: 'game:real_play_available',
-          content: 'true',
-        },
-        {
-          name: 'game:mobile_optimized',
-          content: 'true',
-        },
-        {
-          name: 'game:html5',
-          content: 'true',
-        },
-        {
-          name: 'game:no_download',
-          content: 'true',
-        },
-        {
-          name: 'game:instant_play',
-          content: 'true',
-        },
-
-        // Additional SEO meta tags
-        {
-          name: 'application-name',
-          content: 'SlotQuest',
-        },
-        // Мета-теги для изображений
-        {
-          name: 'image',
-          content: slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
-        },
-        {
-          name: 'image_src',
-          content: slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
-        },
-        {
-          name: 'thumbnail',
-          content: slot.value.thumbnail_url || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}-thumb.jpg`,
-        },
-        {
-          name: 'apple-mobile-web-app-title',
-          content: 'SlotQuest',
-        },
-        {
-          name: 'msapplication-TileColor',
-          content: '#1a1a2e',
-        },
-
-        // Расширенные игровые метаданные
-        {
-          name: 'game:bonus_features',
-          content: 'Free Spins, Multipliers, Wild Symbols, Scatter Pays, Bonus Buy',
-        },
-        {
-          name: 'game:theme',
-          content: slot.value.theme || 'Ancient Greece Mythology',
-        },
-        {
-          name: 'game:mechanics',
-          content: 'Tumble Feature, Scatter Pays, Random Multipliers',
-        },
-        {
-          name: 'game:bonus_frequency',
-          content: `1/${slot.value.bonus_frequency || '250'}`,
-        },
-        {
-          name: 'game:hit_frequency',
-          content: slot.value.hit_frequency || '22.5%',
-        },
-        {
-          name: 'game:variance',
-          content: slot.value.variance || 'High',
-        },
-        {
-          name: 'game:paylines_type',
-          content: slot.value.paylines_type || 'Scatter Pays',
-        },
-        {
-          name: 'game:autoplay',
-          content: 'true',
-        },
-        {
-          name: 'game:turbo_mode',
-          content: 'true',
-        },
-        {
-          name: 'game:sound_effects',
-          content: 'true',
-        },
-        {
-          name: 'game:animations',
-          content: 'true',
-        },
-        {
-          name: 'game:age_rating',
-          content: '18+',
-        },
-        {
-          name: 'game:license',
-          content: slot.value.license || 'Malta Gaming Authority',
-        },
-        {
-          name: 'game:certification',
-          content: slot.value.certification || 'eCOGRA Certified',
-        },
-        {
-          name: 'game:fairness',
-          content: 'RNG Tested',
-        },
-        {
-          name: 'game:responsible_gaming',
-          content: 'true',
-        },
-
-        // Дополнительные SEO метаданные для лучшей индексации
-        {
-          name: 'news_keywords',
-          content: `${slot.value.name}, новый слот, игровой автомат, ${slot.value.providers?.name || 'провайдер'}, онлайн казино`,
-        },
-        {
-          name: 'standout',
-          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
-        },
-        {
-          name: 'original-source',
-          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
-        },
-        {
-          name: 'syndication-source',
-          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
-        },
-        {
-          name: 'coverage',
-          content: 'Worldwide',
-        },
-        {
-          name: 'target',
-          content: 'all',
-        },
-        {
-          name: 'medium',
-          content: 'mult',
-        },
-        {
-          name: 'audience',
-          content: 'all',
-        },
-        {
-          name: 'pragma',
-          content: 'no-cache',
-        },
-        {
-          name: 'cache-control',
-          content: 'no-cache',
-        },
-        {
-          name: 'expires',
-          content: '0',
-        },
-        {
-          name: 'revisit-after',
-          content: '1 day',
-        },
-        {
-          name: 'distribution',
-          content: 'global',
-        },
-        {
-          name: 'language',
-          content: 'Russian',
-        },
-        {
-          name: 'geo.region',
-          content: 'RU',
-        },
-        {
-          name: 'geo.country',
-          content: 'Russia',
-        },
-        {
-          name: 'ICBM',
-          content: '55.7558, 37.6176',
-        },
-        {
-          name: 'geo.position',
-          content: '55.7558;37.6176',
-        },
       ],
       link: [
         {
