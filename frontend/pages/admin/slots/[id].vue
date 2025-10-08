@@ -5785,22 +5785,114 @@
                           </div>
                         </div>
 
-                        <!-- SEO Keywords -->
-                        <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
+                        <!-- SEO Keywords - РАСШИРЕННАЯ СИСТЕМА -->
+                        <div class="space-y-4">
+                          <h4
+                            class="text-md font-medium text-[#E5E7EB] border-b border-[#353A4A] pb-2"
                           >
-                            Ключевые слова
-                          </label>
-                          <input
-                            v-model="form.seo_keywords"
-                            type="text"
-                            placeholder="игровой автомат, слот, онлайн казино, бесплатно, [название слота], [провайдер]"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF]">
-                            Разделяйте ключевые слова запятыми
-                          </p>
+                            🎯 Система ключевых слов (для уникальности каждого
+                            слота)
+                          </h4>
+
+                          <!-- 1. Основные ключевые слова (Primary) -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              1️⃣ Основные ключевые слова (Primary)
+                              <span class="text-[#10B981] ml-1">3-5 слов</span>
+                            </label>
+                            <input
+                              v-model="form.seo_keywords_primary"
+                              type="text"
+                              placeholder="Gates of Olympus, Pragmatic Play slot, Greek mythology slots"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                            />
+                            <p class="text-xs text-[#9CA3AF]">
+                              🔑 Главные термины, по которым ищут ваш слот
+                              (через запятую)
+                            </p>
+                          </div>
+
+                          <!-- 2. LSI ключевые слова (Semantic) -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              2️⃣ LSI-ключевые слова (Semantic)
+                              <span class="text-[#3B82F6] ml-1"
+                                >10-15 связанных терминов</span
+                              >
+                            </label>
+                            <textarea
+                              v-model="form.seo_keywords_lsi"
+                              rows="3"
+                              placeholder="Zeus symbols, free spins multipliers, cascade wins, volatility high, RTP 96.5%, scatter pays mechanism, tumble feature, bonus buy option, greek gods theme, ancient greece slots"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
+                            ></textarea>
+                            <p class="text-xs text-[#9CA3AF]">
+                              🔗 Связанные термины, которые Google ассоциирует с
+                              вашим слотом
+                            </p>
+                          </div>
+
+                          <!-- 3. Локальные ключевые слова (Geo-targeted) -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              3️⃣ Локальные ключевые слова (для ГЕО-таргетинга)
+                              <span class="text-[#F59E0B] ml-1"
+                                >для разных стран</span
+                              >
+                            </label>
+                            <textarea
+                              v-model="form.seo_keywords_geo"
+                              rows="4"
+                              placeholder="🇷🇺: игровой автомат Врата Олимпа, бесплатные вращения, слот с выводом&#10;🇮🇳: Gates of Olympus online, free play demo, real money casino&#10;🇧🇷: Gates of Olympus grátis, jogo de cassino online&#10;🇹🇷: Gates of Olympus ücretsiz, çevrimiçi slot oyunu"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm"
+                            ></textarea>
+                            <p class="text-xs text-[#9CA3AF]">
+                              🌍 Ключевые слова на языках целевых стран (формат:
+                              флаг+код страны: термины)
+                            </p>
+                          </div>
+
+                          <!-- 4. Long-tail ключевые слова -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              4️⃣ Long-tail фразы (конкретные запросы)
+                              <span class="text-[#EC4899] ml-1">5-10 фраз</span>
+                            </label>
+                            <textarea
+                              v-model="form.seo_keywords_longtail"
+                              rows="3"
+                              placeholder="how to win Gates of Olympus, best strategy for high volatility slots, Gates of Olympus bonus buy worth it, maximum win Gates of Olympus, Gates of Olympus free spins trigger"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
+                            ></textarea>
+                            <p class="text-xs text-[#9CA3AF]">
+                              🎯 Длинные целевые фразы, по которым ищут
+                              конкретную информацию
+                            </p>
+                          </div>
+
+                          <!-- Старое поле для обратной совместимости -->
+                          <div class="space-y-2 opacity-50">
+                            <label
+                              class="block text-sm font-medium text-[#9CA3AF]"
+                            >
+                              Старое поле (для совместимости)
+                            </label>
+                            <input
+                              v-model="form.seo_keywords"
+                              type="text"
+                              placeholder="Автоматически генерируется из новых полей выше"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#9CA3AF] placeholder-[#6B7280] focus:outline-none transition-all duration-200"
+                              readonly
+                            />
+                          </div>
                         </div>
 
                         <!-- Canonical URL -->
@@ -5818,6 +5910,61 @@
                           />
                           <p class="text-xs text-[#9CA3AF]">
                             Оставьте пустым для автоматической генерации
+                          </p>
+                        </div>
+
+                        <!-- 🎬 Видео геймплея (для VideoObject Schema) -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            🎬 Видео геймплея (Video URL)
+                          </label>
+                          <input
+                            v-model="form.video_url"
+                            type="url"
+                            placeholder="https://youtube.com/watch?v=..."
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            🎥 Ссылка на видео обзор/геймплей (улучшает SEO с
+                            VideoObject Schema)
+                          </p>
+                        </div>
+
+                        <!-- ⏱️ Длительность видео -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            ⏱️ Длительность видео (ISO 8601)
+                          </label>
+                          <input
+                            v-model="form.video_duration"
+                            type="text"
+                            placeholder="PT3M (3 минуты)"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            Формат: PT3M (3 мин), PT5M30S (5 мин 30 сек)
+                          </p>
+                        </div>
+
+                        <!-- 🌐 Альтернативные названия слота -->
+                        <div class="space-y-2">
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB]"
+                          >
+                            🌐 Альтернативные названия (для разных рынков)
+                          </label>
+                          <input
+                            v-model="form.alternative_names"
+                            type="text"
+                            placeholder="Gates of Olympus, Врата Олимпа, Portões do Olimpo"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            📝 Названия слота на разных языках (через запятую)
                           </p>
                         </div>
                       </div>
@@ -6376,7 +6523,7 @@
                           </div>
                         </div>
 
-                        <!-- Целевые локации -->
+                        <!-- Целевые локации и Многоязычность -->
                         <div
                           class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
                         >
@@ -6396,25 +6543,77 @@
                                 d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                               ></path>
                             </svg>
-                            Целевые локации
+                            Целевые локации и языки (hreflang)
                           </h4>
-                          <div class="space-y-3">
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB]"
+                          <div class="space-y-4">
+                            <!-- Целевые локации -->
+                            <div class="space-y-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB]"
+                              >
+                                Страны и регионы для таргетинга
+                              </label>
+                              <textarea
+                                v-model="form.target_locations"
+                                rows="6"
+                                placeholder="🇷🇺 Россия&#10;🇮🇳 Индия&#10;🇧🇷 Бразилия&#10;🇺🇿 Узбекистан&#10;🇦🇿 Азербайджан&#10;🇹🇷 Турция&#10;🇨🇱 Чили&#10;🇦🇷 Аргентина&#10;🇨🇦 Канада&#10;🇨🇴 Колумбия&#10;🇮🇩 Индонезия&#10;🇧🇩 Бангладеш&#10;🇸🇳 Сенегал&#10;🇺🇬 Уганда"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm leading-relaxed"
+                              ></textarea>
+                              <p class="text-xs text-[#9CA3AF]">
+                                Укажите целевые страны и регионы для
+                                геотаргетинга. Каждая страна с новой строки с
+                                флагом и названием.
+                              </p>
+                            </div>
+
+                            <!-- Язык контента (упрощено - только английский для всех ГЕО) -->
+                            <div
+                              class="space-y-2 border-t border-[#353A4A] pt-4"
                             >
-                              Страны и регионы для таргетинга
-                            </label>
-                            <textarea
-                              v-model="form.target_locations"
-                              rows="6"
-                              placeholder="🇷🇺 Россия&#10;🇮🇳 Индия&#10;🇧🇷 Бразилия&#10;🇺🇿 Узбекистан&#10;🇦🇿 Азербайджан&#10;🇹🇷 Турция&#10;🇨🇱 Чили&#10;🇦🇷 Аргентина&#10;🇨🇦 Канада&#10;🇨🇴 Колумбия&#10;🇮🇩 Индонезия&#10;🇧🇩 Бангладеш&#10;🇸🇳 Сенегал&#10;🇺🇬 Уганда"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm leading-relaxed"
-                            ></textarea>
-                            <p class="text-xs text-[#9CA3AF]">
-                              Укажите целевые страны и регионы для
-                              геотаргетинга. Каждая страна с новой строки с
-                              флагом и названием.
-                            </p>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB]"
+                              >
+                                🌐 Язык контента (рекомендуется английский для
+                                международной аудитории)
+                              </label>
+                              <select
+                                v-model="form.content_language"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                              >
+                                <option value="en">
+                                  English (рекомендуется)
+                                </option>
+                                <option value="ru">Русский</option>
+                                <option value="pt">Português</option>
+                                <option value="hi">हिन्दी</option>
+                                <option value="tr">Türkçe</option>
+                                <option value="es">Español</option>
+                                <option value="id">Bahasa Indonesia</option>
+                              </select>
+                              <p class="text-xs text-[#10B981]">
+                                💡 Английский язык + гео-таргетинг = одна
+                                страница для всех стран (без дублирования)
+                              </p>
+                            </div>
+
+                            <!-- Целевые регионы для гео-таргетинга -->
+                            <div class="space-y-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB]"
+                              >
+                                🎯 Целевые регионы (коды стран через запятую)
+                              </label>
+                              <input
+                                v-model="form.geo_target_regions"
+                                type="text"
+                                placeholder="RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 font-mono"
+                              />
+                              <p class="text-xs text-[#9CA3AF]">
+                                🌍 Коды ISO стран (RU=Россия, IN=Индия,
+                                BR=Бразилия и т.д.)
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -8606,8 +8805,26 @@ const form = ref({
   // SEO поля
   seo_title: '',
   seo_description: '',
-  seo_keywords: '',
+  seo_keywords: '', // Старое поле (для совместимости)
+
+  // Новая система ключевых слов (4 типа)
+  seo_keywords_primary: '', // Основные ключевые слова (3-5)
+  seo_keywords_lsi: '', // LSI семантические ключевые слова (10-15)
+  seo_keywords_geo: '', // Локальные ключевые слова для гео-таргетинга
+  seo_keywords_longtail: '', // Long-tail фразы (5-10)
+
   canonical_url: '',
+
+  // Видео и мультимедиа (для VideoObject Schema)
+  video_url: '', // URL видео геймплея
+  video_duration: 'PT3M', // Длительность видео (ISO 8601)
+
+  // Альтернативные названия (для разных рынков)
+  alternative_names: '', // Названия на разных языках
+
+  // Язык и гео-таргетинг (упрощенная система - один язык для всех стран)
+  content_language: 'en', // Основной язык контента (английский - международный)
+  geo_target_regions: 'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD', // Целевые страны (коды ISO)
 
   // Open Graph поля
   og_title: '',
