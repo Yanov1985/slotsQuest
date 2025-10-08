@@ -4055,6 +4055,1517 @@
               </div>
             </div>
 
+            <!-- Секция "Профессиональная оценка" -->
+            <div id="professional-rating-section">
+              <div
+                id="professional-rating"
+                data-section="professional-rating"
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-transparent to-[#8B5CF6]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#3B82F6]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <span class="text-2xl">⚙️</span>
+                      </div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Профессиональная оценка
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] rounded-full mt-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="
+                        showProfessionalRatingSection =
+                          !showProfessionalRatingSection
+                      "
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
+                      :aria-expanded="showProfessionalRatingSection"
+                    >
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showProfessionalRatingSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div v-show="showProfessionalRatingSection" class="space-y-8">
+                    <!-- Заголовки секции -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Заголовки секции
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">
+                              Основной заголовок и подзаголовок
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingTitleSection =
+                              !showProfRatingTitleSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showProfRatingTitleSection"
+                        >
+                          {{
+                            showProfRatingTitleSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingTitleSection"
+                        class="space-y-4"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.prof_rating_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                            placeholder="Профессиональная оценка"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Подзаголовок
+                          </label>
+                          <input
+                            v-model="form.prof_rating_subtitle"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                            placeholder="Детальный анализ от экспертов индустрии 🎯"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Общая оценка -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">⚡</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Общая экспертная оценка
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Общая оценка, описание и звезды
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingOverallSection =
+                              !showProfRatingOverallSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showProfRatingOverallSection"
+                        >
+                          {{
+                            showProfRatingOverallSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingOverallSection"
+                        class="space-y-4"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок
+                          </label>
+                          <input
+                            v-model="form.prof_rating_overall_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Общая экспертная оценка"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Описание
+                          </label>
+                          <textarea
+                            v-model="form.prof_rating_overall_desc"
+                            rows="2"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm resize-none"
+                            placeholder="Превосходный слот с инновационной механикой и высоким потенциалом выигрыша 🏆"
+                          ></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Оценка (из 10)
+                            </label>
+                            <input
+                              v-model="form.prof_rating_overall_score"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="8.5"
+                            />
+                          </div>
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Звезды
+                            </label>
+                            <input
+                              v-model="form.prof_rating_overall_stars"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                              placeholder="⭐⭐⭐⭐☆"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Детальные метрики (5 метрик) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">📊</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Детальные метрики
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              5 критериев оценки
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingMetricsSection =
+                              !showProfRatingMetricsSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showProfRatingMetricsSection"
+                        >
+                          {{
+                            showProfRatingMetricsSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingMetricsSection"
+                        class="space-y-6"
+                      >
+                        <!-- Метрика 1: Графика -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            1. Графика и анимация
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_1_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="🎨"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Название</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_1_name"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Графика и анимация"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Оценка (из 10)</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_1_score"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="9.0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Метрика 2: Геймплей -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            2. Геймплей
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_2_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="🎮"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Название</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_2_name"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Геймплей"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Оценка (из 10)</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_2_score"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="8.0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Метрика 3: Потенциал выигрыша -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            3. Потенциал выигрыша
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_3_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="💎"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Название</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_3_name"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Потенциал выигрыша"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Оценка (из 10)</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_3_score"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="9.0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Метрика 4: Бонусные функции -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            4. Бонусные функции
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_4_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="🎁"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Название</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_4_name"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Бонусные функции"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Оценка (из 10)</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_4_score"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="8.0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Метрика 5: Частота выплат -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            5. Частота выплат
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_5_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="⏰"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Название</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_5_name"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Частота выплат"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Оценка (из 10)</label
+                              >
+                              <input
+                                v-model="form.prof_rating_metric_5_score"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="7.0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Экспертное заключение -->
+                    <div
+                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">💬</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Экспертное заключение
+                            </h3>
+                            <p class="text-sm text-[#8B5CF6]">
+                              Мнение эксперта
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingExpertSection =
+                              !showProfRatingExpertSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showProfRatingExpertSection"
+                        >
+                          {{
+                            showProfRatingExpertSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingExpertSection"
+                        class="space-y-4"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Цитата эксперта
+                          </label>
+                          <textarea
+                            v-model="form.prof_rating_expert_quote"
+                            rows="4"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm resize-none"
+                            placeholder="Gates of Olympus представляет собой революционный подход..."
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Секция "Заключение" -->
+            <div id="conclusion-section">
+              <div
+                id="conclusion"
+                data-section="conclusion"
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 via-transparent to-[#3B82F6]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#10B981] to-[#3B82F6] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <span class="text-2xl">✅</span>
+                      </div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Заключение
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#10B981] to-[#3B82F6] rounded-full mt-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="showConclusionSection = !showConclusionSection"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
+                      :aria-expanded="showConclusionSection"
+                    >
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showConclusionSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div v-show="showConclusionSection" class="space-y-8">
+                    <!-- Заголовок -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#3B82F6]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#3B82F6] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Заголовок
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              Основной заголовок
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showConclusionTitleSection =
+                              !showConclusionTitleSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showConclusionTitleSection"
+                        >
+                          {{
+                            showConclusionTitleSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showConclusionTitleSection"
+                        class="space-y-4"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.conclusion_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="Заключение"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Итоговая оценка (2 абзаца) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">📝</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Итоговая оценка
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">
+                              Два абзаца текста
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showConclusionTextSection =
+                              !showConclusionTextSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showConclusionTextSection"
+                        >
+                          {{
+                            showConclusionTextSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div v-show="showConclusionTextSection" class="space-y-4">
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Абзац 1
+                          </label>
+                          <textarea
+                            v-model="form.conclusion_text_1"
+                            rows="3"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm resize-none"
+                            placeholder="Этот слот заслуженно считается одним из лучших..."
+                          ></textarea>
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Абзац 2
+                          </label>
+                          <textarea
+                            v-model="form.conclusion_text_2"
+                            rows="3"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm resize-none"
+                            placeholder="Революционная система выплат..."
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Кому подходит (4 пункта) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">✅</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Кому подходит
+                            </h3>
+                            <p class="text-sm text-[#10B981]">4 пункта</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showConclusionSuitableSection =
+                              !showConclusionSuitableSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showConclusionSuitableSection"
+                        >
+                          {{
+                            showConclusionSuitableSection
+                              ? 'Скрыть'
+                              : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showConclusionSuitableSection"
+                        class="space-y-3"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 1</label
+                          >
+                          <input
+                            v-model="form.conclusion_suitable_1"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="Опытным игрокам"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 2</label
+                          >
+                          <input
+                            v-model="form.conclusion_suitable_2"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="Любителям высокой волатильности"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 3</label
+                          >
+                          <input
+                            v-model="form.conclusion_suitable_3"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="Игрокам с большим банкроллом"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 4</label
+                          >
+                          <input
+                            v-model="form.conclusion_suitable_4"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="Поклонникам инноваций"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Важно помнить (4 пункта) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">⚠️</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Важно помнить
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">4 пункта</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showConclusionWarningSection =
+                              !showConclusionWarningSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showConclusionWarningSection"
+                        >
+                          {{
+                            showConclusionWarningSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showConclusionWarningSection"
+                        class="space-y-3"
+                      >
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 1</label
+                          >
+                          <input
+                            v-model="form.conclusion_warning_1"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Высокая волатильность"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 2</label
+                          >
+                          <input
+                            v-model="form.conclusion_warning_2"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Нужен большой банкролл"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 3</label
+                          >
+                          <input
+                            v-model="form.conclusion_warning_3"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Играйте ответственно"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >Пункт 4</label
+                          >
+                          <input
+                            v-model="form.conclusion_warning_4"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Устанавливайте лимиты"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Секция "Время побеждать!" -->
+            <div id="cta-section">
+              <div
+                id="cta"
+                data-section="cta"
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/5 via-transparent to-[#EF4444]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#F59E0B]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <span class="text-2xl">⚡</span>
+                      </div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Время побеждать!
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#F59E0B] to-[#EF4444] rounded-full mt-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="showCtaSection = !showCtaSection"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
+                      :aria-expanded="showCtaSection"
+                    >
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showCtaSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div v-show="showCtaSection" class="space-y-8">
+                    <!-- Заголовки -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center"
+                          >
+                            <svg
+                              class="w-6 h-6 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                              ></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Заголовки
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Заголовок, подзаголовок и потенциал
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showCtaTitleSection = !showCtaTitleSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showCtaTitleSection"
+                        >
+                          {{ showCtaTitleSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showCtaTitleSection" class="space-y-4">
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Главный заголовок
+                          </label>
+                          <input
+                            v-model="form.cta_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Время побеждать!"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Подзаголовок
+                          </label>
+                          <input
+                            v-model="form.cta_subtitle"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Окунитесь в легендарный мир этого слота"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Потенциал выигрыша
+                          </label>
+                          <input
+                            v-model="form.cta_potential"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="x5,000"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Карточки преимуществ (3 карточки) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">🎁</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Карточки преимуществ
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">3 карточки</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showCtaFeaturesSection = !showCtaFeaturesSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showCtaFeaturesSection"
+                        >
+                          {{ showCtaFeaturesSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showCtaFeaturesSection" class="space-y-6">
+                        <!-- Карточка 1 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            Карточка 1
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.cta_feature_1_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="🎰"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Заголовок</label
+                              >
+                              <input
+                                v-model="form.cta_feature_1_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Демо режим"
+                              />
+                            </div>
+                            <div class="lg:col-span-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Описание</label
+                              >
+                              <input
+                                v-model="form.cta_feature_1_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Изучите все механики игры совершенно бесплатно"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Карточка 2 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            Карточка 2
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.cta_feature_2_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="💰"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Заголовок</label
+                              >
+                              <input
+                                v-model="form.cta_feature_2_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Реальные деньги"
+                              />
+                            </div>
+                            <div class="lg:col-span-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Описание</label
+                              >
+                              <input
+                                v-model="form.cta_feature_2_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Играйте на деньги в лучших онлайн казино"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Карточка 3 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            Карточка 3
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.cta_feature_3_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="🎁"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Заголовок</label
+                              >
+                              <input
+                                v-model="form.cta_feature_3_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Эксклюзивные бонусы"
+                              />
+                            </div>
+                            <div class="lg:col-span-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Описание</label
+                              >
+                              <input
+                                v-model="form.cta_feature_3_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                                placeholder="Получите дополнительные средства для игры"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Кнопки действий (2 кнопки) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">🎮</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Кнопки действий
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              2 кнопки призыва к действию
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showCtaButtonsSection = !showCtaButtonsSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showCtaButtonsSection"
+                        >
+                          {{ showCtaButtonsSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showCtaButtonsSection" class="space-y-6">
+                        <!-- Кнопка 1: Демо -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            Кнопка "Играть демо"
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.cta_button_demo_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="🎮"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Текст кнопки</label
+                              >
+                              <input
+                                v-model="form.cta_button_demo_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Играть демо"
+                              />
+                            </div>
+                            <div class="lg:col-span-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Ссылка на демо</label
+                              >
+                              <input
+                                v-model="form.cta_button_demo_url"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="/slots/gates-of-olympus/demo"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Кнопка 2: На деньги -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
+                            Кнопка "Играть на деньги"
+                          </h4>
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Emoji</label
+                              >
+                              <input
+                                v-model="form.cta_button_real_emoji"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="💎"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Текст кнопки</label
+                              >
+                              <input
+                                v-model="form.cta_button_real_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="Играть на деньги"
+                              />
+                            </div>
+                            <div class="lg:col-span-2">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Ссылка на реальную игру</label
+                              >
+                              <input
+                                v-model="form.cta_button_real_url"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                                placeholder="/casinos/best-for-gates-of-olympus"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Индикаторы доверия (3 индикатора) -->
+                    <div
+                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">✅</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Индикаторы доверия
+                            </h3>
+                            <p class="text-sm text-[#8B5CF6]">
+                              3 индикатора безопасности
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showCtaTrustSection = !showCtaTrustSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showCtaTrustSection"
+                        >
+                          {{ showCtaTrustSection ? 'Скрыть' : 'Показать' }}
+                        </button>
+                      </div>
+                      <div v-show="showCtaTrustSection" class="space-y-4">
+                        <!-- Индикатор 1 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
+                            Индикатор 1
+                          </h4>
+                          <div class="grid grid-cols-1 gap-3">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Текст</label
+                              >
+                              <input
+                                v-model="form.cta_trust_1_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Лицензированные операторы"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Индикатор 2 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
+                            Индикатор 2
+                          </h4>
+                          <div class="grid grid-cols-1 gap-3">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Текст</label
+                              >
+                              <input
+                                v-model="form.cta_trust_2_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Безопасность SSL"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Индикатор 3 -->
+                        <div
+                          class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
+                        >
+                          <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
+                            Индикатор 3
+                          </h4>
+                          <div class="grid grid-cols-1 gap-3">
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                                >Текст</label
+                              >
+                              <input
+                                v-model="form.cta_trust_3_text"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Поддержка 24/7"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Кнопки сохранения -->
             <div class="mt-8">
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
@@ -6607,6 +8118,27 @@ const showReviewsDistributionSection = ref(false)
 const showReviewsSentimentsSection = ref(false)
 const showReviewsItemsSection = ref(false)
 
+// Состояние для секции "Профессиональная оценка"
+const showProfessionalRatingSection = ref(false)
+const showProfRatingTitleSection = ref(false)
+const showProfRatingOverallSection = ref(false)
+const showProfRatingMetricsSection = ref(false)
+const showProfRatingExpertSection = ref(false)
+
+// Состояние для секции "Заключение"
+const showConclusionSection = ref(false)
+const showConclusionTitleSection = ref(false)
+const showConclusionTextSection = ref(false)
+const showConclusionSuitableSection = ref(false)
+const showConclusionWarningSection = ref(false)
+
+// Состояние для секции "Время побеждать!" (CTA)
+const showCtaSection = ref(false)
+const showCtaTitleSection = ref(false)
+const showCtaFeaturesSection = ref(false)
+const showCtaButtonsSection = ref(false)
+const showCtaTrustSection = ref(false)
+
 // Состояние для SEO секции
 const showSeoSection = ref(false)
 const showMetaSection = ref(false)
@@ -6974,6 +8506,102 @@ const form = ref({
   review_3_likes: '93 лайка',
   review_3_replies: '25 ответов',
   review_3_date: '3 дня назад',
+
+  // === Секция "Профессиональная оценка" ===
+  // Заголовки
+  prof_rating_title: 'Профессиональная оценка',
+  prof_rating_subtitle: 'Детальный анализ от экспертов индустрии 🎯',
+
+  // Общая оценка
+  prof_rating_overall_title: 'Общая экспертная оценка',
+  prof_rating_overall_desc:
+    'Превосходный слот с инновационной механикой и высоким потенциалом выигрыша 🏆',
+  prof_rating_overall_score: '8.5',
+  prof_rating_overall_stars: '⭐⭐⭐⭐☆',
+
+  // Метрика 1: Графика
+  prof_rating_metric_1_emoji: '🎨',
+  prof_rating_metric_1_name: 'Графика и анимация',
+  prof_rating_metric_1_score: '9.0',
+
+  // Метрика 2: Геймплей
+  prof_rating_metric_2_emoji: '🎮',
+  prof_rating_metric_2_name: 'Геймплей',
+  prof_rating_metric_2_score: '8.0',
+
+  // Метрика 3: Потенциал выигрыша
+  prof_rating_metric_3_emoji: '💎',
+  prof_rating_metric_3_name: 'Потенциал выигрыша',
+  prof_rating_metric_3_score: '9.0',
+
+  // Метрика 4: Бонусные функции
+  prof_rating_metric_4_emoji: '🎁',
+  prof_rating_metric_4_name: 'Бонусные функции',
+  prof_rating_metric_4_score: '8.0',
+
+  // Метрика 5: Частота выплат
+  prof_rating_metric_5_emoji: '⏰',
+  prof_rating_metric_5_name: 'Частота выплат',
+  prof_rating_metric_5_score: '7.0',
+
+  // Экспертное заключение
+  prof_rating_expert_quote:
+    'Gates of Olympus представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯',
+
+  // === Секция "Заключение" ===
+  conclusion_title: 'Заключение',
+
+  // Итоговая оценка
+  conclusion_text_1:
+    'Этот слот заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.',
+  conclusion_text_2:
+    'Революционная система выплат, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана, открывает новые горизонты в мире видеослотов. Каскадные выигрыши и множители создают уникальную атмосферу постоянного ожидания больших выплат.',
+
+  // Кому подходит (4 пункта)
+  conclusion_suitable_1: 'Опытным игрокам',
+  conclusion_suitable_2: 'Любителям высокой волатильности',
+  conclusion_suitable_3: 'Игрокам с большим банкроллом',
+  conclusion_suitable_4: 'Поклонникам инноваций',
+
+  // Важно помнить (4 пункта)
+  conclusion_warning_1: 'Высокая волатильность',
+  conclusion_warning_2: 'Нужен большой банкролл',
+  conclusion_warning_3: 'Играйте ответственно',
+  conclusion_warning_4: 'Устанавливайте лимиты',
+
+  // === Секция "Время побеждать!" ===
+  // Заголовки
+  cta_title: 'Время побеждать!',
+  cta_subtitle: 'Окунитесь в легендарный мир этого слота',
+  cta_potential: 'x5,000',
+
+  // Карточка 1
+  cta_feature_1_emoji: '🎰',
+  cta_feature_1_title: 'Демо режим',
+  cta_feature_1_desc: 'Изучите все механики игры совершенно бесплатно',
+
+  // Карточка 2
+  cta_feature_2_emoji: '💰',
+  cta_feature_2_title: 'Реальные деньги',
+  cta_feature_2_desc: 'Играйте на деньги в лучших онлайн казино',
+
+  // Карточка 3
+  cta_feature_3_emoji: '🎁',
+  cta_feature_3_title: 'Эксклюзивные бонусы',
+  cta_feature_3_desc: 'Получите дополнительные средства для игры',
+
+  // Кнопки действий
+  cta_button_demo_emoji: '🎮',
+  cta_button_demo_text: 'Играть демо',
+  cta_button_demo_url: '/slots/gates-of-olympus/demo',
+  cta_button_real_emoji: '💎',
+  cta_button_real_text: 'Играть на деньги',
+  cta_button_real_url: '/casinos/best-for-gates-of-olympus',
+
+  // Индикаторы доверия
+  cta_trust_1_text: 'Лицензированные операторы',
+  cta_trust_2_text: 'Безопасность SSL',
+  cta_trust_3_text: 'Поддержка 24/7',
 
   // SEO поля
   seo_title: '',
