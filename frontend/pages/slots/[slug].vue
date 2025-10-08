@@ -25,21 +25,21 @@
                 d="M15 19l-7-7 7-7"
               ></path>
             </svg>
-            Назад к каталогу слотов
+            Back to Slots Catalog
           </NuxtLink>
 
           <!-- Хлебные крошки -->
           <div class="hidden md:flex items-center text-sm text-gray-500">
             <NuxtLink to="/" class="hover:text-blue-600 transition-colors"
-              >Главная</NuxtLink
+              >Home</NuxtLink
             >
             <span class="mx-2">/</span>
             <NuxtLink to="/slots" class="hover:text-blue-600 transition-colors"
-              >Слоты</NuxtLink
+              >Slots</NuxtLink
             >
             <span class="mx-2">/</span>
             <span class="text-gray-800 font-medium" v-if="slot">{{
-              slot.name || 'Слот'
+              slot.name || 'Slot'
             }}</span>
           </div>
         </div>
@@ -52,7 +52,7 @@
         <div
           class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent"
         ></div>
-        <p class="mt-6 text-xl text-gray-600">Загрузка слота...</p>
+        <p class="mt-6 text-xl text-gray-600">Loading slot game...</p>
       </div>
     </div>
 
@@ -76,14 +76,14 @@
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
             ></path>
           </svg>
-          <h2 class="text-3xl font-bold mb-4 text-gray-800">Слот не найден</h2>
+          <h2 class="text-3xl font-bold mb-4 text-gray-800">Slot Not Found</h2>
           <p class="text-gray-600 mb-6">{{ error }}</p>
         </div>
         <NuxtLink
           to="/slots"
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl transition-colors font-semibold"
         >
-          Перейти к каталогу
+          Go to Catalog
         </NuxtLink>
       </div>
     </div>
@@ -148,9 +148,9 @@
               role="article"
               aria-labelledby="slot-title"
             >
-              <!-- Заголовок и основная информация -->
+              <!-- Title and main information -->
               <header class="mb-8" role="banner">
-                <!-- Провайдер (мобильная версия) -->
+                <!-- Provider (mobile version) -->
                 <section
                   class="flex items-center gap-3 mb-6 flex-wrap lg:hidden"
                   aria-labelledby="provider-label"
@@ -178,7 +178,7 @@
                   tabindex="0"
                   role="heading"
                   aria-level="1"
-                  aria-label="Название игрового автомата"
+                  aria-label="Название slot machine"
                 >
                   <span>{{ slot.name || 'Слот' }}</span>
                   <span
@@ -195,7 +195,7 @@
                   </span>
                 </h1>
 
-                <!-- Описание слота (мобильная версия) -->
+                <!-- Slot description (mobile version) -->
                 <section
                   class="lg:hidden mb-6"
                   role="region"
@@ -205,7 +205,7 @@
                     id="slot-description"
                     class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl space-y-2"
                     role="text"
-                    aria-label="Подробное описание игрового автомата с характеристиками"
+                    aria-label="Подробное описание slot machine с характеристиками"
                   >
                     <!-- Основное SEO-описание -->
                     <p class="font-medium">
@@ -227,31 +227,29 @@
                       </span>
                       <span v-if="slot.volatility" class="inline-block mr-4">
                         <span class="font-medium text-white/80"
-                          >Волатильность:</span
+                          >Volatility:</span
                         >
                         <span class="text-blue-400">{{ slot.volatility }}</span>
                       </span>
                       <span v-if="slot.min_bet" class="inline-block">
-                        <span class="font-medium text-white/80"
-                          >Мин. ставка:</span
-                        >
+                        <span class="font-medium text-white/80">Min Bet:</span>
                         <span class="text-yellow-400">{{ slot.min_bet }}</span>
                       </span>
                     </p>
                   </div>
                 </section>
 
-                <!-- Рейтинг и голосование (мобильная версия) -->
+                <!-- Rating and voting (mobile version) -->
                 <div
                   class="flex flex-wrap items-center gap-6 mb-8 lg:hidden"
                   role="group"
-                  aria-label="Рейтинг и голосование"
+                  aria-label="Rating and voting"
                 >
-                  <!-- Текущий рейтинг -->
+                  <!-- Current rating -->
                   <div class="flex items-center gap-2">
                     <div
                       class="flex text-yellow-400"
-                      aria-label="Рейтинг 4.8 из 5 звезд"
+                      aria-label="Rating 4.8 out of 5 stars"
                     >
                       <svg
                         v-for="n in 5"
@@ -271,7 +269,7 @@
                     <span class="text-white/60">/ 5</span>
                   </div>
 
-                  <!-- Кнопка голосования -->
+                  <!-- Vote button -->
                   <button
                     class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
                     @click="toggleRatingPicker"
@@ -279,17 +277,17 @@
                     aria-controls="rating-picker"
                     type="button"
                   >
-                    Голосовать!
+                    Vote!
                   </button>
                 </div>
 
-                <!-- Панель голосования (мобильная версия) -->
+                <!-- Voting panel (mobile version) -->
                 <div
                   v-if="showRatingPicker"
                   id="rating-picker"
                   class="mt-3 p-4 bg-white/10 border border-white/20 rounded-xl lg:hidden"
                   role="dialog"
-                  aria-label="Панель оценки слота"
+                  aria-label="Slot rating panel"
                 >
                   <div
                     class="flex items-center justify-between gap-4 flex-wrap"
@@ -297,7 +295,7 @@
                     <div
                       class="flex items-center gap-3"
                       role="radiogroup"
-                      aria-label="Выберите оценку от 0 до 5 звезд"
+                      aria-label="Choose rating from 0 до 5 stars"
                     >
                       <button
                         class="px-3 py-1 rounded-full text-sm font-semibold bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -310,7 +308,7 @@
                         @click="pickRating(0)"
                         role="radio"
                         :aria-checked="selectedStars === 0"
-                        aria-label="0 звезд"
+                        aria-label="0 stars"
                         type="button"
                       >
                         0
@@ -331,7 +329,7 @@
                           @click="pickRating(n)"
                           role="radio"
                           :aria-checked="selectedStars === n"
-                          :aria-label="`${n} звезд${n === 1 ? 'а' : n < 5 ? 'ы' : ''}`"
+                          :aria-label="`${n} stars${n === 1 ? 'а' : n < 5 ? 'ы' : ''}`"
                           type="button"
                         >
                           <svg
@@ -388,9 +386,9 @@
                     <div
                       class="absolute inset-0"
                       role="img"
-                      :aria-label="`Превью игры ${slot.name || 'слот'}`"
+                      :aria-label="`Game preview ${slot.name || 'slot'}`"
                     >
-                      <!-- Изображение слота (desktop) -->
+                      <!-- Изображение slotа (desktop) -->
 
                       <!-- Внутренние градиенты поверх медиаконтента -->
                       <div
@@ -409,7 +407,7 @@
                       >
                         <img
                           :src="slot.image_url"
-                          :alt="`Изображение слота ${slot.name}`"
+                          :alt="`Изображение slotа ${slot.name}`"
                           class="w-full h-full object-cover"
                           loading="eager"
                           decoding="async"
@@ -450,7 +448,7 @@
                         v-if="!slot.image_url && !slot.video_url"
                         class="flex items-center justify-center h-full text-white/70 bg-black/30"
                       >
-                        <span>Изображение слота</span>
+                        <span>Изображение slotа</span>
                       </div>
                     </div>
                   </CometCard>
@@ -458,7 +456,7 @@
 
                 <!-- Правая колонка: провайдер, h1, рейтинг, описание, CTA (desktop) -->
                 <section class="flex-1 min-w-0">
-                  <!-- Провайдер (десктоп) - SEO оптимизированный -->
+                  <!-- Provider (desktop) - SEO оптимизированный -->
                   <section
                     class="flex items-center gap-3 mb-6 flex-wrap"
                     aria-labelledby="provider-label-desktop"
@@ -478,7 +476,7 @@
                     </address>
                   </section>
 
-                  <!-- Главный заголовок (десктоп) -->
+                  <!-- Главный заголовок (desktop) -->
                   <h1
                     class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500"
                     style="line-height: 1.3"
@@ -506,21 +504,21 @@
                     {{ slot.name || 'Слот' }}
                   </h1>
 
-                  <!-- Рейтинг и голосование (десктоп) -->
+                  <!-- Rating and voting (desktop) -->
                   <section
                     class="flex flex-wrap items-center gap-6 mb-8"
                     role="group"
-                    aria-label="Рейтинг и голосование"
+                    aria-label="Rating and voting"
                     :data-rating-value="4.8"
                     :data-rating-count="1247"
                     :data-best-rating="5"
                     :data-worst-rating="1"
                   >
-                    <!-- Текущий рейтинг -->
+                    <!-- Current rating -->
                     <div
                       class="flex items-center gap-2"
                       role="img"
-                      :aria-label="`Рейтинг ${4.8} из ${5} звезд на основе ${1247} отзывов`"
+                      :aria-label="`Rating ${4.8} из ${5} stars на основе ${1247} reviews`"
                       :data-rating="4.8"
                       :data-max-rating="5"
                       :data-review-count="1247"
@@ -529,7 +527,7 @@
                         class="flex text-yellow-400"
                         role="presentation"
                         aria-hidden="true"
-                        :title="`${4.8} звезд из ${5}`"
+                        :title="`${4.8} stars из ${5}`"
                       >
                         <svg
                           v-for="n in 5"
@@ -550,7 +548,7 @@
                       </div>
                       <span
                         class="text-white font-bold text-lg"
-                        aria-label="Рейтинг 4.8"
+                        aria-label="Rating 4.8"
                         >4.8</span
                       >
                       <span class="text-white/60" aria-label="из 5 максимум">
@@ -558,21 +556,21 @@
                       </span>
                       <span
                         class="text-white/40 text-sm ml-2"
-                        aria-label="количество отзывов"
-                        :title="`Основано на ${1247} отзывах пользователей`"
+                        aria-label="количество reviews"
+                        :title="`Based on ${1247} отзывах users`"
                       >
-                        ({{ 1247 }} отзывов)
+                        ({{ 1247 }} reviews)
                       </span>
                     </div>
 
-                    <!-- Кнопка голосования -->
+                    <!-- Vote button -->
                     <button
                       class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
                       @click="toggleRatingPicker"
                       :aria-expanded="showRatingPicker"
                       aria-controls="rating-picker-desktop"
                       type="button"
-                      :aria-label="`Проголосовать за слот ${slot?.name || 'игру'}`"
+                      :aria-label="`Проголосовать за slot ${slot?.name || 'игру'}`"
                       :title="`Оценить ${slot?.name || 'игру'} - текущий рейтинг ${4.8}/5`"
                       role="button"
                       :data-action-type="'vote'"
@@ -584,13 +582,13 @@
                     </button>
                   </section>
 
-                  <!-- Панель голосования (десктоп) -->
+                  <!-- Voting panel (desktop) -->
                   <div
                     v-if="showRatingPicker"
                     id="rating-picker-desktop"
                     class="mt-3 mb-6 p-4 bg-white/10 border border-white/20 rounded-xl"
                     role="dialog"
-                    aria-label="Панель оценки слота"
+                    aria-label="Slot rating panel"
                   >
                     <div
                       class="flex items-center justify-between gap-4 flex-wrap"
@@ -598,7 +596,7 @@
                       <div
                         class="flex items-center gap-3"
                         role="radiogroup"
-                        aria-label="Выберите оценку от 0 до 5 звезд"
+                        aria-label="Choose rating from 0 до 5 stars"
                       >
                         <button
                           class="px-3 py-1 rounded-full text-sm font-semibold bg-white/10 text-white/80 border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -611,7 +609,7 @@
                           @click="pickRating(0)"
                           role="radio"
                           :aria-checked="selectedStars === 0"
-                          aria-label="0 звезд"
+                          aria-label="0 stars"
                           type="button"
                         >
                           0
@@ -632,7 +630,7 @@
                             @click="pickRating(n)"
                             role="radio"
                             :aria-checked="selectedStars === n"
-                            :aria-label="`${n} звезд${n === 1 ? 'а' : n < 5 ? 'ы' : ''}`"
+                            :aria-label="`${n} stars${n === 1 ? 'а' : n < 5 ? 'ы' : ''}`"
                             type="button"
                           >
                             <svg
@@ -668,7 +666,7 @@
                     </div>
                   </div>
 
-                  <!-- Описание слота (десктоп) - SEO оптимизированное -->
+                  <!-- Описание slotа (desktop) - SEO оптимизированное -->
                   <section
                     class="mb-4"
                     role="region"
@@ -678,20 +676,20 @@
                       id="slot-description-desktop"
                       class="text-white/80 text-lg leading-relaxed"
                       role="text"
-                      aria-label="Подробное описание игрового автомата"
+                      aria-label="Подробное описание slot machine"
                     >
                       <strong>{{ slot.name }}</strong> -
                       {{ getShortDescription(slot) }}
                     </p>
                   </section>
 
-                  <!-- Кнопки варианты игры (десктоп) -->
+                  <!-- Game option buttons (desktop) -->
                   <nav
                     class="flex flex-col gap-4 w-full max-w-md mx-auto"
                     role="navigation"
-                    aria-label="Варианты игры"
+                    aria-label="Game options"
                   >
-                    <!-- Кнопка демо-игры с полной SEO-разметкой -->
+                    <!-- Demo game button with full SEO markup -->
                     <BackgroundGradient
                       :animate="true"
                       className="rounded-2xl"
@@ -703,7 +701,7 @@
                         target="_blank"
                         rel="nofollow noopener"
                         class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
-                        :aria-label="`Играть в ${slot.name} бесплатно в демо-режиме`"
+                        :aria-label="`Play ${slot.name} free demo mode`"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -738,7 +736,7 @@
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
-                          aria-label="Демо-режим"
+                          aria-label="Demo mode"
                         >
                           DEMO
                         </span>
@@ -748,7 +746,7 @@
                         class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                         @click="playSlot"
                         type="button"
-                        :aria-label="`Играть в ${slot.name} бесплатно в демо-режиме`"
+                        :aria-label="`Play ${slot.name} free demo mode`"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -782,14 +780,14 @@
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
-                          aria-label="Демо-режим"
+                          aria-label="Demo mode"
                         >
                           DEMO
                         </span>
                       </button>
                     </BackgroundGradient>
 
-                    <!-- Кнопка реальной игры с полной SEO-разметкой -->
+                    <!-- Real money game button with full SEO markup -->
                     <BackgroundGradient
                       :animate="true"
                       className="rounded-2xl"
@@ -801,7 +799,7 @@
                         target="_blank"
                         rel="nofollow sponsored noopener"
                         class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
-                        :aria-label="`Играть в ${slot.name} на реальные деньги`"
+                        :aria-label="`Play ${slot.name} for real money`"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -846,7 +844,7 @@
                         class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-orange-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                         @click="playForReal"
                         type="button"
-                        :aria-label="`Играть в ${slot.name} на реальные деньги`"
+                        :aria-label="`Play ${slot.name} for real money`"
                       >
                         <svg
                           class="w-6 h-6 relative z-10 transition-transform duration-300 group-hover:scale-110"
@@ -882,7 +880,7 @@
               <div
                 class="lg:hidden aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-8 relative overflow-hidden group"
                 role="img"
-                :aria-label="`Превью игры ${slot.name || 'слот'}`"
+                :aria-label="`Game preview ${slot.name || 'slot'}`"
                 :data-media-type="slot.media_type"
                 :data-slot-name="slot.name"
               >
@@ -903,8 +901,8 @@
                 >
                   <img
                     :src="slot.image_url"
-                    :alt="`Изображение слота ${slot.name} - Превью игрового автомата от ${slot.providers?.name || 'Pragmatic Play'}`"
-                    :title="`${slot.name} - Демо версия игрового автомата`"
+                    :alt="`Изображение slotа ${slot.name} - Превью slot machine от ${slot.providers?.name || 'Pragmatic Play'}`"
+                    :title="`${slot.name} - Demo version slot machine`"
                     class="w-full h-full object-contain"
                     loading="lazy"
                     decoding="async"
@@ -926,8 +924,8 @@
                     muted
                     preload="metadata"
                     :poster="slot.image_url || ''"
-                    :title="`${slot.name} - Демо видео игрового автомата`"
-                    :aria-label="`Демонстрационное видео слота ${slot.name}`"
+                    :title="`${slot.name} - Demo video slot machine`"
+                    :aria-label="`Демонстрационное видео slotа ${slot.name}`"
                     :data-slot-id="slot.id"
                     :data-provider="slot.providers?.name"
                     @error="handleSlotVideoError"
@@ -978,8 +976,8 @@
                   target="_blank"
                   rel="nofollow noopener"
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
-                  :aria-label="`Запустить демо-версию игры ${slot.name}`"
-                  :title="`Играть в ${slot.name} - Демо версия`"
+                  :aria-label="`Launch game demo version ${slot.name}`"
+                  :title="`Play ${slot.name} - Demo version`"
                   :data-game-name="slot.name"
                   :data-game-provider="slot.providers?.name"
                   :data-action-type="demo"
@@ -1005,8 +1003,8 @@
                   class="absolute inset-0 flex items-center justify-center bg-transparent hover:bg-black/20 transition-all duration-500 group focus:outline-none focus:ring-4 focus:ring-green-400/30"
                   @click="playSlot"
                   type="button"
-                  :aria-label="`Запустить демо-версию игры ${slot.name}`"
-                  :title="`Играть в ${slot.name} - Демо версия`"
+                  :aria-label="`Launch game demo version ${slot.name}`"
+                  :title="`Play ${slot.name} - Demo version`"
                   :data-game-name="slot.name"
                   :data-game-provider="slot.providers?.name"
                   :data-action-type="demo"
@@ -1028,14 +1026,14 @@
                 </button>
               </div>
 
-              <!-- Кнопки действий -->
-              <!-- Игровые действия (мобильная/планшетная версия) -->
+              <!-- Action buttons -->
+              <!-- Game actions (мобильная/планшетная версия) -->
               <nav
                 class="space-y-4 lg:hidden"
-                aria-label="Варианты игры (моб./планшет)"
+                aria-label="Game options (mobile/tablet)"
                 role="navigation"
               >
-                <!-- Демо-игра -->
+                <!-- Demo game -->
                 <section class="relative" aria-labelledby="demo-play-heading">
                   <h3 id="demo-play-heading" class="sr-only">
                     Демо-версия игры
@@ -1063,7 +1061,7 @@
                       :data-platform="'web'"
                       :data-mobile-compatible="slot.is_mobile_compatible"
                       :data-instant-play="'true'"
-                      :aria-label="`Играть в ${slot.name || 'слот'} бесплатно в демо-режиме`"
+                      :aria-label="`Play ${slot.name || 'slot'} free demo mode`"
                       role="button"
                     >
                       <svg
@@ -1085,7 +1083,7 @@
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
-                        aria-label="Демо-режим"
+                        aria-label="Demo mode"
                       >
                         DEMO
                       </span>
@@ -1106,7 +1104,7 @@
                       :data-platform="'web'"
                       :data-mobile-compatible="slot.is_mobile_compatible"
                       :data-instant-play="'true'"
-                      :aria-label="`Играть в ${slot.name || 'слот'} бесплатно в демо-режиме`"
+                      :aria-label="`Play ${slot.name || 'slot'} free demo mode`"
                       role="button"
                     >
                       <svg
@@ -1128,7 +1126,7 @@
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
-                        aria-label="Демо-режим"
+                        aria-label="Demo mode"
                       >
                         DEMO
                       </span>
@@ -1139,7 +1137,7 @@
                 <!-- Реальная игра -->
                 <section class="relative" aria-labelledby="real-play-heading">
                   <h3 id="real-play-heading" class="sr-only">
-                    Игра на реальные деньги
+                    Игра for real money
                   </h3>
 
                   <BackgroundGradient
@@ -1171,7 +1169,7 @@
                       :data-volatility="slot.volatility"
                       :data-license-required="'true'"
                       :data-age-restriction="'18+'"
-                      :aria-label="`Играть в ${slot.name || 'слот'} на реальные деньги`"
+                      :aria-label="`Play ${slot.name || 'slot'} for real money`"
                       role="button"
                     >
                       <svg
@@ -1221,7 +1219,7 @@
                       :data-volatility="slot.volatility"
                       :data-license-required="'true'"
                       :data-age-restriction="'18+'"
-                      :aria-label="`Играть в ${slot.name || 'слот'} на реальные деньги`"
+                      :aria-label="`Play ${slot.name || 'slot'} for real money`"
                       role="button"
                     >
                       <svg
@@ -2116,23 +2114,23 @@
             </svg>
           </div>
           <h2 class="text-4xl font-bold text-gray-800">
-            {{ slot.name || 'Слот' }} - Полный обзор слота 2025
+            {{ slot.name || 'Слот' }} - Полный обзор slotа 2025
           </h2>
         </div>
 
         <!-- Основное описание -->
         <div class="prose max-w-none mb-8">
           <p class="text-xl text-gray-700 leading-relaxed mb-6 font-medium">
-            Gates of Olympus — это мощный слот от Pragmatic Play, черпающий
+            Gates of Olympus — это мощный slot от Pragmatic Play, черпающий
             энергию из бесконечной силы Зевса, короля богов. В мире
-            древнегреческой мифологии существуют десятки онлайн-слотов, но
-            суперзвездой в этой тематической категории является именно Gates of
+            древнегреческой мифологии существуют десятки онлайн-slotов, но
+            суперstarsой в этой тематической категории является именно Gates of
             Olympus, разделяющий топовую позицию со своим собратом Gates of
             Olympus 1,000.
           </p>
 
           <p class="text-lg text-gray-700 leading-relaxed mb-8">
-            Это слот с высокой волатильностью и системой scatter pays, где
+            Это slot с высокой волатильностью и системой scatter pays, где
             выигрыши начисляются за одинаковые символы независимо от их
             положения на сетке. Популярная механика в сочетании с
             неограниченными каскадами и множителями — вот ключевые особенности,
@@ -2145,7 +2143,7 @@
             class="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 mb-8"
           >
             <h3 class="font-bold text-amber-800 mb-4 text-xl">
-              ⚡ Ключевые характеристики слота:
+              ⚡ Ключевые характеристики slotа:
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <ul class="text-amber-700 space-y-2">
@@ -2168,8 +2166,8 @@
                   >Возможность купить бонус за 100x ставки
                 </li>
                 <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span
-                  >Максимальный выигрыш 5,000x от ставки
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>Maximum
+                  win 5,000x bet multiplier
                 </li>
                 <li class="flex items-center gap-2">
                   <span class="w-2 h-2 bg-amber-500 rounded-full"></span>Один
@@ -2235,7 +2233,7 @@
                   </div>
                   <h3 class="font-bold text-lg mb-2">Глобальный рейтинг</h3>
                   <p class="text-blue-100 text-sm">
-                    Входит в ТОП-3 самых популярных слотов мира уже 3 года
+                    Входит в ТОП-3 самых популярных slotов мира уже 3 года
                     подряд
                   </p>
                 </div>
@@ -2323,7 +2321,7 @@
                       >
                     </div>
                     <div class="text-sm text-gray-600 w-32">
-                      Лучший новый слот
+                      Лучший новый slot
                     </div>
                   </div>
 
@@ -2554,7 +2552,7 @@
                 <p class="text-gray-700 mb-6 font-medium">
                   Одним из ключей к такому огромному успеху является механика
                   Scatter Pays — то, что объединяет многие популярные
-                  онлайн-слоты. Вам не нужны линии выплат, кластеры или способы
+                  онлайн-slotы. Вам не нужны линии выплат, кластеры или способы
                   выигрыша... Одинаковые символы могут появиться в любом месте
                   сетки и принести вам выигрыши.
                 </p>
@@ -2597,7 +2595,7 @@
             </div>
           </details>
 
-          <!-- Особенности слота -->
+          <!-- Особенности slotа -->
           <details
             class="group border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-all duration-300"
           >
@@ -2749,7 +2747,7 @@
                       >
                         <span class="font-medium">4 символа Зевса:</span>
                         <span class="font-bold text-orange-600"
-                          >x3 от ставки</span
+                          >x3 bet multiplier</span
                         >
                       </div>
                       <div
@@ -2757,7 +2755,7 @@
                       >
                         <span class="font-medium">5 символов Зевса:</span>
                         <span class="font-bold text-orange-600"
-                          >x5 от ставки</span
+                          >x5 bet multiplier</span
                         >
                       </div>
                       <div
@@ -2765,7 +2763,7 @@
                       >
                         <span class="font-medium">6 символов Зевса:</span>
                         <span class="font-bold text-orange-700"
-                          >x100 от ставки</span
+                          >x100 bet multiplier</span
                         >
                       </div>
                     </div>
@@ -3045,7 +3043,7 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">🎮</span>
-                  Можно ли играть в {{ slot.name || 'этот слот' }} бесплатно?
+                  Можно ли играть в {{ slot.name || 'этот slot' }} бесплатно?
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3085,9 +3083,9 @@
                       Да, абсолютно бесплатно!
                     </p>
                     <p class="text-gray-600">
-                      Вы можете играть в демо-версию слота без регистрации и
+                      Вы можете играть в демо-версию slotа без регистрации и
                       депозита. Это отличный способ изучить механику игры и
-                      бонусные функции перед игрой на реальные деньги.
+                      бонусные функции перед игрой for real money.
                     </p>
                   </div>
                 </div>
@@ -3102,7 +3100,7 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">💰</span>
-                  Какова максимальная выплата в {{ slot.name || 'этом слоте' }}?
+                  Какова максимальная выплата в {{ slot.name || 'этом slotе' }}?
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3232,7 +3230,7 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">📱</span>
-                  Работает ли слот на мобильных устройствах?
+                  Работает ли slot на мобильных устройствах?
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3315,7 +3313,7 @@
                 Отзывы игроков
               </h2>
               <p class="text-gray-600 mt-1">
-                Реальные мнения от сообщества слот-игроков
+                Реальные мнения от сообщества slot-игроков
               </p>
             </div>
           </div>
@@ -3336,7 +3334,7 @@
               <div class="flex text-yellow-200 text-lg mt-1">★★★★☆</div>
             </div>
 
-            <!-- Количество отзывов -->
+            <!-- Количество reviews -->
             <div
               class="bg-gradient-to-br from-green-500 to-emerald-600 p-6 rounded-2xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
@@ -3345,7 +3343,7 @@
                 <div class="text-2xl">📝</div>
               </div>
               <div class="text-green-100 text-sm font-medium">
-                Всего отзывов
+                Всего reviews
               </div>
               <div class="text-green-200 text-sm mt-1">активное сообщество</div>
             </div>
@@ -3510,7 +3508,7 @@
                       Потрясающая графика
                     </div>
                     <div class="text-sm text-green-600">
-                      Упоминается в 89% позитивных отзывов
+                      Упоминается в 89% позитивных reviews
                     </div>
                   </div>
                 </div>
@@ -3644,7 +3642,7 @@
                     >
                   </div>
                   <p class="text-gray-700 mb-4 leading-relaxed">
-                    "Реально крутой слот! Множители действительно работают -
+                    "Реально крутой slot! Множители действительно работают -
                     словил x1200 на бонусе, эмоции зашкаливали! Графика топ,
                     анимации плавные. Играю полгода, очень доволен. Каскады
                     постоянно продлевают удовольствие 🎰⚡"
@@ -3826,7 +3824,7 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                Показать все 1,247 отзывов
+                Показать все 1,247 reviews
                 <svg
                   class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"
@@ -3917,7 +3915,7 @@
                     Общая экспертная оценка
                   </h3>
                   <p class="text-gray-600 text-lg leading-relaxed max-w-md">
-                    Превосходный слот с инновационной механикой и высоким
+                    Превосходный slot с инновационной механикой и высоким
                     потенциалом выигрыша 🏆
                   </p>
                 </div>
@@ -4183,7 +4181,7 @@
                 class="text-lg text-blue-900 leading-relaxed font-medium italic border-l-4 border-blue-300 pl-6"
               >
                 "Gates of Olympus представляет собой революционный подход к
-                созданию видеослотов. Механика Scatter Pays полностью меняет
+                созданию видеоslotов. Механика Scatter Pays полностью меняет
                 привычные правила игры, создавая уникальный опыт для каждого
                 спина. Высокий потенциал выигрыша x5,000 в сочетании с
                 каскадными символами делают каждый раунд непредсказуемым и
@@ -4485,14 +4483,14 @@
                     <span class="font-bold text-yellow-300"
                       >Gates of Olympus</span
                     >
-                    - это выдающийся слот для опытных игроков, которые ценят
+                    - это выдающийся slot для опытных игроков, которые ценят
                     инновационную механику и готовы к высокой волатильности ради
                     потенциала больших выигрышей.
                     <span class="font-bold text-white"
                       >Новичкам рекомендуем начать с менее волатильных
-                      слотов.</span
+                      slotов.</span
                     >
-                    Этот слот станет идеальным выбором для тех, кто ищет
+                    Этот slot станет идеальным выбором для тех, кто ищет
                     адреналин и готов к серьёзной игре! 🚀
                   </p>
                 </div>
@@ -4585,15 +4583,15 @@
                 <h3
                   class="text-2xl font-bold bg-gradient-to-r from-slate-700 to-indigo-800 bg-clip-text text-transparent"
                 >
-                  Итоговая оценка {{ slot.name || 'слота' }}
+                  Итоговая оценка {{ slot.name || 'slotа' }}
                 </h3>
               </div>
 
               <div class="space-y-4">
                 <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                  {{ slot.name || 'Этот слот' }} заслуженно считается одним из
+                  {{ slot.name || 'Этот slot' }} заслуженно считается одним из
                   <span class="text-indigo-600 font-semibold"
-                    >лучших слотов от Pragmatic Play</span
+                    >лучших slotов от Pragmatic Play</span
                   >. Сочетание инновационной механики Scatter Pays, высокого
                   потенциала выигрыша до
                   <span class="text-emerald-600 font-bold">x5,000</span> и
@@ -4609,7 +4607,7 @@
                       >8+ одинаковых символов</span
                     >
                     в любом месте экрана, открывает новые горизонты в мире
-                    видеослотов. Каскадные выигрыши и множители создают
+                    видеоslotов. Каскадные выигрыши и множители создают
                     уникальную атмосферу постоянного ожидания больших выплат.
                   </p>
                 </div>
@@ -4744,11 +4742,11 @@
               </div>
               <p class="text-white/90 leading-relaxed text-lg">
                 <span class="font-semibold text-white">Gates of Olympus</span> -
-                это не просто слот, это
+                это не просто slot, это
                 <span class="text-yellow-300 font-semibold"
                   >новая эра в мире азартных игр</span
                 >. Если вы готовы к вызову и хотите испытать настоящий адреналин
-                от игры, этот слот создан именно для вас.
+                от игры, этот slot создан именно для вас.
                 <span class="text-red-300 font-medium"
                   >Помните: играйте ответственно и наслаждайтесь
                   процессом!</span
@@ -4839,7 +4837,7 @@
                 <p class="text-xl lg:text-2xl text-gray-200 font-medium">
                   Окунитесь в легендарный мир
                   <span class="text-yellow-300 font-bold">{{
-                    slot.name || 'этого слота'
+                    slot.name || 'этого slotа'
                   }}</span>
                 </p>
                 <div
@@ -4913,11 +4911,11 @@
               </div>
             </div>
 
-            <!-- Кнопки действий -->
+            <!-- Action buttons -->
             <div
               class="flex flex-col lg:flex-row gap-4 justify-center items-center mb-10"
             >
-              <!-- Кнопка демо -->
+              <!-- Demo button -->
               <NuxtLink
                 :to="
                   slot.cta_button_demo_url ||
@@ -5075,14 +5073,14 @@ watchEffect(() => {
     useHead({
       title:
         slot.value.seo_title ||
-        `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги | SlotQuest`,
+        `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money | SlotQuest`,
       meta: [
         // Основные SEO мета-теги
         {
           name: 'description',
           content:
             slot.value.seo_description ||
-            `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, волатильность: ${slot.value.volatility || 'средняя'}. Рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+            `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, volatility: ${slot.value.volatility || 'medium'}. Rating: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'keywords',
@@ -5110,17 +5108,17 @@ watchEffect(() => {
           property: 'og:title',
           content:
             slot.value.og_title ||
-            `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
+            `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
         },
         {
           property: 'og:description',
           content:
             slot.value.og_description ||
-            `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+            `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         { property: 'og:type', content: 'article' },
         { property: 'og:site_name', content: 'SlotQuest' },
-        { property: 'og:locale', content: 'ru_RU' },
+        { property: 'og:locale', content: 'en_US' },
         {
           property: 'og:url',
           content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
@@ -5134,11 +5132,23 @@ watchEffect(() => {
         },
         {
           property: 'og:image:alt',
-          content: `${slot.value.name || 'Слот'} - скриншот игрового автомата от ${slot.value.providers?.name || 'провайдера'}`,
+          content: `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}`,
         },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:image:type', content: 'image/jpeg' },
+        {
+          property: 'og:image:secure_url',
+          content:
+            slot.value.og_image ||
+            slot.value.image_url ||
+            `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
+        },
+        {
+          property: 'og:updated_time',
+          content:
+            slot.value.updated_at || new Date().toISOString().split('T')[0],
+        },
         {
           property: 'article:published_time',
           content: slot.value.release_date || '2021-02-13',
@@ -5154,22 +5164,22 @@ watchEffect(() => {
         },
         {
           property: 'article:section',
-          content: 'Игровые автоматы',
+          content: 'Slot Machines',
         },
         {
           property: 'article:tag',
-          content: `${slot.value.name}, ${slot.value.providers?.name || 'провайдер'}, слот, игровой автомат`,
+          content: `${slot.value.name}, ${slot.value.providers?.name || 'provider'}, slot, slot machine`,
         },
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: '@SlotQuest' },
         {
           name: 'twitter:title',
-          content: `${slot.value.name || 'Слот'} 🎰 Играть бесплатно и на деньги`,
+          content: `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
         },
         {
           name: 'twitter:description',
-          content: `🎰 ${slot.value.name || 'Слот'} от ${slot.value.providers?.name || 'провайдера'} - играйте бесплатно в демо или на реальные деньги. RTP: ${slot.value.rtp || '96'}%, рейтинг: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
@@ -5177,32 +5187,50 @@ watchEffect(() => {
             slot.value.image_url ||
             `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
         },
-        // Игровые мета-теги
         {
-          name: 'game:provider',
-          content: slot.value.providers?.name || 'провайдер',
+          name: 'twitter:creator',
+          content: '@SlotQuest',
         },
         {
-          name: 'game:rtp',
-          content: slot.value.rtp || '96',
+          name: 'twitter:label1',
+          content: 'RTP',
         },
         {
-          name: 'game:volatility',
-          content: slot.value.volatility || 'medium',
+          name: 'twitter:data1',
+          content: `${slot.value.rtp || '96'}%`,
         },
         {
-          name: 'game:max_win',
-          content: slot.value.max_win || '1000x',
+          name: 'twitter:label2',
+          content: 'Volatility',
         },
         {
-          name: 'game:category',
-          content: 'slot,casino',
+          name: 'twitter:data2',
+          content: slot.value.volatility || 'Medium',
         },
+        // Content age rating
         {
-          name: 'game:rating',
+          name: 'rating',
           content: '18+',
         },
-        // Гео-таргетинг мета-теги (для показа в целевых странах)
+        // Language and search engine directives
+        {
+          'http-equiv': 'content-language',
+          content: slot.value.content_language || 'en',
+        },
+        {
+          name: 'googlebot',
+          content:
+            'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+        },
+        {
+          name: 'bingbot',
+          content: 'index, follow',
+        },
+        {
+          name: 'yandex',
+          content: 'index, follow',
+        },
+        // Geo-targeting meta tags (for targeting specific countries)
         {
           name: 'geo.region',
           content:
@@ -5258,12 +5286,12 @@ watchEffect(() => {
           name: 'casino:real_money',
           content: slot.value.real_play_url ? 'yes' : 'no',
         },
-        // Альтернативные названия слота (для разных рынков)
+        // Альтернативные названия slotа (для разных рынков)
         {
           name: 'alternative-name',
           content: slot.value.alternative_names || slot.value.name,
         },
-        // Рейтинг и отзывы (для Rich Snippets)
+        // Rating и отзывы (для Rich Snippets)
         {
           name: 'rating',
           content: `${slot.value.rating || '4.8'}/5`,
@@ -5272,7 +5300,7 @@ watchEffect(() => {
           name: 'reviewCount',
           content: slot.value.reviews_count || '1247',
         },
-        // Дата релиза (для сортировки "новые слоты")
+        // Дата релиза (для сортировки "новые slotы")
         {
           name: 'release_date',
           content: slot.value.release_date || '2021-02-13',
@@ -5358,20 +5386,20 @@ watchEffect(() => {
       ],
     })
   } else {
-    // Дефолтные мета-теги для SSR
+    // Default meta tags for SSR
     useHead({
-      title: 'Слот - SlotQuest',
+      title: 'Slot - SlotQuest',
       meta: [
         {
           name: 'description',
           content:
-            'Играйте в слот от ведущего провайдера. Отличные возможности для выигрыша!',
+            'Play slot from leading provider. Great opportunities to win!',
         },
-        { property: 'og:title', content: 'Слот - SlotQuest' },
+        { property: 'og:title', content: 'Slot - SlotQuest' },
         {
           property: 'og:description',
           content:
-            'Играйте в слот от ведущего провайдера. Отличные возможности для выигрыша!',
+            'Play slot from leading provider. Great opportunities to win!',
         },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://slotquest.com/slots' },
@@ -5380,11 +5408,11 @@ watchEffect(() => {
           content: 'https://slotquest.com/og-default.jpg',
         },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Слот - SlotQuest' },
+        { name: 'twitter:title', content: 'Slot - SlotQuest' },
         {
           name: 'twitter:description',
           content:
-            'Играйте в слот от ведущего провайдера. Отличные возможности для выигрыша!',
+            'Play slot from leading provider. Great opportunities to win!',
         },
         {
           name: 'twitter:image',
@@ -5402,7 +5430,7 @@ const loadSlot = async () => {
     loading.value = true
     error.value = null
 
-    // Загружаем все слоты для поиска по slug (используем основной API с полными данными)
+    // Загружаем все slotы для поиска по slug (используем основной API с полными данными)
     const slotsResponse = await $fetch('http://localhost:3001/api/slots', {
       headers: {
         'Cache-Control': 'no-cache',
@@ -5410,11 +5438,11 @@ const loadSlot = async () => {
       },
     })
 
-    // API возвращает объект с полем data, содержащим массив слотов
+    // API возвращает объект с полем data, содержащим массив slotов
     const slotsData = slotsResponse.data || slotsResponse
     allSlots.value = slotsData
 
-    // Ищем слот по slug
+    // Ищем slot по slug
     const foundSlot = slotsData.find((s) => s.slug === slug)
 
     if (!foundSlot) {
@@ -5423,14 +5451,14 @@ const loadSlot = async () => {
 
     slot.value = foundSlot
   } catch (err) {
-    console.error('Ошибка загрузки слота:', err)
-    error.value = err.message || 'Произошла ошибка при загрузке слота'
+    console.error('Ошибка загрузки slotа:', err)
+    error.value = err.message || 'Произошла ошибка при загрузке slotа'
   } finally {
     loading.value = false
   }
 }
 
-// Функция для принудительного обновления данных слота
+// Функция для принудительного обновления данных slotа
 const refreshSlot = async () => {
   await loadSlot()
 }
@@ -5445,7 +5473,7 @@ const playSlot = () => {
   } else {
     // Показываем уведомление, что демо-версия пока недоступна
     alert(
-      `Демо-версия для игры "${slot.value.name || 'слот'}" временно недоступна. Обратитесь к администратору сайта.`,
+      `Демо-версия для игры "${slot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта.`,
     )
   }
 }
@@ -5453,14 +5481,14 @@ const playSlot = () => {
 const playForReal = () => {
   if (!slot.value) return
 
-  // Проверяем, есть ли ссылка для игры на реальные деньги
+  // Проверяем, есть ли ссылка для игры for real money
   if (slot.value.real_play_url && slot.value.real_play_url.trim()) {
     // Открываем страницу казино в новой вкладке
     window.open(slot.value.real_play_url, '_blank', 'noopener,noreferrer')
   } else {
     // Показываем уведомление с предложением связаться с поддержкой
     alert(
-      `Игра на реальные деньги для "${slot.value.name || 'слот'}" временно недоступна. Обратитесь к администратору сайта для получения информации о доступных казино.`,
+      `Игра for real money для "${slot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта для получения информации о доступных казино.`,
     )
   }
 }
@@ -5468,7 +5496,7 @@ const playForReal = () => {
 const findCasino = () => {
   if (!slot.value) return
   // Здесь будет логика поиска казино с бонусами
-  alert(`Поиск лучших казино для игры в ${slot.value.name || 'слот'}`)
+  alert(`Поиск лучших казино для игры в ${slot.value.name || 'slot'}`)
 }
 
 // Обработчики медиа событий
@@ -5494,7 +5522,7 @@ const openImageFullscreen = () => {
 
   const img = document.createElement('img')
   img.src = slot.value.image_url
-  img.alt = `Изображение слота ${slot.value.name}`
+  img.alt = `Изображение slotа ${slot.value.name}`
   img.className = 'max-w-full max-h-full object-contain rounded-xl shadow-2xl'
   img.onclick = (e) => e.stopPropagation()
 
@@ -5750,59 +5778,59 @@ const formatReleaseDate = (dateString) => {
 
 const getSlotDescription = (slot) => {
   if (!slot || !slot.name)
-    return 'Увлекательный видеослот с отличными возможностями для выигрыша.'
+    return 'Exciting video slot with excellent winning opportunities.'
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
-    return `${slot.name || 'Слот'} - это революционный слот от Pragmatic Play, который перевернул представление о видеослотах. Игра с полем 6x5 и системой Scatter Pays предлагает уникальный геймплей, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана.`
+    return `${slot.name || 'Slot'} - a revolutionary slot from Pragmatic Play that changed the perception of video slots. The game with a 6x5 field and Scatter Pays system offers unique gameplay where wins are awarded for 8+ identical symbols anywhere on the screen.`
   }
-  return `${slot.name || 'Слот'} - увлекательный видеослот от ${slot.providers?.name || 'известного провайдера'}, который предлагает захватывающий геймплей и отличные возможности для выигрыша.`
+  return `${slot.name || 'Slot'} - exciting video slot from ${slot.providers?.name || 'renowned provider'} offering thrilling gameplay and excellent winning opportunities.`
 }
 
 const getShortDescription = (slot) => {
   if (!slot) {
-    return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
+    return 'Thrilling video slot with excellent winning opportunities and exciting gameplay.'
   }
 
-  // Используем описание из базы данных, если оно есть
+  // Use description from database if available
   if (slot.description && slot.description.trim()) {
     return slot.description.trim()
   }
 
-  // Fallback к старой логике, если описание не задано
+  // Fallback to default logic if description is not set
   if (!slot.name) {
-    return 'Захватывающий видеослот с отличными возможностями для выигрыша и увлекательным геймплеем.'
+    return 'Thrilling video slot with excellent winning opportunities and exciting gameplay.'
   }
 
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
-    return 'Легендарный слот от Pragmatic Play с уникальной механикой Scatter Pays и множителями до x500. Окунитесь в мир древнегреческих богов и сражайтесь за джекпот до x5,000 от ставки!'
+    return 'Legendary slot from Pragmatic Play with unique Scatter Pays mechanics and multipliers up to x500. Dive into the world of ancient Greek gods and fight for jackpot up to x5,000 bet multiplier!'
   }
   if ((slot.name || '').toLowerCase().includes('book of dead')) {
-    return "Культовый слот от Play'n GO о приключениях археолога Рича Уайлде в Древнем Египте. Бонусная игра с расширяющимися символами может принести выигрыш до x5,000!"
+    return "Cult slot from Play'n GO about archaeologist Rich Wilde's adventures in Ancient Egypt. Bonus game with expanding symbols can bring wins up to x5,000!"
   }
   if ((slot.name || '').toLowerCase().includes('sweet bonanza')) {
-    return 'Яркий и сладкий слот от Pragmatic Play с каскадными выигрышами и бонусными множителями. Соберите 4+ леденца для активации бесплатных вращений!'
+    return 'Bright and sweet slot from Pragmatic Play with cascade wins and bonus multipliers. Collect 4+ lollipops to activate free spins!'
   }
-  return `Захватывающий видеослот от ${slot.providers?.name || 'ведущего провайдера'} с отличными возможностями для выигрыша и увлекательным геймплеем.`
+  return `Thrilling video slot from ${slot.providers?.name || 'leading provider'} with excellent winning opportunities and exciting gameplay.`
 }
 
 const getDetailedDescription = (slot) => {
   if (!slot) {
-    return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
+    return 'This exciting video slot offers players thrilling gameplay with plenty of opportunities for big wins. Modern graphics and sound effects create a unique atmosphere of excitement.'
   }
 
-  // Используем описание из базы данных, если оно есть
+  // Use description from database if available
   if (slot.description && slot.description.trim()) {
     return slot.description.trim()
   }
 
-  // Fallback к старой логике, если описание не задано
+  // Fallback to old logic if description is not set
   if (!slot.name) {
-    return 'Этот увлекательный видеослот предлагает игрокам захватывающий геймплей с множеством возможностей для крупных выигрышей. Современная графика и звуковое сопровождение создают неповторимую атмосферу азарта.'
+    return 'This exciting video slot offers players thrilling gameplay with plenty of opportunities for big wins. Modern graphics and sound effects create a unique atmosphere of excitement.'
   }
 
   if ((slot.name || '').toLowerCase().includes('gates of olympus')) {
-    return 'Главная особенность слота - множители от x2 до x500, которые появляются случайным образом и могут значительно увеличить ваши выигрыши. В бонусной игре действует система Total Multiplier, где все множители суммируются и не сбрасываются между спинами, что может привести к феноменальным выплатам.'
+    return 'The main feature of the slot is multipliers from x2 to x500 that appear randomly and can significantly increase your winnings. In the bonus game, the Total Multiplier system works where all multipliers are summed and not reset between spins, which can lead to phenomenal payouts.'
   }
-  return `Этот слот отличается высококачественной графикой, продуманной механикой и отличным балансом между частотой выигрышей и их размером. RTP составляет ${slot.rtp || '96'}%, что делает игру привлекательной для большинства игроков.`
+  return `This slot features high-quality graphics, well-thought-out mechanics, and an excellent balance between win frequency and payout size. The RTP is ${slot.rtp || '96'}%, making the game attractive to most players.`
 }
 
 const getSlotThemes = (slot) => {
@@ -5811,14 +5839,14 @@ const getSlotThemes = (slot) => {
   return []
 }
 
-// Функция для получения бонусов слота из базы данных
+// Функция для получения бонусов slotа из базы данных
 const getSlotBonuses = (slot) => {
   if (!slot || !slot.slot_bonuses) return []
   // Исправляем: bonuses вместо bonus
   return slot.slot_bonuses.map((sb) => sb.bonuses).filter(Boolean)
 }
 
-// Функция для получения тематик слота из базы данных
+// Функция для получения тематик slotа из базы данных
 const getSlotThemesFromDB = (slot) => {
   if (!slot || !slot.themes) return []
   // themes - это объект темы, а не массив
@@ -5867,9 +5895,9 @@ const generateOptimizedKeywords = (slot) => {
     keywords.push(slot.seo_keywords)
   }
 
-  // 5. Если ничего нет - генерируем автоматически
+  // 5. If nothing available - generate automatically
   if (keywords.length === 0) {
-    return `${slot.name}, ${slot.providers?.name || 'провайдер'}, слот, игровой автомат, онлайн казино, демо игра, бесплатно, RTP ${slot.rtp || '96'}%, ${slot.volatility || 'средняя'} волатильность, ${slot.category?.name || 'слоты'}, игра на деньги, бонусы, фриспины, SlotQuest`
+    return `${slot.name}, ${slot.providers?.name || 'provider'}, slot, slot machine, online casino, demo game, free play, RTP ${slot.rtp || '96'}%, ${slot.volatility || 'medium'} volatility, ${slot.category?.name || 'slots'}, real money, bonuses, free spins, SlotQuest`
   }
 
   return keywords.join(', ')
@@ -5906,11 +5934,11 @@ const getStructuredData = (slot) => {
   const providerOrganization = {
     '@type': 'Organization',
     '@id': `${baseUrl}/provider/${slot.providers?.slug || 'provider'}`,
-    name: slot.providers?.name || 'провайдер',
+    name: slot.providers?.name || 'Game Provider',
     url: slot.providers?.website || 'https://slotquest.com',
     description:
       slot.providers?.description ||
-      `${slot.providers?.name || 'провайдер'} - разработчик игр для онлайн-казино`,
+      `${slot.providers?.name || 'Game Provider'} - online casino game developer`,
     logo: slot.providers?.logo
       ? {
           '@type': 'ImageObject',
@@ -5954,7 +5982,7 @@ const getStructuredData = (slot) => {
       url: imageUrl,
       width: 1200,
       height: 630,
-      caption: `${slot.name} - скриншот игрового автомата`,
+      caption: `${slot.name} - slot machine screenshot`,
     },
 
     datePublished: slot.release_date || '2021-02-13',
@@ -6001,7 +6029,7 @@ const getStructuredData = (slot) => {
     publisher: organizationSlotQuest,
     provider: providerOrganization,
 
-    // Рейтинг (сокращен)
+    // Rating (сокращен)
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: slot.rating || '4.8',
@@ -6060,28 +6088,28 @@ const getStructuredData = (slot) => {
     keywords: generateOptimizedKeywords(slot),
   }
 
-  // Добавляем видео как трейлер, если есть
+  // Add video as trailer, if available
   if (slot.video_url) {
     gameSchema.trailer = {
       '@type': 'VideoObject',
       '@id': `${slotUrl}#video`,
-      name: `${slot.name} — трейлер геймплея`,
+      name: `${slot.name} - Gameplay Trailer`,
       alternateName: `${slot.name} gameplay video`,
-      description: `Посмотрите геймплей слота ${slot.name} от ${slot.providers?.name || 'Pragmatic Play'}. Демонстрация игрового процесса, бонусных функций и выигрышных комбинаций.`,
+      description: `Watch ${slot.name} slot gameplay from ${slot.providers?.name || 'provider'}. Demonstration of game mechanics, bonus features and winning combinations.`,
       url: slot.video_url,
       contentUrl: slot.video_url,
       embedUrl: slot.video_url,
       thumbnailUrl: imageUrl,
       uploadDate: slot.release_date || '2021-02-13',
       datePublished: slot.release_date || '2021-02-13',
-      inLanguage: 'ru-RU',
-      duration: slot.video_duration || 'PT2M30S',
+      inLanguage: slot.content_language || 'en',
+      duration: slot.video_duration || 'PT3M',
       videoQuality: 'HD',
       encodingFormat: 'video/mp4',
       width: 1920,
       height: 1080,
       genre: 'Gaming',
-      keywords: `${slot.name}, слот, геймплей, ${slot.providers?.name || 'Pragmatic Play'}, онлайн казино`,
+      keywords: `${slot.name}, slot machine, gameplay, ${slot.providers?.name || 'provider'}, online casino, demo`,
       creator: providerOrganization,
       publisher: organizationSlotQuest,
       copyrightHolder: providerOrganization,
@@ -6092,15 +6120,15 @@ const getStructuredData = (slot) => {
     }
   }
 
-  // Добавляем реальную игру как offer, если есть
+  // Add real money play as offer, if available
   if (slot.real_play_url) {
     gameSchema.offers.push({
       '@type': 'Offer',
-      name: 'Игра на реальные деньги',
+      name: 'Real Money Play',
       price: '10',
-      priceCurrency: 'RUB',
+      priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
-      description: 'Играть на реальные деньги в лицензированном казино',
+      description: 'Play for real money at licensed casino',
       url: slot.real_play_url,
     })
   }
@@ -6159,7 +6187,7 @@ const getStructuredData = (slot) => {
     },
   }
 
-  // FAQ схема
+  // FAQ Schema
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -6167,34 +6195,34 @@ const getStructuredData = (slot) => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: `Можно ли играть в ${slot.name} бесплатно?`,
+        name: `Can I play ${slot.name} for free?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Да, абсолютно бесплатно! Вы можете играть в демо-версию слота без регистрации и депозита. Это отличный способ изучить механику игры и бонусные функции перед игрой на реальные деньги.',
+          text: 'Yes, absolutely free! You can play the demo version of the slot without registration or deposit. This is a great way to learn the game mechanics and bonus features before playing for real money.',
         },
       },
       {
         '@type': 'Question',
-        name: `Какова максимальная выплата в ${slot.name}?`,
+        name: `What is the maximum payout in ${slot.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Максимальная выплата составляет ${slot.max_win || '5,000'}x от ставки. Это означает, что при ставке €100 вы можете выиграть до €${(parseInt(slot.max_win || '5000') * 100).toLocaleString()}! Такие выигрыши случаются крайне редко.`,
+          text: `The maximum payout is ${slot.max_win || '5,000'}x bet multiplier. This means that with a €100 bet you can win up to €${(parseInt(slot.max_win || '5000') * 100).toLocaleString()}! Such wins are extremely rare.`,
         },
       },
       {
         '@type': 'Question',
-        name: 'Стоит ли покупать бонусные спины?',
+        name: 'Is it worth buying bonus spins?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Покупка бонуса стоит 100x от ставки. Плюсы: гарантированный доступ к бонусной игре с множителями. Минусы: высокая стоимость и нет гарантии большого выигрыша. Покупайте бонус только при достаточном банкролле.',
+          text: 'Bonus buy costs 100x bet multiplier. Pros: guaranteed access to bonus game with multipliers. Cons: high cost and no guarantee of big win. Only buy bonus with sufficient bankroll.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Работает ли слот на мобильных устройствах?',
+        name: 'Does the slot work on mobile devices?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Да, полностью оптимизирован! Поддерживает iOS и Android, работает в браузере без установки приложений, сохраняет все функции и качество графики с быстрой загрузкой.',
+          text: 'Yes, fully optimized! Supports iOS and Android, works in browser without app installation, retains all features and graphics quality with fast loading.',
         },
       },
     ],
@@ -6229,24 +6257,9 @@ const getStructuredData = (slot) => {
     },
   }
 
-  // 🎬 VideoObject Schema (если есть видео геймплея)
-  const videoSchema = slot.video_url
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        '@id': `${slotUrl}#video`,
-        name: `${slot.name} - Gameplay Video`,
-        description: `Watch ${slot.name} slot gameplay, bonus features, and winning combinations`,
-        thumbnailUrl: imageUrl,
-        uploadDate: slot.release_date || '2021-02-13',
-        contentUrl: slot.video_url,
-        embedUrl: slot.video_url,
-        duration: slot.video_duration || 'PT3M',
-        inLanguage: slot.content_language || 'en',
-      }
-    : null
+  // VideoObject is now included in gameSchema.trailer, no separate schema needed
 
-  // 📚 HowTo Schema (как играть в слот)
+  // 📚 HowTo Schema (how to play the slot)
   const howToSchema = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
@@ -6284,7 +6297,7 @@ const getStructuredData = (slot) => {
     totalTime: 'PT2M',
   }
 
-  // 📋 ItemList Schema (похожие слоты)
+  // 📋 ItemList Schema (похожие slotы)
   const similarSlotsSchema =
     similarSlots.value.length > 0
       ? {
@@ -6313,14 +6326,13 @@ const getStructuredData = (slot) => {
         }
       : null
 
-  // Объединяем все схемы в массив (фильтруем null)
+  // Combine all schemas into array (filter null values)
   const allSchemas = [
     gameSchema,
     breadcrumbSchema,
     websiteSchema,
     faqSchema,
     reviewSchema,
-    videoSchema,
     howToSchema,
     similarSlotsSchema,
   ].filter(Boolean)
