@@ -147,7 +147,31 @@
               class="p-8 lg:p-12 flex flex-col justify-start min-w-0 h-full"
               role="article"
               aria-labelledby="slot-title"
+              itemscope
+              itemtype="https://schema.org/Game"
             >
+              <!-- 🎯 SEO: Дополнительные мета-теги для Game schema -->
+              <meta
+                itemprop="genre"
+                :content="slot.hero_keyword || 'Slot Game'"
+              />
+              <meta
+                itemprop="datePublished"
+                :content="slot.release_date || '2024-01-01'"
+              />
+              <meta
+                itemprop="inLanguage"
+                :content="slot.content_language || 'en'"
+              />
+              <meta
+                itemprop="isAccessibleForFree"
+                :content="slot.demo_url ? 'true' : 'false'"
+              />
+              <link
+                itemprop="url"
+                :href="`https://slotquest.com/slots/${slot.slug}`"
+              />
+
               <!-- Title and main information -->
               <header class="mb-8" role="banner">
                 <!-- Provider (mobile version) -->
@@ -155,7 +179,19 @@
                   class="flex items-center gap-3 mb-6 flex-wrap lg:hidden"
                   aria-labelledby="provider-label"
                   role="region"
+                  itemprop="provider"
+                  itemscope
+                  itemtype="https://schema.org/Organization"
                 >
+                  <meta
+                    itemprop="name"
+                    :content="slot.providers?.name || 'Pragmatic Play'"
+                  />
+                  <link
+                    v-if="slot.providers?.website"
+                    itemprop="url"
+                    :href="slot.providers.website"
+                  />
                   <h2 id="provider-label" class="sr-only">
                     Game Provider Information
                   </h2>
@@ -164,7 +200,11 @@
                     role="contentinfo"
                     aria-label="Game developer and publisher information"
                   >
-                    <span class="font-semibold" title="Game Provider">
+                    <span
+                      class="font-semibold"
+                      title="Game Provider"
+                      itemprop="name"
+                    >
                       {{ slot.providers?.name || 'Pragmatic Play' }}
                     </span>
                   </address>
@@ -179,6 +219,7 @@
                   role="heading"
                   aria-level="1"
                   aria-label="Название slot machine"
+                  itemprop="name"
                 >
                   <span>{{ slot.name || 'Слот' }}</span>
                   <span
@@ -207,33 +248,81 @@
                     role="text"
                     aria-label="Подробное описание slot machine с характеристиками"
                   >
+                    <!-- 🎯 SEO: description с microdata для Google -->
+                    <meta
+                      itemprop="description"
+                      :content="getShortDescription(slot, false)"
+                    />
+
                     <!-- Основное SEO-описание -->
                     <p class="font-medium">
-                      <strong class="text-white">{{ slot.name }}</strong>
+                      <strong class="text-white">{{
+                        getSlotNameWithKeyword(slot)
+                      }}</strong>
                       <span v-if="slot.provider?.name" class="text-white/90">
                         от <span>{{ slot.provider.name }}</span>
                       </span>
-                      — {{ getShortDescription(slot) }}
+                      —
+                      <!-- 🎯 SEO: v-html позволяет отображать <strong> теги для выделения keywords -->
+                      <span v-html="getShortDescription(slot)"></span>
                     </p>
 
-                    <!-- Характеристики -->
+                    <!-- Характеристики с Schema.org microdata -->
                     <p
                       class="text-base text-white/70"
                       v-if="slot.rtp || slot.volatility || slot.min_bet"
                     >
-                      <span v-if="slot.rtp" class="inline-block mr-4">
+                      <!-- 🎯 SEO: RTP как PropertyValue -->
+                      <span
+                        v-if="slot.rtp"
+                        class="inline-block mr-4"
+                        itemprop="gameFeature"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                      >
+                        <meta itemprop="name" content="RTP" />
+                        <meta itemprop="value" :content="String(slot.rtp)" />
                         <span class="font-medium text-white/80">RTP:</span>
-                        <span class="text-green-400">{{ slot.rtp }}%</span>
+                        <span class="text-green-400" itemprop="value"
+                          >{{ slot.rtp }}%</span
+                        >
                       </span>
-                      <span v-if="slot.volatility" class="inline-block mr-4">
+
+                      <!-- 🎯 SEO: Volatility как PropertyValue -->
+                      <span
+                        v-if="slot.volatility"
+                        class="inline-block mr-4"
+                        itemprop="gameFeature"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                      >
+                        <meta itemprop="name" content="Volatility" />
+                        <meta itemprop="value" :content="slot.volatility" />
                         <span class="font-medium text-white/80"
                           >Volatility:</span
                         >
-                        <span class="text-blue-400">{{ slot.volatility }}</span>
+                        <span class="text-blue-400" itemprop="value">{{
+                          slot.volatility
+                        }}</span>
                       </span>
-                      <span v-if="slot.min_bet" class="inline-block">
+
+                      <!-- 🎯 SEO: Min Bet как PropertyValue -->
+                      <span
+                        v-if="slot.min_bet"
+                        class="inline-block"
+                        itemprop="gameFeature"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                      >
+                        <meta itemprop="name" content="Min Bet" />
+                        <meta
+                          itemprop="value"
+                          :content="String(slot.min_bet)"
+                        />
                         <span class="font-medium text-white/80">Min Bet:</span>
-                        <span class="text-yellow-400">{{ slot.min_bet }}</span>
+                        <span class="text-yellow-400" itemprop="value">{{
+                          slot.min_bet
+                        }}</span>
                       </span>
                     </p>
                   </div>
@@ -244,7 +333,22 @@
                   class="flex flex-wrap items-center gap-6 mb-8 lg:hidden"
                   role="group"
                   aria-label="Rating and voting"
+                  itemprop="aggregateRating"
+                  itemscope
+                  itemtype="https://schema.org/AggregateRating"
                 >
+                  <!-- 🎯 SEO: Meta-теги для Google Rich Snippets (звёздочки в поиске!) -->
+                  <meta
+                    itemprop="ratingValue"
+                    :content="String(slot.rating || 4.8)"
+                  />
+                  <meta itemprop="bestRating" content="5" />
+                  <meta
+                    itemprop="ratingCount"
+                    :content="String(slot.reviews_count || 1247)"
+                  />
+                  <meta itemprop="worstRating" content="1" />
+
                   <!-- Current rating -->
                   <div class="flex items-center gap-2">
                     <div
@@ -265,7 +369,11 @@
                         />
                       </svg>
                     </div>
-                    <span class="text-white font-bold text-lg">4.8</span>
+                    <span
+                      class="text-white font-bold text-lg"
+                      itemprop="ratingValue"
+                      >{{ slot.rating || 4.8 }}</span
+                    >
                     <span class="text-white/60">/ 5</span>
                   </div>
 
@@ -404,14 +512,36 @@
                       <div
                         v-if="slot.media_type === 'image' && slot.image_url"
                         class="absolute inset-0"
+                        itemprop="image"
+                        itemscope
+                        itemtype="https://schema.org/ImageObject"
                       >
+                        <!-- 🎯 SEO: Метаданные изображения для Google -->
+                        <meta itemprop="url" :content="slot.image_url" />
+                        <meta itemprop="contentUrl" :content="slot.image_url" />
+                        <meta
+                          itemprop="name"
+                          :content="`${slot.name} - Slot Screenshot`"
+                        />
+                        <meta
+                          itemprop="description"
+                          :content="`High-quality screenshot of ${slot.name} slot game from ${slot.providers?.name || 'provider'}`"
+                        />
+                        <meta
+                          itemprop="caption"
+                          :content="`${slot.name} slot machine gameplay`"
+                        />
+                        <meta itemprop="width" content="1200" />
+                        <meta itemprop="height" content="630" />
+
                         <img
                           :src="slot.image_url"
-                          :alt="`Изображение slotа ${slot.name}`"
+                          :alt="`${slot.name} - Slot Screenshot | ${slot.providers?.name || 'Provider'} | Play Free Demo`"
                           class="w-full h-full object-cover"
                           loading="eager"
                           decoding="async"
                           fetchpriority="high"
+                          itemprop="contentUrl"
                           @error="handleSlotImageError"
                         />
                       </div>
@@ -678,8 +808,9 @@
                       role="text"
                       aria-label="Подробное описание slot machine"
                     >
-                      <strong>{{ slot.name }}</strong> -
-                      {{ getShortDescription(slot) }}
+                      <strong>{{ getSlotNameWithKeyword(slot) }}</strong> -
+                      <!-- 🎯 SEO: v-html для отображения <strong> тегов вокруг keywords -->
+                      <span v-html="getShortDescription(slot)"></span>
                     </p>
                   </section>
 
@@ -689,12 +820,32 @@
                     role="navigation"
                     aria-label="Game options"
                   >
-                    <!-- Demo game button with full SEO markup -->
+                    <!-- Demo game button with full SEO markup + Offer schema -->
                     <BackgroundGradient
                       :animate="true"
                       className="rounded-2xl"
                       containerClassName="w-full"
+                      itemprop="offers"
+                      itemscope
+                      itemtype="https://schema.org/Offer"
                     >
+                      <!-- 🎯 SEO: Demo Offer метаданные -->
+                      <meta
+                        itemprop="name"
+                        :content="`${slot.name} - Free Demo`"
+                      />
+                      <meta
+                        itemprop="description"
+                        :content="`Play ${slot.name} for free in demo mode. No deposit required.`"
+                      />
+                      <meta itemprop="price" content="0" />
+                      <meta itemprop="priceCurrency" content="USD" />
+                      <link itemprop="url" :href="slot.demo_url || '#'" />
+                      <link
+                        itemprop="availability"
+                        href="https://schema.org/InStock"
+                      />
+
                       <a
                         v-if="slot.demo_url && slot.demo_url.trim()"
                         :href="slot.demo_url"
@@ -702,6 +853,7 @@
                         rel="nofollow noopener"
                         class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-lg font-black py-4 px-6 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-2 hover:scale-[1.03] flex items-center justify-center gap-3 overflow-hidden focus:outline-none focus:ring-4 focus:ring-emerald-400/50 active:scale-[0.98] min-h-[60px] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
                         :aria-label="`Play ${slot.name} free demo mode`"
+                        itemprop="url"
                         :data-game-name="slot.name"
                         :data-game-provider="slot.provider?.name"
                         :data-game-category="slot.category?.name"
@@ -5071,16 +5223,16 @@ watchEffect(() => {
     const structuredData = getStructuredData(slot.value)
 
     useHead({
+      // 🎯 SEO: Комбинируем slot.name (брендовый трафик) + hero_keyword (категорийный контекст)
       title:
         slot.value.seo_title ||
-        `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money | SlotQuest`,
+        `${slot.value.name}${slot.value.hero_keyword && slot.value.hero_keyword !== slot.value.name ? ' - ' + slot.value.hero_keyword : ''} 🎰 Play Free Demo & Real Money | SlotQuest`,
       meta: [
         // Основные SEO мета-теги
         {
           name: 'description',
-          content:
-            slot.value.seo_description ||
-            `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, volatility: ${slot.value.volatility || 'medium'}. Rating: ${slot.value.rating || '4.8'}/5 ⭐`,
+          // 🎯 SEO: Используем функцию с hero keywords для максимального CTR
+          content: generateSEODescription(slot.value),
         },
         {
           name: 'keywords',
@@ -5106,15 +5258,16 @@ watchEffect(() => {
         // Open Graph
         {
           property: 'og:title',
+          // 🎯 SEO: Используем slot.name (брендовый) для соц. сетей
           content:
             slot.value.og_title ||
-            `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
+            `${slot.value.name} 🎰 Play Free Demo & Real Money`,
         },
         {
           property: 'og:description',
+          // 🎯 SEO: Используем то же описание с hero keywords для соц. сетей
           content:
-            slot.value.og_description ||
-            `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
+            slot.value.og_description || generateSEODescription(slot.value),
         },
         { property: 'og:type', content: 'article' },
         { property: 'og:site_name', content: 'SlotQuest' },
@@ -5430,28 +5583,46 @@ const loadSlot = async () => {
     loading.value = true
     error.value = null
 
-    // Загружаем все slotы для поиска по slug (используем основной API с полными данными)
-    const slotsResponse = await $fetch('http://localhost:3001/api/slots', {
+    console.log('🔄 Загрузка слота по slug:', slug)
+
+    // Загружаем конкретный слот по slug с полными данными включая hero_keyword поля
+    const slotData = await $fetch(`http://localhost:3001/api/slots/${slug}`, {
       headers: {
         'Cache-Control': 'no-cache',
         Pragma: 'no-cache',
       },
     })
 
-    // API возвращает объект с полем data, содержащим массив slotов
-    const slotsData = slotsResponse.data || slotsResponse
-    allSlots.value = slotsData
+    console.log('✅ Слот загружен:', {
+      name: slotData.name,
+      hero_keyword: slotData.hero_keyword,
+      hero_keyword_2: slotData.hero_keyword_2,
+      hero_keyword_3: slotData.hero_keyword_3,
+      description: slotData.description?.substring(0, 100) + '...',
+    })
 
-    // Ищем slot по slug
-    const foundSlot = slotsData.find((s) => s.slug === slug)
-
-    if (!foundSlot) {
+    if (!slotData) {
       throw new Error(`Слот с адресом "${slug}" не найден`)
     }
 
-    slot.value = foundSlot
+    slot.value = slotData
+
+    // Также загружаем все слоты для похожих слотов (без блокировки основной загрузки)
+    $fetch('http://localhost:3001/api/slots', {
+      headers: {
+        'Cache-Control': 'no-cache',
+        Pragma: 'no-cache',
+      },
+    })
+      .then((slotsResponse) => {
+        const slotsData = slotsResponse.data || slotsResponse
+        allSlots.value = slotsData
+      })
+      .catch((err) => {
+        console.warn('Не удалось загрузить список всех слотов:', err)
+      })
   } catch (err) {
-    console.error('Ошибка загрузки slotа:', err)
+    console.error('❌ Ошибка загрузки slotа:', err)
     error.value = err.message || 'Произошла ошибка при загрузке slotа'
   } finally {
     loading.value = false
@@ -5785,14 +5956,23 @@ const getSlotDescription = (slot) => {
   return `${slot.name || 'Slot'} - exciting video slot from ${slot.providers?.name || 'renowned provider'} offering thrilling gameplay and excellent winning opportunities.`
 }
 
-const getShortDescription = (slot) => {
+/**
+ * 🎯 SEO: Получение краткого описания слота
+ *
+ * @param {object} slot - Объект слота
+ * @param {boolean} wrapInStrong - Оборачивать ли keywords в <strong> (true - для HTML, false - для meta)
+ * @returns {string} Описание с заменёнными keywords
+ */
+const getShortDescription = (slot, wrapInStrong = true) => {
   if (!slot) {
     return 'Thrilling video slot with excellent winning opportunities and exciting gameplay.'
   }
 
   // Use description from database if available
   if (slot.description && slot.description.trim()) {
-    return slot.description.trim()
+    // Заменяем переменные [keyword_2] и [keyword_3] на значения из базы
+    // wrapInStrong=false для meta-тегов (там HTML не работает!)
+    return replaceKeywordsInText(slot.description.trim(), slot, wrapInStrong)
   }
 
   // Fallback to default logic if description is not set
@@ -5833,6 +6013,97 @@ const getDetailedDescription = (slot) => {
   return `This slot features high-quality graphics, well-thought-out mechanics, and an excellent balance between win frequency and payout size. The RTP is ${slot.rtp || '96'}%, making the game attractive to most players.`
 }
 
+/**
+ * Функция для получения чистого названия слота (без ключевых слов типа "Slot Review")
+ * Используется для формирования заголовка с пользовательским hero_keyword
+ */
+const getCleanSlotName = (slot) => {
+  if (!slot || !slot.name) return 'Slot'
+
+  let cleanName = slot.name
+
+  // Список ключевых слов, которые нужно удалить из названия
+  const keywordsToRemove = [
+    'Slot Review',
+    'Game Review',
+    'Casino Game',
+    'Slot Game',
+    'Online Slot',
+    'Slot Machine',
+    'Review',
+  ]
+
+  // Удаляем каждое ключевое слово из названия (регистронезависимо)
+  keywordsToRemove.forEach((keyword) => {
+    const regex = new RegExp(`\\s*${keyword}\\s*$`, 'i') // В конце строки
+    cleanName = cleanName.replace(regex, '')
+  })
+
+  return cleanName.trim()
+}
+
+/**
+ * Функция для получения ключевого слова для Hero секции
+ * Возвращает только hero_keyword (без названия слота)
+ * Например: просто "Play Review" вместо "Gates of Olympus Play Review"
+ */
+const getSlotNameWithKeyword = (slot) => {
+  if (!slot) return 'Slot Review'
+
+  // Возвращаем только ключевое слово, без названия слота
+  return slot.hero_keyword || 'Slot Review'
+}
+
+/**
+ * 🎯 SEO-ОПТИМИЗИРОВАННАЯ замена плейсхолдеров
+ *
+ * Что делает: Заменяет [keyword_2] и [keyword_3] на значения из базы + оборачивает в <strong>
+ *
+ * ЗАЧЕМ <strong> ТЕГИ:
+ * - Google, Yandex, Bing придают больше веса словам в <strong>
+ * - Это как в интернет-магазине: выделяешь "iPhone 15" жирным, чтобы покупатель сразу увидел
+ * - Для поисковика это сигнал: "Это важное ключевое слово!"
+ *
+ * ПРИМЕРЫ:
+ * Вход: "We love [keyword_2] and [keyword_3]!"
+ * Выход: "We love <strong>Gates of Olympus</strong> and <strong>Gates of Olympus 1,000</strong>!"
+ */
+const replaceKeywordsInText = (text, slot, wrapInStrong = true) => {
+  if (!text || !slot) return text
+
+  let result = text
+
+  console.log('🔄 Замена ключевых слов в тексте:', {
+    originalText: text,
+    hero_keyword_2: slot.hero_keyword_2,
+    hero_keyword_3: slot.hero_keyword_3,
+    wrapInStrong,
+  })
+
+  // Замена [keyword_2] с SEO-выделением в <strong>
+  if (slot.hero_keyword_2) {
+    const replacement = wrapInStrong
+      ? `<strong>${slot.hero_keyword_2}</strong>`
+      : slot.hero_keyword_2
+    result = result.replace(/\[keyword_2\]/g, replacement)
+    console.log('✅ Заменили [keyword_2] на:', replacement)
+  }
+
+  // Замена [keyword_3] с SEO-выделением в <strong>
+  if (slot.hero_keyword_3) {
+    const replacement = wrapInStrong
+      ? `<strong>${slot.hero_keyword_3}</strong>`
+      : slot.hero_keyword_3
+    result = result.replace(/\[keyword_3\]/g, replacement)
+    console.log('✅ Заменили [keyword_3] на:', replacement)
+  }
+
+  console.log('📝 Результат замены:', result)
+  console.log('🎯 SEO: Ключевые слова обёрнуты в <strong> для Google!')
+
+  return result
+}
+
 const getSlotThemes = (slot) => {
   // Возвращаем пустой массив, чтобы использовались только тематики из базы данных
   // через функцию getSlotThemesFromDB
@@ -5869,11 +6140,137 @@ watch(
 )
 
 // Функция для генерации оптимизированных ключевых слов
+/**
+ * 🎯 SEO: Генерация meta description с hero keywords
+ *
+ * КРИТИЧЕСКИ ВАЖНО для CTR (Click-Through Rate):
+ * - Meta description - это то, что пользователь видит в Google ПЕРВЫМ
+ * - Это как краткое описание в Tinder - должно цеплять!
+ * - Оптимальная длина: 155-160 символов
+ *
+ * МЕТАФОРА ИЗ TINDER:
+ * ❌ Плохо: "Обычный парень из Москвы"
+ * ✅ Хорошо: "Python разработчик, люблю горы и сноуборд 🏔️"
+ *
+ * Так же и с Meta Description:
+ * ❌ Плохо: "Slot from provider - play free demo"
+ * ✅ Хорошо: "Discover Gates of Olympus, the premium slot with x5000 multipliers"
+ *
+ * @param {object} slot - Объект слота
+ * @returns {string} Оптимизированное описание для meta description
+ */
+const generateSEODescription = (slot) => {
+  if (!slot)
+    return 'Play exciting online slots with great winning opportunities.'
+
+  // 1. Если есть кастомное SEO описание - используем его
+  if (slot.seo_description && slot.seo_description.trim()) {
+    // Заменяем keywords БЕЗ <strong> тегов (в meta description HTML не работает!)
+    let description = replaceKeywordsInText(
+      slot.seo_description.trim(),
+      slot,
+      false,
+    )
+
+    // Обрезаем до 160 символов (оптимально для Google)
+    if (description.length > 160) {
+      description = description.substring(0, 157) + '...'
+    }
+
+    return description
+  }
+
+  // 2. Если есть description слота - используем его с keywords
+  if (slot.description && slot.description.trim()) {
+    let description = replaceKeywordsInText(
+      slot.description.trim(),
+      slot,
+      false,
+    )
+
+    // Берём первое предложение или 160 символов
+    const firstSentence = description.split('.')[0]
+    if (firstSentence.length <= 160) {
+      return firstSentence + '.'
+    }
+
+    return description.substring(0, 157) + '...'
+  }
+
+  // 3. Генерируем автоматически С ИСПОЛЬЗОВАНИЕМ hero keywords
+  const parts = []
+
+  // Начинаем с hero_keyword_2 (обычно это название слота)
+  if (slot.hero_keyword_2) {
+    parts.push(`Discover ${slot.hero_keyword_2}`)
+  } else if (slot.name) {
+    parts.push(`Play ${slot.name}`)
+  }
+
+  // Добавляем hero_keyword (главный заголовок)
+  if (slot.hero_keyword) {
+    parts.push(`- ${slot.hero_keyword.toLowerCase()}`)
+  }
+
+  // Добавляем характеристики
+  if (slot.rtp) {
+    parts.push(`RTP ${slot.rtp}%`)
+  }
+
+  if (slot.max_win) {
+    parts.push(`Max win ${slot.max_win}x`)
+  }
+
+  // Добавляем hero_keyword_3 если есть место
+  if (slot.hero_keyword_3) {
+    const current = parts.join(', ')
+    if (current.length + slot.hero_keyword_3.length < 140) {
+      parts.push(`also try ${slot.hero_keyword_3}`)
+    }
+  }
+
+  let description = parts.join(', ') + '.'
+
+  // Обрезаем если слишком длинное
+  if (description.length > 160) {
+    description = description.substring(0, 157) + '...'
+  }
+
+  console.log('📝 Сгенерировано SEO description:', description)
+
+  return description
+}
+
+/**
+ * 🎯 SEO: Генерация оптимизированных ключевых слов для meta-тега keywords
+ *
+ * ВАЖНО для SEO:
+ * - Hero keywords размещаем В НАЧАЛЕ (Google придаёт больше веса первым словам)
+ * - Это как в резюме: самое важное пишешь первым!
+ *
+ * ПРИОРИТЕТ КЛЮЧЕВЫХ СЛОВ:
+ * 1. Hero Keywords (самые важные - из админки)
+ * 2. Primary Keywords (основные SEO-фразы)
+ * 3. LSI Keywords (семантические вариации)
+ * 4. Long-tail Keywords (длинные запросы)
+ */
 const generateOptimizedKeywords = (slot) => {
   if (!slot) return ''
 
   // Собираем ключевые слова из всех источников
   const keywords = []
+
+  // 🎯 0. HERO KEYWORDS - САМЫЙ ВЫСОКИЙ ПРИОРИТЕТ!
+  // Размещаем их первыми, чтобы поисковики увидели их сразу
+  if (slot.hero_keyword) {
+    keywords.push(slot.hero_keyword)
+  }
+  if (slot.hero_keyword_2) {
+    keywords.push(slot.hero_keyword_2)
+  }
+  if (slot.hero_keyword_3) {
+    keywords.push(slot.hero_keyword_3)
+  }
 
   // 1. Основные ключевые слова (Primary)
   if (slot.seo_keywords_primary) {
@@ -5896,8 +6293,29 @@ const generateOptimizedKeywords = (slot) => {
   }
 
   // 5. If nothing available - generate automatically
+  // Даже в автоматической генерации используем hero keywords если есть
   if (keywords.length === 0) {
-    return `${slot.name}, ${slot.providers?.name || 'provider'}, slot, slot machine, online casino, demo game, free play, RTP ${slot.rtp || '96'}%, ${slot.volatility || 'medium'} volatility, ${slot.category?.name || 'slots'}, real money, bonuses, free spins, SlotQuest`
+    const autoKeywords = [
+      slot.hero_keyword,
+      slot.hero_keyword_2,
+      slot.hero_keyword_3,
+      slot.name,
+      slot.providers?.name,
+      'slot',
+      'slot machine',
+      'online casino',
+      'demo game',
+      'free play',
+      `RTP ${slot.rtp || '96'}%`,
+      `${slot.volatility || 'medium'} volatility`,
+      slot.category?.name || 'slots',
+      'real money',
+      'bonuses',
+      'free spins',
+      'SlotQuest',
+    ].filter(Boolean)
+
+    return autoKeywords.join(', ')
   }
 
   return keywords.join(', ')
@@ -5960,6 +6378,20 @@ const getStructuredData = (slot) => {
     inLanguage: slot.content_language || 'en',
     isAccessibleForFree: Boolean(slot.demo_url),
 
+    // 🎯 SEO: Ключевые слова для поисковиков (все 3 hero keywords)
+    // Google использует это для понимания главных тем страницы
+    keywords: [
+      slot.hero_keyword,
+      slot.hero_keyword_2,
+      slot.hero_keyword_3,
+      slot.name,
+      slot.providers?.name,
+      'Online Slot',
+      'Casino Game',
+    ]
+      .filter(Boolean)
+      .join(', '),
+
     // Гео-таргетинг аудитории (из настроек админки)
     audience: slot.geo_target_regions
       ? {
@@ -5986,7 +6418,8 @@ const getStructuredData = (slot) => {
     },
 
     datePublished: slot.release_date || '2021-02-13',
-    genre: 'Casino Slot Game',
+    // Используем hero_keyword для определения жанра
+    genre: slot.hero_keyword || 'Slot Game',
     gamePlatform: ['Web Browser', 'Mobile', 'Desktop'],
     applicationCategory: 'Game',
     contentRating: '18+',
@@ -6233,7 +6666,9 @@ const getStructuredData = (slot) => {
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': `${slotUrl}#review`,
-    headline: slot.schema_review_title || `${slot.name} Slot Review 2025`,
+    // Используем hero_keyword для формирования заголовка обзора
+    headline:
+      slot.schema_review_title || `${getSlotNameWithKeyword(slot.value)} 2025`,
     description:
       slot.schema_review_description_1 ||
       `Complete review of ${slot.name} slot from ${slot.providers?.name || 'provider'}. RTP, volatility, bonus features analysis.`,
@@ -6249,6 +6684,31 @@ const getStructuredData = (slot) => {
     datePublished: slot.release_date || '2021-02-13',
     dateModified: slot.updated_at || new Date().toISOString().split('T')[0],
     inLanguage: slot.content_language || 'en',
+
+    // 🎯 SEO: Ключевые слова обзора (все 3 hero keywords)
+    // Показываем Google что обзор сфокусирован на этих ключевых темах
+    keywords: [
+      slot.hero_keyword,
+      slot.hero_keyword_2,
+      slot.hero_keyword_3,
+      slot.name,
+      `${slot.name} Review`,
+      'Slot Review',
+      'Casino Game Review',
+    ]
+      .filter(Boolean)
+      .join(', '),
+
+    // 🎯 SEO: О чём статья (основной subject)
+    // Используем hero_keyword_2 как главную тему (обычно это название слота или его вариация)
+    about: slot.hero_keyword_2
+      ? {
+          '@type': 'Thing',
+          name: slot.hero_keyword_2,
+          description: `Detailed review and analysis of ${slot.hero_keyword_2}`,
+        }
+      : undefined,
+
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: slot.rating || '4.8',

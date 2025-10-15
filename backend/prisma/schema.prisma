@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["postgresqlExtensions"]
 }
 
@@ -48,6 +48,10 @@ model slots {
   category_id           String?          @db.Uuid
   theme_id              String?
   description           String?
+  // Ключевые слова для Hero секции
+  hero_keyword          String?          @db.VarChar(100) // Заголовок (например, "Slot Review")
+  hero_keyword_2        String?          @db.VarChar(200) // Первая переменная в описании
+  hero_keyword_3        String?          @db.VarChar(200) // Вторая переменная в описании
   thumbnail_url         String?          @db.VarChar(500)
   // HERO media fields
   media_type            String?          @db.VarChar(20)

@@ -34,7 +34,7 @@
               </svg>
             </NuxtLink>
 
-            <!-- Заголовок слота -->
+            <!-- Title слота -->
             <div class="flex items-center">
               <div class="text-center">
                 <h1 class="text-xl font-semibold text-[#E5E7EB] font-display">
@@ -44,7 +44,7 @@
               </div>
             </div>
 
-            <!-- Кнопки действий -->
+            <!-- Action buttons -->
             <div class="flex items-center gap-3">
               <!-- Управление секциями -->
               <div class="flex items-center gap-2">
@@ -456,13 +456,11 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          <span>{{
-                            showBasicSection ? 'Скрыть' : 'Показать'
-                          }}</span>
+                          <span>{{ showBasicSection ? 'Hide' : 'Show' }}</span>
                         </button>
                       </div>
                       <div v-show="showBasicSection" class="space-y-4">
-                        <!-- Название слота -->
+                        <!-- Name слота -->
                         <div>
                           <label
                             class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
@@ -480,7 +478,7 @@
                                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                               ></path>
                             </svg>
-                            Название слота *
+                            Name слота *
                           </label>
                           <input
                             v-model="form.name"
@@ -561,12 +559,12 @@
                           </select>
                         </div>
 
-                        <!-- Описание -->
+                        <!-- Description -->
                         <div>
                           <label
                             class="block text-sm font-medium text-gray-300 mb-2"
                           >
-                            Описание для Hero секции
+                            Description для Hero секции
                           </label>
                           <div class="text-xs text-gray-400 mb-2">
                             Максимум 400 символов
@@ -578,6 +576,150 @@
                             class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                             placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
                           ></textarea>
+                        </div>
+
+                        <!-- Hero Keywords - Система из 3 ключевых слов -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 rounded-lg border border-emerald-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-emerald-400 text-lg">✨</span>
+                            <h4 class="text-sm font-bold text-emerald-300">
+                              Ключевые слова для Hero секции (3 переменные)
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-blue-900/30 p-3 rounded-lg border border-blue-500/30 space-y-1"
+                          >
+                            <div class="font-bold text-blue-300">
+                              📝 Как использовать в описании:
+                            </div>
+                            <div class="text-gray-400">
+                              В тексте описания используй плейсхолдеры:
+                            </div>
+                            <div
+                              class="font-mono text-xs bg-gray-800/50 p-2 rounded mt-1"
+                            >
+                              <span class="text-emerald-400">[keyword_2]</span>
+                              - заменится на значение из поля 2<br />
+                              <span class="text-purple-400">[keyword_3]</span> -
+                              заменится на значение из поля 3
+                            </div>
+                            <div class="text-yellow-300 mt-2">
+                              💡 Пример: "We love
+                              <span class="text-emerald-400">[keyword_2]</span>
+                              and
+                              <span class="text-purple-400">[keyword_3]</span>"
+                            </div>
+                          </div>
+
+                          <!-- Keyword 1 - Заголовок -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-emerald-300 mb-2"
+                            >
+                              1️⃣ Ключевое слово - Заголовок Hero секции
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Отображается как <strong>заголовок</strong> в
+                                Hero секции (вместо названия слота)
+                              </div>
+                              <div class="text-blue-300">
+                                Результат:
+                                <span class="font-bold text-emerald-300"
+                                  >"{{
+                                    form.hero_keyword || 'Slot Review'
+                                  }}"</span
+                                >
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.hero_keyword"
+                              type="text"
+                              maxlength="100"
+                              class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                              placeholder='Например: "Premium Casino Experience"'
+                            />
+                          </div>
+
+                          <!-- Keyword 2 - Первая переменная -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-emerald-300 mb-2"
+                            >
+                              2️⃣ Переменная [keyword_2] - Для описания
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Используется в тексте описания как
+                                <span
+                                  class="font-mono text-emerald-400 bg-gray-800 px-1 rounded"
+                                  >[keyword_2]</span
+                                >
+                              </div>
+                              <div class="text-blue-300">
+                                Например: название слота или его особенность
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.hero_keyword_2"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                              placeholder='Например: "Gates of Olympus"'
+                            />
+                          </div>
+
+                          <!-- Keyword 3 - Вторая переменная -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-purple-300 mb-2"
+                            >
+                              3️⃣ Переменная [keyword_3] - Для описания
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Используется в тексте описания как
+                                <span
+                                  class="font-mono text-purple-400 bg-gray-800 px-1 rounded"
+                                  >[keyword_3]</span
+                                >
+                              </div>
+                              <div class="text-blue-300">
+                                Например: модификация слота или дополнительная
+                                информация
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.hero_keyword_3"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                              placeholder='Например: "Gates of Olympus 1,000"'
+                            />
+                          </div>
+
+                          <!-- Пример результата -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Пример текста с переменными:
+                            </div>
+                            <div class="text-xs text-white font-mono">
+                              "We love
+                              <span class="text-emerald-400">{{
+                                form.hero_keyword_2 || '[keyword_2]'
+                              }}</span>
+                              and
+                              <span class="text-purple-400">{{
+                                form.hero_keyword_3 || '[keyword_3]'
+                              }}</span
+                              >!"
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -637,7 +779,7 @@
                             />
                           </svg>
                           <span>{{
-                            showHeroLinksSection ? 'Скрыть' : 'Показать'
+                            showHeroLinksSection ? 'Hide' : 'Show'
                           }}</span>
                         </button>
                       </div>
@@ -927,12 +1069,12 @@
                             />
                           </div>
 
-                          <!-- Дата выпуска -->
+                          <!-- Date выпуска -->
                           <div>
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Дата выпуска
+                              Date выпуска
                             </label>
                             <input
                               v-model="form.release_date"
@@ -1052,7 +1194,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#CD0F8B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showRatingSection"
                         >
-                          {{ showRatingSection ? 'Скрыть' : 'Показать' }}
+                          {{ showRatingSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -1349,7 +1491,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#FF6E48]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showMechanicsSection"
                         >
-                          {{ showMechanicsSection ? 'Скрыть' : 'Показать' }}
+                          {{ showMechanicsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showMechanicsSection" class="space-y-4">
@@ -1466,7 +1608,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#63F3AB]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showBonusesSection"
                         >
-                          {{ showBonusesSection ? 'Скрыть' : 'Показать' }}
+                          {{ showBonusesSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showBonusesSection" class="space-y-4">
@@ -1655,7 +1797,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#00EDFF]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showThemesSection"
                         >
-                          {{ showThemesSection ? 'Скрыть' : 'Показать' }}
+                          {{ showThemesSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showThemesSection" class="space-y-4">
@@ -1915,13 +2057,11 @@
                             class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#4F46E5]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                             :aria-expanded="showOverviewMainSection"
                           >
-                            {{
-                              showOverviewMainSection ? 'Скрыть' : 'Показать'
-                            }}
+                            {{ showOverviewMainSection ? 'Hide' : 'Show' }}
                           </button>
                         </div>
                         <div v-show="showOverviewMainSection" class="space-y-4">
-                          <!-- Заголовок обзора -->
+                          <!-- Title обзора -->
                           <div>
                             <label
                               class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
@@ -1939,7 +2079,7 @@
                                   d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                                 ></path>
                               </svg>
-                              Заголовок обзора
+                              Title обзора
                             </label>
                             <input
                               v-model="form.overview_title"
@@ -2063,12 +2203,12 @@
                           v-show="showOverviewSuccessSecretSection"
                           class="space-y-4"
                         >
-                          <!-- Заголовок секрета успеха -->
+                          <!-- Title секрета успеха -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Заголовок секции
+                              Title секции
                             </label>
                             <input
                               v-model="form.success_secret_title"
@@ -2112,7 +2252,7 @@
                                 v-model="form.success_sweetbonanza_description"
                                 rows="4"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
-                                placeholder="Описание связи с Sweet Bonanza..."
+                                placeholder="Description связи с Sweet Bonanza..."
                               ></textarea>
                             </div>
 
@@ -2133,12 +2273,12 @@
                                 v-model="form.success_balance_description"
                                 rows="4"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
-                                placeholder="Описание идеального баланса..."
+                                placeholder="Description идеального баланса..."
                               ></textarea>
                             </div>
                           </div>
 
-                          <!-- Заключение -->
+                          <!-- Conclusion -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -2215,12 +2355,12 @@
                           v-show="showOverviewMechanicsSection"
                           class="space-y-4"
                         >
-                          <!-- Заголовок механик -->
+                          <!-- Title механик -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Заголовок секции
+                              Title секции
                             </label>
                             <input
                               v-model="form.mechanics_title"
@@ -2264,7 +2404,7 @@
                                 v-model="form.mechanics_scatter_description"
                                 rows="3"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
-                                placeholder="Описание scatter pays..."
+                                placeholder="Description scatter pays..."
                               ></textarea>
                               <textarea
                                 v-model="form.mechanics_scatter_details"
@@ -2291,7 +2431,7 @@
                                 v-model="form.mechanics_cascade_description"
                                 rows="3"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
-                                placeholder="Описание каскадов..."
+                                placeholder="Description каскадов..."
                               ></textarea>
                               <textarea
                                 v-model="form.mechanics_cascade_details"
@@ -2318,7 +2458,7 @@
                                 v-model="form.mechanics_multipliers_description"
                                 rows="3"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
-                                placeholder="Описание множителей..."
+                                placeholder="Description множителей..."
                               ></textarea>
                               <textarea
                                 v-model="form.mechanics_multipliers_details"
@@ -2385,12 +2525,12 @@
                           v-show="showOverviewFreeSpinsSection"
                           class="space-y-4"
                         >
-                          <!-- Заголовок бесплатных спинов -->
+                          <!-- Title бесплатных спинов -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Заголовок секции
+                              Title секции
                             </label>
                             <input
                               v-model="form.free_spins_title"
@@ -2411,7 +2551,7 @@
                               v-model="form.free_spins_intro"
                               rows="4"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none"
-                              placeholder="Описание активации бесплатных спинов..."
+                              placeholder="Description активации бесплатных спинов..."
                             ></textarea>
                           </div>
 
@@ -2511,7 +2651,7 @@
                               v-model="form.free_spins_ante_description"
                               rows="2"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none mb-3"
-                              placeholder="Описание Ante Bet и покупки бонуса..."
+                              placeholder="Description Ante Bet и покупки бонуса..."
                             ></textarea>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <input
@@ -2585,12 +2725,12 @@
                           v-show="showOverviewStrategiesSection"
                           class="space-y-4"
                         >
-                          <!-- Заголовок стратегий -->
+                          <!-- Title стратегий -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Заголовок секции
+                              Title секции
                             </label>
                             <input
                               v-model="form.strategies_title"
@@ -2813,7 +2953,7 @@
                   </div>
 
                   <div v-show="showFaqSection" class="space-y-8">
-                    <!-- Заголовок секции -->
+                    <!-- Title секции -->
                     <div
                       class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#FF6B35]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
                     >
@@ -2840,7 +2980,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Заголовок секции
+                              Title секции
                             </h3>
                             <p class="text-sm text-[#F59E0B]">
                               Основной заголовок
@@ -2853,16 +2993,16 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showFaqTitleSection"
                         >
-                          {{ showFaqTitleSection ? 'Скрыть' : 'Показать' }}
+                          {{ showFaqTitleSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showFaqTitleSection" class="space-y-4">
-                        <!-- Заголовок секции -->
+                        <!-- Title секции -->
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Заголовок секции FAQ
+                            Title секции FAQ
                           </label>
                           <input
                             v-model="form.faq_title"
@@ -2900,7 +3040,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showFaqQuestion1"
                         >
-                          {{ showFaqQuestion1 ? 'Скрыть' : 'Показать' }}
+                          {{ showFaqQuestion1 ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showFaqQuestion1" class="space-y-4">
@@ -2972,7 +3112,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showFaqQuestion2"
                         >
-                          {{ showFaqQuestion2 ? 'Скрыть' : 'Показать' }}
+                          {{ showFaqQuestion2 ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showFaqQuestion2" class="space-y-4">
@@ -3044,7 +3184,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showFaqQuestion3"
                         >
-                          {{ showFaqQuestion3 ? 'Скрыть' : 'Показать' }}
+                          {{ showFaqQuestion3 ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showFaqQuestion3" class="space-y-4">
@@ -3118,7 +3258,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EF4444]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showFaqQuestion4"
                         >
-                          {{ showFaqQuestion4 ? 'Скрыть' : 'Показать' }}
+                          {{ showFaqQuestion4 ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showFaqQuestion4" class="space-y-4">
@@ -3227,7 +3367,7 @@
                   </div>
 
                   <div v-show="showReviewsSection" class="space-y-8">
-                    <!-- Заголовок секции -->
+                    <!-- Title секции -->
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
@@ -3254,7 +3394,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Заголовок секции
+                              Title секции
                             </h3>
                             <p class="text-sm text-[#3B82F6]">
                               Основной заголовок и подзаголовок
@@ -3269,7 +3409,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showReviewsTitleSection"
                         >
-                          {{ showReviewsTitleSection ? 'Скрыть' : 'Показать' }}
+                          {{ showReviewsTitleSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showReviewsTitleSection" class="space-y-4">
@@ -3277,7 +3417,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Заголовок секции
+                            Title секции
                           </label>
                           <input
                             v-model="form.reviews_title"
@@ -3290,7 +3430,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Подзаголовок
+                            Subtitle
                           </label>
                           <input
                             v-model="form.reviews_subtitle"
@@ -3332,7 +3472,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showReviewsStatsSection"
                         >
-                          {{ showReviewsStatsSection ? 'Скрыть' : 'Показать' }}
+                          {{ showReviewsStatsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showReviewsStatsSection" class="space-y-4">
@@ -3575,9 +3715,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showReviewsSentimentsSection"
                         >
-                          {{
-                            showReviewsSentimentsSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showReviewsSentimentsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -3585,12 +3723,12 @@
                         class="space-y-4"
                       >
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                          <!-- Пункт 1 -->
+                          <!-- Point 1 -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Пункт 1 - Заголовок
+                              Point 1 - Title
                             </label>
                             <input
                               v-model="form.reviews_sentiment_1_title"
@@ -3606,12 +3744,12 @@
                             />
                           </div>
 
-                          <!-- Пункт 2 -->
+                          <!-- Point 2 -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Пункт 2 - Заголовок
+                              Point 2 - Title
                             </label>
                             <input
                               v-model="form.reviews_sentiment_2_title"
@@ -3627,12 +3765,12 @@
                             />
                           </div>
 
-                          <!-- Пункт 3 -->
+                          <!-- Point 3 -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Пункт 3 - Заголовок
+                              Point 3 - Title
                             </label>
                             <input
                               v-model="form.reviews_sentiment_3_title"
@@ -3648,12 +3786,12 @@
                             />
                           </div>
 
-                          <!-- Пункт 4 -->
+                          <!-- Point 4 -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Пункт 4 - Заголовок
+                              Point 4 - Title
                             </label>
                             <input
                               v-model="form.reviews_sentiment_4_title"
@@ -3700,23 +3838,23 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EC4899]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showReviewsItemsSection"
                         >
-                          {{ showReviewsItemsSection ? 'Скрыть' : 'Показать' }}
+                          {{ showReviewsItemsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showReviewsItemsSection" class="space-y-6">
-                        <!-- Отзыв 1 -->
+                        <!-- Review 1 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Отзыв 1
+                            Review 1
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Имя автора
+                                Author name
                               </label>
                               <input
                                 v-model="form.review_1_author"
@@ -3729,7 +3867,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Буква для аватара
+                                Avatar letter
                               </label>
                               <input
                                 v-model="form.review_1_avatar_letter"
@@ -3742,7 +3880,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Рейтинг (звезды)
+                                Rating (stars)
                               </label>
                               <input
                                 v-model="form.review_1_rating"
@@ -3755,7 +3893,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Бейдж статуса
+                                Status badge
                               </label>
                               <input
                                 v-model="form.review_1_badge"
@@ -3768,7 +3906,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Текст отзыва
+                                Review text
                               </label>
                               <textarea
                                 v-model="form.review_1_text"
@@ -3781,7 +3919,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Лайки
+                                Likes
                               </label>
                               <input
                                 v-model="form.review_1_likes"
@@ -3794,7 +3932,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Ответы
+                                Replies
                               </label>
                               <input
                                 v-model="form.review_1_replies"
@@ -3807,7 +3945,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Дата
+                                Date
                               </label>
                               <input
                                 v-model="form.review_1_date"
@@ -3819,19 +3957,19 @@
                           </div>
                         </div>
 
-                        <!-- Отзыв 2 -->
+                        <!-- Review 2 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Отзыв 2
+                            Review 2
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Имя автора
+                                Author name
                               </label>
                               <input
                                 v-model="form.review_2_author"
@@ -3844,7 +3982,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Буква для аватара
+                                Avatar letter
                               </label>
                               <input
                                 v-model="form.review_2_avatar_letter"
@@ -3857,7 +3995,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Рейтинг (звезды)
+                                Rating (stars)
                               </label>
                               <input
                                 v-model="form.review_2_rating"
@@ -3870,7 +4008,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Бейдж статуса
+                                Status badge
                               </label>
                               <input
                                 v-model="form.review_2_badge"
@@ -3883,7 +4021,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Текст отзыва
+                                Review text
                               </label>
                               <textarea
                                 v-model="form.review_2_text"
@@ -3896,7 +4034,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Лайки
+                                Likes
                               </label>
                               <input
                                 v-model="form.review_2_likes"
@@ -3909,7 +4047,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Ответы
+                                Replies
                               </label>
                               <input
                                 v-model="form.review_2_replies"
@@ -3922,7 +4060,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Дата
+                                Date
                               </label>
                               <input
                                 v-model="form.review_2_date"
@@ -3934,19 +4072,19 @@
                           </div>
                         </div>
 
-                        <!-- Отзыв 3 -->
+                        <!-- Review 3 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Отзыв 3
+                            Review 3
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Имя автора
+                                Author name
                               </label>
                               <input
                                 v-model="form.review_3_author"
@@ -3959,7 +4097,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Буква для аватара
+                                Avatar letter
                               </label>
                               <input
                                 v-model="form.review_3_avatar_letter"
@@ -3972,7 +4110,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Рейтинг (звезды)
+                                Rating (stars)
                               </label>
                               <input
                                 v-model="form.review_3_rating"
@@ -3985,7 +4123,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Бейдж статуса
+                                Status badge
                               </label>
                               <input
                                 v-model="form.review_3_badge"
@@ -3998,7 +4136,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Текст отзыва
+                                Review text
                               </label>
                               <textarea
                                 v-model="form.review_3_text"
@@ -4011,7 +4149,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Лайки
+                                Likes
                               </label>
                               <input
                                 v-model="form.review_3_likes"
@@ -4024,7 +4162,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Ответы
+                                Replies
                               </label>
                               <input
                                 v-model="form.review_3_replies"
@@ -4037,7 +4175,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Дата
+                                Date
                               </label>
                               <input
                                 v-model="form.review_3_date"
@@ -4117,7 +4255,7 @@
                   </div>
 
                   <div v-show="showProfessionalRatingSection" class="space-y-8">
-                    <!-- Заголовки секции -->
+                    <!-- Headings секции -->
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
@@ -4144,7 +4282,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Заголовки секции
+                              Headings секции
                             </h3>
                             <p class="text-sm text-[#3B82F6]">
                               Основной заголовок и подзаголовок
@@ -4160,9 +4298,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showProfRatingTitleSection"
                         >
-                          {{
-                            showProfRatingTitleSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showProfRatingTitleSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4173,7 +4309,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Заголовок секции
+                            Title секции
                           </label>
                           <input
                             v-model="form.prof_rating_title"
@@ -4186,7 +4322,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Подзаголовок
+                            Subtitle
                           </label>
                           <input
                             v-model="form.prof_rating_subtitle"
@@ -4229,9 +4365,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showProfRatingOverallSection"
                         >
-                          {{
-                            showProfRatingOverallSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showProfRatingOverallSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4242,7 +4376,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Заголовок
+                            Title
                           </label>
                           <input
                             v-model="form.prof_rating_overall_title"
@@ -4255,7 +4389,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Описание
+                            Description
                           </label>
                           <textarea
                             v-model="form.prof_rating_overall_desc"
@@ -4269,7 +4403,7 @@
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Оценка (из 10)
+                              Score (out of 10)
                             </label>
                             <input
                               v-model="form.prof_rating_overall_score"
@@ -4282,7 +4416,7 @@
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
                             >
-                              Звезды
+                              Stars
                             </label>
                             <input
                               v-model="form.prof_rating_overall_stars"
@@ -4295,7 +4429,7 @@
                       </div>
                     </div>
 
-                    <!-- Детальные метрики (5 метрик) -->
+                    <!-- Detailed metrics (5 метрик) -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
@@ -4310,7 +4444,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Детальные метрики
+                              Detailed metrics
                             </h3>
                             <p class="text-sm text-[#10B981]">
                               5 критериев оценки
@@ -4326,9 +4460,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showProfRatingMetricsSection"
                         >
-                          {{
-                            showProfRatingMetricsSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showProfRatingMetricsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4340,7 +4472,7 @@
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            1. Графика и анимация
+                            1. Graphics and animation
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                             <div>
@@ -4358,7 +4490,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Название</label
+                                >Name</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_1_name"
@@ -4370,7 +4502,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Оценка (из 10)</label
+                                >Score (out of 10)</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_1_score"
@@ -4387,7 +4519,7 @@
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            2. Геймплей
+                            2. Gameplay
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                             <div>
@@ -4405,7 +4537,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Название</label
+                                >Name</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_2_name"
@@ -4417,7 +4549,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Оценка (из 10)</label
+                                >Score (out of 10)</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_2_score"
@@ -4429,12 +4561,12 @@
                           </div>
                         </div>
 
-                        <!-- Метрика 3: Потенциал выигрыша -->
+                        <!-- Метрика 3: Win potential -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            3. Потенциал выигрыша
+                            3. Win potential
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                             <div>
@@ -4452,19 +4584,19 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Название</label
+                                >Name</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_3_name"
                                 type="text"
                                 class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
-                                placeholder="Потенциал выигрыша"
+                                placeholder="Win potential"
                               />
                             </div>
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Оценка (из 10)</label
+                                >Score (out of 10)</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_3_score"
@@ -4499,7 +4631,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Название</label
+                                >Name</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_4_name"
@@ -4511,7 +4643,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Оценка (из 10)</label
+                                >Score (out of 10)</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_4_score"
@@ -4546,7 +4678,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Название</label
+                                >Name</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_5_name"
@@ -4558,7 +4690,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Оценка (из 10)</label
+                                >Score (out of 10)</label
                               >
                               <input
                                 v-model="form.prof_rating_metric_5_score"
@@ -4603,9 +4735,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showProfRatingExpertSection"
                         >
-                          {{
-                            showProfRatingExpertSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showProfRatingExpertSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4632,7 +4762,7 @@
               </div>
             </div>
 
-            <!-- Секция "Заключение" -->
+            <!-- Секция "Conclusion" -->
             <div id="conclusion-section">
               <div
                 id="conclusion"
@@ -4659,7 +4789,7 @@
                         <h2
                           class="text-2xl font-semibold text-[#E5E7EB] font-display"
                         >
-                          Заключение
+                          Conclusion
                         </h2>
                         <div
                           class="h-1 w-28 bg-gradient-to-r from-[#10B981] to-[#3B82F6] rounded-full mt-2"
@@ -4691,7 +4821,7 @@
                   </div>
 
                   <div v-show="showConclusionSection" class="space-y-8">
-                    <!-- Заголовок -->
+                    <!-- Title -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#3B82F6]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
@@ -4718,7 +4848,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Заголовок
+                              Title
                             </h3>
                             <p class="text-sm text-[#10B981]">
                               Основной заголовок
@@ -4734,9 +4864,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showConclusionTitleSection"
                         >
-                          {{
-                            showConclusionTitleSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showConclusionTitleSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4747,19 +4875,19 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Заголовок секции
+                            Title секции
                           </label>
                           <input
                             v-model="form.conclusion_title"
                             type="text"
                             class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
-                            placeholder="Заключение"
+                            placeholder="Conclusion"
                           />
                         </div>
                       </div>
                     </div>
 
-                    <!-- Итоговая оценка (2 абзаца) -->
+                    <!-- Final rating (2 абзаца) -->
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
@@ -4774,7 +4902,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Итоговая оценка
+                              Final rating
                             </h3>
                             <p class="text-sm text-[#3B82F6]">
                               Два абзаца текста
@@ -4790,9 +4918,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showConclusionTextSection"
                         >
-                          {{
-                            showConclusionTextSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showConclusionTextSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showConclusionTextSection" class="space-y-4">
@@ -4800,7 +4926,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Абзац 1
+                            Paragraph 1
                           </label>
                           <textarea
                             v-model="form.conclusion_text_1"
@@ -4813,7 +4939,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Абзац 2
+                            Paragraph 2
                           </label>
                           <textarea
                             v-model="form.conclusion_text_2"
@@ -4825,7 +4951,7 @@
                       </div>
                     </div>
 
-                    <!-- Кому подходит (4 пункта) -->
+                    <!-- Suitable for (4 пункта) -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
@@ -4840,7 +4966,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Кому подходит
+                              Suitable for
                             </h3>
                             <p class="text-sm text-[#10B981]">4 пункта</p>
                           </div>
@@ -4868,7 +4994,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 1</label
+                            >Point 1</label
                           >
                           <input
                             v-model="form.conclusion_suitable_1"
@@ -4880,7 +5006,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 2</label
+                            >Point 2</label
                           >
                           <input
                             v-model="form.conclusion_suitable_2"
@@ -4892,7 +5018,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 3</label
+                            >Point 3</label
                           >
                           <input
                             v-model="form.conclusion_suitable_3"
@@ -4904,7 +5030,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 4</label
+                            >Point 4</label
                           >
                           <input
                             v-model="form.conclusion_suitable_4"
@@ -4916,7 +5042,7 @@
                       </div>
                     </div>
 
-                    <!-- Важно помнить (4 пункта) -->
+                    <!-- Important to remember (4 пункта) -->
                     <div
                       class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
                     >
@@ -4931,7 +5057,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Важно помнить
+                              Important to remember
                             </h3>
                             <p class="text-sm text-[#F59E0B]">4 пункта</p>
                           </div>
@@ -4945,9 +5071,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showConclusionWarningSection"
                         >
-                          {{
-                            showConclusionWarningSection ? 'Скрыть' : 'Показать'
-                          }}
+                          {{ showConclusionWarningSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div
@@ -4957,7 +5081,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 1</label
+                            >Point 1</label
                           >
                           <input
                             v-model="form.conclusion_warning_1"
@@ -4969,7 +5093,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 2</label
+                            >Point 2</label
                           >
                           <input
                             v-model="form.conclusion_warning_2"
@@ -4981,7 +5105,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 3</label
+                            >Point 3</label
                           >
                           <input
                             v-model="form.conclusion_warning_3"
@@ -4993,7 +5117,7 @@
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >Пункт 4</label
+                            >Point 4</label
                           >
                           <input
                             v-model="form.conclusion_warning_4"
@@ -5068,7 +5192,7 @@
                   </div>
 
                   <div v-show="showCtaSection" class="space-y-8">
-                    <!-- Заголовки -->
+                    <!-- Headings -->
                     <div
                       class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
                     >
@@ -5095,10 +5219,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Заголовки
+                              Headings
                             </h3>
                             <p class="text-sm text-[#F59E0B]">
-                              Заголовок, подзаголовок и потенциал
+                              Title, подзаголовок и потенциал
                             </p>
                           </div>
                         </div>
@@ -5108,7 +5232,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showCtaTitleSection"
                         >
-                          {{ showCtaTitleSection ? 'Скрыть' : 'Показать' }}
+                          {{ showCtaTitleSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showCtaTitleSection" class="space-y-4">
@@ -5116,7 +5240,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Главный заголовок
+                            Main title
                           </label>
                           <input
                             v-model="form.cta_title"
@@ -5129,7 +5253,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Подзаголовок
+                            Subtitle
                           </label>
                           <input
                             v-model="form.cta_subtitle"
@@ -5142,7 +5266,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Потенциал выигрыша
+                            Win potential
                           </label>
                           <input
                             v-model="form.cta_potential"
@@ -5154,7 +5278,7 @@
                       </div>
                     </div>
 
-                    <!-- Карточки преимуществ (3 карточки) -->
+                    <!-- Benefit cards (3 карточки) -->
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
@@ -5169,7 +5293,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Карточки преимуществ
+                              Benefit cards
                             </h3>
                             <p class="text-sm text-[#3B82F6]">3 карточки</p>
                           </div>
@@ -5182,16 +5306,16 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showCtaFeaturesSection"
                         >
-                          {{ showCtaFeaturesSection ? 'Скрыть' : 'Показать' }}
+                          {{ showCtaFeaturesSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showCtaFeaturesSection" class="space-y-6">
-                        <!-- Карточка 1 -->
+                        <!-- Card 1 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Карточка 1
+                            Card 1
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
@@ -5209,7 +5333,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Заголовок</label
+                                >Title</label
                               >
                               <input
                                 v-model="form.cta_feature_1_title"
@@ -5221,7 +5345,7 @@
                             <div class="lg:col-span-2">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Описание</label
+                                >Description</label
                               >
                               <input
                                 v-model="form.cta_feature_1_desc"
@@ -5233,12 +5357,12 @@
                           </div>
                         </div>
 
-                        <!-- Карточка 2 -->
+                        <!-- Card 2 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Карточка 2
+                            Card 2
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
@@ -5256,7 +5380,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Заголовок</label
+                                >Title</label
                               >
                               <input
                                 v-model="form.cta_feature_2_title"
@@ -5268,7 +5392,7 @@
                             <div class="lg:col-span-2">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Описание</label
+                                >Description</label
                               >
                               <input
                                 v-model="form.cta_feature_2_desc"
@@ -5280,12 +5404,12 @@
                           </div>
                         </div>
 
-                        <!-- Карточка 3 -->
+                        <!-- Card 3 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Карточка 3
+                            Card 3
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
@@ -5303,7 +5427,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Заголовок</label
+                                >Title</label
                               >
                               <input
                                 v-model="form.cta_feature_3_title"
@@ -5315,7 +5439,7 @@
                             <div class="lg:col-span-2">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Описание</label
+                                >Description</label
                               >
                               <input
                                 v-model="form.cta_feature_3_desc"
@@ -5329,7 +5453,7 @@
                       </div>
                     </div>
 
-                    <!-- Кнопки действий (2 кнопки) -->
+                    <!-- Action buttons (2 кнопки) -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
@@ -5344,7 +5468,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Кнопки действий
+                              Action buttons
                             </h3>
                             <p class="text-sm text-[#10B981]">
                               2 кнопки призыва к действию
@@ -5359,7 +5483,7 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showCtaButtonsSection"
                         >
-                          {{ showCtaButtonsSection ? 'Скрыть' : 'Показать' }}
+                          {{ showCtaButtonsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showCtaButtonsSection" class="space-y-6">
@@ -5368,7 +5492,7 @@
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Кнопка "Играть демо"
+                            Button "Play demo"
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
@@ -5386,7 +5510,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Текст кнопки</label
+                                >Button text</label
                               >
                               <input
                                 v-model="form.cta_button_demo_text"
@@ -5398,7 +5522,7 @@
                             <div class="lg:col-span-2">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Ссылка на демо</label
+                                >Demo link</label
                               >
                               <input
                                 v-model="form.cta_button_demo_url"
@@ -5415,7 +5539,7 @@
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-4">
-                            Кнопка "Играть на деньги"
+                            Button "Play for real money"
                           </h4>
                           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
@@ -5433,7 +5557,7 @@
                             <div>
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Текст кнопки</label
+                                >Button text</label
                               >
                               <input
                                 v-model="form.cta_button_real_text"
@@ -5445,7 +5569,7 @@
                             <div class="lg:col-span-2">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                                >Ссылка на реальную игру</label
+                                >Real money game link</label
                               >
                               <input
                                 v-model="form.cta_button_real_url"
@@ -5459,7 +5583,7 @@
                       </div>
                     </div>
 
-                    <!-- Индикаторы доверия (3 индикатора) -->
+                    <!-- Trust indicators (3 индикатора) -->
                     <div
                       class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
                     >
@@ -5474,7 +5598,7 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Индикаторы доверия
+                              Trust indicators
                             </h3>
                             <p class="text-sm text-[#8B5CF6]">
                               3 индикатора безопасности
@@ -5487,16 +5611,16 @@
                           class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
                           :aria-expanded="showCtaTrustSection"
                         >
-                          {{ showCtaTrustSection ? 'Скрыть' : 'Показать' }}
+                          {{ showCtaTrustSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
                       <div v-show="showCtaTrustSection" class="space-y-4">
-                        <!-- Индикатор 1 -->
+                        <!-- Indicator 1 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
-                            Индикатор 1
+                            Indicator 1
                           </h4>
                           <div class="grid grid-cols-1 gap-3">
                             <div>
@@ -5514,12 +5638,12 @@
                           </div>
                         </div>
 
-                        <!-- Индикатор 2 -->
+                        <!-- Indicator 2 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
-                            Индикатор 2
+                            Indicator 2
                           </h4>
                           <div class="grid grid-cols-1 gap-3">
                             <div>
@@ -5537,12 +5661,12 @@
                           </div>
                         </div>
 
-                        <!-- Индикатор 3 -->
+                        <!-- Indicator 3 -->
                         <div
                           class="p-4 bg-[#1B1E26] rounded-lg border border-[#353A4A]"
                         >
                           <h4 class="text-md font-semibold text-[#E5E7EB] mb-3">
-                            Индикатор 3
+                            Indicator 3
                           </h4>
                           <div class="grid grid-cols-1 gap-3">
                             <div>
@@ -5712,7 +5836,7 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          {{ showMetaSection ? 'Скрыть' : 'Показать' }}
+                          {{ showMetaSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -5722,13 +5846,13 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            SEO Заголовок
+                            SEO Title
                             <span class="text-[#10B981] ml-1">*</span>
                           </label>
                           <input
                             v-model="form.seo_title"
                             type="text"
-                            placeholder="Играть в [Название слота] онлайн бесплатно | SlotQuest"
+                            placeholder="Играть в [Name слота] онлайн бесплатно | SlotQuest"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             maxlength="60"
                           />
@@ -5756,13 +5880,13 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            SEO Описание
+                            SEO Description
                             <span class="text-[#10B981] ml-1">*</span>
                           </label>
                           <textarea
                             v-model="form.seo_description"
                             rows="3"
-                            placeholder="Играйте в [Название слота] от [Провайдер] бесплатно и на реальные деньги. RTP [%], волатильность [уровень]. Бонусы, фриспины и джекпоты."
+                            placeholder="Играйте в [Name слота] от [Провайдер] бесплатно и на реальные деньги. RTP [%], волатильность [уровень]. Бонусы, фриспины и джекпоты."
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             maxlength="160"
                           ></textarea>
@@ -6024,7 +6148,7 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          {{ showOpenGraphSection ? 'Скрыть' : 'Показать' }}
+                          {{ showOpenGraphSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -6034,7 +6158,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            OG Заголовок
+                            OG Title
                           </label>
                           <input
                             v-model="form.og_title"
@@ -6049,7 +6173,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            OG Описание
+                            OG Description
                           </label>
                           <textarea
                             v-model="form.og_description"
@@ -6129,7 +6253,7 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          {{ showTwitterSection ? 'Скрыть' : 'Показать' }}
+                          {{ showTwitterSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -6167,7 +6291,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-3"
                           >
-                            Twitter Заголовок
+                            Twitter Title
                           </label>
                           <input
                             v-model="form.twitter_title"
@@ -6203,7 +6327,7 @@
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-3"
                           >
-                            Twitter Описание
+                            Twitter Description
                           </label>
                           <textarea
                             v-model="form.twitter_description"
@@ -6334,7 +6458,7 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          {{ showTechnicalSeoSection ? 'Скрыть' : 'Показать' }}
+                          {{ showTechnicalSeoSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -6673,7 +6797,7 @@
                               d="M19 9l-7 7-7-7"
                             />
                           </svg>
-                          {{ showJsonLdSection ? 'Скрыть' : 'Показать' }}
+                          {{ showJsonLdSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
 
@@ -6856,7 +6980,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Название организации
+                                Name организации
                               </label>
                               <input
                                 v-model="form.schema_org_name"
@@ -7016,7 +7140,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Дата релиза
+                                Date релиза
                               </label>
                               <input
                                 v-model="form.schema_slot_release_date"
@@ -7190,7 +7314,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Название провайдера
+                                Name провайдера
                               </label>
                               <input
                                 v-model="form.schema_provider_name"
@@ -7216,7 +7340,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Название слота
+                                Name слота
                               </label>
                               <input
                                 v-model="form.schema_slot_name"
@@ -7229,7 +7353,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Описание слота
+                                Description слота
                               </label>
                               <textarea
                                 v-model="form.schema_slot_description"
@@ -7322,7 +7446,7 @@
                                 <label
                                   class="block text-sm font-medium text-[#E5E7EB]"
                                 >
-                                  Заголовок обзора
+                                  Title обзора
                                 </label>
                                 <input
                                   v-model="form.schema_review_title"
@@ -7464,7 +7588,7 @@
                                   <label
                                     class="block text-xs font-medium text-[#9CA3AF]"
                                   >
-                                    Заголовок популярности
+                                    Title популярности
                                   </label>
                                   <input
                                     v-model="form.schema_popularity_title"
@@ -7522,7 +7646,7 @@
                                 <label
                                   class="block text-xs font-medium text-[#9CA3AF]"
                                 >
-                                  Описание популярности
+                                  Description популярности
                                 </label>
                                 <textarea
                                   v-model="form.schema_popularity_description"
@@ -7655,7 +7779,7 @@
                       <h1
                         class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
                       >
-                        {{ form.name || 'Название слота' }}
+                        {{ form.name || 'Name слота' }}
                       </h1>
 
                       <p
@@ -7663,11 +7787,11 @@
                       >
                         {{
                           form.description ||
-                          'Описание слота будет отображаться здесь...'
+                          'Description слота будет отображаться здесь...'
                         }}
                       </p>
 
-                      <!-- Кнопки действий -->
+                      <!-- Action buttons -->
                       <div class="flex flex-col gap-3 w-full max-w-md">
                         <BackgroundGradient
                           :animate="true"
@@ -8324,7 +8448,7 @@ const showProfRatingOverallSection = ref(false)
 const showProfRatingMetricsSection = ref(false)
 const showProfRatingExpertSection = ref(false)
 
-// Состояние для секции "Заключение"
+// Состояние для секции "Conclusion"
 const showConclusionSection = ref(false)
 const showConclusionTitleSection = ref(false)
 const showConclusionTextSection = ref(false)
@@ -8373,6 +8497,10 @@ const form = ref({
   name: '',
   slug: '',
   description: '',
+  // Ключевые слова для Hero секции
+  hero_keyword: 'Slot Review', // Заголовок
+  hero_keyword_2: '', // Первая переменная в описании
+  hero_keyword_3: '', // Вторая переменная в описании
   provider_id: null,
   rtp: 96.5,
   volatility: 'medium',
@@ -8417,7 +8545,7 @@ const form = ref({
   popularity_description:
     'Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
 
-  // Детальные метрики популярности (3 карточки)
+  // Detailed metrics популярности (3 карточки)
   popularity_global_rank_title: 'Глобальный рейтинг',
   popularity_global_rank_value: 'TOP 3',
   popularity_global_rank_description:
@@ -8557,7 +8685,7 @@ const form = ref({
   strategy_bankroll_4: 'Делайте перерывы каждые 30-60 минут',
 
   // === Секция "Насколько популярен" ===
-  // Заголовок секции
+  // Title секции
   popularity_section_title: 'Насколько популярен',
 
   // Основные метрики популярности (3 карточки)
@@ -8570,12 +8698,12 @@ const form = ref({
   popularity_monthly_players: '2M+',
   popularity_monthly_players_label: 'Игроков в месяц',
 
-  // Заключение о популярности
+  // Conclusion о популярности
   popularity_conclusion:
     '🏆 Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
 
   // === Секция "Рейтинг и награды" ===
-  // Заголовок секции
+  // Title секции
   rating_awards_title: 'Рейтинг и награды',
 
   // Основной рейтинг
@@ -8641,7 +8769,7 @@ const form = ref({
     'Да, полностью оптимизирован! Поддерживает iOS и Android, работает в браузере без установки приложений, сохраняет все функции и качество графики, быстрая загрузка и плавная анимация.',
 
   // === Секция "Отзывы игроков" ===
-  // Заголовки
+  // Headings
   reviews_title: 'Отзывы игроков',
   reviews_subtitle: 'Реальные мнения от сообщества слот-игроков',
 
@@ -8673,7 +8801,7 @@ const form = ref({
   reviews_sentiment_4_title: 'Высокая волатильность',
   reviews_sentiment_4_desc: 'Требует терпения',
 
-  // Отзыв 1
+  // Review 1
   review_1_author: 'Александр К.',
   review_1_avatar_letter: 'А',
   review_1_rating: '★★★★★',
@@ -8684,7 +8812,7 @@ const form = ref({
   review_1_replies: '12 ответов',
   review_1_date: '2 дня назад',
 
-  // Отзыв 2
+  // Review 2
   review_2_author: 'Мария В.',
   review_2_avatar_letter: 'М',
   review_2_rating: '★★★★☆',
@@ -8695,7 +8823,7 @@ const form = ref({
   review_2_replies: '8 ответов',
   review_2_date: '1 неделю назад',
 
-  // Отзыв 3
+  // Review 3
   review_3_author: 'Дмитрий С.',
   review_3_avatar_letter: 'Д',
   review_3_rating: '★★★★★',
@@ -8707,7 +8835,7 @@ const form = ref({
   review_3_date: '3 дня назад',
 
   // === Секция "Профессиональная оценка" ===
-  // Заголовки
+  // Headings
   prof_rating_title: 'Профессиональная оценка',
   prof_rating_subtitle: 'Детальный анализ от экспертов индустрии 🎯',
 
@@ -8728,9 +8856,9 @@ const form = ref({
   prof_rating_metric_2_name: 'Геймплей',
   prof_rating_metric_2_score: '8.0',
 
-  // Метрика 3: Потенциал выигрыша
+  // Метрика 3: Win potential
   prof_rating_metric_3_emoji: '💎',
-  prof_rating_metric_3_name: 'Потенциал выигрыша',
+  prof_rating_metric_3_name: 'Win potential',
   prof_rating_metric_3_score: '9.0',
 
   // Метрика 4: Бонусные функции
@@ -8747,49 +8875,49 @@ const form = ref({
   prof_rating_expert_quote:
     'Gates of Olympus представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯',
 
-  // === Секция "Заключение" ===
-  conclusion_title: 'Заключение',
+  // === Секция "Conclusion" ===
+  conclusion_title: 'Conclusion',
 
-  // Итоговая оценка
+  // Final rating
   conclusion_text_1:
     'Этот слот заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.',
   conclusion_text_2:
     'Революционная система выплат, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана, открывает новые горизонты в мире видеослотов. Каскадные выигрыши и множители создают уникальную атмосферу постоянного ожидания больших выплат.',
 
-  // Кому подходит (4 пункта)
+  // Suitable for (4 пункта)
   conclusion_suitable_1: 'Опытным игрокам',
   conclusion_suitable_2: 'Любителям высокой волатильности',
   conclusion_suitable_3: 'Игрокам с большим банкроллом',
   conclusion_suitable_4: 'Поклонникам инноваций',
 
-  // Важно помнить (4 пункта)
+  // Important to remember (4 пункта)
   conclusion_warning_1: 'Высокая волатильность',
   conclusion_warning_2: 'Нужен большой банкролл',
   conclusion_warning_3: 'Играйте ответственно',
   conclusion_warning_4: 'Устанавливайте лимиты',
 
   // === Секция "Время побеждать!" ===
-  // Заголовки
+  // Headings
   cta_title: 'Время побеждать!',
   cta_subtitle: 'Окунитесь в легендарный мир этого слота',
   cta_potential: 'x5,000',
 
-  // Карточка 1
+  // Card 1
   cta_feature_1_emoji: '🎰',
   cta_feature_1_title: 'Демо режим',
   cta_feature_1_desc: 'Изучите все механики игры совершенно бесплатно',
 
-  // Карточка 2
+  // Card 2
   cta_feature_2_emoji: '💰',
   cta_feature_2_title: 'Реальные деньги',
   cta_feature_2_desc: 'Играйте на деньги в лучших онлайн казино',
 
-  // Карточка 3
+  // Card 3
   cta_feature_3_emoji: '🎁',
   cta_feature_3_title: 'Эксклюзивные бонусы',
   cta_feature_3_desc: 'Получите дополнительные средства для игры',
 
-  // Кнопки действий
+  // Action buttons
   cta_button_demo_emoji: '🎮',
   cta_button_demo_text: 'Играть демо',
   cta_button_demo_url: '/slots/gates-of-olympus/demo',
@@ -8797,7 +8925,7 @@ const form = ref({
   cta_button_real_text: 'Играть на деньги',
   cta_button_real_url: '/casinos/best-for-gates-of-olympus',
 
-  // Индикаторы доверия
+  // Trust indicators
   cta_trust_1_text: 'Лицензированные операторы',
   cta_trust_2_text: 'Безопасность SSL',
   cta_trust_3_text: 'Поддержка 24/7',
@@ -8939,7 +9067,7 @@ const selectedMechanics = ref([])
 const selectedBonuses = ref([])
 const selectedThemes = ref([])
 
-// Заголовок страницы
+// Title страницы
 useHead({
   title: 'Редактирование слота - SlotQuest Admin',
 })
@@ -9185,6 +9313,9 @@ const saveSlot = async () => {
       'slug',
       'name',
       'description',
+      'hero_keyword', // Ключевое слово для заголовка Hero секции
+      'hero_keyword_2', // Первая переменная в описании
+      'hero_keyword_3', // Вторая переменная в описании
       'provider_id',
       'category_id',
       'media_type',
@@ -9222,10 +9353,16 @@ const saveSlot = async () => {
     // Подготавливаем данные для отправки - только разрешенные поля
     const dataToSend = {}
 
+    console.log('🔍 Форма перед сохранением:', form.value)
+    console.log('📋 Разрешенные поля:', allowedFields)
+
     // Копируем только разрешенные поля из формы
     allowedFields.forEach((field) => {
       if (form.value[field] !== undefined) {
         dataToSend[field] = form.value[field]
+        console.log(`✅ Копируем поле ${field}:`, form.value[field])
+      } else {
+        console.log(`❌ Пропускаем поле ${field}: undefined`)
       }
     })
 
@@ -9240,10 +9377,20 @@ const saveSlot = async () => {
         ? `${form.value.reels}×${form.value.rows}`
         : form.value.game_field
 
+    // Отладочный вывод данных перед отправкой
+    console.log('Отправляем данные:', {
+      url,
+      method,
+      data: dataToSend,
+    })
+
     const response = await $fetch(url, {
       method,
       body: dataToSend,
     })
+
+    // Отладочный вывод ответа
+    console.log('Ответ сервера:', response)
 
     // Показываем уведомление об успешном сохранении
     alert('Слот успешно сохранен!')
@@ -9518,7 +9665,7 @@ const searchableItems = [
   },
   {
     id: 'popularity-title',
-    name: 'Заголовок секции',
+    name: 'Title секции',
     section: 'showPopularityTitleSection',
     parent: 'showPopularitySection',
     keywords: ['заголовок', 'название'],
@@ -9532,7 +9679,7 @@ const searchableItems = [
   },
   {
     id: 'popularity-conclusion',
-    name: 'Заключение о популярности',
+    name: 'Conclusion о популярности',
     section: 'showPopularityConclusionSection',
     parent: 'showPopularitySection',
     keywords: ['заключение', 'вывод', 'итог'],
@@ -9547,7 +9694,7 @@ const searchableItems = [
   },
   {
     id: 'awards-title',
-    name: 'Заголовок секции',
+    name: 'Title секции',
     section: 'showRatingTitleSection',
     parent: 'showRatingAwardsSection',
     keywords: ['заголовок', 'название'],

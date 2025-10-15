@@ -10,704 +10,465 @@ interface SlotFilters {
   offset?: number;
 }
 
-interface ReviewData {
-  title: string;
-  content: string;
-  rating: number;
-  pros?: string[];
-  cons?: string[];
-  author_name?: string;
-  author_email?: string;
-}
-
-interface RatingData {
-  rating: number;
-  userIp: string;
-  userId?: string;
-  comment?: string;
-}
-
 @Injectable()
 export class SlotsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllSlots(filters: SlotFilters = {}) {
-    const data = await this.prisma.slots.findMany({
-      where: {
-        is_active: true,
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
-          },
-        },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
-          },
-        },
-        themes: true,
-      },
-      orderBy: {
-        created_at: 'desc',
-      },
-      take: 50,
-    });
+    try {
+      const { provider, category, limit, offset } = filters;
 
-    return data;
+      return await this.prisma.slots.findMany({
+        where: {
+          is_active: true,
+          ...(provider && {
+            providers: {
+              slug: provider
+            }
+          }),
+          ...(category && {
+            slot_categories: {
+              slug: category
+            }
+          })
+        },
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
+          },
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
+          },
+          themes: true,
+        },
+        orderBy: {
+          created_at: 'desc',
+        },
+        ...(limit && { take: limit }),
+        ...(offset && { skip: offset }),
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при получении списка слотов:', error);
+      throw error;
+    }
   }
 
   async getFeaturedSlots() {
-    const data = await this.prisma.slots.findMany({
-      where: {
-        is_active: true,
-        rating: {
-          gte: 8.0,
+    try {
+      return await this.prisma.slots.findMany({
+        where: {
+          is_active: true,
+          rating: {
+            gte: 4.5
+          }
         },
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
           },
-        },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
           },
+          themes: true,
         },
-        themes: true,
-      },
-      orderBy: {
-        rating: 'desc',
-      },
-      take: 12,
-    });
-
-    return data;
+        orderBy: {
+          rating: 'desc',
+        },
+        take: 12,
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при получении featured слотов:', error);
+      throw error;
+    }
   }
 
   async getPopularSlots() {
-    const data = await this.prisma.slots.findMany({
-      where: {
-        is_active: true,
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
-          },
+    try {
+      return await this.prisma.slots.findMany({
+        where: {
+          is_active: true,
         },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
           },
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
+          },
+          themes: true,
         },
-        themes: true,
-      },
-      orderBy: {
-        play_count: 'desc',
-      },
-      take: 12,
-    });
-
-    return data;
+        orderBy: {
+          play_count: 'desc',
+        },
+        take: 12,
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при получении популярных слотов:', error);
+      throw error;
+    }
   }
 
-  async searchSlots(searchQuery: string) {
-    const data = await this.prisma.slots.findMany({
-      where: {
-        is_active: true,
-        OR: [
-          {
-            name: {
-              contains: searchQuery,
-              mode: 'insensitive',
+  async searchSlots(query: string) {
+    try {
+      return await this.prisma.slots.findMany({
+        where: {
+          is_active: true,
+          OR: [
+            { name: { contains: query, mode: 'insensitive' } },
+            { description: { contains: query, mode: 'insensitive' } },
+            { providers: { name: { contains: query, mode: 'insensitive' } } },
+          ],
+        },
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
             },
           },
-          {
-            description: {
-              contains: searchQuery,
-              mode: 'insensitive',
+          slot_bonuses: {
+            include: {
+              bonuses: true,
             },
           },
-          {
-            theme: {
-              contains: searchQuery,
-              mode: 'insensitive',
-            },
-          },
-        ],
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-      },
-      orderBy: {
-        rating: 'desc',
-      },
-      take: 20,
-    });
-
-    return data;
+          themes: true,
+        },
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при поиске слотов:', error);
+      throw error;
+    }
   }
 
   async getSlotBySlug(slug: string) {
-    const data = await this.prisma.slots.findFirst({
-      where: {
-        slug,
-        is_active: true,
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
+    try {
+      return await this.prisma.slots.findUnique({
+        where: { slug },
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
           },
-        },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
           },
-        },
-        themes: true,
-      },
-    });
-
-    // Increment play count
-    if (data) {
-      await this.prisma.slots.update({
-        where: { id: data.id },
-        data: {
-          play_count: (data.play_count || 0) + 1,
+          themes: true,
         },
       });
+    } catch (error) {
+      console.error('❌ Ошибка при получении слота по slug:', error);
+      throw error;
     }
-
-    return data;
   }
 
-  async getSlotReviews(slug: string) {
-    // First get the slot ID
-    const slot = await this.prisma.slots.findFirst({
-      where: { slug },
-      select: { id: true },
-    });
-
-    if (!slot) throw new Error('Slot not found');
-
-    // Note: reviews table might not exist yet, returning empty array
-    const reviews: any[] = [];
-    // TODO: Implement when reviews table is available
-    // const reviews = await this.prisma.reviews.findMany({
-    //   where: {
-    //     slot_id: slot.id,
-    //     is_published: true,
-    //   },
-    //   orderBy: {
-    //     created_at: 'desc',
-    //   },
-    // });
-
-    return reviews;
-  }
-
-  async createSlotReview(slug: string, reviewData: ReviewData) {
-    // First get the slot ID
-    const slot = await this.prisma.slots.findFirst({
-      where: { slug },
-      select: { id: true },
-    });
-
-    if (!slot) throw new Error('Slot not found');
-
-    // Note: reviews table might not exist yet, returning mock data
-    const review = {
-      id: 'temp-' + Date.now(),
-      ...reviewData,
-      slot_id: slot.id,
-      is_published: false,
-      created_at: new Date(),
-    };
-    // TODO: Implement when reviews table is available
-    // const review = await this.prisma.reviews.create({
-    //   data: {
-    //     ...reviewData,
-    //     slot_id: slot.id,
-    //     is_published: false,
-    //   },
-    // });
-
-    return review;
-  }
-
-  async addSlotRating(slug: string, ratingData: RatingData) {
-    // First get the slot ID
-    const slot = await this.prisma.slots.findFirst({
-      where: { slug },
-      select: { id: true },
-    });
-
-    if (!slot) throw new Error('Slot not found');
-
-    // Note: slot_ratings table not available yet, returning mock data
-    const rating = {
-      id: 'temp-' + Date.now(),
-      slot_id: slot.id,
-      user_id: ratingData.userId || 'anonymous',
-      user_ip: ratingData.userIp,
-      rating: ratingData.rating,
-      comment: ratingData.comment,
-      created_at: new Date(),
-    };
-    // TODO: Implement when slot_ratings table is available
-    // const rating = await this.prisma.slot_ratings.upsert({
-    //   where: {
-    //     user_id_slot_id: {
-    //       user_id: ratingData.userId || 'anonymous',
-    //       slot_id: slot.id,
-    //     },
-    //   },
-    //   update: {
-    //     rating: ratingData.rating,
-    //     comment: ratingData.comment,
-    //   },
-    //   create: {
-    //     slot_id: slot.id,
-    //     user_id: ratingData.userId || 'anonymous',
-    //     user_ip: ratingData.userIp,
-    //     rating: ratingData.rating,
-    //     comment: ratingData.comment,
-    //   },
-    // });
-
-    // Update slot average rating
-    // await this.updateSlotAverageRating(slot.id);
-
-    return rating;
-  }
-
-  async getSlotRating(slug: string) {
-    // First get the slot ID
-    const slot = await this.prisma.slots.findFirst({
-      where: { slug },
-      select: { id: true, rating: true },
-    });
-
-    if (!slot) throw new Error('Slot not found');
-
-    // Note: slot_ratings table not available yet, using slot.rating field
-    const average = Number(slot.rating) || 0;
-    // TODO: Implement when slot_ratings table is available
-    // const ratings = await this.prisma.slot_ratings.findMany({
-    //   where: { slot_id: slot.id },
-    //   select: { rating: true },
-    // });
-
-    // if (ratings.length === 0) {
-    //   return { average: 0, count: 0 };
-    // }
-
-    // const sum = ratings.reduce((acc, r) => acc + Number(r.rating), 0);
-    // const average = sum / ratings.length;
-
-    return { average: Math.round(average * 10) / 10, count: 1 };
-  }
-
-  private async updateSlotAverageRating(slotId: string) {
-    // Note: slot_ratings table not available yet, skipping rating update
-    // TODO: Implement when slot_ratings table is available
-    // const ratings = await this.prisma.slot_ratings.findMany({
-    //   where: { slot_id: slotId },
-    //   select: { rating: true },
-    // });
-
-    // if (ratings.length === 0) {
-    //   await this.prisma.slots.update({
-    //     where: { id: slotId },
-    //     data: { rating: 0 },
-    //   });
-    //   return;
-    // }
-
-    // const sum = ratings.reduce((acc, r) => acc + Number(r.rating), 0);
-    // const average = sum / ratings.length;
-
-    // await this.prisma.slots.update({
-    //   where: { id: slotId },
-    //   data: { rating: Math.round(average * 10) / 10 },
-    // });
-  }
-
-  async getSlotsByProvider(providerSlug: string) {
-    // First get the provider ID
-    const provider = await this.prisma.providers.findFirst({
-      where: { slug: providerSlug },
-      select: { id: true },
-    });
-
-    if (!provider) throw new Error('Provider not found');
-
-    const slots = await this.prisma.slots.findMany({
-      where: {
-        provider_id: provider.id,
-        is_active: true,
-      },
-      include: {
-         providers: true,
-         slot_categories: true,
-       },
-      orderBy: {
-        rating: 'desc',
-      },
-    });
-
-    return slots;
-  }
-
-  async getSlotsByCategory(categorySlug: string) {
-    // First get the category ID
-    const category = await this.prisma.slot_categories.findFirst({
-      where: { slug: categorySlug },
-      select: { id: true },
-    });
-
-    if (!category) throw new Error('Category not found');
-
-    const slots = await this.prisma.slots.findMany({
-      where: {
-        category_id: category.id,
-        is_active: true,
-      },
-      include: {
-        providers: true,
-        slot_categories: true,
-      },
-      orderBy: {
-        rating: 'desc',
-      },
-    });
-
-    return slots;
+  async getSlotById(id: string) {
+    try {
+      return await this.prisma.slots.findUnique({
+        where: { id },
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
+          },
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
+          },
+          themes: true,
+        },
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при получении слота по ID:', error);
+      throw error;
+    }
   }
 
   async createSlot(createSlotDto: CreateSlotDto) {
-    // Генерация slug: уважаем переданный slug, иначе генерируем из name
-    const slugify = (value: string) => {
-      const translitMap: { [key: string]: string } = {
-        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-        'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-        'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-        'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-        'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+    try {
+      const {
+        provider_id,
+        selected_mechanics,
+        selected_bonuses,
+        selected_themes,
+        hero_keyword,
+        hero_keyword_2,
+        hero_keyword_3,
+        ...restDto
+      } = createSlotDto;
+
+      // Подготавливаем данные для создания
+      const createData: any = {
+        ...restDto,
+        provider_id,
       };
-      let text = (value || '').toLowerCase();
-      for (const [cyr, lat] of Object.entries(translitMap)) {
-        text = text.replace(new RegExp(cyr, 'g'), lat);
+
+      // Добавляем hero_keyword поля только если они предоставлены
+      if (hero_keyword !== undefined) {
+        createData.hero_keyword = hero_keyword;
       }
-      return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    };
-
-    const preferredSlug = createSlotDto.slug && createSlotDto.slug.trim()
-      ? slugify(createSlotDto.slug)
-      : slugify(createSlotDto.name);
-    const slug = preferredSlug || Date.now().toString();
-
-    // Извлекаем связанные данные из DTO
-    const { selected_mechanics, selected_bonuses, selected_themes, ...restDto } = createSlotDto;
-
-    // Prepare data with proper date conversion
-    const createData: any = {
-      ...restDto,
-      slug,
-    };
-
-    // Нормализуем ставки если пришли строками (например, "€0.20")
-    if (typeof createData.min_bet === 'string') {
-      const parsed = parseFloat(createData.min_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
-      if (!Number.isNaN(parsed)) createData.min_bet = parsed; else delete createData.min_bet;
-    }
-    if (typeof createData.max_bet === 'string') {
-      const parsed = parseFloat(createData.max_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
-      if (!Number.isNaN(parsed)) createData.max_bet = parsed; else delete createData.max_bet;
-    }
-
-    // Convert release_date string to Date object if provided
-    if (createSlotDto.release_date) {
-      createData.release_date = new Date(createSlotDto.release_date);
-    }
-
-    // Обработка связи с темой (прямая связь, не через промежуточную таблицу)
-    if (selected_themes !== undefined) {
-      if (Array.isArray(selected_themes) && selected_themes.length > 0) {
-        // Берем первую тему из массива, так как связь один-к-одному
-        // theme_id в схеме имеет тип String, поэтому не используем parseInt
-        createData.theme_id = selected_themes[0];
+      if (hero_keyword_2 !== undefined) {
+        createData.hero_keyword_2 = hero_keyword_2;
       }
-    }
+      if (hero_keyword_3 !== undefined) {
+        createData.hero_keyword_3 = hero_keyword_3;
+      }
 
-    const slot = await this.prisma.slots.create({
-      data: createData,
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
-          },
+      console.log('📝 Данные для создания:', JSON.stringify(createData, null, 2));
+
+      const slot = await this.prisma.slots.create({
+        data: createData,
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: true,
+          slot_bonuses: true,
+          themes: true,
         },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
-          },
-        },
-        themes: true,
-      },
-    });
-
-    // Обработка связей с механиками
-    if (selected_mechanics !== undefined && Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
-      const mechanicsData = selected_mechanics.map(mechanicId => ({
-        slot_id: slot.id,
-        mechanic_id: parseInt(mechanicId),
-        created_at: new Date()
-      }));
-
-      await this.prisma.slot_mechanics.createMany({
-        data: mechanicsData
       });
+
+      return slot;
+    } catch (error) {
+      console.error('❌ Ошибка при создании слота:', error);
+      throw error;
     }
-
-    // Обработка связей с бонусами
-    if (selected_bonuses !== undefined && Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
-      const bonusesData = selected_bonuses.map(bonusId => ({
-        slot_id: slot.id,
-        bonus_id: parseInt(bonusId),
-        created_at: new Date()
-      }));
-
-      await this.prisma.slot_bonuses.createMany({
-        data: bonusesData
-      });
-    }
-
-    // Возвращаем обновленный слот с включенными связями
-    return await this.getSlotById(slot.id);
   }
 
   async updateSlot(id: string, updateSlotDto: UpdateSlotDto) {
-    // Обновляем slug если явно передан, иначе — если изменили name
-    const { provider_id, selected_mechanics, selected_bonuses, selected_themes, ...restDto } = updateSlotDto;
+    console.log('\n🔄 Начало обновления слота в сервисе');
+    console.log('📝 ID слота:', id);
+    console.log('📦 DTO данные:', JSON.stringify(updateSlotDto, null, 2));
+
+    const {
+      provider_id,
+      selected_mechanics,
+      selected_bonuses,
+      selected_themes,
+      hero_keyword,
+      hero_keyword_2,
+      hero_keyword_3,
+      ...restDto
+    } = updateSlotDto;
+
+    // Подготавливаем данные для обновления
     const updateData: any = {
       ...restDto,
       updated_at: new Date(),
     };
 
-    // Обрабатываем provider_id отдельно
+    // Добавляем hero_keyword поля только если они предоставлены
+    if (hero_keyword !== undefined) {
+      updateData.hero_keyword = hero_keyword;
+    }
+    if (hero_keyword_2 !== undefined) {
+      updateData.hero_keyword_2 = hero_keyword_2;
+    }
+    if (hero_keyword_3 !== undefined) {
+      updateData.hero_keyword_3 = hero_keyword_3;
+    };
+
     if (provider_id) {
       updateData.provider_id = provider_id;
     }
 
-    // Обработка связей с механиками
-    if (selected_mechanics !== undefined) {
-      // Удаляем все существующие связи с механиками
-      await this.prisma.slot_mechanics.deleteMany({
-        where: { slot_id: id }
-      });
-
-      // Создаем новые связи
-      if (Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
-        const mechanicsData = selected_mechanics
-          .map(mechanicId => {
-            const parsedId = parseInt(mechanicId);
-            return !isNaN(parsedId) ? {
-              slot_id: id,
-              mechanic_id: parsedId,
-              created_at: new Date()
-            } : null;
-          })
-          .filter(item => item !== null);
-
-        if (mechanicsData.length > 0) {
-          await this.prisma.slot_mechanics.createMany({
-            data: mechanicsData
-          });
-        }
-      }
-    }
-
-    // Обработка связей с бонусами
-    if (selected_bonuses !== undefined) {
-      // Удаляем все существующие связи с бонусами
-      await this.prisma.slot_bonuses.deleteMany({
-        where: { slot_id: id }
-      });
-
-      // Создаем новые связи
-      if (Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
-        const bonusesData = selected_bonuses
-          .map(bonusId => {
-            const parsedId = parseInt(bonusId);
-            return !isNaN(parsedId) ? {
-              slot_id: id,
-              bonus_id: parsedId,
-              created_at: new Date()
-            } : null;
-          })
-          .filter(item => item !== null);
-
-        if (bonusesData.length > 0) {
-          await this.prisma.slot_bonuses.createMany({
-            data: bonusesData
-          });
-        }
-      }
-    }
-
-    // Обработка связи с темой (прямая связь, не через промежуточную таблицу)
-    if (selected_themes !== undefined) {
-      if (Array.isArray(selected_themes) && selected_themes.length > 0) {
-        // Берем первую тему из массива, так как связь один-к-одному
-        // theme_id в схеме имеет тип String, поэтому не используем parseInt
-        updateData.theme_id = selected_themes[0];
-      } else {
-        updateData.theme_id = null;
-      }
-    }
-
-    // Нормализуем ставки если пришли строками (например, "€0.20")
-    if (typeof updateData.min_bet === 'string') {
-      const parsed = parseFloat(updateData.min_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
-      if (!Number.isNaN(parsed)) updateData.min_bet = parsed; else delete updateData.min_bet;
-    }
-    if (typeof updateData.max_bet === 'string') {
-      const parsed = parseFloat(updateData.max_bet.replace(/[^0-9\.,]/g, '').replace(',', '.'));
-      if (!Number.isNaN(parsed)) updateData.max_bet = parsed; else delete updateData.max_bet;
-    }
-
-    if (typeof updateSlotDto.slug === 'string' && updateSlotDto.slug.trim()) {
-      const slugify = (value: string) => {
-        const translitMap: { [key: string]: string } = {
-          'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-          'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-          'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-          'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-          'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
-        };
-        let text = (value || '').toLowerCase();
-        for (const [cyr, lat] of Object.entries(translitMap)) {
-          text = text.replace(new RegExp(cyr, 'g'), lat);
-        }
-        return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      };
-      updateData.slug = slugify(updateSlotDto.slug);
-    } else if (updateSlotDto.name) {
-      const slugifyName = (value: string) => {
-        const translitMap: { [key: string]: string } = {
-          'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-          'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-          'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-          'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-          'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
-        };
-        let text = (value || '').toLowerCase();
-        for (const [cyr, lat] of Object.entries(translitMap)) {
-          text = text.replace(new RegExp(cyr, 'g'), lat);
-        }
-        return text.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      };
-      updateData.slug = slugifyName(updateSlotDto.name) || id.substring(0, 8);
-    }
-
-    // Convert release_date string to Date object if provided
     if (updateSlotDto.release_date) {
       updateData.release_date = new Date(updateSlotDto.release_date);
     }
 
-    const slot = await this.prisma.slots.update({
-      where: { id },
-      data: updateData,
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
-          },
-        },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
-          },
-        },
-        themes: true,
-      },
-    });
+    console.log('📝 Данные для обновления:', JSON.stringify(updateData, null, 2));
 
-    return slot;
+    try {
+      const slot = await this.prisma.slots.update({
+        where: { id },
+        data: updateData,
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
+          },
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
+          },
+          themes: true,
+        },
+      });
+
+      console.log('✅ Слот обновлен:', {
+        id: slot.id,
+        name: slot.name,
+      });
+
+      return slot;
+
+    } catch (error) {
+      console.error('❌ Ошибка при обновлении:', error);
+      throw error;
+    }
   }
 
   async deleteSlot(id: string) {
-    await this.prisma.slots.delete({
-      where: { id },
-    });
-
-    return { message: 'Slot deleted successfully' };
-  }
-
-  async getSlotById(id: string) {
-    const slot = await this.prisma.slots.findUnique({
-      where: { id },
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
-          },
+    try {
+      const result = await this.prisma.slots.delete({
+        where: { id },
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: true,
+          slot_bonuses: true,
+          themes: true,
         },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
-          },
-        },
-        themes: true,
-      },
-    });
-
-    return slot;
+      });
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('❌ Ошибка при удалении слота:', error);
+      throw error;
+    }
   }
 
   async getAllSlotsForAdmin() {
-    const slots = await this.prisma.slots.findMany({
-      include: {
-        providers: true,
-        slot_categories: true,
-        slot_mechanics: {
-          include: {
-            mechanics: true,
+    try {
+      return await this.prisma.slots.findMany({
+        include: {
+          providers: true,
+          slot_categories: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
           },
-        },
-        slot_bonuses: {
-          include: {
-            bonuses: true,
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
           },
+          themes: true,
         },
-        themes: true,
-      },
-      orderBy: {
-        created_at: 'desc',
-      },
-    });
+        orderBy: {
+          created_at: 'desc',
+        },
+      });
+    } catch (error) {
+      console.error('❌ Ошибка при получении списка слотов для админки:', error);
+      throw error;
+    }
+  }
 
-    return slots;
+  // Методы для рейтингов и отзывов
+  async getSlotRating(slug: string) {
+    try {
+      const slot = await this.prisma.slots.findUnique({
+        where: { slug },
+        select: { rating: true, rating_count: true },
+      });
+      return slot;
+    } catch (error) {
+      console.error('❌ Ошибка при получении рейтинга:', error);
+      throw error;
+    }
+  }
+
+  async addSlotRating(slug: string, ratingData: any) {
+    try {
+      const slot = await this.prisma.slots.findUnique({
+        where: { slug },
+        select: { id: true, rating: true, rating_count: true },
+      });
+
+      if (!slot) {
+        throw new Error('Слот не найден');
+      }
+
+      const currentRating = Number(slot.rating) || 0;
+      const currentCount = slot.rating_count || 0;
+      const newRating = Number(ratingData.rating);
+
+      // Вычисляем новый средний рейтинг
+      const updatedRating =
+        ((currentRating * currentCount) + newRating) / (currentCount + 1);
+
+      // Обновляем слот
+      const updatedSlot = await this.prisma.slots.update({
+        where: { slug },
+        data: {
+          rating: updatedRating,
+          rating_count: { increment: 1 },
+        },
+      });
+
+      return updatedSlot;
+    } catch (error) {
+      console.error('❌ Ошибка при добавлении рейтинга:', error);
+      throw error;
+    }
+  }
+
+  async getSlotReviews(slug: string) {
+    try {
+      const slot = await this.prisma.slots.findUnique({
+        where: { slug },
+        select: { id: true },
+      });
+
+      if (!slot) {
+        throw new Error('Слот не найден');
+      }
+
+      // Здесь будет логика получения отзывов, когда добавим таблицу отзывов
+      return [];
+    } catch (error) {
+      console.error('❌ Ошибка при получении отзывов:', error);
+      throw error;
+    }
+  }
+
+  async createSlotReview(slug: string, reviewData: any) {
+    try {
+      const slot = await this.prisma.slots.findUnique({
+        where: { slug },
+        select: { id: true },
+      });
+
+      if (!slot) {
+        throw new Error('Слот не найден');
+      }
+
+      // Здесь будет логика создания отзыва, когда добавим таблицу отзывов
+      return { success: true };
+    } catch (error) {
+      console.error('❌ Ошибка при создании отзыва:', error);
+      throw error;
+    }
   }
 }

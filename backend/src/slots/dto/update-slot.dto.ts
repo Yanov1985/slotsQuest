@@ -2,6 +2,10 @@ export class UpdateSlotDto {
   slug?: string;
   name?: string;
   description?: string;
+  // HERO: ключевые слова для Hero секции
+  hero_keyword?: string; // Заголовок (например, "Slot Review")
+  hero_keyword_2?: string; // Первая переменная в описании
+  hero_keyword_3?: string; // Вторая переменная в описании
   provider_id?: string;
   category_id?: string;
   // HERO: медиа

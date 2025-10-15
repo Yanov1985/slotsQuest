@@ -208,15 +208,46 @@ export class SlotsController {
     @Body() updateSlotDto: UpdateSlotDto,
   ) {
     try {
+      console.log('🎯 Начало обновления слота');
+      console.log('📝 ID слота:', id);
+      console.log('📦 Данные для обновления:', JSON.stringify(updateSlotDto, null, 2));
+
+      // Проверяем наличие слота перед обновлением
+      const existingSlot = await this.slotsService.getSlotById(id);
+      if (!existingSlot) {
+        console.log('❌ Слот не найден:', id);
+        throw new HttpException('Slot not found', HttpStatus.NOT_FOUND);
+      }
+      console.log('✅ Слот найден:', existingSlot.name);
+
       const slot = await this.slotsService.updateSlot(id, updateSlotDto);
+
+      console.log('✅ Слот успешно обновлен:', {
+        id: slot.id,
+        name: slot.name
+      });
+
       return { data: slot };
     } catch (error) {
-      console.error('Error updating slot:', error);
+      console.error('❌ Ошибка при обновлении слота:', {
+        id,
+        error: {
+          name: error.name,
+          message: error.message,
+          code: error.code,
+          stack: error.stack
+        }
+      });
+
       if (error.code === 'P2025') {
         throw new HttpException('Slot not found', HttpStatus.NOT_FOUND);
       }
+
+      // Более подробное сообщение об ошибке
+      const errorMessage = `Failed to update slot: ${error.message}. ${error.code ? `Code: ${error.code}.` : ''} ${error.meta ? `Details: ${JSON.stringify(error.meta)}` : ''}`;
+
       throw new HttpException(
-        `Failed to update slot: ${error.message}`,
+        errorMessage,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
