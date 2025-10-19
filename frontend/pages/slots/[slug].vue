@@ -2384,7 +2384,9 @@
                 <span
                   class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
                 >
-                  Насколько популярен Gates of Olympus?
+                  {{
+                    slot.popularity_title || `Насколько популярен ${slot.name}?`
+                  }}
                 </span>
               </span>
               <svg
@@ -2421,12 +2423,16 @@
                         />
                       </svg>
                     </div>
-                    <span class="text-3xl font-bold">TOP 3</span>
+                    <span class="text-3xl font-bold">{{
+                      slot.popularity_global_rank || 'TOP 3'
+                    }}</span>
                   </div>
                   <h3 class="font-bold text-lg mb-2">Глобальный рейтинг</h3>
                   <p class="text-blue-100 text-sm">
-                    Входит в ТОП-3 самых популярных slotов мира уже 3 года
-                    подряд
+                    {{
+                      slot.popularity_global_desc ||
+                      'Входит в ТОП-3 самых популярных slotов мира уже 3 года подряд'
+                    }}
                   </p>
                 </div>
 
@@ -2446,11 +2452,16 @@
                         />
                       </svg>
                     </div>
-                    <span class="text-3xl font-bold">2.4M+</span>
+                    <span class="text-3xl font-bold">{{
+                      slot.popularity_players_count || '2.4M+'
+                    }}</span>
                   </div>
                   <h3 class="font-bold text-lg mb-2">Активные игроки</h3>
                   <p class="text-green-100 text-sm">
-                    Ежемесячно играют более 2.4 млн уникальных игроков
+                    {{
+                      slot.popularity_players_desc ||
+                      'Ежемесячно играют более 2.4 млн уникальных игроков'
+                    }}
                   </p>
                 </div>
 
@@ -2470,11 +2481,16 @@
                         />
                       </svg>
                     </div>
-                    <span class="text-3xl font-bold">96.5%</span>
+                    <span class="text-3xl font-bold">{{
+                      slot.popularity_rtp_score || `${slot.rtp || '96.5'}%`
+                    }}</span>
                   </div>
                   <h3 class="font-bold text-lg mb-2">RTP + Волатильность</h3>
                   <p class="text-purple-100 text-sm">
-                    Высокая отдача и захватывающие колебания выигрышей
+                    {{
+                      slot.popularity_rtp_desc ||
+                      'Высокая отдача и захватывающие колебания выигрышей'
+                    }}
                   </p>
                 </div>
               </div>
@@ -2487,19 +2503,32 @@
                   class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3"
                 >
                   <span class="text-3xl">📈</span>
-                  Статистика популярности по годам
+                  {{ slot.popularity_stats_title || 'Статистика популярности по годам' }}
                 </h3>
 
                 <div class="space-y-4">
-                  <!-- 2021 -->
-                  <div class="flex items-center gap-4">
-                    <div class="w-20 text-lg font-bold text-gray-700">2021</div>
+                  <!-- Динамические года (4 строки) -->
+                  <div v-for="i in 4" :key="i" class="flex items-center gap-4">
+                    <div class="w-20 text-lg font-bold text-gray-700">
+                      {{ slot[`popularity_year_${i}`] || 2020 + i }}
+                    </div>
                     <div
                       class="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden"
                     >
                       <div
-                        class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-full rounded-full shadow-inner"
-                        style="width: 100%"
+                        class="h-full rounded-full shadow-inner"
+                        :class="{
+                          'bg-gradient-to-r from-yellow-400 to-yellow-600':
+                            i === 1,
+                          'bg-gradient-to-r from-green-400 to-green-600':
+                            i === 2,
+                          'bg-gradient-to-r from-blue-400 to-blue-600': i === 3,
+                          'bg-gradient-to-r from-purple-400 to-purple-600':
+                            i === 4,
+                        }"
+                        :style="{
+                          width: `${slot[`popularity_width_${i}`] || 100 - (i - 1) * 10}%`,
+                        }"
                       >
                         <div
                           class="absolute inset-0 bg-white/20 animate-pulse"
@@ -2508,87 +2537,28 @@
                     </div>
                     <div class="w-16 text-right">
                       <span
-                        class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-bold"
-                        >#1</span
+                        class="px-3 py-1 rounded-full text-sm font-bold"
+                        :class="{
+                          'bg-yellow-100 text-yellow-800': i === 1,
+                          'bg-green-100 text-green-800': i === 2,
+                          'bg-blue-100 text-blue-800': i === 3,
+                          'bg-purple-100 text-purple-800': i === 4,
+                        }"
+                        >{{ slot[`popularity_rank_${i}`] || '#1' }}</span
                       >
                     </div>
                     <div class="text-sm text-gray-600 w-32">
-                      Лучший новый slot
+                      {{
+                        slot[`popularity_label_${i}`] ||
+                        (i === 1
+                          ? 'Лучший новый slot'
+                          : i === 2
+                            ? 'Самый популярный'
+                            : i === 3
+                              ? 'Рекордсмен'
+                              : 'Стабильный хит')
+                      }}
                     </div>
-                  </div>
-
-                  <!-- 2022 -->
-                  <div class="flex items-center gap-4">
-                    <div class="w-20 text-lg font-bold text-gray-700">2022</div>
-                    <div
-                      class="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden"
-                    >
-                      <div
-                        class="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full shadow-inner"
-                        style="width: 95%"
-                      >
-                        <div
-                          class="absolute inset-0 bg-white/20 animate-pulse"
-                        ></div>
-                      </div>
-                    </div>
-                    <div class="w-16 text-right">
-                      <span
-                        class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold"
-                        >#1</span
-                      >
-                    </div>
-                    <div class="text-sm text-gray-600 w-32">
-                      Самый популярный
-                    </div>
-                  </div>
-
-                  <!-- 2023 -->
-                  <div class="flex items-center gap-4">
-                    <div class="w-20 text-lg font-bold text-gray-700">2023</div>
-                    <div
-                      class="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden"
-                    >
-                      <div
-                        class="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full shadow-inner"
-                        style="width: 90%"
-                      >
-                        <div
-                          class="absolute inset-0 bg-white/20 animate-pulse"
-                        ></div>
-                      </div>
-                    </div>
-                    <div class="w-16 text-right">
-                      <span
-                        class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-bold"
-                        >#1</span
-                      >
-                    </div>
-                    <div class="text-sm text-gray-600 w-32">Рекордсмен</div>
-                  </div>
-
-                  <!-- 2024 -->
-                  <div class="flex items-center gap-4">
-                    <div class="w-20 text-lg font-bold text-gray-700">2024</div>
-                    <div
-                      class="flex-1 bg-gray-200 rounded-full h-4 relative overflow-hidden"
-                    >
-                      <div
-                        class="bg-gradient-to-r from-purple-400 to-purple-600 h-full rounded-full shadow-inner"
-                        style="width: 70%"
-                      >
-                        <div
-                          class="absolute inset-0 bg-white/20 animate-pulse"
-                        ></div>
-                      </div>
-                    </div>
-                    <div class="w-16 text-right">
-                      <span
-                        class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-bold"
-                        >#{{ slot.popularity_rank || '12' }}</span
-                      >
-                    </div>
-                    <div class="text-sm text-gray-600 w-32">Стабильный хит</div>
                   </div>
                 </div>
               </div>
@@ -2601,7 +2571,7 @@
                   class="font-bold text-indigo-800 mb-4 text-xl flex items-center gap-3"
                 >
                   <span class="text-2xl">📊</span>
-                  Тренд популярности (симулированный график)
+                  {{ slot.popularity_trend_title || 'Тренд популярности (симулированный график)' }}
                 </h4>
 
                 <div
@@ -2627,25 +2597,45 @@
                         />
                       </linearGradient>
                     </defs>
-                    <!-- Линия тренда -->
+                    <!-- Линия тренда (динамическая) -->
                     <polyline
-                      points="20,80 120,20 220,15 320,40"
+                      :points="`20,${slot.popularity_trend_y1 || 80} 120,${slot.popularity_trend_y2 || 20} 220,${slot.popularity_trend_y3 || 15} 320,${slot.popularity_trend_y4 || 40}`"
                       stroke="#6366f1"
                       stroke-width="3"
                       fill="none"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     />
-                    <!-- Область под линией -->
+                    <!-- Область под линией (динамическая) -->
                     <polygon
-                      points="20,80 120,20 220,15 320,40 320,90 20,90"
+                      :points="`20,${slot.popularity_trend_y1 || 80} 120,${slot.popularity_trend_y2 || 20} 220,${slot.popularity_trend_y3 || 15} 320,${slot.popularity_trend_y4 || 40} 320,90 20,90`"
                       fill="url(#trendGradient)"
                     />
-                    <!-- Точки данных -->
-                    <circle cx="20" cy="80" r="4" fill="#6366f1" />
-                    <circle cx="120" cy="20" r="4" fill="#10b981" />
-                    <circle cx="220" cy="15" r="4" fill="#10b981" />
-                    <circle cx="320" cy="40" r="4" fill="#8b5cf6" />
+                    <!-- Точки данных (динамические) -->
+                    <circle
+                      :cx="20"
+                      :cy="slot.popularity_trend_y1 || 80"
+                      r="4"
+                      fill="#6366f1"
+                    />
+                    <circle
+                      :cx="120"
+                      :cy="slot.popularity_trend_y2 || 20"
+                      r="4"
+                      fill="#10b981"
+                    />
+                    <circle
+                      :cx="220"
+                      :cy="slot.popularity_trend_y3 || 15"
+                      r="4"
+                      fill="#10b981"
+                    />
+                    <circle
+                      :cx="320"
+                      :cy="slot.popularity_trend_y4 || 40"
+                      r="4"
+                      fill="#8b5cf6"
+                    />
                   </svg>
 
                   <!-- Подписи годов -->
@@ -2668,44 +2658,40 @@
                   class="font-bold text-green-800 mb-4 text-xl flex items-center gap-3"
                 >
                   <span class="text-2xl">✨</span>
-                  Ключевые факты популярности
+                  {{ slot.popularity_facts_title || 'Ключевые факты популярности' }}
                 </h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- Динамические факты (4 факта) -->
                   <div
+                    v-for="i in 4"
+                    :key="i"
                     class="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-200"
                   >
-                    <span class="text-green-600 font-bold">🎯</span>
-                    <p class="text-gray-700 text-sm">
-                      <strong>Мгновенный успех:</strong> Попал в ТОП-10 уже в
-                      первую неделю после релиза
-                    </p>
-                  </div>
-                  <div
-                    class="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-200"
-                  >
-                    <span class="text-green-600 font-bold">🌍</span>
-                    <p class="text-gray-700 text-sm">
-                      <strong>Глобальная популярность:</strong> Лидер в более
-                      чем 50 странах мира
-                    </p>
-                  </div>
-                  <div
-                    class="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-200"
-                  >
-                    <span class="text-green-600 font-bold">📱</span>
-                    <p class="text-gray-700 text-sm">
-                      <strong>Мобильный хит:</strong> 73% игроков предпочитают
-                      играть на мобильных устройствах
-                    </p>
-                  </div>
-                  <div
-                    class="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-200"
-                  >
-                    <span class="text-green-600 font-bold">🎮</span>
-                    <p class="text-gray-700 text-sm">
-                      <strong>Долгосрочная привлекательность:</strong> Средняя
-                      сессия игры составляет 45 минут
-                    </p>
+                    <span class="text-green-600 font-bold">
+                      {{
+                        slot[`popularity_fact_icon_${i}`] ||
+                        (i === 1
+                          ? '🎯'
+                          : i === 2
+                            ? '🌍'
+                            : i === 3
+                              ? '📱'
+                              : '🎮')
+                      }}
+                    </span>
+                    <p
+                      class="text-gray-700 text-sm"
+                      v-html="
+                        slot[`popularity_fact_text_${i}`] ||
+                        (i === 1
+                          ? '<strong>Мгновенный успех:</strong> Попал в ТОП-10 уже в первую неделю после релиза'
+                          : i === 2
+                            ? '<strong>Глобальная популярность:</strong> Лидер в более чем 50 странах мира'
+                            : i === 3
+                              ? '<strong>Мобильный хит:</strong> 73% игроков предпочитают играть на мобильных устройствах'
+                              : '<strong>Долгосрочная привлекательность:</strong> Средняя сессия игры составляет 45 минут')
+                      "
+                    ></p>
                   </div>
                 </div>
               </div>

@@ -53,6 +53,49 @@ export class UpdateSlotDto {
   overview_features_4?: string;
   overview_features_5?: string;
   overview_features_6?: string;
+  // Раздел "Насколько популярен"
+  popularity_title?: string;
+  popularity_global_rank?: string;
+  popularity_global_desc?: string;
+  popularity_players_count?: string;
+  popularity_players_desc?: string;
+  popularity_rtp_score?: string;
+  popularity_rtp_desc?: string;
+  // Заголовки подразделов
+  popularity_stats_title?: string;
+  popularity_trend_title?: string;
+  popularity_facts_title?: string;
+  // Статистика популярности по годам
+  popularity_year_1?: string;
+  popularity_rank_1?: string;
+  popularity_width_1?: number;
+  popularity_label_1?: string;
+  popularity_year_2?: string;
+  popularity_rank_2?: string;
+  popularity_width_2?: number;
+  popularity_label_2?: string;
+  popularity_year_3?: string;
+  popularity_rank_3?: string;
+  popularity_width_3?: number;
+  popularity_label_3?: string;
+  popularity_year_4?: string;
+  popularity_rank_4?: string;
+  popularity_width_4?: number;
+  popularity_label_4?: string;
+  // Ключевые факты популярности
+  popularity_fact_icon_1?: string;
+  popularity_fact_text_1?: string;
+  popularity_fact_icon_2?: string;
+  popularity_fact_text_2?: string;
+  popularity_fact_icon_3?: string;
+  popularity_fact_text_3?: string;
+  popularity_fact_icon_4?: string;
+  popularity_fact_text_4?: string;
+  // Тренд популярности (график)
+  popularity_trend_y1?: number;
+  popularity_trend_y2?: number;
+  popularity_trend_y3?: number;
+  popularity_trend_y4?: number;
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];

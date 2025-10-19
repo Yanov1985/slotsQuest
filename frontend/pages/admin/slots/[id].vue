@@ -2149,6 +2149,377 @@
                         </div>
                       </div>
 
+                      <!-- Подсекция "Насколько популярен слот?" -->
+                      <div
+                        class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center"
+                            >
+                              <span class="text-2xl">📊</span>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
+                              >
+                                Насколько популярен?
+                              </h3>
+                              <p class="text-sm text-[#3B82F6]">
+                                Статистика популярности
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            @click="
+                              showOverviewPopularitySection =
+                                !showOverviewPopularitySection
+                            "
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showOverviewPopularitySection"
+                          >
+                            {{
+                              showOverviewPopularitySection
+                                ? 'Скрыть'
+                                : 'Показать'
+                            }}
+                          </button>
+                        </div>
+                        <div
+                          v-show="showOverviewPopularitySection"
+                          class="space-y-4"
+                        >
+                          <!-- Title раздела -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок раздела
+                            </label>
+                            <input
+                              v-model="form.popularity_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200"
+                              placeholder="Насколько популярен Gates of Olympus?"
+                            />
+                          </div>
+
+                          <!-- Глобальный рейтинг -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <h4 class="text-sm font-medium text-[#3B82F6] mb-3">
+                              📈 Глобальный рейтинг
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >Рейтинг (например: "TOP 3")</label
+                                >
+                                <input
+                                  v-model="form.popularity_global_rank"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="TOP 3"
+                                />
+                              </div>
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >Описание</label
+                                >
+                                <textarea
+                                  v-model="form.popularity_global_desc"
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="Входит в ТОП-3 самых популярных слотов..."
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Количество игроков -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <h4 class="text-sm font-medium text-[#10B981] mb-3">
+                              👥 Активные игроки
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >Количество (например: "2.4M+")</label
+                                >
+                                <input
+                                  v-model="form.popularity_players_count"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="2.4M+"
+                                />
+                              </div>
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >Описание</label
+                                >
+                                <textarea
+                                  v-model="form.popularity_players_desc"
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="Ежемесячно играют более 2.4 млн..."
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- RTP и волатильность -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <h4 class="text-sm font-medium text-[#8B5CF6] mb-3">
+                              ⚡ RTP + Волатильность
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >RTP Score (например: "96.5%")</label
+                                >
+                                <input
+                                  v-model="form.popularity_rtp_score"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="96.5%"
+                                />
+                              </div>
+                              <div>
+                                <label class="block text-xs text-[#9CA3AF] mb-2"
+                                  >Описание</label
+                                >
+                                <textarea
+                                  v-model="form.popularity_rtp_desc"
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm"
+                                  placeholder="Высокая отдача и захватывающие колебания..."
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Статистика по годам -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <div class="mb-3">
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                📈 Заголовок раздела "Статистика по годам"
+                              </label>
+                              <input
+                                v-model="form.popularity_stats_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm"
+                                placeholder="Статистика популярности по годам"
+                              />
+                            </div>
+                            <div class="space-y-3">
+                              <div
+                                v-for="i in 4"
+                                :key="i"
+                                class="grid grid-cols-1 md:grid-cols-4 gap-3 p-3 bg-[#1B1E26] rounded-lg"
+                              >
+                                <div>
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Год</label
+                                  >
+                                  <input
+                                    :value="form[`popularity_year_${i}`] || ''"
+                                    @input="
+                                      form[`popularity_year_${i}`] =
+                                        $event.target.value
+                                    "
+                                    type="text"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                    :placeholder="`202${i}`"
+                                  />
+                                </div>
+                                <div>
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Рейтинг</label
+                                  >
+                                  <input
+                                    :value="form[`popularity_rank_${i}`] || ''"
+                                    @input="
+                                      form[`popularity_rank_${i}`] =
+                                        $event.target.value
+                                    "
+                                    type="text"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                    placeholder="#1"
+                                  />
+                                </div>
+                                <div>
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Ширина % (0-100)</label
+                                  >
+                                  <input
+                                    :value="form[`popularity_width_${i}`] || ''"
+                                    @input="
+                                      form[`popularity_width_${i}`] =
+                                        parseInt($event.target.value) || 0
+                                    "
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                    placeholder="100"
+                                  />
+                                </div>
+                                <div>
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Метка</label
+                                  >
+                                  <input
+                                    :value="form[`popularity_label_${i}`] || ''"
+                                    @input="
+                                      form[`popularity_label_${i}`] =
+                                        $event.target.value
+                                    "
+                                    type="text"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                    placeholder="Лучший новый slot"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Ключевые факты -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <div class="mb-3">
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                ✨ Заголовок раздела "Ключевые факты"
+                              </label>
+                              <input
+                                v-model="form.popularity_facts_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm"
+                                placeholder="Ключевые факты популярности"
+                              />
+                            </div>
+                            <div class="space-y-3">
+                              <div
+                                v-for="i in 4"
+                                :key="i"
+                                class="grid grid-cols-1 md:grid-cols-12 gap-3 p-3 bg-[#1B1E26] rounded-lg"
+                              >
+                                <div class="md:col-span-1">
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Emoji</label
+                                  >
+                                  <input
+                                    :value="
+                                      form[`popularity_fact_icon_${i}`] || ''
+                                    "
+                                    @input="
+                                      form[`popularity_fact_icon_${i}`] =
+                                        $event.target.value
+                                    "
+                                    type="text"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm text-center"
+                                    placeholder="🎯"
+                                    maxlength="2"
+                                  />
+                                </div>
+                                <div class="md:col-span-11">
+                                  <label
+                                    class="block text-xs text-[#9CA3AF] mb-1"
+                                    >Текст факта</label
+                                  >
+                                  <textarea
+                                    :value="
+                                      form[`popularity_fact_text_${i}`] || ''
+                                    "
+                                    @input="
+                                      form[`popularity_fact_text_${i}`] =
+                                        $event.target.value
+                                    "
+                                    rows="2"
+                                    class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                    placeholder="Например: Мгновенный успех: Попал в ТОП-10 уже в первую неделю..."
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Тренд популярности (график) -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A]"
+                          >
+                            <div class="mb-3">
+                              <label class="block text-xs text-[#9CA3AF] mb-1">
+                                📊 Заголовок раздела "Тренд популярности"
+                              </label>
+                              <input
+                                v-model="form.popularity_trend_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm"
+                                placeholder="Тренд популярности (симулированный график)"
+                              />
+                            </div>
+                            <p class="text-xs text-[#9CA3AF] mb-3">
+                              Y-координаты для 4 точек графика (0=верх,
+                              100=низ). Оставьте пустым для значений по
+                              умолчанию.
+                            </p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                              <div v-for="i in 4" :key="i">
+                                <label class="block text-xs text-[#9CA3AF] mb-1"
+                                  >Точка {{ i }} (Y)</label
+                                >
+                                <input
+                                  :value="form[`popularity_trend_y${i}`] ?? ''"
+                                  @input="
+                                    form[`popularity_trend_y${i}`] =
+                                      $event.target.value === ''
+                                        ? null
+                                        : parseInt($event.target.value)
+                                  "
+                                  type="number"
+                                  min="0"
+                                  max="100"
+                                  class="w-full px-2 py-1 bg-[#161A21] border border-[#353A4A] rounded text-[#E5E7EB] text-sm"
+                                  :placeholder="
+                                    i === 1
+                                      ? '80'
+                                      : i === 2
+                                        ? '20'
+                                        : i === 3
+                                          ? '15'
+                                          : '40'
+                                  "
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="mt-3 text-xs text-[#9CA3AF] flex items-center gap-2"
+                            >
+                              <span>💡 Подсказка:</span>
+                              <span
+                                >Меньшее значение = выше на графике. Пример:
+                                2021(80), 2022(20), 2023(15), 2024(40)</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <!-- Подсекция "В чем секрет такого огромного успеха?" -->
                       <div
                         class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#D97706]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
@@ -9060,6 +9431,43 @@ const form = ref({
   schema_user_rating: '',
   schema_global_rating: '',
   schema_popularity_description: '',
+
+  // Новые поля для раздела "Насколько популярен" (добавлены динамически)
+  // Заголовки подразделов
+  popularity_stats_title: null,
+  popularity_trend_title: null,
+  popularity_facts_title: null,
+  // Статистика по годам (4 года × 4 поля = 16 полей)
+  popularity_year_1: null,
+  popularity_rank_1: null,
+  popularity_width_1: null,
+  popularity_label_1: null,
+  popularity_year_2: null,
+  popularity_rank_2: null,
+  popularity_width_2: null,
+  popularity_label_2: null,
+  popularity_year_3: null,
+  popularity_rank_3: null,
+  popularity_width_3: null,
+  popularity_label_3: null,
+  popularity_year_4: null,
+  popularity_rank_4: null,
+  popularity_width_4: null,
+  popularity_label_4: null,
+  // Ключевые факты (4 факта × 2 поля = 8 полей)
+  popularity_fact_icon_1: null,
+  popularity_fact_text_1: null,
+  popularity_fact_icon_2: null,
+  popularity_fact_text_2: null,
+  popularity_fact_icon_3: null,
+  popularity_fact_text_3: null,
+  popularity_fact_icon_4: null,
+  popularity_fact_text_4: null,
+  // Тренд популярности (график, 4 точки)
+  popularity_trend_y1: null,
+  popularity_trend_y2: null,
+  popularity_trend_y3: null,
+  popularity_trend_y4: null,
 })
 
 // Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
@@ -9358,6 +9766,49 @@ const saveSlot = async () => {
       'overview_features_4',
       'overview_features_5',
       'overview_features_6',
+      // Раздел "Насколько популярен"
+      'popularity_title',
+      'popularity_global_rank',
+      'popularity_global_desc',
+      'popularity_players_count',
+      'popularity_players_desc',
+      'popularity_rtp_score',
+      'popularity_rtp_desc',
+      // Заголовки подразделов
+      'popularity_stats_title',
+      'popularity_trend_title',
+      'popularity_facts_title',
+      // Статистика по годам
+      'popularity_year_1',
+      'popularity_rank_1',
+      'popularity_width_1',
+      'popularity_label_1',
+      'popularity_year_2',
+      'popularity_rank_2',
+      'popularity_width_2',
+      'popularity_label_2',
+      'popularity_year_3',
+      'popularity_rank_3',
+      'popularity_width_3',
+      'popularity_label_3',
+      'popularity_year_4',
+      'popularity_rank_4',
+      'popularity_width_4',
+      'popularity_label_4',
+      // Ключевые факты
+      'popularity_fact_icon_1',
+      'popularity_fact_text_1',
+      'popularity_fact_icon_2',
+      'popularity_fact_text_2',
+      'popularity_fact_icon_3',
+      'popularity_fact_text_3',
+      'popularity_fact_icon_4',
+      'popularity_fact_text_4',
+      // Тренд популярности
+      'popularity_trend_y1',
+      'popularity_trend_y2',
+      'popularity_trend_y3',
+      'popularity_trend_y4',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля
@@ -9369,7 +9820,16 @@ const saveSlot = async () => {
     // Копируем только разрешенные поля из формы
     allowedFields.forEach((field) => {
       if (form.value[field] !== undefined) {
-        dataToSend[field] = form.value[field]
+        // Специальная обработка для числовых полей
+        if (field.startsWith('popularity_width_')) {
+          dataToSend[field] = parseInt(form.value[field]) || 0
+        } else if (field.startsWith('popularity_trend_y')) {
+          // Для графика: null если пусто, иначе число
+          dataToSend[field] =
+            form.value[field] === null ? null : parseInt(form.value[field])
+        } else {
+          dataToSend[field] = form.value[field]
+        }
         console.log(`✅ Копируем поле ${field}:`, form.value[field])
       } else {
         console.log(`❌ Пропускаем поле ${field}: undefined`)
