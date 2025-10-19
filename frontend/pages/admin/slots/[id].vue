@@ -9348,6 +9348,16 @@ const saveSlot = async () => {
       'bonus_frequency',
       'show_awards',
       'awards',
+      // Полный обзор слота 2025
+      'overview_title',
+      'overview_description_1',
+      'overview_description_2',
+      'overview_features_1',
+      'overview_features_2',
+      'overview_features_3',
+      'overview_features_4',
+      'overview_features_5',
+      'overview_features_6',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

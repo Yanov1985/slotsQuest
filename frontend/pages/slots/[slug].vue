@@ -2266,32 +2266,54 @@
             </svg>
           </div>
           <h2 class="text-4xl font-bold text-gray-800">
-            {{ slot.name || 'Слот' }} - Полный обзор slotа 2025
+            {{
+              slot.overview_title ||
+              `${slot.name || 'Слот'} - Полный обзор slotа 2025`
+            }}
           </h2>
         </div>
 
         <!-- Основное описание -->
         <div class="prose max-w-none mb-8">
-          <p class="text-xl text-gray-700 leading-relaxed mb-6 font-medium">
-            Gates of Olympus — это мощный slot от Pragmatic Play, черпающий
-            энергию из бесконечной силы Зевса, короля богов. В мире
-            древнегреческой мифологии существуют десятки онлайн-slotов, но
-            суперstarsой в этой тематической категории является именно Gates of
-            Olympus, разделяющий топовую позицию со своим собратом Gates of
-            Olympus 1,000.
+          <!-- Первый абзац описания -->
+          <p
+            v-if="slot.overview_description_1"
+            class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
+          >
+            {{ slot.overview_description_1 }}
+          </p>
+          <p
+            v-else
+            class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
+          >
+            {{ slot.name }} — это мощный slot от
+            {{ slot.providers?.name || 'провайдера' }}, предлагающий уникальный
+            игровой опыт.
           </p>
 
-          <p class="text-lg text-gray-700 leading-relaxed mb-8">
-            Это slot с высокой волатильностью и системой scatter pays, где
-            выигрыши начисляются за одинаковые символы независимо от их
-            положения на сетке. Популярная механика в сочетании с
-            неограниченными каскадами и множителями — вот ключевые особенности,
-            обеспечивающие успех данного тайтла. Когда игроки входят в
-            бесплатные спины, события могут стать по-настоящему дикими благодаря
-            Total Multiplier, который не сбрасывается между раундами.
+          <!-- Второй абзац описания -->
+          <p
+            v-if="slot.overview_description_2"
+            class="text-lg text-gray-700 leading-relaxed mb-8"
+          >
+            {{ slot.overview_description_2 }}
+          </p>
+          <p v-else class="text-lg text-gray-700 leading-relaxed mb-8">
+            Это slot с {{ slot.volatility || 'средней' }} волатильностью и RTP
+            {{ slot.rtp || '96' }}%, предлагающий отличные возможности для
+            выигрыша.
           </p>
 
+          <!-- Ключевые характеристики слота -->
           <div
+            v-if="
+              slot.overview_features_1 ||
+              slot.overview_features_2 ||
+              slot.overview_features_3 ||
+              slot.overview_features_4 ||
+              slot.overview_features_5 ||
+              slot.overview_features_6
+            "
             class="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 mb-8"
           >
             <h3 class="font-bold text-amber-800 mb-4 text-xl">
@@ -2299,31 +2321,49 @@
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <ul class="text-amber-700 space-y-2">
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span
-                  >Механика Tumble с каскадными выигрышами
+                <li
+                  v-if="slot.overview_features_1"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_1 }}
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span
-                  >Случайные множители от x2 до x500
+                <li
+                  v-if="slot.overview_features_2"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_2 }}
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>15
-                  бесплатных спинов в бонусной игре
+                <li
+                  v-if="slot.overview_features_3"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_3 }}
                 </li>
               </ul>
               <ul class="text-amber-700 space-y-2">
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span
-                  >Возможность купить бонус за 100x ставки
+                <li
+                  v-if="slot.overview_features_4"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_4 }}
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>Maximum
-                  win 5,000x bet multiplier
+                <li
+                  v-if="slot.overview_features_5"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_5 }}
                 </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>Один
-                  крупный выигрыш на 697,350 спинов
+                <li
+                  v-if="slot.overview_features_6"
+                  class="flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  {{ slot.overview_features_6 }}
                 </li>
               </ul>
             </div>

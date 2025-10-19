@@ -43,6 +43,16 @@ export class CreateSlotDto {
   // HERO: награды
   show_awards?: boolean;
   awards?: any;
+  // Полный обзор слота 2025
+  overview_title?: string;
+  overview_description_1?: string;
+  overview_description_2?: string;
+  overview_features_1?: string;
+  overview_features_2?: string;
+  overview_features_3?: string;
+  overview_features_4?: string;
+  overview_features_5?: string;
+  overview_features_6?: string;
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];
