@@ -2266,44 +2266,126 @@
               ></path>
             </svg>
           </div>
-          <h2 class="text-4xl font-bold text-gray-800">
+          <!-- H2 заголовок с SEO оптимизацией + улучшенный визуал -->
+          <h2
+            class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 animate-gradient mb-2 hover:scale-105 transition-transform duration-300 cursor-default"
+            itemprop="headline"
+            id="full-review-2025"
+            role="heading"
+            aria-level="2"
+            :aria-label="`Полный обзор слота ${slot.name || 'слот'} за 2025 год`"
+            tabindex="0"
+          >
             {{
               slot.overview_title ||
-              `${slot.name || 'Слот'} - Полный обзор slotа 2025`
+              `${slot.name || 'Слот'} - Полный обзор слота 2025`
             }}
           </h2>
+          <!-- Декоративная линия под заголовком -->
+          <div
+            class="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-6 animate-pulse"
+            aria-hidden="true"
+          ></div>
         </div>
 
-        <!-- Основное описание -->
-        <div class="prose max-w-none mb-8">
-          <!-- Первый абзац описания -->
+        <!-- Основное описание с Schema.org Article разметкой -->
+        <article
+          class="prose max-w-none mb-8"
+          itemscope
+          itemtype="https://schema.org/Article"
+          role="article"
+          aria-label="Основное описание слота"
+        >
+          <!-- Скрытые meta-данные для поисковых систем -->
+          <meta itemprop="author" content="SlotQuest Team" />
+          <meta
+            itemprop="datePublished"
+            :content="slot.created_at || new Date().toISOString().split('T')[0]"
+          />
+          <meta
+            itemprop="dateModified"
+            :content="slot.updated_at || new Date().toISOString().split('T')[0]"
+          />
+          <meta
+            itemprop="publisher"
+            :content="slot.providers?.name || 'SlotQuest'"
+          />
+          <meta
+            itemprop="image"
+            :content="slot.image_url || slot.thumbnail_url"
+          />
+          <!-- Первый абзац описания с семантическим HTML и Schema.org -->
           <p
             v-if="slot.overview_description_1"
-            class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
+            class="text-xl text-gray-800 leading-relaxed mb-6 font-medium first-letter:text-5xl first-letter:font-bold first-letter:text-blue-600 first-letter:mr-1 first-letter:float-left hover:bg-blue-50 transition-colors duration-300 rounded-lg p-4"
+            itemprop="articleBody"
+            role="paragraph"
+            :aria-label="`Основной текст обзора слота ${slot.name || 'слот'}`"
+            tabindex="0"
             v-html="overviewDescription1"
           ></p>
           <p
             v-else
-            class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
+            class="text-xl text-gray-800 leading-relaxed mb-6 font-medium first-letter:text-5xl first-letter:font-bold first-letter:text-blue-600 first-letter:mr-1 first-letter:float-left hover:bg-blue-50 transition-colors duration-300 rounded-lg p-4"
+            itemprop="articleBody"
+            role="paragraph"
+            :aria-label="`Основной текст обзора слота ${slot.name || 'слот'}`"
+            tabindex="0"
           >
-            {{ slot.name }} — это мощный slot от
-            {{ slot.providers?.name || 'провайдера' }}, предлагающий уникальный
-            игровой опыт.
+            <strong>{{ slot.name }}</strong> — это мощный
+            <em>онлайн слот</em> от
+            <strong>{{ slot.providers?.name || 'провайдера' }}</strong
+            >, предлагающий уникальный игровой опыт с
+            <mark
+              class="bg-gradient-to-r from-yellow-100 to-yellow-200 px-2 py-1 rounded font-bold hover:from-yellow-200 hover:to-yellow-300 transition-all duration-300 cursor-help shadow-sm hover:shadow-md"
+              :aria-label="`RTP процент возврата игроку ${slot.rtp || '96'} процентов`"
+              :title="`RTP (Return to Player) - процент возврата: ${slot.rtp || '96'}%`"
+              >RTP {{ slot.rtp || '96' }}%</mark
+            >
+            и максимальным выигрышем до
+            <mark
+              class="bg-gradient-to-r from-green-100 to-green-200 px-2 py-1 rounded font-bold hover:from-green-200 hover:to-green-300 transition-all duration-300 cursor-help shadow-sm hover:shadow-md"
+              :aria-label="`Максимальный выигрыш ${slot.max_win || '5000'} раз от ставки`"
+              :title="`Максимальный выигрыш: ${slot.max_win || '5000'}x от вашей ставки`"
+              >{{ slot.max_win || '5000' }}x</mark
+            >.
           </p>
 
-          <!-- Второй абзац описания -->
+          <!-- Второй абзац описания с семантическим HTML -->
           <p
             v-if="slot.overview_description_2"
-            class="text-lg text-gray-700 leading-relaxed mb-8"
+            class="text-lg text-gray-700 leading-relaxed mb-8 hover:bg-purple-50 transition-colors duration-300 rounded-lg p-4"
+            itemprop="articleBody"
+            role="paragraph"
+            aria-label="Дополнительная информация о слоте"
+            tabindex="0"
             v-html="overviewDescription2"
           ></p>
-          <p v-else class="text-lg text-gray-700 leading-relaxed mb-8">
-            Это slot с {{ slot.volatility || 'средней' }} волатильностью и RTP
-            {{ slot.rtp || '96' }}%, предлагающий отличные возможности для
-            выигрыша.
+          <p
+            v-else
+            class="text-lg text-gray-700 leading-relaxed mb-8 hover:bg-purple-50 transition-colors duration-300 rounded-lg p-4"
+            itemprop="articleBody"
+            role="paragraph"
+            aria-label="Дополнительная информация о слоте"
+            tabindex="0"
+          >
+            Это <strong>слот</strong> с
+            <em>{{ slot.volatility || 'средней' }} волатильностью</em> и
+            <strong
+              class="text-blue-600 hover:text-blue-700 transition-colors"
+              :aria-label="`RTP ${slot.rtp || '96'} процентов`"
+              >RTP {{ slot.rtp || '96' }}%</strong
+            >, предлагающий отличные возможности для выигрыша в
+            <time
+              :datetime="new Date().getFullYear().toString()"
+              class="font-semibold text-purple-600"
+              :aria-label="`Актуально на ${new Date().getFullYear()} год`"
+              >{{ new Date().getFullYear() }}</time
+            >
+            году.
           </p>
 
-          <!-- Ключевые характеристики слота -->
+          <!-- Ключевые характеристики слота с Schema.org ItemList -->
           <div
             v-if="
               slot.overview_features_1 ||
@@ -2313,64 +2395,115 @@
               slot.overview_features_5 ||
               slot.overview_features_6
             "
-            class="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 mb-8"
+            class="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            itemscope
+            itemtype="https://schema.org/ItemList"
+            role="region"
+            aria-labelledby="key-features-heading"
           >
-            <h3 class="font-bold text-amber-800 mb-4 text-xl">
+            <!-- H3 заголовок для иерархии SEO -->
+            <h3
+              id="key-features-heading"
+              class="font-bold text-amber-800 mb-4 text-xl"
+              itemprop="name"
+            >
               {{
                 slot.overview_features_title ||
                 '⚡ Ключевые характеристики слота:'
               }}
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <ul class="text-amber-700 space-y-2">
+              <ul class="text-amber-700 space-y-2" role="list">
                 <li
                   v-if="slot.overview_features_1"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_1 }}
+                  <meta itemprop="position" content="1" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_1 }}</span>
                 </li>
                 <li
                   v-if="slot.overview_features_2"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_2 }}
+                  <meta itemprop="position" content="2" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_2 }}</span>
                 </li>
                 <li
                   v-if="slot.overview_features_3"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_3 }}
+                  <meta itemprop="position" content="3" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_3 }}</span>
                 </li>
               </ul>
-              <ul class="text-amber-700 space-y-2">
+              <ul class="text-amber-700 space-y-2" role="list">
                 <li
                   v-if="slot.overview_features_4"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_4 }}
+                  <meta itemprop="position" content="4" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_4 }}</span>
                 </li>
                 <li
                   v-if="slot.overview_features_5"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_5 }}
+                  <meta itemprop="position" content="5" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_5 }}</span>
                 </li>
                 <li
                   v-if="slot.overview_features_6"
                   class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
                 >
-                  <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
-                  {{ slot.overview_features_6 }}
+                  <meta itemprop="position" content="6" />
+                  <span
+                    class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"
+                    aria-hidden="true"
+                  ></span>
+                  <span itemprop="name">{{ slot.overview_features_6 }}</span>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Детальные разделы со спойлерами -->
         <div class="space-y-6">
@@ -5242,27 +5375,28 @@ const overviewDescription1 = computed(() => {
 
   let result = slot.value.overview_description_1
 
-  // Замена [keyword_1]
+  // Замена [keyword_1] с усиленной SEO-разметкой
+  // Используем itemprop="keywords" для Schema.org + стилизацию
   if (slot.value.overview_keyword_1) {
     result = result.replace(
       /\[keyword_1\]/g,
-      `<strong>${slot.value.overview_keyword_1}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_1}</strong>`,
     )
   }
 
-  // Замена [keyword_2]
+  // Замена [keyword_2] с усиленной SEO-разметкой
   if (slot.value.overview_keyword_2) {
     result = result.replace(
       /\[keyword_2\]/g,
-      `<strong>${slot.value.overview_keyword_2}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_2}</strong>`,
     )
   }
 
-  // Замена [keyword_3]
+  // Замена [keyword_3] с усиленной SEO-разметкой
   if (slot.value.overview_keyword_3) {
     result = result.replace(
       /\[keyword_3\]/g,
-      `<strong>${slot.value.overview_keyword_3}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_3}</strong>`,
     )
   }
 
@@ -5284,27 +5418,27 @@ const overviewDescription2 = computed(() => {
 
   let result = slot.value.overview_description_2
 
-  // Замена [keyword_1]
+  // Замена [keyword_1] с усиленной SEO-разметкой
   if (slot.value.overview_keyword_1) {
     result = result.replace(
       /\[keyword_1\]/g,
-      `<strong>${slot.value.overview_keyword_1}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_1}</strong>`,
     )
   }
 
-  // Замена [keyword_2]
+  // Замена [keyword_2] с усиленной SEO-разметкой
   if (slot.value.overview_keyword_2) {
     result = result.replace(
       /\[keyword_2\]/g,
-      `<strong>${slot.value.overview_keyword_2}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_2}</strong>`,
     )
   }
 
-  // Замена [keyword_3]
+  // Замена [keyword_3] с усиленной SEO-разметкой
   if (slot.value.overview_keyword_3) {
     result = result.replace(
       /\[keyword_3\]/g,
-      `<strong>${slot.value.overview_keyword_3}</strong>`,
+      `<strong class="text-blue-700 font-bold" itemprop="keywords">${slot.value.overview_keyword_3}</strong>`,
     )
   }
 
@@ -6932,5 +7066,47 @@ const getStructuredData = (slot) => {
   }
 }
 
-/* Дополнительные стили при необходимости */
+/* Анимация градиента для заголовка */
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Улучшение читаемости first-letter */
+.first-letter\:text-5xl::first-letter {
+  line-height: 0.8;
+}
+
+/* Плавное появление контента */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+article {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Улучшенный фокус для accessibility */
+*:focus-visible {
+  outline: 3px solid #4f46e5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 </style>
