@@ -45,8 +45,12 @@ export class CreateSlotDto {
   awards?: any;
   // Полный обзор слота 2025
   overview_title?: string;
+  overview_keyword_1?: string;
+  overview_keyword_2?: string;
+  overview_keyword_3?: string;
   overview_description_1?: string;
   overview_description_2?: string;
+  overview_features_title?: string;
   overview_features_1?: string;
   overview_features_2?: string;
   overview_features_3?: string;

@@ -2089,6 +2089,106 @@
                             />
                           </div>
 
+                          <!-- Ключевые слова для замены в тексте -->
+                          <div
+                            class="bg-[#1B1E26]/50 p-4 rounded-lg border border-[#353A4A] space-y-4"
+                          >
+                            <div class="flex items-center gap-2 mb-3">
+                              <span class="text-[#F59E0B]">🔑</span>
+                              <h4 class="text-sm font-medium text-[#F59E0B]">
+                                Ключевые слова для замены в тексте
+                              </h4>
+                            </div>
+                            <p class="text-xs text-[#9CA3AF] mb-3">
+                              В тексте обзора используйте
+                              <code
+                                class="bg-[#353A4A] px-2 py-1 rounded text-[#4F46E5]"
+                                >[keyword_1]</code
+                              >,
+                              <code
+                                class="bg-[#353A4A] px-2 py-1 rounded text-[#7C3AED]"
+                                >[keyword_2]</code
+                              >
+                              и
+                              <code
+                                class="bg-[#353A4A] px-2 py-1 rounded text-[#10B981]"
+                                >[keyword_3]</code
+                              >
+                              - они будут автоматически заменены на указанные
+                              ниже значения.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <div>
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1 flex items-center gap-2"
+                                >
+                                  <span class="text-[#4F46E5]">🔹</span>
+                                  Ключевое слово 1 (для
+                                  <code class="bg-[#353A4A] px-1 rounded"
+                                    >[keyword_1]</code
+                                  >)
+                                </label>
+                                <input
+                                  v-model="form.overview_keyword_1"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5]"
+                                  placeholder="Gates of Olympus"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1 flex items-center gap-2"
+                                >
+                                  <span class="text-[#7C3AED]">🔹</span>
+                                  Ключевое слово 2 (для
+                                  <code class="bg-[#353A4A] px-1 rounded"
+                                    >[keyword_2]</code
+                                  >)
+                                </label>
+                                <input
+                                  v-model="form.overview_keyword_2"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED] focus:border-[#7C3AED]"
+                                  placeholder="Gates of Olympus 1,000"
+                                />
+                              </div>
+                              <div>
+                                <label
+                                  class="block text-xs text-[#9CA3AF] mb-1 flex items-center gap-2"
+                                >
+                                  <span class="text-[#10B981]">🔹</span>
+                                  Ключевое слово 3 (для
+                                  <code class="bg-[#353A4A] px-1 rounded"
+                                    >[keyword_3]</code
+                                  >)
+                                </label>
+                                <input
+                                  v-model="form.overview_keyword_3"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981]"
+                                  placeholder="Gates of Olympus"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="mt-3 p-3 bg-[#4F46E5]/10 border border-[#4F46E5]/20 rounded-lg"
+                            >
+                              <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                                <span class="text-[#4F46E5] font-medium"
+                                  >💡 Пример использования:</span
+                                ><br />
+                                Текст: "<code class="text-[#E5E7EB]"
+                                  >[keyword_1]</code
+                                >
+                                is a powerful slot from Pragmatic Play"<br />
+                                Результат: "<strong class="text-[#4F46E5]"
+                                  >Gates of Olympus</strong
+                                >
+                                is a powerful slot from Pragmatic Play"
+                              </p>
+                            </div>
+                          </div>
+
                           <!-- Первый абзац описания -->
                           <div>
                             <label
@@ -2096,11 +2196,32 @@
                             >
                               Первый абзац описания
                             </label>
+                            <div
+                              class="mb-2 p-2 bg-[#4F46E5]/10 border border-[#4F46E5]/20 rounded text-xs text-[#9CA3AF]"
+                            >
+                              💡
+                              <strong class="text-[#4F46E5]"
+                                >Используйте маркеры:</strong
+                              >
+                              <code
+                                class="bg-[#353A4A] px-1 rounded text-[#4F46E5]"
+                                >[keyword_1]</code
+                              >,
+                              <code
+                                class="bg-[#353A4A] px-1 rounded text-[#7C3AED]"
+                                >[keyword_2]</code
+                              >,
+                              <code
+                                class="bg-[#353A4A] px-1 rounded text-[#10B981]"
+                                >[keyword_3]</code
+                              >
+                              для автоматической замены на ключевые слова выше.
+                            </div>
                             <textarea
                               v-model="form.overview_description_1"
-                              rows="4"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 resize-none"
-                              placeholder="Основное описание слота..."
+                              rows="6"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 resize-none font-mono text-sm"
+                              placeholder="[keyword_1] is a powerful slot from Pragmatic Play... [keyword_3]... [keyword_2]"
                             ></textarea>
                           </div>
 
@@ -2126,6 +2247,20 @@
                             >
                               Ключевые особенности (6 пунктов)
                             </label>
+
+                            <!-- Заголовок секции ключевых особенностей -->
+                            <div class="mb-4">
+                              <label class="block text-xs text-[#9CA3AF] mb-2">
+                                Заголовок секции
+                              </label>
+                              <input
+                                v-model="form.overview_features_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 text-sm"
+                                placeholder="⚡ Ключевые характеристики слота:"
+                              />
+                            </div>
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div v-for="i in 6" :key="i">
                                 <label
@@ -2136,8 +2271,14 @@
                                 <input
                                   :value="form[`overview_features_${i}`] || ''"
                                   @input="
-                                    form[`overview_features_${i}`] =
-                                      $event.target.value
+                                    (event) => {
+                                      const fieldName = `overview_features_${i}`
+                                      form[fieldName] = event.target.value
+                                      console.log(
+                                        `📝 Ввод ${fieldName}:`,
+                                        event.target.value,
+                                      )
+                                    }
                                   "
                                   type="text"
                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-[#4F46E5] transition-all duration-200 text-sm"
@@ -8897,10 +9038,16 @@ const form = ref({
   // Поля для секции "Полный обзор слота 2025"
   // Основное описание
   overview_title: 'Полный обзор слота 2025',
+  // Ключевые слова для замены в тексте
+  overview_keyword_1: null, // Замена для [keyword_1]
+  overview_keyword_2: null, // Замена для [keyword_2]
+  overview_keyword_3: null, // Замена для [keyword_3]
   overview_description_1:
     'Этот невероятный слот от Pragmatic Play произвел настоящую революцию в мире онлайн-гемблинга. Благодаря уникальной механике Tumble, случайным множителям и захватывающим бонусным функциям, игра стала абсолютным хитом среди игроков по всему миру.',
   overview_description_2:
     'Слот отличается высоким RTP 96.50%, средней волатильностью и потенциалом выигрыша до 5,000x от ставки. Игровое поле 6×5 с системой Scatter Pays создает бесконечные возможности для выигрышных комбинаций.',
+  // Заголовок для секции ключевых особенностей
+  overview_features_title: '⚡ Ключевые характеристики слота:',
   overview_features_1: 'Механика Tumble с каскадными выигрышами',
   overview_features_2: 'Случайные множители от x2 до x500',
   overview_features_3: '15 бесплатных спинов в бонусной игре',
@@ -9758,8 +9905,12 @@ const saveSlot = async () => {
       'awards',
       // Полный обзор слота 2025
       'overview_title',
+      'overview_keyword_1',
+      'overview_keyword_2',
+      'overview_keyword_3',
       'overview_description_1',
       'overview_description_2',
+      'overview_features_title',
       'overview_features_1',
       'overview_features_2',
       'overview_features_3',
@@ -9816,6 +9967,13 @@ const saveSlot = async () => {
 
     console.log('🔍 Форма перед сохранением:', form.value)
     console.log('📋 Разрешенные поля:', allowedFields)
+
+    // Специальная проверка overview_features полей
+    console.log('🎯 Проверка overview_features:')
+    for (let i = 1; i <= 6; i++) {
+      const fieldName = `overview_features_${i}`
+      console.log(`  ${fieldName}:`, form.value[fieldName])
+    }
 
     // Копируем только разрешенные поля из формы
     allowedFields.forEach((field) => {

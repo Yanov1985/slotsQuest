@@ -1,3 +1,4 @@
+с
 <template>
   <div
     class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
@@ -2279,9 +2280,8 @@
           <p
             v-if="slot.overview_description_1"
             class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
-          >
-            {{ slot.overview_description_1 }}
-          </p>
+            v-html="overviewDescription1"
+          ></p>
           <p
             v-else
             class="text-xl text-gray-700 leading-relaxed mb-6 font-medium"
@@ -2295,9 +2295,8 @@
           <p
             v-if="slot.overview_description_2"
             class="text-lg text-gray-700 leading-relaxed mb-8"
-          >
-            {{ slot.overview_description_2 }}
-          </p>
+            v-html="overviewDescription2"
+          ></p>
           <p v-else class="text-lg text-gray-700 leading-relaxed mb-8">
             Это slot с {{ slot.volatility || 'средней' }} волатильностью и RTP
             {{ slot.rtp || '96' }}%, предлагающий отличные возможности для
@@ -2317,7 +2316,10 @@
             class="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border-l-4 border-amber-400 mb-8"
           >
             <h3 class="font-bold text-amber-800 mb-4 text-xl">
-              ⚡ Ключевые характеристики slotа:
+              {{
+                slot.overview_features_title ||
+                '⚡ Ключевые характеристики слота:'
+              }}
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <ul class="text-amber-700 space-y-2">
@@ -2503,7 +2505,10 @@
                   class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3"
                 >
                   <span class="text-3xl">📈</span>
-                  {{ slot.popularity_stats_title || 'Статистика популярности по годам' }}
+                  {{
+                    slot.popularity_stats_title ||
+                    'Статистика популярности по годам'
+                  }}
                 </h3>
 
                 <div class="space-y-4">
@@ -2571,7 +2576,10 @@
                   class="font-bold text-indigo-800 mb-4 text-xl flex items-center gap-3"
                 >
                   <span class="text-2xl">📊</span>
-                  {{ slot.popularity_trend_title || 'Тренд популярности (симулированный график)' }}
+                  {{
+                    slot.popularity_trend_title ||
+                    'Тренд популярности (симулированный график)'
+                  }}
                 </h4>
 
                 <div
@@ -2658,7 +2666,9 @@
                   class="font-bold text-green-800 mb-4 text-xl flex items-center gap-3"
                 >
                   <span class="text-2xl">✨</span>
-                  {{ slot.popularity_facts_title || 'Ключевые факты популярности' }}
+                  {{
+                    slot.popularity_facts_title || 'Ключевые факты популярности'
+                  }}
                 </h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <!-- Динамические факты (4 факта) -->
@@ -5225,6 +5235,82 @@ const hoverStars = ref(0)
 const ratingSubmitting = ref(false)
 const ratingSubmitted = ref(false)
 
+// Вычисляемые свойства для текстов с заменой ключевых слов
+// 🔑 Работает аналогично replaceKeywordsInText для hero_keyword
+const overviewDescription1 = computed(() => {
+  if (!slot.value.overview_description_1) return ''
+
+  let result = slot.value.overview_description_1
+
+  // Замена [keyword_1]
+  if (slot.value.overview_keyword_1) {
+    result = result.replace(
+      /\[keyword_1\]/g,
+      `<strong>${slot.value.overview_keyword_1}</strong>`,
+    )
+  }
+
+  // Замена [keyword_2]
+  if (slot.value.overview_keyword_2) {
+    result = result.replace(
+      /\[keyword_2\]/g,
+      `<strong>${slot.value.overview_keyword_2}</strong>`,
+    )
+  }
+
+  // Замена [keyword_3]
+  if (slot.value.overview_keyword_3) {
+    result = result.replace(
+      /\[keyword_3\]/g,
+      `<strong>${slot.value.overview_keyword_3}</strong>`,
+    )
+  }
+
+  console.log('🔄 Overview замена:', {
+    исходный: slot.value.overview_description_1,
+    результат: result,
+    keywords: {
+      k1: slot.value.overview_keyword_1,
+      k2: slot.value.overview_keyword_2,
+      k3: slot.value.overview_keyword_3,
+    },
+  })
+
+  return result
+})
+
+const overviewDescription2 = computed(() => {
+  if (!slot.value.overview_description_2) return ''
+
+  let result = slot.value.overview_description_2
+
+  // Замена [keyword_1]
+  if (slot.value.overview_keyword_1) {
+    result = result.replace(
+      /\[keyword_1\]/g,
+      `<strong>${slot.value.overview_keyword_1}</strong>`,
+    )
+  }
+
+  // Замена [keyword_2]
+  if (slot.value.overview_keyword_2) {
+    result = result.replace(
+      /\[keyword_2\]/g,
+      `<strong>${slot.value.overview_keyword_2}</strong>`,
+    )
+  }
+
+  // Замена [keyword_3]
+  if (slot.value.overview_keyword_3) {
+    result = result.replace(
+      /\[keyword_3\]/g,
+      `<strong>${slot.value.overview_keyword_3}</strong>`,
+    )
+  }
+
+  return result
+})
+
 // Вычисляемые свойства
 const similarSlots = computed(() => {
   if (!slot.value || !slot.value.id || !allSlots.value.length) return []
@@ -5625,6 +5711,15 @@ const loadSlot = async () => {
       hero_keyword_2: slotData.hero_keyword_2,
       hero_keyword_3: slotData.hero_keyword_3,
       description: slotData.description?.substring(0, 100) + '...',
+    })
+
+    // 🔍 ДИАГНОСТИКА: Проверяем overview keywords
+    console.log('🔑 Overview Keywords:', {
+      overview_keyword_1: slotData.overview_keyword_1,
+      overview_keyword_2: slotData.overview_keyword_2,
+      overview_keyword_3: slotData.overview_keyword_3,
+      overview_description_1:
+        slotData.overview_description_1?.substring(0, 50) + '...',
     })
 
     if (!slotData) {

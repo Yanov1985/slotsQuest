@@ -88,8 +88,14 @@ model slots {
   play_count               Int?             @default(0)
   // Полный обзор слота 2025
   overview_title           String?          @db.VarChar(255)
+  // Ключевые слова для замены в тексте обзора [keyword_1], [keyword_2] и [keyword_3]
+  overview_keyword_1       String?          @db.VarChar(200)
+  overview_keyword_2       String?          @db.VarChar(200)
+  overview_keyword_3       String?          @db.VarChar(200)
   overview_description_1   String?          @db.Text
   overview_description_2   String?          @db.Text
+  // Заголовок для секции ключевых особенностей
+  overview_features_title  String?          @db.VarChar(255)
   overview_features_1      String?          @db.VarChar(255)
   overview_features_2      String?          @db.VarChar(255)
   overview_features_3      String?          @db.VarChar(255)
