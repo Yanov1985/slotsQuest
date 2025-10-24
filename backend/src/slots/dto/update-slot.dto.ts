@@ -100,6 +100,31 @@ export class UpdateSlotDto {
   popularity_trend_y2?: number;
   popularity_trend_y3?: number;
   popularity_trend_y4?: number;
+
+  // Основные механики
+  mechanics_title?: string;
+  mechanics_intro?: string;
+  mechanics_scatter_title?: string;
+  mechanics_scatter_description?: string;
+  mechanics_scatter_details?: string;
+  mechanics_cascade_title?: string;
+  mechanics_cascade_description?: string;
+  mechanics_cascade_details?: string;
+  mechanics_multipliers_title?: string;
+  mechanics_multipliers_description?: string;
+  mechanics_multipliers_details?: string;
+  mechanics_multipliers_important_title?: string;
+  mechanics_multipliers_important?: string;
+  mechanics_freespins_title?: string;
+  mechanics_freespins_description?: string;
+  mechanics_freespins_details?: string;
+  mechanics_wilds_title?: string;
+  mechanics_wilds_description?: string;
+  mechanics_wilds_details?: string;
+  mechanics_bonus_title?: string;
+  mechanics_bonus_description?: string;
+  mechanics_bonus_details?: string;
+
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];

@@ -33,6 +33,11 @@ export class MechanicsController {
     return this.mechanicsService.findSlotsByMechanic(id);
   }
 
+  @Get('slot/:slotId')
+  async findMechanicsBySlot(@Param('slotId') slotId: string) {
+    return this.mechanicsService.findMechanicsBySlot(slotId);
+  }
+
   @Post()
   async create(@Body() createDto: CreateMechanicDto) {
     return this.mechanicsService.create(createDto);

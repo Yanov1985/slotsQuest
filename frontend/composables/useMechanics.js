@@ -1,6 +1,6 @@
 export const useMechanics = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiBase || 'http://localhost:3001'
+  const baseURL = config.public.apiUrl || 'http://localhost:3001'
 
   const getMechanics = async (params = {}) => {
     try {
@@ -19,18 +19,13 @@ export const useMechanics = () => {
       const queryString = query.toString()
       const url = `${baseURL}/api/mechanics${queryString ? `?${queryString}` : ''}`
       
-      const response = await fetch(url, {
+      const data = await $fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при получении механик:', error)
@@ -40,18 +35,13 @@ export const useMechanics = () => {
 
   const getMechanic = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics/${id}`, {
+      const data = await $fetch(`${baseURL}/api/mechanics/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при получении механики:', error)
@@ -61,7 +51,7 @@ export const useMechanics = () => {
 
   const createMechanic = async (mechanicData) => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics`, {
+      const data = await $fetch(`${baseURL}/api/mechanics`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -69,11 +59,6 @@ export const useMechanics = () => {
         body: JSON.stringify(mechanicData)
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при создании механики:', error)
@@ -83,7 +68,7 @@ export const useMechanics = () => {
 
   const updateMechanic = async (id, mechanicData) => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics/${id}`, {
+      const data = await $fetch(`${baseURL}/api/mechanics/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -91,11 +76,6 @@ export const useMechanics = () => {
         body: JSON.stringify(mechanicData)
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при обновлении механики:', error)
@@ -105,18 +85,13 @@ export const useMechanics = () => {
 
   const deleteMechanic = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics/${id}`, {
+      const data = await $fetch(`${baseURL}/api/mechanics/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при удалении механики:', error)
@@ -126,18 +101,13 @@ export const useMechanics = () => {
 
   const toggleMechanicStatus = async (id) => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics/${id}/toggle`, {
+      const data = await $fetch(`${baseURL}/api/mechanics/${id}/toggle`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при изменении статуса механики:', error)
@@ -147,18 +117,13 @@ export const useMechanics = () => {
 
   const getMechanicStats = async () => {
     try {
-      const response = await fetch(`${baseURL}/api/mechanics/stats`, {
+      const data = await $fetch(`${baseURL}/api/mechanics/stats`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const data = await response.json()
       return data
     } catch (error) {
       console.error('Ошибка при получении статистики механик:', error)

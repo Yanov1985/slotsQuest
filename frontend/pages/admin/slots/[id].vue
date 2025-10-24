@@ -2980,6 +2980,116 @@
                               ></textarea>
                             </div>
                           </div>
+
+                          <!-- Дополнительные механики -->
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
+                            <!-- Бесплатные спины -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🎰 Бесплатные спины
+                              </label>
+                              <input
+                                v-model="form.mechanics_freespins_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Бесплатные спины"
+                              />
+                              <textarea
+                                v-model="form.mechanics_freespins_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание бесплатных спинов..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_freespins_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали бесплатных спинов..."
+                              ></textarea>
+                            </div>
+
+                            <!-- Wild символы -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🃏 Wild символы
+                              </label>
+                              <input
+                                v-model="form.mechanics_wilds_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Wild символы"
+                              />
+                              <textarea
+                                v-model="form.mechanics_wilds_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание Wild символов..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_wilds_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали Wild символов..."
+                              ></textarea>
+                            </div>
+
+                            <!-- Бонусные игры -->
+                            <div class="space-y-3">
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                🎁 Бонусные игры
+                              </label>
+                              <input
+                                v-model="form.mechanics_bonus_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                                placeholder="Бонусные игры"
+                              />
+                              <textarea
+                                v-model="form.mechanics_bonus_description"
+                                rows="3"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Описание бонусных игр..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.mechanics_bonus_details"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none text-sm"
+                                placeholder="Детали бонусных игр..."
+                              ></textarea>
+                            </div>
+                          </div>
+
+                          <!-- Важная особенность множителей - на полную ширину -->
+                          <div class="bg-[#8B5CF6]/10 p-4 rounded-lg border border-[#8B5CF6]/20 mt-4">
+                            <label
+                              class="block text-sm font-medium text-[#8B5CF6] mb-2 flex items-center gap-2"
+                            >
+                              💡 Заголовок важной особенности
+                            </label>
+                            <input
+                              v-model="form.mechanics_multipliers_important_title"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 mb-3"
+                              placeholder="Важная особенность множителей"
+                            />
+                            <label
+                              class="block text-sm font-medium text-[#8B5CF6] mb-2 flex items-center gap-2"
+                            >
+                              📝 Описание важной особенности
+                            </label>
+                            <textarea
+                              v-model="form.mechanics_multipliers_important"
+                              rows="4"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 resize-none"
+                              placeholder="Стоит отметить, что множители не применяются сразу к выигрышу одного каскада..."
+                            ></textarea>
+                          </div>
                         </div>
                       </div>
 
@@ -9121,30 +9231,54 @@ const form = ref({
     'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.',
 
   // Подсекция "Основные особенности и механики игры"
-  mechanics_title: 'Основные особенности и механики игры',
+  mechanics_title: 'Игровые механики и особенности',
   mechanics_intro:
-    'Слот предлагает уникальный игровой опыт благодаря инновационным механикам:',
+    'Этот слот предлагает захватывающий игровой опыт благодаря современным механикам и инновационным функциям:',
 
   // Scatter Pays (детальное описание)
   mechanics_scatter_title: 'Scatter Pays',
   mechanics_scatter_description:
-    'Движок scatter pays довольно популярен, поскольку делает все намного проще. Вам не нужно ждать, пока символы приземлятся на определенные позиции.',
+    'Система выплат Scatter Pays упрощает формирование выигрышей - символы не обязательно должны располагаться на активных линиях. Достаточно определенного количества одинаковых символов в любом месте игрового поля.',
   mechanics_scatter_details:
-    '8+ одинаковых символов = выигрыш! Scatter символ (Зевс) срабатывает от 4+ символов.',
+    'Минимум 8 одинаковых символов в любом месте барабанов = гарантированный выигрыш! Специальные scatter-символы активируются от 4+ символов.',
 
   // Tumbles (каскады)
-  mechanics_cascade_title: 'Tumbles (Каскады)',
+  mechanics_cascade_title: 'Каскадные выигрыши',
   mechanics_cascade_description:
-    'Любой выигрыш в Gates of Olympus запускает каскад. Выигрышные символы удаляются, а гравитация заполняет пробелы новыми символами.',
+    'После каждого выигрыша активируется механика каскадов. Выигрышные символы исчезают с барабанов, а на их место падают новые символы, создавая возможности для дополнительных выигрышей.',
   mechanics_cascade_details:
-    'Каскады могут продолжаться бесконечно, создавая цепочки выигрышей в одном спине.',
+    'Каскады могут продолжаться неограниченно долго, создавая цепочки последовательных выигрышей в рамках одного спина.',
 
   // Множители
-  mechanics_multipliers_title: 'Множители от x2 до x500',
+  mechanics_multipliers_title: 'Случайные множители',
   mechanics_multipliers_description:
-    'На каждом спине случайные множители от x2 до x500 могут появиться на барабанах в виде красочных сфер.',
+    'В любом спине на барабанах могут появиться случайные множители от x2 до x500, которые значительно увеличивают размер выигрыша.',
   mechanics_multipliers_details:
-    'В бесплатных спинах множители накапливаются и не сбрасываются между раундами.',
+    'Множители накапливаются в течение всех каскадов и применяются к итоговому выигрышу спина.',
+  mechanics_multipliers_important_title: 'Особенности применения множителей',
+  mechanics_multipliers_important:
+    'Множители не применяются к каждому отдельному каскаду, а накапливаются в течение всего спина и применяются к общему выигрышу всех каскадов в конце раунда.',
+
+  // Бесплатные спины (механики)
+  mechanics_freespins_title: 'Бесплатные спины',
+  mechanics_freespins_description:
+    'Активируются при выпадении 3 или более scatter-символов на барабанах. Предоставляют дополнительные возможности для выигрыша без дополнительных ставок.',
+  mechanics_freespins_details:
+    'Во время бесплатных спинов действуют все основные механики игры с повышенными шансами на крупные выигрыши.',
+
+  // Wild символы (механики)
+  mechanics_wilds_title: 'Wild символы',
+  mechanics_wilds_description:
+    'Универсальные символы, которые могут заменить любые другие символы (кроме специальных) для формирования выигрышных комбинаций.',
+  mechanics_wilds_details:
+    'Wild символы могут появляться в различных вариациях: обычные, расширяющиеся, липкие или с множителями.',
+
+  // Бонусные игры (механики)
+  mechanics_bonus_title: 'Бонусные игры',
+  mechanics_bonus_description:
+    'Специальные игровые режимы, активируемые определенными комбинациями символов. Предлагают уникальный геймплей и повышенные выплаты.',
+  mechanics_bonus_details:
+    'Бонусные раунды могут включать мини-игры, колесо фортуны, выбор призов или другие интерактивные элементы.',
 
   // Подсекция "Бесплатные спины Gates of Olympus"
   free_spins_title: 'Бесплатные спины Gates of Olympus',
@@ -9697,6 +9831,11 @@ const loadSlot = async () => {
     // Заполняем форму данными слота
     Object.keys(form.value).forEach((key) => {
       if (slot.value?.[key] !== undefined) {
+        // Для полей механик не перезаписываем, если значение пустое в БД
+        if (key.startsWith('mechanics_') && (!slot.value[key] || slot.value[key].trim() === '')) {
+          // Оставляем значение по умолчанию из формы
+          return
+        }
         form.value[key] = slot.value[key]
       }
     })
@@ -9960,6 +10099,30 @@ const saveSlot = async () => {
       'popularity_trend_y2',
       'popularity_trend_y3',
       'popularity_trend_y4',
+      // Основные механики
+      'mechanics_title',
+      'mechanics_intro',
+      'mechanics_scatter_title',
+      'mechanics_scatter_description',
+      'mechanics_scatter_details',
+      'mechanics_cascade_title',
+      'mechanics_cascade_description',
+      'mechanics_cascade_details',
+      'mechanics_multipliers_title',
+      'mechanics_multipliers_description',
+      'mechanics_multipliers_details',
+      'mechanics_multipliers_important_title',
+      'mechanics_multipliers_important',
+      // Дополнительные механики
+      'mechanics_freespins_title',
+      'mechanics_freespins_description',
+      'mechanics_freespins_details',
+      'mechanics_wilds_title',
+      'mechanics_wilds_description',
+      'mechanics_wilds_details',
+      'mechanics_bonus_title',
+      'mechanics_bonus_description',
+      'mechanics_bonus_details',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

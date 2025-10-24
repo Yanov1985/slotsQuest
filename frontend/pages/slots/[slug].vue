@@ -2925,7 +2925,7 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">🎰</span>
-                Основные особенности и механики игры
+                {{ slot.mechanics_title || 'Основные особенности и механики игры' }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -2945,73 +2945,140 @@
               class="p-6 border-t border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50"
             >
               <div class="prose max-w-none">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Вводный текст секции (если есть) -->
+                <div v-if="slot.mechanics_intro" class="mb-6">
+                  <p class="text-gray-700 text-lg leading-relaxed">
+                    {{ slot.mechanics_intro }}
+                  </p>
+                </div>
+
+                <!-- Динамические механики из API -->
+                <div v-if="slotMechanics.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                  <div 
+                    v-for="mechanic in slotMechanics"
+                    :key="mechanic.id"
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
+                    <div class="flex items-center gap-3 mb-3">
+                      <span v-if="mechanic.icon" :class="mechanic.icon" class="text-2xl"></span>
+                      <span v-else class="text-2xl">🎯</span>
+                      <h4 class="font-bold text-purple-800">{{ mechanic.name }}</h4>
+                    </div>
+                    <p v-if="mechanic.description" class="text-gray-700 text-sm mb-3">
+                      {{ mechanic.description }}
+                    </p>
+                    <span
+                      v-if="mechanic.type"
+                      class="inline-block px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-700 border border-purple-200"
+                    >
+                      {{ mechanic.type }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Динамические поля механик из админ-панели -->
+                <div v-else-if="slot.mechanics_scatter_title || slot.mechanics_cascade_title || slot.mechanics_multipliers_title || slot.mechanics_freespins_title" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                   <!-- Scatter Pays -->
-                  <div class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div v-if="slot.mechanics_scatter_title || slot.mechanics_scatter_description" class="bg-white p-5 rounded-lg border border-purple-200">
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">🎯</span>
-                      <h4 class="font-bold text-purple-800">Scatter Pays</h4>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_scatter_title || 'Scatter Pays' }}</h4>
                     </div>
-                    <p class="text-gray-700 text-sm mb-3">
-                      Движок scatter pays довольно популярен, поскольку делает
-                      все намного проще. Вам не нужно ждать, пока символы
-                      приземлятся на определенные позиции.
+                    <p v-if="slot.mechanics_scatter_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_scatter_description }}
                     </p>
-                    <p class="text-purple-700 font-medium text-sm">
-                      8+ одинаковых символов = выигрыш! Scatter символ (Зевс)
-                      срабатывает от 4+ символов.
+                    <p v-if="slot.mechanics_scatter_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_scatter_details }}
                     </p>
                   </div>
 
-                  <!-- Tumbles -->
-                  <div class="bg-white p-5 rounded-lg border border-purple-200">
+                  <!-- Tumbles (Каскады) -->
+                  <div v-if="slot.mechanics_cascade_title || slot.mechanics_cascade_description" class="bg-white p-5 rounded-lg border border-purple-200">
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">⬇️</span>
-                      <h4 class="font-bold text-purple-800">
-                        Tumbles (Каскады)
-                      </h4>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_cascade_title || 'Tumbles (Каскады)' }}</h4>
                     </div>
-                    <p class="text-gray-700 text-sm mb-3">
-                      Любой выигрыш в Gates of Olympus запускает каскад.
-                      Выигрышные символы удаляются, а гравитация заполняет
-                      пробелы новыми символами.
+                    <p v-if="slot.mechanics_cascade_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_cascade_description }}
                     </p>
-                    <p class="text-purple-700 font-medium text-sm">
-                      Обычно 1-2 каскада подряд, но иногда цепочка может
-                      продолжаться очень долго!
+                    <p v-if="slot.mechanics_cascade_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_cascade_details }}
                     </p>
                   </div>
 
                   <!-- Множители -->
-                  <div class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div v-if="slot.mechanics_multipliers_title || slot.mechanics_multipliers_description" class="bg-white p-5 rounded-lg border border-purple-200">
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">✨</span>
-                      <h4 class="font-bold text-purple-800">Множители</h4>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_multipliers_title || 'Множители' }}</h4>
                     </div>
-                    <p class="text-gray-700 text-sm mb-3">
-                      Четыре орба разных цветов (зеленый, синий, фиолетовый и
-                      красный) могут умножить ваши выплаты до 500x. Каждый
-                      символ множителя принимает случайное значение.
+                    <p v-if="slot.mechanics_multipliers_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_multipliers_description }}
                     </p>
-                    <p class="text-purple-700 font-medium text-sm">
-                      Множители применяются к общему выигрышу раунда после всех
-                      каскадов!
+                    <p v-if="slot.mechanics_multipliers_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_multipliers_details }}
+                    </p>
+                  </div>
+
+                  <!-- Бесплатные спины -->
+                  <div v-if="slot.mechanics_freespins_title || slot.mechanics_freespins_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-2xl">⚡</span>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_freespins_title || 'Бесплатные спины' }}</h4>
+                    </div>
+                    <p v-if="slot.mechanics_freespins_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_freespins_description }}
+                    </p>
+                    <p v-if="slot.mechanics_freespins_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_freespins_details }}
+                    </p>
+                  </div>
+
+                  <!-- Дополнительные механики -->
+                  <div v-if="slot.mechanics_wilds_title || slot.mechanics_wilds_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-2xl">🃏</span>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_wilds_title || 'Wild символы' }}</h4>
+                    </div>
+                    <p v-if="slot.mechanics_wilds_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_wilds_description }}
+                    </p>
+                    <p v-if="slot.mechanics_wilds_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_wilds_details }}
+                    </p>
+                  </div>
+
+                  <!-- Бонусные игры -->
+                  <div v-if="slot.mechanics_bonus_title || slot.mechanics_bonus_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="text-2xl">🎁</span>
+                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_bonus_title || 'Бонусные игры' }}</h4>
+                    </div>
+                    <p v-if="slot.mechanics_bonus_description" class="text-gray-700 text-sm mb-3">
+                      {{ slot.mechanics_bonus_description }}
+                    </p>
+                    <p v-if="slot.mechanics_bonus_details" class="text-purple-700 font-medium text-sm">
+                      {{ slot.mechanics_bonus_details }}
                     </p>
                   </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg border border-purple-200">
+                <!-- Сообщение, если нет механик -->
+                <div v-else class="text-center py-8">
+                  <span class="text-6xl mb-4 block">🎰</span>
+                  <p class="text-gray-500 text-lg">Информация о механиках игры пока не добавлена</p>
+                  <p class="text-gray-400 text-sm mt-2">Механики будут отображаться здесь после добавления в админ-панели</p>
+                </div>
+
+                <!-- Важная особенность множителей (если есть) -->
+                <div v-if="slot.mechanics_multipliers_important_title || slot.mechanics_multipliers_important" class="bg-white p-4 rounded-lg border border-purple-200">
                   <h4
                     class="font-bold text-purple-800 mb-3 flex items-center gap-2"
                   >
-                    💡 Важная особенность множителей
+                    💡 {{ slot.mechanics_multipliers_important_title || 'Важная особенность множителей' }}
                   </h4>
                   <p class="text-gray-700">
-                    Стоит отметить, что множители не применяются сразу к
-                    выигрышу одного каскада. Gates of Olympus ждет, пока все
-                    каскады завершатся, а затем применяет сумму всех собранных
-                    множителей к общему выигрышу раунда. Это гораздо более
-                    перспективно, чем один множитель, усиливающий один выигрыш.
+                    {{ slot.mechanics_multipliers_important || 'Стоит отметить, что множители не применяются сразу к выигрышу одного каскада. Gates of Olympus ждет, пока все каскады завершатся, а затем применяет сумму всех собранных множителей к общему выигрышу раунда. Это гораздо более перспективно, чем один множитель, усиливающий один выигрыш.' }}
                   </p>
                 </div>
               </div>
@@ -5358,6 +5425,7 @@ const slug = route.params.slug
 // Состояние
 const slot = ref({})
 const allSlots = ref([])
+const slotMechanics = ref([])
 const loading = ref(true)
 const error = ref(null)
 
@@ -5861,6 +5929,21 @@ const loadSlot = async () => {
     }
 
     slot.value = slotData
+
+    // Загружаем механики для этого слота
+    try {
+      const mechanicsData = await $fetch(`http://localhost:3001/api/mechanics/slot/${slotData.id}`, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          Pragma: 'no-cache',
+        },
+      })
+      slotMechanics.value = mechanicsData || []
+      console.log('✅ Механики слота загружены:', slotMechanics.value)
+    } catch (mechanicsError) {
+      console.warn('⚠️ Не удалось загрузить механики слота:', mechanicsError)
+      slotMechanics.value = []
+    }
 
     // Также загружаем все слоты для похожих слотов (без блокировки основной загрузки)
     $fetch('http://localhost:3001/api/slots', {

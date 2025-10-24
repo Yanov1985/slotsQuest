@@ -4,6 +4,12 @@ const path = require('path');
 
 const prisma = new PrismaClient();
 
+function isUuid(value) {
+  if (typeof value !== 'string') return false;
+  // UUID v4/v5 pattern (generic)
+  return /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/.test(value);
+}
+
 async function importData() {
   try {
     console.log('🚀 Начинаем импорт данных в базу данных...');
@@ -59,8 +65,10 @@ async function importData() {
           name: category.name,
           slug: category.slug,
           description: category.description,
-          icon_url: category.icon_url,
-          sort_order: category.sort_order ?? 0,
+          // Некоторые поля могли быть удалены в текущей схеме Prisma
+          // icon_url и sort_order добавляйте только если они существуют в схеме
+          // icon_url: category.icon_url,
+          // sort_order: category.sort_order ?? 0,
           is_active: category.is_active ?? true
         }
       });
@@ -99,16 +107,16 @@ async function importData() {
     for (const slot of slotsData) {
       // Проверяем существование связанных записей
       const provider = await prisma.providers.findUnique({ where: { id: slot.provider_id } });
-      const category = await prisma.slot_categories.findUnique({ where: { id: slot.category_id } });
+      const categoryId = isUuid(slot.category_id) ? slot.category_id : null;
+      const category = categoryId ? await prisma.slot_categories.findUnique({ where: { id: categoryId } }) : null;
       
       if (!provider) {
         console.warn(`⚠️ Провайдер с ID ${slot.provider_id} не найден для слота ${slot.name}`);
         continue;
       }
       
-      if (!category) {
+      if (categoryId && !category) {
         console.warn(`⚠️ Категория с ID ${slot.category_id} не найдена для слота ${slot.name}`);
-        continue;
       }
       
       await prisma.slots.create({
@@ -117,7 +125,7 @@ async function importData() {
           name: slot.name,
           slug: slot.slug,
           provider_id: slot.provider_id,
-          category_id: slot.category_id,
+          category_id: categoryId,
           theme_id: slot.theme_id,
           description: slot.description,
           min_bet: slot.min_bet ? parseFloat(slot.min_bet) : null,

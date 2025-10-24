@@ -186,6 +186,43 @@ export class MechanicsService {
     };
   }
 
+  async findMechanicsBySlot(slotId: string) {
+    const slot = await this.prisma.slots.findUnique({
+      where: { id: slotId },
+    });
+
+    if (!slot) {
+      throw new NotFoundException(`Slot with ID ${slotId} not found`);
+    }
+
+    const mechanics = await this.prisma.mechanics.findMany({
+      where: {
+        slot_mechanics: {
+          some: {
+            slot_id: slotId,
+          },
+        },
+        is_active: true,
+      },
+      orderBy: [
+        { sort_order: 'asc' },
+        { name: 'asc' },
+      ],
+      include: {
+        _count: {
+          select: {
+            slot_mechanics: true,
+          },
+        },
+      },
+    });
+
+    return {
+      data: mechanics,
+      total: mechanics.length,
+    };
+  }
+
   async create(createMechanicDto: CreateMechanicDto) {
     try {
       const mechanic = await this.prisma.mechanics.create({
