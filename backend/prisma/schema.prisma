@@ -105,8 +105,11 @@ model slots {
   free_spins_title                      String?          @db.VarChar(255)
   free_spins_intro                      String?
   free_spins_instant_title              String?          @db.VarChar(255)
+  free_spins_4_scatter_desc             String?          @db.VarChar(100)
   free_spins_4_scatter                  String?          @db.VarChar(100)
+  free_spins_5_scatter_desc             String?          @db.VarChar(100)
   free_spins_5_scatter                  String?          @db.VarChar(100)
+  free_spins_6_scatter_desc             String?          @db.VarChar(100)
   free_spins_6_scatter                  String?          @db.VarChar(100)
   free_spins_features_title             String?          @db.VarChar(255)
   free_spins_feature_1                  String?

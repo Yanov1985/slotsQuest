@@ -141,8 +141,11 @@ export class CreateSlotDto {
   free_spins_title?: string;
   free_spins_intro?: string;
   free_spins_instant_title?: string;
+  free_spins_4_scatter_desc?: string;
   free_spins_4_scatter?: string;
+  free_spins_5_scatter_desc?: string;
   free_spins_5_scatter?: string;
+  free_spins_6_scatter_desc?: string;
   free_spins_6_scatter?: string;
   free_spins_features_title?: string;
   free_spins_feature_1?: string;

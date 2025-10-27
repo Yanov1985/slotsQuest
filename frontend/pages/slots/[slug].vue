@@ -3129,19 +3129,19 @@
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
-                        <span class="font-medium">4 символа Зевса:</span>
+                        <span class="font-medium">{{ slot.free_spins_4_scatter_desc || '4 символа Зевса:' }}</span>
                         <span class="font-bold text-orange-600">{{ slot.free_spins_4_scatter || 'x3 от ставки' }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
-                        <span class="font-medium">5 символов Зевса:</span>
+                        <span class="font-medium">{{ slot.free_spins_5_scatter_desc || '5 символов Зевса:' }}</span>
                         <span class="font-bold text-orange-600">{{ slot.free_spins_5_scatter || 'x5 от ставки' }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-100 rounded"
                       >
-                        <span class="font-medium">6 символов Зевса:</span>
+                        <span class="font-medium">{{ slot.free_spins_6_scatter_desc || '6 символов Зевса:' }}</span>
                         <span class="font-bold text-orange-700">{{ slot.free_spins_6_scatter || 'x100 от ставки' }}</span>
                       </div>
                     </div>

@@ -3192,25 +3192,60 @@
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
                                 placeholder="💰 Мгновенные выплаты за Scatter"
                               />
-                              <div class="space-y-2">
-                                <input
-                                  v-model="form.free_spins_4_scatter"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
-                                  placeholder="4 символа Зевса: x3 от ставки"
-                                />
-                                <input
-                                  v-model="form.free_spins_5_scatter"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
-                                  placeholder="5 символов Зевса: x5 от ставки"
-                                />
-                                <input
-                                  v-model="form.free_spins_6_scatter"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
-                                  placeholder="6 символов Зевса: x100 от ставки"
-                                />
+                              <div class="space-y-3">
+                                <!-- 4 символа -->
+                                <div class="space-y-1">
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">4 символа - описание:</label>
+                                  <input
+                                    v-model="form.free_spins_4_scatter_desc"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="4 символа Зевса:"
+                                  />
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">4 символа - выплата:</label>
+                                  <input
+                                    v-model="form.free_spins_4_scatter"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="x3 от ставки"
+                                  />
+                                </div>
+                                
+                                <!-- 5 символов -->
+                                <div class="space-y-1">
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">5 символов - описание:</label>
+                                  <input
+                                    v-model="form.free_spins_5_scatter_desc"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="5 символов Зевса:"
+                                  />
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">5 символов - выплата:</label>
+                                  <input
+                                    v-model="form.free_spins_5_scatter"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="x5 от ставки"
+                                  />
+                                </div>
+                                
+                                <!-- 6 символов -->
+                                <div class="space-y-1">
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">6 символов - описание:</label>
+                                  <input
+                                    v-model="form.free_spins_6_scatter_desc"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="6 символов Зевса:"
+                                  />
+                                  <label class="block text-xs font-medium text-[#9CA3AF]">6 символов - выплата:</label>
+                                  <input
+                                    v-model="form.free_spins_6_scatter"
+                                    type="text"
+                                    class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                                    placeholder="x100 от ставки"
+                                  />
+                                </div>
                               </div>
                             </div>
 
@@ -9309,9 +9344,12 @@ const form = ref({
 
   // Мгновенные выплаты за scatter
   free_spins_instant_title: '💰 Мгновенные выплаты за Scatter',
-  free_spins_4_scatter: '4 символа Зевса: x3 от ставки',
-  free_spins_5_scatter: '5 символов Зевса: x5 от ставки',
-  free_spins_6_scatter: '6 символов Зевса: x100 от ставки',
+  free_spins_4_scatter_desc: '4 символа Зевса:',
+  free_spins_4_scatter: 'x3 от ставки',
+  free_spins_5_scatter_desc: '5 символов Зевса:',
+  free_spins_5_scatter: 'x5 от ставки',
+  free_spins_6_scatter_desc: '6 символов Зевса:',
+  free_spins_6_scatter: 'x100 от ставки',
 
   // Особенности бонусной игры
   free_spins_features_title: '🚀 Особенности бонусной игры',
@@ -10170,8 +10208,11 @@ const saveSlot = async () => {
       'free_spins_intro',
       'free_spins_instant_title',
       'free_spins_4_scatter',
+      'free_spins_4_scatter_desc',
       'free_spins_5_scatter',
+      'free_spins_5_scatter_desc',
       'free_spins_6_scatter',
+      'free_spins_6_scatter_desc',
       'free_spins_features_title',
       'free_spins_feature_1',
       'free_spins_feature_2',
