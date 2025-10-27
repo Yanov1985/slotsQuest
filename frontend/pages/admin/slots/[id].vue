@@ -10226,6 +10226,20 @@ const saveSlot = async () => {
       'free_spins_ante_description',
       'free_spins_ante_bet_value',
       'free_spins_ante_bet_effect',
+      // FAQ
+      'faq_title',
+      'faq_q1_emoji',
+      'faq_q1_question',
+      'faq_q1_answer',
+      'faq_q2_emoji',
+      'faq_q2_question',
+      'faq_q2_answer',
+      'faq_q3_emoji',
+      'faq_q3_question',
+      'faq_q3_answer',
+      'faq_q4_emoji',
+      'faq_q4_question',
+      'faq_q4_answer',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

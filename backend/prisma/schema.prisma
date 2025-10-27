@@ -123,6 +123,20 @@ model slots {
   ante_bet_title                        String?          @db.VarChar(255)
   ante_bet_description                  String?
   ante_bet_warning                      String?
+  // FAQ (Frequently Asked Questions)
+  faq_title                             String?          @db.VarChar(255)
+  faq_q1_emoji                          String?          @db.VarChar(10)
+  faq_q1_question                       String?
+  faq_q1_answer                         String?
+  faq_q2_emoji                          String?          @db.VarChar(10)
+  faq_q2_question                       String?
+  faq_q2_answer                         String?
+  faq_q3_emoji                          String?          @db.VarChar(10)
+  faq_q3_question                       String?
+  faq_q3_answer                         String?
+  faq_q4_emoji                          String?          @db.VarChar(10)
+  faq_q4_question                       String?
+  faq_q4_answer                         String?
   overview_description_1                String?
   overview_description_2                String?
   overview_features_1                   String?          @db.VarChar(255)

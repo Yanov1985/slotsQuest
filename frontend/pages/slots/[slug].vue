@@ -3397,7 +3397,7 @@
               </svg>
             </div>
             <h2 class="text-3xl font-bold text-gray-800">
-              Часто задаваемые вопросы
+              {{ slot.faq_title || 'Часто задаваемые вопросы' }}
             </h2>
           </div>
 
@@ -3409,8 +3409,8 @@
                 class="p-6 cursor-pointer font-semibold text-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 flex items-center justify-between"
               >
                 <span class="flex items-center gap-3">
-                  <span class="text-2xl">🎮</span>
-                  Можно ли играть в {{ slot.name || 'этот slot' }} бесплатно?
+                  <span class="text-2xl">{{ slot.faq_q1_emoji || '🎮' }}</span>
+                  {{ slot.faq_q1_question || ('Можно ли играть в ' + (slot.name || 'этот slot') + ' бесплатно?') }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3429,7 +3429,8 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50"
               >
-                <div class="flex items-start gap-4">
+                <div v-if="slot.faq_q1_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q1_answer }}</div>
+                <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                   >
@@ -3466,8 +3467,8 @@
                 class="p-6 cursor-pointer font-semibold text-lg hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 transition-all duration-300 flex items-center justify-between"
               >
                 <span class="flex items-center gap-3">
-                  <span class="text-2xl">💰</span>
-                  Какова максимальная выплата в {{ slot.name || 'этом slotе' }}?
+                  <span class="text-2xl">{{ slot.faq_q2_emoji || '💰' }}</span>
+                  {{ slot.faq_q2_question || ('Какова максимальная выплата в ' + (slot.name || 'этом slotе') + '?') }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3486,7 +3487,8 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-green-50 to-emerald-50"
               >
-                <div class="flex items-start gap-4">
+                <div v-if="slot.faq_q2_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q2_answer }}</div>
+                <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                   >
@@ -3528,8 +3530,8 @@
                 class="p-6 cursor-pointer font-semibold text-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-300 flex items-center justify-between"
               >
                 <span class="flex items-center gap-3">
-                  <span class="text-2xl">🛒</span>
-                  Стоит ли покупать бонусные спины?
+                  <span class="text-2xl">{{ slot.faq_q3_emoji || '🛒' }}</span>
+                  {{ slot.faq_q3_question || 'Стоит ли покупать бонусные спины?' }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3548,7 +3550,8 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50"
               >
-                <div class="flex items-start gap-4">
+                <div v-if="slot.faq_q3_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q3_answer }}</div>
+                <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                   >
@@ -3596,8 +3599,8 @@
                 class="p-6 cursor-pointer font-semibold text-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-300 flex items-center justify-between"
               >
                 <span class="flex items-center gap-3">
-                  <span class="text-2xl">📱</span>
-                  Работает ли slot на мобильных устройствах?
+                  <span class="text-2xl">{{ slot.faq_q4_emoji || '📱' }}</span>
+                  {{ slot.faq_q4_question || 'Работает ли slot на мобильных устройствах?' }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3616,7 +3619,8 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-orange-50 to-red-50"
               >
-                <div class="flex items-start gap-4">
+                <div v-if="slot.faq_q4_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q4_answer }}</div>
+                <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                   >
@@ -6945,34 +6949,52 @@ const getStructuredData = (slot) => {
     mainEntity: [
       {
         '@type': 'Question',
-        name: `Can I play ${slot.name} for free?`,
+        name:
+          slot.faq_q1_question ||
+          `Можно ли играть в ${slot.name} бесплатно?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, absolutely free! You can play the demo version of the slot without registration or deposit. This is a great way to learn the game mechanics and bonus features before playing for real money.',
+          text:
+            slot.faq_q1_answer ||
+            'Да, абсолютно бесплатно! Можно играть в демо-версию без регистрации и депозита. Это отличный способ изучить механику и бонусы перед игрой на реальные деньги.',
         },
       },
       {
         '@type': 'Question',
-        name: `What is the maximum payout in ${slot.name}?`,
+        name:
+          slot.faq_q2_question ||
+          `Какой максимальный выигрыш в ${slot.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `The maximum payout is ${slot.max_win || '5,000'}x bet multiplier. This means that with a €100 bet you can win up to €${(parseInt(slot.max_win || '5000') * 100).toLocaleString()}! Such wins are extremely rare.`,
+          text:
+            slot.faq_q2_answer ||
+            `Максимальный выигрыш — ${slot.max_win || '5,000'}x от ставки. Это означает, что при ставке €100 можно выиграть до €${(
+              parseInt(slot.max_win || '5000') * 100
+            ).toLocaleString()}! Такие выигрыши крайне редки.`,
         },
       },
       {
         '@type': 'Question',
-        name: 'Is it worth buying bonus spins?',
+        name:
+          slot.faq_q3_question ||
+          'Стоит ли покупать бонусные вращения?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Bonus buy costs 100x bet multiplier. Pros: guaranteed access to bonus game with multipliers. Cons: high cost and no guarantee of big win. Only buy bonus with sufficient bankroll.',
+          text:
+            slot.faq_q3_answer ||
+            'Покупка бонуса обычно стоит около 100x от ставки. Плюсы: гарантированный доступ к бонусной игре с множителями. Минусы: высокая стоимость и отсутствие гарантий крупного выигрыша. Покупайте бонус только при достаточном банкролле.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Does the slot work on mobile devices?',
+        name:
+          slot.faq_q4_question ||
+          'Работает ли слот на мобильных устройствах?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, fully optimized! Supports iOS and Android, works in browser without app installation, retains all features and graphics quality with fast loading.',
+          text:
+            slot.faq_q4_answer ||
+            'Да, полностью оптимизирован! Поддерживает iOS и Android, работает в браузере без установки приложения, сохраняет все функции и качество графики с быстрой загрузкой.',
         },
       },
     ],

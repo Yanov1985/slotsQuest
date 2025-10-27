@@ -167,4 +167,23 @@ export class UpdateSlotDto {
   selected_mechanics?: any[];
   selected_bonuses?: any[];
   selected_themes?: any[];
+
+  // FAQ (Часто задаваемые вопросы)
+  faq_title?: string;
+  // Вопрос 1
+  faq_q1_emoji?: string;
+  faq_q1_question?: string;
+  faq_q1_answer?: string;
+  // Вопрос 2
+  faq_q2_emoji?: string;
+  faq_q2_question?: string;
+  faq_q2_answer?: string;
+  // Вопрос 3
+  faq_q3_emoji?: string;
+  faq_q3_question?: string;
+  faq_q3_answer?: string;
+  // Вопрос 4
+  faq_q4_emoji?: string;
+  faq_q4_question?: string;
+  faq_q4_answer?: string;
 }
