@@ -18,7 +18,7 @@ async function exportData() {
     
     console.log(`Найдено: ${providers.length} провайдеров, ${categories.length} категорий, ${slots.length} слотов, ${themes.length} тем`);
     
-    let sql = '-- Резервная копия базы данных SlotQuest v002\n';
+    let sql = '-- Резервная копия базы данных SlotQuest v004\n';
     sql += `-- Создано: ${new Date().toISOString()}\n\n`;
     
     // Отключаем проверки внешних ключей
@@ -88,7 +88,7 @@ async function exportData() {
     sql += 'SET foreign_key_checks = 1;\n';
     
     // Сохраняем файл
-    const outputFile = 'D:\\www\\Projects\\2025\\SlotQuest\\backups\\db\\database_backup_v002.sql';
+    const outputFile = 'D:\\www\\Projects\\2025\\SlotQuest\\backups\\db\\database_backup_v004.sql';
     fs.writeFileSync(outputFile, sql);
     
     console.log(`✅ Резервная копия успешно создана: ${outputFile}`);

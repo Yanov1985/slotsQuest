@@ -3289,6 +3289,28 @@
                                 placeholder="удваивает шансы получить бесплатные спины"
                               />
                             </div>
+                            
+                            <!-- Новые поля Ante Bet -->
+                            <div class="mt-4 space-y-3">
+                              <input
+                                v-model="form.ante_bet_title"
+                                type="text"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200"
+                                placeholder="Заголовок Ante Bet"
+                              />
+                              <textarea
+                                v-model="form.ante_bet_description"
+                                rows="3"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none"
+                                placeholder="Описание Ante Bet..."
+                              ></textarea>
+                              <textarea
+                                v-model="form.ante_bet_warning"
+                                rows="2"
+                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#EF4444]/50 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 resize-none"
+                                placeholder="Предупреждение об Ante Bet..."
+                              ></textarea>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -9306,6 +9328,11 @@ const form = ref({
   free_spins_ante_bet_value: '25% дополнительно к ставке',
   free_spins_ante_bet_effect: 'удваивает шансы получить бесплатные спины',
 
+  // Новые поля Ante Bet
+  ante_bet_title: 'Ante Bet',
+  ante_bet_description: 'Функция Ante Bet позволяет увеличить шансы на получение бонусных раундов за дополнительную плату.',
+  ante_bet_warning: 'Внимание: использование Ante Bet увеличивает размер ставки и может привести к более быстрой потере средств.',
+
   // Подсекция "Стратегии и советы для игры"
   strategies_title: 'Стратегии и советы для игры',
   strategies_intro:
@@ -10123,6 +10150,26 @@ const saveSlot = async () => {
       'mechanics_bonus_title',
       'mechanics_bonus_description',
       'mechanics_bonus_details',
+      // Бесплатные спины
+      'free_spins_title',
+      'free_spins_intro',
+      'free_spins_instant_title',
+      'free_spins_4_scatter',
+      'free_spins_5_scatter',
+      'free_spins_6_scatter',
+      'free_spins_features_title',
+      'free_spins_feature_1',
+      'free_spins_feature_2',
+      'free_spins_feature_3',
+      'free_spins_feature_4',
+      // Ante Bet / Bonus Buy
+      'ante_bet_title',
+      'ante_bet_description',
+      'ante_bet_warning',
+      'free_spins_ante_title',
+      'free_spins_ante_description',
+      'free_spins_ante_bet_value',
+      'free_spins_ante_bet_effect',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

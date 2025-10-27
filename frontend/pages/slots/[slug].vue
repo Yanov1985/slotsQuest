@@ -3094,7 +3094,7 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">⚡</span>
-                Бесплатные спины Gates of Olympus
+                {{ slot.free_spins_title || 'Бесплатные спины Gates of Olympus' }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3115,11 +3115,7 @@
             >
               <div class="prose max-w-none">
                 <p class="text-gray-700 mb-6 font-medium">
-                  Четыре символа Зевса предоставляют игрокам вход в самую сочную
-                  часть игры. Не важно, получите ли вы 4 или больше символов —
-                  количество спинов всегда составляет 15. Но больше
-                  scatter-символов все же предпочтительнее, поскольку они дают
-                  мгновенную выплату.
+                  {{ slot.free_spins_intro || 'Четыре символа Зевса предоставляют игрокам вход в самую сочную часть игры. Не важно, получите ли вы 4 или больше символов — количество спинов всегда составляет 15. Но больше scatter-символов все же предпочтительнее, поскольку они дают мгновенную выплату.' }}
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -3127,32 +3123,26 @@
                     <h4
                       class="font-bold text-orange-800 mb-4 flex items-center gap-2"
                     >
-                      💰 Мгновенные выплаты за Scatter
+                      {{ slot.free_spins_instant_title || '💰 Мгновенные выплаты за Scatter' }}
                     </h4>
                     <div class="space-y-2">
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
                         <span class="font-medium">4 символа Зевса:</span>
-                        <span class="font-bold text-orange-600"
-                          >x3 bet multiplier</span
-                        >
+                        <span class="font-bold text-orange-600">{{ slot.free_spins_4_scatter || 'x3 от ставки' }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
                         <span class="font-medium">5 символов Зевса:</span>
-                        <span class="font-bold text-orange-600"
-                          >x5 bet multiplier</span
-                        >
+                        <span class="font-bold text-orange-600">{{ slot.free_spins_5_scatter || 'x5 от ставки' }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-100 rounded"
                       >
                         <span class="font-medium">6 символов Зевса:</span>
-                        <span class="font-bold text-orange-700"
-                          >x100 bet multiplier</span
-                        >
+                        <span class="font-bold text-orange-700">{{ slot.free_spins_6_scatter || 'x100 от ставки' }}</span>
                       </div>
                     </div>
                   </div>
@@ -3161,40 +3151,32 @@
                     <h4
                       class="font-bold text-orange-800 mb-4 flex items-center gap-2"
                     >
-                      🚀 Особенности бонусной игры
+                      {{ slot.free_spins_features_title || '🚀 Особенности бонусной игры' }}
                     </h4>
                     <ul class="space-y-2 text-gray-700">
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span
-                          >15 бесплатных спинов независимо от количества
-                          scatter-символов</span
-                        >
+                        <span>{{ slot.free_spins_feature_1 || '15 бесплатных спинов независимо от количества scatter-символов' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span
-                          >Total Multiplier не сбрасывается между раундами</span
-                        >
+                        <span>{{ slot.free_spins_feature_2 || 'Total Multiplier не сбрасывается между раундами' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span
-                          >Возможность получить дополнительные бесплатные
-                          спины</span
-                        >
+                        <span>{{ slot.free_spins_feature_3 || 'Возможность получить дополнительные бесплатные спины' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span>Опция купить бонус за 100x от общей ставки</span>
+                        <span>{{ slot.free_spins_feature_4 || 'Опция купить бонус за 100x от общей ставки' }}</span>
                       </li>
                     </ul>
                   </div>
@@ -3202,24 +3184,30 @@
 
                 <div class="bg-white p-4 rounded-lg border border-orange-200">
                   <h4
-                    class="font-bold text-orange-800 mb-3 flex items-center gap-2"
-                  >
-                    🎯 Ante Bet и покупка бонуса
-                  </h4>
+                      class="font-bold text-orange-800 mb-4 flex items-center gap-2"
+                    >
+                      {{ slot.ante_bet_title || slot.free_spins_ante_title || '🎯 Ante Bet и покупка бонуса' }}
+                    </h4>
                   <p class="text-gray-700 mb-3">
-                    Игроки могут купить бесплатные спины, заплатив 100x от общей
-                    ставки, или ускорить процесс, включив Ante Bet и платя
-                    немного больше за каждый спин. Эта высоковолатильная игра
-                    может принести выигрыши в x5,000 в среднем каждые 1 из
-                    697,350 спинов.
+                    {{ slot.ante_bet_description || slot.free_spins_ante_description || 'Игроки могут купить бесплатные спины, заплатив 100x от общей ставки, или ускорить процесс, включив Ante Bet и платя немного больше за каждый спин. Эта высоковолатильная игра может принести выигрыши в x5,000 в среднем каждые 1 из 697,350 спинов.' }}
                   </p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                    <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                      <p class="text-orange-800 font-medium text-sm">
+                        <strong>Ante Bet:</strong> {{ slot.free_spins_ante_bet_value || '25% дополнительно к ставке' }}
+                      </p>
+                    </div>
+                    <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                      <p class="text-orange-800 font-medium text-sm">
+                        <strong>Эффект:</strong> {{ slot.free_spins_ante_bet_effect || 'удваивает шансы получить бесплатные спины' }}
+                      </p>
+                    </div>
+                  </div>
                   <div
                     class="bg-orange-50 p-3 rounded border-l-4 border-orange-400"
                   >
                     <p class="text-orange-800 font-medium text-sm">
-                      ⚠️ Внимание: покупка бонуса — это высокорискованная
-                      стратегия. Убедитесь, что у вас достаточный банкролл для
-                      таких экспериментов.
+                      {{ slot.ante_bet_warning || '⚠️ Внимание: покупка бонуса — это высокорискованная стратегия. Убедитесь, что у вас достаточный банкролл для таких экспериментов.' }}
                     </p>
                   </div>
                 </div>

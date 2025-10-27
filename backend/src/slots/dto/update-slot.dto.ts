@@ -125,6 +125,28 @@ export class UpdateSlotDto {
   mechanics_bonus_description?: string;
   mechanics_bonus_details?: string;
 
+  // Бесплатные спины
+  free_spins_title?: string;
+  free_spins_intro?: string;
+  free_spins_instant_title?: string;
+  free_spins_4_scatter?: string;
+  free_spins_5_scatter?: string;
+  free_spins_6_scatter?: string;
+  free_spins_features_title?: string;
+  free_spins_feature_1?: string;
+  free_spins_feature_2?: string;
+  free_spins_feature_3?: string;
+  free_spins_feature_4?: string;
+  // Ante Bet и покупка бонуса
+  free_spins_ante_title?: string;
+  free_spins_ante_description?: string;
+  free_spins_ante_bet_value?: string;
+  free_spins_ante_bet_effect?: string;
+  // Ante Bet (старые поля)
+  ante_bet_title?: string;
+  ante_bet_description?: string;
+  ante_bet_warning?: string;
+
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];
