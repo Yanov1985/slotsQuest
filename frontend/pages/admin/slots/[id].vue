@@ -9867,6 +9867,21 @@ const loadSlot = async () => {
       }
     })
 
+    // Явно маппим поля стратегий из API (strategy_*) в форму (strategies_*)
+    form.value.strategies_title = slot.value.strategy_title ?? form.value.strategies_title
+    form.value.strategies_intro = slot.value.strategy_intro ?? form.value.strategies_intro
+    form.value.strategies_beginners_title = slot.value.strategy_beginner_title ?? form.value.strategies_beginners_title
+    form.value.strategy_beginner_1 = slot.value.strategy_beginner_1 ?? form.value.strategy_beginner_1
+    form.value.strategy_beginner_2 = slot.value.strategy_beginner_2 ?? form.value.strategy_beginner_2
+    form.value.strategy_beginner_3 = slot.value.strategy_beginner_3 ?? form.value.strategy_beginner_3
+    form.value.strategy_beginner_4 = slot.value.strategy_beginner_4 ?? form.value.strategy_beginner_4
+    // В БД нет strategy_beginner_5 — оставляем как есть в форме
+    form.value.strategies_advanced_title = slot.value.strategy_advanced_title ?? form.value.strategies_advanced_title
+    form.value.strategy_advanced_1 = slot.value.strategy_advanced_1 ?? form.value.strategy_advanced_1
+    form.value.strategy_advanced_2 = slot.value.strategy_advanced_2 ?? form.value.strategy_advanced_2
+    form.value.strategy_advanced_3 = slot.value.strategy_advanced_3 ?? form.value.strategy_advanced_3
+    form.value.strategy_advanced_4 = slot.value.strategy_advanced_4 ?? form.value.strategy_advanced_4
+
     // Заполняем отдельные массивы для механик, бонусов и тематик
     if (
       slot.value?.slot_mechanics &&
@@ -10203,6 +10218,20 @@ const saveSlot = async () => {
         console.log(`❌ Пропускаем поле ${field}: undefined`)
       }
     })
+
+    // Маппинг полей стратегий из формы (strategies_*) в DTO бэкенда (strategy_*)
+    dataToSend.strategy_title = form.value.strategies_title
+    dataToSend.strategy_intro = form.value.strategies_intro
+    dataToSend.strategy_beginner_title = form.value.strategies_beginners_title
+    dataToSend.strategy_beginner_1 = form.value.strategy_beginner_1
+    dataToSend.strategy_beginner_2 = form.value.strategy_beginner_2
+    dataToSend.strategy_beginner_3 = form.value.strategy_beginner_3
+    dataToSend.strategy_beginner_4 = form.value.strategy_beginner_4
+    dataToSend.strategy_advanced_title = form.value.strategies_advanced_title
+    dataToSend.strategy_advanced_1 = form.value.strategy_advanced_1
+    dataToSend.strategy_advanced_2 = form.value.strategy_advanced_2
+    dataToSend.strategy_advanced_3 = form.value.strategy_advanced_3
+    dataToSend.strategy_advanced_4 = form.value.strategy_advanced_4
 
     // Добавляем данные из отдельных переменных
     dataToSend.selected_mechanics = selectedMechanics.value

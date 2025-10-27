@@ -75,6 +75,19 @@ export class CreateSlotDto {
   popularity_width_1?: number;
   popularity_label_1?: string;
   popularity_year_2?: string;
+  // Strategies & Tips (dynamic content)
+  strategy_title?: string;
+  strategy_intro?: string;
+  strategy_beginner_title?: string;
+  strategy_beginner_1?: string;
+  strategy_beginner_2?: string;
+  strategy_beginner_3?: string;
+  strategy_beginner_4?: string;
+  strategy_advanced_title?: string;
+  strategy_advanced_1?: string;
+  strategy_advanced_2?: string;
+  strategy_advanced_3?: string;
+  strategy_advanced_4?: string;
   popularity_rank_2?: string;
   popularity_width_2?: number;
   popularity_label_2?: string;

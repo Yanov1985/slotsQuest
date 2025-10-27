@@ -3224,7 +3224,7 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">🎯</span>
-                Стратегии и советы для игры
+                {{ slot.strategy_title || 'Стратегии и советы для игры' }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3244,12 +3244,15 @@
               class="p-6 border-t border-gray-200 bg-gradient-to-r from-indigo-50 to-blue-50"
             >
               <div class="prose max-w-none">
+                <p v-if="slot.strategy_intro" class="text-gray-700 mb-6">
+                  {{ slot.strategy_intro }}
+                </p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div class="bg-white p-5 rounded-lg border border-indigo-200">
                     <h4
                       class="font-bold text-indigo-800 mb-4 flex items-center gap-2"
                     >
-                      💡 Рекомендации для новичков
+                      {{ slot.strategy_beginner_title || '💡 Рекомендации для новичков' }}
                     </h4>
                     <ul class="space-y-3 text-gray-700">
                       <li class="flex items-start gap-2">
@@ -3258,7 +3261,7 @@
                         >
                           <span class="text-white text-xs font-bold">1</span>
                         </span>
-                        <span>Начните с демо-версии для изучения механик</span>
+                        <span>{{ slot.strategy_beginner_1 || 'Начните с демо-версии для изучения механик' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3266,7 +3269,7 @@
                         >
                           <span class="text-white text-xs font-bold">2</span>
                         </span>
-                        <span>Устанавливайте лимиты перед началом игры</span>
+                        <span>{{ slot.strategy_beginner_2 || 'Устанавливайте лимиты перед началом игры' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3274,7 +3277,7 @@
                         >
                           <span class="text-white text-xs font-bold">3</span>
                         </span>
-                        <span>Начинайте с минимальных ставок</span>
+                        <span>{{ slot.strategy_beginner_3 || 'Начинайте с минимальных ставок' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3282,7 +3285,7 @@
                         >
                           <span class="text-white text-xs font-bold">4</span>
                         </span>
-                        <span>Изучите таблицу выплат перед игрой</span>
+                        <span>{{ slot.strategy_beginner_4 || 'Изучите таблицу выплат перед игрой' }}</span>
                       </li>
                     </ul>
                   </div>
@@ -3291,7 +3294,7 @@
                     <h4
                       class="font-bold text-indigo-800 mb-4 flex items-center gap-2"
                     >
-                      ⚡ Продвинутые стратегии
+                      {{ slot.strategy_advanced_title || '⚡ Продвинутые стратегии' }}
                     </h4>
                     <ul class="space-y-3 text-gray-700">
                       <li class="flex items-start gap-2">
@@ -3300,10 +3303,7 @@
                         >
                           <span class="text-white text-xs font-bold">💰</span>
                         </span>
-                        <span
-                          >Управление банкроллом: не более 1-2% от банка на
-                          спин</span
-                        >
+                        <span>{{ slot.strategy_advanced_1 || 'Управление банкроллом: не более 1-2% от банка на спин' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3311,10 +3311,7 @@
                         >
                           <span class="text-white text-xs font-bold">🎲</span>
                         </span>
-                        <span
-                          >Ante Bet увеличивает шансы на бонус, но требует
-                          больших ставок</span
-                        >
+                        <span>{{ slot.strategy_advanced_2 || 'Ante Bet увеличивает шансы на бонус, но требует больших ставок' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3322,10 +3319,7 @@
                         >
                           <span class="text-white text-xs font-bold">🛒</span>
                         </span>
-                        <span
-                          >Покупка бонуса оправдана только при достаточном
-                          банке</span
-                        >
+                        <span>{{ slot.strategy_advanced_3 || 'Покупка бонуса оправдана только при достаточном банке' }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3333,10 +3327,7 @@
                         >
                           <span class="text-white text-xs font-bold">📊</span>
                         </span>
-                        <span
-                          >Ведите статистику сессий для анализа
-                          результатов</span
-                        >
+                        <span>{{ slot.strategy_advanced_4 || 'Ведите статистику сессий для анализа результатов' }}</span>
                       </li>
                     </ul>
                   </div>
