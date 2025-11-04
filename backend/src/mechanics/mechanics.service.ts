@@ -26,9 +26,9 @@ export class MechanicsService {
 
     if (search) {
       where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { slug: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } },
+        { name: { contains: search } },
+        { slug: { contains: search } },
+        { description: { contains: search } },
       ];
     }
 
@@ -49,7 +49,7 @@ export class MechanicsService {
     }
 
     const orderBy: any = {};
-    
+
     switch (sort_by) {
       case 'name':
         orderBy.name = sort_order as 'asc' | 'desc';
@@ -163,7 +163,7 @@ export class MechanicsService {
 
   async findSlotsByMechanic(mechanicId: number) {
     const mechanic = await this.findOne(mechanicId);
-    
+
     const slots = await this.prisma.slots.findMany({
       where: {
         slot_mechanics: {
@@ -303,7 +303,7 @@ export class MechanicsService {
 
   async addMechanicToSlot(slotId: string, mechanicId: number) {
     const mechanic = await this.findOne(mechanicId);
-    
+
     const slot = await this.prisma.slots.findUnique({
       where: { id: slotId },
     });

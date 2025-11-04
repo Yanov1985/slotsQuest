@@ -227,9 +227,12 @@ async function main() {
         is_active: true
       },
       create: {
+        id: `theme-${slug}`,
         name,
         slug,
-        is_active: true
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date()
       }
     })
   }

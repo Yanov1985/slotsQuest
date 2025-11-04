@@ -1,0 +1,44 @@
+[
+  {
+    "id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0",
+    "name": "100HP Gaming",
+    "slug": "100hp-gaming",
+    "description": null,
+    "logo_url": null,
+    "website_url": null,
+    "founded_year": null,
+    "country": null,
+    "is_active": true,
+    "created_at": "2025-08-23T12:45:01.990Z",
+    "updated_at": "2025-08-23T12:45:01.990Z",
+    "is_recommended": false
+  },
+  {
+    "id": "1a1eac2d-e158-4396-9866-7ea45595ad69",
+    "name": "1spin4win",
+    "slug": "1spin4win",
+    "description": null,
+    "logo_url": null,
+    "website_url": null,
+    "founded_year": null,
+    "country": null,
+    "is_active": true,
+    "created_at": "2025-08-23T12:45:01.990Z",
+    "updated_at": "2025-08-23T12:45:01.990Z",
+    "is_recommended": false
+  },
+  {
+    "id": "24ea5d5a-44ef-4749-8ea7-00d491dd5496",
+    "name": "1wGames",
+    "slug": "1wgames",
+    "description": null,
+    "logo_url": null,
+    "website_url": null,
+    "founded_year": null,
+    "country": null,
+    "is_active": true,
+    "created_at": "2025-08-23T12:45:01.990Z",
+    "updated_at": "2025-08-23T12:45:01.990Z",
+    "is_recommended": false
+  }
+]

@@ -1,0 +1,97 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client-sqlite"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./temp-restore.db"
+}
+
+model providers {
+  id             String   @id @default(uuid())
+  name           String   @unique
+  slug           String   @unique
+  description    String?
+  logo_url       String?
+  website_url    String?
+  founded_year   Int?
+  country        String?
+  is_active      Boolean  @default(true)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  is_recommended Boolean  @default(false)
+  slots          slots[]
+}
+
+model mechanics {
+  id            String          @id @default(uuid())
+  name          String          @unique
+  slug          String          @unique
+  description   String?
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  slot_mechanics slot_mechanics[]
+}
+
+model themes {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  slug       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  slots      slots[]
+}
+
+model slot_categories {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  slug       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  slots      slots[]
+}
+
+model slots {
+  id                String          @id @default(uuid())
+  name              String
+  slug              String          @unique
+  provider_id       String
+  category_id       String
+  theme_id          String?
+  rtp               Float?
+  volatility        String?
+  min_bet           Float?
+  max_bet           Float?
+  max_win           Float?
+  paylines          Int?
+  reels             Int?
+  rows              Int?
+  has_free_spins    Boolean         @default(false)
+  has_bonus_game    Boolean         @default(false)
+  has_wild          Boolean         @default(false)
+  has_scatter       Boolean         @default(false)
+  has_multiplier    Boolean         @default(false)
+  description       String?
+  image_url         String?
+  demo_url          String?
+  is_active         Boolean         @default(true)
+  created_at        DateTime        @default(now())
+  updated_at        DateTime        @updatedAt
+  provider          providers       @relation(fields: [provider_id], references: [id])
+  category          slot_categories @relation(fields: [category_id], references: [id])
+  theme             themes?         @relation(fields: [theme_id], references: [id])
+  slot_mechanics    slot_mechanics[]
+}
+
+model slot_mechanics {
+  id          String    @id @default(uuid())
+  slot_id     String
+  mechanic_id String
+  created_at  DateTime  @default(now())
+  slot        slots     @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  mechanic    mechanics @relation(fields: [mechanic_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, mechanic_id])
+}

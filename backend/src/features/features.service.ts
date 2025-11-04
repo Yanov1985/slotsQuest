@@ -26,9 +26,9 @@ export class FeaturesService {
 
     if (search) {
       where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { slug: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } },
+        { name: { contains: search } },
+        { slug: { contains: search } },
+        { description: { contains: search } },
       ];
     }
 
@@ -49,7 +49,7 @@ export class FeaturesService {
     }
 
     const orderBy: any = {};
-    
+
     switch (sort_by) {
       case 'name':
         orderBy.name = sort_order as 'asc' | 'desc';

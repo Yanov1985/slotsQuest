@@ -1,0 +1,344 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [uuid_ossp(map: "uuid-ossp", schema: "extensions")]
+}
+
+model providers {
+  id             String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name           String    @unique @db.VarChar(255)
+  slug           String    @unique @db.VarChar(255)
+  description    String?
+  logo_url       String?   @db.VarChar(500)
+  website_url    String?   @db.VarChar(500)
+  founded_year   Int?
+  country        String?   @db.VarChar(100)
+  is_active      Boolean?  @default(true)
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+  is_recommended Boolean?  @default(false)
+  slots          slots[]
+}
+
+model slot_categories {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name        String    @unique @db.VarChar(255)
+  slug        String    @unique @db.VarChar(255)
+  description String?
+  created_at  DateTime? @default(now()) @db.Timestamptz(6)
+  is_active   Boolean?  @default(true)
+  updated_at  DateTime? @default(now()) @db.Timestamptz(6)
+  slots       slots[]
+}
+
+model slots {
+  id                                    String           @id @default(cuid())
+  name                                  String           @db.VarChar(255)
+  slug                                  String           @unique @db.VarChar(255)
+  provider_id                           String           @db.Uuid
+  category_id                           String?          @db.Uuid
+  theme_id                              String?
+  description                           String?
+  thumbnail_url                         String?          @db.VarChar(500)
+  media_type                            String?          @db.VarChar(20)
+  image_url                             String?          @db.VarChar(500)
+  video_url                             String?          @db.VarChar(500)
+  demo_url                              String?          @db.VarChar(500)
+  real_play_url                         String?          @db.VarChar(500)
+  screenshots                           String[]
+  rtp                                   Decimal?         @db.Decimal(5, 2)
+  volatility                            String?          @db.VarChar(20)
+  min_bet                               Decimal?         @db.Decimal(10, 2)
+  max_bet                               Decimal?         @db.Decimal(10, 2)
+  max_win                               Decimal?         @db.Decimal(15, 2)
+  game_field                            String?          @db.VarChar(50)
+  paylines                              String?          @db.VarChar(100)
+  reels                                 Int?             @default(5)
+  rows                                  Int?             @default(3)
+  theme                                 String?          @db.VarChar(255)
+  features                              String[]
+  release_date                          DateTime?        @db.Date
+  is_mobile_compatible                  Boolean?         @default(true)
+  is_demo_available                     Boolean?         @default(true)
+  rating                                Decimal?         @default(0.00) @db.Decimal(3, 2)
+  rating_count                          Int?             @default(0)
+  popularity_rank                       Int?
+  popularity_percentage                 Int?
+  show_awards                           Boolean?         @default(false)
+  awards                                Json?
+  play_count                            Int?             @default(0)
+  is_active                             Boolean?         @default(true)
+  created_at                            DateTime?        @default(now()) @db.Timestamptz(6)
+  updated_at                            DateTime?        @default(now()) @db.Timestamptz(6)
+  bonus_frequency                       String?          @db.VarChar(50)
+  hero_keyword                          String?          @db.VarChar(100)
+  hero_keyword_2                        String?          @db.VarChar(200)
+  hero_keyword_3                        String?          @db.VarChar(200)
+  mechanics_cascade_description         String?
+  mechanics_cascade_details             String?
+  mechanics_cascade_title               String?          @db.VarChar(255)
+  mechanics_intro                       String?
+  mechanics_multipliers_description     String?
+  mechanics_multipliers_details         String?
+  mechanics_multipliers_important       String?
+  mechanics_multipliers_important_title String?          @db.VarChar(255)
+  mechanics_multipliers_title           String?          @db.VarChar(255)
+  mechanics_scatter_description         String?
+  mechanics_scatter_details             String?
+  mechanics_scatter_title               String?          @db.VarChar(255)
+  mechanics_title                       String?          @db.VarChar(255)
+  mechanics_freespins_title             String?          @db.VarChar(255)
+  mechanics_freespins_description       String?
+  mechanics_freespins_details           String?
+  mechanics_wilds_title                 String?          @db.VarChar(255)
+  mechanics_wilds_description           String?
+  mechanics_wilds_details               String?
+  mechanics_bonus_title                 String?          @db.VarChar(255)
+  mechanics_bonus_description           String?
+  mechanics_bonus_details               String?
+  free_spins_title                      String?          @db.VarChar(255)
+  free_spins_intro                      String?
+  free_spins_instant_title              String?          @db.VarChar(255)
+  free_spins_4_scatter_desc             String?          @db.VarChar(100)
+  free_spins_4_scatter                  String?          @db.VarChar(100)
+  free_spins_5_scatter_desc             String?          @db.VarChar(100)
+  free_spins_5_scatter                  String?          @db.VarChar(100)
+  free_spins_6_scatter_desc             String?          @db.VarChar(100)
+  free_spins_6_scatter                  String?          @db.VarChar(100)
+  free_spins_features_title             String?          @db.VarChar(255)
+  free_spins_feature_1                  String?
+  free_spins_feature_2                  String?
+  free_spins_feature_3                  String?
+  free_spins_feature_4                  String?
+  free_spins_ante_title                 String?          @db.VarChar(255)
+  free_spins_ante_description           String?
+  free_spins_ante_bet_value             String?          @db.VarChar(100)
+  free_spins_ante_bet_effect            String?          @db.VarChar(255)
+  ante_bet_title                        String?          @db.VarChar(255)
+  ante_bet_description                  String?
+  ante_bet_warning                      String?
+  // FAQ (Frequently Asked Questions)
+  faq_title                             String?          @db.VarChar(255)
+  faq_q1_emoji                          String?          @db.VarChar(10)
+  faq_q1_question                       String?
+  faq_q1_answer                         String?
+  faq_q2_emoji                          String?          @db.VarChar(10)
+  faq_q2_question                       String?
+  faq_q2_answer                         String?
+  faq_q3_emoji                          String?          @db.VarChar(10)
+  faq_q3_question                       String?
+  faq_q3_answer                         String?
+  faq_q4_emoji                          String?          @db.VarChar(10)
+  faq_q4_question                       String?
+  faq_q4_answer                         String?
+  overview_description_1                String?
+  overview_description_2                String?
+  overview_features_1                   String?          @db.VarChar(255)
+  overview_features_2                   String?          @db.VarChar(255)
+  overview_features_3                   String?          @db.VarChar(255)
+  overview_features_4                   String?          @db.VarChar(255)
+  overview_features_5                   String?          @db.VarChar(255)
+  overview_features_6                   String?          @db.VarChar(255)
+  overview_features_title               String?          @db.VarChar(255)
+  overview_keyword_1                    String?          @db.VarChar(200)
+  overview_keyword_2                    String?          @db.VarChar(200)
+  overview_keyword_3                    String?          @db.VarChar(200)
+  overview_title                        String?          @db.VarChar(255)
+  popularity_fact_icon_1                String?          @db.VarChar(10)
+  popularity_fact_icon_2                String?          @db.VarChar(10)
+  popularity_fact_icon_3                String?          @db.VarChar(10)
+  popularity_fact_icon_4                String?          @db.VarChar(10)
+  popularity_fact_text_1                String?
+  popularity_fact_text_2                String?
+  popularity_fact_text_3                String?
+  popularity_fact_text_4                String?
+  popularity_facts_title                String?          @db.VarChar(255)
+  popularity_global_desc                String?
+  popularity_global_rank                String?          @db.VarChar(100)
+  popularity_label_1                    String?          @db.VarChar(100)
+  popularity_label_2                    String?          @db.VarChar(100)
+  popularity_label_3                    String?          @db.VarChar(100)
+  popularity_label_4                    String?          @db.VarChar(100)
+  popularity_players_count              String?          @db.VarChar(50)
+  popularity_players_desc               String?
+  popularity_rank_1                     String?          @db.VarChar(10)
+  popularity_rank_2                     String?          @db.VarChar(10)
+  popularity_rank_3                     String?          @db.VarChar(10)
+  popularity_rank_4                     String?          @db.VarChar(10)
+  popularity_rtp_desc                   String?
+  popularity_rtp_score                  String?          @db.VarChar(50)
+  popularity_stats_title                String?          @db.VarChar(255)
+  popularity_title                      String?          @db.VarChar(255)
+  popularity_trend_title                String?          @db.VarChar(255)
+  popularity_trend_y1                   Int?
+  popularity_trend_y2                   Int?
+  popularity_trend_y3                   Int?
+  popularity_trend_y4                   Int?
+  popularity_width_1                    Int?
+  popularity_width_2                    Int?
+  popularity_width_3                    Int?
+  popularity_width_4                    Int?
+  popularity_year_1                     String?          @db.VarChar(10)
+  popularity_year_2                     String?          @db.VarChar(10)
+  popularity_year_3                     String?          @db.VarChar(10)
+  popularity_year_4                     String?          @db.VarChar(10)
+  real_rtp                              Decimal?         @db.Decimal(5, 2)
+  slot_bonuses                          slot_bonuses[]
+  slot_features                         slot_features[]
+  slot_mechanics                        slot_mechanics[]
+
+  // Strategies & Tips (dynamic content for gameplay advice)
+  strategy_title                        String?          @db.VarChar(255) @map("strategies_title")
+  strategy_intro                        String?          @map("strategies_intro")
+  strategy_beginner_title               String?          @db.VarChar(255)
+  strategy_beginner_1                   String?
+  strategy_beginner_2                   String?
+  strategy_beginner_3                   String?
+  strategy_beginner_4                   String?
+  strategy_advanced_title               String?          @db.VarChar(255)
+  strategy_advanced_1                   String?
+  strategy_advanced_2                   String?
+  strategy_advanced_3                   String?
+  strategy_advanced_4                   String?
+  slot_categories                       slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  providers                             providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  themes                                themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([provider_id], map: "idx_slots_provider_id")
+  @@index([category_id], map: "idx_slots_category_id")
+  @@index([theme_id], map: "idx_slots_theme_id")
+  @@index([is_active], map: "idx_slots_is_active")
+  @@index([rating(sort: Desc)], map: "idx_slots_rating")
+}
+
+model features {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(255)
+  slug          String          @unique @db.VarChar(255)
+  description   String?
+  type          String?         @db.VarChar(50)
+  icon          String?         @db.VarChar(10)
+  color         String?         @default("#8b5cf6") @db.VarChar(7)
+  image_url     String?         @db.VarChar(500)
+  sort_order    Int?            @default(0)
+  is_active     Boolean         @default(true)
+  is_popular    Boolean         @default(false)
+  is_featured   Boolean         @default(false)
+  created_at    DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime        @updatedAt @db.Timestamptz(6)
+  slot_features slot_features[]
+
+  @@index([type], map: "idx_features_type")
+  @@index([is_active], map: "idx_features_is_active")
+  @@index([is_popular], map: "idx_features_is_popular")
+  @@index([sort_order], map: "idx_features_sort_order")
+}
+
+model slot_features {
+  id         Int      @id @default(autoincrement())
+  slot_id    String
+  feature_id Int
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  features   features @relation(fields: [feature_id], references: [id], onDelete: Cascade)
+  slots      slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, feature_id])
+  @@index([slot_id], map: "idx_slot_features_slot_id")
+  @@index([feature_id], map: "idx_slot_features_feature_id")
+}
+
+model themes {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  color       String?
+  icon        String?
+  is_featured Boolean  @default(false)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  slots       slots[]
+
+  @@index([is_active])
+  @@index([is_featured])
+  @@index([slug])
+}
+
+model bonuses {
+  id           Int            @id @default(autoincrement())
+  name         String         @unique @db.VarChar(255)
+  slug         String         @unique @db.VarChar(255)
+  description  String?
+  type         String?        @db.VarChar(100)
+  icon         String?        @db.VarChar(255)
+  color        String?        @default("#8b5cf6") @db.VarChar(7)
+  image_url    String?        @db.VarChar(500)
+  sort_order   Int?           @default(0)
+  is_active    Boolean        @default(true)
+  is_popular   Boolean        @default(false)
+  is_featured  Boolean        @default(false)
+  created_at   DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime       @updatedAt @db.Timestamptz(6)
+  slot_bonuses slot_bonuses[]
+
+  @@index([type], map: "idx_bonuses_type")
+  @@index([is_active], map: "idx_bonuses_is_active")
+  @@index([is_popular], map: "idx_bonuses_is_popular")
+  @@index([sort_order], map: "idx_bonuses_sort_order")
+}
+
+model slot_bonuses {
+  id         Int      @id @default(autoincrement())
+  slot_id    String
+  bonus_id   Int
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  bonuses    bonuses  @relation(fields: [bonus_id], references: [id], onDelete: Cascade)
+  slots      slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, bonus_id])
+  @@index([slot_id], map: "idx_slot_bonuses_slot_id")
+  @@index([bonus_id], map: "idx_slot_bonuses_bonus_id")
+}
+
+model mechanics {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique @db.VarChar(255)
+  slug           String           @unique @db.VarChar(255)
+  description    String?
+  type           String?          @db.VarChar(100)
+  icon           String?          @db.VarChar(255)
+  color          String?          @default("#8b5cf6") @db.VarChar(7)
+  image_url      String?          @db.VarChar(500)
+  sort_order     Int?             @default(0)
+  is_active      Boolean          @default(true)
+  is_popular     Boolean          @default(false)
+  is_featured    Boolean          @default(false)
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime         @updatedAt @db.Timestamptz(6)
+  slot_mechanics slot_mechanics[]
+
+  @@index([type], map: "idx_mechanics_type")
+  @@index([is_active], map: "idx_mechanics_is_active")
+  @@index([is_popular], map: "idx_mechanics_is_popular")
+  @@index([sort_order], map: "idx_mechanics_sort_order")
+}
+
+model slot_mechanics {
+  id          Int       @id @default(autoincrement())
+  slot_id     String
+  mechanic_id Int
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  mechanics   mechanics @relation(fields: [mechanic_id], references: [id], onDelete: Cascade)
+  slots       slots     @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, mechanic_id])
+  @@index([slot_id], map: "idx_slot_mechanics_slot_id")
+  @@index([mechanic_id], map: "idx_slot_mechanics_mechanic_id")
+}

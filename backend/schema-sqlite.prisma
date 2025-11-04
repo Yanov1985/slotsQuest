@@ -1,0 +1,219 @@
+// Временная схема для SQLite (для тестирования восстановления данных)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Provider {
+  id            String   @id @default(uuid())
+  name          String   @unique
+  slug          String   @unique
+  description   String?
+  logo_url      String?
+  website_url   String?
+  founded_year  Int?
+  country       String?
+  is_active     Boolean  @default(true)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  is_recommended Boolean @default(false)
+  
+  slots Slot[]
+  
+  @@map("providers")
+}
+
+model SlotCategory {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  created_at  DateTime @default(now())
+  is_active   Boolean  @default(true)
+  updated_at  DateTime @updatedAt
+
+  slots       Slot[]
+
+  @@map("slot_categories")
+}
+
+model Theme {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  color       String?
+  icon        String?
+  is_featured Boolean  @default(false)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  slots       Slot[]
+
+  @@map("themes")
+}
+
+model Mechanic {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  type        String?
+  icon        String?
+  color       String?
+  image_url   String?
+  sort_order  Int?
+  is_active   Boolean  @default(true)
+  is_popular  Boolean  @default(false)
+  is_featured Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  
+  slots SlotMechanic[]
+  
+  @@map("mechanics")
+}
+
+model SlotMechanic {
+  slot_id     String
+  mechanic_id Int
+  
+  slot     Slot     @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  mechanic Mechanic @relation(fields: [mechanic_id], references: [id], onDelete: Cascade)
+  
+  @@id([slot_id, mechanic_id])
+  @@map("slot_mechanics")
+}
+
+model Slot {
+  id                                      String    @id @default(uuid())
+  name                                    String
+  slug                                    String    @unique
+  provider_id                             String?
+  category_id                             String?
+  theme_id                                String?
+  description                             String?
+  thumbnail_url                           String?
+  media_type                              String?
+  image_url                               String?
+  video_url                               String?
+  demo_url                                String?
+  real_play_url                           String?
+  screenshots                             String?
+  rtp                                     String?
+  volatility                              String?
+  min_bet                                 String?
+  max_bet                                 String?
+  max_win                                 String?
+  game_field                              String?
+  paylines                                Int?
+  reels                                   Int?
+  rows                                    Int?
+  theme                                   String?
+  features                                String?
+  release_date                            DateTime?
+  is_mobile_compatible                    Boolean   @default(true)
+  is_demo_available                       Boolean   @default(true)
+  rating                                  String?
+  rating_count                            Int?
+  popularity_rank                         Int?
+  popularity_percentage                   String?
+  show_awards                             Boolean   @default(false)
+  awards                                  String?
+  play_count                              Int?
+  is_active                               Boolean   @default(true)
+  created_at                              DateTime  @default(now())
+  updated_at                              DateTime  @updatedAt
+  bonus_frequency                         String?
+  hero_keyword                            String?
+  hero_keyword_2                          String?
+  hero_keyword_3                          String?
+  mechanics_cascade_description           String?
+  mechanics_cascade_details               String?
+  mechanics_cascade_title                 String?
+  mechanics_intro                         String?
+  mechanics_multipliers_description       String?
+  mechanics_multipliers_details           String?
+  mechanics_multipliers_important         String?
+  mechanics_multipliers_important_title   String?
+  mechanics_multipliers_title             String?
+  mechanics_scatter_description           String?
+  mechanics_scatter_details               String?
+  mechanics_scatter_title                 String?
+  mechanics_title                         String?
+  overview_description_1                  String?
+  overview_description_2                  String?
+  overview_features_1                     String?
+  overview_features_2                     String?
+  overview_features_3                     String?
+  overview_features_4                     String?
+  overview_features_5                     String?
+  overview_features_6                     String?
+  overview_features_title                 String?
+  overview_keyword_1                      String?
+  overview_keyword_2                      String?
+  overview_keyword_3                      String?
+  overview_title                          String?
+  popularity_fact_icon_1                  String?
+  popularity_fact_icon_2                  String?
+  popularity_fact_icon_3                  String?
+  popularity_fact_icon_4                  String?
+  popularity_fact_text_1                  String?
+  popularity_fact_text_2                  String?
+  popularity_fact_text_3                  String?
+  popularity_fact_text_4                  String?
+  popularity_facts_title                  String?
+  popularity_global_desc                  String?
+  popularity_global_rank                  String?
+  popularity_label_1                      String?
+  popularity_label_2                      String?
+  popularity_label_3                      String?
+  popularity_label_4                      String?
+  popularity_players_count                String?
+  popularity_players_desc                 String?
+  popularity_rank_1                       Int?
+  popularity_rank_2                       Int?
+  popularity_rank_3                       Int?
+  popularity_rank_4                       Int?
+  popularity_rtp_desc                     String?
+  popularity_rtp_score                    String?
+  popularity_stats_title                  String?
+  popularity_title                        String?
+  popularity_trend_title                  String?
+  popularity_trend_y1                     Int?
+  popularity_trend_y2                     Int?
+  popularity_trend_y3                     Int?
+  popularity_trend_y4                     Int?
+  popularity_width_1                      Int?
+  popularity_width_2                      Int?
+  popularity_width_3                      Int?
+  popularity_width_4                      Int?
+  popularity_year_1                       Int?
+  popularity_year_2                       Int?
+  popularity_year_3                       Int?
+  popularity_year_4                       Int?
+  real_rtp                                String?
+  free_spins_title                        String?
+  mechanics_bonus_description             String?
+  mechanics_bonus_details                 String?
+  mechanics_bonus_title                   String?
+  mechanics_freespins_description         String?
+  mechanics_freespins_details             String?
+  mechanics_freespins_title               String?
+  mechanics_wilds_description             String?
+  mechanics_wilds_details                 String?
+  mechanics_wilds_title                   String?
+
+  provider            Provider?     @relation(fields: [provider_id], references: [id])
+  category            SlotCategory? @relation(fields: [category_id], references: [id])
+  themeRelation       Theme?        @relation(fields: [theme_id], references: [id])
+  mechanics           SlotMechanic[]
+
+  @@map("slots")
+}

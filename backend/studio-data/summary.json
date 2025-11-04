@@ -1,0 +1,203 @@
+{
+  "providers": [
+    {
+      "id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0",
+      "name": "100HP Gaming",
+      "slug": "100hp-gaming"
+    },
+    {
+      "id": "1a1eac2d-e158-4396-9866-7ea45595ad69",
+      "name": "1spin4win",
+      "slug": "1spin4win"
+    },
+    {
+      "id": "24ea5d5a-44ef-4749-8ea7-00d491dd5496",
+      "name": "1wGames",
+      "slug": "1wgames"
+    },
+    {
+      "id": "68accdf3-99ec-4b18-9979-4b22e6f26159",
+      "name": "1X2gaming",
+      "slug": "1x2gaming"
+    },
+    {
+      "id": "e627904a-e827-46a3-aa4b-bc76c0454c5e",
+      "name": "3 Oaks Gaming",
+      "slug": "3-oaks-gaming"
+    }
+  ],
+  "mechanics": [
+    {
+      "id": 1,
+      "name": "Wild Symbols",
+      "slug": "wild-symbols",
+      "description": "Символы Wild заменяют любые другие символы для создания выигрышных комбинаций"
+    },
+    {
+      "id": 2,
+      "name": "Scatter Pays",
+      "slug": "scatter-pays",
+      "description": "Scatter символы выплачивают выигрыши независимо от их позиции на барабанах"
+    },
+    {
+      "id": 3,
+      "name": "Free Spins",
+      "slug": "free-spins",
+      "description": "Бесплатные вращения активируются при выпадении определенных символов"
+    },
+    {
+      "id": 4,
+      "name": "Multipliers",
+      "slug": "multipliers",
+      "description": "Множители увеличивают размер выигрыша в несколько раз"
+    },
+    {
+      "id": 5,
+      "name": "Cascading Reels",
+      "slug": "cascading-reels",
+      "description": "После выигрыша символы исчезают, а новые падают сверху"
+    },
+    {
+      "id": 6,
+      "name": "Expanding Wilds",
+      "slug": "expanding-wilds",
+      "description": "Wild символы расширяются на весь барабан"
+    }
+  ],
+  "themes": [
+    {
+      "id": "cmeob7j4q0000u5xgxxd6fasa",
+      "name": "Action",
+      "slug": "action"
+    },
+    {
+      "id": "cmeob7j4q0001u5xgpptohore",
+      "name": "Adventure",
+      "slug": "adventure"
+    },
+    {
+      "id": "cmeob7j4q0002u5xg7j6ld3zp",
+      "name": "Ancient",
+      "slug": "ancient"
+    },
+    {
+      "id": "cmeob7j4q0003u5xg6ogzfz4s",
+      "name": "Animals",
+      "slug": "animals"
+    },
+    {
+      "id": "cmeob7j4q0004u5xgi05iixdz",
+      "name": "Anime",
+      "slug": "anime"
+    },
+    {
+      "id": "cmeob7j4q0005u5xg47oiepeu",
+      "name": "Apocalypse",
+      "slug": "apocalypse"
+    },
+    {
+      "id": "cmeob7j4q0006u5xg5vhp8vcy",
+      "name": "Arabian",
+      "slug": "arabian"
+    },
+    {
+      "id": "cmeob7j4q0007u5xgp2odvh73",
+      "name": "Asian",
+      "slug": "asian"
+    },
+    {
+      "id": "cmeob7j4q0008u5xg6o9bp5fz",
+      "name": "Aztec",
+      "slug": "aztec"
+    },
+    {
+      "id": "cmeob7j4q0009u5xg6igdinha",
+      "name": "Bars",
+      "slug": "bars"
+    }
+  ],
+  "slot_categories": [
+    {
+      "id": "50d39e38-4134-4c80-baaa-5e80ca58bb24",
+      "name": "Top Games",
+      "slug": "top-games"
+    },
+    {
+      "id": "43854788-3f9b-4816-b09d-ef21eb11ab90",
+      "name": "Popular",
+      "slug": "popular"
+    },
+    {
+      "id": "5346b20e-0cec-4927-abdf-43841c1e71e5",
+      "name": "Live Casino",
+      "slug": "live-casino"
+    },
+    {
+      "id": "f45f7f57-1e32-4c2a-84a3-4913f2a409b0",
+      "name": "Slots",
+      "slug": "slots"
+    },
+    {
+      "id": "df030da7-26b9-4d4e-8bb8-01657f1fb81b",
+      "name": "New",
+      "slug": "new"
+    },
+    {
+      "id": "2a37a9a4-c279-4140-8df8-0005bb396407",
+      "name": "Kalamba Kash Drops",
+      "slug": "kalamba-kash-drops"
+    },
+    {
+      "id": "2e5d656a-2196-43a1-8f0f-112feb9cc9d1",
+      "name": "Evoplay Big Adventures",
+      "slug": "evoplay-big-adventures"
+    },
+    {
+      "id": "9838454f-816a-4d5f-9405-7cce1accd19c",
+      "name": "Endorphina E-Drops",
+      "slug": "endorphina-e-drops"
+    },
+    {
+      "id": "0921c500-0fb8-4bae-929f-34a45d2b8c2f",
+      "name": "€5,000 from GameBeat",
+      "slug": "5000-from-gamebeat"
+    },
+    {
+      "id": "f7a19a1f-81f3-4d93-86de-01b1c1e39050",
+      "name": "Gamzix Spin-O-Mania",
+      "slug": "gamzix-spin-o-mania"
+    }
+  ],
+  "slots": [
+    {
+      "id": "cmeocg6gy0003u5doo0tcrpk4",
+      "name": "Gonzo''''s Quest",
+      "slug": "gonzos-quest",
+      "provider_id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0"
+    },
+    {
+      "id": "cmeocg6kq0005u5doa4iz1ncq",
+      "name": "Immortal Romance",
+      "slug": "immortal-romance",
+      "provider_id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0"
+    },
+    {
+      "id": "cmeocg6oh0007u5dogjve8ktx",
+      "name": "The Dog House",
+      "slug": "the-dog-house",
+      "provider_id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0"
+    },
+    {
+      "id": "cmeocg6s70009u5domxldnd8g",
+      "name": "Book of Ra Deluxe",
+      "slug": "book-of-ra-deluxe",
+      "provider_id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0"
+    },
+    {
+      "id": "cmeocg6bd0001u5do1jpoas43",
+      "name": "Rich Wilde and the Book of Dead",
+      "slug": "rich-wilde-book-of-dead",
+      "provider_id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0"
+    }
+  ]
+}

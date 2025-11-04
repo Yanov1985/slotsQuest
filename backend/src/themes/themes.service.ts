@@ -13,8 +13,8 @@ export class ThemesService {
 
     if (search) {
       where.OR = [
-        { name: { contains: search, mode: 'insensitive' } },
-        { description: { contains: search, mode: 'insensitive' } },
+        { name: { contains: search } },
+        { description: { contains: search } },
       ];
     }
 
@@ -132,6 +132,8 @@ export class ThemesService {
         icon,
         is_featured: is_featured || false,
         is_active: true,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
     });
   }
