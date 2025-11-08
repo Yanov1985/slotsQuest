@@ -1,5 +1,19 @@
 [
   {
+    "id": "test-uuid-123",
+    "name": "Test Provider",
+    "slug": "test-provider",
+    "description": "Test description",
+    "logo_url": null,
+    "website_url": null,
+    "founded_year": 2020,
+    "country": "USA",
+    "is_active": true,
+    "created_at": "2025-11-04T20:08:29.869Z",
+    "updated_at": "2025-11-04T20:08:29.869Z",
+    "is_recommended": false
+  },
+  {
     "id": "8d35f5ca-79ba-45e6-8326-5cc1281ec9a0",
     "name": "100HP Gaming",
     "slug": "100hp-gaming",

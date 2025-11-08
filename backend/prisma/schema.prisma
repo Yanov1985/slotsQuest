@@ -191,8 +191,8 @@ model slots {
   slot_mechanics                        slot_mechanics[]
 
   // Strategies & Tips (dynamic content for gameplay advice)
-  strategy_title          String?          @map("strategies_title")
-  strategy_intro          String?          @map("strategies_intro")
+  strategy_title          String? @map("strategies_title")
+  strategy_intro          String? @map("strategies_intro")
   strategy_beginner_title String?
   strategy_beginner_1     String?
   strategy_beginner_2     String?
@@ -203,9 +203,63 @@ model slots {
   strategy_advanced_2     String?
   strategy_advanced_3     String?
   strategy_advanced_4     String?
-  slot_categories         slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  providers               providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  themes                  themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  // Отзывы игроков - заголовки и статистика
+  reviews_title             String?
+  reviews_subtitle          String?
+  reviews_overall_rating    String?
+  reviews_total_count       String?
+  reviews_positive_percent  String?
+  reviews_recommend_percent String?
+  // Распределение оценок (5-1 звезда)
+  reviews_5_stars_percent   String?
+  reviews_5_stars_count     String?
+  reviews_4_stars_percent   String?
+  reviews_4_stars_count     String?
+  reviews_3_stars_percent   String?
+  reviews_3_stars_count     String?
+  reviews_2_stars_percent   String?
+  reviews_2_stars_count     String?
+  reviews_1_stars_percent   String?
+  reviews_1_stars_count     String?
+  // Ключевые моменты из отзывов (sentiment analysis)
+  reviews_sentiment_1_title String?
+  reviews_sentiment_1_desc  String?
+  reviews_sentiment_2_title String?
+  reviews_sentiment_2_desc  String?
+  reviews_sentiment_3_title String?
+  reviews_sentiment_3_desc  String?
+  reviews_sentiment_4_title String?
+  reviews_sentiment_4_desc  String?
+  // Индивидуальные отзывы (3 основных отзыва)
+  review_1_author           String?
+  review_1_avatar_letter    String?
+  review_1_rating           String?
+  review_1_badge            String?
+  review_1_text             String?
+  review_1_likes            String?
+  review_1_replies          String?
+  review_1_date             String?
+  review_2_author           String?
+  review_2_avatar_letter    String?
+  review_2_rating           String?
+  review_2_badge            String?
+  review_2_text             String?
+  review_2_likes            String?
+  review_2_replies          String?
+  review_2_date             String?
+  review_3_author           String?
+  review_3_avatar_letter    String?
+  review_3_rating           String?
+  review_3_badge            String?
+  review_3_text             String?
+  review_3_likes            String?
+  review_3_replies          String?
+  review_3_date             String?
+
+  slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  providers       providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  themes          themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")

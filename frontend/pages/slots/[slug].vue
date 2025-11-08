@@ -2925,7 +2925,9 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">🎰</span>
-                {{ slot.mechanics_title || 'Основные особенности и механики игры' }}
+                {{
+                  slot.mechanics_title || 'Основные особенности и механики игры'
+                }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -2953,18 +2955,30 @@
                 </div>
 
                 <!-- Динамические механики из API -->
-                <div v-if="slotMechanics.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                  <div 
+                <div
+                  v-if="slotMechanics.length > 0"
+                  class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
+                >
+                  <div
                     v-for="mechanic in slotMechanics"
                     :key="mechanic.id"
                     class="bg-white p-5 rounded-lg border border-purple-200"
                   >
                     <div class="flex items-center gap-3 mb-3">
-                      <span v-if="mechanic.icon" :class="mechanic.icon" class="text-2xl"></span>
+                      <span
+                        v-if="mechanic.icon"
+                        :class="mechanic.icon"
+                        class="text-2xl"
+                      ></span>
                       <span v-else class="text-2xl">🎯</span>
-                      <h4 class="font-bold text-purple-800">{{ mechanic.name }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{ mechanic.name }}
+                      </h4>
                     </div>
-                    <p v-if="mechanic.description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="mechanic.description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ mechanic.description }}
                     </p>
                     <span
@@ -2977,87 +2991,183 @@
                 </div>
 
                 <!-- Динамические поля механик из админ-панели -->
-                <div v-else-if="slot.mechanics_scatter_title || slot.mechanics_cascade_title || slot.mechanics_multipliers_title || slot.mechanics_freespins_title" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div
+                  v-else-if="
+                    slot.mechanics_scatter_title ||
+                    slot.mechanics_cascade_title ||
+                    slot.mechanics_multipliers_title ||
+                    slot.mechanics_freespins_title
+                  "
+                  class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6"
+                >
                   <!-- Scatter Pays -->
-                  <div v-if="slot.mechanics_scatter_title || slot.mechanics_scatter_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_scatter_title ||
+                      slot.mechanics_scatter_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">🎯</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_scatter_title || 'Scatter Pays' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{ slot.mechanics_scatter_title || 'Scatter Pays' }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_scatter_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_scatter_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_scatter_description }}
                     </p>
-                    <p v-if="slot.mechanics_scatter_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_scatter_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_scatter_details }}
                     </p>
                   </div>
 
                   <!-- Tumbles (Каскады) -->
-                  <div v-if="slot.mechanics_cascade_title || slot.mechanics_cascade_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_cascade_title ||
+                      slot.mechanics_cascade_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">⬇️</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_cascade_title || 'Tumbles (Каскады)' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{
+                          slot.mechanics_cascade_title || 'Tumbles (Каскады)'
+                        }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_cascade_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_cascade_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_cascade_description }}
                     </p>
-                    <p v-if="slot.mechanics_cascade_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_cascade_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_cascade_details }}
                     </p>
                   </div>
 
                   <!-- Множители -->
-                  <div v-if="slot.mechanics_multipliers_title || slot.mechanics_multipliers_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_multipliers_title ||
+                      slot.mechanics_multipliers_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">✨</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_multipliers_title || 'Множители' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{ slot.mechanics_multipliers_title || 'Множители' }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_multipliers_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_multipliers_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_multipliers_description }}
                     </p>
-                    <p v-if="slot.mechanics_multipliers_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_multipliers_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_multipliers_details }}
                     </p>
                   </div>
 
                   <!-- Бесплатные спины -->
-                  <div v-if="slot.mechanics_freespins_title || slot.mechanics_freespins_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_freespins_title ||
+                      slot.mechanics_freespins_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">⚡</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_freespins_title || 'Бесплатные спины' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{
+                          slot.mechanics_freespins_title || 'Бесплатные спины'
+                        }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_freespins_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_freespins_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_freespins_description }}
                     </p>
-                    <p v-if="slot.mechanics_freespins_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_freespins_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_freespins_details }}
                     </p>
                   </div>
 
                   <!-- Дополнительные механики -->
-                  <div v-if="slot.mechanics_wilds_title || slot.mechanics_wilds_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_wilds_title ||
+                      slot.mechanics_wilds_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">🃏</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_wilds_title || 'Wild символы' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{ slot.mechanics_wilds_title || 'Wild символы' }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_wilds_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_wilds_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_wilds_description }}
                     </p>
-                    <p v-if="slot.mechanics_wilds_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_wilds_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_wilds_details }}
                     </p>
                   </div>
 
                   <!-- Бонусные игры -->
-                  <div v-if="slot.mechanics_bonus_title || slot.mechanics_bonus_description" class="bg-white p-5 rounded-lg border border-purple-200">
+                  <div
+                    v-if="
+                      slot.mechanics_bonus_title ||
+                      slot.mechanics_bonus_description
+                    "
+                    class="bg-white p-5 rounded-lg border border-purple-200"
+                  >
                     <div class="flex items-center gap-3 mb-3">
                       <span class="text-2xl">🎁</span>
-                      <h4 class="font-bold text-purple-800">{{ slot.mechanics_bonus_title || 'Бонусные игры' }}</h4>
+                      <h4 class="font-bold text-purple-800">
+                        {{ slot.mechanics_bonus_title || 'Бонусные игры' }}
+                      </h4>
                     </div>
-                    <p v-if="slot.mechanics_bonus_description" class="text-gray-700 text-sm mb-3">
+                    <p
+                      v-if="slot.mechanics_bonus_description"
+                      class="text-gray-700 text-sm mb-3"
+                    >
                       {{ slot.mechanics_bonus_description }}
                     </p>
-                    <p v-if="slot.mechanics_bonus_details" class="text-purple-700 font-medium text-sm">
+                    <p
+                      v-if="slot.mechanics_bonus_details"
+                      class="text-purple-700 font-medium text-sm"
+                    >
                       {{ slot.mechanics_bonus_details }}
                     </p>
                   </div>
@@ -3066,19 +3176,37 @@
                 <!-- Сообщение, если нет механик -->
                 <div v-else class="text-center py-8">
                   <span class="text-6xl mb-4 block">🎰</span>
-                  <p class="text-gray-500 text-lg">Информация о механиках игры пока не добавлена</p>
-                  <p class="text-gray-400 text-sm mt-2">Механики будут отображаться здесь после добавления в админ-панели</p>
+                  <p class="text-gray-500 text-lg">
+                    Информация о механиках игры пока не добавлена
+                  </p>
+                  <p class="text-gray-400 text-sm mt-2">
+                    Механики будут отображаться здесь после добавления в
+                    админ-панели
+                  </p>
                 </div>
 
                 <!-- Важная особенность множителей (если есть) -->
-                <div v-if="slot.mechanics_multipliers_important_title || slot.mechanics_multipliers_important" class="bg-white p-4 rounded-lg border border-purple-200">
+                <div
+                  v-if="
+                    slot.mechanics_multipliers_important_title ||
+                    slot.mechanics_multipliers_important
+                  "
+                  class="bg-white p-4 rounded-lg border border-purple-200"
+                >
                   <h4
                     class="font-bold text-purple-800 mb-3 flex items-center gap-2"
                   >
-                    💡 {{ slot.mechanics_multipliers_important_title || 'Важная особенность множителей' }}
+                    💡
+                    {{
+                      slot.mechanics_multipliers_important_title ||
+                      'Важная особенность множителей'
+                    }}
                   </h4>
                   <p class="text-gray-700">
-                    {{ slot.mechanics_multipliers_important || 'Стоит отметить, что множители не применяются сразу к выигрышу одного каскада. Gates of Olympus ждет, пока все каскады завершатся, а затем применяет сумму всех собранных множителей к общему выигрышу раунда. Это гораздо более перспективно, чем один множитель, усиливающий один выигрыш.' }}
+                    {{
+                      slot.mechanics_multipliers_important ||
+                      'Стоит отметить, что множители не применяются сразу к выигрышу одного каскада. Gates of Olympus ждет, пока все каскады завершатся, а затем применяет сумму всех собранных множителей к общему выигрышу раунда. Это гораздо более перспективно, чем один множитель, усиливающий один выигрыш.'
+                    }}
                   </p>
                 </div>
               </div>
@@ -3094,7 +3222,9 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">⚡</span>
-                {{ slot.free_spins_title || 'Бесплатные спины Gates of Olympus' }}
+                {{
+                  slot.free_spins_title || 'Бесплатные спины Gates of Olympus'
+                }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3115,7 +3245,10 @@
             >
               <div class="prose max-w-none">
                 <p class="text-gray-700 mb-6 font-medium">
-                  {{ slot.free_spins_intro || 'Четыре символа Зевса предоставляют игрокам вход в самую сочную часть игры. Не важно, получите ли вы 4 или больше символов — количество спинов всегда составляет 15. Но больше scatter-символов все же предпочтительнее, поскольку они дают мгновенную выплату.' }}
+                  {{
+                    slot.free_spins_intro ||
+                    'Четыре символа Зевса предоставляют игрокам вход в самую сочную часть игры. Не важно, получите ли вы 4 или больше символов — количество спинов всегда составляет 15. Но больше scatter-символов все же предпочтительнее, поскольку они дают мгновенную выплату.'
+                  }}
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -3123,26 +3256,41 @@
                     <h4
                       class="font-bold text-orange-800 mb-4 flex items-center gap-2"
                     >
-                      {{ slot.free_spins_instant_title || '💰 Мгновенные выплаты за Scatter' }}
+                      {{
+                        slot.free_spins_instant_title ||
+                        '💰 Мгновенные выплаты за Scatter'
+                      }}
                     </h4>
                     <div class="space-y-2">
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
-                        <span class="font-medium">{{ slot.free_spins_4_scatter_desc || '4 символа Зевса:' }}</span>
-                        <span class="font-bold text-orange-600">{{ slot.free_spins_4_scatter || 'x3 от ставки' }}</span>
+                        <span class="font-medium">{{
+                          slot.free_spins_4_scatter_desc || '4 символа Зевса:'
+                        }}</span>
+                        <span class="font-bold text-orange-600">{{
+                          slot.free_spins_4_scatter || 'x3 от ставки'
+                        }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-50 rounded"
                       >
-                        <span class="font-medium">{{ slot.free_spins_5_scatter_desc || '5 символов Зевса:' }}</span>
-                        <span class="font-bold text-orange-600">{{ slot.free_spins_5_scatter || 'x5 от ставки' }}</span>
+                        <span class="font-medium">{{
+                          slot.free_spins_5_scatter_desc || '5 символов Зевса:'
+                        }}</span>
+                        <span class="font-bold text-orange-600">{{
+                          slot.free_spins_5_scatter || 'x5 от ставки'
+                        }}</span>
                       </div>
                       <div
                         class="flex justify-between items-center p-2 bg-orange-100 rounded"
                       >
-                        <span class="font-medium">{{ slot.free_spins_6_scatter_desc || '6 символов Зевса:' }}</span>
-                        <span class="font-bold text-orange-700">{{ slot.free_spins_6_scatter || 'x100 от ставки' }}</span>
+                        <span class="font-medium">{{
+                          slot.free_spins_6_scatter_desc || '6 символов Зевса:'
+                        }}</span>
+                        <span class="font-bold text-orange-700">{{
+                          slot.free_spins_6_scatter || 'x100 от ставки'
+                        }}</span>
                       </div>
                     </div>
                   </div>
@@ -3151,32 +3299,47 @@
                     <h4
                       class="font-bold text-orange-800 mb-4 flex items-center gap-2"
                     >
-                      {{ slot.free_spins_features_title || '🚀 Особенности бонусной игры' }}
+                      {{
+                        slot.free_spins_features_title ||
+                        '🚀 Особенности бонусной игры'
+                      }}
                     </h4>
                     <ul class="space-y-2 text-gray-700">
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span>{{ slot.free_spins_feature_1 || '15 бесплатных спинов независимо от количества scatter-символов' }}</span>
+                        <span>{{
+                          slot.free_spins_feature_1 ||
+                          '15 бесплатных спинов независимо от количества scatter-символов'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span>{{ slot.free_spins_feature_2 || 'Total Multiplier не сбрасывается между раундами' }}</span>
+                        <span>{{
+                          slot.free_spins_feature_2 ||
+                          'Total Multiplier не сбрасывается между раундами'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span>{{ slot.free_spins_feature_3 || 'Возможность получить дополнительные бесплатные спины' }}</span>
+                        <span>{{
+                          slot.free_spins_feature_3 ||
+                          'Возможность получить дополнительные бесплатные спины'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
                           class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"
                         ></span>
-                        <span>{{ slot.free_spins_feature_4 || 'Опция купить бонус за 100x от общей ставки' }}</span>
+                        <span>{{
+                          slot.free_spins_feature_4 ||
+                          'Опция купить бонус за 100x от общей ставки'
+                        }}</span>
                       </li>
                     </ul>
                   </div>
@@ -3184,22 +3347,42 @@
 
                 <div class="bg-white p-4 rounded-lg border border-orange-200">
                   <h4
-                      class="font-bold text-orange-800 mb-4 flex items-center gap-2"
-                    >
-                      {{ slot.ante_bet_title || slot.free_spins_ante_title || '🎯 Ante Bet и покупка бонуса' }}
-                    </h4>
+                    class="font-bold text-orange-800 mb-4 flex items-center gap-2"
+                  >
+                    {{
+                      slot.ante_bet_title ||
+                      slot.free_spins_ante_title ||
+                      '🎯 Ante Bet и покупка бонуса'
+                    }}
+                  </h4>
                   <p class="text-gray-700 mb-3">
-                    {{ slot.ante_bet_description || slot.free_spins_ante_description || 'Игроки могут купить бесплатные спины, заплатив 100x от общей ставки, или ускорить процесс, включив Ante Bet и платя немного больше за каждый спин. Эта высоковолатильная игра может принести выигрыши в x5,000 в среднем каждые 1 из 697,350 спинов.' }}
+                    {{
+                      slot.ante_bet_description ||
+                      slot.free_spins_ante_description ||
+                      'Игроки могут купить бесплатные спины, заплатив 100x от общей ставки, или ускорить процесс, включив Ante Bet и платя немного больше за каждый спин. Эта высоковолатильная игра может принести выигрыши в x5,000 в среднем каждые 1 из 697,350 спинов.'
+                    }}
                   </p>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                    <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                    <div
+                      class="bg-orange-50 p-3 rounded border border-orange-200"
+                    >
                       <p class="text-orange-800 font-medium text-sm">
-                        <strong>Ante Bet:</strong> {{ slot.free_spins_ante_bet_value || '25% дополнительно к ставке' }}
+                        <strong>Ante Bet:</strong>
+                        {{
+                          slot.free_spins_ante_bet_value ||
+                          '25% дополнительно к ставке'
+                        }}
                       </p>
                     </div>
-                    <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                    <div
+                      class="bg-orange-50 p-3 rounded border border-orange-200"
+                    >
                       <p class="text-orange-800 font-medium text-sm">
-                        <strong>Эффект:</strong> {{ slot.free_spins_ante_bet_effect || 'удваивает шансы получить бесплатные спины' }}
+                        <strong>Эффект:</strong>
+                        {{
+                          slot.free_spins_ante_bet_effect ||
+                          'удваивает шансы получить бесплатные спины'
+                        }}
                       </p>
                     </div>
                   </div>
@@ -3207,7 +3390,10 @@
                     class="bg-orange-50 p-3 rounded border-l-4 border-orange-400"
                   >
                     <p class="text-orange-800 font-medium text-sm">
-                      {{ slot.ante_bet_warning || '⚠️ Внимание: покупка бонуса — это высокорискованная стратегия. Убедитесь, что у вас достаточный банкролл для таких экспериментов.' }}
+                      {{
+                        slot.ante_bet_warning ||
+                        '⚠️ Внимание: покупка бонуса — это высокорискованная стратегия. Убедитесь, что у вас достаточный банкролл для таких экспериментов.'
+                      }}
                     </p>
                   </div>
                 </div>
@@ -3252,7 +3438,10 @@
                     <h4
                       class="font-bold text-indigo-800 mb-4 flex items-center gap-2"
                     >
-                      {{ slot.strategy_beginner_title || '💡 Рекомендации для новичков' }}
+                      {{
+                        slot.strategy_beginner_title ||
+                        '💡 Рекомендации для новичков'
+                      }}
                     </h4>
                     <ul class="space-y-3 text-gray-700">
                       <li class="flex items-start gap-2">
@@ -3261,7 +3450,10 @@
                         >
                           <span class="text-white text-xs font-bold">1</span>
                         </span>
-                        <span>{{ slot.strategy_beginner_1 || 'Начните с демо-версии для изучения механик' }}</span>
+                        <span>{{
+                          slot.strategy_beginner_1 ||
+                          'Начните с демо-версии для изучения механик'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3269,7 +3461,10 @@
                         >
                           <span class="text-white text-xs font-bold">2</span>
                         </span>
-                        <span>{{ slot.strategy_beginner_2 || 'Устанавливайте лимиты перед началом игры' }}</span>
+                        <span>{{
+                          slot.strategy_beginner_2 ||
+                          'Устанавливайте лимиты перед началом игры'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3277,7 +3472,10 @@
                         >
                           <span class="text-white text-xs font-bold">3</span>
                         </span>
-                        <span>{{ slot.strategy_beginner_3 || 'Начинайте с минимальных ставок' }}</span>
+                        <span>{{
+                          slot.strategy_beginner_3 ||
+                          'Начинайте с минимальных ставок'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3285,7 +3483,10 @@
                         >
                           <span class="text-white text-xs font-bold">4</span>
                         </span>
-                        <span>{{ slot.strategy_beginner_4 || 'Изучите таблицу выплат перед игрой' }}</span>
+                        <span>{{
+                          slot.strategy_beginner_4 ||
+                          'Изучите таблицу выплат перед игрой'
+                        }}</span>
                       </li>
                     </ul>
                   </div>
@@ -3294,7 +3495,10 @@
                     <h4
                       class="font-bold text-indigo-800 mb-4 flex items-center gap-2"
                     >
-                      {{ slot.strategy_advanced_title || '⚡ Продвинутые стратегии' }}
+                      {{
+                        slot.strategy_advanced_title ||
+                        '⚡ Продвинутые стратегии'
+                      }}
                     </h4>
                     <ul class="space-y-3 text-gray-700">
                       <li class="flex items-start gap-2">
@@ -3303,7 +3507,10 @@
                         >
                           <span class="text-white text-xs font-bold">💰</span>
                         </span>
-                        <span>{{ slot.strategy_advanced_1 || 'Управление банкроллом: не более 1-2% от банка на спин' }}</span>
+                        <span>{{
+                          slot.strategy_advanced_1 ||
+                          'Управление банкроллом: не более 1-2% от банка на спин'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3311,7 +3518,10 @@
                         >
                           <span class="text-white text-xs font-bold">🎲</span>
                         </span>
-                        <span>{{ slot.strategy_advanced_2 || 'Ante Bet увеличивает шансы на бонус, но требует больших ставок' }}</span>
+                        <span>{{
+                          slot.strategy_advanced_2 ||
+                          'Ante Bet увеличивает шансы на бонус, но требует больших ставок'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3319,7 +3529,10 @@
                         >
                           <span class="text-white text-xs font-bold">🛒</span>
                         </span>
-                        <span>{{ slot.strategy_advanced_3 || 'Покупка бонуса оправдана только при достаточном банке' }}</span>
+                        <span>{{
+                          slot.strategy_advanced_3 ||
+                          'Покупка бонуса оправдана только при достаточном банке'
+                        }}</span>
                       </li>
                       <li class="flex items-start gap-2">
                         <span
@@ -3327,7 +3540,10 @@
                         >
                           <span class="text-white text-xs font-bold">📊</span>
                         </span>
-                        <span>{{ slot.strategy_advanced_4 || 'Ведите статистику сессий для анализа результатов' }}</span>
+                        <span>{{
+                          slot.strategy_advanced_4 ||
+                          'Ведите статистику сессий для анализа результатов'
+                        }}</span>
                       </li>
                     </ul>
                   </div>
@@ -3410,7 +3626,12 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">{{ slot.faq_q1_emoji || '🎮' }}</span>
-                  {{ slot.faq_q1_question || ('Можно ли играть в ' + (slot.name || 'этот slot') + ' бесплатно?') }}
+                  {{
+                    slot.faq_q1_question ||
+                    'Можно ли играть в ' +
+                      (slot.name || 'этот slot') +
+                      ' бесплатно?'
+                  }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3429,7 +3650,12 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50"
               >
-                <div v-if="slot.faq_q1_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q1_answer }}</div>
+                <div
+                  v-if="slot.faq_q1_answer"
+                  class="text-gray-700 leading-relaxed"
+                >
+                  {{ slot.faq_q1_answer }}
+                </div>
                 <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
@@ -3468,7 +3694,12 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">{{ slot.faq_q2_emoji || '💰' }}</span>
-                  {{ slot.faq_q2_question || ('Какова максимальная выплата в ' + (slot.name || 'этом slotе') + '?') }}
+                  {{
+                    slot.faq_q2_question ||
+                    'Какова максимальная выплата в ' +
+                      (slot.name || 'этом slotе') +
+                      '?'
+                  }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3487,7 +3718,12 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-green-50 to-emerald-50"
               >
-                <div v-if="slot.faq_q2_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q2_answer }}</div>
+                <div
+                  v-if="slot.faq_q2_answer"
+                  class="text-gray-700 leading-relaxed"
+                >
+                  {{ slot.faq_q2_answer }}
+                </div>
                 <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
@@ -3531,7 +3767,9 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">{{ slot.faq_q3_emoji || '🛒' }}</span>
-                  {{ slot.faq_q3_question || 'Стоит ли покупать бонусные спины?' }}
+                  {{
+                    slot.faq_q3_question || 'Стоит ли покупать бонусные спины?'
+                  }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3550,7 +3788,12 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50"
               >
-                <div v-if="slot.faq_q3_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q3_answer }}</div>
+                <div
+                  v-if="slot.faq_q3_answer"
+                  class="text-gray-700 leading-relaxed"
+                >
+                  {{ slot.faq_q3_answer }}
+                </div>
                 <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
@@ -3600,7 +3843,10 @@
               >
                 <span class="flex items-center gap-3">
                   <span class="text-2xl">{{ slot.faq_q4_emoji || '📱' }}</span>
-                  {{ slot.faq_q4_question || 'Работает ли slot на мобильных устройствах?' }}
+                  {{
+                    slot.faq_q4_question ||
+                    'Работает ли slot на мобильных устройствах?'
+                  }}
                 </span>
                 <svg
                   class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -3619,7 +3865,12 @@
               <div
                 class="p-6 border-t border-gray-200 bg-gradient-to-r from-orange-50 to-red-50"
               >
-                <div v-if="slot.faq_q4_answer" class="text-gray-700 leading-relaxed">{{ slot.faq_q4_answer }}</div>
+                <div
+                  v-if="slot.faq_q4_answer"
+                  class="text-gray-700 leading-relaxed"
+                >
+                  {{ slot.faq_q4_answer }}
+                </div>
                 <div v-else class="flex items-start gap-4">
                   <div
                     class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
@@ -3681,10 +3932,13 @@
               <h2
                 class="text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent"
               >
-                Отзывы игроков
+                {{ slot.reviews_title || 'Отзывы игроков' }}
               </h2>
               <p class="text-gray-600 mt-1">
-                Реальные мнения от сообщества slot-игроков
+                {{
+                  slot.reviews_subtitle ||
+                  'Реальные мнения от сообщества слот-игроков'
+                }}
               </p>
             </div>
           </div>
@@ -3696,7 +3950,9 @@
               class="bg-gradient-to-br from-yellow-400 to-orange-500 p-6 rounded-2xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
               <div class="flex items-center justify-between mb-3">
-                <div class="text-4xl font-black">4.3</div>
+                <div class="text-4xl font-black">
+                  {{ slot.reviews_overall_rating || '4.3' }}
+                </div>
                 <div class="text-2xl">⭐</div>
               </div>
               <div class="text-yellow-100 text-sm font-medium">
@@ -3710,11 +3966,13 @@
               class="bg-gradient-to-br from-green-500 to-emerald-600 p-6 rounded-2xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
               <div class="flex items-center justify-between mb-3">
-                <div class="text-4xl font-black">1.2K+</div>
+                <div class="text-4xl font-black">
+                  {{ slot.reviews_total_count || '1.2K+' }}
+                </div>
                 <div class="text-2xl">📝</div>
               </div>
               <div class="text-green-100 text-sm font-medium">
-                Всего reviews
+                Всего отзывов
               </div>
               <div class="text-green-200 text-sm mt-1">активное сообщество</div>
             </div>
@@ -3724,7 +3982,9 @@
               class="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 rounded-2xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
               <div class="flex items-center justify-between mb-3">
-                <div class="text-4xl font-black">75%</div>
+                <div class="text-4xl font-black">
+                  {{ slot.reviews_positive_percent || '75%' }}
+                </div>
                 <div class="text-2xl">👍</div>
               </div>
               <div class="text-blue-100 text-sm font-medium">Положительные</div>
@@ -3736,7 +3996,9 @@
               class="bg-gradient-to-br from-purple-500 to-pink-600 p-6 rounded-2xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
               <div class="flex items-center justify-between mb-3">
-                <div class="text-4xl font-black">68%</div>
+                <div class="text-4xl font-black">
+                  {{ slot.reviews_recommend_percent || '68%' }}
+                </div>
                 <div class="text-2xl">🎯</div>
               </div>
               <div class="text-purple-100 text-sm font-medium">Рекомендуют</div>
@@ -3766,15 +4028,19 @@
                   >
                     <div
                       class="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full relative"
-                      style="width: 45%"
+                      :style="`width: ${slot.reviews_5_stars_percent || '45%'}`"
                     >
                       <div
                         class="absolute inset-0 bg-white/30 animate-pulse"
                       ></div>
                     </div>
                   </div>
-                  <span class="text-sm font-bold text-green-600 w-12">45%</span>
-                  <span class="text-xs text-gray-500 w-12">562</span>
+                  <span class="text-sm font-bold text-green-600 w-12">{{
+                    slot.reviews_5_stars_percent || '45%'
+                  }}</span>
+                  <span class="text-xs text-gray-500 w-12">{{
+                    slot.reviews_5_stars_count || '562'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="text-sm font-semibold text-gray-700 w-8"
@@ -3785,15 +4051,19 @@
                   >
                     <div
                       class="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full relative"
-                      style="width: 30%"
+                      :style="`width: ${slot.reviews_4_stars_percent || '30%'}`"
                     >
                       <div
                         class="absolute inset-0 bg-white/30 animate-pulse"
                       ></div>
                     </div>
                   </div>
-                  <span class="text-sm font-bold text-blue-600 w-12">30%</span>
-                  <span class="text-xs text-gray-500 w-12">374</span>
+                  <span class="text-sm font-bold text-blue-600 w-12">{{
+                    slot.reviews_4_stars_percent || '30%'
+                  }}</span>
+                  <span class="text-xs text-gray-500 w-12">{{
+                    slot.reviews_4_stars_count || '374'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="text-sm font-semibold text-gray-700 w-8"
@@ -3804,13 +4074,15 @@
                   >
                     <div
                       class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-full rounded-full"
-                      style="width: 15%"
+                      :style="`width: ${slot.reviews_3_stars_percent || '15%'}`"
                     ></div>
                   </div>
-                  <span class="text-sm font-bold text-yellow-600 w-12"
-                    >15%</span
-                  >
-                  <span class="text-xs text-gray-500 w-12">187</span>
+                  <span class="text-sm font-bold text-yellow-600 w-12">{{
+                    slot.reviews_3_stars_percent || '15%'
+                  }}</span>
+                  <span class="text-xs text-gray-500 w-12">{{
+                    slot.reviews_3_stars_count || '187'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="text-sm font-semibold text-gray-700 w-8"
@@ -3821,11 +4093,15 @@
                   >
                     <div
                       class="bg-gradient-to-r from-orange-400 to-orange-600 h-full rounded-full"
-                      style="width: 7%"
+                      :style="`width: ${slot.reviews_2_stars_percent || '7%'}`"
                     ></div>
                   </div>
-                  <span class="text-sm font-bold text-orange-600 w-12">7%</span>
-                  <span class="text-xs text-gray-500 w-12">87</span>
+                  <span class="text-sm font-bold text-orange-600 w-12">{{
+                    slot.reviews_2_stars_percent || '7%'
+                  }}</span>
+                  <span class="text-xs text-gray-500 w-12">{{
+                    slot.reviews_2_stars_count || '87'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="text-sm font-semibold text-gray-700 w-8"
@@ -3836,11 +4112,15 @@
                   >
                     <div
                       class="bg-gradient-to-r from-red-400 to-red-600 h-full rounded-full"
-                      style="width: 3%"
+                      :style="`width: ${slot.reviews_1_stars_percent || '3%'}`"
                     ></div>
                   </div>
-                  <span class="text-sm font-bold text-red-600 w-12">3%</span>
-                  <span class="text-xs text-gray-500 w-12">37</span>
+                  <span class="text-sm font-bold text-red-600 w-12">{{
+                    slot.reviews_1_stars_percent || '3%'
+                  }}</span>
+                  <span class="text-xs text-gray-500 w-12">{{
+                    slot.reviews_1_stars_count || '37'
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -3876,10 +4156,15 @@
                   </div>
                   <div class="flex-1">
                     <div class="font-semibold text-green-800">
-                      Потрясающая графика
+                      {{
+                        slot.reviews_sentiment_1_title || 'Потрясающая графика'
+                      }}
                     </div>
                     <div class="text-sm text-green-600">
-                      Упоминается в 89% позитивных reviews
+                      {{
+                        slot.reviews_sentiment_1_desc ||
+                        'Упоминается в 89% позитивных отзывов'
+                      }}
                     </div>
                   </div>
                 </div>
@@ -3903,9 +4188,14 @@
                     </svg>
                   </div>
                   <div class="flex-1">
-                    <div class="font-semibold text-blue-800">Мегавыигрыши</div>
+                    <div class="font-semibold text-blue-800">
+                      {{ slot.reviews_sentiment_2_title || 'Мегавыигрыши' }}
+                    </div>
                     <div class="text-sm text-blue-600">
-                      Крупные множители в бонусах
+                      {{
+                        slot.reviews_sentiment_2_desc ||
+                        'Крупные множители в бонусах'
+                      }}
                     </div>
                   </div>
                 </div>
@@ -3930,9 +4220,13 @@
                   </div>
                   <div class="flex-1">
                     <div class="font-semibold text-purple-800">
-                      Стабильная работа
+                      {{
+                        slot.reviews_sentiment_3_title || 'Стабильная работа'
+                      }}
                     </div>
-                    <div class="text-sm text-purple-600">Без лагов и багов</div>
+                    <div class="text-sm text-purple-600">
+                      {{ slot.reviews_sentiment_3_desc || 'Без лагов и багов' }}
+                    </div>
                   </div>
                 </div>
 
@@ -3956,9 +4250,14 @@
                   </div>
                   <div class="flex-1">
                     <div class="font-semibold text-yellow-800">
-                      Высокая волатильность
+                      {{
+                        slot.reviews_sentiment_4_title ||
+                        'Высокая волатильность'
+                      }}
                     </div>
-                    <div class="text-sm text-yellow-600">Требует терпения</div>
+                    <div class="text-sm text-yellow-600">
+                      {{ slot.reviews_sentiment_4_desc || 'Требует терпения' }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3983,7 +4282,7 @@
                   <div
                     class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
                   >
-                    А
+                    {{ slot.review_1_avatar_letter || 'А' }}
                   </div>
                   <div
                     class="absolute -top-1 -right-1 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center"
@@ -4004,19 +4303,21 @@
                 <div class="flex-1">
                   <div class="flex items-center gap-3 mb-3">
                     <h4 class="font-bold text-gray-800 text-lg">
-                      Александр К.
+                      {{ slot.review_1_author || 'Александр К.' }}
                     </h4>
-                    <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                    <div class="flex text-yellow-400 text-lg">
+                      {{ slot.review_1_rating || '★★★★★' }}
+                    </div>
                     <span
                       class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold"
-                      >Проверенный игрок</span
+                      >{{ slot.review_1_badge || 'Проверенный игрок' }}</span
                     >
                   </div>
                   <p class="text-gray-700 mb-4 leading-relaxed">
-                    "Реально крутой slot! Множители действительно работают -
-                    словил x1200 на бонусе, эмоции зашкаливали! Графика топ,
-                    анимации плавные. Играю полгода, очень доволен. Каскады
-                    постоянно продлевают удовольствие 🎰⚡"
+                    {{
+                      slot.review_1_text ||
+                      '"Реально крутой слот! Множители действительно работают - словил x1200 на бонусе, эмоции зашкаливали! Графика топ, анимации плавные. Играю полгода, очень доволен. Каскады постоянно продлевают удовольствие 🎰⚡"'
+                    }}
                   </p>
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4 text-sm text-gray-600">
@@ -4034,15 +4335,15 @@
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        47 лайков
+                        {{ slot.review_1_likes || '47' }} лайков
                       </span>
                       <span class="bg-white/50 px-3 py-1 rounded-full"
-                        >💬 12 ответов</span
+                        >💬 {{ slot.review_1_replies || '12' }} ответов</span
                       >
                     </div>
                     <span
                       class="text-sm text-gray-500 bg-white/30 px-3 py-1 rounded-full"
-                      >2 дня назад</span
+                      >{{ slot.review_1_date || '2 дня назад' }}</span
                     >
                   </div>
                 </div>
@@ -4058,7 +4359,7 @@
                   <div
                     class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
                   >
-                    М
+                    {{ slot.review_2_avatar_letter || 'М' }}
                   </div>
                   <div
                     class="absolute -top-1 -right-1 w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center"
@@ -4068,17 +4369,22 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center gap-3 mb-3">
-                    <h4 class="font-bold text-gray-800 text-lg">Мария В.</h4>
-                    <div class="flex text-yellow-400 text-lg">★★★★☆</div>
+                    <h4 class="font-bold text-gray-800 text-lg">
+                      {{ slot.review_2_author || 'Мария В.' }}
+                    </h4>
+                    <div class="flex text-yellow-400 text-lg">
+                      {{ slot.review_2_rating || '★★★★☆' }}
+                    </div>
                     <span
                       class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold"
-                      >Активный игрок</span
+                      >{{ slot.review_2_badge || 'Активный игрок' }}</span
                     >
                   </div>
                   <p class="text-gray-700 mb-4 leading-relaxed">
-                    "Визуально великолепно! Тематика Олимпа реализована шикарно.
-                    Геймплей затягивает, но волатильность зашкаливает - нужен
-                    большой банкролл. Когда заходят бонусы - сказка! 🏛️✨"
+                    {{
+                      slot.review_2_text ||
+                      '"Визуально великолепно! Тематика Олимпа реализована шикарно. Геймплей затягивает, но волатильность зашкаливает - нужен большой банкролл. Когда заходят бонусы - сказка! 🏛️✨"'
+                    }}
                   </p>
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4 text-sm text-gray-600">
@@ -4096,15 +4402,15 @@
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        31 лайк
+                        {{ slot.review_2_likes || '31' }} лайк
                       </span>
                       <span class="bg-white/50 px-3 py-1 rounded-full"
-                        >💬 8 ответов</span
+                        >💬 {{ slot.review_2_replies || '8' }} ответов</span
                       >
                     </div>
                     <span
                       class="text-sm text-gray-500 bg-white/30 px-3 py-1 rounded-full"
-                      >1 неделю назад</span
+                      >{{ slot.review_2_date || '1 неделю назад' }}</span
                     >
                   </div>
                 </div>
@@ -4120,7 +4426,7 @@
                   <div
                     class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
                   >
-                    Д
+                    {{ slot.review_3_avatar_letter || 'Д' }}
                   </div>
                   <div
                     class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center"
@@ -4130,17 +4436,22 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center gap-3 mb-3">
-                    <h4 class="font-bold text-gray-800 text-lg">Дмитрий С.</h4>
-                    <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                    <h4 class="font-bold text-gray-800 text-lg">
+                      {{ slot.review_3_author || 'Дмитрий С.' }}
+                    </h4>
+                    <div class="flex text-yellow-400 text-lg">
+                      {{ slot.review_3_rating || '★★★★★' }}
+                    </div>
                     <span
                       class="bg-gradient-to-r from-yellow-200 to-orange-200 text-orange-800 px-3 py-1 rounded-full text-xs font-semibold"
-                      >VIP игрок</span
+                      >{{ slot.review_3_badge || 'VIP игрок' }}</span
                     >
                   </div>
                   <p class="text-gray-700 mb-4 leading-relaxed">
-                    "ЭПИК! Pragmatic Play превзошли сами себя! Максимальный
-                    выигрыш 3,200x - чуть со стула не упал! 😱 Звук, графика,
-                    математика - всё идеально. Мой фаворит уже 2 года! 🎮👑"
+                    {{
+                      slot.review_3_text ||
+                      '"ЭПИК! Pragmatic Play превзошли сами себя! Максимальный выигрыш 3,200x - чуть со стула не упал! 😱 Звук, графика, математика - всё идеально. Мой фаворит уже 2 года! 🎮👑"'
+                    }}
                   </p>
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4 text-sm text-gray-600">
@@ -4158,10 +4469,10 @@
                             clip-rule="evenodd"
                           ></path>
                         </svg>
-                        93 лайка
+                        {{ slot.review_3_likes || '93' }} лайка
                       </span>
                       <span class="bg-white/50 px-3 py-1 rounded-full"
-                        >💬 25 ответов</span
+                        >💬 {{ slot.review_3_replies || '25' }} ответов</span
                       >
                       <span
                         class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs"
@@ -4170,50 +4481,12 @@
                     </div>
                     <span
                       class="text-sm text-gray-500 bg-white/30 px-3 py-1 rounded-full"
-                      >3 дня назад</span
+                      >{{ slot.review_3_date || '3 дня назад' }}</span
                     >
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Интерактивная кнопка "Показать все отзывы" -->
-          <div class="mt-8 text-center">
-            <button
-              class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105"
-            >
-              <span class="flex items-center gap-3">
-                <svg
-                  class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                Показать все 1,247 reviews
-                <svg
-                  class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </span>
-              <div
-                class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 rounded-2xl"
-              ></div>
-            </button>
           </div>
         </section>
 
@@ -5915,12 +6188,15 @@ const loadSlot = async () => {
 
     // Загружаем механики для этого слота
     try {
-      const mechanicsData = await $fetch(`http://localhost:3001/api/mechanics/slot/${slotData.id}`, {
-        headers: {
-          'Cache-Control': 'no-cache',
-          Pragma: 'no-cache',
+      const mechanicsData = await $fetch(
+        `http://localhost:3001/api/mechanics/slot/${slotData.id}`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache',
+            Pragma: 'no-cache',
+          },
         },
-      })
+      )
       slotMechanics.value = mechanicsData || []
       console.log('✅ Механики слота загружены:', slotMechanics.value)
     } catch (mechanicsError) {
@@ -6950,8 +7226,7 @@ const getStructuredData = (slot) => {
       {
         '@type': 'Question',
         name:
-          slot.faq_q1_question ||
-          `Можно ли играть в ${slot.name} бесплатно?`,
+          slot.faq_q1_question || `Можно ли играть в ${slot.name} бесплатно?`,
         acceptedAnswer: {
           '@type': 'Answer',
           text:
@@ -6962,8 +7237,7 @@ const getStructuredData = (slot) => {
       {
         '@type': 'Question',
         name:
-          slot.faq_q2_question ||
-          `Какой максимальный выигрыш в ${slot.name}?`,
+          slot.faq_q2_question || `Какой максимальный выигрыш в ${slot.name}?`,
         acceptedAnswer: {
           '@type': 'Answer',
           text:
@@ -6975,9 +7249,7 @@ const getStructuredData = (slot) => {
       },
       {
         '@type': 'Question',
-        name:
-          slot.faq_q3_question ||
-          'Стоит ли покупать бонусные вращения?',
+        name: slot.faq_q3_question || 'Стоит ли покупать бонусные вращения?',
         acceptedAnswer: {
           '@type': 'Answer',
           text:
@@ -6988,8 +7260,7 @@ const getStructuredData = (slot) => {
       {
         '@type': 'Question',
         name:
-          slot.faq_q4_question ||
-          'Работает ли слот на мобильных устройствах?',
+          slot.faq_q4_question || 'Работает ли слот на мобильных устройствах?',
         acceptedAnswer: {
           '@type': 'Answer',
           text:

@@ -2982,7 +2982,9 @@
                           </div>
 
                           <!-- Дополнительные механики -->
-                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
+                          <div
+                            class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6"
+                          >
                             <!-- Бесплатные спины -->
                             <div class="space-y-3">
                               <label
@@ -3066,14 +3068,18 @@
                           </div>
 
                           <!-- Важная особенность множителей - на полную ширину -->
-                          <div class="bg-[#8B5CF6]/10 p-4 rounded-lg border border-[#8B5CF6]/20 mt-4">
+                          <div
+                            class="bg-[#8B5CF6]/10 p-4 rounded-lg border border-[#8B5CF6]/20 mt-4"
+                          >
                             <label
                               class="block text-sm font-medium text-[#8B5CF6] mb-2 flex items-center gap-2"
                             >
                               💡 Заголовок важной особенности
                             </label>
                             <input
-                              v-model="form.mechanics_multipliers_important_title"
+                              v-model="
+                                form.mechanics_multipliers_important_title
+                              "
                               type="text"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 mb-3"
                               placeholder="Важная особенность множителей"
@@ -3195,14 +3201,20 @@
                               <div class="space-y-3">
                                 <!-- 4 символа -->
                                 <div class="space-y-1">
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">4 символа - описание:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >4 символа - описание:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_4_scatter_desc"
                                     type="text"
                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
                                     placeholder="4 символа Зевса:"
                                   />
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">4 символа - выплата:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >4 символа - выплата:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_4_scatter"
                                     type="text"
@@ -3210,17 +3222,23 @@
                                     placeholder="x3 от ставки"
                                   />
                                 </div>
-                                
+
                                 <!-- 5 символов -->
                                 <div class="space-y-1">
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">5 символов - описание:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >5 символов - описание:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_5_scatter_desc"
                                     type="text"
                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
                                     placeholder="5 символов Зевса:"
                                   />
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">5 символов - выплата:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >5 символов - выплата:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_5_scatter"
                                     type="text"
@@ -3228,17 +3246,23 @@
                                     placeholder="x5 от ставки"
                                   />
                                 </div>
-                                
+
                                 <!-- 6 символов -->
                                 <div class="space-y-1">
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">6 символов - описание:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >6 символов - описание:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_6_scatter_desc"
                                     type="text"
                                     class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
                                     placeholder="6 символов Зевса:"
                                   />
-                                  <label class="block text-xs font-medium text-[#9CA3AF]">6 символов - выплата:</label>
+                                  <label
+                                    class="block text-xs font-medium text-[#9CA3AF]"
+                                    >6 символов - выплата:</label
+                                  >
                                   <input
                                     v-model="form.free_spins_6_scatter"
                                     type="text"
@@ -3324,7 +3348,7 @@
                                 placeholder="удваивает шансы получить бесплатные спины"
                               />
                             </div>
-                            
+
                             <!-- Новые поля Ante Bet -->
                             <div class="mt-4 space-y-3">
                               <input
@@ -9368,8 +9392,10 @@ const form = ref({
 
   // Новые поля Ante Bet
   ante_bet_title: 'Ante Bet',
-  ante_bet_description: 'Функция Ante Bet позволяет увеличить шансы на получение бонусных раундов за дополнительную плату.',
-  ante_bet_warning: 'Внимание: использование Ante Bet увеличивает размер ставки и может привести к более быстрой потере средств.',
+  ante_bet_description:
+    'Функция Ante Bet позволяет увеличить шансы на получение бонусных раундов за дополнительную плату.',
+  ante_bet_warning:
+    'Внимание: использование Ante Bet увеличивает размер ставки и может привести к более быстрой потере средств.',
 
   // Подсекция "Стратегии и советы для игры"
   strategies_title: 'Стратегии и советы для игры',
@@ -9897,7 +9923,10 @@ const loadSlot = async () => {
     Object.keys(form.value).forEach((key) => {
       if (slot.value?.[key] !== undefined) {
         // Для полей механик не перезаписываем, если значение пустое в БД
-        if (key.startsWith('mechanics_') && (!slot.value[key] || slot.value[key].trim() === '')) {
+        if (
+          key.startsWith('mechanics_') &&
+          (!slot.value[key] || slot.value[key].trim() === '')
+        ) {
           // Оставляем значение по умолчанию из формы
           return
         }
@@ -9906,19 +9935,32 @@ const loadSlot = async () => {
     })
 
     // Явно маппим поля стратегий из API (strategy_*) в форму (strategies_*)
-    form.value.strategies_title = slot.value.strategy_title ?? form.value.strategies_title
-    form.value.strategies_intro = slot.value.strategy_intro ?? form.value.strategies_intro
-    form.value.strategies_beginners_title = slot.value.strategy_beginner_title ?? form.value.strategies_beginners_title
-    form.value.strategy_beginner_1 = slot.value.strategy_beginner_1 ?? form.value.strategy_beginner_1
-    form.value.strategy_beginner_2 = slot.value.strategy_beginner_2 ?? form.value.strategy_beginner_2
-    form.value.strategy_beginner_3 = slot.value.strategy_beginner_3 ?? form.value.strategy_beginner_3
-    form.value.strategy_beginner_4 = slot.value.strategy_beginner_4 ?? form.value.strategy_beginner_4
+    form.value.strategies_title =
+      slot.value.strategy_title ?? form.value.strategies_title
+    form.value.strategies_intro =
+      slot.value.strategy_intro ?? form.value.strategies_intro
+    form.value.strategies_beginners_title =
+      slot.value.strategy_beginner_title ??
+      form.value.strategies_beginners_title
+    form.value.strategy_beginner_1 =
+      slot.value.strategy_beginner_1 ?? form.value.strategy_beginner_1
+    form.value.strategy_beginner_2 =
+      slot.value.strategy_beginner_2 ?? form.value.strategy_beginner_2
+    form.value.strategy_beginner_3 =
+      slot.value.strategy_beginner_3 ?? form.value.strategy_beginner_3
+    form.value.strategy_beginner_4 =
+      slot.value.strategy_beginner_4 ?? form.value.strategy_beginner_4
     // В БД нет strategy_beginner_5 — оставляем как есть в форме
-    form.value.strategies_advanced_title = slot.value.strategy_advanced_title ?? form.value.strategies_advanced_title
-    form.value.strategy_advanced_1 = slot.value.strategy_advanced_1 ?? form.value.strategy_advanced_1
-    form.value.strategy_advanced_2 = slot.value.strategy_advanced_2 ?? form.value.strategy_advanced_2
-    form.value.strategy_advanced_3 = slot.value.strategy_advanced_3 ?? form.value.strategy_advanced_3
-    form.value.strategy_advanced_4 = slot.value.strategy_advanced_4 ?? form.value.strategy_advanced_4
+    form.value.strategies_advanced_title =
+      slot.value.strategy_advanced_title ?? form.value.strategies_advanced_title
+    form.value.strategy_advanced_1 =
+      slot.value.strategy_advanced_1 ?? form.value.strategy_advanced_1
+    form.value.strategy_advanced_2 =
+      slot.value.strategy_advanced_2 ?? form.value.strategy_advanced_2
+    form.value.strategy_advanced_3 =
+      slot.value.strategy_advanced_3 ?? form.value.strategy_advanced_3
+    form.value.strategy_advanced_4 =
+      slot.value.strategy_advanced_4 ?? form.value.strategy_advanced_4
 
     // Заполняем отдельные массивы для механик, бонусов и тематик
     if (
@@ -10240,6 +10282,58 @@ const saveSlot = async () => {
       'faq_q4_emoji',
       'faq_q4_question',
       'faq_q4_answer',
+      // Отзывы игроков - заголовки и статистика
+      'reviews_title',
+      'reviews_subtitle',
+      'reviews_overall_rating',
+      'reviews_total_count',
+      'reviews_positive_percent',
+      'reviews_recommend_percent',
+      // Распределение оценок
+      'reviews_5_stars_percent',
+      'reviews_5_stars_count',
+      'reviews_4_stars_percent',
+      'reviews_4_stars_count',
+      'reviews_3_stars_percent',
+      'reviews_3_stars_count',
+      'reviews_2_stars_percent',
+      'reviews_2_stars_count',
+      'reviews_1_stars_percent',
+      'reviews_1_stars_count',
+      // Ключевые моменты из отзывов (sentiment analysis)
+      'reviews_sentiment_1_title',
+      'reviews_sentiment_1_desc',
+      'reviews_sentiment_2_title',
+      'reviews_sentiment_2_desc',
+      'reviews_sentiment_3_title',
+      'reviews_sentiment_3_desc',
+      'reviews_sentiment_4_title',
+      'reviews_sentiment_4_desc',
+      // Индивидуальные отзывы
+      'review_1_author',
+      'review_1_avatar_letter',
+      'review_1_rating',
+      'review_1_badge',
+      'review_1_text',
+      'review_1_likes',
+      'review_1_replies',
+      'review_1_date',
+      'review_2_author',
+      'review_2_avatar_letter',
+      'review_2_rating',
+      'review_2_badge',
+      'review_2_text',
+      'review_2_likes',
+      'review_2_replies',
+      'review_2_date',
+      'review_3_author',
+      'review_3_avatar_letter',
+      'review_3_rating',
+      'review_3_badge',
+      'review_3_text',
+      'review_3_likes',
+      'review_3_replies',
+      'review_3_date',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

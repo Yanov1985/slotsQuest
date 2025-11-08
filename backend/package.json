@@ -24,7 +24,12 @@
     "db:pull": "prisma db pull",
     "db:studio": "prisma studio",
     "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:reset": "prisma migrate reset",
+    "db:backup": "node quick-backup.js",
+    "db:restore": "node quick-restore.js",
+    "db:auto-backup": "node auto-backup.js",
+    "db:restore-json": "node import-from-backup-sql.js",
+    "db:check": "node check-data-simple.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

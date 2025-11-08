@@ -186,4 +186,60 @@ export class UpdateSlotDto {
   faq_q4_emoji?: string;
   faq_q4_question?: string;
   faq_q4_answer?: string;
+
+  // Отзывы игроков - заголовки и статистика
+  reviews_title?: string;
+  reviews_subtitle?: string;
+  reviews_overall_rating?: string;
+  reviews_total_count?: string;
+  reviews_positive_percent?: string;
+  reviews_recommend_percent?: string;
+  // Распределение оценок (5-1 звезда)
+  reviews_5_stars_percent?: string;
+  reviews_5_stars_count?: string;
+  reviews_4_stars_percent?: string;
+  reviews_4_stars_count?: string;
+  reviews_3_stars_percent?: string;
+  reviews_3_stars_count?: string;
+  reviews_2_stars_percent?: string;
+  reviews_2_stars_count?: string;
+  reviews_1_stars_percent?: string;
+  reviews_1_stars_count?: string;
+  // Ключевые моменты из отзывов (sentiment analysis)
+  reviews_sentiment_1_title?: string;
+  reviews_sentiment_1_desc?: string;
+  reviews_sentiment_2_title?: string;
+  reviews_sentiment_2_desc?: string;
+  reviews_sentiment_3_title?: string;
+  reviews_sentiment_3_desc?: string;
+  reviews_sentiment_4_title?: string;
+  reviews_sentiment_4_desc?: string;
+  // Индивидуальные отзывы (3 основных отзыва)
+  // Отзыв 1
+  review_1_author?: string;
+  review_1_avatar_letter?: string;
+  review_1_rating?: string;
+  review_1_badge?: string;
+  review_1_text?: string;
+  review_1_likes?: string;
+  review_1_replies?: string;
+  review_1_date?: string;
+  // Отзыв 2
+  review_2_author?: string;
+  review_2_avatar_letter?: string;
+  review_2_rating?: string;
+  review_2_badge?: string;
+  review_2_text?: string;
+  review_2_likes?: string;
+  review_2_replies?: string;
+  review_2_date?: string;
+  // Отзыв 3
+  review_3_author?: string;
+  review_3_avatar_letter?: string;
+  review_3_rating?: string;
+  review_3_badge?: string;
+  review_3_text?: string;
+  review_3_likes?: string;
+  review_3_replies?: string;
+  review_3_date?: string;
 }

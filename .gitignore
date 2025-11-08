@@ -16,6 +16,9 @@ dist
 logs
 *.log
 
+# Database backups (.db files should not be committed)
+backups/
+
 # OS generated files
 .DS_Store
 Thumbs.db
