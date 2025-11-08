@@ -4533,10 +4533,13 @@
                 <h2
                   class="text-4xl lg:text-5xl font-black bg-gradient-to-r from-gray-800 via-blue-700 to-purple-800 bg-clip-text text-transparent mb-2"
                 >
-                  Профессиональная оценка
+                  {{ slot.prof_rating_title || 'Профессиональная оценка' }}
                 </h2>
                 <p class="text-gray-600 text-lg font-medium">
-                  Детальный анализ от экспертов индустрии 🎯
+                  {{
+                    slot.prof_rating_subtitle ||
+                    'Детальный анализ от экспертов индустрии 🎯'
+                  }}
                 </p>
               </div>
             </div>
@@ -4556,11 +4559,16 @@
               >
                 <div class="text-center lg:text-left">
                   <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
-                    Общая экспертная оценка
+                    {{
+                      slot.prof_rating_overall_title ||
+                      'Общая экспертная оценка'
+                    }}
                   </h3>
                   <p class="text-gray-600 text-lg leading-relaxed max-w-md">
-                    Превосходный slot с инновационной механикой и высоким
-                    потенциалом выигрыша 🏆
+                    {{
+                      slot.prof_rating_overall_desc ||
+                      'Превосходный слот с инновационной механикой и высоким потенциалом выигрыша 🏆'
+                    }}
                   </p>
                 </div>
 
@@ -4574,7 +4582,7 @@
                       >
                         <span
                           class="text-4xl font-black bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-transparent"
-                          >8.5</span
+                          >{{ slot.prof_rating_overall_score || '8.5' }}</span
                         >
                       </div>
                     </div>
@@ -4589,13 +4597,9 @@
                   </div>
 
                   <div class="flex items-center justify-center gap-1 mt-6">
-                    <div
-                      v-for="n in 5"
-                      :key="n"
-                      class="text-3xl transition-transform hover:scale-125 duration-300"
-                    >
-                      {{ n <= 4 ? '⭐' : '☆' }}
-                    </div>
+                    <span class="text-3xl">{{
+                      slot.prof_rating_overall_stars || '⭐⭐⭐⭐☆'
+                    }}</span>
                   </div>
                 </div>
               </div>
@@ -4605,7 +4609,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
               <!-- Левая колонка -->
               <div class="space-y-6">
-                <!-- Графика -->
+                <!-- Метрика 1 -->
                 <div
                   class="group bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all duration-300"
                 >
@@ -4614,14 +4618,18 @@
                       <div
                         class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center"
                       >
-                        <span class="text-xl">🎨</span>
+                        <span class="text-xl">{{
+                          slot.prof_rating_metric_1_emoji || '🎨'
+                        }}</span>
                       </div>
-                      <span class="font-bold text-gray-800 text-lg"
-                        >Графика и анимация</span
-                      >
+                      <span class="font-bold text-gray-800 text-lg">{{
+                        slot.prof_rating_metric_1_name || 'Графика и анимация'
+                      }}</span>
                     </div>
                     <div class="text-right">
-                      <div class="text-2xl font-black text-blue-600">9.0</div>
+                      <div class="text-2xl font-black text-blue-600">
+                        {{ slot.prof_rating_metric_1_score || '9.0' }}
+                      </div>
                       <div class="text-sm text-gray-500">из 10</div>
                     </div>
                   </div>
@@ -4637,7 +4645,7 @@
                   </div>
                 </div>
 
-                <!-- Геймплей -->
+                <!-- Метрика 2 -->
                 <div
                   class="group bg-gradient-to-r from-green-50 to-emerald-100 p-6 rounded-2xl border border-green-200 hover:shadow-lg transition-all duration-300"
                 >
@@ -4646,14 +4654,18 @@
                       <div
                         class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-700 rounded-xl flex items-center justify-center"
                       >
-                        <span class="text-xl">🎮</span>
+                        <span class="text-xl">{{
+                          slot.prof_rating_metric_2_emoji || '🎮'
+                        }}</span>
                       </div>
-                      <span class="font-bold text-gray-800 text-lg"
-                        >Геймплей</span
-                      >
+                      <span class="font-bold text-gray-800 text-lg">{{
+                        slot.prof_rating_metric_2_name || 'Геймплей'
+                      }}</span>
                     </div>
                     <div class="text-right">
-                      <div class="text-2xl font-black text-green-600">8.0</div>
+                      <div class="text-2xl font-black text-green-600">
+                        {{ slot.prof_rating_metric_2_score || '8.0' }}
+                      </div>
                       <div class="text-sm text-gray-500">из 10</div>
                     </div>
                   </div>
@@ -4669,7 +4681,7 @@
                   </div>
                 </div>
 
-                <!-- Потенциал выигрыша -->
+                <!-- Метрика 3 -->
                 <div
                   class="group bg-gradient-to-r from-purple-50 to-pink-100 p-6 rounded-2xl border border-purple-200 hover:shadow-lg transition-all duration-300"
                 >
@@ -4678,14 +4690,18 @@
                       <div
                         class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-700 rounded-xl flex items-center justify-center"
                       >
-                        <span class="text-xl">💎</span>
+                        <span class="text-xl">{{
+                          slot.prof_rating_metric_3_emoji || '💎'
+                        }}</span>
                       </div>
-                      <span class="font-bold text-gray-800 text-lg"
-                        >Потенциал выигрыша</span
-                      >
+                      <span class="font-bold text-gray-800 text-lg">{{
+                        slot.prof_rating_metric_3_name || 'Потенциал выигрыша'
+                      }}</span>
                     </div>
                     <div class="text-right">
-                      <div class="text-2xl font-black text-purple-600">9.0</div>
+                      <div class="text-2xl font-black text-purple-600">
+                        {{ slot.prof_rating_metric_3_score || '9.0' }}
+                      </div>
                       <div class="text-sm text-gray-500">из 10</div>
                     </div>
                   </div>
@@ -4704,7 +4720,7 @@
 
               <!-- Правая колонка -->
               <div class="space-y-6">
-                <!-- Бонусы -->
+                <!-- Метрика 4 -->
                 <div
                   class="group bg-gradient-to-r from-orange-50 to-red-100 p-6 rounded-2xl border border-orange-200 hover:shadow-lg transition-all duration-300"
                 >
@@ -4713,14 +4729,18 @@
                       <div
                         class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-700 rounded-xl flex items-center justify-center"
                       >
-                        <span class="text-xl">🎁</span>
+                        <span class="text-xl">{{
+                          slot.prof_rating_metric_4_emoji || '🎁'
+                        }}</span>
                       </div>
-                      <span class="font-bold text-gray-800 text-lg"
-                        >Бонусные функции</span
-                      >
+                      <span class="font-bold text-gray-800 text-lg">{{
+                        slot.prof_rating_metric_4_name || 'Бонусные функции'
+                      }}</span>
                     </div>
                     <div class="text-right">
-                      <div class="text-2xl font-black text-orange-600">8.0</div>
+                      <div class="text-2xl font-black text-orange-600">
+                        {{ slot.prof_rating_metric_4_score || '8.0' }}
+                      </div>
                       <div class="text-sm text-gray-500">из 10</div>
                     </div>
                   </div>
@@ -4736,7 +4756,7 @@
                   </div>
                 </div>
 
-                <!-- Частота выплат -->
+                <!-- Метрика 5 -->
                 <div
                   class="group bg-gradient-to-r from-red-50 to-pink-100 p-6 rounded-2xl border border-red-200 hover:shadow-lg transition-all duration-300"
                 >
@@ -4745,14 +4765,18 @@
                       <div
                         class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-700 rounded-xl flex items-center justify-center"
                       >
-                        <span class="text-xl">⏰</span>
+                        <span class="text-xl">{{
+                          slot.prof_rating_metric_5_emoji || '⏰'
+                        }}</span>
                       </div>
-                      <span class="font-bold text-gray-800 text-lg"
-                        >Частота выплат</span
-                      >
+                      <span class="font-bold text-gray-800 text-lg">{{
+                        slot.prof_rating_metric_5_name || 'Частота выплат'
+                      }}</span>
                     </div>
                     <div class="text-right">
-                      <div class="text-2xl font-black text-red-600">7.0</div>
+                      <div class="text-2xl font-black text-red-600">
+                        {{ slot.prof_rating_metric_5_score || '7.0' }}
+                      </div>
                       <div class="text-sm text-gray-500">из 10</div>
                     </div>
                   </div>
@@ -4824,12 +4848,10 @@
               <blockquote
                 class="text-lg text-blue-900 leading-relaxed font-medium italic border-l-4 border-blue-300 pl-6"
               >
-                "Gates of Olympus представляет собой революционный подход к
-                созданию видеоslotов. Механика Scatter Pays полностью меняет
-                привычные правила игры, создавая уникальный опыт для каждого
-                спина. Высокий потенциал выигрыша x5,000 в сочетании с
-                каскадными символами делают каждый раунд непредсказуемым и
-                захватывающим. 🎯"
+                {{
+                  slot.prof_rating_expert_quote ||
+                  '"Gates of Olympus представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯"'
+                }}
               </blockquote>
             </div>
 
@@ -5192,7 +5214,7 @@
               <h2
                 class="text-4xl font-bold bg-gradient-to-r from-slate-800 via-indigo-900 to-purple-800 bg-clip-text text-transparent"
               >
-                Заключение
+                {{ slot.conclusion_title || 'Заключение' }}
               </h2>
               <div
                 class="h-1 bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 rounded-full mt-2 transform scale-x-0 animate-pulse"
@@ -5232,28 +5254,23 @@
               </div>
 
               <div class="space-y-4">
-                <p class="text-lg text-slate-700 leading-relaxed font-medium">
-                  {{ slot.name || 'Этот slot' }} заслуженно считается одним из
-                  <span class="text-indigo-600 font-semibold"
-                    >лучших slotов от Pragmatic Play</span
-                  >. Сочетание инновационной механики Scatter Pays, высокого
-                  потенциала выигрыша до
-                  <span class="text-emerald-600 font-bold">x5,000</span> и
-                  превосходной графики делают его обязательным для всех
-                  любителей азартных игр.
-                </p>
+                <p
+                  class="text-lg text-slate-700 leading-relaxed font-medium"
+                  v-html="
+                    slot.conclusion_text_1 ||
+                    `${slot.name || 'Этот слот'} заслуженно считается одним из <span class='text-indigo-600 font-semibold'>лучших слотов от Pragmatic Play</span>. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до <span class='text-emerald-600 font-bold'>x5,000</span> и превосходной графики делают его обязательным для всех любителей азартных игр.`
+                  "
+                ></p>
                 <div
                   class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-400"
                 >
-                  <p class="text-slate-700 leading-relaxed">
-                    Революционная система выплат, где выигрыши начисляются за
-                    <span class="font-semibold text-indigo-700"
-                      >8+ одинаковых символов</span
-                    >
-                    в любом месте экрана, открывает новые горизонты в мире
-                    видеоslotов. Каскадные выигрыши и множители создают
-                    уникальную атмосферу постоянного ожидания больших выплат.
-                  </p>
+                  <p
+                    class="text-slate-700 leading-relaxed"
+                    v-html="
+                      slot.conclusion_text_2 ||
+                      'Революционная система выплат, где выигрыши начисляются за <span class=\'font-semibold text-indigo-700\'>8+ одинаковых символов</span> в любом месте экрана, открывает новые горизонты в мире видеослотов. Каскадные выигрыши и множители создают уникальную атмосферу постоянного ожидания больших выплат.'
+                    "
+                  ></p>
                 </div>
               </div>
             </div>
@@ -5287,21 +5304,28 @@
               <div class="space-y-3">
                 <div class="flex items-center gap-3 text-emerald-700">
                   <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span class="font-medium">Опытным игрокам</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_suitable_1 || 'Опытным игрокам'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-emerald-700">
                   <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span class="font-medium"
-                    >Любителям высокой волатильности</span
-                  >
+                  <span class="font-medium">{{
+                    slot.conclusion_suitable_2 ||
+                    'Любителям высокой волатильности'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-emerald-700">
                   <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span class="font-medium">Игрокам с большим банкроллом</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_suitable_3 || 'Игрокам с большим банкроллом'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-emerald-700">
                   <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span class="font-medium">Поклонникам инноваций</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_suitable_4 || 'Поклонникам инноваций'
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -5330,19 +5354,27 @@
               <div class="space-y-3">
                 <div class="flex items-center gap-3 text-amber-700">
                   <div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                  <span class="font-medium">Высокая волатильность</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_warning_1 || 'Высокая волатильность'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-amber-700">
                   <div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                  <span class="font-medium">Нужен большой банкролл</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_warning_2 || 'Нужен большой банкролл'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-amber-700">
                   <div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                  <span class="font-medium">Играйте ответственно</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_warning_3 || 'Играйте ответственно'
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-3 text-amber-700">
                   <div class="w-1.5 h-1.5 bg-amber-500 rounded-full"></div>
-                  <span class="font-medium">Устанавливайте лимиты</span>
+                  <span class="font-medium">{{
+                    slot.conclusion_warning_4 || 'Устанавливайте лимиты'
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -5472,17 +5504,17 @@
                 <span
                   class="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent"
                 >
-                  Время побеждать!
+                  {{ slot.cta_title || 'Время побеждать!' }}
                 </span>
               </h2>
 
               <!-- Подзаголовок -->
               <div class="space-y-2">
                 <p class="text-xl lg:text-2xl text-gray-200 font-medium">
-                  Окунитесь в легендарный мир
-                  <span class="text-yellow-300 font-bold">{{
-                    slot.name || 'этого slotа'
-                  }}</span>
+                  {{
+                    slot.cta_subtitle ||
+                    `Окунитесь в легендарный мир ${slot.name || 'этого слота'}`
+                  }}
                 </p>
                 <div
                   class="flex items-center justify-center gap-2 text-lg lg:text-xl"
@@ -5491,7 +5523,7 @@
                   <span
                     class="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full font-black text-xl shadow-lg animate-pulse"
                   >
-                    x5,000
+                    {{ slot.cta_potential || 'x5,000' }}
                   </span>
                   <span class="text-gray-300">ждёт вас!</span>
                 </div>
@@ -5507,11 +5539,18 @@
                   <div
                     class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                   >
-                    <span class="text-2xl text-white">🎰</span>
+                    <span class="text-2xl text-white">{{
+                      slot.cta_feature_1_emoji || '🎰'
+                    }}</span>
                   </div>
-                  <h3 class="text-lg font-bold text-white mb-2">Демо режим</h3>
+                  <h3 class="text-lg font-bold text-white mb-2">
+                    {{ slot.cta_feature_1_title || 'Демо режим' }}
+                  </h3>
                   <p class="text-gray-300 text-sm leading-relaxed">
-                    Изучите все механики игры совершенно бесплатно
+                    {{
+                      slot.cta_feature_1_desc ||
+                      'Изучите все механики игры совершенно бесплатно'
+                    }}
                   </p>
                 </div>
               </div>
@@ -5524,13 +5563,18 @@
                   <div
                     class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                   >
-                    <span class="text-2xl text-white">💰</span>
+                    <span class="text-2xl text-white">{{
+                      slot.cta_feature_2_emoji || '💰'
+                    }}</span>
                   </div>
                   <h3 class="text-lg font-bold text-white mb-2">
-                    Реальные деньги
+                    {{ slot.cta_feature_2_title || 'Реальные деньги' }}
                   </h3>
                   <p class="text-gray-300 text-sm leading-relaxed">
-                    Играйте на деньги в лучших онлайн казино
+                    {{
+                      slot.cta_feature_2_desc ||
+                      'Играйте на деньги в лучших онлайн казино'
+                    }}
                   </p>
                 </div>
               </div>
@@ -5543,13 +5587,18 @@
                   <div
                     class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300"
                   >
-                    <span class="text-2xl text-white">🎁</span>
+                    <span class="text-2xl text-white">{{
+                      slot.cta_feature_3_emoji || '🎁'
+                    }}</span>
                   </div>
                   <h3 class="text-lg font-bold text-white mb-2">
-                    Эксклюзивные бонусы
+                    {{ slot.cta_feature_3_title || 'Эксклюзивные бонусы' }}
                   </h3>
                   <p class="text-gray-300 text-sm leading-relaxed">
-                    Получите дополнительные средства для игры
+                    {{
+                      slot.cta_feature_3_desc ||
+                      'Получите дополнительные средства для игры'
+                    }}
                   </p>
                 </div>
               </div>
@@ -5620,7 +5669,9 @@
                     ></path>
                   </svg>
                 </div>
-                <span class="font-medium">Лицензированные операторы</span>
+                <span class="font-medium">{{
+                  slot.cta_trust_1_text || 'Лицензированные операторы'
+                }}</span>
               </div>
 
               <div
@@ -5641,7 +5692,9 @@
                     ></path>
                   </svg>
                 </div>
-                <span class="font-medium">Безопасность SSL</span>
+                <span class="font-medium">{{
+                  slot.cta_trust_2_text || 'Безопасность SSL'
+                }}</span>
               </div>
 
               <div
@@ -5652,7 +5705,9 @@
                 >
                   <span class="text-white text-xs font-bold">24</span>
                 </div>
-                <span class="font-medium">Поддержка 24/7</span>
+                <span class="font-medium">{{
+                  slot.cta_trust_3_text || 'Поддержка 24/7'
+                }}</span>
               </div>
             </div>
           </div>

@@ -257,6 +257,73 @@ model slots {
   review_3_replies          String?
   review_3_date             String?
 
+  // Профессиональная оценка - заголовки и общая информация
+  prof_rating_title          String?
+  prof_rating_subtitle       String?
+  prof_rating_overall_title  String?
+  prof_rating_overall_desc   String?
+  prof_rating_overall_score  String?
+  prof_rating_overall_stars  String?
+  // Детальные метрики (5 категорий оценки)
+  prof_rating_metric_1_emoji String?
+  prof_rating_metric_1_name  String?
+  prof_rating_metric_1_score String?
+  prof_rating_metric_2_emoji String?
+  prof_rating_metric_2_name  String?
+  prof_rating_metric_2_score String?
+  prof_rating_metric_3_emoji String?
+  prof_rating_metric_3_name  String?
+  prof_rating_metric_3_score String?
+  prof_rating_metric_4_emoji String?
+  prof_rating_metric_4_name  String?
+  prof_rating_metric_4_score String?
+  prof_rating_metric_5_emoji String?
+  prof_rating_metric_5_name  String?
+  prof_rating_metric_5_score String?
+  // Экспертное заключение
+  prof_rating_expert_quote   String?
+
+  // Секция "Заключение" (Conclusion)
+  conclusion_title      String?
+  conclusion_text_1     String?
+  conclusion_text_2     String?
+  // Кому подходит (4 пункта)
+  conclusion_suitable_1 String?
+  conclusion_suitable_2 String?
+  conclusion_suitable_3 String?
+  conclusion_suitable_4 String?
+  // Важно помнить (4 пункта)
+  conclusion_warning_1  String?
+  conclusion_warning_2  String?
+  conclusion_warning_3  String?
+  conclusion_warning_4  String?
+
+  // Секция CTA "Время побеждать"
+  cta_title             String?
+  cta_subtitle          String?
+  cta_potential         String?
+  // Фичи/Преимущества (3 блока по 3 поля)
+  cta_feature_1_emoji   String?
+  cta_feature_1_title   String?
+  cta_feature_1_desc    String?
+  cta_feature_2_emoji   String?
+  cta_feature_2_title   String?
+  cta_feature_2_desc    String?
+  cta_feature_3_emoji   String?
+  cta_feature_3_title   String?
+  cta_feature_3_desc    String?
+  // Кнопки призыва к действию (2 кнопки по 3 поля)
+  cta_button_demo_emoji String?
+  cta_button_demo_text  String?
+  cta_button_demo_url   String?
+  cta_button_real_emoji String?
+  cta_button_real_text  String?
+  cta_button_real_url   String?
+  // Элементы доверия (3 пункта)
+  cta_trust_1_text      String?
+  cta_trust_2_text      String?
+  cta_trust_3_text      String?
+
   slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   providers       providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   themes          themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)

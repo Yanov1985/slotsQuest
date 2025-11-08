@@ -136,7 +136,7 @@ export class CreateSlotDto {
   mechanics_bonus_title?: string;
   mechanics_bonus_description?: string;
   mechanics_bonus_details?: string;
-  
+
   // Бесплатные спины
   free_spins_title?: string;
   free_spins_intro?: string;
@@ -236,7 +236,79 @@ export class CreateSlotDto {
   review_3_likes?: string;
   review_3_replies?: string;
   review_3_date?: string;
-  
+
+  // Профессиональная оценка - заголовки и общая информация
+  prof_rating_title?: string;
+  prof_rating_subtitle?: string;
+  prof_rating_overall_title?: string;
+  prof_rating_overall_desc?: string;
+  prof_rating_overall_score?: string;
+  prof_rating_overall_stars?: string;
+  // Детальные метрики (5 категорий оценки)
+  // Метрика 1 (например, Графика и анимация)
+  prof_rating_metric_1_emoji?: string;
+  prof_rating_metric_1_name?: string;
+  prof_rating_metric_1_score?: string;
+  // Метрика 2 (например, Геймплей)
+  prof_rating_metric_2_emoji?: string;
+  prof_rating_metric_2_name?: string;
+  prof_rating_metric_2_score?: string;
+  // Метрика 3 (например, Потенциал выигрыша)
+  prof_rating_metric_3_emoji?: string;
+  prof_rating_metric_3_name?: string;
+  prof_rating_metric_3_score?: string;
+  // Метрика 4 (например, Бонусные функции)
+  prof_rating_metric_4_emoji?: string;
+  prof_rating_metric_4_name?: string;
+  prof_rating_metric_4_score?: string;
+  // Метрика 5 (например, Частота выплат)
+  prof_rating_metric_5_emoji?: string;
+  prof_rating_metric_5_name?: string;
+  prof_rating_metric_5_score?: string;
+  // Экспертное заключение
+  prof_rating_expert_quote?: string;
+
+  // Секция "Заключение" (Conclusion)
+  conclusion_title?: string;
+  conclusion_text_1?: string;
+  conclusion_text_2?: string;
+  // Кому подходит (4 пункта)
+  conclusion_suitable_1?: string;
+  conclusion_suitable_2?: string;
+  conclusion_suitable_3?: string;
+  conclusion_suitable_4?: string;
+  // Важно помнить (4 пункта)
+  conclusion_warning_1?: string;
+  conclusion_warning_2?: string;
+  conclusion_warning_3?: string;
+  conclusion_warning_4?: string;
+
+  // Секция CTA "Время побеждать"
+  cta_title?: string;
+  cta_subtitle?: string;
+  cta_potential?: string;
+  // Фичи/Преимущества (3 блока по 3 поля)
+  cta_feature_1_emoji?: string;
+  cta_feature_1_title?: string;
+  cta_feature_1_desc?: string;
+  cta_feature_2_emoji?: string;
+  cta_feature_2_title?: string;
+  cta_feature_2_desc?: string;
+  cta_feature_3_emoji?: string;
+  cta_feature_3_title?: string;
+  cta_feature_3_desc?: string;
+  // Кнопки призыва к действию (2 кнопки по 3 поля)
+  cta_button_demo_emoji?: string;
+  cta_button_demo_text?: string;
+  cta_button_demo_url?: string;
+  cta_button_real_emoji?: string;
+  cta_button_real_text?: string;
+  cta_button_real_url?: string;
+  // Элементы доверия (3 пункта)
+  cta_trust_1_text?: string;
+  cta_trust_2_text?: string;
+  cta_trust_3_text?: string;
+
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];
