@@ -5512,20 +5512,27 @@
               <div class="space-y-2">
                 <p class="text-xl lg:text-2xl text-gray-200 font-medium">
                   {{
-                    slot.cta_subtitle ||
-                    `Окунитесь в легендарный мир ${slot.name || 'этого слота'}`
+                    processCtaSubtitle(
+                      slot.cta_subtitle,
+                      slot.cta_subtitle_keyword,
+                      slot.name,
+                    )
                   }}
                 </p>
                 <div
                   class="flex items-center justify-center gap-2 text-lg lg:text-xl"
                 >
-                  <span class="text-gray-300">Потенциал выигрыша до</span>
+                  <span class="text-gray-300">{{
+                    slot.cta_potential_prefix || 'Потенциал выигрыша до'
+                  }}</span>
                   <span
                     class="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full font-black text-xl shadow-lg animate-pulse"
                   >
                     {{ slot.cta_potential || 'x5,000' }}
                   </span>
-                  <span class="text-gray-300">ждёт вас!</span>
+                  <span class="text-gray-300">{{
+                    slot.cta_potential_suffix || 'ждёт вас!'
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -6704,6 +6711,35 @@ const getSlotNameWithKeyword = (slot) => {
 
   // Возвращаем только ключевое слово, без названия слота
   return slot.hero_keyword || 'Slot Review'
+}
+
+/**
+ * 🎯 Обработка CTA Subtitle с заменой ключевого слова
+ *
+ * Что делает: Заменяет [cta_keyword] на значение из cta_subtitle_keyword или название слота
+ *
+ * Аналогично системе Hero Keywords, но для CTA секции
+ * Пример: "Окунитесь в легендарный мир [cta_keyword]" → "Окунитесь в легендарный мир Gates of Olympus"
+ *
+ * @param {string} subtitle - Текст subtitle с плейсхолдером [cta_keyword]
+ * @param {string} keyword - Ключевое слово для замены (cta_subtitle_keyword)
+ * @param {string} slotName - Название слота (fallback если keyword не указан)
+ * @returns {string} Обработанный текст subtitle
+ */
+const processCtaSubtitle = (subtitle, keyword, slotName) => {
+  // Если subtitle не указан, используем дефолтный текст
+  if (!subtitle) {
+    return `Окунитесь в легендарный мир ${keyword || slotName || 'этого слота'}`
+  }
+
+  // Если в subtitle есть плейсхолдер [cta_keyword], заменяем его
+  if (subtitle.includes('[cta_keyword]')) {
+    const replacement = keyword || slotName || 'этого слота'
+    return subtitle.replace(/\[cta_keyword\]/g, replacement)
+  }
+
+  // Если плейсхолдера нет, возвращаем subtitle как есть
+  return subtitle
 }
 
 /**

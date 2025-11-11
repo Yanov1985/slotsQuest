@@ -301,7 +301,10 @@ model slots {
   // Секция CTA "Время побеждать"
   cta_title             String?
   cta_subtitle          String?
+  cta_subtitle_keyword  String? // Ключевое слово для использования в subtitle вместо названия слота
   cta_potential         String?
+  cta_potential_prefix  String? // Текст перед значением win potential (например: "Потенциал выигрыша до")
+  cta_potential_suffix  String? // Текст после значения win potential (например: "ждёт вас!")
   // Фичи/Преимущества (3 блока по 3 поля)
   cta_feature_1_emoji   String?
   cta_feature_1_title   String?

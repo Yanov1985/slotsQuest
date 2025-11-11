@@ -5939,6 +5939,7 @@
                         </button>
                       </div>
                       <div v-show="showCtaTitleSection" class="space-y-4">
+                        <!-- Main title -->
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -5952,31 +5953,206 @@
                             placeholder="Время побеждать!"
                           />
                         </div>
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+
+                        <!-- Subtitle с системой ключевых слов -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 rounded-lg border border-emerald-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-emerald-400 text-lg">✨</span>
+                            <h4 class="text-sm font-bold text-emerald-300">
+                              Subtitle с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-blue-900/30 p-3 rounded-lg border border-blue-500/30 space-y-1"
                           >
-                            Subtitle
-                          </label>
-                          <input
-                            v-model="form.cta_subtitle"
-                            type="text"
-                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                            placeholder="Окунитесь в легендарный мир этого слота"
-                          />
+                            <div class="font-bold text-blue-300">
+                              📝 Как использовать:
+                            </div>
+                            <div class="text-gray-400">
+                              В тексте subtitle используйте переменную
+                              <span
+                                class="font-mono text-emerald-400 bg-gray-800 px-1 rounded"
+                                >[cta_keyword]</span
+                              >
+                              вместо названия слота
+                            </div>
+                            <div class="text-gray-400">
+                              Пример: "Окунитесь в легендарный мир
+                              <span
+                                class="font-mono text-emerald-400 bg-gray-800 px-1 rounded"
+                                >[cta_keyword]</span
+                              >"
+                            </div>
+                          </div>
+
+                          <!-- Subtitle текст -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Subtitle текст
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Используйте [cta_keyword] для вставки ключевого
+                              слова
+                            </div>
+                            <input
+                              v-model="form.cta_subtitle"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-emerald-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-sm"
+                              placeholder="Окунитесь в легендарный мир [cta_keyword]"
+                            />
+                          </div>
+
+                          <!-- Ключевое слово -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Ключевое слово для [cta_keyword]
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Это слово заменит переменную [cta_keyword] в
+                                тексте
+                              </div>
+                              <div class="text-blue-300">
+                                Например: "Gates of Olympus" или "Rich Wilde and
+                                the Book of Dead"
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.cta_subtitle_keyword"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                              placeholder="Gates of Olympus"
+                            />
+                          </div>
+
+                          <!-- Пример результата -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Превью результата:
+                            </div>
+                            <div class="text-sm text-white">
+                              {{
+                                (form.cta_subtitle || '').replace(
+                                  '[cta_keyword]',
+                                  form.cta_subtitle_keyword ||
+                                    form.name ||
+                                    '[cta_keyword]',
+                                )
+                              }}
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+
+                        <!-- Win potential с расширенными настройками -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-yellow-900/20 to-orange-900/20 rounded-lg border border-yellow-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-yellow-400 text-lg">💰</span>
+                            <h4 class="text-sm font-bold text-yellow-300">
+                              Win Potential настройки
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-yellow-900/30 p-3 rounded-lg border border-yellow-500/30 space-y-1"
                           >
-                            Win potential
-                          </label>
-                          <input
-                            v-model="form.cta_potential"
-                            type="text"
-                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                            placeholder="x5,000"
-                          />
+                            <div class="font-bold text-yellow-300">
+                              📝 Полный контроль над текстом:
+                            </div>
+                            <div class="text-gray-400">
+                              Управляйте текстом ДО и ПОСЛЕ значения win
+                              potential
+                            </div>
+                          </div>
+
+                          <!-- Текст до значения (prefix) -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Текст ДО значения
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Например: "Потенциал выигрыша до"
+                            </div>
+                            <input
+                              v-model="form.cta_potential_prefix"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all text-sm"
+                              placeholder="Потенциал выигрыша до"
+                            />
+                          </div>
+
+                          <!-- Значение win potential -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Win potential значение
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Например: "x5,000"
+                            </div>
+                            <input
+                              v-model="form.cta_potential"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all text-sm"
+                              placeholder="x5,000"
+                            />
+                          </div>
+
+                          <!-- Текст после значения (suffix) -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Текст ПОСЛЕ значения
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Например: "ждёт вас!"
+                            </div>
+                            <input
+                              v-model="form.cta_potential_suffix"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all text-sm"
+                              placeholder="ждёт вас!"
+                            />
+                          </div>
+
+                          <!-- Пример результата win potential -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Превью результата:
+                            </div>
+                            <div
+                              class="text-sm text-white flex items-center gap-2"
+                            >
+                              <span>{{
+                                form.cta_potential_prefix ||
+                                'Потенциал выигрыша до'
+                              }}</span>
+                              <span
+                                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full font-bold"
+                                >{{ form.cta_potential || 'x5,000' }}</span
+                              >
+                              <span>{{
+                                form.cta_potential_suffix || 'ждёт вас!'
+                              }}</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -9642,8 +9818,11 @@ const form = ref({
   // === Секция "Время побеждать!" ===
   // Headings
   cta_title: 'Время побеждать!',
-  cta_subtitle: 'Окунитесь в легендарный мир этого слота',
+  cta_subtitle: 'Окунитесь в легендарный мир [cta_keyword]',
+  cta_subtitle_keyword: '', // Ключевое слово для замены [cta_keyword] в subtitle
   cta_potential: 'x5,000',
+  cta_potential_prefix: 'Потенциал выигрыша до', // Текст перед значением win potential
+  cta_potential_suffix: 'ждёт вас!', // Текст после значения win potential
 
   // Card 1
   cta_feature_1_emoji: '🎰',
@@ -10374,7 +10553,10 @@ const saveSlot = async () => {
       // Секция CTA "Время побеждать"
       'cta_title',
       'cta_subtitle',
+      'cta_subtitle_keyword', // Ключевое слово для subtitle
       'cta_potential',
+      'cta_potential_prefix', // Текст перед win potential
+      'cta_potential_suffix', // Текст после win potential
       'cta_feature_1_emoji',
       'cta_feature_1_title',
       'cta_feature_1_desc',
