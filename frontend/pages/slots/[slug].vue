@@ -2509,23 +2509,23 @@
         <div class="space-y-6">
           <!-- Популярность и статистика -->
           <details
-            class="group border-2 border-gradient-to-r from-blue-400 to-purple-500 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-blue-50"
+            class="group border-2 border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 bg-white"
           >
             <summary
-              class="p-8 cursor-pointer font-bold text-2xl hover:bg-gradient-to-r hover:from-blue-100 hover:to-purple-100 transition-all duration-300 flex items-center justify-between border-b border-blue-200"
+              class="p-6 cursor-pointer font-semibold text-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
             >
               <span class="flex items-center gap-4">
-                <span class="text-4xl animate-pulse">📊</span>
-                <span
-                  class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                >
-                  {{
-                    slot.popularity_title || `Насколько популярен ${slot.name}?`
-                  }}
-                </span>
+                <span class="text-2xl">📊</span>
+                {{
+                  processPopularityTitle(
+                    slot.popularity_title,
+                    slot.popularity_title_keyword,
+                    slot.name,
+                  )
+                }}
               </span>
               <svg
-                class="w-6 h-6 text-blue-600 group-open:rotate-180 transition-transform duration-300"
+                class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -2533,7 +2533,7 @@
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="3"
+                  stroke-width="2"
                   d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
@@ -2850,7 +2850,10 @@
             >
               <span class="flex items-center gap-3">
                 <span class="text-2xl">🔑</span>
-                В чем секрет такого огромного успеха?
+                {{
+                  slot.success_secret_title ||
+                  'В чем секрет такого огромного успеха?'
+                }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -2871,46 +2874,49 @@
             >
               <div class="prose max-w-none">
                 <p class="text-gray-700 mb-6 font-medium">
-                  Одним из ключей к такому огромному успеху является механика
-                  Scatter Pays — то, что объединяет многие популярные
-                  онлайн-slotы. Вам не нужны линии выплат, кластеры или способы
-                  выигрыша... Одинаковые символы могут появиться в любом месте
-                  сетки и принести вам выигрыши.
+                  {{
+                    slot.success_secret_intro ||
+                    'Одним из ключей к такому огромному успеху является механика Scatter Pays — то, что объединяет многие популярные онлайн-slotы. Вам не нужны линии выплат, кластеры или способы выигрыша... Одинаковые символы могут появиться в любом месте сетки и принести вам выигрыши.'
+                  }}
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div class="bg-white p-4 rounded-lg border border-green-200">
                     <h4 class="font-bold text-green-800 mb-3">
-                      🍭 Связь с Sweet Bonanza
+                      {{
+                        slot.success_secret_card_1_title ||
+                        '🍭 Связь с Sweet Bonanza'
+                      }}
                     </h4>
                     <p class="text-gray-700 text-sm">
-                      Sweet Bonanza был тайтлом, который протестировал воды для
-                      Gates of Olympus. Эти две игры имеют много общих
-                      геймплейных сходств. И кажется, что игроки больше любят
-                      эпическую тему греческих богов, чем сладкую природу Sweet
-                      Bonanza.
+                      {{
+                        slot.success_secret_card_1_text ||
+                        'Sweet Bonanza был тайтлом, который протестировал воды для Gates of Olympus. Эти две игры имеют много общих геймплейных сходств. И кажется, что игроки больше любят эпическую тему греческих богов, чем сладкую природу Sweet Bonanza.'
+                      }}
                     </p>
                   </div>
 
                   <div class="bg-white p-4 rounded-lg border border-green-200">
                     <h4 class="font-bold text-green-800 mb-3">
-                      ⚖️ Идеальный баланс
+                      {{
+                        slot.success_secret_card_2_title ||
+                        '⚖️ Идеальный баланс'
+                      }}
                     </h4>
                     <p class="text-gray-700 text-sm">
-                      Pragmatic Play использовала проверенный и испытанный
-                      рецепт для достижения идеального баланса между сложностью
-                      и простотой. Три элемента — scatter pays, tumbles и
-                      множители — создают идеальную основу для захватывающего,
-                      но не слишком сложного геймплея.
+                      {{
+                        slot.success_secret_card_2_text ||
+                        'Pragmatic Play использовала проверенный и испытанный рецепт для достижения идеального баланса между сложностью и простотой. Три элемента — scatter pays, tumbles и множители — создают идеальную основу для захватывающего, но не слишком сложного геймплея.'
+                      }}
                     </p>
                   </div>
                 </div>
 
                 <p class="text-gray-700">
-                  Эта комбинация творит чудеса, и наши рейтинги, основанные на
-                  реальных данных казино, подтверждают это. Количество tumbles
-                  не ограничено, и у вас может быть один раунд, который
-                  продолжается намного дольше обычного спина.
+                  {{
+                    slot.success_secret_outro ||
+                    'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.'
+                  }}
                 </p>
               </div>
             </div>
@@ -3555,29 +3561,38 @@
                   <h4
                     class="font-bold text-indigo-800 mb-4 flex items-center gap-2"
                   >
-                    ⚠️ Важные предупреждения
+                    {{
+                      slot.strategy_warnings_title || '⚠️ Важные предупреждения'
+                    }}
                   </h4>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div
                       class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400"
                     >
                       <h5 class="font-bold text-red-800 mb-2">
-                        Высокая волатильность
+                        {{
+                          slot.strategy_warning_1_title ||
+                          'Высокая волатильность'
+                        }}
                       </h5>
                       <p class="text-red-700 text-sm">
-                        Длительные периоды без крупных выигрышей — это
-                        нормально. Будьте готовы к затяжным потерям.
+                        {{
+                          slot.strategy_warning_1_text ||
+                          'Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям.'
+                        }}
                       </p>
                     </div>
                     <div
                       class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400"
                     >
                       <h5 class="font-bold text-yellow-800 mb-2">
-                        Покупка бонуса
+                        {{ slot.strategy_warning_2_title || 'Покупка бонуса' }}
                       </h5>
                       <p class="text-yellow-700 text-sm">
-                        100x ставка за бонус не гарантирует прибыль. Используйте
-                        эту функцию разумно.
+                        {{
+                          slot.strategy_warning_2_text ||
+                          '100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно.'
+                        }}
                       </p>
                     </div>
                   </div>
@@ -6874,6 +6889,34 @@ const processConclusionRatingTitle = (title, keyword, slotName) => {
   if (title.includes('[conclusion_keyword]')) {
     const replacement = keyword || slotName || 'slotа'
     return title.replace(/\[conclusion_keyword\]/g, replacement)
+  }
+
+  // Если плейсхолдера нет, возвращаем title как есть
+  return title
+}
+
+/**
+ * 📊 Обработка заголовка секции популярности с ключевым словом
+ *
+ * Что делает: Заменяет [popularity_keyword] на значение из popularity_title_keyword или название слота
+ *
+ * Пример: "Насколько популярен [popularity_keyword]?" → "Насколько популярен Rich Wilde and the Book of Dead?"
+ *
+ * @param {string} title - Заголовок с плейсхолдером [popularity_keyword]
+ * @param {string} keyword - Ключевое слово для замены (popularity_title_keyword)
+ * @param {string} slotName - Название слота (fallback если keyword не указан)
+ * @returns {string} Обработанный заголовок
+ */
+const processPopularityTitle = (title, keyword, slotName) => {
+  // Если title не указан, используем дефолтный
+  if (!title) {
+    return `Насколько популярен ${keyword || slotName || 'этот slot'}?`
+  }
+
+  // Если в title есть плейсхолдер [popularity_keyword], заменяем его
+  if (title.includes('[popularity_keyword]')) {
+    const replacement = keyword || slotName || 'этот slot'
+    return title.replace(/\[popularity_keyword\]/g, replacement)
   }
 
   // Если плейсхолдера нет, возвращаем title как есть

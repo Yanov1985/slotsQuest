@@ -2343,8 +2343,65 @@
                               v-model="form.popularity_title"
                               type="text"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200"
-                              placeholder="Насколько популярен Gates of Olympus?"
+                              placeholder="Насколько популярен [popularity_keyword]?"
                             />
+                            <p class="text-xs text-[#9CA3AF] mt-2">
+                              💡 Используйте
+                              <span class="text-[#3B82F6] font-mono">
+                                [popularity_keyword]
+                              </span>
+                              в тексте для замены на ключевое слово
+                            </p>
+                          </div>
+
+                          <!-- Ключевое слово для заголовка -->
+                          <div
+                            class="bg-gradient-to-r from-blue-500/10 to-indigo-500/10 p-4 rounded-lg border border-blue-500/30"
+                          >
+                            <label
+                              class="block text-sm font-medium text-blue-300 mb-2"
+                            >
+                              🔑 Ключевое слово для заголовка
+                            </label>
+                            <div class="text-xs text-gray-300 mb-3 space-y-1">
+                              <div>
+                                📌 Это слово заменит переменную
+                                [popularity_keyword] в заголовке
+                              </div>
+                              <div class="text-blue-300">
+                                Например: "Gates of Olympus" или "Rich Wilde and
+                                the Book of Dead"
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.popularity_title_keyword"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              placeholder="Gates of Olympus"
+                            />
+
+                            <!-- Превью результата -->
+                            <div
+                              class="mt-3 bg-[#1B1E26]/80 p-3 rounded-lg border border-[#353A4A]"
+                            >
+                              <div class="text-xs text-[#9CA3AF] mb-1">
+                                Превью результата:
+                              </div>
+                              <div class="text-sm text-[#E5E7EB] font-medium">
+                                {{
+                                  (
+                                    form.popularity_title ||
+                                    'Насколько популярен [popularity_keyword]?'
+                                  ).replace(
+                                    '[popularity_keyword]',
+                                    form.popularity_title_keyword ||
+                                      form.name ||
+                                      '[popularity_keyword]',
+                                  )
+                                }}
+                              </div>
+                            </div>
                           </div>
 
                           <!-- Глобальный рейтинг -->
@@ -2747,50 +2804,60 @@
 
                           <!-- Два основных блока -->
                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Sweet Bonanza блок -->
+                            <!-- Карточка 1 -->
                             <div class="space-y-3">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Связь с Sweet Bonanza
+                                Карточка 1 - Заголовок
                               </label>
                               <input
-                                v-model="form.success_sweetbonanza_title"
+                                v-model="form.success_secret_card_1_title"
                                 type="text"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
                                 placeholder="🍭 Связь с Sweet Bonanza"
                               />
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Карточка 1 - Текст
+                              </label>
                               <textarea
-                                v-model="form.success_sweetbonanza_description"
+                                v-model="form.success_secret_card_1_text"
                                 rows="4"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
-                                placeholder="Description связи с Sweet Bonanza..."
+                                placeholder="Sweet Bonanza был тайтлом, который протестировал воды..."
                               ></textarea>
                             </div>
 
-                            <!-- Идеальный баланс блок -->
+                            <!-- Карточка 2 -->
                             <div class="space-y-3">
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB] mb-2"
                               >
-                                Идеальный баланс
+                                Карточка 2 - Заголовок
                               </label>
                               <input
-                                v-model="form.success_balance_title"
+                                v-model="form.success_secret_card_2_title"
                                 type="text"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
                                 placeholder="⚖️ Идеальный баланс"
                               />
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Карточка 2 - Текст
+                              </label>
                               <textarea
-                                v-model="form.success_balance_description"
+                                v-model="form.success_secret_card_2_text"
                                 rows="4"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none text-sm"
-                                placeholder="Description идеального баланса..."
+                                placeholder="Pragmatic Play использовала проверенный и испытанный рецепт..."
                               ></textarea>
                             </div>
                           </div>
 
-                          <!-- Conclusion -->
+                          <!-- Заключительный текст -->
                           <div>
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -2798,10 +2865,10 @@
                               Заключительный текст
                             </label>
                             <textarea
-                              v-model="form.success_conclusion"
+                              v-model="form.success_secret_outro"
                               rows="3"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 resize-none"
-                              placeholder="Заключительные выводы..."
+                              placeholder="Эта комбинация творит чудеса..."
                             ></textarea>
                           </div>
                         </div>
@@ -3458,8 +3525,8 @@
                             ></textarea>
                           </div>
 
-                          <!-- Три группы стратегий -->
-                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                          <!-- Две группы стратегий -->
+                          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <!-- Рекомендации для новичков -->
                             <div class="space-y-3">
                               <label
@@ -3497,12 +3564,6 @@
                                   type="text"
                                   class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
                                   placeholder="Изучите таблицу выплат и правила"
-                                />
-                                <input
-                                  v-model="form.strategy_beginner_5"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                  placeholder="Играйте только на проверенных сайтах"
                                 />
                               </div>
                             </div>
@@ -3547,45 +3608,109 @@
                                 />
                               </div>
                             </div>
+                          </div>
 
-                            <!-- Управление банкроллом -->
-                            <div class="space-y-3">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          <!-- Секция "Важные предупреждения" (2 карточки) -->
+                          <div
+                            class="border border-yellow-600/30 rounded-lg p-4 bg-yellow-900/10 mt-6"
+                          >
+                            <div
+                              class="text-sm font-semibold text-yellow-300 mb-4"
+                            >
+                              ⚠️ Важные предупреждения
+                            </div>
+                            <div class="space-y-4">
+                              <!-- Заголовок секции -->
+                              <div>
+                                <label
+                                  class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                                >
+                                  Заголовок секции
+                                </label>
+                                <input
+                                  v-model="form.strategy_warnings_title"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-sm"
+                                  placeholder="⚠️ Важные предупреждения"
+                                />
+                              </div>
+
+                              <!-- Карточка 1 -->
+                              <div
+                                class="border border-red-600/30 rounded-lg p-3 bg-red-900/10"
                               >
-                                💰 Управление банкроллом
-                              </label>
-                              <input
-                                v-model="form.strategies_bankroll_title"
-                                type="text"
-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                placeholder="💰 Управление банкроллом"
-                              />
-                              <div class="space-y-2">
-                                <input
-                                  v-model="form.strategy_bankroll_1"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                  placeholder="Никогда не играйте на деньги, которые не можете позволить себе потерять"
-                                />
-                                <input
-                                  v-model="form.strategy_bankroll_2"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                  placeholder="Размер ставки не должен превышать 1-5% от общего банкролла"
-                                />
-                                <input
-                                  v-model="form.strategy_bankroll_3"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                  placeholder="Установите дневные, недельные и месячные лимиты"
-                                />
-                                <input
-                                  v-model="form.strategy_bankroll_4"
-                                  type="text"
-                                  class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#06B6D4] focus:border-[#06B6D4] transition-all duration-200 text-sm"
-                                  placeholder="Делайте перерывы каждые 30-60 минут"
-                                />
+                                <div
+                                  class="text-xs font-semibold text-red-300 mb-2"
+                                >
+                                  Карточка 1 (красная)
+                                </div>
+                                <div class="space-y-2">
+                                  <div>
+                                    <label
+                                      class="block text-xs font-medium text-[#E5E7EB] mb-1"
+                                    >
+                                      Заголовок
+                                    </label>
+                                    <input
+                                      v-model="form.strategy_warning_1_title"
+                                      type="text"
+                                      class="w-full px-2 py-2 bg-[#161A21] border border-red-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-red-500 transition-all text-xs"
+                                      placeholder="Высокая волатильность"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label
+                                      class="block text-xs font-medium text-[#E5E7EB] mb-1"
+                                    >
+                                      Текст
+                                    </label>
+                                    <textarea
+                                      v-model="form.strategy_warning_1_text"
+                                      rows="2"
+                                      class="w-full px-2 py-2 bg-[#161A21] border border-red-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-red-500 transition-all text-xs resize-none"
+                                      placeholder="Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям."
+                                    ></textarea>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Карточка 2 -->
+                              <div
+                                class="border border-yellow-600/30 rounded-lg p-3 bg-yellow-900/20"
+                              >
+                                <div
+                                  class="text-xs font-semibold text-yellow-300 mb-2"
+                                >
+                                  Карточка 2 (жёлтая)
+                                </div>
+                                <div class="space-y-2">
+                                  <div>
+                                    <label
+                                      class="block text-xs font-medium text-[#E5E7EB] mb-1"
+                                    >
+                                      Заголовок
+                                    </label>
+                                    <input
+                                      v-model="form.strategy_warning_2_title"
+                                      type="text"
+                                      class="w-full px-2 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-xs"
+                                      placeholder="Покупка бонуса"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label
+                                      class="block text-xs font-medium text-[#E5E7EB] mb-1"
+                                    >
+                                      Текст
+                                    </label>
+                                    <textarea
+                                      v-model="form.strategy_warning_2_text"
+                                      rows="2"
+                                      class="w-full px-2 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-xs resize-none"
+                                      placeholder="100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно."
+                                    ></textarea>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -10622,7 +10747,8 @@ const form = ref({
   overview_features_6: 'Один крупный выигрыш на 697,350 спинов',
 
   // Подсекция "Насколько популярен"
-  popularity_title: 'Насколько популярен этот слот?',
+  popularity_title: 'Насколько популярен [popularity_keyword]?',
+  popularity_title_keyword: '', // Ключевое слово для замены в заголовке
   popularity_ranking_position: '12',
   popularity_user_rating: '4.8',
   popularity_monthly_players: '2M+',
@@ -10667,24 +10793,6 @@ const form = ref({
   popularity_trend_title: 'Тренд популярности (симулированный график)',
   popularity_trend_description:
     'График показывает устойчивый рост популярности',
-
-  // Подсекция "В чем секрет такого огромного успеха?"
-  success_secret_title: 'В чем секрет такого огромного успеха?',
-  success_secret_intro:
-    'Одним из ключей к такому огромному успеху является механика Scatter Pays — то, что объединяет многие популярные онлайн-слоты. Вам не нужны линии выплат, кластеры или способы выигрыша... Одинаковые символы могут появиться в любом месте сетки и принести вам выигрыши.',
-
-  // Два основных блока объяснения
-  success_sweetbonanza_title: '🍭 Связь с Sweet Bonanza',
-  success_sweetbonanza_description:
-    'Sweet Bonanza был тайтлом, который протестировал воды для Gates of Olympus. Эти две игры имеют много общих геймплейных сходств. И кажется, что игроки больше любят эпическую тему греческих богов, чем сладкую природу Sweet Bonanza.',
-
-  success_balance_title: '⚖️ Идеальный баланс',
-  success_balance_description:
-    'Pragmatic Play использовала проверенный и испытанный рецепт для достижения идеального баланса между сложностью и простотой. Три элемента — scatter pays, tumbles и множители — создают идеальную основу для захватывающего, но не слишком сложного геймплея.',
-
-  // Заключительное объяснение
-  success_conclusion:
-    'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.',
 
   // Подсекция "Основные особенности и механики игры"
   mechanics_title: 'Игровые механики и особенности',
@@ -10782,25 +10890,37 @@ const form = ref({
   strategy_beginner_1: 'Начните с демо-версии для изучения механик',
   strategy_beginner_2: 'Устанавливайте лимиты перед началом игры',
   strategy_beginner_3: 'Начинайте с минимальных ставок',
-  strategy_beginner_4: 'Изучите таблицу выплат и правила',
-  strategy_beginner_5: 'Играйте только на проверенных сайтах',
+  strategy_beginner_4: 'Изучите таблицу выплат перед игрой',
 
   // Продвинутые стратегии
-  strategies_advanced_title: '🎯 Продвинутые стратегии',
-  strategy_advanced_1: 'Используйте Ante Bet для увеличения шансов на бонус',
+  strategies_advanced_title: '⚡ Продвинутые стратегии',
+  strategy_advanced_1: 'Управление банкроллом: не более 1-2% от банка на спин',
   strategy_advanced_2:
-    'Рассчитайте соотношение риска и вознаграждения при покупке бонуса',
-  strategy_advanced_3: 'Ведите статистику своих игровых сессий',
-  strategy_advanced_4: 'Изучите паттерны выпадения множителей',
+    'Ante Bet увеличивает шансы на бонус, но требует больших ставок',
+  strategy_advanced_3: 'Покупка бонуса оправдана только при достаточном банке',
+  strategy_advanced_4: 'Ведите статистику сессий для анализа результатов',
 
-  // Управление банкроллом
-  strategies_bankroll_title: '💰 Управление банкроллом',
-  strategy_bankroll_1:
-    'Никогда не играйте на деньги, которые не можете позволить себе потерять',
-  strategy_bankroll_2:
-    'Размер ставки не должен превышать 1-5% от общего банкролла',
-  strategy_bankroll_3: 'Установите дневные, недельные и месячные лимиты',
-  strategy_bankroll_4: 'Делайте перерывы каждые 30-60 минут',
+  // Важные предупреждения (2 карточки)
+  strategy_warnings_title: '⚠️ Важные предупреждения',
+  strategy_warning_1_title: 'Высокая волатильность',
+  strategy_warning_1_text:
+    'Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям.',
+  strategy_warning_2_title: 'Покупка бонуса',
+  strategy_warning_2_text:
+    '100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно.',
+
+  // Подсекция "В чем секрет успеха?"
+  success_secret_title: 'В чем секрет такого огромного успеха?',
+  success_secret_intro:
+    'Одним из ключей к такому огромному успеху является механика Scatter Pays — то, что объединяет многие популярные онлайн-slotы. Вам не нужны линии выплат, кластеры или способы выигрыша... Одинаковые символы могут появиться в любом месте сетки и принести вам выигрыши.',
+  success_secret_card_1_title: '🍭 Связь с Sweet Bonanza',
+  success_secret_card_1_text:
+    'Sweet Bonanza был тайтлом, который протестировал воды для Gates of Olympus. Эти две игры имеют много общих геймплейных сходств. И кажется, что игроки больше любят эпическую тему греческих богов, чем сладкую природу Sweet Bonanza.',
+  success_secret_card_2_title: '⚖️ Идеальный баланс',
+  success_secret_card_2_text:
+    'Pragmatic Play использовала проверенный и испытанный рецепт для достижения идеального баланса между сложностью и простотой. Три элемента — scatter pays, tumbles и множители — создают идеальную основу для захватывающего, но не слишком сложного геймплея.',
+  success_secret_outro:
+    'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.',
 
   // === Секция "Насколько популярен" ===
   // Title секции
@@ -11622,6 +11742,7 @@ const saveSlot = async () => {
       'overview_features_6',
       // Раздел "Насколько популярен"
       'popularity_title',
+      'popularity_title_keyword',
       'popularity_global_rank',
       'popularity_global_desc',
       'popularity_players_count',
@@ -11942,6 +12063,24 @@ const saveSlot = async () => {
     dataToSend.strategy_advanced_2 = form.value.strategy_advanced_2
     dataToSend.strategy_advanced_3 = form.value.strategy_advanced_3
     dataToSend.strategy_advanced_4 = form.value.strategy_advanced_4
+    // Важные предупреждения
+    dataToSend.strategy_warnings_title = form.value.strategy_warnings_title
+    dataToSend.strategy_warning_1_title = form.value.strategy_warning_1_title
+    dataToSend.strategy_warning_1_text = form.value.strategy_warning_1_text
+    dataToSend.strategy_warning_2_title = form.value.strategy_warning_2_title
+    dataToSend.strategy_warning_2_text = form.value.strategy_warning_2_text
+    // В чем секрет успеха
+    dataToSend.success_secret_title = form.value.success_secret_title
+    dataToSend.success_secret_intro = form.value.success_secret_intro
+    dataToSend.success_secret_card_1_title =
+      form.value.success_secret_card_1_title
+    dataToSend.success_secret_card_1_text =
+      form.value.success_secret_card_1_text
+    dataToSend.success_secret_card_2_title =
+      form.value.success_secret_card_2_title
+    dataToSend.success_secret_card_2_text =
+      form.value.success_secret_card_2_text
+    dataToSend.success_secret_outro = form.value.success_secret_outro
 
     // Добавляем данные из отдельных переменных
     dataToSend.selected_mechanics = selectedMechanics.value

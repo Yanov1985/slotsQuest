@@ -171,7 +171,8 @@ model slots {
   popularity_rtp_desc                   String?
   popularity_rtp_score                  String?
   popularity_stats_title                String?
-  popularity_title                      String?
+  popularity_title                      String? // Шаблон заголовка секции с плейсхолдером [popularity_keyword]
+  popularity_title_keyword              String? // Ключевое слово для замены в заголовке секции популярности
   popularity_trend_title                String?
   popularity_trend_y1                   Int?
   popularity_trend_y2                   Int?
@@ -191,18 +192,33 @@ model slots {
   slot_mechanics                        slot_mechanics[]
 
   // Strategies & Tips (dynamic content for gameplay advice)
-  strategy_title          String? @map("strategies_title")
-  strategy_intro          String? @map("strategies_intro")
-  strategy_beginner_title String?
-  strategy_beginner_1     String?
-  strategy_beginner_2     String?
-  strategy_beginner_3     String?
-  strategy_beginner_4     String?
-  strategy_advanced_title String?
-  strategy_advanced_1     String?
-  strategy_advanced_2     String?
-  strategy_advanced_3     String?
-  strategy_advanced_4     String?
+  strategy_title           String? @map("strategies_title")
+  strategy_intro           String? @map("strategies_intro")
+  strategy_beginner_title  String?
+  strategy_beginner_1      String?
+  strategy_beginner_2      String?
+  strategy_beginner_3      String?
+  strategy_beginner_4      String?
+  strategy_advanced_title  String?
+  strategy_advanced_1      String?
+  strategy_advanced_2      String?
+  strategy_advanced_3      String?
+  strategy_advanced_4      String?
+  // Важные предупреждения (2 карточки)
+  strategy_warnings_title  String? // Заголовок секции "⚠️ Важные предупреждения"
+  strategy_warning_1_title String? // Карточка 1: заголовок "Высокая волатильность"
+  strategy_warning_1_text  String? // Карточка 1: текст
+  strategy_warning_2_title String? // Карточка 2: заголовок "Покупка бонуса"
+  strategy_warning_2_text  String? // Карточка 2: текст
+
+  // Секция "В чем секрет успеха?"
+  success_secret_title        String? // Заголовок "В чем секрет такого огромного успеха?"
+  success_secret_intro        String? // Вступительный текст
+  success_secret_card_1_title String? // Карточка 1: "🍭 Связь с Sweet Bonanza"
+  success_secret_card_1_text  String? // Карточка 1: текст
+  success_secret_card_2_title String? // Карточка 2: "⚖️ Идеальный баланс"
+  success_secret_card_2_text  String? // Карточка 2: текст
+  success_secret_outro        String? // Заключительный текст
 
   // Отзывы игроков - заголовки и статистика
   reviews_title              String?
