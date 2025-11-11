@@ -5445,18 +5445,619 @@
                         v-show="showProfRatingExpertSection"
                         class="space-y-4"
                       >
+                        <!-- Заголовок секции -->
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
                           >
-                            Цитата эксперта
+                            Заголовок секции
+                          </label>
+                          <div class="text-xs text-gray-400 mb-2">
+                            Например: "Экспертное заключение" или "Мнение
+                            эксперта"
+                          </div>
+                          <input
+                            v-model="form.prof_rating_expert_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                            placeholder="Экспертное заключение"
+                          />
+                        </div>
+
+                        <!-- Имя эксперта -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Имя эксперта (badge)
+                          </label>
+                          <div class="text-xs text-gray-400 mb-2">
+                            Например: "Сертифицированный эксперт" или "Certified
+                            Expert"
+                          </div>
+                          <input
+                            v-model="form.prof_rating_expert_name"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                            placeholder="Сертифицированный эксперт"
+                          />
+                        </div>
+
+                        <!-- Должность эксперта -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Должность эксперта
+                          </label>
+                          <div class="text-xs text-gray-400 mb-2">
+                            Например: "Ведущий аналитик игровой индустрии • 8+
+                            лет опыта"
+                          </div>
+                          <input
+                            v-model="form.prof_rating_expert_position"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm"
+                            placeholder="Ведущий аналитик игровой индустрии • 8+ лет опыта"
+                          />
+                        </div>
+
+                        <!-- Цитата с ключевым словом -->
+                        <div
+                          class="border border-purple-600/30 rounded-lg p-4 bg-purple-900/10"
+                        >
+                          <div class="flex items-center gap-2 mb-3">
+                            <svg
+                              class="w-5 h-5 text-purple-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                              ></path>
+                            </svg>
+                            <h4 class="text-sm font-semibold text-purple-300">
+                              Цитата эксперта с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div class="space-y-3">
+                            <!-- Цитата -->
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Цитата эксперта
+                              </label>
+                              <div class="text-xs text-gray-400 mb-2">
+                                Используйте [prof_expert_keyword] для вставки
+                                ключевого слова (названия слота)
+                              </div>
+                              <textarea
+                                v-model="form.prof_rating_expert_quote"
+                                rows="4"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-sm resize-none"
+                                placeholder="[prof_expert_keyword] представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯"
+                              ></textarea>
+                            </div>
+
+                            <!-- Ключевое слово -->
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Ключевое слово для [prof_expert_keyword]
+                              </label>
+                              <div class="text-xs text-gray-400 mb-2">
+                                Оставьте пустым, чтобы использовать название
+                                слота
+                              </div>
+                              <input
+                                v-model="form.prof_rating_expert_quote_keyword"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-sm"
+                                placeholder="Gates of Olympus"
+                              />
+                            </div>
+
+                            <!-- Превью -->
+                            <div
+                              v-if="
+                                form.prof_rating_expert_quote &&
+                                form.prof_rating_expert_quote.includes(
+                                  '[prof_expert_keyword]',
+                                )
+                              "
+                              class="bg-purple-900/20 border border-purple-600/30 rounded-lg p-3"
+                            >
+                              <div
+                                class="text-xs font-semibold text-purple-300 mb-2"
+                              >
+                                📝 Превью:
+                              </div>
+                              <div class="text-sm text-gray-300 italic">
+                                {{
+                                  form.prof_rating_expert_quote.replace(
+                                    /\[prof_expert_keyword\]/g,
+                                    form.prof_rating_expert_quote_keyword ||
+                                      'Gates of Olympus',
+                                  )
+                                }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Предупреждение о волатильности -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <span class="text-white text-xl">⚠️</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Предупреждение о волатильности
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Важная информация для игроков
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingWarningSection =
+                              !showProfRatingWarningSection
+                          "
+                          class="px-4 py-2 bg-[#F59E0B]/10 hover:bg-[#F59E0B]/20 text-[#F59E0B] rounded-lg transition-all duration-200 text-sm font-medium border border-[#F59E0B]/30"
+                          :aria-expanded="showProfRatingWarningSection"
+                        >
+                          {{ showProfRatingWarningSection ? 'Hide' : 'Show' }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingWarningSection"
+                        class="space-y-4"
+                      >
+                        <!-- Заголовок -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок предупреждения
+                          </label>
+                          <input
+                            v-model="form.prof_rating_warning_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
+                            placeholder="Предупреждение о волатильности"
+                          />
+                        </div>
+
+                        <!-- Текст предупреждения -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Текст предупреждения
                           </label>
                           <textarea
-                            v-model="form.prof_rating_expert_quote"
+                            v-model="form.prof_rating_warning_text"
                             rows="4"
-                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-all duration-200 text-sm resize-none"
-                            placeholder="Gates of Olympus представляет собой революционный подход..."
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm resize-none"
+                            placeholder="Слот имеет высокую волатильность, что означает редкие, но крупные выигрыши. Рекомендуется иметь достаточный банкролл и играть ответственно. Устанавливайте лимиты и никогда не играйте деньгами, которые не можете позволить себе потерять. 💰"
                           ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Преимущества -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <span class="text-white text-xl">✅</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Преимущества
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              5 ключевых плюсов
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingProsSection =
+                              !showProfRatingProsSection
+                          "
+                          class="px-4 py-2 bg-[#10B981]/10 hover:bg-[#10B981]/20 text-[#10B981] rounded-lg transition-all duration-200 text-sm font-medium border border-[#10B981]/30"
+                          :aria-expanded="showProfRatingProsSection"
+                        >
+                          {{ showProfRatingProsSection ? 'Hide' : 'Show' }}
+                        </button>
+                      </div>
+                      <div v-show="showProfRatingProsSection" class="space-y-4">
+                        <!-- Заголовок секции -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.prof_rating_pros_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#10B981] focus:border-[#10B981] transition-all duration-200 text-sm"
+                            placeholder="✅ ПРЕИМУЩЕСТВА"
+                          />
+                        </div>
+
+                        <!-- 5 преимуществ -->
+                        <div
+                          v-for="i in 5"
+                          :key="'pros-' + i"
+                          class="border border-green-600/30 rounded-lg p-4 bg-green-900/10"
+                        >
+                          <div
+                            class="text-sm font-semibold text-green-300 mb-3"
+                          >
+                            Преимущество {{ i }}
+                          </div>
+                          <div class="space-y-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="
+                                  form['prof_rating_pros_' + i + '_title']
+                                "
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-green-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-green-500 transition-all text-sm"
+                                :placeholder="
+                                  i === 1
+                                    ? 'Инновационная механика Scatter Pays'
+                                    : i === 2
+                                      ? 'Потенциал выигрыша x5,000'
+                                      : i === 3
+                                        ? 'Превосходная графика'
+                                        : i === 4
+                                          ? 'Каскадные выигрыши'
+                                          : 'Мобильная оптимизация'
+                                "
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Описание
+                              </label>
+                              <input
+                                v-model="
+                                  form['prof_rating_pros_' + i + '_desc']
+                                "
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-green-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-green-500 transition-all text-sm"
+                                :placeholder="
+                                  i === 1
+                                    ? 'Революционная система выплат'
+                                    : i === 2
+                                      ? 'Огромные возможности для выигрыша'
+                                      : i === 3
+                                        ? 'Визуальное наслаждение на высоком уровне'
+                                        : i === 4
+                                          ? 'Множественные выплаты в одном спине'
+                                          : 'Идеальная работа на всех устройствах'
+                                "
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Недостатки -->
+                    <div
+                      class="group bg-gradient-to-r from-[#EF4444]/10 to-[#DC2626]/10 border border-[#EF4444]/20 rounded-xl p-6 hover:border-[#EF4444]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <span class="text-white text-xl">❌</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Недостатки
+                            </h3>
+                            <p class="text-sm text-[#EF4444]">
+                              5 важных моментов
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingConsSection =
+                              !showProfRatingConsSection
+                          "
+                          class="px-4 py-2 bg-[#EF4444]/10 hover:bg-[#EF4444]/20 text-[#EF4444] rounded-lg transition-all duration-200 text-sm font-medium border border-[#EF4444]/30"
+                          :aria-expanded="showProfRatingConsSection"
+                        >
+                          {{ showProfRatingConsSection ? 'Hide' : 'Show' }}
+                        </button>
+                      </div>
+                      <div v-show="showProfRatingConsSection" class="space-y-4">
+                        <!-- Заголовок секции -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.prof_rating_cons_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#EF4444] focus:border-[#EF4444] transition-all duration-200 text-sm"
+                            placeholder="❌ НЕДОСТАТКИ"
+                          />
+                        </div>
+
+                        <!-- 5 недостатков -->
+                        <div
+                          v-for="i in 5"
+                          :key="'cons-' + i"
+                          class="border border-red-600/30 rounded-lg p-4 bg-red-900/10"
+                        >
+                          <div class="text-sm font-semibold text-red-300 mb-3">
+                            Недостаток {{ i }}
+                          </div>
+                          <div class="space-y-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="
+                                  form['prof_rating_cons_' + i + '_title']
+                                "
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-red-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-red-500 transition-all text-sm"
+                                :placeholder="
+                                  i === 1
+                                    ? 'Высокая волатильность'
+                                    : i === 2
+                                      ? 'Требует большой банкролл'
+                                      : i === 3
+                                        ? 'Не для новичков'
+                                        : i === 4
+                                          ? 'Риск больших потерь'
+                                          : 'Высокая дисперсия'
+                                "
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Описание
+                              </label>
+                              <input
+                                v-model="
+                                  form['prof_rating_cons_' + i + '_desc']
+                                "
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-red-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-red-500 transition-all text-sm"
+                                :placeholder="
+                                  i === 1
+                                    ? 'Редкие, но крупные выигрыши'
+                                    : i === 2
+                                      ? 'Необходим солидный стартовый капитал'
+                                      : i === 3
+                                        ? 'Сложно для консервативных игроков'
+                                        : i === 4
+                                          ? 'Возможны продолжительные проигрыши'
+                                          : 'Нестабильные результаты'
+                                "
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Итоговая рекомендация -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg"
+                          >
+                            <span class="text-white text-xl">🎯</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Итоговая рекомендация
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">
+                              Финальное экспертное мнение
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showProfRatingRecommendationSection =
+                              !showProfRatingRecommendationSection
+                          "
+                          class="px-4 py-2 bg-[#3B82F6]/10 hover:bg-[#3B82F6]/20 text-[#3B82F6] rounded-lg transition-all duration-200 text-sm font-medium border border-[#3B82F6]/30"
+                          :aria-expanded="showProfRatingRecommendationSection"
+                        >
+                          {{
+                            showProfRatingRecommendationSection
+                              ? 'Hide'
+                              : 'Show'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showProfRatingRecommendationSection"
+                        class="space-y-4"
+                      >
+                        <!-- Заголовок -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Заголовок секции
+                          </label>
+                          <input
+                            v-model="form.prof_rating_recommendation_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                            placeholder="Итоговая рекомендация"
+                          />
+                        </div>
+
+                        <!-- Подзаголовок -->
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            Подзаголовок
+                          </label>
+                          <input
+                            v-model="form.prof_rating_recommendation_subtitle"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm"
+                            placeholder="От экспертов SlotQuest"
+                          />
+                        </div>
+
+                        <!-- Текст с ключевым словом -->
+                        <div
+                          class="border border-blue-600/30 rounded-lg p-4 bg-blue-900/10"
+                        >
+                          <div class="flex items-center gap-2 mb-3">
+                            <svg
+                              class="w-5 h-5 text-blue-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                              ></path>
+                            </svg>
+                            <h4 class="text-sm font-semibold text-blue-300">
+                              Текст рекомендации с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div class="space-y-3">
+                            <!-- Текст -->
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Текст рекомендации
+                              </label>
+                              <div class="text-xs text-gray-400 mb-2">
+                                Используйте [prof_recommendation_keyword] для
+                                вставки названия слота
+                              </div>
+                              <textarea
+                                v-model="form.prof_rating_recommendation_text"
+                                rows="5"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm resize-none"
+                                placeholder="[prof_recommendation_keyword] - это выдающийся slot для опытных игроков, которые ценят инновационную механику и готовы к высокой волатильности ради потенциала больших выигрышей. Новичкам рекомендуем начать с менее волатильных slotов. Этот slot станет идеальным выбором для тех, кто ищет адреналин и готов к серьёзной игре! 🚀"
+                              ></textarea>
+                            </div>
+
+                            <!-- Ключевое слово -->
+                            <div>
+                              <label
+                                class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Ключевое слово для [prof_recommendation_keyword]
+                              </label>
+                              <div class="text-xs text-gray-400 mb-2">
+                                Оставьте пустым, чтобы использовать название
+                                слота
+                              </div>
+                              <input
+                                v-model="
+                                  form.prof_rating_recommendation_keyword
+                                "
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                                placeholder="Gates of Olympus"
+                              />
+                            </div>
+
+                            <!-- Превью -->
+                            <div
+                              v-if="
+                                form.prof_rating_recommendation_text &&
+                                form.prof_rating_recommendation_text.includes(
+                                  '[prof_recommendation_keyword]',
+                                )
+                              "
+                              class="bg-blue-900/20 border border-blue-600/30 rounded-lg p-3"
+                            >
+                              <div
+                                class="text-xs font-semibold text-blue-300 mb-2"
+                              >
+                                📝 Превью:
+                              </div>
+                              <div class="text-sm text-gray-300">
+                                {{
+                                  form.prof_rating_recommendation_text.replace(
+                                    /\[prof_recommendation_keyword\]/g,
+                                    form.prof_rating_recommendation_keyword ||
+                                      'Gates of Olympus',
+                                  )
+                                }}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -9716,6 +10317,10 @@ const showProfRatingTitleSection = ref(false)
 const showProfRatingOverallSection = ref(false)
 const showProfRatingMetricsSection = ref(false)
 const showProfRatingExpertSection = ref(false)
+const showProfRatingWarningSection = ref(false)
+const showProfRatingProsSection = ref(false)
+const showProfRatingConsSection = ref(false)
+const showProfRatingRecommendationSection = ref(false)
 
 // Состояние для секции "Conclusion"
 const showConclusionSection = ref(false)
@@ -10182,8 +10787,47 @@ const form = ref({
   prof_rating_metric_5_score: '7.0',
 
   // Экспертное заключение
+  prof_rating_expert_title: 'Экспертное заключение', // Заголовок секции
+  prof_rating_expert_name: 'Сертифицированный эксперт', // Имя эксперта (badge)
+  prof_rating_expert_position:
+    'Ведущий аналитик игровой индустрии • 8+ лет опыта', // Должность
   prof_rating_expert_quote:
-    'Gates of Olympus представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯',
+    '[prof_expert_keyword] представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯',
+  prof_rating_expert_quote_keyword: '', // Ключевое слово для цитаты эксперта
+  // Предупреждение о волатильности
+  prof_rating_warning_title: 'Предупреждение о волатильности',
+  prof_rating_warning_text:
+    'Слот имеет высокую волатильность, что означает редкие, но крупные выигрыши. Рекомендуется иметь достаточный банкролл и играть ответственно. Устанавливайте лимиты и никогда не играйте деньгами, которые не можете позволить себе потерять. 💰',
+  // Преимущества (5 пунктов)
+  prof_rating_pros_title: '✅ ПРЕИМУЩЕСТВА',
+  prof_rating_pros_1_title: 'Инновационная механика Scatter Pays',
+  prof_rating_pros_1_desc: 'Революционная система выплат',
+  prof_rating_pros_2_title: 'Потенциал выигрыша x5,000',
+  prof_rating_pros_2_desc: 'Огромные возможности для выигрыша',
+  prof_rating_pros_3_title: 'Превосходная графика',
+  prof_rating_pros_3_desc: 'Визуальное наслаждение на высоком уровне',
+  prof_rating_pros_4_title: 'Каскадные выигрыши',
+  prof_rating_pros_4_desc: 'Множественные выплаты в одном спине',
+  prof_rating_pros_5_title: 'Мобильная оптимизация',
+  prof_rating_pros_5_desc: 'Идеальная работа на всех устройствах',
+  // Недостатки (5 пунктов)
+  prof_rating_cons_title: '❌ НЕДОСТАТКИ',
+  prof_rating_cons_1_title: 'Высокая волатильность',
+  prof_rating_cons_1_desc: 'Редкие, но крупные выигрыши',
+  prof_rating_cons_2_title: 'Требует большой банкролл',
+  prof_rating_cons_2_desc: 'Необходим солидный стартовый капитал',
+  prof_rating_cons_3_title: 'Не для новичков',
+  prof_rating_cons_3_desc: 'Сложно для консервативных игроков',
+  prof_rating_cons_4_title: 'Риск больших потерь',
+  prof_rating_cons_4_desc: 'Возможны продолжительные проигрыши',
+  prof_rating_cons_5_title: 'Высокая дисперсия',
+  prof_rating_cons_5_desc: 'Нестабильные результаты',
+  // Итоговая рекомендация
+  prof_rating_recommendation_title: 'Итоговая рекомендация',
+  prof_rating_recommendation_subtitle: 'От экспертов SlotQuest',
+  prof_rating_recommendation_text:
+    '[prof_recommendation_keyword] - это выдающийся slot для опытных игроков, которые ценят инновационную механику и готовы к высокой волатильности ради потенциала больших выигрышей. Новичкам рекомендуем начать с менее волатильных slotов. Этот slot станет идеальным выбором для тех, кто ищет адреналин и готов к серьёзной игре! 🚀',
+  prof_rating_recommendation_keyword: '', // Ключевое слово для итоговой рекомендации
 
   // === Секция "Conclusion" ===
   conclusion_title: 'Conclusion',
@@ -10941,7 +11585,43 @@ const saveSlot = async () => {
       'prof_rating_metric_5_name',
       'prof_rating_metric_5_score',
       // Экспертное заключение
-      'prof_rating_expert_quote',
+      'prof_rating_expert_title', // Заголовок секции
+      'prof_rating_expert_name', // Имя эксперта (badge)
+      'prof_rating_expert_position', // Должность эксперта
+      'prof_rating_expert_quote', // Цитата эксперта
+      'prof_rating_expert_quote_keyword', // Ключевое слово для цитаты
+      // Предупреждение о волатильности
+      'prof_rating_warning_title',
+      'prof_rating_warning_text',
+      // Преимущества
+      'prof_rating_pros_title',
+      'prof_rating_pros_1_title',
+      'prof_rating_pros_1_desc',
+      'prof_rating_pros_2_title',
+      'prof_rating_pros_2_desc',
+      'prof_rating_pros_3_title',
+      'prof_rating_pros_3_desc',
+      'prof_rating_pros_4_title',
+      'prof_rating_pros_4_desc',
+      'prof_rating_pros_5_title',
+      'prof_rating_pros_5_desc',
+      // Недостатки
+      'prof_rating_cons_title',
+      'prof_rating_cons_1_title',
+      'prof_rating_cons_1_desc',
+      'prof_rating_cons_2_title',
+      'prof_rating_cons_2_desc',
+      'prof_rating_cons_3_title',
+      'prof_rating_cons_3_desc',
+      'prof_rating_cons_4_title',
+      'prof_rating_cons_4_desc',
+      'prof_rating_cons_5_title',
+      'prof_rating_cons_5_desc',
+      // Итоговая рекомендация
+      'prof_rating_recommendation_title',
+      'prof_rating_recommendation_subtitle',
+      'prof_rating_recommendation_text',
+      'prof_rating_recommendation_keyword',
       // Секция "Заключение" (Conclusion)
       'conclusion_title',
       'conclusion_rating_title', // Заголовок Final Rating с плейсхолдером

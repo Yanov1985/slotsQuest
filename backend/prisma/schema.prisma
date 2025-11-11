@@ -258,30 +258,66 @@ model slots {
   review_3_date             String?
 
   // Профессиональная оценка - заголовки и общая информация
-  prof_rating_title          String?
-  prof_rating_subtitle       String?
-  prof_rating_overall_title  String?
-  prof_rating_overall_desc   String?
-  prof_rating_overall_score  String?
-  prof_rating_overall_stars  String?
+  prof_rating_title                   String?
+  prof_rating_subtitle                String?
+  prof_rating_overall_title           String?
+  prof_rating_overall_desc            String?
+  prof_rating_overall_score           String?
+  prof_rating_overall_stars           String?
   // Детальные метрики (5 категорий оценки)
-  prof_rating_metric_1_emoji String?
-  prof_rating_metric_1_name  String?
-  prof_rating_metric_1_score String?
-  prof_rating_metric_2_emoji String?
-  prof_rating_metric_2_name  String?
-  prof_rating_metric_2_score String?
-  prof_rating_metric_3_emoji String?
-  prof_rating_metric_3_name  String?
-  prof_rating_metric_3_score String?
-  prof_rating_metric_4_emoji String?
-  prof_rating_metric_4_name  String?
-  prof_rating_metric_4_score String?
-  prof_rating_metric_5_emoji String?
-  prof_rating_metric_5_name  String?
-  prof_rating_metric_5_score String?
+  prof_rating_metric_1_emoji          String?
+  prof_rating_metric_1_name           String?
+  prof_rating_metric_1_score          String?
+  prof_rating_metric_2_emoji          String?
+  prof_rating_metric_2_name           String?
+  prof_rating_metric_2_score          String?
+  prof_rating_metric_3_emoji          String?
+  prof_rating_metric_3_name           String?
+  prof_rating_metric_3_score          String?
+  prof_rating_metric_4_emoji          String?
+  prof_rating_metric_4_name           String?
+  prof_rating_metric_4_score          String?
+  prof_rating_metric_5_emoji          String?
+  prof_rating_metric_5_name           String?
+  prof_rating_metric_5_score          String?
   // Экспертное заключение
-  prof_rating_expert_quote   String?
+  prof_rating_expert_title            String? // Заголовок секции "Экспертное заключение"
+  prof_rating_expert_name             String? // Имя эксперта "Сертифицированный эксперт"
+  prof_rating_expert_position         String? // Должность "Ведущий аналитик игровой индустрии • 8+ лет опыта"
+  prof_rating_expert_quote            String? // Текст экспертной цитаты с плейсхолдером [prof_expert_keyword]
+  prof_rating_expert_quote_keyword    String? // Ключевое слово для замены в цитате эксперта
+  // Предупреждение о волатильности
+  prof_rating_warning_title           String? // Заголовок "Предупреждение о волатильности"
+  prof_rating_warning_text            String? // Текст предупреждения
+  // Преимущества (5 пунктов)
+  prof_rating_pros_title              String? // Заголовок секции преимуществ "✅ ПРЕИМУЩЕСТВА"
+  prof_rating_pros_1_title            String? // Заголовок преимущества 1
+  prof_rating_pros_1_desc             String? // Описание преимущества 1
+  prof_rating_pros_2_title            String?
+  prof_rating_pros_2_desc             String?
+  prof_rating_pros_3_title            String?
+  prof_rating_pros_3_desc             String?
+  prof_rating_pros_4_title            String?
+  prof_rating_pros_4_desc             String?
+  prof_rating_pros_5_title            String?
+  prof_rating_pros_5_desc             String?
+  // Недостатки (5 пунктов)
+  prof_rating_cons_title              String? // Заголовок секции недостатков "❌ НЕДОСТАТКИ"
+  prof_rating_cons_1_title            String? // Заголовок недостатка 1
+  prof_rating_cons_1_desc             String? // Описание недостатка 1
+  prof_rating_cons_2_title            String?
+  prof_rating_cons_2_desc             String?
+  prof_rating_cons_3_title            String?
+  prof_rating_cons_3_desc             String?
+  prof_rating_cons_4_title            String?
+  prof_rating_cons_4_desc             String?
+  prof_rating_cons_5_title            String?
+  prof_rating_cons_5_desc             String?
+  // Итоговая рекомендация
+  prof_rating_recommendation_title    String? // Заголовок "Итоговая рекомендация"
+  prof_rating_recommendation_subtitle String? // Подзаголовок "От экспертов SlotQuest"
+  prof_rating_recommendation_text     String? // Текст с плейсхолдером [prof_recommendation_keyword]
+  prof_rating_recommendation_keyword  String? // Ключевое слово для замены в тексте
 
   // Секция "Заключение" (Conclusion)
   conclusion_title           String?
