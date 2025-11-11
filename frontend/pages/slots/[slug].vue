@@ -5249,18 +5249,26 @@
                 <h3
                   class="text-2xl font-bold bg-gradient-to-r from-slate-700 to-indigo-800 bg-clip-text text-transparent"
                 >
-                  Итоговая оценка {{ slot.name || 'slotа' }}
+                  {{
+                    processConclusionRatingTitle(
+                      slot.conclusion_rating_title,
+                      slot.conclusion_rating_keyword,
+                      slot.name,
+                    )
+                  }}
                 </h3>
               </div>
 
               <div class="space-y-4">
-                <p
-                  class="text-lg text-slate-700 leading-relaxed font-medium"
-                  v-html="
-                    slot.conclusion_text_1 ||
-                    `${slot.name || 'Этот слот'} заслуженно считается одним из <span class='text-indigo-600 font-semibold'>лучших слотов от Pragmatic Play</span>. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до <span class='text-emerald-600 font-bold'>x5,000</span> и превосходной графики делают его обязательным для всех любителей азартных игр.`
-                  "
-                ></p>
+                <p class="text-lg text-slate-700 leading-relaxed font-medium">
+                  {{
+                    processConclusionText1(
+                      slot.conclusion_text_1,
+                      slot.conclusion_text_1_keyword,
+                      slot.name,
+                    )
+                  }}
+                </p>
                 <div
                   class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-l-4 border-indigo-400"
                 >
@@ -5298,7 +5306,7 @@
                   </svg>
                 </div>
                 <h4 class="text-lg font-bold text-emerald-800">
-                  Кому подходит
+                  {{ slot.conclusion_suitable_title || 'Кому подходит' }}
                 </h4>
               </div>
               <div class="space-y-3">
@@ -5349,7 +5357,9 @@
                     ></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-bold text-amber-800">Важно помнить</h4>
+                <h4 class="text-lg font-bold text-amber-800">
+                  {{ slot.conclusion_warning_title || 'Важно помнить' }}
+                </h4>
               </div>
               <div class="space-y-3">
                 <div class="flex items-center gap-3 text-amber-700">
@@ -5414,21 +5424,20 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="text-xl font-bold text-white">Финальный вердикт</h3>
+                <h3 class="text-xl font-bold text-white">
+                  {{ slot.conclusion_verdict_title || 'Финальный вердикт' }}
+                </h3>
               </div>
-              <p class="text-white/90 leading-relaxed text-lg">
-                <span class="font-semibold text-white">Gates of Olympus</span> -
-                это не просто slot, это
-                <span class="text-yellow-300 font-semibold"
-                  >новая эра в мире азартных игр</span
-                >. Если вы готовы к вызову и хотите испытать настоящий адреналин
-                от игры, этот slot создан именно для вас.
-                <span class="text-red-300 font-medium"
-                  >Помните: играйте ответственно и наслаждайтесь
-                  процессом!</span
-                >
-                🎰✨
-              </p>
+              <p
+                class="text-white/90 leading-relaxed text-lg"
+                v-html="
+                  processConclusionVerdict(
+                    slot.conclusion_verdict_text,
+                    slot.conclusion_verdict_keyword,
+                    slot.name,
+                  )
+                "
+              ></p>
             </div>
           </div>
         </section>
@@ -6740,6 +6749,97 @@ const processCtaSubtitle = (subtitle, keyword, slotName) => {
 
   // Если плейсхолдера нет, возвращаем subtitle как есть
   return subtitle
+}
+
+/**
+ * 🎯 Обработка заголовка Final Rating в Conclusion с ключевым словом
+ *
+ * Что делает: Заменяет [conclusion_keyword] на значение из conclusion_rating_keyword или название слота
+ *
+ * Пример: "Итоговая оценка [conclusion_keyword]" → "Итоговая оценка Rich Wilde and the Book of Dead"
+ *
+ * @param {string} title - Шаблон заголовка с плейсхолдером [conclusion_keyword]
+ * @param {string} keyword - Ключевое слово для замены (conclusion_rating_keyword)
+ * @param {string} slotName - Название слота (fallback если keyword не указан)
+ * @returns {string} Обработанный заголовок
+ */
+const processConclusionRatingTitle = (title, keyword, slotName) => {
+  // Если title не указан, используем дефолтный
+  if (!title) {
+    return `Итоговая оценка ${keyword || slotName || 'slotа'}`
+  }
+
+  // Если в title есть плейсхолдер [conclusion_keyword], заменяем его
+  if (title.includes('[conclusion_keyword]')) {
+    const replacement = keyword || slotName || 'slotа'
+    return title.replace(/\[conclusion_keyword\]/g, replacement)
+  }
+
+  // Если плейсхолдера нет, возвращаем title как есть
+  return title
+}
+
+/**
+ * 🎯 Обработка Paragraph 1 в Conclusion с ключевым словом
+ *
+ * Что делает: Заменяет [conclusion_text_keyword] на значение из conclusion_text_1_keyword или название слота
+ * БЕЗ ЦВЕТОВОГО ВЫДЕЛЕНИЯ - весь текст одного цвета
+ *
+ * Пример: "[conclusion_text_keyword] заслуженно считается..." → "Rich Wilde and the Book of Dead заслуженно считается..."
+ *
+ * @param {string} text - Текст с плейсхолдером [conclusion_text_keyword]
+ * @param {string} keyword - Ключевое слово для замены (conclusion_text_1_keyword)
+ * @param {string} slotName - Название слота (fallback если keyword не указан)
+ * @returns {string} Обработанный текст БЕЗ HTML тегов (обычный текст без цветового выделения)
+ */
+const processConclusionText1 = (text, keyword, slotName) => {
+  // Если text не указан, используем дефолтный БЕЗ цветовых span'ов
+  if (!text) {
+    const name = keyword || slotName || 'Этот слот'
+    return `${name} заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.`
+  }
+
+  // Если в text есть плейсхолдер [conclusion_text_keyword], заменяем его
+  if (text.includes('[conclusion_text_keyword]')) {
+    const replacement = keyword || slotName || 'Этот слот'
+    return text.replace(/\[conclusion_text_keyword\]/g, replacement)
+  }
+
+  // Если плейсхолдера нет, возвращаем text как есть
+  return text
+}
+
+/**
+ * 🎯 Обработка финального вердикта в Conclusion с ключевым словом
+ *
+ * Что делает: Заменяет [conclusion_verdict_keyword] на значение из conclusion_verdict_keyword или название слота
+ * Дополнительно добавляет стилизацию для визуального выделения ключевого слова
+ *
+ * Пример: "[conclusion_verdict_keyword] - это не просто slot..." →
+ *         "<span class='font-semibold text-white'>Gates of Olympus</span> - это не просто slot..."
+ *
+ * @param {string} text - Текст вердикта с плейсхолдером [conclusion_verdict_keyword]
+ * @param {string} keyword - Ключевое слово для замены (conclusion_verdict_keyword)
+ * @param {string} slotName - Название слота (fallback если keyword не указан)
+ * @returns {string} Обработанный текст с HTML стилизацией
+ */
+const processConclusionVerdict = (text, keyword, slotName) => {
+  // Если text не указан, используем дефолтный
+  if (!text) {
+    const name = keyword || slotName || 'Этот слот'
+    return `<span class="font-semibold text-white">${name}</span> - это не просто slot, это <span class="text-yellow-300 font-semibold">новая эра в мире азартных игр</span>. Если вы готовы к вызову и хотите испытать настоящий адреналин от игры, этот slot создан именно для вас. <span class="text-red-300 font-medium">Помните: играйте ответственно и наслаждайтесь процессом!</span> 🎰✨`
+  }
+
+  // Если в text есть плейсхолдер [conclusion_verdict_keyword], заменяем его с стилизацией
+  if (text.includes('[conclusion_verdict_keyword]')) {
+    const replacement = keyword || slotName || 'Этот слот'
+    // Оборачиваем ключевое слово в span для визуального выделения
+    const styledReplacement = `<span class="font-semibold text-white">${replacement}</span>`
+    return text.replace(/\[conclusion_verdict_keyword\]/g, styledReplacement)
+  }
+
+  // Если плейсхолдера нет, возвращаем text как есть
+  return text
 }
 
 /**

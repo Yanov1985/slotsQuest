@@ -5625,19 +5625,212 @@
                         </button>
                       </div>
                       <div v-show="showConclusionTextSection" class="space-y-4">
-                        <div>
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                        <!-- Заголовок с ключевым словом -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-purple-900/20 to-blue-900/20 rounded-lg border border-purple-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-purple-400 text-lg">✨</span>
+                            <h4 class="text-sm font-bold text-purple-300">
+                              Заголовок Final Rating с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-blue-900/30 p-3 rounded-lg border border-blue-500/30 space-y-1"
                           >
-                            Paragraph 1
-                          </label>
-                          <textarea
-                            v-model="form.conclusion_text_1"
-                            rows="3"
-                            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 text-sm resize-none"
-                            placeholder="Этот слот заслуженно считается одним из лучших..."
-                          ></textarea>
+                            <div class="font-bold text-blue-300">
+                              📝 Как использовать:
+                            </div>
+                            <div class="text-gray-400">
+                              Используйте переменную
+                              <span
+                                class="font-mono text-purple-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_keyword]</span
+                              >
+                              в тексте заголовка
+                            </div>
+                            <div class="text-gray-400">
+                              Пример: "Итоговая оценка
+                              <span
+                                class="font-mono text-purple-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_keyword]</span
+                              >"
+                            </div>
+                          </div>
+
+                          <!-- Шаблон заголовка -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Шаблон заголовка
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Используйте [conclusion_keyword] для вставки
+                              ключевого слова
+                            </div>
+                            <input
+                              v-model="form.conclusion_rating_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-sm"
+                              placeholder="Итоговая оценка [conclusion_keyword]"
+                            />
+                          </div>
+
+                          <!-- Ключевое слово -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Ключевое слово для [conclusion_keyword]
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Это слово заменит переменную
+                                [conclusion_keyword] в заголовке
+                              </div>
+                              <div class="text-blue-300">
+                                Например: "Gates of Olympus" или "Rich Wilde and
+                                the Book of Dead"
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.conclusion_rating_keyword"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                              placeholder="Gates of Olympus"
+                            />
+                          </div>
+
+                          <!-- Превью -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Превью результата:
+                            </div>
+                            <div class="text-lg font-bold text-white">
+                              {{
+                                (
+                                  form.conclusion_rating_title ||
+                                  'Итоговая оценка [conclusion_keyword]'
+                                ).replace(
+                                  '[conclusion_keyword]',
+                                  form.conclusion_rating_keyword ||
+                                    form.name ||
+                                    '[conclusion_keyword]',
+                                )
+                              }}
+                            </div>
+                          </div>
                         </div>
+
+                        <!-- Paragraph 1 с ключевым словом -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg border border-blue-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-blue-400 text-lg">✨</span>
+                            <h4 class="text-sm font-bold text-blue-300">
+                              Paragraph 1 с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-indigo-900/30 p-3 rounded-lg border border-indigo-500/30 space-y-1"
+                          >
+                            <div class="font-bold text-indigo-300">
+                              📝 Как использовать:
+                            </div>
+                            <div class="text-gray-400">
+                              Используйте переменную
+                              <span
+                                class="font-mono text-blue-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_text_keyword]</span
+                              >
+                              в начале текста вместо названия слота
+                            </div>
+                            <div class="text-gray-400">
+                              Пример: "
+                              <span
+                                class="font-mono text-blue-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_text_keyword]</span
+                              >
+                              заслуженно считается одним из лучших..."
+                            </div>
+                          </div>
+
+                          <!-- Текст параграфа -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Paragraph 1
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Используйте [conclusion_text_keyword] для вставки
+                              ключевого слова
+                            </div>
+                            <textarea
+                              v-model="form.conclusion_text_1"
+                              rows="3"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm resize-none"
+                              placeholder="[conclusion_text_keyword] заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр."
+                            ></textarea>
+                          </div>
+
+                          <!-- Ключевое слово -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Ключевое слово для [conclusion_text_keyword]
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Это слово заменит переменную
+                                [conclusion_text_keyword] в тексте
+                              </div>
+                              <div class="text-indigo-300">
+                                Например: "Gates of Olympus" или "Rich Wilde and
+                                the Book of Dead"
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.conclusion_text_1_keyword"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-blue-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              placeholder="Rich Wilde and the Book of Dead"
+                            />
+                          </div>
+
+                          <!-- Превью -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Превью результата:
+                            </div>
+                            <div class="text-sm text-white leading-relaxed">
+                              {{
+                                (
+                                  form.conclusion_text_1 ||
+                                  '[conclusion_text_keyword] заслуженно считается одним из лучших...'
+                                ).replace(
+                                  /\[conclusion_text_keyword\]/g,
+                                  form.conclusion_text_1_keyword ||
+                                    form.name ||
+                                    '[conclusion_text_keyword]',
+                                )
+                              }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Paragraph 2 -->
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -5694,6 +5887,23 @@
                         v-show="showConclusionSuitableSection"
                         class="space-y-3"
                       >
+                        <!-- Заголовок секции -->
+                        <div
+                          class="p-3 bg-emerald-900/20 rounded-lg border border-emerald-500/30"
+                        >
+                          <label
+                            class="block text-sm font-medium text-emerald-300 mb-2"
+                          >
+                            📌 Заголовок секции "Кому подходит"
+                          </label>
+                          <input
+                            v-model="form.conclusion_suitable_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#161A21] border border-emerald-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-sm"
+                            placeholder="Кому подходит"
+                          />
+                        </div>
+
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -5781,6 +5991,23 @@
                         v-show="showConclusionWarningSection"
                         class="space-y-3"
                       >
+                        <!-- Заголовок секции -->
+                        <div
+                          class="p-3 bg-orange-900/20 rounded-lg border border-orange-500/30"
+                        >
+                          <label
+                            class="block text-sm font-medium text-orange-300 mb-2"
+                          >
+                            ⚠️ Заголовок секции "Важно помнить"
+                          </label>
+                          <input
+                            v-model="form.conclusion_warning_title"
+                            type="text"
+                            class="w-full px-3 py-2 bg-[#161A21] border border-orange-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm"
+                            placeholder="Важно помнить"
+                          />
+                        </div>
+
                         <div>
                           <label
                             class="block text-sm font-medium text-[#E5E7EB] mb-2"
@@ -5828,6 +6055,169 @@
                             class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
                             placeholder="Устанавливайте лимиты"
                           />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Финальный вердикт -->
+                    <div
+                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#6366F1]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#6366F1] rounded-xl flex items-center justify-center"
+                          >
+                            <span class="text-2xl">⭐</span>
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Финальный вердикт
+                            </h3>
+                            <p class="text-sm text-[#8B5CF6]">
+                              Заключительный блок с ключевым словом
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="
+                            showConclusionVerdictSection =
+                              !showConclusionVerdictSection
+                          "
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          :aria-expanded="showConclusionVerdictSection"
+                        >
+                          {{
+                            showConclusionVerdictSection ? 'Скрыть' : 'Показать'
+                          }}
+                        </button>
+                      </div>
+                      <div
+                        v-show="showConclusionVerdictSection"
+                        class="space-y-4"
+                      >
+                        <!-- Система ключевых слов для финального вердикта -->
+                        <div
+                          class="space-y-4 p-4 bg-gradient-to-r from-violet-900/20 to-indigo-900/20 rounded-lg border border-violet-500/30"
+                        >
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="text-violet-400 text-lg">✨</span>
+                            <h4 class="text-sm font-bold text-violet-300">
+                              Финальный вердикт с ключевым словом
+                            </h4>
+                          </div>
+
+                          <div
+                            class="text-xs text-gray-300 bg-indigo-900/30 p-3 rounded-lg border border-indigo-500/30 space-y-1"
+                          >
+                            <div class="font-bold text-indigo-300">
+                              📝 Как использовать:
+                            </div>
+                            <div class="text-gray-400">
+                              Используйте переменную
+                              <span
+                                class="font-mono text-violet-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_verdict_keyword]</span
+                              >
+                              вместо названия слота в тексте
+                            </div>
+                            <div class="text-gray-400">
+                              Пример: "
+                              <span
+                                class="font-mono text-violet-400 bg-gray-800 px-1 rounded"
+                                >[conclusion_verdict_keyword]</span
+                              >
+                              - это не просто slot, это новая эра..."
+                            </div>
+                          </div>
+
+                          <!-- Заголовок секции -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Заголовок секции
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Например: "Финальный вердикт" или "Наш вердикт"
+                            </div>
+                            <input
+                              v-model="form.conclusion_verdict_title"
+                              type="text"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-violet-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-sm"
+                              placeholder="Финальный вердикт"
+                            />
+                          </div>
+
+                          <!-- Текст вердикта -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Текст финального вердикта
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2">
+                              Используйте [conclusion_verdict_keyword] для
+                              вставки ключевого слова
+                            </div>
+                            <textarea
+                              v-model="form.conclusion_verdict_text"
+                              rows="4"
+                              class="w-full px-3 py-2 bg-[#161A21] border border-violet-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all text-sm resize-none"
+                              placeholder="[conclusion_verdict_keyword] - это не просто slot, это новая эра в мире азартных игр. Если вы готовы к вызову и хотите испытать настоящий адреналин от игры, этот slot создан именно для вас. Помните: играйте ответственно и наслаждайтесь процессом! 🎰"
+                            ></textarea>
+                          </div>
+
+                          <!-- Ключевое слово -->
+                          <div>
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
+                            >
+                              Ключевое слово для [conclusion_verdict_keyword]
+                            </label>
+                            <div class="text-xs text-gray-400 mb-2 space-y-1">
+                              <div>
+                                📌 Это слово заменит переменную
+                                [conclusion_verdict_keyword] в тексте
+                              </div>
+                              <div class="text-indigo-300">
+                                Например: "Gates of Olympus" или "Rich Wilde and
+                                the Book of Dead"
+                              </div>
+                            </div>
+                            <input
+                              v-model="form.conclusion_verdict_keyword"
+                              type="text"
+                              maxlength="200"
+                              class="w-full px-4 py-3 bg-gray-700 border border-violet-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+                              placeholder="Gates of Olympus"
+                            />
+                          </div>
+
+                          <!-- Превью -->
+                          <div
+                            class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
+                          >
+                            <div class="text-xs text-gray-400 mb-1">
+                              Превью результата:
+                            </div>
+                            <div class="text-sm text-white leading-relaxed">
+                              {{
+                                (
+                                  form.conclusion_verdict_text ||
+                                  '[conclusion_verdict_keyword] - это не просто slot, это новая эра в мире азартных игр.'
+                                ).replace(
+                                  /\[conclusion_verdict_keyword\]/g,
+                                  form.conclusion_verdict_keyword ||
+                                    form.name ||
+                                    '[conclusion_verdict_keyword]',
+                                )
+                              }}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -9333,6 +9723,7 @@ const showConclusionTitleSection = ref(false)
 const showConclusionTextSection = ref(false)
 const showConclusionSuitableSection = ref(false)
 const showConclusionWarningSection = ref(false)
+const showConclusionVerdictSection = ref(false)
 
 // Состояние для секции "Время побеждать!" (CTA)
 const showCtaSection = ref(false)
@@ -9797,23 +10188,36 @@ const form = ref({
   // === Секция "Conclusion" ===
   conclusion_title: 'Conclusion',
 
-  // Final rating
+  // Final rating - заголовок с ключевым словом
+  conclusion_rating_title: 'Итоговая оценка [conclusion_keyword]',
+  conclusion_rating_keyword: '', // Ключевое слово для Final Rating заголовка
+
+  // Final rating - тексты
   conclusion_text_1:
-    'Этот слот заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.',
+    '[conclusion_text_keyword] заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.',
+  conclusion_text_1_keyword: '', // Ключевое слово для Paragraph 1
   conclusion_text_2:
     'Революционная система выплат, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана, открывает новые горизонты в мире видеослотов. Каскадные выигрыши и множители создают уникальную атмосферу постоянного ожидания больших выплат.',
 
-  // Suitable for (4 пункта)
+  // Suitable for (заголовок + 4 пункта)
+  conclusion_suitable_title: 'Кому подходит',
   conclusion_suitable_1: 'Опытным игрокам',
   conclusion_suitable_2: 'Любителям высокой волатильности',
   conclusion_suitable_3: 'Игрокам с большим банкроллом',
   conclusion_suitable_4: 'Поклонникам инноваций',
 
-  // Important to remember (4 пункта)
+  // Important to remember (заголовок + 4 пункта)
+  conclusion_warning_title: 'Важно помнить',
   conclusion_warning_1: 'Высокая волатильность',
   conclusion_warning_2: 'Нужен большой банкролл',
   conclusion_warning_3: 'Играйте ответственно',
   conclusion_warning_4: 'Устанавливайте лимиты',
+
+  // Финальный вердикт
+  conclusion_verdict_title: 'Финальный вердикт', // Заголовок секции
+  conclusion_verdict_text:
+    '[conclusion_verdict_keyword] - это не просто slot, это новая эра в мире азартных игр. Если вы готовы к вызову и хотите испытать настоящий адреналин от игры, этот slot создан именно для вас. Помните: играйте ответственно и наслаждайтесь процессом! 🎰',
+  conclusion_verdict_keyword: '', // Ключевое слово для финального вердикта
 
   // === Секция "Время побеждать!" ===
   // Headings
@@ -10540,16 +10944,24 @@ const saveSlot = async () => {
       'prof_rating_expert_quote',
       // Секция "Заключение" (Conclusion)
       'conclusion_title',
+      'conclusion_rating_title', // Заголовок Final Rating с плейсхолдером
+      'conclusion_rating_keyword', // Ключевое слово для Final Rating
       'conclusion_text_1',
+      'conclusion_text_1_keyword', // Ключевое слово для Paragraph 1
       'conclusion_text_2',
+      'conclusion_suitable_title', // Заголовок секции "Кому подходит"
       'conclusion_suitable_1',
       'conclusion_suitable_2',
       'conclusion_suitable_3',
       'conclusion_suitable_4',
+      'conclusion_warning_title', // Заголовок секции "Важно помнить"
       'conclusion_warning_1',
       'conclusion_warning_2',
       'conclusion_warning_3',
       'conclusion_warning_4',
+      'conclusion_verdict_title', // Заголовок секции Финальный вердикт
+      'conclusion_verdict_text', // Текст финального вердикта
+      'conclusion_verdict_keyword', // Ключевое слово для финального вердикта
       // Секция CTA "Время побеждать"
       'cta_title',
       'cta_subtitle',

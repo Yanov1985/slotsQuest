@@ -284,19 +284,29 @@ model slots {
   prof_rating_expert_quote   String?
 
   // Секция "Заключение" (Conclusion)
-  conclusion_title      String?
-  conclusion_text_1     String?
-  conclusion_text_2     String?
-  // Кому подходит (4 пункта)
-  conclusion_suitable_1 String?
-  conclusion_suitable_2 String?
-  conclusion_suitable_3 String?
-  conclusion_suitable_4 String?
-  // Важно помнить (4 пункта)
-  conclusion_warning_1  String?
-  conclusion_warning_2  String?
-  conclusion_warning_3  String?
-  conclusion_warning_4  String?
+  conclusion_title           String?
+  // Final Rating - заголовок с ключевым словом
+  conclusion_rating_title    String? // Шаблон заголовка "Итоговая оценка [conclusion_keyword]"
+  conclusion_rating_keyword  String? // Ключевое слово для использования в заголовке Final Rating
+  conclusion_text_1          String?
+  conclusion_text_1_keyword  String? // Ключевое слово для использования в начале Paragraph 1 (заменяет [conclusion_text_keyword])
+  conclusion_text_2          String?
+  // Кому подходит (заголовок + 4 пункта)
+  conclusion_suitable_title  String? // Заголовок секции "Кому подходит"
+  conclusion_suitable_1      String?
+  conclusion_suitable_2      String?
+  conclusion_suitable_3      String?
+  conclusion_suitable_4      String?
+  // Важно помнить (заголовок + 4 пункта)
+  conclusion_warning_title   String? // Заголовок секции "Важно помнить"
+  conclusion_warning_1       String?
+  conclusion_warning_2       String?
+  conclusion_warning_3       String?
+  conclusion_warning_4       String?
+  // Финальный вердикт
+  conclusion_verdict_title   String? // Заголовок секции "Финальный вердикт"
+  conclusion_verdict_text    String? // Текст финального вердикта с плейсхолдером [conclusion_verdict_keyword]
+  conclusion_verdict_keyword String? // Ключевое слово для замены в тексте финального вердикта
 
   // Секция CTA "Время побеждать"
   cta_title             String?
