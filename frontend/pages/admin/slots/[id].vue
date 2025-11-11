@@ -4178,59 +4178,262 @@
                           {{ showReviewsStatsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
-                      <div v-show="showReviewsStatsSection" class="space-y-4">
-                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                          <div>
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >
-                              Общий рейтинг
-                            </label>
-                            <input
-                              v-model="form.reviews_overall_rating"
-                              type="text"
-                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                              placeholder="4.3"
-                            />
+                      <div v-show="showReviewsStatsSection" class="space-y-6">
+                        <!-- Карточка 1: Общий рейтинг -->
+                        <div
+                          class="border border-yellow-600/30 rounded-lg p-4 bg-yellow-900/10"
+                        >
+                          <div
+                            class="text-sm font-semibold text-yellow-300 mb-3"
+                          >
+                            Карточка 1: Общий рейтинг
                           </div>
-                          <div>
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >
-                              Всего отзывов
-                            </label>
-                            <input
-                              v-model="form.reviews_total_count"
-                              type="text"
-                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                              placeholder="1.2K+"
-                            />
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Значение (число)
+                              </label>
+                              <input
+                                v-model="form.reviews_overall_rating"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-sm"
+                                placeholder="4.3"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="form.reviews_overall_label"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-sm"
+                                placeholder="Общий рейтинг"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Звёзды (текст)
+                              </label>
+                              <input
+                                v-model="form.reviews_overall_stars"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-yellow-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-yellow-500 transition-all text-sm"
+                                placeholder="★★★★☆"
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >
-                              Положительные (%)
-                            </label>
-                            <input
-                              v-model="form.reviews_positive_percent"
-                              type="text"
-                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                              placeholder="75%"
-                            />
+                        </div>
+
+                        <!-- Карточка 2: Всего отзывов -->
+                        <div
+                          class="border border-green-600/30 rounded-lg p-4 bg-green-900/10"
+                        >
+                          <div
+                            class="text-sm font-semibold text-green-300 mb-3"
+                          >
+                            Карточка 2: Всего отзывов
                           </div>
-                          <div>
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-2"
-                            >
-                              Рекомендуют (%)
-                            </label>
-                            <input
-                              v-model="form.reviews_recommend_percent"
-                              type="text"
-                              class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#F59E0B] focus:border-[#F59E0B] transition-all duration-200 text-sm"
-                              placeholder="68%"
-                            />
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Количество
+                              </label>
+                              <input
+                                v-model="form.reviews_total_count"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-green-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-green-500 transition-all text-sm"
+                                placeholder="1.2K+"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="form.reviews_total_label"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-green-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-green-500 transition-all text-sm"
+                                placeholder="Всего отзывов"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Подпись
+                              </label>
+                              <input
+                                v-model="form.reviews_total_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-green-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-green-500 transition-all text-sm"
+                                placeholder="активное сообщество"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Карточка 3: Положительные -->
+                        <div
+                          class="border border-blue-600/30 rounded-lg p-4 bg-blue-900/10"
+                        >
+                          <div class="text-sm font-semibold text-blue-300 mb-3">
+                            Карточка 3: Положительные
+                          </div>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Процент
+                              </label>
+                              <input
+                                v-model="form.reviews_positive_percent"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all text-sm"
+                                placeholder="75%"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="form.reviews_positive_label"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all text-sm"
+                                placeholder="Положительные"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Подпись
+                              </label>
+                              <input
+                                v-model="form.reviews_positive_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-blue-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all text-sm"
+                                placeholder="4-5 звёзд"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Карточка 4: Рекомендуют -->
+                        <div
+                          class="border border-purple-600/30 rounded-lg p-4 bg-purple-900/10"
+                        >
+                          <div
+                            class="text-sm font-semibold text-purple-300 mb-3"
+                          >
+                            Карточка 4: Рекомендуют
+                          </div>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Процент
+                              </label>
+                              <input
+                                v-model="form.reviews_recommend_percent"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                                placeholder="68%"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Заголовок
+                              </label>
+                              <input
+                                v-model="form.reviews_recommend_label"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                                placeholder="Рекомендуют"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                Подпись
+                              </label>
+                              <input
+                                v-model="form.reviews_recommend_desc"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-purple-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all text-sm"
+                                placeholder="друзьям играть"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Заголовки секций -->
+                        <div
+                          class="border border-indigo-600/30 rounded-lg p-4 bg-indigo-900/10"
+                        >
+                          <div
+                            class="text-sm font-semibold text-indigo-300 mb-3"
+                          >
+                            Заголовки секций
+                          </div>
+                          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                "Распределение оценок"
+                              </label>
+                              <input
+                                v-model="form.reviews_distribution_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-indigo-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                                placeholder="Распределение оценок"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                "Анализ настроений"
+                              </label>
+                              <input
+                                v-model="form.reviews_sentiments_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-indigo-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                                placeholder="Анализ настроений"
+                              />
+                            </div>
+                            <div>
+                              <label
+                                class="block text-xs font-medium text-[#E5E7EB] mb-2"
+                              >
+                                "Избранные отзывы"
+                              </label>
+                              <input
+                                v-model="form.reviews_featured_title"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-indigo-600 rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                                placeholder="Избранные отзывы игроков"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -10688,11 +10891,23 @@ const form = ref({
   reviews_title: 'Отзывы игроков',
   reviews_subtitle: 'Реальные мнения от сообщества слот-игроков',
 
-  // Общая статистика
+  // Карточки статистики (Общая статистика)
   reviews_overall_rating: '4.3',
+  reviews_overall_label: 'Общий рейтинг',
+  reviews_overall_stars: '★★★★☆',
   reviews_total_count: '1.2K+',
+  reviews_total_label: 'Всего отзывов',
+  reviews_total_desc: 'активное сообщество',
   reviews_positive_percent: '75%',
+  reviews_positive_label: 'Положительные',
+  reviews_positive_desc: '4-5 звёзд',
   reviews_recommend_percent: '68%',
+  reviews_recommend_label: 'Рекомендуют',
+  reviews_recommend_desc: 'друзьям играть',
+  // Заголовки секций
+  reviews_distribution_title: 'Распределение оценок',
+  reviews_sentiments_title: 'Анализ настроений',
+  reviews_featured_title: 'Избранные отзывы игроков',
 
   // Распределение оценок
   reviews_5_stars_percent: '45%',
@@ -11512,10 +11727,23 @@ const saveSlot = async () => {
       // Отзывы игроков - заголовки и статистика
       'reviews_title',
       'reviews_subtitle',
+      // Карточки статистики
       'reviews_overall_rating',
+      'reviews_overall_label',
+      'reviews_overall_stars',
       'reviews_total_count',
+      'reviews_total_label',
+      'reviews_total_desc',
       'reviews_positive_percent',
+      'reviews_positive_label',
+      'reviews_positive_desc',
       'reviews_recommend_percent',
+      'reviews_recommend_label',
+      'reviews_recommend_desc',
+      // Заголовки секций
+      'reviews_distribution_title',
+      'reviews_sentiments_title',
+      'reviews_featured_title',
       // Распределение оценок
       'reviews_5_stars_percent',
       'reviews_5_stars_count',

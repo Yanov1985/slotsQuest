@@ -205,57 +205,70 @@ model slots {
   strategy_advanced_4     String?
 
   // Отзывы игроков - заголовки и статистика
-  reviews_title             String?
-  reviews_subtitle          String?
-  reviews_overall_rating    String?
-  reviews_total_count       String?
-  reviews_positive_percent  String?
-  reviews_recommend_percent String?
+  reviews_title              String?
+  reviews_subtitle           String?
+  // Карточки статистики (4 карточки)
+  reviews_overall_rating     String? // Значение рейтинга (4.3)
+  reviews_overall_label      String? // Заголовок "Общий рейтинг"
+  reviews_overall_stars      String? // Звёзды "★★★★☆"
+  reviews_total_count        String? // Количество отзывов (1.2K+)
+  reviews_total_label        String? // Заголовок "Всего отзывов"
+  reviews_total_desc         String? // Подпись "активное сообщество"
+  reviews_positive_percent   String? // Процент (75%)
+  reviews_positive_label     String? // Заголовок "Положительные"
+  reviews_positive_desc      String? // Подпись "4-5 звёзд"
+  reviews_recommend_percent  String? // Процент (68%)
+  reviews_recommend_label    String? // Заголовок "Рекомендуют"
+  reviews_recommend_desc     String? // Подпись "друзьям играть"
+  // Заголовки секций
+  reviews_distribution_title String? // "Распределение оценок"
+  reviews_sentiments_title   String? // "Анализ настроений"
+  reviews_featured_title     String? // "Избранные отзывы игроков"
   // Распределение оценок (5-1 звезда)
-  reviews_5_stars_percent   String?
-  reviews_5_stars_count     String?
-  reviews_4_stars_percent   String?
-  reviews_4_stars_count     String?
-  reviews_3_stars_percent   String?
-  reviews_3_stars_count     String?
-  reviews_2_stars_percent   String?
-  reviews_2_stars_count     String?
-  reviews_1_stars_percent   String?
-  reviews_1_stars_count     String?
+  reviews_5_stars_percent    String?
+  reviews_5_stars_count      String?
+  reviews_4_stars_percent    String?
+  reviews_4_stars_count      String?
+  reviews_3_stars_percent    String?
+  reviews_3_stars_count      String?
+  reviews_2_stars_percent    String?
+  reviews_2_stars_count      String?
+  reviews_1_stars_percent    String?
+  reviews_1_stars_count      String?
   // Ключевые моменты из отзывов (sentiment analysis)
-  reviews_sentiment_1_title String?
-  reviews_sentiment_1_desc  String?
-  reviews_sentiment_2_title String?
-  reviews_sentiment_2_desc  String?
-  reviews_sentiment_3_title String?
-  reviews_sentiment_3_desc  String?
-  reviews_sentiment_4_title String?
-  reviews_sentiment_4_desc  String?
+  reviews_sentiment_1_title  String?
+  reviews_sentiment_1_desc   String?
+  reviews_sentiment_2_title  String?
+  reviews_sentiment_2_desc   String?
+  reviews_sentiment_3_title  String?
+  reviews_sentiment_3_desc   String?
+  reviews_sentiment_4_title  String?
+  reviews_sentiment_4_desc   String?
   // Индивидуальные отзывы (3 основных отзыва)
-  review_1_author           String?
-  review_1_avatar_letter    String?
-  review_1_rating           String?
-  review_1_badge            String?
-  review_1_text             String?
-  review_1_likes            String?
-  review_1_replies          String?
-  review_1_date             String?
-  review_2_author           String?
-  review_2_avatar_letter    String?
-  review_2_rating           String?
-  review_2_badge            String?
-  review_2_text             String?
-  review_2_likes            String?
-  review_2_replies          String?
-  review_2_date             String?
-  review_3_author           String?
-  review_3_avatar_letter    String?
-  review_3_rating           String?
-  review_3_badge            String?
-  review_3_text             String?
-  review_3_likes            String?
-  review_3_replies          String?
-  review_3_date             String?
+  review_1_author            String?
+  review_1_avatar_letter     String?
+  review_1_rating            String?
+  review_1_badge             String?
+  review_1_text              String?
+  review_1_likes             String?
+  review_1_replies           String?
+  review_1_date              String?
+  review_2_author            String?
+  review_2_avatar_letter     String?
+  review_2_rating            String?
+  review_2_badge             String?
+  review_2_text              String?
+  review_2_likes             String?
+  review_2_replies           String?
+  review_2_date              String?
+  review_3_author            String?
+  review_3_avatar_letter     String?
+  review_3_rating            String?
+  review_3_badge             String?
+  review_3_text              String?
+  review_3_likes             String?
+  review_3_replies           String?
+  review_3_date              String?
 
   // Профессиональная оценка - заголовки и общая информация
   prof_rating_title                   String?

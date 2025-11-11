@@ -3956,9 +3956,11 @@
                 <div class="text-2xl">⭐</div>
               </div>
               <div class="text-yellow-100 text-sm font-medium">
-                Общий рейтинг
+                {{ slot.reviews_overall_label || 'Общий рейтинг' }}
               </div>
-              <div class="flex text-yellow-200 text-lg mt-1">★★★★☆</div>
+              <div class="flex text-yellow-200 text-lg mt-1">
+                {{ slot.reviews_overall_stars || '★★★★☆' }}
+              </div>
             </div>
 
             <!-- Количество reviews -->
@@ -3972,9 +3974,11 @@
                 <div class="text-2xl">📝</div>
               </div>
               <div class="text-green-100 text-sm font-medium">
-                Всего отзывов
+                {{ slot.reviews_total_label || 'Всего отзывов' }}
               </div>
-              <div class="text-green-200 text-sm mt-1">активное сообщество</div>
+              <div class="text-green-200 text-sm mt-1">
+                {{ slot.reviews_total_desc || 'активное сообщество' }}
+              </div>
             </div>
 
             <!-- Положительные отзывы -->
@@ -3987,8 +3991,12 @@
                 </div>
                 <div class="text-2xl">👍</div>
               </div>
-              <div class="text-blue-100 text-sm font-medium">Положительные</div>
-              <div class="text-blue-200 text-sm mt-1">4-5 звёзд</div>
+              <div class="text-blue-100 text-sm font-medium">
+                {{ slot.reviews_positive_label || 'Положительные' }}
+              </div>
+              <div class="text-blue-200 text-sm mt-1">
+                {{ slot.reviews_positive_desc || '4-5 звёзд' }}
+              </div>
             </div>
 
             <!-- Рекомендации -->
@@ -4001,8 +4009,12 @@
                 </div>
                 <div class="text-2xl">🎯</div>
               </div>
-              <div class="text-purple-100 text-sm font-medium">Рекомендуют</div>
-              <div class="text-purple-200 text-sm mt-1">друзьям играть</div>
+              <div class="text-purple-100 text-sm font-medium">
+                {{ slot.reviews_recommend_label || 'Рекомендуют' }}
+              </div>
+              <div class="text-purple-200 text-sm mt-1">
+                {{ slot.reviews_recommend_desc || 'друзьям играть' }}
+              </div>
             </div>
           </div>
 
@@ -4016,7 +4028,7 @@
                 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3"
               >
                 <span class="text-2xl">📊</span>
-                Распределение оценок
+                {{ slot.reviews_distribution_title || 'Распределение оценок' }}
               </h3>
               <div class="space-y-4">
                 <div class="flex items-center gap-3">
@@ -4133,7 +4145,7 @@
                 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-3"
               >
                 <span class="text-2xl">🎭</span>
-                Анализ настроений
+                {{ slot.reviews_sentiments_title || 'Анализ настроений' }}
               </h3>
               <div class="space-y-4">
                 <div
@@ -4270,7 +4282,7 @@
               class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3"
             >
               <span class="text-3xl">⭐</span>
-              Избранные отзывы игроков
+              {{ slot.reviews_featured_title || 'Избранные отзывы игроков' }}
             </h3>
 
             <!-- Отзыв 1 - Позитивный -->
