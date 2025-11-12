@@ -2521,29 +2521,29 @@
             class="group border border-gray-200 rounded-lg overflow-hidden hover:border-orange-300 transition-all duration-300 bg-white"
           >
             <summary
-              class="p-6 cursor-pointer font-semibold text-lg text-gray-900 hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
+              class="p-6 cursor-pointer font-semibold text-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
             >
-              <span class="flex items-center gap-4">
-                <div
-                  class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0"
+              <span class="flex items-center gap-3">
+                <svg
+                  class="w-6 h-6 text-gray-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <svg
-                    class="w-5 h-5 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"
-                    ></path>
-                  </svg>
-                </div>
-                <span>{{
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+                {{
                   processPopularityTitle(
                     slot.popularity_title,
                     slot.popularity_title_keyword,
                     slot.name,
                   )
-                }}</span>
+                }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
@@ -2851,28 +2851,26 @@
             class="group border border-gray-200 rounded-lg overflow-hidden hover:border-orange-300 transition-all duration-300"
           >
             <summary
-              class="p-6 cursor-pointer font-semibold text-lg text-gray-900 hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
+              class="p-6 cursor-pointer font-semibold text-lg hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
             >
               <span class="flex items-center gap-3">
-                <div
-                  class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0"
+                <svg
+                  class="w-6 h-6 text-gray-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <svg
-                    class="w-5 h-5 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <span>{{
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                  ></path>
+                </svg>
+                {{
                   slot.success_secret_title ||
                   'В чем секрет такого огромного успеха?'
-                }}</span>
+                }}
               </span>
               <svg
                 class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-300"
