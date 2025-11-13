@@ -1415,13 +1415,142 @@
                           <div
                             v-if="form.media_type === 'image' && form.image_url"
                           >
-                            <img
-                              :src="form.image_url"
-                              :alt="form.name || 'Слот'"
-                              class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
-                              @error="handleImageError"
-                              @load="handleImageLoad"
-                            />
+                            <!-- Диагностическая информация -->
+                            <div
+                              class="mb-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg"
+                            >
+                              <div class="flex items-start gap-2 mb-2">
+                                <svg
+                                  class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  ></path>
+                                </svg>
+                                <div class="flex-1">
+                                  <div
+                                    class="text-sm font-medium text-blue-300"
+                                  >
+                                    URL изображения:
+                                  </div>
+                                  <div
+                                    class="text-xs text-gray-300 mt-1 break-all font-mono bg-gray-800 p-2 rounded"
+                                  >
+                                    {{ form.image_url }}
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="flex gap-2 mt-2">
+                                <a
+                                  :href="form.image_url"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="inline-flex items-center gap-1 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-lg transition-all"
+                                >
+                                  <svg
+                                    class="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    ></path>
+                                  </svg>
+                                  Открыть в новой вкладке
+                                </a>
+                              </div>
+                            </div>
+
+                            <!-- Само изображение с обработкой состояний -->
+                            <div class="relative">
+                              <div
+                                v-if="imageLoading"
+                                class="absolute inset-0 flex items-center justify-center bg-gray-800/50 rounded-lg z-10"
+                              >
+                                <div class="text-center">
+                                  <svg
+                                    class="animate-spin h-8 w-8 text-blue-400 mx-auto mb-2"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <circle
+                                      class="opacity-25"
+                                      cx="12"
+                                      cy="12"
+                                      r="10"
+                                      stroke="currentColor"
+                                      stroke-width="4"
+                                    ></circle>
+                                    <path
+                                      class="opacity-75"
+                                      fill="currentColor"
+                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                  </svg>
+                                  <p class="text-sm text-gray-300">
+                                    Загрузка изображения...
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div
+                                v-if="imageError"
+                                class="p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-center"
+                              >
+                                <svg
+                                  class="w-12 h-12 text-red-400 mx-auto mb-2"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                  ></path>
+                                </svg>
+                                <p
+                                  class="text-sm font-medium text-red-300 mb-2"
+                                >
+                                  ❌ Ошибка загрузки изображения
+                                </p>
+                                <p class="text-xs text-gray-400 mb-3">
+                                  Проверьте правильность URL. Это должна быть
+                                  ПРЯМАЯ ссылка на изображение.
+                                </p>
+                                <div
+                                  class="text-xs text-left bg-gray-800 p-3 rounded space-y-1"
+                                >
+                                  <p class="text-green-400">
+                                    ✅ Правильно: https://i.imgur.com/abc123.jpg
+                                  </p>
+                                  <p class="text-red-400">
+                                    ❌ Неправильно: https://imgur.com/a/abc123
+                                  </p>
+                                </div>
+                              </div>
+
+                              <img
+                                v-show="!imageLoading && !imageError"
+                                :src="form.image_url"
+                                :alt="form.name || 'Слот'"
+                                class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
+                                @error="handleImageError"
+                                @load="handleImageLoad"
+                              />
+                            </div>
                           </div>
                           <!-- Превью видео -->
                           <div
@@ -10601,6 +10730,10 @@ const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
 const showThemesSection = ref(false)
 
+// Состояние загрузки медиа
+const imageLoading = ref(true)
+const imageError = ref(false)
+
 // Состояние для секции "Полный обзор слота 2025"
 const showFullOverviewSection = ref(false)
 const showOverviewMainSection = ref(false)
@@ -11414,6 +11547,18 @@ const selectedMechanics = ref([])
 const selectedBonuses = ref([])
 const selectedThemes = ref([])
 
+// Отслеживаем изменение URL изображения для сброса состояния загрузки
+watch(
+  () => form.value.image_url,
+  (newUrl) => {
+    if (newUrl) {
+      imageLoading.value = true
+      imageError.value = false
+      console.log('🔄 Изменён URL изображения:', newUrl)
+    }
+  },
+)
+
 // Title страницы
 useHead({
   title: 'Редактирование слота - SlotQuest Admin',
@@ -12130,10 +12275,16 @@ const saveSlot = async () => {
 
 // Обработчики медиа событий
 const handleImageError = (event) => {
+  console.error('❌ Ошибка загрузки изображения:', form.value.image_url)
+  imageLoading.value = false
+  imageError.value = true
   event.target.style.display = 'none'
 }
 
 const handleImageLoad = (event) => {
+  console.log('✅ Изображение успешно загружено:', form.value.image_url)
+  imageLoading.value = false
+  imageError.value = false
   event.target.style.display = 'block'
 }
 

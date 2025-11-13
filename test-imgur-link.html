@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Проверка ссылки Imgur</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      flex: 1;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-check {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-check:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-fix {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .btn-fix:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4);
+    }
+
+    .result {
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .result.success {
+      background: #d1fae5;
+      border: 2px solid #10b981;
+      display: block;
+    }
+
+    .result.error {
+      background: #fee2e2;
+      border: 2px solid #ef4444;
+      display: block;
+    }
+
+    .result.info {
+      background: #dbeafe;
+      border: 2px solid #3b82f6;
+      display: block;
+    }
+
+    .result-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .result.success .result-title {
+      color: #059669;
+    }
+
+    .result.error .result-title {
+      color: #dc2626;
+    }
+
+    .result.info .result-title {
+      color: #2563eb;
+    }
+
+    .result-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .preview {
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .preview.show {
+      display: block;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .loader.show {
+      display: block;
+    }
+
+    .spinner {
+      border: 4px solid #f3f4f6;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Проверка ссылки Imgur</h1>
+    <p class="subtitle">Проверьте правильность вашей ссылки на изображение</p>
+
+    <div class="input-group">
+      <label for="imageUrl">Вставьте URL изображения:</label>
+      <input
+        type="text"
+        id="imageUrl"
+        placeholder="https://imgur.com/a/KxoieHw"
+        value="https://imgur.com/a/KxoieHw"
+      >
+    </div>
+
+    <div class="buttons">
+      <button class="btn-check" onclick="checkImage()">✅ Проверить</button>
+      <button class="btn-fix" onclick="fixUrl()">🛠️ Исправить ссылку</button>
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <div id="loader" class="loader">
+      <div class="spinner"></div>
+      <p>Загрузка изображения...</p>
+    </div>
+
+    <div id="preview" class="preview"></div>
+  </div>
+
+  <script>
+    function checkImage() {
+      const url = document.getElementById('imageUrl').value.trim();
+      const resultDiv = document.getElementById('result');
+      const previewDiv = document.getElementById('preview');
+      const loaderDiv = document.getElementById('loader');
+
+      // Очистка предыдущих результатов
+      resultDiv.className = 'result';
+      resultDiv.innerHTML = '';
+      previewDiv.className = 'preview';
+      previewDiv.innerHTML = '';
+      loaderDiv.className = 'loader';
+
+      if (!url) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">❌ Ошибка</div>
+          <div class="result-text">Пожалуйста, введите URL изображения.</div>
+        `;
+        return;
+      }
+
+      // Проверка формата ссылки
+      if (url.includes('/a/')) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">❌ Неправильный формат ссылки</div>
+          <div class="result-text">
+            Эта ссылка ведёт на <strong>альбом Imgur</strong>, а не на изображение!<br><br>
+            <strong>Ваша ссылка:</strong><br>
+            <code>${url}</code><br><br>
+            Нажмите <strong>"🛠️ Исправить ссылку"</strong>, чтобы получить правильный формат.
+          </div>
+        `;
+        return;
+      }
+
+      if (!url.startsWith('https://i.imgur.com/')) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">⚠️ Возможна ошибка</div>
+          <div class="result-text">
+            Ссылка не начинается с <code>https://i.imgur.com/</code><br><br>
+            <strong>Ваша ссылка:</strong><br>
+            <code>${url}</code><br><br>
+            Попробуйте нажать <strong>"🛠️ Исправить ссылку"</strong>.
+          </div>
+        `;
+      }
+
+      // Попытка загрузки изображения
+      loaderDiv.className = 'loader show';
+
+      const img = new Image();
+
+      img.onload = function() {
+        loaderDiv.className = 'loader';
+        resultDiv.className = 'result success';
+        resultDiv.innerHTML = `
+          <div class="result-title">✅ Изображение загружено успешно!</div>
+          <div class="result-text">
+            <strong>Размер:</strong> ${img.width} × ${img.height} px<br>
+            <strong>URL:</strong> <code>${url}</code><br><br>
+            Эта ссылка готова для использования в админке!
+          </div>
+        `;
+
+        previewDiv.className = 'preview show';
+        previewDiv.innerHTML = `<img src="${url}" alt="Preview">`;
+      };
+
+      img.onerror = function() {
+        loaderDiv.className = 'loader';
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">❌ Не удалось загрузить изображение</div>
+          <div class="result-text">
+            <strong>Возможные причины:</strong><br>
+            • Неправильный URL (это не прямая ссылка на изображение)<br>
+            • Изображение было удалено<br>
+            • Проблемы с доступом к Imgur<br><br>
+            <strong>Ваша ссылка:</strong><br>
+            <code>${url}</code><br><br>
+            <strong>Правильный формат:</strong><br>
+            <code>https://i.imgur.com/[ID].jpg</code>
+          </div>
+        `;
+      };
+
+      img.src = url;
+    }
+
+    function fixUrl() {
+      const url = document.getElementById('imageUrl').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!url) {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">❌ Ошибка</div>
+          <div class="result-text">Пожалуйста, введите URL изображения.</div>
+        `;
+        return;
+      }
+
+      let fixedUrl = url;
+      let suggestions = [];
+
+      // Извлекаем ID из различных форматов Imgur
+      let imgurId = '';
+
+      // Формат: https://imgur.com/a/KxoieHw
+      if (url.includes('/a/')) {
+        imgurId = url.split('/a/')[1].split('?')[0].split('#')[0];
+      }
+      // Формат: https://imgur.com/KxoieHw
+      else if (url.includes('imgur.com/') && !url.includes('i.imgur.com')) {
+        imgurId = url.split('imgur.com/')[1].split('?')[0].split('#')[0].split('.')[0];
+      }
+      // Формат: https://i.imgur.com/KxoieHw (уже правильный)
+      else if (url.includes('i.imgur.com/')) {
+        imgurId = url.split('i.imgur.com/')[1].split('?')[0].split('#')[0].split('.')[0];
+      }
+
+      if (imgurId) {
+        suggestions = [
+          `https://i.imgur.com/${imgurId}.jpg`,
+          `https://i.imgur.com/${imgurId}.png`,
+          `https://i.imgur.com/${imgurId}.webp`,
+          `https://i.imgur.com/${imgurId}`
+        ];
+
+        resultDiv.className = 'result info';
+        resultDiv.innerHTML = `
+          <div class="result-title">💡 Исправленные варианты ссылок</div>
+          <div class="result-text">
+            Попробуйте эти ссылки (нажмите, чтобы скопировать):<br><br>
+            ${suggestions.map((s, i) =>
+              `<div style="margin-bottom: 8px;">
+                <strong>${i + 1}.</strong>
+                <code style="cursor: pointer;" onclick="copyToClipboard('${s}', this)">${s}</code>
+              </div>`
+            ).join('')}
+            <br>
+            <small>После копирования вставьте ссылку в поле выше и нажмите "✅ Проверить"</small>
+          </div>
+        `;
+
+        // Автоматически подставляем первый вариант
+        document.getElementById('imageUrl').value = suggestions[0];
+      } else {
+        resultDiv.className = 'result error';
+        resultDiv.innerHTML = `
+          <div class="result-title">❌ Не удалось распознать ссылку</div>
+          <div class="result-text">
+            Убедитесь, что это ссылка с Imgur.<br><br>
+            <strong>Правильные форматы:</strong><br>
+            • <code>https://imgur.com/a/[ID]</code> (альбом)<br>
+            • <code>https://imgur.com/[ID]</code> (прямая ссылка)<br>
+            • <code>https://i.imgur.com/[ID].jpg</code> (изображение)
+          </div>
+        `;
+      }
+    }
+
+    function copyToClipboard(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        const original = element.innerHTML;
+        element.innerHTML = text + ' ✅ Скопировано!';
+        element.style.background = '#10b981';
+        element.style.color = 'white';
+
+        setTimeout(() => {
+          element.innerHTML = original;
+          element.style.background = '#f3f4f6';
+          element.style.color = '#374151';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
