@@ -28,7 +28,7 @@ export class ThemesService {
         include: {
           _count: {
             select: {
-              slots: true,
+              slotThemes: true, // Используем новую связь many-to-many
             },
           },
         },
@@ -48,7 +48,7 @@ export class ThemesService {
       include: {
         _count: {
           select: {
-            slots: true,
+            slotThemes: true, // Используем новую связь many-to-many
           },
         },
       },
@@ -63,12 +63,12 @@ export class ThemesService {
       include: {
         _count: {
           select: {
-            slots: true,
+            slotThemes: true, // Используем новую связь many-to-many
           },
         },
       },
       orderBy: {
-        slots: {
+        slotThemes: { // Сортируем по количеству связей
           _count: 'desc',
         },
       },
@@ -85,7 +85,7 @@ export class ThemesService {
       include: {
         _count: {
           select: {
-            slots: true,
+            slotThemes: true, // Используем новую связь many-to-many
           },
         },
       },
@@ -95,23 +95,31 @@ export class ThemesService {
   }
 
   async findSlotsByTheme(themeId: string) {
-    const theme = await this.prisma.themes.findUnique({
-      where: { id: themeId },
+    // Используем новую many-to-many связь через slot_themes
+    const slotThemes = await this.prisma.slot_themes.findMany({
+      where: {
+        theme_id: themeId,
+        slots: {
+          is_active: true,
+        },
+      },
       include: {
         slots: {
-          where: {
-            is_active: true,
-          },
           include: {
             providers: true,
             slot_categories: true,
           },
-          orderBy: { created_at: 'desc' },
+        },
+      },
+      orderBy: {
+        slots: {
+          created_at: 'desc',
         },
       },
     });
 
-    return theme?.slots || [];
+    // Возвращаем массив слотов из связей
+    return slotThemes.map(st => st.slots);
   }
 
   async create(createThemeDto: CreateThemeDto) {

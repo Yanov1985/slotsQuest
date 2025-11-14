@@ -40,7 +40,7 @@ model slots {
   slug                                  String           @unique
   provider_id                           String
   category_id                           String?
-  theme_id                              String?
+  theme_id                              String? // Deprecated: используйте slotThemes для many-to-many связи
   description                           String?
   thumbnail_url                         String?
   media_type                            String?
@@ -190,6 +190,7 @@ model slots {
   slot_bonuses                          slot_bonuses[]
   slot_features                         slot_features[]
   slot_mechanics                        slot_mechanics[]
+  slotThemes                            slot_themes[]    // Новая many-to-many связь с темами
 
   // Strategies & Tips (dynamic content for gameplay advice)
   strategy_title           String? @map("strategies_title")
@@ -404,13 +405,28 @@ model slots {
 
   slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   providers       providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  themes          themes?          @relation(fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  themes          themes?          @relation("DeprecatedTheme", fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")
   @@index([theme_id], map: "idx_slots_theme_id")
   @@index([is_active], map: "idx_slots_is_active")
   @@index([rating(sort: Desc)], map: "idx_slots_rating")
+}
+
+// Таблица связи многие-ко-многим для слотов и тематик
+model slot_themes {
+  id         String   @id @default(cuid())
+  slot_id    String
+  theme_id   String
+  created_at DateTime @default(now())
+  
+  slots      slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  themes     themes   @relation(fields: [theme_id], references: [id], onDelete: Cascade)
+
+  @@unique([slot_id, theme_id])
+  @@index([slot_id], map: "idx_slot_themes_slot_id")
+  @@index([theme_id], map: "idx_slot_themes_theme_id")
 }
 
 model features {
@@ -450,17 +466,18 @@ model slot_features {
 }
 
 model themes {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  slug        String   @unique
-  description String?
-  color       String?
-  icon        String?
-  is_featured Boolean  @default(false)
-  is_active   Boolean  @default(true)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  slots       slots[]
+  id                 String        @id @default(cuid())
+  name               String        @unique
+  slug               String        @unique
+  description        String?
+  color              String?
+  icon               String?
+  is_featured        Boolean       @default(false)
+  is_active          Boolean       @default(true)
+  created_at         DateTime      @default(now())
+  updated_at         DateTime      @updatedAt
+  slots_deprecated   slots[]       @relation("DeprecatedTheme") // Старая связь one-to-many (deprecated)
+  slotThemes         slot_themes[] // Новая many-to-many связь
 
   @@index([is_active])
   @@index([is_featured])

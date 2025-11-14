@@ -45,7 +45,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
         orderBy: {
           created_at: 'desc',
@@ -81,7 +85,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
         orderBy: {
           rating: 'desc',
@@ -113,7 +121,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
         orderBy: {
           play_count: 'desc',
@@ -150,7 +162,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -176,7 +192,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -202,7 +222,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -243,18 +267,86 @@ export class SlotsService {
 
       console.log('📝 Данные для создания:', JSON.stringify(createData, null, 2));
 
+      // 🎯 ШАГ 1: Создаём слот без связей
       const slot = await this.prisma.slots.create({
         data: createData,
+      });
+
+      console.log('✅ Слот создан, ID:', slot.id);
+
+      // 🎯 ШАГ 2: Создаём связи с механиками
+      if (selected_mechanics && Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
+        console.log('🔗 Создание связей с механиками:', selected_mechanics);
+        await this.prisma.slot_mechanics.createMany({
+          data: selected_mechanics.map((mechanic_id: number) => ({
+            slot_id: slot.id,
+            mechanic_id,
+          })),
+        });
+        console.log('✅ Механики привязаны:', selected_mechanics.length);
+      }
+
+      // 🎯 ШАГ 3: Создаём связи с бонусами
+      if (selected_bonuses && Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
+        console.log('🔗 Создание связей с бонусами:', selected_bonuses);
+        await this.prisma.slot_bonuses.createMany({
+          data: selected_bonuses.map((bonus_id: number) => ({
+            slot_id: slot.id,
+            bonus_id,
+          })),
+        });
+        console.log('✅ Бонусы привязаны:', selected_bonuses.length);
+      }
+
+      // 🎯 ШАГ 4: Создаём связи с тематиками (до 5)
+      if (selected_themes && Array.isArray(selected_themes) && selected_themes.length > 0) {
+        const themesToAdd = selected_themes.slice(0, 5); // Ограничиваем до 5
+        console.log('🔗 Создание связей с тематиками:', themesToAdd);
+        await this.prisma.slot_themes.createMany({
+          data: themesToAdd.map((theme_id: string) => ({
+            slot_id: slot.id,
+            theme_id,
+          })),
+        });
+        console.log('✅ Тематики привязаны:', themesToAdd.length);
+      }
+
+      // 🎯 ШАГ 5: Загружаем созданный слот со всеми связями
+      const createdSlot = await this.prisma.slots.findUnique({
+        where: { id: slot.id },
         include: {
           providers: true,
           slot_categories: true,
-          slot_mechanics: true,
-          slot_bonuses: true,
-          themes: true,
+          slot_mechanics: {
+            include: {
+              mechanics: true,
+            },
+          },
+          slot_bonuses: {
+            include: {
+              bonuses: true,
+            },
+          },
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
 
-      return slot;
+      if (!createdSlot) {
+        throw new Error('Не удалось загрузить созданный слот');
+      }
+
+      console.log('🎉 Слот создан со всеми связями:', {
+        id: createdSlot.id,
+        mechanics_count: createdSlot.slot_mechanics?.length || 0,
+        bonuses_count: createdSlot.slot_bonuses?.length || 0,
+        themes_count: createdSlot.slotThemes?.length || 0,
+      });
+
+      return createdSlot;
     } catch (error) {
       console.error('❌ Ошибка при создании слота:', error);
       throw error;
@@ -305,9 +397,75 @@ export class SlotsService {
     console.log('📝 Данные для обновления:', JSON.stringify(updateData, null, 2));
 
     try {
-      const slot = await this.prisma.slots.update({
+      // 🎯 ШАГ 1: Обновляем основные данные слота
+      await this.prisma.slots.update({
         where: { id },
         data: updateData,
+      });
+
+      console.log('✅ Основные данные слота обновлены');
+
+      // 🎯 ШАГ 2: Обновляем связи с механиками
+      if (selected_mechanics !== undefined) {
+        console.log('🔄 Обновление механик...');
+        // Удаляем старые связи
+        await this.prisma.slot_mechanics.deleteMany({
+          where: { slot_id: id },
+        });
+        // Создаём новые связи
+        if (Array.isArray(selected_mechanics) && selected_mechanics.length > 0) {
+          await this.prisma.slot_mechanics.createMany({
+            data: selected_mechanics.map((mechanic_id: number) => ({
+              slot_id: id,
+              mechanic_id,
+            })),
+          });
+          console.log('✅ Механики обновлены:', selected_mechanics.length);
+        }
+      }
+
+      // 🎯 ШАГ 3: Обновляем связи с бонусами
+      if (selected_bonuses !== undefined) {
+        console.log('🔄 Обновление бонусов...');
+        // Удаляем старые связи
+        await this.prisma.slot_bonuses.deleteMany({
+          where: { slot_id: id },
+        });
+        // Создаём новые связи
+        if (Array.isArray(selected_bonuses) && selected_bonuses.length > 0) {
+          await this.prisma.slot_bonuses.createMany({
+            data: selected_bonuses.map((bonus_id: number) => ({
+              slot_id: id,
+              bonus_id,
+            })),
+          });
+          console.log('✅ Бонусы обновлены:', selected_bonuses.length);
+        }
+      }
+
+      // 🎯 ШАГ 4: Обновляем связи с тематиками (до 5)
+      if (selected_themes !== undefined) {
+        console.log('🔄 Обновление тематик...');
+        // Удаляем старые связи
+        await this.prisma.slot_themes.deleteMany({
+          where: { slot_id: id },
+        });
+        // Создаём новые связи
+        if (Array.isArray(selected_themes) && selected_themes.length > 0) {
+          const themesToAdd = selected_themes.slice(0, 5); // Ограничиваем до 5
+          await this.prisma.slot_themes.createMany({
+            data: themesToAdd.map((theme_id: string) => ({
+              slot_id: id,
+              theme_id,
+            })),
+          });
+          console.log('✅ Тематики обновлены:', themesToAdd.length);
+        }
+      }
+
+      // 🎯 ШАГ 5: Загружаем обновлённый слот со всеми связями
+      const updatedSlot = await this.prisma.slots.findUnique({
+        where: { id },
         include: {
           providers: true,
           slot_categories: true,
@@ -321,16 +479,27 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
 
-      console.log('✅ Слот обновлен:', {
-        id: slot.id,
-        name: slot.name,
+      if (!updatedSlot) {
+        throw new Error('Не удалось загрузить обновлённый слот');
+      }
+
+      console.log('🎉 Слот обновлён со всеми связями:', {
+        id: updatedSlot.id,
+        name: updatedSlot.name,
+        mechanics_count: updatedSlot.slot_mechanics?.length || 0,
+        bonuses_count: updatedSlot.slot_bonuses?.length || 0,
+        themes_count: updatedSlot.slotThemes?.length || 0,
       });
 
-      return slot;
+      return updatedSlot;
 
     } catch (error) {
       console.error('❌ Ошибка при обновлении:', error);
@@ -347,7 +516,11 @@ export class SlotsService {
           slot_categories: true,
           slot_mechanics: true,
           slot_bonuses: true,
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
       });
       return { success: true, data: result };
@@ -373,7 +546,11 @@ export class SlotsService {
               bonuses: true,
             },
           },
-          themes: true,
+          slotThemes: {
+            include: {
+              themes: true,
+            },
+          },
         },
         orderBy: {
           created_at: 'desc',
