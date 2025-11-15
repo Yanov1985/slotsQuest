@@ -1987,9 +1987,18 @@
                             Очистить выбор
                           </button>
                           <span
-                            class="text-xs text-emerald-300 px-3 py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30"
+                            class="text-xs px-3 py-1 rounded-md border"
+                            :class="
+                              selectedThemes.length >= 5
+                                ? 'text-amber-300 bg-amber-500/20 border-amber-500/30'
+                                : 'text-emerald-300 bg-emerald-500/20 border-emerald-500/30'
+                            "
                           >
-                            ℹ️ Можно выбрать только одну тематику
+                            {{
+                              selectedThemes.length >= 5
+                                ? '⚠️ Достигнут лимит!'
+                                : `✅ Выбрано ${selectedThemes.length}/5`
+                            }}
                           </span>
                         </div>
 
@@ -2002,18 +2011,21 @@
                             :key="theme.id"
                             class="flex items-center p-3 bg-gray-700 rounded-lg border border-gray-600 hover:border-emerald-500 transition-all duration-200"
                             :class="
-                              selectedThemes[0] === theme.id
+                              selectedThemes.includes(theme.id)
                                 ? 'border-emerald-500 bg-emerald-500/10'
                                 : ''
                             "
                           >
                             <input
                               :id="`theme-${theme.id}`"
-                              v-model="selectedThemes[0]"
+                              v-model="selectedThemes"
                               :value="theme.id"
-                              type="radio"
-                              name="theme"
-                              class="w-4 h-4 text-emerald-600 bg-gray-600 border-gray-500 focus:ring-emerald-500 focus:ring-2"
+                              type="checkbox"
+                              :disabled="
+                                selectedThemes.length >= 5 &&
+                                !selectedThemes.includes(theme.id)
+                              "
+                              class="w-4 h-4 text-emerald-600 bg-gray-600 border-gray-500 focus:ring-emerald-500 focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                             <label
                               :for="`theme-${theme.id}`"
@@ -2041,23 +2053,21 @@
                           </div>
                         </div>
 
-                        <!-- Выбранная тематика -->
+                        <!-- Выбранные тематики (до 5 штук!) -->
                         <div
-                          v-if="
-                            selectedThemes &&
-                            selectedThemes.length > 0 &&
-                            selectedThemes[0]
-                          "
+                          v-if="selectedThemes && selectedThemes.length > 0"
                           class="mt-4"
                         >
                           <h4 class="text-sm font-medium text-gray-300 mb-2">
-                            Выбранная тематика:
+                            Выбранные тематики ({{ selectedThemes.length }}/5):
                           </h4>
                           <div class="flex flex-wrap gap-2">
                             <span
+                              v-for="themeId in selectedThemes"
+                              :key="themeId"
                               class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-600/20 text-emerald-300 border border-emerald-500/30"
                             >
-                              {{ getThemeName(selectedThemes[0]) }}
+                              {{ getThemeName(themeId) }}
                             </span>
                           </div>
                         </div>
@@ -11686,8 +11696,14 @@ const loadSlot = async () => {
     if (slot.value?.slot_bonuses && Array.isArray(slot.value.slot_bonuses)) {
       selectedBonuses.value = slot.value.slot_bonuses.map((sb) => sb.bonus_id)
     }
-    if (slot.value?.themes) {
-      selectedThemes.value = [slot.value.themes.id]
+    // 🎨 Загружаем МНОЖЕСТВЕННЫЕ тематики (до 5 штук!)
+    if (slot.value?.slotThemes && Array.isArray(slot.value.slotThemes)) {
+      selectedThemes.value = slot.value.slotThemes.map((st) => st.theme_id)
+      console.log(
+        '✅ Загружено тематик:',
+        selectedThemes.value.length,
+        selectedThemes.value,
+      )
     }
 
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
