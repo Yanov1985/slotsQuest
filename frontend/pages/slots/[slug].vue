@@ -2202,35 +2202,19 @@
                     Themes
                   </h3>
                   <div class="flex flex-wrap gap-2 relative z-10">
-                    <!-- New implementation: use themes directly -->
-                    <span
-                      v-if="slot?.themes"
-                      :key="slot.themes.id"
-                      class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20"
-                    >
-                      {{ slot.themes.icon }} {{ slot.themes.name }}
-                    </span>
-                    <!-- Fallback through function for compatibility -->
-                    <template
-                      v-if="
-                        !slot?.themes && getSlotThemesFromDB(slot).length > 0
-                      "
-                    >
+                    <!-- 🎨 Отображаем ВСЕ выбранные тематики (до 5 штук!) -->
+                    <template v-if="getSlotThemesFromDB(slot).length > 0">
                       <span
                         v-for="theme in getSlotThemesFromDB(slot)"
-                        :key="theme.id || theme.name"
-                        class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20"
+                        :key="theme.id"
+                        class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20 hover:bg-yellow-500/50 transition-colors"
                       >
-                        {{ theme.name }}
+                        {{ theme.icon }} {{ theme.name }}
                       </span>
                     </template>
-                    <!-- Message if no themes -->
+                    <!-- ⚠️ Сообщение если тематики не указаны -->
                     <span
-                      v-if="
-                        !slot?.themes &&
-                        (!getSlotThemesFromDB(slot) ||
-                          getSlotThemesFromDB(slot).length === 0)
-                      "
+                      v-else
                       class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
                     >
                       Themes not specified
@@ -6918,11 +6902,17 @@ const getSlotBonuses = (slot) => {
   return slot.slot_bonuses.map((sb) => sb.bonuses).filter(Boolean)
 }
 
-// Функция для получения тематик slotа из базы данных
+// 🎨 Функция для получения тематик слота из базы данных
+// Теперь поддерживает МНОЖЕСТВЕННЫЕ тематики (до 5 штук!)
 const getSlotThemesFromDB = (slot) => {
-  if (!slot || !slot.themes) return []
-  // themes - это объект темы, а не массив
-  return slot.themes ? [slot.themes] : []
+  // Проверяем наличие слота и новой связи many-to-many
+  if (!slot || !slot.slotThemes) return []
+
+  // slotThemes - это массив объектов { slot_id, theme_id, themes }
+  // Извлекаем только объекты themes из массива
+  return slot.slotThemes
+    .map((st) => st.themes) // Достаём themes из каждого элемента
+    .filter(Boolean) // Убираем null/undefined
 }
 
 // Загружаем данные при монтировании
