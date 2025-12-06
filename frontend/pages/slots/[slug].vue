@@ -5819,8 +5819,7 @@ watchEffect(() => {
         },
         {
           name: 'robots',
-          content:
-            'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          content: generateRobotsContent(slot.value),
         },
         {
           name: 'theme-color',
@@ -5830,26 +5829,24 @@ watchEffect(() => {
           name: 'viewport',
           content: 'width=device-width, initial-scale=1',
         },
-        // Open Graph
+        // Open Graph (динамические поля из БД)
         {
           property: 'og:title',
-          // 🎯 SEO: Используем slot.name (брендовый) для соц. сетей
           content:
             slot.value.og_title ||
             `${slot.value.name} 🎰 Play Free Demo & Real Money`,
         },
         {
           property: 'og:description',
-          // 🎯 SEO: Используем то же описание с hero keywords для соц. сетей
           content:
             slot.value.og_description || generateSEODescription(slot.value),
         },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:site_name', content: 'SlotQuest' },
-        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:type', content: slot.value.og_type || 'article' },
+        { property: 'og:site_name', content: slot.value.og_site_name || 'SlotQuest' },
+        { property: 'og:locale', content: slot.value.og_locale || 'en_US' },
         {
           property: 'og:url',
-          content: `https://slotquest.com/slots/${slot.value.slug || slug}`,
+          content: slot.value.og_url || `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
         {
           property: 'og:image',
@@ -5860,10 +5857,10 @@ watchEffect(() => {
         },
         {
           property: 'og:image:alt',
-          content: `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}`,
+          content: slot.value.og_image_alt || `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}`,
         },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:width', content: String(slot.value.og_image_width || 1200) },
+        { property: 'og:image:height', content: String(slot.value.og_image_height || 630) },
         { property: 'og:image:type', content: 'image/jpeg' },
         {
           property: 'og:image:secure_url',
@@ -5877,6 +5874,19 @@ watchEffect(() => {
           content:
             slot.value.updated_at || new Date().toISOString().split('T')[0],
         },
+        // OG Video (если есть)
+        ...(slot.value.og_video ? [
+          { property: 'og:video', content: slot.value.og_video },
+          { property: 'og:video:type', content: slot.value.og_video_type || 'video/mp4' },
+          { property: 'og:video:width', content: String(slot.value.og_video_width || 1280) },
+          { property: 'og:video:height', content: String(slot.value.og_video_height || 720) },
+        ] : []),
+        // OG Locale Alternate (для международного SEO)
+        ...(slot.value.og_locale_alternate ?
+          slot.value.og_locale_alternate.split(',').map(locale => ({
+            property: 'og:locale:alternate',
+            content: locale.trim()
+          })) : []),
         {
           property: 'article:published_time',
           content: slot.value.release_date || '2021-02-13',
@@ -5888,7 +5898,7 @@ watchEffect(() => {
         },
         {
           property: 'article:author',
-          content: 'SlotQuest Editorial Team',
+          content: slot.value.author_meta || 'SlotQuest Editorial Team',
         },
         {
           property: 'article:section',
@@ -5898,27 +5908,38 @@ watchEffect(() => {
           property: 'article:tag',
           content: `${slot.value.name}, ${slot.value.providers?.name || 'provider'}, slot, slot machine`,
         },
-        // Twitter
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@SlotQuest' },
+        // Twitter (динамические поля из БД)
+        { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
+        { name: 'twitter:site', content: slot.value.twitter_site || '@SlotQuest' },
         {
           name: 'twitter:title',
-          content: `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
+          content: slot.value.twitter_title || `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
         },
         {
           name: 'twitter:description',
-          content: `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
           content:
+            slot.value.twitter_image ||
             slot.value.image_url ||
             `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg`,
         },
         {
-          name: 'twitter:creator',
-          content: '@SlotQuest',
+          name: 'twitter:image:alt',
+          content: slot.value.twitter_image_alt || `${slot.value.name} slot gameplay screenshot`,
         },
+        {
+          name: 'twitter:creator',
+          content: slot.value.twitter_creator || '@SlotQuest',
+        },
+        // Twitter Player (если есть видео)
+        ...(slot.value.twitter_player ? [
+          { name: 'twitter:player', content: slot.value.twitter_player },
+          { name: 'twitter:player:width', content: String(slot.value.twitter_player_width || 1280) },
+          { name: 'twitter:player:height', content: String(slot.value.twitter_player_height || 720) },
+        ] : []),
         {
           name: 'twitter:label1',
           content: 'RTP',
@@ -6057,6 +6078,8 @@ watchEffect(() => {
             slot.value.canonical_url ||
             `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
+        // 🌍 HREFLANG ТЕГИ (международное SEO)
+        ...(slot.value.hreflang_enabled !== false ? generateHreflangLinks(slot.value) : []),
         // 🚀 ТЕХНИЧЕСКИЕ ОПТИМИЗАЦИИ (Preconnect, DNS-Prefetch, Preload)
         {
           rel: 'preconnect',
@@ -6990,6 +7013,136 @@ watch(
  * @param {object} slot - Объект слота
  * @returns {string} Оптимизированное описание для meta description
  */
+
+/**
+ * 🤖 Генерация robots content из динамических полей слота
+ * Использует новые поля: robots_index, robots_follow, robots_max_snippet и т.д.
+ *
+ * @param {Object} slot - Объект слота из БД
+ * @returns {string} Строка для meta robots
+ */
+const generateRobotsContent = (slot) => {
+  if (!slot) return 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+
+  const directives = []
+
+  // Index/noindex (по умолчанию index)
+  directives.push(slot.robots_index !== false ? 'index' : 'noindex')
+
+  // Follow/nofollow (по умолчанию follow)
+  directives.push(slot.robots_follow !== false ? 'follow' : 'nofollow')
+
+  // Max snippet (-1 = без ограничений)
+  const maxSnippet = slot.robots_max_snippet ?? -1
+  if (maxSnippet !== -1 || maxSnippet === 0) {
+    directives.push(`max-snippet:${maxSnippet}`)
+  } else {
+    directives.push('max-snippet:-1')
+  }
+
+  // Max image preview (large по умолчанию для лучшего CTR)
+  const maxImagePreview = slot.robots_max_image_preview || 'large'
+  directives.push(`max-image-preview:${maxImagePreview}`)
+
+  // Max video preview (-1 = без ограничений)
+  const maxVideoPreview = slot.robots_max_video_preview ?? -1
+  if (maxVideoPreview !== -1) {
+    directives.push(`max-video-preview:${maxVideoPreview}`)
+  } else {
+    directives.push('max-video-preview:-1')
+  }
+
+  // Дополнительные директивы
+  if (slot.robots_notranslate) {
+    directives.push('notranslate')
+  }
+
+  if (slot.robots_noimageindex) {
+    directives.push('noimageindex')
+  }
+
+  return directives.join(', ')
+}
+
+/**
+ * 🌍 Генерация hreflang ссылок для международного SEO
+ * Поддерживает целевые регионы из списка пользователя
+ *
+ * @param {Object} slot - Объект слота из БД
+ * @returns {Array} Массив link объектов для useHead
+ */
+const generateHreflangLinks = (slot) => {
+  if (!slot || slot.hreflang_enabled === false) return []
+
+  const baseUrl = 'https://slotquest.com'
+  const slotUrl = `/slots/${slot.slug}`
+  const links = []
+
+  // x-default (английская версия по умолчанию)
+  links.push({
+    rel: 'alternate',
+    hreflang: 'x-default',
+    href: `${baseUrl}${slotUrl}`
+  })
+
+  // Английский (основной язык)
+  links.push({
+    rel: 'alternate',
+    hreflang: 'en',
+    href: `${baseUrl}${slotUrl}`
+  })
+
+  // Парсим конфиг из БД если есть
+  if (slot.hreflang_config) {
+    try {
+      const config = JSON.parse(slot.hreflang_config)
+      if (Array.isArray(config)) {
+        config.forEach(item => {
+          links.push({
+            rel: 'alternate',
+            hreflang: `${item.lang}-${item.region}`,
+            href: `${baseUrl}${item.url || slotUrl}`
+          })
+        })
+        return links
+      }
+    } catch (e) {
+      // Fallback к стандартным регионам
+    }
+  }
+
+  // Стандартные целевые регионы (из вашего списка)
+  const targetRegions = [
+    { lang: 'ru', region: 'RU' },   // Россия
+    { lang: 'en', region: 'IN' },   // Индия
+    { lang: 'pt', region: 'BR' },   // Бразилия
+    { lang: 'uz', region: 'UZ' },   // Узбекистан
+    { lang: 'az', region: 'AZ' },   // Азербайджан
+    { lang: 'tr', region: 'TR' },   // Турция
+    { lang: 'es', region: 'CL' },   // Чили
+    { lang: 'es', region: 'AR' },   // Аргентина
+    { lang: 'en', region: 'CA' },   // Канада
+    { lang: 'es', region: 'CO' },   // Колумбия
+    { lang: 'id', region: 'ID' },   // Индонезия
+    { lang: 'bn', region: 'BD' },   // Бангладеш
+  ]
+
+  // Добавляем только если регион в списке целевых
+  const geoTargets = slot.geo_target_regions?.split(',').map(r => r.trim()) || []
+
+  targetRegions.forEach(({ lang, region }) => {
+    if (geoTargets.length === 0 || geoTargets.includes(region)) {
+      links.push({
+        rel: 'alternate',
+        hreflang: `${lang}-${region}`,
+        href: `${baseUrl}${slotUrl}`
+      })
+    }
+  })
+
+  return links
+}
+
 const generateSEODescription = (slot) => {
   if (!slot)
     return 'Play exciting online slots with great winning opportunities.'

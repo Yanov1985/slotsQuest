@@ -466,6 +466,194 @@ model slots {
   content_language     String? @default("en") // Язык контента: en, ru, es, de
   geo_target_regions   String? // Целевые регионы (ISO коды через запятую): US,UK,CA,RU
 
+  // 1️⃣1️⃣ РАСШИРЕННЫЕ SEO ПОЛЯ (Фаза 1)
+  // Title & Description Templates
+  seo_title_template    String? // Шаблон заголовка: "{name} Slot by {provider} | Play Free Demo 2025"
+  seo_title_power_words String? // Продающие слова: "Free,Demo,Bonus,New 2025"
+  search_intent         String? @default("transactional") // Интент: informational, navigational, transactional, commercial
+  canonical_url         String? // Канонический URL страницы
+
+  // 1️⃣2️⃣ РАСШИРЕННЫЕ OPEN GRAPH ТЕГИ
+  og_title            String? // Open Graph заголовок
+  og_description      String? // Open Graph описание
+  og_image            String? // Open Graph изображение (1200x630)
+  og_type             String? @default("article") // Тип: website, article, game
+  og_url              String? // URL страницы для OG
+  og_site_name        String? @default("SlotQuest") // Название сайта
+  og_locale           String? @default("en_US") // Локаль: en_US, ru_RU, pt_BR
+  og_locale_alternate String? // Альтернативные локали через запятую: ru_RU,pt_BR,hi_IN
+  og_video            String? // URL видео для OG (YouTube/Vimeo)
+  og_video_type       String? // Тип видео: video/mp4
+  og_video_width      Int? // Ширина видео
+  og_video_height     Int? // Высота видео
+  og_image_width      Int?    @default(1200) // Ширина изображения
+  og_image_height     Int?    @default(630) // Высота изображения
+  og_image_alt        String? // Alt текст для изображения
+
+  // 1️⃣3️⃣ TWITTER CARD ТЕГИ
+  twitter_card          String? @default("summary_large_image") // Тип: summary, summary_large_image, player
+  twitter_site          String? @default("@SlotQuest") // Twitter аккаунт сайта
+  twitter_creator       String? @default("@SlotQuest") // Twitter автора
+  twitter_title         String? // Заголовок для Twitter
+  twitter_description   String? // Описание для Twitter
+  twitter_image         String? // Изображение для Twitter
+  twitter_image_alt     String? // Alt текст изображения
+  twitter_player        String? // URL видео-плеера (для player card)
+  twitter_player_width  Int? // Ширина плеера
+  twitter_player_height Int? // Высота плеера
+
+  // 1️⃣4️⃣ ADVANCED ROBOTS DIRECTIVES
+  robots_index             Boolean   @default(true) // index/noindex
+  robots_follow            Boolean   @default(true) // follow/nofollow
+  robots_max_snippet       Int?      @default(-1) // max-snippet: -1 = без ограничений, 0 = без сниппета
+  robots_max_image_preview String?   @default("large") // max-image-preview: none, standard, large
+  robots_max_video_preview Int?      @default(-1) // max-video-preview: -1 = без ограничений
+  robots_notranslate       Boolean   @default(false) // notranslate
+  robots_noimageindex      Boolean   @default(false) // noimageindex
+  robots_unavailable_after DateTime? // unavailable_after: дата после которой убрать из индекса
+
+  // 1️⃣5️⃣ HREFLANG И МЕЖДУНАРОДНОЕ SEO
+  hreflang_enabled   Boolean @default(true) // Включить hreflang теги
+  hreflang_x_default String? // URL для x-default (обычно англ. версия)
+  // JSON формат: [{"lang": "en", "region": "US", "url": "/slots/..."}]
+  hreflang_config    String? // JSON массив конфигурации hreflang
+  // Пресеты для быстрой настройки целевых гео (из вашего списка)
+  hreflang_preset    String? @default("international") // international, cis, latam, asia, custom
+
+  // 1️⃣6️⃣ ДОПОЛНИТЕЛЬНЫЕ ТЕХНИЧЕСКИЕ SEO
+  author_meta        String?   @default("SlotQuest Team") // Мета-тег автора
+  publisher_meta     String?   @default("SlotQuest") // Издатель
+  copyright_meta     String? // Авторские права
+  last_reviewed_date DateTime? // Дата последней проверки контента (E-E-A-T)
+  content_updated_at DateTime? // Дата обновления контента
+
+  // 1️⃣7️⃣ CORE WEB VITALS HINTS
+  preconnect_urls   String? // URL для preconnect через запятую
+  preload_image     Boolean @default(true) // Preload главного изображения
+  dns_prefetch_urls String? // URL для dns-prefetch через запятую
+
+  // ========== 🎯 ФАЗА 2: РАСШИРЕННОЕ SEO ==========
+
+  // 1️⃣8️⃣ TITLE TEMPLATES - Система шаблонов заголовков
+  // seo_title_template и seo_title_power_words уже определены в секции 1️⃣1️⃣
+  seo_title_use_template Boolean @default(false) // Использовать шаблон вместо ручного title
+
+  // 1️⃣9️⃣ E-E-A-T СИГНАЛЫ (Google Quality Guidelines)
+  // Experience - Опыт
+  eeat_experience_date        DateTime? // Дата первого тестирования слота
+  eeat_experience_hours       Int? // Количество часов тестирования
+  eeat_experience_sessions    Int? // Количество игровых сессий
+  eeat_experience_screenshots String? // JSON массив скриншотов реального геймплея
+
+  // Expertise - Экспертиза
+  eeat_author_name     String? @default("SlotQuest Editorial Team") // Имя автора обзора
+  eeat_author_position String? // Должность: "Senior Slot Analyst"
+  eeat_author_bio      String? // Краткая биография автора
+  eeat_author_avatar   String? // URL аватара автора
+  eeat_author_social   String? // JSON: {"twitter": "@...", "linkedin": "..."}
+  eeat_expertise_years Int?    @default(5) // Лет опыта в индустрии
+  eeat_reviews_count   Int? // Количество написанных обзоров
+
+  // Authoritativeness - Авторитетность
+  eeat_certifications  String? // Сертификации: "eCOGRA, iTech Labs, GLI"
+  eeat_partnerships    String? // Партнёрства с провайдерами
+  eeat_citations_count Int?    @default(0) // Количество цитирований
+  eeat_awards          String? // Полученные награды (JSON)
+  eeat_featured_in     String? // Упоминания в СМИ: "Forbes, Casino.org"
+
+  // Trustworthiness - Надёжность
+  eeat_data_sources    String? // Источники данных: "Official RTP from Pragmatic Play"
+  eeat_fact_checked    Boolean   @default(true) // Факты проверены
+  eeat_fact_check_date DateTime? // Дата проверки фактов
+  eeat_methodology     String? // Описание методологии оценки
+  eeat_disclaimer      String?   @default("18+ | Gambling can be addictive | Play responsibly") // Отказ от ответственности
+  eeat_license_info    String? // Информация о лицензии
+
+  // 2️⃣0️⃣ CONTENT FRESHNESS - Свежесть контента
+  content_published_date   DateTime? // Дата первой публикации
+  content_major_update     DateTime? // Дата крупного обновления
+  content_minor_update     DateTime? // Дата мелкого обновления
+  content_reviewed_date    DateTime? // Дата последней редакторской проверки
+  content_version          String?   @default("1.0") // Версия контента
+  content_changelog        String? // JSON массив изменений: [{date, description}]
+  content_update_frequency String?   @default("monthly") // weekly, monthly, quarterly
+  content_next_review      DateTime? // Запланированная дата следующей проверки
+  content_freshness_score  Int?      @default(100) // Оценка свежести 0-100
+
+  // 2️⃣1️⃣ SOCIAL SHARING OPTIMIZATION
+  social_share_count      Int?    @default(0) // Общее количество шейров
+  social_facebook_shares  Int?    @default(0) // Шейры в Facebook
+  social_twitter_shares   Int?    @default(0) // Шейры в Twitter
+  social_pinterest_shares Int?    @default(0) // Шейры в Pinterest
+  social_custom_hashtags  String? // Кастомные хештеги: "#slots #casino #pragmatic"
+  social_cta_text         String? // CTA для шеринга: "Share this slot review!"
+
+  // 2️⃣2️⃣ CONVERSION OPTIMIZATION
+  cta_primary_text   String? @default("Play Now") // Основной CTA
+  cta_primary_url    String? // URL основного CTA
+  cta_secondary_text String? @default("Try Demo") // Вторичный CTA
+  cta_secondary_url  String? // URL вторичного CTA
+  cta_urgency_text   String? // Текст срочности: "Limited time offer!"
+  cta_social_proof   String? // Социальное доказательство: "1,247 players online"
+
+  // ========== 🎯 ФАЗА 3: АНАЛИТИКА И ПРОИЗВОДИТЕЛЬНОСТЬ ==========
+
+  // 2️⃣3️⃣ KEYWORD DENSITY ANALYSIS
+  keyword_primary_target  Float?    @default(1.5) // Целевая плотность primary keyword (%)
+  keyword_density_score   Int?      @default(0) // Оценка плотности 0-100
+  keyword_analysis_date   DateTime? // Дата последнего анализа
+  keyword_analysis_result String? // JSON результат анализа: {primary: 1.2%, lsi: [...], issues: [...]}
+  keyword_suggestions     String? // JSON предложения по улучшению
+  keyword_competitors     String? // JSON: анализ ключевых слов конкурентов
+
+  // 2️⃣4️⃣ INDEXING STATUS
+  indexing_status          String?   @default("unknown") // indexed, not_indexed, pending, error
+  indexing_first_date      DateTime? // Дата первой индексации
+  indexing_last_crawl      DateTime? // Дата последнего обхода
+  indexing_crawl_frequency String?   @default("weekly") // daily, weekly, monthly
+  indexing_impressions     Int?      @default(0) // Показы в поиске за неделю
+  indexing_clicks          Int?      @default(0) // Клики из поиска за неделю
+  indexing_position        Float? // Средняя позиция в поиске
+  indexing_internal_links  Int?      @default(0) // Количество внутренних ссылок
+  indexing_external_links  Int?      @default(0) // Количество внешних бэклинков
+  indexing_last_check      DateTime? // Дата последней проверки статуса
+  indexing_errors          String? // JSON массив ошибок индексации
+
+  // 2️⃣5️⃣ PAGE SPEED / CORE WEB VITALS
+  cwv_lcp           Float? // Largest Contentful Paint (секунды)
+  cwv_fid           Float? // First Input Delay (миллисекунды)
+  cwv_cls           Float? // Cumulative Layout Shift (0-1)
+  cwv_ttfb          Float? // Time to First Byte (миллисекунды)
+  cwv_fcp           Float? // First Contentful Paint (секунды)
+  cwv_inp           Float? // Interaction to Next Paint (миллисекунды)
+  cwv_score_mobile  Int?      @default(0) // PageSpeed Score Mobile (0-100)
+  cwv_score_desktop Int?      @default(0) // PageSpeed Score Desktop (0-100)
+  cwv_last_check    DateTime? // Дата последней проверки
+  cwv_issues        String? // JSON массив проблем с производительностью
+  cwv_opportunities String? // JSON массив возможностей оптимизации
+
+  // 2️⃣6️⃣ SITEMAP CONFIGURATION
+  sitemap_include   Boolean   @default(true) // Включить в sitemap
+  sitemap_priority  Float?    @default(0.8) // Приоритет 0.0-1.0
+  sitemap_frequency String?   @default("weekly") // always, hourly, daily, weekly, monthly, yearly, never
+  sitemap_last_mod  DateTime? // Дата последнего изменения для sitemap
+  sitemap_images    String? // JSON массив изображений для sitemap
+  sitemap_videos    String? // JSON массив видео для sitemap
+  sitemap_news      Boolean   @default(false) // Включить в Google News sitemap
+
+  // 2️⃣7️⃣ SEO HEALTH SCORE
+  seo_health_score      Int?      @default(0) // Общая оценка SEO здоровья 0-100
+  seo_health_issues     String? // JSON массив проблем
+  seo_health_warnings   String? // JSON массив предупреждений
+  seo_health_passed     String? // JSON массив пройденных проверок
+  seo_health_last_audit DateTime? // Дата последнего аудита
+  seo_health_trend      String? // JSON тренд оценки за время
+
+  // 2️⃣8️⃣ COMPETITOR ANALYSIS
+  competitor_urls       String? // JSON массив URL конкурентов для этого слота
+  competitor_positions  String? // JSON позиции конкурентов по ключевым словам
+  competitor_last_check DateTime? // Дата последней проверки конкурентов
+
   // ========================================
 
   slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)

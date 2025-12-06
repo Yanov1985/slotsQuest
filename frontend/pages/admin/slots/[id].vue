@@ -8246,6 +8246,42 @@
                           </div>
                         </div>
 
+                        <!-- 🔍 SERP Preview - Как страница выглядит в Google -->
+                        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                          <SerpPreview
+                            :title="form.seo_title_use_template ? generatedTitleFromTemplate : form.seo_title"
+                            :description="form.seo_description"
+                            :slug="form.slug"
+                            :slot-name="form.name"
+                            :provider-name="slot?.providers?.name || ''"
+                            :rtp="form.rtp"
+                            :volatility="form.volatility"
+                            :max-win="form.max_win"
+                            :rating="form.rating"
+                            :rating-count="form.rating_count"
+                            :show-rating="form.jsonld_enable_review !== false"
+                            :show-breadcrumbs="form.jsonld_enable_breadcrumb !== false"
+                            :show-faq="form.jsonld_enable_faq"
+                            :faq-items="parseFaqItems(form.jsonld_faq_json)"
+                          />
+                        </div>
+
+                        <!-- 🎯 Title Templates - Система шаблонов заголовков (Фаза 2) -->
+                        <div class="bg-[#1B1E26]/50 border border-[#F59E0B]/20 rounded-lg p-4">
+                          <TitleTemplates
+                            v-model:template="form.seo_title_template"
+                            v-model:use-template="form.seo_title_use_template"
+                            v-model:power-words="form.seo_title_power_words"
+                            :slot-name="form.name"
+                            :provider-name="slot?.providers?.name || ''"
+                            :rtp="form.rtp"
+                            :volatility="form.volatility"
+                            :max-win="form.max_win"
+                            :rating="form.rating"
+                            @update:generated-title="generatedTitleFromTemplate = $event"
+                          />
+                        </div>
+
                         <!-- SEO Keywords - РАСШИРЕННАЯ СИСТЕМА -->
                         <div class="space-y-4">
                           <h4
@@ -8536,6 +8572,21 @@
                           <p class="text-xs text-[#9CA3AF]">
                             Рекомендуемый размер: 1200x630 пикселей
                           </p>
+                        </div>
+
+                        <!-- 📱 Social Preview Cards (Фаза 2) -->
+                        <div class="border-t border-[#353A4A] pt-6">
+                          <SocialPreviewCards
+                            :og-title="form.og_title || form.seo_title"
+                            :og-description="form.og_description || form.seo_description"
+                            :og-image="form.og_image || form.image_url"
+                            :twitter-title="form.twitter_title"
+                            :twitter-description="form.twitter_description"
+                            :twitter-image="form.twitter_image"
+                            :page-url="`/slots/${form.slug}`"
+                            v-model:hashtags="form.social_custom_hashtags"
+                            v-model:cta-text="form.social_cta_text"
+                          />
                         </div>
                       </div>
                     </div>
@@ -9076,6 +9127,30 @@
                               </p>
                             </div>
                           </div>
+                        </div>
+
+                        <!-- 🤖 Advanced Robots Directives -->
+                        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                          <RobotsConfig
+                            v-model:index="form.robots_index"
+                            v-model:follow="form.robots_follow"
+                            v-model:max-snippet="form.robots_max_snippet"
+                            v-model:max-image-preview="form.robots_max_image_preview"
+                            v-model:max-video-preview="form.robots_max_video_preview"
+                            v-model:notranslate="form.robots_notranslate"
+                            v-model:noimageindex="form.robots_noimageindex"
+                            v-model:unavailable-after="form.robots_unavailable_after"
+                          />
+                        </div>
+
+                        <!-- 🌍 Hreflang Configuration -->
+                        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+                          <HreflangConfig
+                            v-model:enabled="form.hreflang_enabled"
+                            v-model:preset="form.hreflang_preset"
+                            :slug="form.slug"
+                            @update:config="form.hreflang_config = $event"
+                          />
                         </div>
                       </div>
                     </div>
@@ -10013,6 +10088,236 @@
                         </div>
                       </div>
                     </div>
+
+                    <!-- ========== ФАЗА 3: АНАЛИТИКА И ПРОИЗВОДИТЕЛЬНОСТЬ ========== -->
+
+                    <!-- SEO Health Score -->
+                    <div
+                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">🏥</span>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              SEO Health Score
+                            </h3>
+                            <p class="text-sm text-[#3B82F6]">
+                              Общая оценка SEO здоровья страницы
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showSEOHealthSection = !showSEOHealthSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showSEOHealthSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                          <span>{{ showSEOHealthSection ? 'Свернуть' : 'Развернуть' }}</span>
+                        </button>
+                      </div>
+                      <div v-show="showSEOHealthSection" class="space-y-6">
+                        <SEOHealthScore
+                          v-model="seoHealthForm"
+                          :seo-title="form.seo_title"
+                          :seo-description="form.seo_description"
+                          :canonical-url="form.canonical_url"
+                          :og-title="form.og_title"
+                          :og-image="form.og_image"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Keyword Density Checker -->
+                    <div
+                      class="group bg-gradient-to-r from-[#EC4899]/10 to-[#DB2777]/10 border border-[#EC4899]/20 rounded-xl p-6 hover:border-[#EC4899]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">🔍</span>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              Keyword Density Checker
+                            </h3>
+                            <p class="text-sm text-[#EC4899]">
+                              Анализ плотности ключевых слов
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showKeywordDensitySection = !showKeywordDensitySection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EC4899]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showKeywordDensitySection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                          <span>{{ showKeywordDensitySection ? 'Свернуть' : 'Развернуть' }}</span>
+                        </button>
+                      </div>
+                      <div v-show="showKeywordDensitySection" class="space-y-6">
+                        <KeywordDensityChecker
+                          :slot-name="form.name"
+                          :description="form.description"
+                          :content="form.seo_description"
+                          :seo-title="form.seo_title"
+                          :seo-description="form.seo_description"
+                          :keywords="form.seo_keywords_primary"
+                          @update:analysisResult="form.keyword_analysis_result = $event"
+                          @update:densityScore="form.keyword_density_score = $event"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Indexing Status -->
+                    <div
+                      class="group bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 border border-[#6366F1]/20 rounded-xl p-6 hover:border-[#6366F1]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="w-12 h-12 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">📊</span>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              Indexing Status
+                            </h3>
+                            <p class="text-sm text-[#6366F1]">
+                              Статус индексации в поисковых системах
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showIndexingStatusSection = !showIndexingStatusSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#6366F1]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showIndexingStatusSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                          <span>{{ showIndexingStatusSection ? 'Свернуть' : 'Развернуть' }}</span>
+                        </button>
+                      </div>
+                      <div v-show="showIndexingStatusSection" class="space-y-6">
+                        <IndexingStatus
+                          v-model="indexingForm"
+                          :page-url="getSlotPageUrl()"
+                          :site-url="getSiteUrl()"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Page Speed Metrics -->
+                    <div
+                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">⚡</span>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              Core Web Vitals
+                            </h3>
+                            <p class="text-sm text-[#F59E0B]">
+                              Метрики производительности страницы
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showPageSpeedSection = !showPageSpeedSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showPageSpeedSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                          <span>{{ showPageSpeedSection ? 'Свернуть' : 'Развернуть' }}</span>
+                        </button>
+                      </div>
+                      <div v-show="showPageSpeedSection" class="space-y-6">
+                        <PageSpeedMetrics
+                          v-model="pageSpeedForm"
+                          :page-url="getSlotPageUrl()"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Sitemap Configuration -->
+                    <div
+                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#34D399]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#34D399] rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">🗺️</span>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              Sitemap Configuration
+                            </h3>
+                            <p class="text-sm text-[#10B981]">
+                              Настройки XML карты сайта
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showSitemapSection = !showSitemapSection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg
+                            class="w-3 h-3 transform transition-transform duration-200"
+                            :class="{ 'rotate-180': showSitemapSection }"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                          <span>{{ showSitemapSection ? 'Свернуть' : 'Развернуть' }}</span>
+                        </button>
+                      </div>
+                      <div v-show="showSitemapSection" class="space-y-6">
+                        <SitemapConfig
+                          v-model="sitemapForm"
+                          :page-url="getSlotPageUrl()"
+                          :slot-name="form.name"
+                        />
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -10736,6 +11041,20 @@
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import HeroPreview from '~/components/admin/HeroPreview.vue'
 import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
+import SerpPreview from '~/components/admin/SerpPreview.vue'
+import HreflangConfig from '~/components/admin/HreflangConfig.vue'
+import RobotsConfig from '~/components/admin/RobotsConfig.vue'
+// Фаза 2 компоненты
+import TitleTemplates from '~/components/admin/TitleTemplates.vue'
+import EEATSignals from '~/components/admin/EEATSignals.vue'
+import ContentFreshness from '~/components/admin/ContentFreshness.vue'
+import SocialPreviewCards from '~/components/admin/SocialPreviewCards.vue'
+// Фаза 3 компоненты
+import KeywordDensityChecker from '~/components/admin/KeywordDensityChecker.vue'
+import IndexingStatus from '~/components/admin/IndexingStatus.vue'
+import PageSpeedMetrics from '~/components/admin/PageSpeedMetrics.vue'
+import SitemapConfig from '~/components/admin/SitemapConfig.vue'
+import SEOHealthScore from '~/components/admin/SEOHealthScore.vue'
 
 // Получаем ID слота из роута
 const route = useRoute()
@@ -10833,6 +11152,19 @@ const showTechnicalSeoSection = ref(false)
 const showJsonLdSection = ref(false)
 const showBreadcrumbSection = ref(false)
 const showImageObjectSection = ref(false)
+// Фаза 2: новые секции
+const showEEATSection = ref(false)
+const showContentFreshnessSection = ref(false)
+
+// Фаза 3: новые секции
+const showKeywordDensitySection = ref(false)
+const showIndexingStatusSection = ref(false)
+const showPageSpeedSection = ref(false)
+const showSitemapSection = ref(false)
+const showSEOHealthSection = ref(false)
+
+// Фаза 2: переменные для Title Templates
+const generatedTitleFromTemplate = ref('')
 const showVideoObjectSection = ref(false)
 
 const paylineType = ref('text') // 'number' или 'text'
@@ -10889,6 +11221,69 @@ const jsonLdForm = ref({
   jsonld_video_duration: '',
   jsonld_video_description: '',
 })
+
+// ========== ФАЗА 3: Формы для аналитики и производительности ==========
+
+// SEO Health Score форма
+const seoHealthForm = ref({
+  seo_health_score: 0,
+  seo_health_issues: null,
+  seo_health_warnings: null,
+  seo_health_passed: null,
+  seo_health_last_audit: null,
+  seo_health_trend: null
+})
+
+// Indexing Status форма
+const indexingForm = ref({
+  indexing_status: 'unknown',
+  indexing_first_date: null,
+  indexing_last_crawl: null,
+  indexing_crawl_frequency: 'weekly',
+  indexing_impressions: 0,
+  indexing_clicks: 0,
+  indexing_position: null,
+  indexing_internal_links: 0,
+  indexing_external_links: 0,
+  indexing_last_check: null,
+  indexing_errors: null
+})
+
+// Page Speed / Core Web Vitals форма
+const pageSpeedForm = ref({
+  cwv_lcp: null,
+  cwv_fid: null,
+  cwv_cls: null,
+  cwv_ttfb: null,
+  cwv_fcp: null,
+  cwv_inp: null,
+  cwv_score_mobile: 0,
+  cwv_score_desktop: 0,
+  cwv_last_check: null,
+  cwv_issues: null,
+  cwv_opportunities: null
+})
+
+// Sitemap Configuration форма
+const sitemapForm = ref({
+  sitemap_include: true,
+  sitemap_priority: 0.8,
+  sitemap_frequency: 'weekly',
+  sitemap_last_mod: null,
+  sitemap_images: null,
+  sitemap_videos: null,
+  sitemap_news: false
+})
+
+// Вспомогательные функции для URL
+function getSlotPageUrl() {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://slotquest.com'
+  return `${baseUrl}/slots/${form.value.slug || 'slot-name'}`
+}
+
+function getSiteUrl() {
+  return typeof window !== 'undefined' ? window.location.origin : 'https://slotquest.com'
+}
 
 // Форма редактирования
 const form = ref({
@@ -11459,19 +11854,96 @@ const form = ref({
   content_language: 'en', // Основной язык контента (английский - международный)
   geo_target_regions: 'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD', // Целевые страны (коды ISO)
 
-  // Open Graph поля
+  // Open Graph поля (расширенные)
   og_title: '',
   og_description: '',
   og_image: '',
+  og_type: 'article',
+  og_url: '',
+  og_site_name: 'SlotQuest',
+  og_locale: 'en_US',
+  og_locale_alternate: 'ru_RU,pt_BR,hi_IN,tr_TR,es_CL',
+  og_video: '',
+  og_video_type: 'video/mp4',
+  og_video_width: 1280,
+  og_video_height: 720,
+  og_image_width: 1200,
+  og_image_height: 630,
+  og_image_alt: '',
 
-  // Twitter Card поля
+  // Twitter Card поля (расширенные)
   twitter_card: 'summary_large_image',
+  twitter_site: '@SlotQuest',
+  twitter_creator: '@SlotQuest',
   twitter_title: '',
   twitter_description: '',
   twitter_image: '',
-  twitter_site: '@slotquest',
+  twitter_image_alt: '',
+  twitter_player: '',
+  twitter_player_width: 1280,
+  twitter_player_height: 720,
 
-  // Технический SEO поля
+  // Advanced Robots директивы (Фаза 1)
+  robots_index: true,
+  robots_follow: true,
+  robots_max_snippet: -1, // -1 = без ограничений
+  robots_max_image_preview: 'large', // none, standard, large
+  robots_max_video_preview: -1, // -1 = без ограничений
+  robots_notranslate: false,
+  robots_noimageindex: false,
+  robots_unavailable_after: '',
+
+  // Hreflang конфигурация (Фаза 1)
+  hreflang_enabled: true,
+  hreflang_x_default: '',
+  hreflang_config: '', // JSON массив конфигурации
+  hreflang_preset: 'international', // international, cis, latam, asia, custom
+
+  // ============ ФАЗА 2: РАСШИРЕННОЕ SEO ============
+
+  // Title Templates
+  seo_title_template: '{name} Slot by {provider} | Play Free Demo {year}',
+  seo_title_power_words: '',
+  seo_title_use_template: false,
+
+  // E-E-A-T - Experience
+  eeat_experience_date: '',
+  eeat_experience_hours: 10,
+  eeat_experience_sessions: 25,
+
+  // E-E-A-T - Expertise
+  eeat_author_name: 'SlotQuest Editorial Team',
+  eeat_author_position: 'Senior Slot Analyst',
+  eeat_author_bio: '',
+  eeat_expertise_years: 5,
+  eeat_reviews_count: 250,
+
+  // E-E-A-T - Authority
+  eeat_certifications: '',
+  eeat_featured_in: '',
+  eeat_partnerships: '',
+
+  // E-E-A-T - Trust
+  eeat_data_sources: '',
+  eeat_methodology: '',
+  eeat_fact_checked: true,
+  eeat_fact_check_date: '',
+  eeat_disclaimer: '18+ | Gambling can be addictive | Play responsibly',
+
+  // Content Freshness
+  content_published_date: '',
+  content_major_update: '',
+  content_reviewed_date: '',
+  content_next_review: '',
+  content_version: '1.0',
+  content_update_frequency: 'monthly',
+  content_changelog: '',
+
+  // Social Sharing
+  social_custom_hashtags: '#slots #casino #pragmatic',
+  social_cta_text: 'Check out this amazing slot!',
+
+  // Технический SEO поля (обновлено)
   robots_meta: 'index, follow',
   viewport_meta: 'width=device-width, initial-scale=1',
   charset_meta: 'UTF-8',
@@ -11682,6 +12154,36 @@ const loadThemes = async () => {
   }
 }
 
+// 🔧 Вспомогательные функции для SEO компонентов
+
+// Парсинг FAQ JSON для SerpPreview
+const parseFaqItems = (faqJson) => {
+  if (!faqJson) return []
+  try {
+    const items = JSON.parse(faqJson)
+    return Array.isArray(items) ? items : []
+  } catch (e) {
+    return []
+  }
+}
+
+// Генерация robots content из отдельных полей
+const generateRobotsContent = () => {
+  const directives = []
+  directives.push(form.robots_index ? 'index' : 'noindex')
+  directives.push(form.robots_follow ? 'follow' : 'nofollow')
+  if (form.robots_max_snippet !== -1) {
+    directives.push(`max-snippet:${form.robots_max_snippet}`)
+  }
+  directives.push(`max-image-preview:${form.robots_max_image_preview || 'large'}`)
+  if (form.robots_max_video_preview !== -1) {
+    directives.push(`max-video-preview:${form.robots_max_video_preview}`)
+  }
+  if (form.robots_notranslate) directives.push('notranslate')
+  if (form.robots_noimageindex) directives.push('noimageindex')
+  return directives.join(', ')
+}
+
 // Загрузка данных слота
 const loadSlot = async () => {
   if (slotId === 'new') return
@@ -11773,6 +12275,52 @@ const loadSlot = async () => {
       }
     })
     console.log('✅ JSON-LD настройки загружены:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
+
+    // 📊 ФАЗА 3: Загружаем SEO Health Score настройки
+    const seoHealthFields = [
+      'seo_health_score', 'seo_health_issues', 'seo_health_warnings',
+      'seo_health_passed', 'seo_health_last_audit', 'seo_health_trend'
+    ]
+    seoHealthFields.forEach(field => {
+      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+        seoHealthForm.value[field] = slot.value[field]
+      }
+    })
+
+    // 📈 ФАЗА 3: Загружаем Indexing Status настройки
+    const indexingFields = [
+      'indexing_status', 'indexing_first_date', 'indexing_last_crawl', 'indexing_crawl_frequency',
+      'indexing_impressions', 'indexing_clicks', 'indexing_position', 'indexing_internal_links',
+      'indexing_external_links', 'indexing_last_check', 'indexing_errors'
+    ]
+    indexingFields.forEach(field => {
+      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+        indexingForm.value[field] = slot.value[field]
+      }
+    })
+
+    // ⚡ ФАЗА 3: Загружаем Page Speed / Core Web Vitals настройки
+    const pageSpeedFields = [
+      'cwv_lcp', 'cwv_fid', 'cwv_cls', 'cwv_ttfb', 'cwv_fcp', 'cwv_inp',
+      'cwv_score_mobile', 'cwv_score_desktop', 'cwv_last_check', 'cwv_issues', 'cwv_opportunities'
+    ]
+    pageSpeedFields.forEach(field => {
+      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+        pageSpeedForm.value[field] = slot.value[field]
+      }
+    })
+
+    // 🗺️ ФАЗА 3: Загружаем Sitemap настройки
+    const sitemapFields = [
+      'sitemap_include', 'sitemap_priority', 'sitemap_frequency',
+      'sitemap_last_mod', 'sitemap_images', 'sitemap_videos', 'sitemap_news'
+    ]
+    sitemapFields.forEach(field => {
+      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+        sitemapForm.value[field] = slot.value[field]
+      }
+    })
+    console.log('✅ ФАЗА 3: SEO аналитика загружена')
 
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
     if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
@@ -12272,6 +12820,57 @@ const saveSlot = async () => {
       'jsonld_video_thumbnail',
       'jsonld_video_duration',
       'jsonld_video_description',
+      // ========== ФАЗА 3: Поля аналитики и производительности ==========
+      // Keyword Density
+      'keyword_primary_target',
+      'keyword_density_score',
+      'keyword_analysis_date',
+      'keyword_analysis_result',
+      'keyword_suggestions',
+      'keyword_competitors',
+      // Indexing Status
+      'indexing_status',
+      'indexing_first_date',
+      'indexing_last_crawl',
+      'indexing_crawl_frequency',
+      'indexing_impressions',
+      'indexing_clicks',
+      'indexing_position',
+      'indexing_internal_links',
+      'indexing_external_links',
+      'indexing_last_check',
+      'indexing_errors',
+      // Core Web Vitals
+      'cwv_lcp',
+      'cwv_fid',
+      'cwv_cls',
+      'cwv_ttfb',
+      'cwv_fcp',
+      'cwv_inp',
+      'cwv_score_mobile',
+      'cwv_score_desktop',
+      'cwv_last_check',
+      'cwv_issues',
+      'cwv_opportunities',
+      // Sitemap
+      'sitemap_include',
+      'sitemap_priority',
+      'sitemap_frequency',
+      'sitemap_last_mod',
+      'sitemap_images',
+      'sitemap_videos',
+      'sitemap_news',
+      // SEO Health Score
+      'seo_health_score',
+      'seo_health_issues',
+      'seo_health_warnings',
+      'seo_health_passed',
+      'seo_health_last_audit',
+      'seo_health_trend',
+      // Competitor Analysis
+      'competitor_urls',
+      'competitor_positions',
+      'competitor_last_check',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля
@@ -12281,6 +12880,34 @@ const saveSlot = async () => {
     Object.keys(jsonLdForm.value).forEach((key) => {
       if (jsonLdForm.value[key] !== undefined && jsonLdForm.value[key] !== null) {
         dataToSend[key] = jsonLdForm.value[key]
+      }
+    })
+
+    // 📊 ФАЗА 3: Добавляем SEO Health Score поля
+    Object.keys(seoHealthForm.value).forEach((key) => {
+      if (seoHealthForm.value[key] !== undefined) {
+        dataToSend[key] = seoHealthForm.value[key]
+      }
+    })
+
+    // 📈 ФАЗА 3: Добавляем Indexing Status поля
+    Object.keys(indexingForm.value).forEach((key) => {
+      if (indexingForm.value[key] !== undefined) {
+        dataToSend[key] = indexingForm.value[key]
+      }
+    })
+
+    // ⚡ ФАЗА 3: Добавляем Page Speed / Core Web Vitals поля
+    Object.keys(pageSpeedForm.value).forEach((key) => {
+      if (pageSpeedForm.value[key] !== undefined) {
+        dataToSend[key] = pageSpeedForm.value[key]
+      }
+    })
+
+    // 🗺️ ФАЗА 3: Добавляем Sitemap поля
+    Object.keys(sitemapForm.value).forEach((key) => {
+      if (sitemapForm.value[key] !== undefined) {
+        dataToSend[key] = sitemapForm.value[key]
       }
     })
 
