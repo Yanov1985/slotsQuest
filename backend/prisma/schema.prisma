@@ -190,7 +190,7 @@ model slots {
   slot_bonuses                          slot_bonuses[]
   slot_features                         slot_features[]
   slot_mechanics                        slot_mechanics[]
-  slotThemes                            slot_themes[]    // Новая many-to-many связь с темами
+  slotThemes                            slot_themes[] // Новая many-to-many связь с темами
 
   // Strategies & Tips (dynamic content for gameplay advice)
   strategy_title           String? @map("strategies_title")
@@ -403,6 +403,71 @@ model slots {
   cta_trust_2_text      String?
   cta_trust_3_text      String?
 
+  // ========== 🎯 JSON-LD СТРУКТУРИРОВАННЫЕ ДАННЫЕ (SEO) ==========
+  // Управление JSON-LD схемами для Google Rich Snippets и поисковой оптимизации
+  // Эти поля позволяют контролировать структурированные данные через админ-панель
+
+  // 1️⃣ ОСНОВНАЯ СХЕМА (Game/Product/WebApplication)
+  jsonld_enabled        Boolean @default(true) // Включить/выключить JSON-LD для этого слота
+  jsonld_type           String? @default("Game") // Тип схемы: Game, Product, WebApplication, VideoGame
+  jsonld_game_genre     String? // Жанр игры: Casino, Arcade, Strategy, Puzzle
+  jsonld_game_platform  String? @default("Web Browser, Mobile, Desktop") // Платформы: Web, Mobile, Desktop
+  jsonld_content_rating String? @default("18+") // Возрастной рейтинг: 18+, 21+, Everyone
+  jsonld_is_free        Boolean @default(true) // Доступна ли бесплатная версия
+
+  // 2️⃣ ДОПОЛНИТЕЛЬНЫЕ СХЕМЫ (включить/выключить через чекбоксы)
+  jsonld_enable_product    Boolean @default(false) // ✅ Включить Product Schema (цена, доступность)
+  jsonld_enable_review     Boolean @default(true) // ✅ Включить Review Schema (звёзды в поиске!)
+  jsonld_enable_faq        Boolean @default(false) // ✅ Включить FAQ Schema (вопросы-ответы)
+  jsonld_enable_howto      Boolean @default(false) // ✅ Включить HowTo Schema (инструкция)
+  jsonld_enable_breadcrumb Boolean @default(true) // ✅ Включить BreadcrumbList Schema (хлебные крошки)
+  jsonld_enable_video      Boolean @default(false) // ✅ Включить VideoObject Schema (видео-обзор)
+
+  // 3️⃣ PRODUCT SCHEMA (если слот продаётся как продукт или есть платная версия)
+  jsonld_product_price        Float? // Цена продукта (например: 9.99)
+  jsonld_product_currency     String? @default("USD") // Валюта: USD, EUR, RUB
+  jsonld_product_availability String? @default("InStock") // Доступность: InStock, OutOfStock, PreOrder
+  jsonld_product_condition    String? @default("NewCondition") // Состояние: NewCondition, UsedCondition, RefurbishedCondition
+
+  // 4️⃣ REVIEW SCHEMA (отзывы для отображения звёзд в Google)
+  jsonld_review_author String?   @default("SlotQuest Editorial Team") // Автор отзыва
+  jsonld_review_date   DateTime? @default(now()) // Дата отзыва
+  jsonld_review_text   String? // Текст отзыва (краткий, 100-200 символов)
+  jsonld_review_rating Float? // Рейтинг от эксперта (0-5)
+
+  // 5️⃣ FAQ SCHEMA (часто задаваемые вопросы для расширенного сниппета)
+  jsonld_faq_json String? // JSON массив [{question: "...", answer: "..."}]
+
+  // 6️⃣ HOWTO SCHEMA (пошаговая инструкция "Как играть")
+  jsonld_howto_json String? // JSON массив [{step: 1, name: "...", text: "..."}]
+
+  // 7️⃣ VIDEO SCHEMA (если есть видео-обзор слота)
+  jsonld_video_url         String? // URL видео (YouTube, Vimeo)
+  jsonld_video_thumbnail   String? // URL превью видео
+  jsonld_video_duration    String? // Длительность в ISO 8601: PT2M30S (2 минуты 30 секунд)
+  jsonld_video_upload_date DateTime? // Дата загрузки видео
+  jsonld_video_description String? // Описание видео
+
+  // 8️⃣ КАСТОМНАЯ JSON-LD (для продвинутых пользователей)
+  jsonld_custom        String? // Полностью кастомная JSON-LD схема (raw JSON)
+  jsonld_override_auto Boolean @default(false) // Использовать кастомную схему вместо автоматической
+
+  // 9️⃣ МЕТА-ИНФОРМАЦИЯ И АНАЛИТИКА
+  jsonld_last_validated       DateTime? // Дата последней проверки валидности
+  jsonld_validation_errors    String? // Ошибки валидации (JSON массив)
+  jsonld_rich_snippet_enabled Boolean   @default(true) // Показывать ли rich snippets
+
+  // 🔟 SEO МЕТА-ТЕГИ (основные для поисковых систем)
+  seo_title            String? // SEO заголовок (50-60 символов)
+  seo_description      String? // SEO описание (150-160 символов)
+  seo_keywords_primary String? // Основные ключевые слова (3-5 слов)
+  seo_keywords_lsi     String? // LSI ключевые слова (10-15 связанных терминов)
+  seo_keywords_geo     String? // Гео-ключевые слова (для разных стран)
+  content_language     String? @default("en") // Язык контента: en, ru, es, de
+  geo_target_regions   String? // Целевые регионы (ISO коды через запятую): US,UK,CA,RU
+
+  // ========================================
+
   slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   providers       providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   themes          themes?          @relation("DeprecatedTheme", fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -420,9 +485,9 @@ model slot_themes {
   slot_id    String
   theme_id   String
   created_at DateTime @default(now())
-  
-  slots      slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
-  themes     themes   @relation(fields: [theme_id], references: [id], onDelete: Cascade)
+
+  slots  slots  @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  themes themes @relation(fields: [theme_id], references: [id], onDelete: Cascade)
 
   @@unique([slot_id, theme_id])
   @@index([slot_id], map: "idx_slot_themes_slot_id")
@@ -466,18 +531,18 @@ model slot_features {
 }
 
 model themes {
-  id                 String        @id @default(cuid())
-  name               String        @unique
-  slug               String        @unique
-  description        String?
-  color              String?
-  icon               String?
-  is_featured        Boolean       @default(false)
-  is_active          Boolean       @default(true)
-  created_at         DateTime      @default(now())
-  updated_at         DateTime      @updatedAt
-  slots_deprecated   slots[]       @relation("DeprecatedTheme") // Старая связь one-to-many (deprecated)
-  slotThemes         slot_themes[] // Новая many-to-many связь
+  id               String        @id @default(cuid())
+  name             String        @unique
+  slug             String        @unique
+  description      String?
+  color            String?
+  icon             String?
+  is_featured      Boolean       @default(false)
+  is_active        Boolean       @default(true)
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @updatedAt
+  slots_deprecated slots[]       @relation("DeprecatedTheme") // Старая связь one-to-many (deprecated)
+  slotThemes       slot_themes[] // Новая many-to-many связь
 
   @@index([is_active])
   @@index([is_featured])

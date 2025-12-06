@@ -9139,6 +9139,22 @@
                       </div>
 
                       <div v-show="showJsonLdSection" class="space-y-6">
+                        <!-- 🎯 НОВЫЙ JSON-LD Editor Component -->
+                        <JsonLdEditor
+                          :slot-id="slot?.id || ''"
+                          v-model="jsonLdForm"
+                        />
+
+                        <!-- Разделитель между новым и старым интерфейсом -->
+                        <div class="border-t border-[#353A4A] pt-6">
+                          <h4 class="text-sm font-medium text-[#9CA3AF] mb-4 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                            Дополнительные настройки Schema.org (расширенные)
+                          </h4>
+                        </div>
+
                         <!-- VideoGame Schema -->
                         <div
                           class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
@@ -10838,6 +10854,42 @@ const availableMechanics = ref([])
 const availableBonuses = ref([])
 const availableThemes = ref([])
 
+// 🎯 JSON-LD форма для нового компонента
+const jsonLdForm = ref({
+  // Основные настройки JSON-LD
+  jsonld_enabled: true,
+  jsonld_type: 'Game',
+  jsonld_game_genre: 'Casino',
+  jsonld_game_platform: 'Web Browser, Mobile, Desktop',
+  jsonld_content_rating: '18+',
+  jsonld_is_free: true,
+
+  // Включение дополнительных схем
+  jsonld_enable_product: false,
+  jsonld_enable_review: true,
+  jsonld_enable_faq: false,
+  jsonld_enable_howto: false,
+  jsonld_enable_breadcrumb: true,
+  jsonld_enable_video: false,
+
+  // Review Schema
+  jsonld_review_author: 'SlotQuest Editorial Team',
+  jsonld_review_rating: null,
+  jsonld_review_text: '',
+
+  // FAQ Schema (JSON строка)
+  jsonld_faq_json: '',
+
+  // HowTo Schema (JSON строка)
+  jsonld_howto_json: '',
+
+  // Video Schema
+  jsonld_video_url: '',
+  jsonld_video_thumbnail: '',
+  jsonld_video_duration: '',
+  jsonld_video_description: '',
+})
+
 // Форма редактирования
 const form = ref({
   name: '',
@@ -11706,6 +11758,22 @@ const loadSlot = async () => {
       )
     }
 
+    // 🎯 Загружаем JSON-LD настройки в отдельную форму
+    const jsonLdFields = [
+      'jsonld_enabled', 'jsonld_type', 'jsonld_game_genre', 'jsonld_game_platform',
+      'jsonld_content_rating', 'jsonld_is_free', 'jsonld_enable_product', 'jsonld_enable_review',
+      'jsonld_enable_faq', 'jsonld_enable_howto', 'jsonld_enable_breadcrumb', 'jsonld_enable_video',
+      'jsonld_review_author', 'jsonld_review_rating', 'jsonld_review_text',
+      'jsonld_faq_json', 'jsonld_howto_json',
+      'jsonld_video_url', 'jsonld_video_thumbnail', 'jsonld_video_duration', 'jsonld_video_description'
+    ]
+    jsonLdFields.forEach(field => {
+      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+        jsonLdForm.value[field] = slot.value[field]
+      }
+    })
+    console.log('✅ JSON-LD настройки загружены:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
+
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
     if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
       const match = slot.value.game_field.match(/(\d+)×(\d+)/)
@@ -12182,10 +12250,39 @@ const saveSlot = async () => {
       'cta_trust_1_text',
       'cta_trust_2_text',
       'cta_trust_3_text',
+      // 🎯 JSON-LD настройки для SEO
+      'jsonld_enabled',
+      'jsonld_type',
+      'jsonld_game_genre',
+      'jsonld_game_platform',
+      'jsonld_content_rating',
+      'jsonld_is_free',
+      'jsonld_enable_product',
+      'jsonld_enable_review',
+      'jsonld_enable_faq',
+      'jsonld_enable_howto',
+      'jsonld_enable_breadcrumb',
+      'jsonld_enable_video',
+      'jsonld_review_author',
+      'jsonld_review_rating',
+      'jsonld_review_text',
+      'jsonld_faq_json',
+      'jsonld_howto_json',
+      'jsonld_video_url',
+      'jsonld_video_thumbnail',
+      'jsonld_video_duration',
+      'jsonld_video_description',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля
     const dataToSend = {}
+
+    // 🎯 Добавляем JSON-LD поля из отдельной формы
+    Object.keys(jsonLdForm.value).forEach((key) => {
+      if (jsonLdForm.value[key] !== undefined && jsonLdForm.value[key] !== null) {
+        dataToSend[key] = jsonLdForm.value[key]
+      }
+    })
 
     console.log('🔍 Форма перед сохранением:', form.value)
     console.log('📋 Разрешенные поля:', allowedFields)

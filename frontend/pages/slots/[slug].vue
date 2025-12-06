@@ -5647,11 +5647,14 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 import AuroraBackground from '~/components/ui/AuroraBackground.vue'
 import BackgroundGradient from '~/components/ui/BackgroundGradient.vue'
 import CometCard from '~/components/ui/CometCard.vue'
 import CanvasRevealEffect from '~/components/ui/CanvasRevealEffect.vue'
+
+// 🎯 Импорт composable для JSON-LD
+const { getJsonLdScriptSync, fetchRawJsonLd } = useJsonLd()
 
 // Получаем slug из роута
 const route = useRoute()
@@ -5663,6 +5666,9 @@ const allSlots = ref([])
 const slotMechanics = ref([])
 const loading = ref(true)
 const error = ref(null)
+
+// 🎯 Состояние для JSON-LD
+const jsonLdSchemas = ref(null)
 
 // Состояние для рейтинга
 const showRatingPicker = ref(false)
@@ -5769,7 +5775,27 @@ const similarSlots = computed(() => {
 // SEO (динамический)
 watchEffect(() => {
   if (slot.value && !loading.value && !error.value) {
-    const structuredData = getStructuredData(slot.value)
+    // 🎯 Получаем JSON-LD:
+    // 1. Пробуем синхронную генерацию из данных слота (для SSR)
+    // 2. Если JSON-LD включён в настройках - используем данные из БД
+    // 3. Fallback на локальную функцию getStructuredData
+    let structuredData
+
+    // Проверяем, есть ли JSON-LD настройки в слоте из БД
+    if (slot.value.jsonld_enabled !== false && slot.value.id) {
+      // Используем синхронную генерацию для SSR
+      const jsonLdScript = getJsonLdScriptSync(slot.value, 'https://slotquest.com')
+      if (jsonLdScript) {
+        structuredData = jsonLdScript.innerHTML
+        console.log('✅ JSON-LD сгенерирован из настроек слота')
+      }
+    }
+
+    // Fallback на локальную функцию если JSON-LD не сгенерирован
+    if (!structuredData) {
+      structuredData = getStructuredData(slot.value)
+      console.log('📝 JSON-LD сгенерирован локально (fallback)')
+    }
 
     useHead({
       // 🎯 SEO: Комбинируем slot.name (брендовый трафик) + hero_keyword (категорийный контекст)
@@ -6197,6 +6223,20 @@ const loadSlot = async () => {
       .catch((err) => {
         console.warn('Не удалось загрузить список всех слотов:', err)
       })
+
+    // 🎯 Асинхронно загружаем JSON-LD с сервера (если слот имеет id)
+    if (slot.value.id) {
+      fetchRawJsonLd(slot.value.id)
+        .then((schemas) => {
+          if (schemas && schemas.length > 0) {
+            jsonLdSchemas.value = schemas
+            console.log(`✅ JSON-LD загружен с сервера: ${schemas.length} схем`)
+          }
+        })
+        .catch((err) => {
+          console.warn('⚠️ Не удалось загрузить JSON-LD с сервера:', err)
+        })
+    }
   } catch (err) {
     console.error('❌ Ошибка загрузки slotа:', err)
     error.value = err.message || 'Произошла ошибка при загрузке slotа'

@@ -11,6 +11,7 @@ import { ThemesModule } from './themes/themes.module';
 import { MechanicsModule } from './mechanics/mechanics.module';
 import { BonusesModule } from './bonuses/bonuses.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { JsonLdModule } from './jsonld/jsonld.module'; // 🎯 Модуль JSON-LD для SEO
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PrismaModule } from './prisma/prisma.module';
     ThemesModule,
     MechanicsModule,
     BonusesModule,
+    JsonLdModule, // 🎯 JSON-LD генерация и валидация
   ],
   controllers: [AppController],
   providers: [AppService],
