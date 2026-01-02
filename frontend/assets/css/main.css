@@ -5,6 +5,25 @@
 
 /* SlotQuest Main Styles */
 
+/* 📱 Глобальные переменные для адаптивности */
+:root {
+  /* Safe area insets для iPhone X и новее */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
+  /* Минимальные touch targets для доступности (48x48 px рекомендовано Apple/Google) */
+  --min-touch-target: 44px;
+
+  /* Адаптивные spacing */
+  --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --spacing-sm: clamp(0.5rem, 2vw, 0.75rem);
+  --spacing-md: clamp(0.75rem, 3vw, 1rem);
+  --spacing-lg: clamp(1rem, 4vw, 1.5rem);
+  --spacing-xl: clamp(1.5rem, 5vw, 2rem);
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -12,11 +31,37 @@
   box-sizing: border-box;
 }
 
+/* 📱 Предотвращаем масштабирование при фокусе на input на iOS */
+@supports (-webkit-touch-callout: none) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* 📱 Улучшаем tap highlighting на мобильных */
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 📱 Smooth scrolling для лучшего UX */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
   background-color: #f5f5f5;
+  /* Предотвращаем overscroll на мобильных */
+  overscroll-behavior-y: contain;
+  /* Safe area padding */
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
+  padding-left: var(--safe-area-inset-left);
+  padding-right: var(--safe-area-inset-right);
 }
 
 /* Container and layout */
@@ -158,7 +203,7 @@ h3 {
   margin: 20px 0;
 }
 
-/* Responsive design */
+/* 📱 Responsive design - улучшенная адаптивность */
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
@@ -193,6 +238,89 @@ h3 {
 
   .card {
     padding: 12px;
+  }
+}
+
+/* 📱 Очень маленькие экраны (iPhone SE и подобные) */
+@media (max-width: 374px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+}
+
+/* 📱 Landscape режим на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-sticky-container {
+    min-height: auto;
+  }
+
+  .hero-left-sticky {
+    position: relative;
+    height: auto;
+  }
+}
+
+/* 📱 Утилиты для touch targets - минимум 44x44px */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .touch-target-lg {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Скрываем элементы только для screen readers */
+  .sr-only-mobile {
+    @apply sr-only sm:not-sr-only;
+  }
+
+  /* Показываем только на мобильных */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+
+  /* Показываем только на планшетах и выше */
+  .tablet-up {
+    @apply hidden sm:block;
+  }
+
+  /* Показываем только на desktop */
+  .desktop-only {
+    @apply hidden lg:block;
+  }
+
+  /* Безопасный скролл на iOS */
+  .scroll-safe {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+
+  /* Предотвращаем выделение текста при tap */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Оптимизация рендеринга для анимаций */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
   }
 }
 
