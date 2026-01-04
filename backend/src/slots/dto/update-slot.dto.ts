@@ -314,4 +314,318 @@ export class UpdateSlotDto {
   cta_trust_1_text?: string;
   cta_trust_2_text?: string;
   cta_trust_3_text?: string;
+
+  // ========== 🎯 JSON-LD СТРУКТУРИРОВАННЫЕ ДАННЫЕ (SEO) ==========
+  // Управление JSON-LD схемами для Google Rich Snippets и поисковой оптимизации
+
+  // 1️⃣ ОСНОВНАЯ СХЕМА (Game/Product/WebApplication)
+  jsonld_enabled?: boolean; // Включить/выключить JSON-LD для этого слота
+  jsonld_type?: string; // Тип схемы: Game, Product, WebApplication, VideoGame
+  jsonld_game_genre?: string; // Жанр игры: Casino, Arcade, Strategy, Puzzle
+  jsonld_game_platform?: string; // Платформы: Web, Mobile, Desktop
+  jsonld_content_rating?: string; // Возрастной рейтинг: 18+, 21+, Everyone
+  jsonld_is_free?: boolean; // Доступна ли бесплатная версия
+
+  // 2️⃣ ДОПОЛНИТЕЛЬНЫЕ СХЕМЫ (включить/выключить через чекбоксы)
+  jsonld_enable_product?: boolean; // Включить Product Schema
+  jsonld_enable_review?: boolean; // Включить Review Schema
+  jsonld_enable_faq?: boolean; // Включить FAQ Schema
+  jsonld_enable_howto?: boolean; // Включить HowTo Schema
+  jsonld_enable_breadcrumb?: boolean; // Включить BreadcrumbList Schema
+  jsonld_enable_video?: boolean; // Включить VideoObject Schema
+
+  // 3️⃣ PRODUCT SCHEMA
+  jsonld_product_price?: number;
+  jsonld_product_currency?: string;
+  jsonld_product_availability?: string;
+  jsonld_product_condition?: string;
+
+  // 4️⃣ REVIEW SCHEMA
+  jsonld_review_author?: string;
+  jsonld_review_date?: string;
+  jsonld_review_text?: string;
+  jsonld_review_rating?: number;
+
+  // 5️⃣ FAQ SCHEMA
+  jsonld_faq_json?: string;
+
+  // 6️⃣ HOWTO SCHEMA
+  jsonld_howto_json?: string;
+
+  // 7️⃣ VIDEO SCHEMA
+  jsonld_video_url?: string;
+  jsonld_video_thumbnail?: string;
+  jsonld_video_duration?: string;
+  jsonld_video_upload_date?: string;
+  jsonld_video_description?: string;
+
+  // 8️⃣ КАСТОМНАЯ JSON-LD
+  jsonld_custom?: string;
+  jsonld_override_auto?: boolean;
+
+  // 9️⃣ МЕТА-ИНФОРМАЦИЯ И АНАЛИТИКА
+  jsonld_last_validated?: string;
+  jsonld_validation_errors?: string;
+  jsonld_rich_snippet_enabled?: boolean;
+
+  // 🔟 SEO МЕТА-ТЕГИ
+  seo_title?: string;
+  seo_description?: string;
+  seo_keywords_primary?: string;
+  seo_keywords_lsi?: string;
+  seo_keywords_geo?: string;
+  content_language?: string;
+  geo_target_regions?: string;
+
+  // 1️⃣1️⃣ РАСШИРЕННЫЕ SEO ПОЛЯ
+  seo_title_template?: string;
+  seo_title_power_words?: string;
+  search_intent?: string;
+  canonical_url?: string;
+
+  // 1️⃣2️⃣ OPEN GRAPH ТЕГИ
+  og_title?: string;
+  og_description?: string;
+  og_image?: string;
+  og_type?: string;
+  og_url?: string;
+  og_site_name?: string;
+  og_locale?: string;
+  og_locale_alternate?: string;
+  og_video?: string;
+  og_video_type?: string;
+  og_video_width?: number;
+  og_video_height?: number;
+  og_image_width?: number;
+  og_image_height?: number;
+  og_image_alt?: string;
+
+  // 1️⃣3️⃣ TWITTER CARD ТЕГИ
+  twitter_card?: string;
+  twitter_site?: string;
+  twitter_creator?: string;
+  twitter_title?: string;
+  twitter_description?: string;
+  twitter_image?: string;
+  twitter_image_alt?: string;
+  twitter_player?: string;
+  twitter_player_width?: number;
+  twitter_player_height?: number;
+
+  // 1️⃣4️⃣ ADVANCED ROBOTS DIRECTIVES
+  robots_index?: boolean;
+  robots_follow?: boolean;
+  robots_max_snippet?: number;
+  robots_max_image_preview?: string;
+  robots_max_video_preview?: number;
+  robots_notranslate?: boolean;
+  robots_noimageindex?: boolean;
+  robots_unavailable_after?: string;
+
+  // 1️⃣5️⃣ HREFLANG И МЕЖДУНАРОДНОЕ SEO
+  hreflang_enabled?: boolean;
+  hreflang_x_default?: string;
+  hreflang_config?: string;
+  hreflang_preset?: string;
+
+  // 1️⃣6️⃣ ДОПОЛНИТЕЛЬНЫЕ ТЕХНИЧЕСКИЕ SEO
+  author_meta?: string;
+  publisher_meta?: string;
+  copyright_meta?: string;
+  last_reviewed_date?: string;
+  content_updated_at?: string;
+
+  // 1️⃣7️⃣ CORE WEB VITALS HINTS
+  preconnect_urls?: string;
+  preload_image?: boolean;
+  dns_prefetch_urls?: string;
+
+  // 1️⃣8️⃣ TITLE TEMPLATES
+  seo_title_use_template?: boolean;
+
+  // 1️⃣9️⃣ E-E-A-T СИГНАЛЫ
+  eeat_experience_date?: string;
+  eeat_experience_hours?: number;
+  eeat_experience_sessions?: number;
+  eeat_experience_screenshots?: string;
+  eeat_author_name?: string;
+  eeat_author_position?: string;
+  eeat_author_bio?: string;
+  eeat_author_avatar?: string;
+  eeat_author_social?: string;
+  eeat_expertise_years?: number;
+  eeat_reviews_count?: number;
+  eeat_certifications?: string;
+  eeat_partnerships?: string;
+  eeat_citations_count?: number;
+  eeat_awards?: string;
+  eeat_featured_in?: string;
+  eeat_data_sources?: string;
+  eeat_fact_checked?: boolean;
+  eeat_fact_check_date?: string;
+  eeat_methodology?: string;
+  eeat_disclaimer?: string;
+  eeat_license_info?: string;
+
+  // 2️⃣0️⃣ CONTENT FRESHNESS
+  content_published_date?: string;
+  content_major_update?: string;
+  content_minor_update?: string;
+  content_reviewed_date?: string;
+  content_version?: string;
+  content_changelog?: string;
+  content_update_frequency?: string;
+  content_next_review?: string;
+  content_freshness_score?: number;
+
+  // 2️⃣1️⃣ SOCIAL SHARING OPTIMIZATION
+  social_share_count?: number;
+  social_facebook_shares?: number;
+  social_twitter_shares?: number;
+  social_pinterest_shares?: number;
+  social_custom_hashtags?: string;
+  social_cta_text?: string;
+
+  // 2️⃣2️⃣ CONVERSION OPTIMIZATION
+  cta_primary_text?: string;
+  cta_primary_url?: string;
+  cta_secondary_text?: string;
+  cta_secondary_url?: string;
+  cta_urgency_text?: string;
+  cta_social_proof?: string;
+
+  // 2️⃣3️⃣ KEYWORD DENSITY ANALYSIS
+  keyword_primary_target?: number;
+  keyword_density_score?: number;
+  keyword_analysis_date?: string;
+  keyword_analysis_result?: string;
+  keyword_suggestions?: string;
+  keyword_competitors?: string;
+
+  // 2️⃣4️⃣ INDEXING STATUS
+  indexing_status?: string;
+  indexing_first_date?: string;
+  indexing_last_crawl?: string;
+  indexing_crawl_frequency?: string;
+  indexing_impressions?: number;
+  indexing_clicks?: number;
+  indexing_position?: number;
+  indexing_internal_links?: number;
+  indexing_external_links?: number;
+  indexing_last_check?: string;
+  indexing_errors?: string;
+
+  // 2️⃣5️⃣ PAGE SPEED / CORE WEB VITALS
+  cwv_lcp?: number;
+  cwv_fid?: number;
+  cwv_cls?: number;
+  cwv_ttfb?: number;
+  cwv_fcp?: number;
+  cwv_inp?: number;
+  cwv_score_mobile?: number;
+  cwv_score_desktop?: number;
+  cwv_last_check?: string;
+  cwv_issues?: string;
+  cwv_opportunities?: string;
+
+  // 2️⃣6️⃣ SITEMAP CONFIGURATION
+  sitemap_include?: boolean;
+  sitemap_priority?: number;
+  sitemap_frequency?: string;
+  sitemap_last_mod?: string;
+  sitemap_images?: string;
+  sitemap_videos?: string;
+  sitemap_news?: boolean;
+
+  // 2️⃣7️⃣ SEO HEALTH SCORE
+  seo_health_score?: number;
+  seo_health_issues?: string;
+  seo_health_warnings?: string;
+  seo_health_passed?: string;
+  seo_health_last_audit?: string;
+  seo_health_trend?: string;
+
+  // 2️⃣8️⃣ COMPETITOR ANALYSIS
+  competitor_urls?: string;
+  competitor_positions?: string;
+  competitor_last_check?: string;
+
+  // Дополнительные поля из схемы
+  popularity_title_keyword?: string;
+  cta_subtitle_keyword?: string;
+  cta_potential_prefix?: string;
+  cta_potential_suffix?: string;
+
+  // Важные предупреждения (2 карточки)
+  strategy_warnings_title?: string;
+  strategy_warning_1_title?: string;
+  strategy_warning_1_text?: string;
+  strategy_warning_2_title?: string;
+  strategy_warning_2_text?: string;
+
+  // Секция "В чем секрет успеха?"
+  success_secret_title?: string;
+  success_secret_intro?: string;
+  success_secret_card_1_title?: string;
+  success_secret_card_1_text?: string;
+  success_secret_card_2_title?: string;
+  success_secret_card_2_text?: string;
+  success_secret_outro?: string;
+
+  // Отзывы - заголовки лейблы
+  reviews_overall_label?: string;
+  reviews_overall_stars?: string;
+  reviews_total_label?: string;
+  reviews_total_desc?: string;
+  reviews_positive_label?: string;
+  reviews_positive_desc?: string;
+  reviews_recommend_label?: string;
+  reviews_recommend_desc?: string;
+  reviews_distribution_title?: string;
+  reviews_sentiments_title?: string;
+  reviews_featured_title?: string;
+
+  // Профессиональная оценка - дополнительные поля
+  prof_rating_expert_title?: string;
+  prof_rating_expert_name?: string;
+  prof_rating_expert_position?: string;
+  prof_rating_expert_quote_keyword?: string;
+  prof_rating_warning_title?: string;
+  prof_rating_warning_text?: string;
+  prof_rating_pros_title?: string;
+  prof_rating_pros_1_title?: string;
+  prof_rating_pros_1_desc?: string;
+  prof_rating_pros_2_title?: string;
+  prof_rating_pros_2_desc?: string;
+  prof_rating_pros_3_title?: string;
+  prof_rating_pros_3_desc?: string;
+  prof_rating_pros_4_title?: string;
+  prof_rating_pros_4_desc?: string;
+  prof_rating_pros_5_title?: string;
+  prof_rating_pros_5_desc?: string;
+  prof_rating_cons_title?: string;
+  prof_rating_cons_1_title?: string;
+  prof_rating_cons_1_desc?: string;
+  prof_rating_cons_2_title?: string;
+  prof_rating_cons_2_desc?: string;
+  prof_rating_cons_3_title?: string;
+  prof_rating_cons_3_desc?: string;
+  prof_rating_cons_4_title?: string;
+  prof_rating_cons_4_desc?: string;
+  prof_rating_cons_5_title?: string;
+  prof_rating_cons_5_desc?: string;
+  prof_rating_recommendation_title?: string;
+  prof_rating_recommendation_subtitle?: string;
+  prof_rating_recommendation_text?: string;
+  prof_rating_recommendation_keyword?: string;
+
+  // Заключение - дополнительные поля
+  conclusion_rating_title?: string;
+  conclusion_rating_keyword?: string;
+  conclusion_text_1_keyword?: string;
+  conclusion_suitable_title?: string;
+  conclusion_warning_title?: string;
+  conclusion_verdict_title?: string;
+  conclusion_verdict_text?: string;
+  conclusion_verdict_keyword?: string;
 }
