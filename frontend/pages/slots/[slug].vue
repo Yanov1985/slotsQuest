@@ -2327,7 +2327,7 @@
     <!-- 📱 Основной контент - минималистичный дизайн -->
     <section class="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
       <!-- Обзор игры -->
-      <article class="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+      <article class="mb-6 sm:mb-8 md:mb-10">
 
         <!-- Центрированный заголовок секции -->
         <div class="text-center mb-12 sm:mb-16 md:mb-20">
