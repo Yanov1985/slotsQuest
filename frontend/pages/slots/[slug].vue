@@ -220,7 +220,7 @@
                 <!-- 📱 Главный заголовок - адаптивные размеры для всех устройств -->
                 <h1
                   id="slot-title"
-                  class="text-xl xs:text-2xl sm:text-3xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-4 sm:mb-6 leading-tight drop-shadow-md transition-all duration-500 py-1 sm:py-2"
+                  class="text-xl xs:text-2xl sm:text-3xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 leading-tight drop-shadow-md transition-all duration-500 py-1 sm:py-2"
                   style="line-height: 1.3"
                   tabindex="0"
                   role="heading"
@@ -1547,7 +1547,7 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg
@@ -1565,16 +1565,19 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">RTP</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">RTP</dt>
                       </div>
-                      <dd class="text-emerald-300 text-xs sm:text-sm font-medium hidden xs:block">
+                      <dd class="text-emerald-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
                         Return
                       </dd>
                     </div>
-                    <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ slot.rtp || '96.50' }}%
-                    </dd>
-                    <dd class="text-emerald-300 text-xs sm:text-sm">High rate</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.rtp || '96.50' }}%
+                      </dd>
+                    </div>
+                    <dd class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">High rate</dd>
                   </div>
                 </div>
 
@@ -1600,7 +1603,7 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg
@@ -1618,14 +1621,17 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Volatility</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Volatility</dt>
                       </div>
-                      <dd class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block">Risk</dd>
+                      <dd class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Risk</dd>
                     </div>
-                    <dd class="text-lg sm:text-xl md:text-2xl font-black text-white mb-0.5 sm:mb-1 capitalize">
-                      {{ getVolatilityText(slot.volatility) }}
-                    </dd>
-                    <dd class="text-orange-300 text-xs sm:text-sm">Medium risk</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ getVolatilityText(slot.volatility) }}
+                      </dd>
+                    </div>
+                    <dd class="text-orange-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Medium risk</dd>
                   </div>
                 </div>
 
@@ -1651,7 +1657,7 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg
@@ -1669,16 +1675,19 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Max win</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max win</dt>
                       </div>
-                      <dd class="text-purple-300 text-xs sm:text-sm font-medium hidden xs:block">
+                      <dd class="text-purple-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
                         Potential
                       </dd>
                     </div>
-                    <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ getMaxWin(slot) }}
-                    </dd>
-                    <dd class="text-purple-300 text-xs sm:text-sm">Per bet</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ getMaxWin(slot) }}
+                      </dd>
+                    </div>
+                    <dd class="text-purple-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Per bet</dd>
                   </div>
                 </div>
 
@@ -1701,21 +1710,24 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Min bet</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Min bet</dt>
                       </div>
-                      <dd class="text-blue-300 text-xs sm:text-sm font-medium hidden xs:block">Per spin</dd>
+                      <dd class="text-blue-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Per spin</dd>
                     </div>
-                    <dd class="text-lg sm:text-xl md:text-2xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ slot.min_bet || '€0.20' }}
-                    </dd>
-                    <dd class="text-blue-300 text-xs sm:text-sm">Available to all</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.min_bet || '€0.20' }}
+                      </dd>
+                    </div>
+                    <dd class="text-blue-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Available to all</dd>
                   </div>
                 </div>
 
@@ -1738,21 +1750,24 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Max bet</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max bet</dt>
                       </div>
-                      <dd class="text-teal-300 text-xs sm:text-sm font-medium hidden xs:block">Per spin</dd>
+                      <dd class="text-teal-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Per spin</dd>
                     </div>
-                    <dd class="text-lg sm:text-xl md:text-2xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ slot.max_bet || '€100' }}
-                    </dd>
-                    <dd class="text-teal-300 text-xs sm:text-sm">High rollers</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.max_bet || '€100' }}
+                      </dd>
+                    </div>
+                    <dd class="text-teal-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">High rollers</dd>
                   </div>
                 </div>
 
@@ -1775,21 +1790,24 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Release</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Release</dt>
                       </div>
-                      <dd class="text-amber-300 text-xs sm:text-sm font-medium hidden xs:block">Launch</dd>
+                      <dd class="text-amber-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Launch</dd>
                     </div>
-                    <dd class="text-base sm:text-lg md:text-2xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ formatReleaseDate(slot.release_date) || '13.02.2021' }}
-                    </dd>
-                    <dd class="text-amber-300 text-xs sm:text-sm truncate">{{ slot.providers?.name || 'Pragmatic Play' }}</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-base sm:text-lg md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ formatReleaseDate(slot.release_date) || '13.02.2021' }}
+                      </dd>
+                    </div>
+                    <dd class="text-amber-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ slot.providers?.name || 'Pragmatic Play' }}</dd>
                   </div>
                 </div>
 
@@ -1812,21 +1830,24 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Reels</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Reels</dt>
                       </div>
-                      <dd class="text-rose-300 text-xs sm:text-sm font-medium hidden xs:block">Structure</dd>
+                      <dd class="text-rose-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Structure</dd>
                     </div>
-                    <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white mb-0.5 sm:mb-1">
-                      {{ slot.reels && slot.rows ? `${slot.reels}×${slot.rows}` : slot.game_field || '5×3' }}
-                    </dd>
-                    <dd class="text-rose-300 text-xs sm:text-sm truncate">{{ slot.paylines || 'Scatter Pays' }}</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.reels && slot.rows ? `${slot.reels}×${slot.rows}` : slot.game_field || '5×3' }}
+                      </dd>
+                    </div>
+                    <dd class="text-rose-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ slot.paylines || 'Scatter Pays' }}</dd>
                   </div>
                 </div>
 
@@ -1849,21 +1870,24 @@
                     <div class="flex items-center justify-between mb-2 sm:mb-3">
                       <div class="flex items-center gap-2 sm:gap-3">
                         <div
-                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0"
+                          class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
                           <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base">Paylines</dt>
+                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Paylines</dt>
                       </div>
-                      <dd class="text-violet-300 text-xs sm:text-sm font-medium hidden xs:block">System</dd>
+                      <dd class="text-violet-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">System</dd>
                     </div>
-                    <dd class="text-lg sm:text-xl md:text-2xl font-black text-white mb-0.5 sm:mb-1 truncate">
-                      {{ slot.paylines || 'Scatter Pays' }}
-                    </dd>
-                    <dd class="text-violet-300 text-xs sm:text-sm">All directions</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
+                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.paylines || 'Scatter Pays' }}
+                      </dd>
+                    </div>
+                    <dd class="text-violet-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">All directions</dd>
                   </div>
                 </div>
               </dl>
@@ -1896,14 +1920,14 @@
                 />
                 <div class="relative z-10">
                   <div class="flex justify-between items-center mb-3">
-                    <span class="text-white font-semibold">Rating</span>
+                    <span class="text-white font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Rating</span>
                     <span
-                      class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm"
+                      class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm shadow-lg"
                       >#{{ slot.popularity_rank || '12' }} of 2000+</span
                     >
                   </div>
                   <div
-                    class="w-full bg-white/20 rounded-full h-3 mb-3 overflow-hidden"
+                    class="w-full bg-black/30 rounded-full h-3 mb-3 overflow-hidden backdrop-blur-sm"
                     role="progressbar"
                     :aria-valuenow="
                       Math.round(
@@ -1919,12 +1943,14 @@
                       :style="`width: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
                     ></div>
                   </div>
-                  <div class="text-yellow-300 text-sm font-medium">
-                    {{
-                      Math.round(
-                        ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
-                      )
-                    }}% popularity
+                  <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
+                    <span class="text-yellow-300 text-sm font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                      {{
+                        Math.round(
+                          ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
+                        )
+                      }}% popularity
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1950,16 +1976,18 @@
                   <div class="relative z-10">
                     <div class="flex items-center gap-2 mb-2">
                       <div
-                        class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center"
+                        class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg"
                       >
                         <span class="text-white text-xs font-bold">📊</span>
                       </div>
-                      <span class="text-purple-300 text-xs font-semibold"
+                      <span class="text-purple-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                         >Real RTP</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">
-                      {{ slot.real_rtp || '97.45' }}%
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
+                      <span class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.real_rtp || '97.45' }}%
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1983,16 +2011,18 @@
                   <div class="relative z-10">
                     <div class="flex items-center gap-2 mb-2">
                       <div
-                        class="w-6 h-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center"
+                        class="w-6 h-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-lg"
                       >
                         <span class="text-white text-xs font-bold">🎰</span>
                       </div>
-                      <span class="text-orange-300 text-xs font-semibold"
+                      <span class="text-orange-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                         >Bonus frequency</span
                       >
                     </div>
-                    <div class="text-white font-black text-lg">
-                      {{ slot.bonus_frequency || '1:448' }}
+                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
+                      <span class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                        {{ slot.bonus_frequency || '1:448' }}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -2166,7 +2196,7 @@
     <!-- 📱 Полностью адаптивный для всех устройств: xs, sm, md, lg, xl -->
     <section
       v-if="slot && (slot.article_show_author_block !== false)"
-      class="container mx-auto px-2 xs:px-3 sm:px-4 py-2 xs:py-3 sm:py-4"
+      class="container mx-auto px-3 sm:px-4 pt-4 xs:pt-5 sm:pt-6 md:pt-8 mb-4 xs:mb-5 sm:mb-6 md:mb-8"
       aria-label="Информация об авторе статьи"
       itemscope
       itemtype="https://schema.org/Article"
@@ -2348,7 +2378,7 @@
     </section>
 
     <!-- 📱 Основной контент - адаптивные отступы -->
-    <section class="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+    <section class="container mx-auto px-3 sm:px-4 pb-4 sm:pb-6 md:pb-8">
       <!-- Обзор игры -->
       <article
         class="bg-white rounded-lg sm:rounded-xl border border-gray-200 shadow-sm p-4 sm:p-6 md:p-8 mb-4 sm:mb-6 md:mb-8"
