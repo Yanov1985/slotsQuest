@@ -2156,6 +2156,191 @@
       </div>
     </main>
 
+    <!-- 👤 БЛОК АВТОРА И ДАТЫ ОБНОВЛЕНИЯ (после Hero, перед обзором) -->
+    <!-- 📱 Полностью адаптивный для всех устройств: xs, sm, md, lg, xl -->
+    <section
+      v-if="slot && (slot.article_show_author_block !== false)"
+      class="container mx-auto px-2 xs:px-3 sm:px-4 py-2 xs:py-3 sm:py-4"
+      aria-label="Информация об авторе статьи"
+      itemscope
+      itemtype="https://schema.org/Article"
+    >
+      <div
+        class="bg-white border border-gray-200/80 rounded-lg xs:rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
+      >
+        <!-- Декоративная верхняя полоса - тоньше на мобильных -->
+        <div class="h-0.5 xs:h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+
+        <div class="p-2.5 xs:p-3 sm:p-4 md:p-5">
+          <!-- На мобильных - вертикальная раскладка, на sm+ горизонтальная -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 xs:gap-3 sm:gap-4">
+
+            <!-- Левая часть: Автор с фото -->
+            <div
+              class="flex items-center gap-2 xs:gap-3"
+              itemprop="author"
+              itemscope
+              itemtype="https://schema.org/Person"
+            >
+              <!-- Фото автора - адаптивный размер -->
+              <div class="relative flex-shrink-0">
+                <div
+                  v-if="slot.article_author_photo"
+                  class="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden ring-2 ring-blue-500/30 ring-offset-1 xs:ring-offset-2 ring-offset-white"
+                >
+                  <img
+                    :src="slot.article_author_photo"
+                    :alt="`Фото автора: ${slot.article_author_name || 'Автор'}`"
+                    class="w-full h-full object-cover"
+                    itemprop="image"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Заглушка если нет фото -->
+                <div
+                  v-else
+                  class="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ring-2 ring-blue-500/30 ring-offset-1 xs:ring-offset-2 ring-offset-white"
+                >
+                  <span class="text-white font-bold text-base xs:text-lg sm:text-xl">
+                    {{ (slot.article_author_name || 'A').charAt(0).toUpperCase() }}
+                  </span>
+                </div>
+                <!-- Бейдж "Автор" - меньше на мобильных -->
+                <div class="absolute -bottom-0.5 -right-0.5 xs:-bottom-1 xs:-right-1 w-4 h-4 xs:w-5 xs:h-5 bg-blue-500 rounded-full flex items-center justify-center shadow-md">
+                  <svg class="w-2.5 h-2.5 xs:w-3 xs:h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Информация об авторе -->
+              <div class="min-w-0 flex-1">
+                <!-- Имя и роль автора -->
+                <div class="flex items-center gap-1 xs:gap-2 flex-wrap">
+                  <span class="text-[10px] xs:text-xs text-gray-500 uppercase tracking-wider font-medium hidden xs:inline">Автор:</span>
+                  <span
+                    class="text-xs xs:text-sm sm:text-base font-semibold text-gray-900 truncate max-w-[120px] xs:max-w-[150px] sm:max-w-none"
+                    itemprop="name"
+                  >
+                    {{ slot.article_author_name || 'Команда SlotQuest' }}
+                  </span>
+                  <span
+                    v-if="slot.article_author_role"
+                    class="text-[10px] xs:text-xs text-gray-500 hidden xs:inline"
+                  >
+                    · <span class="text-blue-600 font-medium">{{ slot.article_author_role }}</span>
+                  </span>
+                </div>
+
+                <!-- Роль отдельно на мобильных -->
+                <div
+                  v-if="slot.article_author_role"
+                  class="text-[10px] text-blue-600 font-medium xs:hidden mt-0.5"
+                >
+                  {{ slot.article_author_role }}
+                </div>
+
+                <!-- Социальные ссылки автора (если есть) -->
+                <div
+                  v-if="slot.article_author_social_linkedin || slot.article_author_social_twitter || slot.article_author_social_website"
+                  class="flex items-center gap-1.5 xs:gap-2 mt-0.5 xs:mt-1"
+                >
+                  <a
+                    v-if="slot.article_author_social_linkedin"
+                    :href="slot.article_author_social_linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-blue-600 transition-colors p-0.5"
+                    title="LinkedIn"
+                  >
+                    <svg class="w-3.5 h-3.5 xs:w-4 xs:h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
+                  <a
+                    v-if="slot.article_author_social_twitter"
+                    :href="slot.article_author_social_twitter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-blue-400 transition-colors p-0.5"
+                    title="Twitter/X"
+                  >
+                    <svg class="w-3.5 h-3.5 xs:w-4 xs:h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </a>
+                  <a
+                    v-if="slot.article_author_social_website"
+                    :href="slot.article_author_social_website"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-purple-600 transition-colors p-0.5"
+                    title="Веб-сайт"
+                  >
+                    <svg class="w-3.5 h-3.5 xs:w-4 xs:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Правая часть: Дата обновления и время чтения -->
+            <!-- На мобильных - горизонтальный скролл или перенос -->
+            <div class="flex flex-wrap items-center gap-2 xs:gap-3 sm:gap-4 text-xs xs:text-sm">
+
+              <!-- Дата последнего обновления -->
+              <div
+                v-if="slot.article_show_update_date !== false && (slot.article_updated_date || slot.updated_at)"
+                class="flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 py-1 xs:py-1.5 bg-gradient-to-r from-gray-50 to-gray-100 rounded-md xs:rounded-lg border border-gray-200"
+              >
+                <svg class="w-3.5 h-3.5 xs:w-4 xs:h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <div class="text-gray-600 min-w-0">
+                  <span class="text-[10px] xs:text-xs text-gray-500 mr-0.5 xs:mr-1 hidden xs:inline">Обновлено:</span>
+                  <span
+                    class="font-medium text-gray-800 text-[11px] xs:text-xs sm:text-sm"
+                    itemprop="dateModified"
+                    :content="slot.article_updated_date || slot.updated_at"
+                  >
+                    {{ formatArticleDate(slot.article_updated_date || slot.updated_at) }}
+                    <span
+                      v-if="slot.article_updated_time"
+                      class="text-gray-500 hidden sm:inline"
+                    >, {{ slot.article_updated_time }}</span>
+                  </span>
+                  <span
+                    v-if="slot.article_updated_by && slot.article_updated_by !== slot.article_author_name"
+                    class="text-[10px] xs:text-xs text-gray-500 hidden md:inline"
+                  >
+                    ({{ slot.article_updated_by }})
+                  </span>
+                </div>
+              </div>
+
+              <!-- Время чтения -->
+              <div
+                v-if="slot.article_show_reading_time !== false && slot.article_reading_time"
+                class="flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 py-1 xs:py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-md xs:rounded-lg border border-blue-200"
+              >
+                <svg class="w-3.5 h-3.5 xs:w-4 xs:h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-gray-600">
+                  <span class="text-[10px] xs:text-xs text-gray-500 mr-0.5 xs:mr-1 hidden xs:inline">Чтение:</span>
+                  <span class="font-semibold text-blue-700 text-[11px] xs:text-xs sm:text-sm">
+                    {{ slot.article_reading_time }} {{ slot.article_reading_time_label || 'мин' }}
+                  </span>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 📱 Основной контент - адаптивные отступы -->
     <section class="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
       <!-- Обзор игры -->
@@ -5558,6 +5743,34 @@ const selectedStars = ref(null)
 const hoverStars = ref(0)
 const ratingSubmitting = ref(false)
 const ratingSubmitted = ref(false)
+
+// 📅 Функция форматирования даты для блока автора
+// Преобразует ISO дату в читаемый формат: "12 января 2026"
+const formatArticleDate = (dateString) => {
+  if (!dateString) return ''
+
+  try {
+    const date = new Date(dateString)
+
+    // Проверка валидности даты
+    if (isNaN(date.getTime())) return dateString
+
+    // Массив названий месяцев на русском
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ]
+
+    const day = date.getDate()
+    const month = months[date.getMonth()]
+    const year = date.getFullYear()
+
+    return `${day} ${month} ${year}`
+  } catch (e) {
+    console.error('Ошибка форматирования даты:', e)
+    return dateString
+  }
+}
 
 // Вычисляемые свойства для текстов с заменой ключевых слов
 // 🔑 Работает аналогично replaceKeywordsInText для hero_keyword

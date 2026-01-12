@@ -2079,6 +2079,526 @@
               </div>
             </div>
 
+            <!-- 👤 Секция "Информация об авторе и дате обновления" -->
+            <div>
+              <div
+                id="author-info"
+                data-section="author-info"
+                class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
+              >
+                <!-- Декоративный фон -->
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/5 via-transparent to-[#EC4899]/5"
+                ></div>
+                <div
+                  class="absolute top-0 right-0 w-64 h-64 bg-[#8B5CF6]/10 rounded-full blur-3xl -translate-y-32 translate-x-32"
+                ></div>
+
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-16 h-16 bg-gradient-to-br from-[#8B5CF6] to-[#EC4899] rounded-2xl flex items-center justify-center shadow-xl transform rotate-3 animate-pulse"
+                      >
+                        <svg
+                          class="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h2
+                          class="text-2xl font-semibold text-[#E5E7EB] font-display"
+                        >
+                          Информация об авторе
+                        </h2>
+                        <div
+                          class="h-1 w-28 bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] rounded-full mt-2"
+                        ></div>
+                      </div>
+                    </div>
+                    <!-- Кнопка сворачивания/разворачивания секции -->
+                    <button
+                      type="button"
+                      @click="showAuthorSection = !showAuthorSection"
+                      class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-purple-400/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200"
+                      :aria-expanded="showAuthorSection"
+                    >
+                      <svg
+                        class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': showAuthorSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="space-y-8">
+                    <!-- Все подсекции автора (управляемые через v-show) -->
+                    <div v-show="showAuthorSection" class="space-y-8">
+
+                      <!-- Основная информация об авторе -->
+                      <div
+                        class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#EC4899] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
+                              >
+                                Данные автора
+                              </h3>
+                              <p class="text-sm text-[#8B5CF6]">
+                                Имя, фото и роль автора статьи
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <!-- Имя автора -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Имя автора
+                              <span class="text-[#8B5CF6] ml-1">*</span>
+                            </label>
+                            <input
+                              v-model="form.article_author_name"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all duration-200"
+                              placeholder="Yanov Kyryl"
+                            />
+                            <p class="text-xs text-[#6B7280]">
+                              Полное имя автора статьи
+                            </p>
+                          </div>
+
+                          <!-- Роль автора -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Роль/Должность
+                            </label>
+                            <input
+                              v-model="form.article_author_role"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all duration-200"
+                              placeholder="основатель, главный редактор, SEO-специалист"
+                            />
+                            <p class="text-xs text-[#6B7280]">
+                              Должность или роль автора
+                            </p>
+                          </div>
+
+                          <!-- URL фото автора -->
+                          <div class="space-y-2 md:col-span-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Фото автора (URL)
+                            </label>
+                            <div class="flex gap-4">
+                              <input
+                                v-model="form.article_author_photo"
+                                type="url"
+                                class="flex-1 px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all duration-200"
+                                placeholder="https://example.com/photo.jpg"
+                              />
+                              <!-- Превью фото -->
+                              <div
+                                v-if="form.article_author_photo"
+                                class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8B5CF6]/30 flex-shrink-0"
+                              >
+                                <img
+                                  :src="form.article_author_photo"
+                                  alt="Превью фото автора"
+                                  class="w-full h-full object-cover"
+                                  @error="form.article_author_photo = ''"
+                                />
+                              </div>
+                            </div>
+                            <p class="text-xs text-[#6B7280]">
+                              Прямая ссылка на фото автора (рекомендуется квадратное изображение)
+                            </p>
+                          </div>
+
+                          <!-- Биография автора -->
+                          <div class="space-y-2 md:col-span-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Краткая биография
+                            </label>
+                            <textarea
+                              v-model="form.article_author_bio"
+                              rows="2"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all duration-200 resize-none"
+                              placeholder="Опытный аналитик игровой индустрии с 10+ лет опыта..."
+                            ></textarea>
+                            <p class="text-xs text-[#6B7280]">
+                              Краткая информация об авторе (опционально)
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Социальные сети автора -->
+                      <div
+                        class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
+                              >
+                                Социальные сети
+                              </h3>
+                              <p class="text-sm text-[#3B82F6]">
+                                Ссылки на профили автора
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <!-- LinkedIn -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] flex items-center gap-2"
+                            >
+                              <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                              LinkedIn
+                            </label>
+                            <input
+                              v-model="form.article_author_social_linkedin"
+                              type="url"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all duration-200"
+                              placeholder="https://linkedin.com/in/username"
+                            />
+                          </div>
+
+                          <!-- Twitter/X -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] flex items-center gap-2"
+                            >
+                              <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                              </svg>
+                              Twitter/X
+                            </label>
+                            <input
+                              v-model="form.article_author_social_twitter"
+                              type="url"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all duration-200"
+                              placeholder="https://x.com/username"
+                            />
+                          </div>
+
+                          <!-- Веб-сайт -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB] flex items-center gap-2"
+                            >
+                              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                              </svg>
+                              Веб-сайт
+                            </label>
+                            <input
+                              v-model="form.article_author_social_website"
+                              type="url"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all duration-200"
+                              placeholder="https://author-website.com"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Дата обновления и время чтения -->
+                      <div
+                        class="group bg-gradient-to-r from-[#10B981]/10 to-[#3B82F6]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#3B82F6] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
+                              >
+                                Дата и время
+                              </h3>
+                              <p class="text-sm text-[#10B981]">
+                                Информация об обновлении статьи
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                          <!-- Дата публикации -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Дата публикации
+                            </label>
+                            <input
+                              v-model="form.article_published_date"
+                              type="date"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all duration-200"
+                            />
+                          </div>
+
+                          <!-- Дата обновления -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Дата обновления
+                            </label>
+                            <input
+                              v-model="form.article_updated_date"
+                              type="date"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all duration-200"
+                            />
+                          </div>
+
+                          <!-- Время обновления -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Время обновления
+                            </label>
+                            <input
+                              v-model="form.article_updated_time"
+                              type="time"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all duration-200"
+                            />
+                          </div>
+
+                          <!-- Кто обновил -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Обновил
+                            </label>
+                            <input
+                              v-model="form.article_updated_by"
+                              type="text"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all duration-200"
+                              placeholder="Имя редактора (если отличается)"
+                            />
+                          </div>
+
+                          <!-- Время чтения -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Время чтения (мин)
+                            </label>
+                            <input
+                              v-model="form.article_reading_time"
+                              type="number"
+                              min="1"
+                              max="60"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all duration-200"
+                              placeholder="9"
+                            />
+                          </div>
+
+                          <!-- Метка времени чтения -->
+                          <div class="space-y-2">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              Метка времени
+                            </label>
+                            <select
+                              v-model="form.article_reading_time_label"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all duration-200"
+                            >
+                              <option value="мин">мин</option>
+                              <option value="минут">минут</option>
+                              <option value="min">min</option>
+                              <option value="minutes">minutes</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Настройки отображения -->
+                      <div
+                        class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+                      >
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center"
+                            >
+                              <svg
+                                class="w-6 h-6 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                ></path>
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                ></path>
+                              </svg>
+                            </div>
+                            <div>
+                              <h3
+                                class="text-lg font-medium text-[#E5E7EB] font-display"
+                              >
+                                Настройки отображения
+                              </h3>
+                              <p class="text-sm text-[#F59E0B]">
+                                Что показывать на странице
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <!-- Показывать блок автора -->
+                          <label class="flex items-center gap-3 cursor-pointer group/toggle">
+                            <div class="relative">
+                              <input
+                                type="checkbox"
+                                v-model="form.article_show_author_block"
+                                class="sr-only peer"
+                              />
+                              <div class="w-12 h-6 bg-[#353A4A] peer-focus:ring-2 peer-focus:ring-[#8B5CF6]/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#8B5CF6]"></div>
+                            </div>
+                            <span class="text-sm text-[#E5E7EB] group-hover/toggle:text-white transition-colors">
+                              Показывать блок автора
+                            </span>
+                          </label>
+
+                          <!-- Показывать время чтения -->
+                          <label class="flex items-center gap-3 cursor-pointer group/toggle">
+                            <div class="relative">
+                              <input
+                                type="checkbox"
+                                v-model="form.article_show_reading_time"
+                                class="sr-only peer"
+                              />
+                              <div class="w-12 h-6 bg-[#353A4A] peer-focus:ring-2 peer-focus:ring-[#3B82F6]/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#3B82F6]"></div>
+                            </div>
+                            <span class="text-sm text-[#E5E7EB] group-hover/toggle:text-white transition-colors">
+                              Показывать время чтения
+                            </span>
+                          </label>
+
+                          <!-- Показывать дату обновления -->
+                          <label class="flex items-center gap-3 cursor-pointer group/toggle">
+                            <div class="relative">
+                              <input
+                                type="checkbox"
+                                v-model="form.article_show_update_date"
+                                class="sr-only peer"
+                              />
+                              <div class="w-12 h-6 bg-[#353A4A] peer-focus:ring-2 peer-focus:ring-[#10B981]/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#10B981]"></div>
+                            </div>
+                            <span class="text-sm text-[#E5E7EB] group-hover/toggle:text-white transition-colors">
+                              Показывать дату обновления
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Секция "Полный обзор слота 2025" -->
             <div>
               <div
@@ -10824,6 +11344,32 @@
                       >
                         Тематики
                       </button>
+                    </div>
+
+                    <!-- 👤 Секция "Информация об авторе" (отдельный блок) -->
+                    <button
+                      @click="scrollToSection('author-info'); showAuthorSection = !showAuthorSection"
+                      class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-[#8B5CF6]/40 transition-all duration-200"
+                      :class="showAuthorSection ? 'border-[#8B5CF6]/40 bg-[#8B5CF6]/10' : ''"
+                    >
+                      <span class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                        <svg class="w-4 h-4 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Информация об авторе
+                      </span>
+                      <svg
+                        class="w-4 h-4 text-gray-400 transition-transform"
+                        :class="{ 'rotate-180': !showAuthorSection }"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </button>
+
+                    <div class="space-y-1 border-l-2 border-[#353A4A]/30 pl-3">
 
                       <!-- Секция "Полный обзор слота 2025" -->
                       <button
@@ -11075,6 +11621,9 @@ const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
 const showThemesSection = ref(false)
 
+// Состояние для секции "Информация об авторе"
+const showAuthorSection = ref(false)
+
 // Состояние загрузки медиа
 const imageLoading = ref(true)
 const imageError = ref(false)
@@ -11220,6 +11769,31 @@ const jsonLdForm = ref({
   jsonld_video_thumbnail: '',
   jsonld_video_duration: '',
   jsonld_video_description: '',
+
+  // ========== 👤 ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ ==========
+  // Данные автора статьи
+  article_author_name: 'Yanov Kyryl', // Имя автора
+  article_author_role: 'основатель', // Роль/должность
+  article_author_photo: '', // URL фото автора
+  article_author_bio: '', // Краткая биография
+  article_author_social_linkedin: '', // LinkedIn
+  article_author_social_twitter: '', // Twitter/X
+  article_author_social_website: '', // Персональный сайт
+
+  // Дата и время обновления
+  article_published_date: '', // Дата первой публикации
+  article_updated_date: '', // Дата последнего обновления
+  article_updated_time: '', // Время обновления (HH:MM)
+  article_updated_by: '', // Кто обновил (если отличается от автора)
+
+  // Время чтения
+  article_reading_time: 9, // Время чтения в минутах
+  article_reading_time_label: 'мин', // Метка: мин, минут, min
+
+  // Настройки отображения
+  article_show_author_block: true, // Показывать блок автора
+  article_show_reading_time: true, // Показывать время чтения
+  article_show_update_date: true, // Показывать дату обновления
 })
 
 // ========== ФАЗА 3: Формы для аналитики и производительности ==========
@@ -12983,6 +13557,23 @@ const saveSlot = async () => {
       'competitor_urls',
       'competitor_positions',
       'competitor_last_check',
+      // ========== 👤 ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ ==========
+      'article_author_name',
+      'article_author_role',
+      'article_author_photo',
+      'article_author_bio',
+      'article_author_social_linkedin',
+      'article_author_social_twitter',
+      'article_author_social_website',
+      'article_published_date',
+      'article_updated_date',
+      'article_updated_time',
+      'article_updated_by',
+      'article_reading_time',
+      'article_reading_time_label',
+      'article_show_author_block',
+      'article_show_reading_time',
+      'article_show_update_date',
     ]
 
     // Подготавливаем данные для отправки - только разрешенные поля

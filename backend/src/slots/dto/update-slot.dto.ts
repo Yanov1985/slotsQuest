@@ -628,4 +628,31 @@ export class UpdateSlotDto {
   conclusion_verdict_title?: string;
   conclusion_verdict_text?: string;
   conclusion_verdict_keyword?: string;
+
+  // ========== 👤 ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ ==========
+  // Блок автора отображается между Hero секцией и основным контентом
+
+  // Основная информация об авторе
+  article_author_name?: string; // Имя автора: "Yanov Kyryl"
+  article_author_role?: string; // Должность/роль: "основатель", "главный редактор", "SEO-специалист"
+  article_author_photo?: string; // URL фото автора
+  article_author_bio?: string; // Краткая биография (опционально)
+  article_author_social_linkedin?: string; // Ссылка на LinkedIn
+  article_author_social_twitter?: string; // Ссылка на Twitter/X
+  article_author_social_website?: string; // Персональный сайт автора
+
+  // Информация об обновлении статьи
+  article_published_date?: string; // Дата первой публикации: "2025-01-01"
+  article_updated_date?: string; // Дата последнего обновления: "2026-01-12"
+  article_updated_time?: string; // Время обновления: "16:17"
+  article_updated_by?: string; // Кто обновил (если отличается от автора)
+
+  // Время чтения
+  article_reading_time?: number; // Время чтения в минутах: 9
+  article_reading_time_label?: string; // Метка: "мин", "минут", "min"
+
+  // Дополнительные настройки отображения
+  article_show_author_block?: boolean; // Показывать блок автора: true/false
+  article_show_reading_time?: boolean; // Показывать время чтения: true/false
+  article_show_update_date?: boolean; // Показывать дату обновления: true/false
 }
