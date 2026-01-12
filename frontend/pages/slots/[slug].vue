@@ -243,15 +243,15 @@
                   </span>
                 </h1>
 
-                <!-- Slot description (mobile version) -->
+                <!-- 📱 Slot description (mobile version) - Полностью адаптивное -->
                 <section
-                  class="lg:hidden mb-6"
+                  class="lg:hidden mb-4 xs:mb-5 sm:mb-6"
                   role="region"
                   aria-labelledby="slot-description"
                 >
                   <div
                     id="slot-description"
-                    class="text-white/80 text-lg lg:text-xl leading-relaxed max-w-2xl space-y-2"
+                    class="space-y-2 xs:space-y-2.5 sm:space-y-3"
                     role="text"
                     aria-label="Подробное описание slot machine с характеристиками"
                   >
@@ -261,36 +261,42 @@
                       :content="getShortDescription(slot, false)"
                     />
 
-                    <!-- Основное SEO-описание -->
-                    <p class="font-medium">
-                      <strong class="text-white">{{
+                    <!-- 📝 Основное SEO-описание с улучшенной типографикой -->
+                    <p
+                      class="text-sm xs:text-base sm:text-lg leading-relaxed xs:leading-relaxed sm:leading-loose text-justify text-white/90 font-normal tracking-wide"
+                      style="text-align-last: left; hyphens: auto;"
+                    >
+                      <strong class="text-white font-semibold">{{
                         getSlotNameWithKeyword(slot)
                       }}</strong>
-                      <span v-if="slot.provider?.name" class="text-white/90">
-                        от <span>{{ slot.provider.name }}</span>
+                      <span v-if="slot.provider?.name" class="text-white/95">
+                        от <span class="font-medium text-cyan-300/90">{{ slot.provider.name }}</span>
                       </span>
-                      —
+                      <span class="text-white/70 mx-1">—</span>
                       <!-- 🎯 SEO: v-html позволяет отображать <strong> теги для выделения keywords -->
-                      <span v-html="getShortDescription(slot)"></span>
+                      <span
+                        class="text-white/85"
+                        v-html="getShortDescription(slot)"
+                      ></span>
                     </p>
 
-                    <!-- Характеристики с Schema.org microdata -->
-                    <p
-                      class="text-base text-white/70"
+                    <!-- 📊 Характеристики с Schema.org microdata - улучшенный дизайн -->
+                    <div
+                      class="flex flex-wrap items-center gap-2 xs:gap-3 sm:gap-4 pt-1 xs:pt-2"
                       v-if="slot.rtp || slot.volatility || slot.min_bet"
                     >
                       <!-- 🎯 SEO: RTP как PropertyValue -->
                       <span
                         v-if="slot.rtp"
-                        class="inline-block mr-4"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
                         itemprop="gameFeature"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
                       >
                         <meta itemprop="name" content="RTP" />
                         <meta itemprop="value" :content="String(slot.rtp)" />
-                        <span class="font-medium text-white/80">RTP:</span>
-                        <span class="text-green-400" itemprop="value"
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">RTP:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-emerald-400" itemprop="value"
                           >{{ slot.rtp }}%</span
                         >
                       </span>
@@ -298,17 +304,15 @@
                       <!-- 🎯 SEO: Volatility как PropertyValue -->
                       <span
                         v-if="slot.volatility"
-                        class="inline-block mr-4"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
                         itemprop="gameFeature"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
                       >
                         <meta itemprop="name" content="Volatility" />
                         <meta itemprop="value" :content="slot.volatility" />
-                        <span class="font-medium text-white/80"
-                          >Volatility:</span
-                        >
-                        <span class="text-blue-400" itemprop="value">{{
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Vol:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-sky-400 capitalize" itemprop="value">{{
                           slot.volatility
                         }}</span>
                       </span>
@@ -316,7 +320,7 @@
                       <!-- 🎯 SEO: Min Bet как PropertyValue -->
                       <span
                         v-if="slot.min_bet"
-                        class="inline-block"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
                         itemprop="gameFeature"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
@@ -326,12 +330,12 @@
                           itemprop="value"
                           :content="String(slot.min_bet)"
                         />
-                        <span class="font-medium text-white/80">Min Bet:</span>
-                        <span class="text-yellow-400" itemprop="value">{{
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Min:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-amber-400" itemprop="value">{{
                           slot.min_bet
                         }}</span>
                       </span>
-                    </p>
+                    </div>
                   </div>
                 </section>
 
@@ -803,21 +807,23 @@
                     </div>
                   </div>
 
-                  <!-- Описание slotа (desktop) - SEO оптимизированное -->
+                  <!-- 🖥️ Описание slotа (desktop) - SEO оптимизированное с улучшенной типографикой -->
                   <section
-                    class="mb-4"
+                    class="mb-4 md:mb-5 lg:mb-6"
                     role="region"
                     aria-labelledby="slot-description-desktop"
                   >
                     <p
                       id="slot-description-desktop"
-                      class="text-white/80 text-lg leading-relaxed"
+                      class="text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose text-justify text-white/90 font-normal tracking-wide max-w-prose"
+                      style="text-align-last: left; hyphens: auto;"
                       role="text"
                       aria-label="Подробное описание slot machine"
                     >
-                      <strong>{{ getSlotNameWithKeyword(slot) }}</strong> -
+                      <strong class="text-white font-semibold">{{ getSlotNameWithKeyword(slot) }}</strong>
+                      <span class="text-white/70 mx-1.5">—</span>
                       <!-- 🎯 SEO: v-html для отображения <strong> тегов вокруг keywords -->
-                      <span v-html="getShortDescription(slot)"></span>
+                      <span class="text-white/85" v-html="getShortDescription(slot)"></span>
                     </p>
                   </section>
 
