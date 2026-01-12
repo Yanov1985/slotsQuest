@@ -27,26 +27,41 @@
                 d="M15 19l-7-7 7-7"
               ></path>
             </svg>
-            <span class="hidden xs:inline">Back to </span>Slots<span class="hidden sm:inline"> Catalog</span>
+            <span class="hidden xs:inline">Back to </span>Slots<span
+              class="hidden sm:inline"
+            >
+              Catalog</span
+            >
           </NuxtLink>
 
           <!-- Хлебные крошки - показываем на планшетах и выше -->
-          <div class="hidden md:flex items-center text-xs sm:text-sm text-gray-500 truncate">
-            <NuxtLink to="/" class="hover:text-blue-600 transition-colors whitespace-nowrap"
+          <div
+            class="hidden md:flex items-center text-xs sm:text-sm text-gray-500 truncate"
+          >
+            <NuxtLink
+              to="/"
+              class="hover:text-blue-600 transition-colors whitespace-nowrap"
               >Home</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
-            <NuxtLink to="/slots" class="hover:text-blue-600 transition-colors whitespace-nowrap"
+            <NuxtLink
+              to="/slots"
+              class="hover:text-blue-600 transition-colors whitespace-nowrap"
               >Slots</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
-            <span class="text-gray-800 font-medium truncate max-w-[120px] lg:max-w-[200px]" v-if="slot">{{
-              slot.name || 'Slot'
-            }}</span>
+            <span
+              class="text-gray-800 font-medium truncate max-w-[120px] lg:max-w-[200px]"
+              v-if="slot"
+              >{{ slot.name || 'Slot' }}</span
+            >
           </div>
 
           <!-- Мобильные хлебные крошки - только название слота -->
-          <div class="md:hidden text-xs text-gray-600 truncate max-w-[140px] sm:max-w-[200px]" v-if="slot">
+          <div
+            class="md:hidden text-xs text-gray-600 truncate max-w-[140px] sm:max-w-[200px]"
+            v-if="slot"
+          >
             {{ slot.name || 'Slot' }}
           </div>
         </div>
@@ -102,7 +117,10 @@
       class="relative shadow-2xl mb-4 sm:mb-6 md:mb-8 bg-zinc-950 text-slate-100 border border-white/10"
     >
       <!-- Анимированный фон - скрываем на очень маленьких экранах для производительности -->
-      <div class="absolute inset-0 overflow-hidden hidden xs:block" aria-hidden="true">
+      <div
+        class="absolute inset-0 overflow-hidden hidden xs:block"
+        aria-hidden="true"
+      >
         <div
           class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-beam transform skew-x-12"
         ></div>
@@ -141,7 +159,9 @@
         💎
       </div>
 
-      <div class="relative z-10 max-w-full flex flex-col lg:flex-row lg:min-h-screen">
+      <div
+        class="relative z-10 max-w-full flex flex-col lg:flex-row lg:min-h-screen"
+      >
         <!-- 📱 Левая часть: Игровая информация с Aurora Background (в dark-контейнере) -->
         <section
           class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start order-1"
@@ -264,13 +284,16 @@
                     <!-- 📝 Основное SEO-описание с улучшенной типографикой -->
                     <p
                       class="text-sm xs:text-base sm:text-lg leading-relaxed xs:leading-relaxed sm:leading-loose text-justify text-white/90 font-normal tracking-wide"
-                      style="text-align-last: left; hyphens: auto;"
+                      style="text-align-last: left; hyphens: auto"
                     >
                       <strong class="text-white font-semibold">{{
                         getSlotNameWithKeyword(slot)
                       }}</strong>
                       <span v-if="slot.provider?.name" class="text-white/95">
-                        от <span class="font-medium text-cyan-300/90">{{ slot.provider.name }}</span>
+                        от
+                        <span class="font-medium text-cyan-300/90">{{
+                          slot.provider.name
+                        }}</span>
                       </span>
                       <span class="text-white/70 mx-1">—</span>
                       <!-- 🎯 SEO: v-html позволяет отображать <strong> теги для выделения keywords -->
@@ -295,8 +318,13 @@
                       >
                         <meta itemprop="name" content="RTP" />
                         <meta itemprop="value" :content="String(slot.rtp)" />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">RTP:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-emerald-400" itemprop="value"
+                        <span
+                          class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70"
+                          >RTP:</span
+                        >
+                        <span
+                          class="text-xs xs:text-sm sm:text-base font-bold text-emerald-400"
+                          itemprop="value"
                           >{{ slot.rtp }}%</span
                         >
                       </span>
@@ -311,10 +339,15 @@
                       >
                         <meta itemprop="name" content="Volatility" />
                         <meta itemprop="value" :content="slot.volatility" />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Vol:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-sky-400 capitalize" itemprop="value">{{
-                          slot.volatility
-                        }}</span>
+                        <span
+                          class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70"
+                          >Vol:</span
+                        >
+                        <span
+                          class="text-xs xs:text-sm sm:text-base font-bold text-sky-400 capitalize"
+                          itemprop="value"
+                          >{{ slot.volatility }}</span
+                        >
                       </span>
 
                       <!-- 🎯 SEO: Min Bet как PropertyValue -->
@@ -330,10 +363,15 @@
                           itemprop="value"
                           :content="String(slot.min_bet)"
                         />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Min:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-amber-400" itemprop="value">{{
-                          slot.min_bet
-                        }}</span>
+                        <span
+                          class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70"
+                          >Min:</span
+                        >
+                        <span
+                          class="text-xs xs:text-sm sm:text-base font-bold text-amber-400"
+                          itemprop="value"
+                          >{{ slot.min_bet }}</span
+                        >
                       </span>
                     </div>
                   </div>
@@ -816,14 +854,19 @@
                     <p
                       id="slot-description-desktop"
                       class="text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose text-justify text-white/90 font-normal tracking-wide max-w-prose"
-                      style="text-align-last: left; hyphens: auto;"
+                      style="text-align-last: left; hyphens: auto"
                       role="text"
                       aria-label="Подробное описание slot machine"
                     >
-                      <strong class="text-white font-semibold">{{ getSlotNameWithKeyword(slot) }}</strong>
+                      <strong class="text-white font-semibold">{{
+                        getSlotNameWithKeyword(slot)
+                      }}</strong>
                       <span class="text-white/70 mx-1.5">—</span>
                       <!-- 🎯 SEO: v-html для отображения <strong> тегов вокруг keywords -->
-                      <span class="text-white/85" v-html="getShortDescription(slot)"></span>
+                      <span
+                        class="text-white/85"
+                        v-html="getShortDescription(slot)"
+                      ></span>
                     </p>
                   </section>
 
@@ -1125,7 +1168,9 @@
                   <div
                     class="bg-black/30 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 border border-white/20 max-w-xs sm:max-w-sm mx-auto"
                   >
-                    <h3 class="text-white/90 text-sm sm:text-base md:text-lg font-bold mb-1 sm:mb-2 truncate">
+                    <h3
+                      class="text-white/90 text-sm sm:text-base md:text-lg font-bold mb-1 sm:mb-2 truncate"
+                    >
                       {{ slot.name || 'Слот' }}
                     </h3>
                     <p class="text-white/60 text-xs sm:text-sm truncate">
@@ -1524,7 +1569,9 @@
               </h2>
 
               <!-- 📱 Адаптивная сетка: 2 колонки на планшете в горизонтальном режиме, 1 на остальных в sidebar -->
-              <dl class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4">
+              <dl
+                class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4"
+              >
                 <!-- 📱 RTP - адаптивная карточка -->
                 <div
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
@@ -1565,19 +1612,33 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">RTP</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          RTP
+                        </dt>
                       </div>
-                      <dd class="text-emerald-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
+                      <dd
+                        class="text-emerald-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
                         Return
                       </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.rtp || '96.50' }}%
                       </dd>
                     </div>
-                    <dd class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">High rate</dd>
+                    <dd
+                      class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      High rate
+                    </dd>
                   </div>
                 </div>
 
@@ -1621,17 +1682,33 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Volatility</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Volatility
+                        </dt>
                       </div>
-                      <dd class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Risk</dd>
+                      <dd
+                        class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        Risk
+                      </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-lg sm:text-xl md:text-2xl font-black text-white capitalize drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ getVolatilityText(slot.volatility) }}
                       </dd>
                     </div>
-                    <dd class="text-orange-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Medium risk</dd>
+                    <dd
+                      class="text-orange-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      Medium risk
+                    </dd>
                   </div>
                 </div>
 
@@ -1675,19 +1752,33 @@
                             ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max win</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Max win
+                        </dt>
                       </div>
-                      <dd class="text-purple-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
+                      <dd
+                        class="text-purple-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
                         Potential
                       </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ getMaxWin(slot) }}
                       </dd>
                     </div>
-                    <dd class="text-purple-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Per bet</dd>
+                    <dd
+                      class="text-purple-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      Per bet
+                    </dd>
                   </div>
                 </div>
 
@@ -1698,7 +1789,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('blue')"
                     :dotSize="6"
                     :showGradient="false"
@@ -1713,21 +1806,48 @@
                           class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
-                          <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                            ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Min bet</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Min bet
+                        </dt>
                       </div>
-                      <dd class="text-blue-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Per spin</dd>
+                      <dd
+                        class="text-blue-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        Per spin
+                      </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.min_bet || '€0.20' }}
                       </dd>
                     </div>
-                    <dd class="text-blue-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Available to all</dd>
+                    <dd
+                      class="text-blue-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      Available to all
+                    </dd>
                   </div>
                 </div>
 
@@ -1738,7 +1858,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('teal')"
                     :dotSize="6"
                     :showGradient="false"
@@ -1753,21 +1875,48 @@
                           class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
-                          <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                            ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max bet</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Max bet
+                        </dt>
                       </div>
-                      <dd class="text-teal-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Per spin</dd>
+                      <dd
+                        class="text-teal-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        Per spin
+                      </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-lg sm:text-xl md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.max_bet || '€100' }}
                       </dd>
                     </div>
-                    <dd class="text-teal-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">High rollers</dd>
+                    <dd
+                      class="text-teal-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      High rollers
+                    </dd>
                   </div>
                 </div>
 
@@ -1778,7 +1927,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('amber')"
                     :dotSize="6"
                     :showGradient="false"
@@ -1793,21 +1944,50 @@
                           class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
-                          <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Release</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Release
+                        </dt>
                       </div>
-                      <dd class="text-amber-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Launch</dd>
-                    </div>
-                    <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-base sm:text-lg md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                        {{ formatReleaseDate(slot.release_date) || '13.02.2021' }}
+                      <dd
+                        class="text-amber-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        Launch
                       </dd>
                     </div>
-                    <dd class="text-amber-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ slot.providers?.name || 'Pragmatic Play' }}</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-base sm:text-lg md:text-2xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
+                        {{
+                          formatReleaseDate(slot.release_date) || '13.02.2021'
+                        }}
+                      </dd>
+                    </div>
+                    <dd
+                      class="text-amber-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      {{ slot.providers?.name || 'Pragmatic Play' }}
+                    </dd>
                   </div>
                 </div>
 
@@ -1818,7 +1998,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('rose')"
                     :dotSize="6"
                     :showGradient="false"
@@ -1833,21 +2015,52 @@
                           class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
-                          <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                            ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Reels</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Reels
+                        </dt>
                       </div>
-                      <dd class="text-rose-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Structure</dd>
-                    </div>
-                    <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                        {{ slot.reels && slot.rows ? `${slot.reels}×${slot.rows}` : slot.game_field || '5×3' }}
+                      <dd
+                        class="text-rose-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        Structure
                       </dd>
                     </div>
-                    <dd class="text-rose-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ slot.paylines || 'Scatter Pays' }}</dd>
+                    <!-- Значение с подложкой для контрастности -->
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
+                        {{
+                          slot.reels && slot.rows
+                            ? `${slot.reels}×${slot.rows}`
+                            : slot.game_field || '5×3'
+                        }}
+                      </dd>
+                    </div>
+                    <dd
+                      class="text-rose-300 text-xs sm:text-sm font-medium truncate drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      {{ slot.paylines || 'Scatter Pays' }}
+                    </dd>
                   </div>
                 </div>
 
@@ -1858,7 +2071,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('violet')"
                     :dotSize="6"
                     :showGradient="false"
@@ -1873,21 +2088,48 @@
                           class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                           aria-hidden="true"
                         >
-                          <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                            ></path>
                           </svg>
                         </div>
-                        <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Paylines</dt>
+                        <dt
+                          class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                        >
+                          Paylines
+                        </dt>
                       </div>
-                      <dd class="text-violet-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">System</dd>
+                      <dd
+                        class="text-violet-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >
+                        System
+                      </dd>
                     </div>
                     <!-- Значение с подложкой для контрастности -->
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
-                      <dd class="text-lg sm:text-xl md:text-2xl font-black text-white truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1"
+                    >
+                      <dd
+                        class="text-lg sm:text-xl md:text-2xl font-black text-white truncate drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.paylines || 'Scatter Pays' }}
                       </dd>
                     </div>
-                    <dd class="text-violet-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">All directions</dd>
+                    <dd
+                      class="text-violet-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      All directions
+                    </dd>
                   </div>
                 </div>
               </dl>
@@ -1899,7 +2141,9 @@
                 id="popularity-heading"
                 class="text-base sm:text-lg md:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"
               >
-                <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true">📊</span>
+                <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true"
+                  >📊</span
+                >
                 Popularity
               </h2>
               <div
@@ -1920,7 +2164,10 @@
                 />
                 <div class="relative z-10">
                   <div class="flex justify-between items-center mb-3">
-                    <span class="text-white font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Rating</span>
+                    <span
+                      class="text-white font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm"
+                      >Rating</span
+                    >
                     <span
                       class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-3 py-1 rounded-full text-sm shadow-lg"
                       >#{{ slot.popularity_rank || '12' }} of 2000+</span
@@ -1943,8 +2190,12 @@
                       :style="`width: ${Math.round(((2000 - (slot.popularity_rank || 12)) / 2000) * 100)}%`"
                     ></div>
                   </div>
-                  <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
-                    <span class="text-yellow-300 text-sm font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+                  <div
+                    class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm"
+                  >
+                    <span
+                      class="text-yellow-300 text-sm font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
                       {{
                         Math.round(
                           ((2000 - (slot.popularity_rank || 12)) / 2000) * 100,
@@ -1980,12 +2231,17 @@
                       >
                         <span class="text-white text-xs font-bold">📊</span>
                       </div>
-                      <span class="text-purple-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                      <span
+                        class="text-purple-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                         >Real RTP</span
                       >
                     </div>
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
-                      <span class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm"
+                    >
+                      <span
+                        class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.real_rtp || '97.45' }}%
                       </span>
                     </div>
@@ -2015,12 +2271,17 @@
                       >
                         <span class="text-white text-xs font-bold">🎰</span>
                       </div>
-                      <span class="text-orange-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                      <span
+                        class="text-orange-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                         >Bonus frequency</span
                       >
                     </div>
-                    <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
-                      <span class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    <div
+                      class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm"
+                    >
+                      <span
+                        class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      >
                         {{ slot.bonus_frequency || '1:448' }}
                       </span>
                     </div>
@@ -2035,7 +2296,9 @@
                 id="features-heading"
                 class="text-base sm:text-lg md:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"
               >
-                <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true">⚡</span>
+                <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true"
+                  >⚡</span
+                >
                 Features
               </h2>
               <div class="space-y-2 sm:space-y-3">
@@ -2046,7 +2309,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('indigo')"
                     :dotSize="6"
                     :showGradient="false"
@@ -2089,7 +2354,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('emerald')"
                     :dotSize="6"
                     :showGradient="false"
@@ -2151,7 +2418,9 @@
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
-                    :opacities="[0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]"
+                    :opacities="[
+                      0.15, 0.2, 0.25, 0.3, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85,
+                    ]"
                     :colors="getEffectColorsFor('amber')"
                     :dotSize="6"
                     :showGradient="false"
@@ -2195,13 +2464,15 @@
     <!-- 👤 БЛОК АВТОРА И ДАТЫ ОБНОВЛЕНИЯ (после Hero, перед обзором) -->
     <!-- 📱 Минималистичный дизайн в стиле BangBang Education -->
     <section
-      v-if="slot && (slot.article_show_author_block !== false)"
+      v-if="slot && slot.article_show_author_block !== false"
       class="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8 mb-6 sm:mb-8 md:mb-10"
       aria-label="Информация об авторе статьи"
       itemscope
       itemtype="https://schema.org/Article"
     >
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 py-6 sm:py-8 border-b border-gray-200">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 py-6 sm:py-8 border-b border-gray-200"
+      >
         <!-- Левая часть: Автор с фото -->
         <div
           class="flex items-center gap-3 sm:gap-4"
@@ -2252,7 +2523,11 @@
 
             <!-- Социальные ссылки -->
             <div
-              v-if="slot.article_author_social_linkedin || slot.article_author_social_twitter || slot.article_author_social_website"
+              v-if="
+                slot.article_author_social_linkedin ||
+                slot.article_author_social_twitter ||
+                slot.article_author_social_website
+              "
               class="flex items-center gap-3 mt-1"
             >
               <a
@@ -2264,7 +2539,9 @@
                 title="LinkedIn"
               >
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
                 </svg>
               </a>
               <a
@@ -2276,7 +2553,9 @@
                 title="Twitter/X"
               >
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
                 </svg>
               </a>
               <a
@@ -2287,8 +2566,18 @@
                 class="text-gray-400 hover:text-gray-900 transition-colors"
                 title="Веб-сайт"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  />
                 </svg>
               </a>
             </div>
@@ -2296,9 +2585,14 @@
         </div>
 
         <!-- Правая часть: Дата и время чтения -->
-        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-500">
+        <div
+          class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-500"
+        >
           <div
-            v-if="slot.article_show_update_date !== false && (slot.article_updated_date || slot.updated_at)"
+            v-if="
+              slot.article_show_update_date !== false &&
+              (slot.article_updated_date || slot.updated_at)
+            "
             class="flex items-center gap-2"
           >
             <span class="hidden sm:inline">Обновлено</span>
@@ -2307,17 +2601,23 @@
               itemprop="dateModified"
               :content="slot.article_updated_date || slot.updated_at"
             >
-              {{ formatArticleDate(slot.article_updated_date || slot.updated_at) }}
+              {{
+                formatArticleDate(slot.article_updated_date || slot.updated_at)
+              }}
             </span>
           </div>
 
           <div
-            v-if="slot.article_show_reading_time !== false && slot.article_reading_time"
+            v-if="
+              slot.article_show_reading_time !== false &&
+              slot.article_reading_time
+            "
             class="flex items-center gap-2"
           >
             <span class="hidden sm:inline">Чтение</span>
             <span class="font-medium text-gray-900">
-              {{ slot.article_reading_time }} {{ slot.article_reading_time_label || 'мин' }}
+              {{ slot.article_reading_time }}
+              {{ slot.article_reading_time_label || 'мин' }}
             </span>
           </div>
         </div>
@@ -2325,12 +2625,13 @@
     </section>
 
     <!-- 📱 Основной контент - минималистичный дизайн -->
-    <section class="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+    <section
+      class="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 md:pb-20 lg:pb-24"
+    >
       <!-- Обзор игры -->
       <article class="mb-6 sm:mb-8 md:mb-10">
-
         <!-- Центрированный заголовок секции -->
-        <div class="text-center mb-12 sm:mb-16 md:mb-20">
+        <div class="text-center mb-4 sm:mb-6 md:mb-8">
           <h2
             itemprop="headline"
             id="full-review-2025"
@@ -2340,19 +2641,24 @@
             tabindex="0"
           >
             <!-- Первая строка - "Полный обзор" -->
-            <span class="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-2 sm:mb-3">
+            <span
+              class="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-2 sm:mb-3"
+            >
               {{ slot.overview_title || 'Полный обзор' }}
             </span>
             <!-- Вторая строка - название слота с synthwave градиентом -->
             <span
               class="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-relaxed pb-1 sm:pb-2 bg-gradient-to-r from-pink-500 via-purple-500 via-violet-500 to-cyan-400 bg-clip-text text-transparent animate-gradient-x"
-              style="background-size: 200% 200%;"
+              style="background-size: 200% 200%"
             >
               {{ slot.name || 'Слот' }}
             </span>
           </h2>
-          <p class="text-base sm:text-lg md:text-xl text-gray-500 font-medium mt-4 sm:mt-6">
-            {{ slot.providers?.name || 'Провайдер' }} · {{ new Date().getFullYear() }}
+          <p
+            class="text-base sm:text-lg md:text-xl text-gray-500 font-medium mt-4 sm:mt-6"
+          >
+            {{ slot.providers?.name || 'Провайдер' }} ·
+            {{ new Date().getFullYear() }}
           </p>
         </div>
 
@@ -2366,16 +2672,28 @@
         >
           <!-- Скрытые meta-данные для поисковых систем -->
           <meta itemprop="author" content="SlotQuest Team" />
-          <meta itemprop="datePublished" :content="slot.created_at || new Date().toISOString().split('T')[0]" />
-          <meta itemprop="dateModified" :content="slot.updated_at || new Date().toISOString().split('T')[0]" />
-          <meta itemprop="publisher" :content="slot.providers?.name || 'SlotQuest'" />
-          <meta itemprop="image" :content="slot.image_url || slot.thumbnail_url" />
+          <meta
+            itemprop="datePublished"
+            :content="slot.created_at || new Date().toISOString().split('T')[0]"
+          />
+          <meta
+            itemprop="dateModified"
+            :content="slot.updated_at || new Date().toISOString().split('T')[0]"
+          />
+          <meta
+            itemprop="publisher"
+            :content="slot.providers?.name || 'SlotQuest'"
+          />
+          <meta
+            itemprop="image"
+            :content="slot.image_url || slot.thumbnail_url"
+          />
 
           <!-- Первый абзац описания -->
           <p
             v-if="slot.overview_description_1"
             class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8 text-justify"
-            style="text-align-last: left; hyphens: auto;"
+            style="text-align-last: left; hyphens: auto"
             itemprop="articleBody"
             role="paragraph"
             :aria-label="`Основной текст обзора слота ${slot.name || 'слот'}`"
@@ -2385,24 +2703,32 @@
           <p
             v-else
             class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8 text-justify"
-            style="text-align-last: left; hyphens: auto;"
+            style="text-align-last: left; hyphens: auto"
             itemprop="articleBody"
             role="paragraph"
             :aria-label="`Основной текст обзора слота ${slot.name || 'слот'}`"
             tabindex="0"
           >
-            <strong class="text-gray-900">{{ slot.name }}</strong> — это мощный онлайн слот от
-            <strong class="text-gray-900">{{ slot.providers?.name || 'провайдера' }}</strong>, предлагающий уникальный игровой опыт с
-            <span class="font-semibold text-gray-900">RTP {{ slot.rtp || '96' }}%</span>
+            <strong class="text-gray-900">{{ slot.name }}</strong> — это мощный
+            онлайн слот от
+            <strong class="text-gray-900">{{
+              slot.providers?.name || 'провайдера'
+            }}</strong
+            >, предлагающий уникальный игровой опыт с
+            <span class="font-semibold text-gray-900"
+              >RTP {{ slot.rtp || '96' }}%</span
+            >
             и максимальным выигрышем до
-            <span class="font-semibold text-gray-900">{{ slot.max_win || '5000' }}x</span>.
+            <span class="font-semibold text-gray-900"
+              >{{ slot.max_win || '5000' }}x</span
+            >.
           </p>
 
           <!-- Второй абзац описания -->
           <p
             v-if="slot.overview_description_2"
             class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
-            style="text-align-last: left; hyphens: auto;"
+            style="text-align-last: left; hyphens: auto"
             itemprop="articleBody"
             role="paragraph"
             aria-label="Дополнительная информация о слоте"
@@ -2412,15 +2738,25 @@
           <p
             v-else
             class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
-            style="text-align-last: left; hyphens: auto;"
+            style="text-align-last: left; hyphens: auto"
             itemprop="articleBody"
             role="paragraph"
             aria-label="Дополнительная информация о слоте"
             tabindex="0"
           >
-            Это слот с <strong class="text-gray-900">{{ slot.volatility || 'средней' }} волатильностью</strong>
-            и <strong class="text-gray-900">RTP {{ slot.rtp || '96' }}%</strong>, предлагающий отличные возможности для выигрыша в
-            <time :datetime="new Date().getFullYear().toString()" class="font-semibold text-gray-900">{{ new Date().getFullYear() }}</time> году.
+            Это слот с
+            <strong class="text-gray-900"
+              >{{ slot.volatility || 'средней' }} волатильностью</strong
+            >
+            и
+            <strong class="text-gray-900">RTP {{ slot.rtp || '96' }}%</strong>,
+            предлагающий отличные возможности для выигрыша в
+            <time
+              :datetime="new Date().getFullYear().toString()"
+              class="font-semibold text-gray-900"
+              >{{ new Date().getFullYear() }}</time
+            >
+            году.
           </p>
         </div>
 
@@ -2458,8 +2794,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="1" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_1 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_1 }}</span
+                >
               </li>
               <li
                 v-if="slot.overview_features_2"
@@ -2469,8 +2812,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="2" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_2 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_2 }}</span
+                >
               </li>
               <li
                 v-if="slot.overview_features_3"
@@ -2480,8 +2830,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="3" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_3 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_3 }}</span
+                >
               </li>
             </ul>
             <!-- Правая колонка -->
@@ -2494,8 +2851,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="4" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_4 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_4 }}</span
+                >
               </li>
               <li
                 v-if="slot.overview_features_5"
@@ -2505,8 +2869,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="5" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_5 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_5 }}</span
+                >
               </li>
               <li
                 v-if="slot.overview_features_6"
@@ -2516,8 +2887,15 @@
                 itemtype="https://schema.org/ListItem"
               >
                 <meta itemprop="position" content="6" />
-                <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0" aria-hidden="true"></span>
-                <span itemprop="name" class="text-base sm:text-lg text-gray-700">{{ slot.overview_features_6 }}</span>
+                <span
+                  class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  itemprop="name"
+                  class="text-base sm:text-lg text-gray-700"
+                  >{{ slot.overview_features_6 }}</span
+                >
               </li>
             </ul>
           </div>
@@ -2556,80 +2934,120 @@
               <!-- Вступительный текст -->
               <p
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-8 sm:mb-10 md:mb-12 text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
-                {{ slot.popularity_intro_text || `${slot.name || 'Этот слот'} занимает лидирующие позиции в мировых рейтингах онлайн-слотов. Благодаря уникальной механике, впечатляющему потенциалу выигрыша и продуманному геймплею, слот привлекает миллионы игроков по всему миру.` }}
+                {{
+                  slot.popularity_intro_text ||
+                  `${slot.name || 'Этот слот'} занимает лидирующие позиции в мировых рейтингах онлайн-слотов. Благодаря уникальной механике, впечатляющему потенциалу выигрыша и продуманному геймплею, слот привлекает миллионы игроков по всему миру.`
+                }}
               </p>
 
               <!-- Ключевые метрики - 3 колонки -->
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16">
+              <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16"
+              >
                 <!-- Глобальный рейтинг -->
                 <div class="text-center md:text-left">
-                  <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4">
+                  <div
+                    class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4"
+                  >
                     {{ slot.popularity_global_rank || 'TOP 3' }}
                   </div>
-                  <h3 class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2">
+                  <h3
+                    class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2"
+                  >
                     Глобальный рейтинг
                   </h3>
                   <p
                     class="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-justify md:text-left"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
-                    {{ slot.popularity_global_desc || 'Входит в ТОП-3 самых популярных слотов мира' }}
+                    {{
+                      slot.popularity_global_desc ||
+                      'Входит в ТОП-3 самых популярных слотов мира'
+                    }}
                   </p>
                 </div>
 
                 <!-- Количество игроков -->
                 <div class="text-center md:text-left">
-                  <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4">
+                  <div
+                    class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4"
+                  >
                     {{ slot.popularity_players_count || '2.4M+' }}
                   </div>
-                  <h3 class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2">
+                  <h3
+                    class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2"
+                  >
                     Активные игроки
                   </h3>
                   <p
                     class="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-justify md:text-left"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
-                    {{ slot.popularity_players_desc || 'Ежемесячно играют более 2.4 млн уникальных игроков' }}
+                    {{
+                      slot.popularity_players_desc ||
+                      'Ежемесячно играют более 2.4 млн уникальных игроков'
+                    }}
                   </p>
                 </div>
 
                 <!-- RTP -->
                 <div class="text-center md:text-left">
-                  <div class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4">
+                  <div
+                    class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-3 sm:mb-4"
+                  >
                     {{ slot.popularity_rtp_score || `${slot.rtp || '96.5'}%` }}
                   </div>
-                  <h3 class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2">
+                  <h3
+                    class="font-bold text-base sm:text-lg md:text-xl text-gray-900 mb-2"
+                  >
                     RTP слота
                   </h3>
                   <p
                     class="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-justify md:text-left"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
-                    {{ slot.popularity_rtp_desc || 'Высокий процент возврата игроку' }}
+                    {{
+                      slot.popularity_rtp_desc ||
+                      'Высокий процент возврата игроку'
+                    }}
                   </p>
                 </div>
               </div>
 
               <!-- Статистика по годам -->
               <div class="mb-10 sm:mb-12">
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
+                <h3
+                  class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8"
+                >
                   {{ slot.popularity_stats_title || 'Динамика популярности' }}
                 </h3>
 
                 <div class="space-y-5 sm:space-y-6">
-                  <div v-for="i in 4" :key="i" class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-                    <div class="flex items-center justify-between sm:justify-start gap-4">
-                      <span class="text-lg sm:text-xl md:text-2xl font-black text-gray-900 w-16 sm:w-20">
+                  <div
+                    v-for="i in 4"
+                    :key="i"
+                    class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6"
+                  >
+                    <div
+                      class="flex items-center justify-between sm:justify-start gap-4"
+                    >
+                      <span
+                        class="text-lg sm:text-xl md:text-2xl font-black text-gray-900 w-16 sm:w-20"
+                      >
                         {{ slot[`popularity_year_${i}`] || 2020 + i }}
                       </span>
-                      <span class="sm:hidden text-sm font-semibold text-gray-600">
+                      <span
+                        class="sm:hidden text-sm font-semibold text-gray-600"
+                      >
                         {{ slot[`popularity_rank_${i}`] || '#1' }}
                       </span>
                     </div>
                     <div class="flex-1">
-                      <div class="bg-gray-100 rounded-full h-3 sm:h-4 relative overflow-hidden">
+                      <div
+                        class="bg-gray-100 rounded-full h-3 sm:h-4 relative overflow-hidden"
+                      >
                         <div
                           class="h-full rounded-full bg-gray-900 transition-all duration-700"
                           :style="{
@@ -2639,13 +3057,21 @@
                       </div>
                     </div>
                     <div class="hidden sm:flex items-center gap-3 w-48">
-                      <span class="text-sm sm:text-base font-bold text-gray-900">
+                      <span
+                        class="text-sm sm:text-base font-bold text-gray-900"
+                      >
                         {{ slot[`popularity_rank_${i}`] || '#1' }}
                       </span>
                       <span class="text-sm text-gray-500">
                         {{
                           slot[`popularity_label_${i}`] ||
-                          (i === 1 ? 'Лучший новый слот' : i === 2 ? 'Самый популярный' : i === 3 ? 'Рекордсмен' : 'Стабильный хит')
+                          (i === 1
+                            ? 'Лучший новый слот'
+                            : i === 2
+                              ? 'Самый популярный'
+                              : i === 3
+                                ? 'Рекордсмен'
+                                : 'Стабильный хит')
                         }}
                       </span>
                     </div>
@@ -2655,26 +3081,58 @@
 
               <!-- Ключевые факты -->
               <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 md:p-10">
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
+                <h3
+                  class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8"
+                >
                   {{ slot.popularity_facts_title || 'Ключевые факты' }}
                 </h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div v-for="i in 4" :key="i" class="flex gap-4">
-                    <div class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gray-900 rounded-full flex items-center justify-center">
+                    <div
+                      class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gray-900 rounded-full flex items-center justify-center"
+                    >
                       <span class="text-white text-lg sm:text-xl">
-                        {{ i === 1 ? '🎯' : i === 2 ? '🌍' : i === 3 ? '📱' : '⭐' }}
+                        {{
+                          i === 1
+                            ? '🎯'
+                            : i === 2
+                              ? '🌍'
+                              : i === 3
+                                ? '📱'
+                                : '⭐'
+                        }}
                       </span>
                     </div>
                     <div class="flex-1 min-w-0">
-                      <h4 class="font-bold text-gray-900 text-base sm:text-lg mb-1">
-                        {{ slot[`popularity_fact_title_${i}`] || (i === 1 ? 'Мгновенный успех' : i === 2 ? 'Глобальное признание' : i === 3 ? 'Мобильная версия' : 'Высокий рейтинг') }}
+                      <h4
+                        class="font-bold text-gray-900 text-base sm:text-lg mb-1"
+                      >
+                        {{
+                          slot[`popularity_fact_title_${i}`] ||
+                          (i === 1
+                            ? 'Мгновенный успех'
+                            : i === 2
+                              ? 'Глобальное признание'
+                              : i === 3
+                                ? 'Мобильная версия'
+                                : 'Высокий рейтинг')
+                        }}
                       </h4>
                       <p
                         class="text-gray-600 text-sm sm:text-base leading-relaxed text-justify"
-                        style="text-align-last: left;"
+                        style="text-align-last: left"
                       >
-                        {{ slot[`popularity_fact_desc_${i}`] || (i === 1 ? 'Попал в ТОП-10 в первую неделю после релиза' : i === 2 ? 'Лидер рейтингов в более чем 50 странах мира' : i === 3 ? '73% игроков предпочитают мобильную версию' : 'Средняя оценка 4.8 из 5 звёзд') }}
+                        {{
+                          slot[`popularity_fact_desc_${i}`] ||
+                          (i === 1
+                            ? 'Попал в ТОП-10 в первую неделю после релиза'
+                            : i === 2
+                              ? 'Лидер рейтингов в более чем 50 странах мира'
+                              : i === 3
+                                ? '73% игроков предпочитают мобильную версию'
+                                : 'Средняя оценка 4.8 из 5 звёзд')
+                        }}
                       </p>
                     </div>
                   </div>
@@ -2710,7 +3168,7 @@
             <div class="pb-8 sm:pb-10 md:pb-12">
               <p
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-8 sm:mb-10 text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
                 {{
                   slot.success_secret_intro ||
@@ -2718,14 +3176,20 @@
                 }}
               </p>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10"
+              >
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">
-                    {{ slot.success_secret_card_1_title || 'Проверенная механика' }}
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4"
+                  >
+                    {{
+                      slot.success_secret_card_1_title || 'Проверенная механика'
+                    }}
                   </h4>
                   <p
                     class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
                     {{
                       slot.success_secret_card_1_text ||
@@ -2735,12 +3199,14 @@
                 </div>
 
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4"
+                  >
                     {{ slot.success_secret_card_2_title || 'Идеальный баланс' }}
                   </h4>
                   <p
                     class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
                     {{
                       slot.success_secret_card_2_text ||
@@ -2752,7 +3218,7 @@
 
               <p
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
                 {{
                   slot.success_secret_outro ||
@@ -2790,7 +3256,7 @@
               <p
                 v-if="slot.mechanics_intro"
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-8 sm:mb-10 text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
                 {{ slot.mechanics_intro }}
               </p>
@@ -2819,213 +3285,239 @@
                   <p
                     v-if="mechanic.description"
                     class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-4"
-                    style="text-align-last: left;"
+                    style="text-align-last: left"
                   >
                     {{ mechanic.description }}
                   </p>
                   <span
-                      v-if="mechanic.type"
-                      class="inline-block px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 border border-orange-200"
-                    >
-                      {{ mechanic.type }}
-                    </span>
-                  </div>
+                    v-if="mechanic.type"
+                    class="inline-block px-2 py-1 text-xs rounded-full bg-orange-100 text-orange-700 border border-orange-200"
+                  >
+                    {{ mechanic.type }}
+                  </span>
                 </div>
+              </div>
 
-                <!-- Динамические поля механик из админ-панели -->
+              <!-- Динамические поля механик из админ-панели -->
+              <div
+                v-else-if="
+                  slot.mechanics_scatter_title ||
+                  slot.mechanics_cascade_title ||
+                  slot.mechanics_multipliers_title ||
+                  slot.mechanics_freespins_title
+                "
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10"
+              >
+                <!-- Scatter Pays -->
                 <div
-                  v-else-if="
+                  v-if="
                     slot.mechanics_scatter_title ||
-                    slot.mechanics_cascade_title ||
-                    slot.mechanics_multipliers_title ||
-                    slot.mechanics_freespins_title
+                    slot.mechanics_scatter_description
                   "
-                  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10"
-                >
-                  <!-- Scatter Pays -->
-                  <div
-                    v-if="slot.mechanics_scatter_title || slot.mechanics_scatter_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">🎯</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_scatter_title || 'Scatter Pays' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_scatter_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_scatter_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_scatter_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_scatter_details }}
-                    </p>
-                  </div>
-
-                  <!-- Tumbles (Каскады) -->
-                  <div
-                    v-if="slot.mechanics_cascade_title || slot.mechanics_cascade_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">⬇️</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_cascade_title || 'Tumbles (Каскады)' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_cascade_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_cascade_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_cascade_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_cascade_details }}
-                    </p>
-                  </div>
-
-                  <!-- Множители -->
-                  <div
-                    v-if="slot.mechanics_multipliers_title || slot.mechanics_multipliers_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">✨</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_multipliers_title || 'Множители' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_multipliers_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_multipliers_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_multipliers_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_multipliers_details }}
-                    </p>
-                  </div>
-
-                  <!-- Бесплатные спины -->
-                  <div
-                    v-if="slot.mechanics_freespins_title || slot.mechanics_freespins_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">⚡</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_freespins_title || 'Бесплатные спины' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_freespins_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_freespins_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_freespins_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_freespins_details }}
-                    </p>
-                  </div>
-
-                  <!-- Wild символы -->
-                  <div
-                    v-if="slot.mechanics_wilds_title || slot.mechanics_wilds_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">🃏</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_wilds_title || 'Wild символы' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_wilds_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_wilds_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_wilds_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_wilds_details }}
-                    </p>
-                  </div>
-
-                  <!-- Бонусные игры -->
-                  <div
-                    v-if="slot.mechanics_bonus_title || slot.mechanics_bonus_description"
-                    class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
-                  >
-                    <div class="flex items-center gap-3 mb-4">
-                      <span class="text-2xl sm:text-3xl">🎁</span>
-                      <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
-                        {{ slot.mechanics_bonus_title || 'Бонусные игры' }}
-                      </h4>
-                    </div>
-                    <p
-                      v-if="slot.mechanics_bonus_description"
-                      class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
-                      style="text-align-last: left;"
-                    >
-                      {{ slot.mechanics_bonus_description }}
-                    </p>
-                    <p
-                      v-if="slot.mechanics_bonus_details"
-                      class="text-gray-900 font-semibold text-sm sm:text-base"
-                    >
-                      {{ slot.mechanics_bonus_details }}
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Сообщение, если нет механик -->
-                <div v-else class="text-center py-12 sm:py-16">
-                  <span class="text-5xl sm:text-6xl mb-4 block">🎰</span>
-                  <p class="text-gray-500 text-lg sm:text-xl">
-                    Информация о механиках игры пока не добавлена
-                  </p>
-                </div>
-
-                <!-- Важная особенность множителей -->
-                <div
-                  v-if="slot.mechanics_multipliers_important_title || slot.mechanics_multipliers_important"
                   class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
                 >
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 flex items-center gap-3">
-                    <span class="text-2xl">💡</span>
-                    {{ slot.mechanics_multipliers_important_title || 'Важная особенность множителей' }}
-                  </h4>
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">🎯</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_scatter_title || 'Scatter Pays' }}
+                    </h4>
+                  </div>
                   <p
-                    class="text-gray-700 text-base sm:text-lg leading-relaxed text-justify"
-                    style="text-align-last: left;"
+                    v-if="slot.mechanics_scatter_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
                   >
-                    {{
-                      slot.mechanics_multipliers_important ||
-                      'Множители не применяются сразу к выигрышу одного каскада. Слот ждёт, пока все каскады завершатся, а затем применяет сумму всех собранных множителей к общему выигрышу раунда. Это гораздо более перспективно, чем один множитель, усиливающий один выигрыш.'
-                    }}
+                    {{ slot.mechanics_scatter_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_scatter_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_scatter_details }}
                   </p>
                 </div>
+
+                <!-- Tumbles (Каскады) -->
+                <div
+                  v-if="
+                    slot.mechanics_cascade_title ||
+                    slot.mechanics_cascade_description
+                  "
+                  class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">⬇️</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_cascade_title || 'Tumbles (Каскады)' }}
+                    </h4>
+                  </div>
+                  <p
+                    v-if="slot.mechanics_cascade_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
+                  >
+                    {{ slot.mechanics_cascade_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_cascade_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_cascade_details }}
+                  </p>
+                </div>
+
+                <!-- Множители -->
+                <div
+                  v-if="
+                    slot.mechanics_multipliers_title ||
+                    slot.mechanics_multipliers_description
+                  "
+                  class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">✨</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_multipliers_title || 'Множители' }}
+                    </h4>
+                  </div>
+                  <p
+                    v-if="slot.mechanics_multipliers_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
+                  >
+                    {{ slot.mechanics_multipliers_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_multipliers_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_multipliers_details }}
+                  </p>
+                </div>
+
+                <!-- Бесплатные спины -->
+                <div
+                  v-if="
+                    slot.mechanics_freespins_title ||
+                    slot.mechanics_freespins_description
+                  "
+                  class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">⚡</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_freespins_title || 'Бесплатные спины' }}
+                    </h4>
+                  </div>
+                  <p
+                    v-if="slot.mechanics_freespins_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
+                  >
+                    {{ slot.mechanics_freespins_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_freespins_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_freespins_details }}
+                  </p>
+                </div>
+
+                <!-- Wild символы -->
+                <div
+                  v-if="
+                    slot.mechanics_wilds_title ||
+                    slot.mechanics_wilds_description
+                  "
+                  class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">🃏</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_wilds_title || 'Wild символы' }}
+                    </h4>
+                  </div>
+                  <p
+                    v-if="slot.mechanics_wilds_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
+                  >
+                    {{ slot.mechanics_wilds_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_wilds_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_wilds_details }}
+                  </p>
+                </div>
+
+                <!-- Бонусные игры -->
+                <div
+                  v-if="
+                    slot.mechanics_bonus_title ||
+                    slot.mechanics_bonus_description
+                  "
+                  class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+                >
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl sm:text-3xl">🎁</span>
+                    <h4 class="font-bold text-gray-900 text-lg sm:text-xl">
+                      {{ slot.mechanics_bonus_title || 'Бонусные игры' }}
+                    </h4>
+                  </div>
+                  <p
+                    v-if="slot.mechanics_bonus_description"
+                    class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify mb-3"
+                    style="text-align-last: left"
+                  >
+                    {{ slot.mechanics_bonus_description }}
+                  </p>
+                  <p
+                    v-if="slot.mechanics_bonus_details"
+                    class="text-gray-900 font-semibold text-sm sm:text-base"
+                  >
+                    {{ slot.mechanics_bonus_details }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Сообщение, если нет механик -->
+              <div v-else class="text-center py-12 sm:py-16">
+                <span class="text-5xl sm:text-6xl mb-4 block">🎰</span>
+                <p class="text-gray-500 text-lg sm:text-xl">
+                  Информация о механиках игры пока не добавлена
+                </p>
+              </div>
+
+              <!-- Важная особенность множителей -->
+              <div
+                v-if="
+                  slot.mechanics_multipliers_important_title ||
+                  slot.mechanics_multipliers_important
+                "
+                class="bg-gray-50 p-6 sm:p-8 rounded-2xl"
+              >
+                <h4
+                  class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 flex items-center gap-3"
+                >
+                  <span class="text-2xl">💡</span>
+                  {{
+                    slot.mechanics_multipliers_important_title ||
+                    'Важная особенность множителей'
+                  }}
+                </h4>
+                <p
+                  class="text-gray-700 text-base sm:text-lg leading-relaxed text-justify"
+                  style="text-align-last: left"
+                >
+                  {{
+                    slot.mechanics_multipliers_important ||
+                    'Множители не применяются сразу к выигрышу одного каскада. Слот ждёт, пока все каскады завершатся, а затем применяет сумму всех собранных множителей к общему выигрышу раунда. Это гораздо более перспективно, чем один множитель, усиливающий один выигрыш.'
+                  }}
+                </p>
+              </div>
             </div>
           </details>
 
@@ -3034,9 +3526,7 @@
             <summary
               class="py-5 sm:py-6 md:py-8 cursor-pointer font-semibold text-lg sm:text-xl md:text-2xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
             >
-              <span>{{
-                slot.free_spins_title || 'Бесплатные спины'
-              }}</span>
+              <span>{{ slot.free_spins_title || 'Бесплатные спины' }}</span>
               <svg
                 class="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
                 fill="none"
@@ -3055,7 +3545,7 @@
             <div class="pb-8 sm:pb-10 md:pb-12">
               <p
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-8 sm:mb-10 text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
                 {{
                   slot.free_spins_intro ||
@@ -3063,14 +3553,23 @@
                 }}
               </p>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10"
+              >
                 <!-- Мгновенные выплаты -->
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-                    {{ slot.free_spins_instant_title || 'Мгновенные выплаты за Scatter' }}
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                  >
+                    {{
+                      slot.free_spins_instant_title ||
+                      'Мгновенные выплаты за Scatter'
+                    }}
                   </h4>
                   <div class="space-y-3 sm:space-y-4">
-                    <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                    <div
+                      class="flex justify-between items-center py-2 border-b border-gray-200"
+                    >
                       <span class="text-gray-700 text-base sm:text-lg">
                         {{ slot.free_spins_4_scatter_desc || '4 символа:' }}
                       </span>
@@ -3078,7 +3577,9 @@
                         {{ slot.free_spins_4_scatter || 'x3' }}
                       </span>
                     </div>
-                    <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                    <div
+                      class="flex justify-between items-center py-2 border-b border-gray-200"
+                    >
                       <span class="text-gray-700 text-base sm:text-lg">
                         {{ slot.free_spins_5_scatter_desc || '5 символов:' }}
                       </span>
@@ -3090,7 +3591,9 @@
                       <span class="text-gray-700 text-base sm:text-lg">
                         {{ slot.free_spins_6_scatter_desc || '6 символов:' }}
                       </span>
-                      <span class="font-black text-gray-900 text-xl sm:text-2xl">
+                      <span
+                        class="font-black text-gray-900 text-xl sm:text-2xl"
+                      >
                         {{ slot.free_spins_6_scatter || 'x100' }}
                       </span>
                     </div>
@@ -3099,32 +3602,57 @@
 
                 <!-- Особенности бонусной игры -->
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-                    {{ slot.free_spins_features_title || 'Особенности бонусной игры' }}
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                  >
+                    {{
+                      slot.free_spins_features_title ||
+                      'Особенности бонусной игры'
+                    }}
                   </h4>
                   <ul class="space-y-3 sm:space-y-4">
                     <li class="flex items-start gap-3 sm:gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                      ></span>
                       <span class="text-gray-700 text-base sm:text-lg">
-                        {{ slot.free_spins_feature_1 || '15 бесплатных спинов независимо от количества scatter-символов' }}
+                        {{
+                          slot.free_spins_feature_1 ||
+                          '15 бесплатных спинов независимо от количества scatter-символов'
+                        }}
                       </span>
                     </li>
                     <li class="flex items-start gap-3 sm:gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                      ></span>
                       <span class="text-gray-700 text-base sm:text-lg">
-                        {{ slot.free_spins_feature_2 || 'Total Multiplier не сбрасывается между раундами' }}
+                        {{
+                          slot.free_spins_feature_2 ||
+                          'Total Multiplier не сбрасывается между раундами'
+                        }}
                       </span>
                     </li>
                     <li class="flex items-start gap-3 sm:gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                      ></span>
                       <span class="text-gray-700 text-base sm:text-lg">
-                        {{ slot.free_spins_feature_3 || 'Возможность получить дополнительные бесплатные спины' }}
+                        {{
+                          slot.free_spins_feature_3 ||
+                          'Возможность получить дополнительные бесплатные спины'
+                        }}
                       </span>
                     </li>
                     <li class="flex items-start gap-3 sm:gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                      ></span>
                       <span class="text-gray-700 text-base sm:text-lg">
-                        {{ slot.free_spins_feature_4 || 'Опция купить бонус за 100x от общей ставки' }}
+                        {{
+                          slot.free_spins_feature_4 ||
+                          'Опция купить бонус за 100x от общей ставки'
+                        }}
                       </span>
                     </li>
                   </ul>
@@ -3133,12 +3661,18 @@
 
               <!-- Ante Bet и покупка бонуса -->
               <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-                  {{ slot.ante_bet_title || slot.free_spins_ante_title || 'Ante Bet и покупка бонуса' }}
+                <h4
+                  class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                >
+                  {{
+                    slot.ante_bet_title ||
+                    slot.free_spins_ante_title ||
+                    'Ante Bet и покупка бонуса'
+                  }}
                 </h4>
                 <p
                   class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 text-justify"
-                  style="text-align-last: left;"
+                  style="text-align-last: left"
                 >
                   {{
                     slot.ante_bet_description ||
@@ -3148,12 +3682,24 @@
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div class="text-center p-4 sm:p-6 bg-white rounded-xl">
-                    <div class="text-2xl sm:text-3xl font-black text-gray-900 mb-2">+25%</div>
-                    <div class="text-gray-600 text-sm sm:text-base">Ante Bet к ставке</div>
+                    <div
+                      class="text-2xl sm:text-3xl font-black text-gray-900 mb-2"
+                    >
+                      +25%
+                    </div>
+                    <div class="text-gray-600 text-sm sm:text-base">
+                      Ante Bet к ставке
+                    </div>
                   </div>
                   <div class="text-center p-4 sm:p-6 bg-white rounded-xl">
-                    <div class="text-2xl sm:text-3xl font-black text-gray-900 mb-2">x2</div>
-                    <div class="text-gray-600 text-sm sm:text-base">Шансы на бонус</div>
+                    <div
+                      class="text-2xl sm:text-3xl font-black text-gray-900 mb-2"
+                    >
+                      x2
+                    </div>
+                    <div class="text-gray-600 text-sm sm:text-base">
+                      Шансы на бонус
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3165,7 +3711,9 @@
             <summary
               class="py-5 sm:py-6 md:py-8 cursor-pointer font-semibold text-lg sm:text-xl md:text-2xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
             >
-              <span>{{ slot.strategy_title || 'Стратегии и советы для игры' }}</span>
+              <span>{{
+                slot.strategy_title || 'Стратегии и советы для игры'
+              }}</span>
               <svg
                 class="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
                 fill="none"
@@ -3185,58 +3733,113 @@
               <p
                 v-if="slot.strategy_intro"
                 class="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-8 sm:mb-10 text-justify"
-                style="text-align-last: left; hyphens: auto;"
+                style="text-align-last: left; hyphens: auto"
               >
                 {{ slot.strategy_intro }}
               </p>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10"
+              >
                 <!-- Рекомендации для новичков -->
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-                    {{ slot.strategy_beginner_title || 'Рекомендации для новичков' }}
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                  >
+                    {{
+                      slot.strategy_beginner_title ||
+                      'Рекомендации для новичков'
+                    }}
                   </h4>
                   <ol class="space-y-4 text-gray-700">
                     <li class="flex items-start gap-4">
-                      <span class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">1</span>
-                      <span class="text-base sm:text-lg pt-1">{{ slot.strategy_beginner_1 || 'Начните с демо-версии для изучения механик' }}</span>
+                      <span
+                        class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold"
+                        >1</span
+                      >
+                      <span class="text-base sm:text-lg pt-1">{{
+                        slot.strategy_beginner_1 ||
+                        'Начните с демо-версии для изучения механик'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">2</span>
-                      <span class="text-base sm:text-lg pt-1">{{ slot.strategy_beginner_2 || 'Устанавливайте лимиты перед началом игры' }}</span>
+                      <span
+                        class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold"
+                        >2</span
+                      >
+                      <span class="text-base sm:text-lg pt-1">{{
+                        slot.strategy_beginner_2 ||
+                        'Устанавливайте лимиты перед началом игры'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">3</span>
-                      <span class="text-base sm:text-lg pt-1">{{ slot.strategy_beginner_3 || 'Начинайте с минимальных ставок' }}</span>
+                      <span
+                        class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold"
+                        >3</span
+                      >
+                      <span class="text-base sm:text-lg pt-1">{{
+                        slot.strategy_beginner_3 ||
+                        'Начинайте с минимальных ставок'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">4</span>
-                      <span class="text-base sm:text-lg pt-1">{{ slot.strategy_beginner_4 || 'Изучите таблицу выплат перед игрой' }}</span>
+                      <span
+                        class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold"
+                        >4</span
+                      >
+                      <span class="text-base sm:text-lg pt-1">{{
+                        slot.strategy_beginner_4 ||
+                        'Изучите таблицу выплат перед игрой'
+                      }}</span>
                     </li>
                   </ol>
                 </div>
 
                 <!-- Продвинутые стратегии -->
                 <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                  <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
-                    {{ slot.strategy_advanced_title || 'Продвинутые стратегии' }}
+                  <h4
+                    class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                  >
+                    {{
+                      slot.strategy_advanced_title || 'Продвинутые стратегии'
+                    }}
                   </h4>
                   <ul class="space-y-4 text-gray-700">
                     <li class="flex items-start gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"></span>
-                      <span class="text-base sm:text-lg">{{ slot.strategy_advanced_1 || 'Управление банкроллом: не более 1-2% от банка на спин' }}</span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"
+                      ></span>
+                      <span class="text-base sm:text-lg">{{
+                        slot.strategy_advanced_1 ||
+                        'Управление банкроллом: не более 1-2% от банка на спин'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"></span>
-                      <span class="text-base sm:text-lg">{{ slot.strategy_advanced_2 || 'Ante Bet увеличивает шансы на бонус, но требует больших ставок' }}</span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"
+                      ></span>
+                      <span class="text-base sm:text-lg">{{
+                        slot.strategy_advanced_2 ||
+                        'Ante Bet увеличивает шансы на бонус, но требует больших ставок'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"></span>
-                      <span class="text-base sm:text-lg">{{ slot.strategy_advanced_3 || 'Покупка бонуса оправдана только при достаточном банке' }}</span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"
+                      ></span>
+                      <span class="text-base sm:text-lg">{{
+                        slot.strategy_advanced_3 ||
+                        'Покупка бонуса оправдана только при достаточном банке'
+                      }}</span>
                     </li>
                     <li class="flex items-start gap-4">
-                      <span class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"></span>
-                      <span class="text-base sm:text-lg">{{ slot.strategy_advanced_4 || 'Ведите статистику сессий для анализа результатов' }}</span>
+                      <span
+                        class="w-2 h-2 bg-gray-900 rounded-full mt-2.5 flex-shrink-0"
+                      ></span>
+                      <span class="text-base sm:text-lg">{{
+                        slot.strategy_advanced_4 ||
+                        'Ведите статистику сессий для анализа результатов'
+                      }}</span>
                     </li>
                   </ul>
                 </div>
@@ -3244,19 +3847,26 @@
 
               <!-- Важные предупреждения -->
               <div class="bg-gray-50 p-6 sm:p-8 rounded-2xl">
-                <h4 class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6">
+                <h4
+                  class="font-bold text-gray-900 text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6"
+                >
                   {{ slot.strategy_warnings_title || 'Важные предупреждения' }}
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <h5 class="font-bold text-gray-900 mb-2">
-                      {{ slot.strategy_warning_1_title || 'Высокая волатильность' }}
+                      {{
+                        slot.strategy_warning_1_title || 'Высокая волатильность'
+                      }}
                     </h5>
                     <p
                       class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify"
-                      style="text-align-last: left;"
+                      style="text-align-last: left"
                     >
-                      {{ slot.strategy_warning_1_text || 'Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям.' }}
+                      {{
+                        slot.strategy_warning_1_text ||
+                        'Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям.'
+                      }}
                     </p>
                   </div>
                   <div>
@@ -3265,9 +3875,12 @@
                     </h5>
                     <p
                       class="text-gray-600 text-base sm:text-lg leading-relaxed text-justify"
-                      style="text-align-last: left;"
+                      style="text-align-last: left"
                     >
-                      {{ slot.strategy_warning_2_text || '100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно.' }}
+                      {{
+                        slot.strategy_warning_2_text ||
+                        '100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно.'
+                      }}
                     </p>
                   </div>
                 </div>
@@ -3281,71 +3894,176 @@
       <article class="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
         <!-- FAQ секция -->
         <section class="mb-16 sm:mb-20 md:mb-24">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-8 sm:mb-10 md:mb-12">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-8 sm:mb-10 md:mb-12"
+          >
             {{ slot.faq_title || 'Часто задаваемые вопросы' }}
           </h2>
 
           <div class="divide-y divide-gray-200">
             <!-- FAQ Вопрос 1 -->
             <details class="group">
-              <summary class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4">
-                <span>{{ slot.faq_q1_question || 'Можно ли играть в ' + (slot.name || 'этот слот') + ' бесплатно?' }}</span>
-                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+              <summary
+                class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
+              >
+                <span>{{
+                  slot.faq_q1_question ||
+                  'Можно ли играть в ' +
+                    (slot.name || 'этот слот') +
+                    ' бесплатно?'
+                }}</span>
+                <svg
+                  class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </summary>
               <div class="pb-6 sm:pb-8">
-                <p v-if="slot.faq_q1_answer" class="text-gray-600 text-base sm:text-lg leading-relaxed">{{ slot.faq_q1_answer }}</p>
-                <p v-else class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                  Да, абсолютно бесплатно! Вы можете играть в демо-версию слота без регистрации и депозита.
+                <p
+                  v-if="slot.faq_q1_answer"
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  {{ slot.faq_q1_answer }}
+                </p>
+                <p
+                  v-else
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  Да, абсолютно бесплатно! Вы можете играть в демо-версию слота
+                  без регистрации и депозита.
                 </p>
               </div>
             </details>
 
             <!-- FAQ Вопрос 2 -->
             <details class="group">
-              <summary class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4">
-                <span>{{ slot.faq_q2_question || 'Какова максимальная выплата в ' + (slot.name || 'этом слоте') + '?' }}</span>
-                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+              <summary
+                class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
+              >
+                <span>{{
+                  slot.faq_q2_question ||
+                  'Какова максимальная выплата в ' +
+                    (slot.name || 'этом слоте') +
+                    '?'
+                }}</span>
+                <svg
+                  class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </summary>
               <div class="pb-6 sm:pb-8">
-                <p v-if="slot.faq_q2_answer" class="text-gray-600 text-base sm:text-lg leading-relaxed">{{ slot.faq_q2_answer }}</p>
-                <p v-else class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                  Максимальная выплата составляет <strong class="text-gray-900">5,000x</strong> от ставки. При ставке €100 вы можете выиграть до €500,000.
+                <p
+                  v-if="slot.faq_q2_answer"
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  {{ slot.faq_q2_answer }}
+                </p>
+                <p
+                  v-else
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  Максимальная выплата составляет
+                  <strong class="text-gray-900">5,000x</strong> от ставки. При
+                  ставке €100 вы можете выиграть до €500,000.
                 </p>
               </div>
             </details>
 
             <!-- FAQ Вопрос 3 -->
             <details class="group">
-              <summary class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4">
-                <span>{{ slot.faq_q3_question || 'Стоит ли покупать бонусные спины?' }}</span>
-                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+              <summary
+                class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
+              >
+                <span>{{
+                  slot.faq_q3_question || 'Стоит ли покупать бонусные спины?'
+                }}</span>
+                <svg
+                  class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </summary>
               <div class="pb-6 sm:pb-8">
-                <p v-if="slot.faq_q3_answer" class="text-gray-600 text-base sm:text-lg leading-relaxed">{{ slot.faq_q3_answer }}</p>
-                <p v-else class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                  Покупка бонуса стоит <strong class="text-gray-900">100x</strong> от ставки. Плюсы: гарантированный доступ к бонусной игре. Минусы: высокая стоимость без гарантии большого выигрыша.
+                <p
+                  v-if="slot.faq_q3_answer"
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  {{ slot.faq_q3_answer }}
+                </p>
+                <p
+                  v-else
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  Покупка бонуса стоит
+                  <strong class="text-gray-900">100x</strong> от ставки. Плюсы:
+                  гарантированный доступ к бонусной игре. Минусы: высокая
+                  стоимость без гарантии большого выигрыша.
                 </p>
               </div>
             </details>
 
             <!-- FAQ Вопрос 4 -->
             <details class="group">
-              <summary class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4">
-                <span>{{ slot.faq_q4_question || 'Работает ли слот на мобильных устройствах?' }}</span>
-                <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+              <summary
+                class="py-5 sm:py-6 cursor-pointer font-semibold text-base sm:text-lg md:text-xl text-gray-900 hover:text-gray-600 transition-colors flex items-center justify-between gap-4"
+              >
+                <span>{{
+                  slot.faq_q4_question ||
+                  'Работает ли слот на мобильных устройствах?'
+                }}</span>
+                <svg
+                  class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-300 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </summary>
               <div class="pb-6 sm:pb-8">
-                <p v-if="slot.faq_q4_answer" class="text-gray-600 text-base sm:text-lg leading-relaxed">{{ slot.faq_q4_answer }}</p>
-                <p v-else class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                  Да, полностью оптимизирован! Поддерживает iOS и Android, работает в браузере без установки приложений. Сохраняет все функции и качество графики.
+                <p
+                  v-if="slot.faq_q4_answer"
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  {{ slot.faq_q4_answer }}
+                </p>
+                <p
+                  v-else
+                  class="text-gray-600 text-base sm:text-lg leading-relaxed"
+                >
+                  Да, полностью оптимизирован! Поддерживает iOS и Android,
+                  работает в браузере без установки приложений. Сохраняет все
+                  функции и качество графики.
                 </p>
               </div>
             </details>
@@ -3357,7 +4075,9 @@
           class="bg-white rounded-lg sm:rounded-xl border border-gray-200 shadow-sm p-3 sm:p-4 md:p-6 lg:p-8 mb-4 sm:mb-6 md:mb-8"
         >
           <!-- 📱 Заголовок с анимацией (адаптивный) -->
-          <div class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
+          <div
+            class="flex items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8"
+          >
             <div class="relative flex-shrink-0">
               <div
                 class="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-orange-500 rounded-lg flex items-center justify-center shadow-lg"
@@ -3374,10 +4094,14 @@
               </div>
             </div>
             <div class="min-w-0">
-              <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+              <h2
+                class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight"
+              >
                 {{ slot.reviews_title || 'Отзывы игроков' }}
               </h2>
-              <p class="text-gray-600 mt-0.5 sm:mt-1 text-sm sm:text-base truncate sm:whitespace-normal">
+              <p
+                class="text-gray-600 mt-0.5 sm:mt-1 text-sm sm:text-base truncate sm:whitespace-normal"
+              >
                 {{
                   slot.reviews_subtitle ||
                   'Реальные мнения от сообщества слот-игроков'
@@ -3387,13 +4111,17 @@
           </div>
 
           <!-- 📱 Топ метрики в горизонтальном формате (адаптивная сетка) -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8">
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-4 sm:mb-6 md:mb-8"
+          >
             <!-- 📱 Общий рейтинг -->
             <div
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900">
+                <div
+                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900"
+                >
                   {{ slot.reviews_overall_rating || '4.3' }}
                 </div>
                 <svg
@@ -3406,10 +4134,14 @@
                   ></path>
                 </svg>
               </div>
-              <div class="text-gray-600 text-xs sm:text-sm font-medium truncate">
+              <div
+                class="text-gray-600 text-xs sm:text-sm font-medium truncate"
+              >
                 {{ slot.reviews_overall_label || 'Общий рейтинг' }}
               </div>
-              <div class="flex text-orange-600 text-sm sm:text-base md:text-lg mt-0.5 sm:mt-1">
+              <div
+                class="flex text-orange-600 text-sm sm:text-base md:text-lg mt-0.5 sm:mt-1"
+              >
                 {{ slot.reviews_overall_stars || '★★★★☆' }}
               </div>
             </div>
@@ -3419,7 +4151,9 @@
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900">
+                <div
+                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900"
+                >
                   {{ slot.reviews_total_count || '1.2K+' }}
                 </div>
                 <svg
@@ -3436,10 +4170,14 @@
                   ></path>
                 </svg>
               </div>
-              <div class="text-gray-600 text-xs sm:text-sm font-medium truncate">
+              <div
+                class="text-gray-600 text-xs sm:text-sm font-medium truncate"
+              >
                 {{ slot.reviews_total_label || 'Всего отзывов' }}
               </div>
-              <div class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate">
+              <div
+                class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate"
+              >
                 {{ slot.reviews_total_desc || 'активное сообщество' }}
               </div>
             </div>
@@ -3449,7 +4187,9 @@
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900">
+                <div
+                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900"
+                >
                   {{ slot.reviews_positive_percent || '75%' }}
                 </div>
                 <svg
@@ -3462,10 +4202,14 @@
                   ></path>
                 </svg>
               </div>
-              <div class="text-gray-600 text-xs sm:text-sm font-medium truncate">
+              <div
+                class="text-gray-600 text-xs sm:text-sm font-medium truncate"
+              >
                 {{ slot.reviews_positive_label || 'Положительные' }}
               </div>
-              <div class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate">
+              <div
+                class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate"
+              >
                 {{ slot.reviews_positive_desc || '4-5 звёзд' }}
               </div>
             </div>
@@ -3475,7 +4219,9 @@
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900">
+                <div
+                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900"
+                >
                   {{ slot.reviews_recommend_percent || '68%' }}
                 </div>
                 <svg
@@ -3490,117 +4236,286 @@
                   ></path>
                 </svg>
               </div>
-              <div class="text-gray-600 text-xs sm:text-sm font-medium truncate">
+              <div
+                class="text-gray-600 text-xs sm:text-sm font-medium truncate"
+              >
                 {{ slot.reviews_recommend_label || 'Рекомендуют' }}
               </div>
-              <div class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate">
+              <div
+                class="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1 truncate"
+              >
                 {{ slot.reviews_recommend_desc || 'друзьям играть' }}
               </div>
             </div>
           </div>
 
           <!-- 📱 Статистика с улучшенной визуализацией (АДАПТИВНАЯ) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-4 sm:mb-6 md:mb-8"
+          >
             <!-- 📱 Детальная статистика -->
-            <div class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg">
-              <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">
+            <div
+              class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg"
+            >
+              <h3
+                class="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6"
+              >
                 {{ slot.reviews_distribution_title || 'Распределение оценок' }}
               </h3>
               <div class="space-y-2 sm:space-y-3 md:space-y-4">
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <span class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8">5★</span>
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
-                    <div class="bg-orange-500 h-full rounded-full transition-all" :style="`width: ${slot.reviews_5_stars_percent || '45%'}`"></div>
+                  <span
+                    class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8"
+                    >5★</span
+                  >
+                  <div
+                    class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden"
+                  >
+                    <div
+                      class="bg-orange-500 h-full rounded-full transition-all"
+                      :style="`width: ${slot.reviews_5_stars_percent || '45%'}`"
+                    ></div>
                   </div>
-                  <span class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right">{{ slot.reviews_5_stars_percent || '45%' }}</span>
-                  <span class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block">{{ slot.reviews_5_stars_count || '562' }}</span>
+                  <span
+                    class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right"
+                    >{{ slot.reviews_5_stars_percent || '45%' }}</span
+                  >
+                  <span
+                    class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block"
+                    >{{ slot.reviews_5_stars_count || '562' }}</span
+                  >
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <span class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8">4★</span>
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
-                    <div class="bg-orange-500 h-full rounded-full transition-all" :style="`width: ${slot.reviews_4_stars_percent || '30%'}`"></div>
+                  <span
+                    class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8"
+                    >4★</span
+                  >
+                  <div
+                    class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden"
+                  >
+                    <div
+                      class="bg-orange-500 h-full rounded-full transition-all"
+                      :style="`width: ${slot.reviews_4_stars_percent || '30%'}`"
+                    ></div>
                   </div>
-                  <span class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right">{{ slot.reviews_4_stars_percent || '30%' }}</span>
-                  <span class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block">{{ slot.reviews_4_stars_count || '374' }}</span>
+                  <span
+                    class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right"
+                    >{{ slot.reviews_4_stars_percent || '30%' }}</span
+                  >
+                  <span
+                    class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block"
+                    >{{ slot.reviews_4_stars_count || '374' }}</span
+                  >
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <span class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8">3★</span>
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
-                    <div class="bg-orange-500 h-full rounded-full transition-all" :style="`width: ${slot.reviews_3_stars_percent || '15%'}`"></div>
+                  <span
+                    class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8"
+                    >3★</span
+                  >
+                  <div
+                    class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden"
+                  >
+                    <div
+                      class="bg-orange-500 h-full rounded-full transition-all"
+                      :style="`width: ${slot.reviews_3_stars_percent || '15%'}`"
+                    ></div>
                   </div>
-                  <span class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right">{{ slot.reviews_3_stars_percent || '15%' }}</span>
-                  <span class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block">{{ slot.reviews_3_stars_count || '187' }}</span>
+                  <span
+                    class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right"
+                    >{{ slot.reviews_3_stars_percent || '15%' }}</span
+                  >
+                  <span
+                    class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block"
+                    >{{ slot.reviews_3_stars_count || '187' }}</span
+                  >
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <span class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8">2★</span>
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
-                    <div class="bg-orange-500 h-full rounded-full transition-all" :style="`width: ${slot.reviews_2_stars_percent || '7%'}`"></div>
+                  <span
+                    class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8"
+                    >2★</span
+                  >
+                  <div
+                    class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden"
+                  >
+                    <div
+                      class="bg-orange-500 h-full rounded-full transition-all"
+                      :style="`width: ${slot.reviews_2_stars_percent || '7%'}`"
+                    ></div>
                   </div>
-                  <span class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right">{{ slot.reviews_2_stars_percent || '7%' }}</span>
-                  <span class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block">{{ slot.reviews_2_stars_count || '87' }}</span>
+                  <span
+                    class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right"
+                    >{{ slot.reviews_2_stars_percent || '7%' }}</span
+                  >
+                  <span
+                    class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block"
+                    >{{ slot.reviews_2_stars_count || '87' }}</span
+                  >
                 </div>
                 <div class="flex items-center gap-2 sm:gap-3">
-                  <span class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8">1★</span>
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
-                    <div class="bg-orange-500 h-full rounded-full transition-all" :style="`width: ${slot.reviews_1_stars_percent || '3%'}`"></div>
+                  <span
+                    class="text-xs sm:text-sm font-semibold text-gray-700 w-6 sm:w-8"
+                    >1★</span
+                  >
+                  <div
+                    class="flex-1 bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden"
+                  >
+                    <div
+                      class="bg-orange-500 h-full rounded-full transition-all"
+                      :style="`width: ${slot.reviews_1_stars_percent || '3%'}`"
+                    ></div>
                   </div>
-                  <span class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right">{{ slot.reviews_1_stars_percent || '3%' }}</span>
-                  <span class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block">{{ slot.reviews_1_stars_count || '37' }}</span>
+                  <span
+                    class="text-xs sm:text-sm font-bold text-orange-600 w-8 sm:w-12 text-right"
+                    >{{ slot.reviews_1_stars_percent || '3%' }}</span
+                  >
+                  <span
+                    class="text-[10px] sm:text-xs text-gray-500 w-8 sm:w-12 text-right hidden xs:block"
+                    >{{ slot.reviews_1_stars_count || '37' }}</span
+                  >
                 </div>
               </div>
             </div>
 
             <!-- 📱 Анализ настроений -->
-            <div class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg">
-              <h3 class="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">
+            <div
+              class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg"
+            >
+              <h3
+                class="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6"
+              >
                 {{ slot.reviews_sentiments_title || 'Анализ настроений' }}
               </h3>
               <div class="space-y-2 sm:space-y-3 md:space-y-4">
-                <div class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  <div
+                    class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <div class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ slot.reviews_sentiment_1_title || 'Потрясающая графика' }}</div>
-                    <div class="text-xs sm:text-sm text-gray-600 truncate">{{ slot.reviews_sentiment_1_desc || 'Упоминается в 89% позитивных отзывов' }}</div>
+                    <div
+                      class="font-semibold text-gray-900 text-sm sm:text-base truncate"
+                    >
+                      {{
+                        slot.reviews_sentiment_1_title || 'Потрясающая графика'
+                      }}
+                    </div>
+                    <div class="text-xs sm:text-sm text-gray-600 truncate">
+                      {{
+                        slot.reviews_sentiment_1_desc ||
+                        'Упоминается в 89% позитивных отзывов'
+                      }}
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  <div
+                    class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <div class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ slot.reviews_sentiment_2_title || 'Мегавыигрыши' }}</div>
-                    <div class="text-xs sm:text-sm text-gray-600 truncate">{{ slot.reviews_sentiment_2_desc || 'Крупные множители в бонусах' }}</div>
+                    <div
+                      class="font-semibold text-gray-900 text-sm sm:text-base truncate"
+                    >
+                      {{ slot.reviews_sentiment_2_title || 'Мегавыигрыши' }}
+                    </div>
+                    <div class="text-xs sm:text-sm text-gray-600 truncate">
+                      {{
+                        slot.reviews_sentiment_2_desc ||
+                        'Крупные множители в бонусах'
+                      }}
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  <div
+                    class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <div class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ slot.reviews_sentiment_3_title || 'Стабильная работа' }}</div>
-                    <div class="text-xs sm:text-sm text-gray-600 truncate">{{ slot.reviews_sentiment_3_desc || 'Без лагов и багов' }}</div>
+                    <div
+                      class="font-semibold text-gray-900 text-sm sm:text-base truncate"
+                    >
+                      {{
+                        slot.reviews_sentiment_3_title || 'Стабильная работа'
+                      }}
+                    </div>
+                    <div class="text-xs sm:text-sm text-gray-600 truncate">
+                      {{ slot.reviews_sentiment_3_desc || 'Без лагов и багов' }}
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gray-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  <div
+                    class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gray-500 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="flex-1 min-w-0">
-                    <div class="font-semibold text-gray-900 text-sm sm:text-base truncate">{{ slot.reviews_sentiment_4_title || 'Высокая волатильность' }}</div>
-                    <div class="text-xs sm:text-sm text-gray-600 truncate">{{ slot.reviews_sentiment_4_desc || 'Требует терпения' }}</div>
+                    <div
+                      class="font-semibold text-gray-900 text-sm sm:text-base truncate"
+                    >
+                      {{
+                        slot.reviews_sentiment_4_title ||
+                        'Высокая волатильность'
+                      }}
+                    </div>
+                    <div class="text-xs sm:text-sm text-gray-600 truncate">
+                      {{ slot.reviews_sentiment_4_desc || 'Требует терпения' }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3609,12 +4524,16 @@
 
           <!-- 📱 Избранные отзывы с современным дизайном - АДАПТИВНЫЙ -->
           <div class="space-y-4 sm:space-y-6">
-            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+            <h3
+              class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6"
+            >
               {{ slot.reviews_featured_title || 'Избранные отзывы игроков' }}
             </h3>
 
             <!-- 📱 Отзыв 1 - Позитивный (адаптивный) -->
-            <div class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500">
+            <div
+              class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500"
+            >
               <div class="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                 <!-- Аватар и заголовок на mobile в одну строку -->
                 <div class="flex items-center gap-3 sm:block w-full sm:w-auto">
@@ -3643,8 +4562,12 @@
                 </div>
                 <div class="flex-1 min-w-0 w-full">
                   <!-- Заголовок на планшетах и выше -->
-                  <div class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3">
-                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">
+                  <div
+                    class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3"
+                  >
+                    <h4
+                      class="font-semibold text-gray-900 text-sm sm:text-base"
+                    >
                       {{ slot.review_1_author || 'Александр К.' }}
                     </h4>
                     <div class="flex text-orange-600 text-base sm:text-lg">
@@ -3655,20 +4578,24 @@
                       >{{ slot.review_1_badge || 'Проверенный игрок' }}</span
                     >
                   </div>
-                  <p class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                  <p
+                    class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base"
+                  >
                     {{
                       slot.review_1_text ||
                       '"Реально крутой слот! Множители действительно работают - словил x1200 на бонусе, эмоции зашкаливали! Графика топ, анимации плавные. Играю полгода, очень доволен. Каскады постоянно продлевают удовольствие 🎰⚡"'
                     }}
                   </p>
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-2"
+                  >
+                    <div
+                      class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600"
+                    >
                       <span class="flex items-center gap-1">
                         ❤️ {{ slot.review_1_likes || '47' }}
                       </span>
-                      <span
-                        >💬 {{ slot.review_1_replies || '12' }}</span
-                      >
+                      <span>💬 {{ slot.review_1_replies || '12' }}</span>
                     </div>
                     <span class="text-xs sm:text-sm text-gray-500">{{
                       slot.review_1_date || '2 дня назад'
@@ -3679,7 +4606,9 @@
             </div>
 
             <!-- 📱 Отзыв 2 - Сбалансированный (адаптивный) -->
-            <div class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500">
+            <div
+              class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500"
+            >
               <div class="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                 <!-- Аватар и заголовок на mobile в одну строку -->
                 <div class="flex items-center gap-3 sm:block w-full sm:w-auto">
@@ -3708,8 +4637,12 @@
                 </div>
                 <div class="flex-1 min-w-0 w-full">
                   <!-- Заголовок на планшетах и выше -->
-                  <div class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3">
-                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">
+                  <div
+                    class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3"
+                  >
+                    <h4
+                      class="font-semibold text-gray-900 text-sm sm:text-base"
+                    >
                       {{ slot.review_2_author || 'Мария В.' }}
                     </h4>
                     <div class="flex text-orange-600 text-base sm:text-lg">
@@ -3720,14 +4653,20 @@
                       >{{ slot.review_2_badge || 'Активный игрок' }}</span
                     >
                   </div>
-                  <p class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                  <p
+                    class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base"
+                  >
                     {{
                       slot.review_2_text ||
                       '"Визуально великолепно! Тематика Олимпа реализована шикарно. Геймплей затягивает, но волатильность зашкаливает - нужен большой банкролл. Когда заходят бонусы - сказка! 🏛️✨"'
                     }}
                   </p>
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-2"
+                  >
+                    <div
+                      class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600"
+                    >
                       <span class="flex items-center gap-1">
                         ❤️ {{ slot.review_2_likes || '31' }}
                       </span>
@@ -3742,7 +4681,9 @@
             </div>
 
             <!-- 📱 Отзыв 3 - Восторженный (адаптивный) -->
-            <div class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500">
+            <div
+              class="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-6 border-l-4 border-orange-500"
+            >
               <div class="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                 <!-- Аватар и заголовок на mobile в одну строку -->
                 <div class="flex items-center gap-3 sm:block w-full sm:w-auto">
@@ -3771,8 +4712,12 @@
                 </div>
                 <div class="flex-1 min-w-0 w-full">
                   <!-- Заголовок на планшетах и выше -->
-                  <div class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3">
-                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">
+                  <div
+                    class="hidden sm:flex items-center flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-3"
+                  >
+                    <h4
+                      class="font-semibold text-gray-900 text-sm sm:text-base"
+                    >
                       {{ slot.review_3_author || 'Дмитрий С.' }}
                     </h4>
                     <div class="flex text-orange-600 text-base sm:text-lg">
@@ -3783,20 +4728,24 @@
                       >{{ slot.review_3_badge || 'VIP игрок' }}</span
                     >
                   </div>
-                  <p class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                  <p
+                    class="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base"
+                  >
                     {{
                       slot.review_3_text ||
                       '"ЭПИК! Pragmatic Play превзошли сами себя! Максимальный выигрыш 3,200x - чуть со стула не упал! 😱 Звук, графика, математика - всё идеально. Мой фаворит уже 2 года! 🎮👑"'
                     }}
                   </p>
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-2"
+                  >
+                    <div
+                      class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600"
+                    >
                       <span class="flex items-center gap-1">
                         ❤️ {{ slot.review_3_likes || '93' }}
                       </span>
-                      <span
-                        >💬 {{ slot.review_3_replies || '25' }}</span
-                      >
+                      <span>💬 {{ slot.review_3_replies || '25' }}</span>
                     </div>
                     <span class="text-xs sm:text-sm text-gray-500">{{
                       slot.review_3_date || '3 дня назад'
@@ -3810,36 +4759,60 @@
 
         <!-- Профессиональная оценка -->
         <section class="mb-16 sm:mb-20 md:mb-24">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-4 sm:mb-6">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-4 sm:mb-6"
+          >
             {{ slot.prof_rating_title || 'Профессиональная оценка' }}
           </h2>
-          <p class="text-gray-600 text-base sm:text-lg md:text-xl mb-10 sm:mb-12 md:mb-16 max-w-3xl">
-            {{ slot.prof_rating_subtitle || 'Детальный анализ от экспертов индустрии' }}
+          <p
+            class="text-gray-600 text-base sm:text-lg md:text-xl mb-10 sm:mb-12 md:mb-16 max-w-3xl"
+          >
+            {{
+              slot.prof_rating_subtitle ||
+              'Детальный анализ от экспертов индустрии'
+            }}
           </p>
 
           <!-- Общая оценка -->
-          <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 mb-10 sm:mb-12 md:mb-16">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
+          <div
+            class="bg-gray-50 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 mb-10 sm:mb-12 md:mb-16"
+          >
+            <div
+              class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8"
+            >
               <div class="lg:max-w-xl">
-                <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-                  {{ slot.prof_rating_overall_title || 'Общая экспертная оценка' }}
+                <h3
+                  class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4"
+                >
+                  {{
+                    slot.prof_rating_overall_title || 'Общая экспертная оценка'
+                  }}
                 </h3>
                 <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                  {{ slot.prof_rating_overall_desc || 'Превосходный слот с инновационной механикой и высоким потенциалом выигрыша' }}
+                  {{
+                    slot.prof_rating_overall_desc ||
+                    'Превосходный слот с инновационной механикой и высоким потенциалом выигрыша'
+                  }}
                 </p>
               </div>
 
               <div class="text-center lg:text-right flex-shrink-0">
-                <div class="text-6xl sm:text-7xl md:text-8xl font-black text-gray-900">
+                <div
+                  class="text-6xl sm:text-7xl md:text-8xl font-black text-gray-900"
+                >
                   {{ slot.prof_rating_overall_score || '8.5' }}
                 </div>
-                <div class="text-gray-500 text-lg sm:text-xl font-medium">из 10</div>
+                <div class="text-gray-500 text-lg sm:text-xl font-medium">
+                  из 10
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Детальные метрики -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16"
+          >
             <!-- Метрика 1 -->
             <div class="p-6 sm:p-8 bg-gray-50 rounded-2xl">
               <div class="flex justify-between items-center mb-4">
@@ -3851,7 +4824,10 @@
                 </span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-gray-900 h-2 rounded-full" style="width: 90%"></div>
+                <div
+                  class="bg-gray-900 h-2 rounded-full"
+                  style="width: 90%"
+                ></div>
               </div>
             </div>
 
@@ -3866,7 +4842,10 @@
                 </span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-gray-900 h-2 rounded-full" style="width: 80%"></div>
+                <div
+                  class="bg-gray-900 h-2 rounded-full"
+                  style="width: 80%"
+                ></div>
               </div>
             </div>
 
@@ -3881,7 +4860,10 @@
                 </span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-gray-900 h-2 rounded-full" style="width: 90%"></div>
+                <div
+                  class="bg-gray-900 h-2 rounded-full"
+                  style="width: 90%"
+                ></div>
               </div>
             </div>
 
@@ -3896,7 +4878,10 @@
                 </span>
               </div>
               <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-gray-900 h-2 rounded-full" style="width: 80%"></div>
+                <div
+                  class="bg-gray-900 h-2 rounded-full"
+                  style="width: 80%"
+                ></div>
               </div>
             </div>
           </div>
@@ -3904,9 +4889,17 @@
           <!-- Экспертное мнение -->
           <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 md:p-10 mb-10 sm:mb-12">
             <div class="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path>
+              <div
+                class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-6 h-6 sm:w-7 sm:h-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  ></path>
                 </svg>
               </div>
               <div>
@@ -3918,8 +4911,16 @@
                 </p>
               </div>
             </div>
-            <blockquote class="text-base sm:text-lg text-gray-700 leading-relaxed italic border-l-4 border-gray-300 pl-4 sm:pl-6">
-              {{ processProfExpertQuote(slot.prof_rating_expert_quote, slot.prof_rating_expert_quote_keyword, slot.name) }}
+            <blockquote
+              class="text-base sm:text-lg text-gray-700 leading-relaxed italic border-l-4 border-gray-300 pl-4 sm:pl-6"
+            >
+              {{
+                processProfExpertQuote(
+                  slot.prof_rating_expert_quote,
+                  slot.prof_rating_expert_quote_keyword,
+                  slot.name,
+                )
+              }}
             </blockquote>
           </div>
 
@@ -3927,38 +4928,71 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <!-- Преимущества -->
             <div class="bg-gray-50 rounded-2xl p-6 sm:p-8">
-              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Преимущества</h3>
+              <h3
+                class="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6"
+              >
+                Преимущества
+              </h3>
               <ul class="space-y-3 sm:space-y-4">
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_pros_1_title || 'Инновационная механика' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_pros_1_title || 'Инновационная механика'
+                  }}</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_pros_2_title || 'Высокий потенциал выигрыша' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_pros_2_title ||
+                    'Высокий потенциал выигрыша'
+                  }}</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_pros_3_title || 'Превосходная графика' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_pros_3_title || 'Превосходная графика'
+                  }}</span>
                 </li>
               </ul>
             </div>
 
             <!-- Недостатки -->
             <div class="bg-gray-50 rounded-2xl p-6 sm:p-8">
-              <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Недостатки</h3>
+              <h3
+                class="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6"
+              >
+                Недостатки
+              </h3>
               <ul class="space-y-3 sm:space-y-4">
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_cons_1_title || 'Высокая волатильность' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_cons_1_title || 'Высокая волатильность'
+                  }}</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_cons_2_title || 'Требует банкролл' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_cons_2_title || 'Требует банкролл'
+                  }}</span>
                 </li>
                 <li class="flex items-start gap-3">
-                  <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"></span>
-                  <span class="text-gray-700 text-base sm:text-lg">{{ slot.prof_rating_cons_3_title || 'Не для новичков' }}</span>
+                  <span
+                    class="w-2 h-2 bg-gray-400 rounded-full mt-2 flex-shrink-0"
+                  ></span>
+                  <span class="text-gray-700 text-base sm:text-lg">{{
+                    slot.prof_rating_cons_3_title || 'Не для новичков'
+                  }}</span>
                 </li>
               </ul>
             </div>
@@ -3967,7 +5001,9 @@
 
         <!-- Заключение -->
         <section class="mb-16 sm:mb-20 md:mb-24">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-8 sm:mb-10 md:mb-12">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight mb-8 sm:mb-10 md:mb-12"
+          >
             {{ slot.conclusion_title || 'Заключение' }}
           </h2>
 
@@ -3976,8 +5012,12 @@
             class="relative z-10 bg-white rounded-lg p-3 sm:p-5 md:p-8 mb-4 sm:mb-6 md:mb-8 border border-gray-200"
           >
             <div class="relative z-10">
-              <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
-                <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
+              <div
+                class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6"
+              >
+                <h3
+                  class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900"
+                >
                   {{
                     processConclusionRatingTitle(
                       slot.conclusion_rating_title,
@@ -3989,7 +5029,9 @@
               </div>
 
               <div class="space-y-2 sm:space-y-3 md:space-y-4">
-                <p class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                <p
+                  class="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"
+                >
                   {{
                     processConclusionText1(
                       slot.conclusion_text_1,
@@ -4014,11 +5056,15 @@
           </div>
 
           <!-- 📱 Карточки рекомендаций (адаптивные) -->
-          <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+          <div
+            class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8"
+          >
             <div
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
-              <div class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4">
+              <div
+                class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4"
+              >
                 <div
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0"
                 >
@@ -4034,32 +5080,50 @@
                     ></path>
                   </svg>
                 </div>
-                <h4 class="text-sm sm:text-base md:text-lg font-bold text-gray-900">
+                <h4
+                  class="text-sm sm:text-base md:text-lg font-bold text-gray-900"
+                >
                   {{ slot.conclusion_suitable_title || 'Кому подходит' }}
                 </h4>
               </div>
               <div class="space-y-1.5 sm:space-y-2 md:space-y-3">
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_suitable_1 || 'Опытным игрокам'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_suitable_2 ||
                     'Любителям высокой волатильности'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_suitable_3 || 'Игрокам с большим банкроллом'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_suitable_4 || 'Поклонникам инноваций'
                   }}</span>
@@ -4070,7 +5134,9 @@
             <div
               class="bg-white border border-gray-200 p-3 sm:p-4 md:p-6 rounded-lg hover:border-orange-300 active:border-orange-400 transition-all duration-300"
             >
-              <div class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4">
+              <div
+                class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4"
+              >
                 <div
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gray-500 rounded-lg flex items-center justify-center flex-shrink-0"
                 >
@@ -4086,31 +5152,49 @@
                     ></path>
                   </svg>
                 </div>
-                <h4 class="text-sm sm:text-base md:text-lg font-bold text-gray-900">
+                <h4
+                  class="text-sm sm:text-base md:text-lg font-bold text-gray-900"
+                >
                   {{ slot.conclusion_warning_title || 'Важно помнить' }}
                 </h4>
               </div>
               <div class="space-y-1.5 sm:space-y-2 md:space-y-3">
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_warning_1 || 'Высокая волатильность'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_warning_2 || 'Нужен большой банкролл'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_warning_3 || 'Играйте ответственно'
                   }}</span>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base">
-                  <div class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"></div>
+                <div
+                  class="flex items-center gap-2 sm:gap-3 text-gray-700 text-xs sm:text-sm md:text-base"
+                >
+                  <div
+                    class="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-500 rounded-full flex-shrink-0"
+                  ></div>
                   <span>{{
                     slot.conclusion_warning_4 || 'Устанавливайте лимиты'
                   }}</span>
@@ -4124,7 +5208,9 @@
             class="relative z-10 bg-indigo-600 rounded-lg p-3 sm:p-5 md:p-8 text-white shadow-md overflow-hidden"
           >
             <div class="relative z-10">
-              <div class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4">
+              <div
+                class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4"
+              >
                 <div
                   class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0"
                 >
@@ -4138,7 +5224,9 @@
                     ></path>
                   </svg>
                 </div>
-                <h3 class="text-sm sm:text-base md:text-lg font-bold text-white">
+                <h3
+                  class="text-sm sm:text-base md:text-lg font-bold text-white"
+                >
                   {{ slot.conclusion_verdict_title || 'Финальный вердикт' }}
                 </h3>
               </div>
@@ -4157,16 +5245,30 @@
         </section>
 
         <!-- Призыв к действию -->
-        <section class="bg-gray-900 rounded-2xl p-8 sm:p-12 md:p-16 lg:p-20 text-center mb-16 sm:mb-20 md:mb-24">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6">
+        <section
+          class="bg-gray-900 rounded-2xl p-8 sm:p-12 md:p-16 lg:p-20 text-center mb-16 sm:mb-20 md:mb-24"
+        >
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6"
+          >
             {{ slot.cta_title || 'Время побеждать!' }}
           </h2>
 
-          <p class="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10">
-            {{ processCtaSubtitle(slot.cta_subtitle, slot.cta_subtitle_keyword, slot.name) }}
+          <p
+            class="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10"
+          >
+            {{
+              processCtaSubtitle(
+                slot.cta_subtitle,
+                slot.cta_subtitle_keyword,
+                slot.name,
+              )
+            }}
           </p>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-12">
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-12"
+          >
             <a
               href="#"
               class="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-white text-gray-900 font-bold text-base sm:text-lg rounded-xl hover:bg-gray-100 transition-colors"
@@ -4234,8 +5336,18 @@ const formatArticleDate = (dateString) => {
 
     // Массив названий месяцев на русском
     const months = [
-      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+      'января',
+      'февраля',
+      'марта',
+      'апреля',
+      'мая',
+      'июня',
+      'июля',
+      'августа',
+      'сентября',
+      'октября',
+      'ноября',
+      'декабря',
     ]
 
     const day = date.getDate()
@@ -4356,7 +5468,10 @@ watchEffect(() => {
     // Проверяем, есть ли JSON-LD настройки в слоте из БД
     if (slot.value.jsonld_enabled !== false && slot.value.id) {
       // Используем синхронную генерацию для SSR
-      const jsonLdScript = getJsonLdScriptSync(slot.value, 'https://slotquest.com')
+      const jsonLdScript = getJsonLdScriptSync(
+        slot.value,
+        'https://slotquest.com',
+      )
       if (jsonLdScript) {
         structuredData = jsonLdScript.innerHTML
         console.log('✅ JSON-LD сгенерирован из настроек слота')
@@ -4414,11 +5529,16 @@ watchEffect(() => {
             slot.value.og_description || generateSEODescription(slot.value),
         },
         { property: 'og:type', content: slot.value.og_type || 'article' },
-        { property: 'og:site_name', content: slot.value.og_site_name || 'SlotQuest' },
+        {
+          property: 'og:site_name',
+          content: slot.value.og_site_name || 'SlotQuest',
+        },
         { property: 'og:locale', content: slot.value.og_locale || 'en_US' },
         {
           property: 'og:url',
-          content: slot.value.og_url || `https://slotquest.com/slots/${slot.value.slug || slug}`,
+          content:
+            slot.value.og_url ||
+            `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
         {
           property: 'og:image',
@@ -4429,10 +5549,18 @@ watchEffect(() => {
         },
         {
           property: 'og:image:alt',
-          content: slot.value.og_image_alt || `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}`,
+          content:
+            slot.value.og_image_alt ||
+            `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}`,
         },
-        { property: 'og:image:width', content: String(slot.value.og_image_width || 1200) },
-        { property: 'og:image:height', content: String(slot.value.og_image_height || 630) },
+        {
+          property: 'og:image:width',
+          content: String(slot.value.og_image_width || 1200),
+        },
+        {
+          property: 'og:image:height',
+          content: String(slot.value.og_image_height || 630),
+        },
         { property: 'og:image:type', content: 'image/jpeg' },
         {
           property: 'og:image:secure_url',
@@ -4447,18 +5575,30 @@ watchEffect(() => {
             slot.value.updated_at || new Date().toISOString().split('T')[0],
         },
         // OG Video (если есть)
-        ...(slot.value.og_video ? [
-          { property: 'og:video', content: slot.value.og_video },
-          { property: 'og:video:type', content: slot.value.og_video_type || 'video/mp4' },
-          { property: 'og:video:width', content: String(slot.value.og_video_width || 1280) },
-          { property: 'og:video:height', content: String(slot.value.og_video_height || 720) },
-        ] : []),
+        ...(slot.value.og_video
+          ? [
+              { property: 'og:video', content: slot.value.og_video },
+              {
+                property: 'og:video:type',
+                content: slot.value.og_video_type || 'video/mp4',
+              },
+              {
+                property: 'og:video:width',
+                content: String(slot.value.og_video_width || 1280),
+              },
+              {
+                property: 'og:video:height',
+                content: String(slot.value.og_video_height || 720),
+              },
+            ]
+          : []),
         // OG Locale Alternate (для международного SEO)
-        ...(slot.value.og_locale_alternate ?
-          slot.value.og_locale_alternate.split(',').map(locale => ({
-            property: 'og:locale:alternate',
-            content: locale.trim()
-          })) : []),
+        ...(slot.value.og_locale_alternate
+          ? slot.value.og_locale_alternate.split(',').map((locale) => ({
+              property: 'og:locale:alternate',
+              content: locale.trim(),
+            }))
+          : []),
         {
           property: 'article:published_time',
           content: slot.value.release_date || '2021-02-13',
@@ -4481,15 +5621,25 @@ watchEffect(() => {
           content: `${slot.value.name}, ${slot.value.providers?.name || 'provider'}, slot, slot machine`,
         },
         // Twitter (динамические поля из БД)
-        { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
-        { name: 'twitter:site', content: slot.value.twitter_site || '@SlotQuest' },
+        {
+          name: 'twitter:card',
+          content: slot.value.twitter_card || 'summary_large_image',
+        },
+        {
+          name: 'twitter:site',
+          content: slot.value.twitter_site || '@SlotQuest',
+        },
         {
           name: 'twitter:title',
-          content: slot.value.twitter_title || `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
+          content:
+            slot.value.twitter_title ||
+            `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money`,
         },
         {
           name: 'twitter:description',
-          content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
+          content:
+            slot.value.twitter_description ||
+            `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐`,
         },
         {
           name: 'twitter:image',
@@ -4500,18 +5650,28 @@ watchEffect(() => {
         },
         {
           name: 'twitter:image:alt',
-          content: slot.value.twitter_image_alt || `${slot.value.name} slot gameplay screenshot`,
+          content:
+            slot.value.twitter_image_alt ||
+            `${slot.value.name} slot gameplay screenshot`,
         },
         {
           name: 'twitter:creator',
           content: slot.value.twitter_creator || '@SlotQuest',
         },
         // Twitter Player (если есть видео)
-        ...(slot.value.twitter_player ? [
-          { name: 'twitter:player', content: slot.value.twitter_player },
-          { name: 'twitter:player:width', content: String(slot.value.twitter_player_width || 1280) },
-          { name: 'twitter:player:height', content: String(slot.value.twitter_player_height || 720) },
-        ] : []),
+        ...(slot.value.twitter_player
+          ? [
+              { name: 'twitter:player', content: slot.value.twitter_player },
+              {
+                name: 'twitter:player:width',
+                content: String(slot.value.twitter_player_width || 1280),
+              },
+              {
+                name: 'twitter:player:height',
+                content: String(slot.value.twitter_player_height || 720),
+              },
+            ]
+          : []),
         {
           name: 'twitter:label1',
           content: 'RTP',
@@ -4651,7 +5811,9 @@ watchEffect(() => {
             `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
         // 🌍 HREFLANG ТЕГИ (международное SEO)
-        ...(slot.value.hreflang_enabled !== false ? generateHreflangLinks(slot.value) : []),
+        ...(slot.value.hreflang_enabled !== false
+          ? generateHreflangLinks(slot.value)
+          : []),
         // 🚀 ТЕХНИЧЕСКИЕ ОПТИМИЗАЦИИ (Preconnect, DNS-Prefetch, Preload)
         {
           rel: 'preconnect',
@@ -5594,7 +6756,8 @@ watch(
  * @returns {string} Строка для meta robots
  */
 const generateRobotsContent = (slot) => {
-  if (!slot) return 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+  if (!slot)
+    return 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 
   const directives = []
 
@@ -5654,14 +6817,14 @@ const generateHreflangLinks = (slot) => {
   links.push({
     rel: 'alternate',
     hreflang: 'x-default',
-    href: `${baseUrl}${slotUrl}`
+    href: `${baseUrl}${slotUrl}`,
   })
 
   // Английский (основной язык)
   links.push({
     rel: 'alternate',
     hreflang: 'en',
-    href: `${baseUrl}${slotUrl}`
+    href: `${baseUrl}${slotUrl}`,
   })
 
   // Парсим конфиг из БД если есть
@@ -5669,11 +6832,11 @@ const generateHreflangLinks = (slot) => {
     try {
       const config = JSON.parse(slot.hreflang_config)
       if (Array.isArray(config)) {
-        config.forEach(item => {
+        config.forEach((item) => {
           links.push({
             rel: 'alternate',
             hreflang: `${item.lang}-${item.region}`,
-            href: `${baseUrl}${item.url || slotUrl}`
+            href: `${baseUrl}${item.url || slotUrl}`,
           })
         })
         return links
@@ -5685,29 +6848,30 @@ const generateHreflangLinks = (slot) => {
 
   // Стандартные целевые регионы (из вашего списка)
   const targetRegions = [
-    { lang: 'ru', region: 'RU' },   // Россия
-    { lang: 'en', region: 'IN' },   // Индия
-    { lang: 'pt', region: 'BR' },   // Бразилия
-    { lang: 'uz', region: 'UZ' },   // Узбекистан
-    { lang: 'az', region: 'AZ' },   // Азербайджан
-    { lang: 'tr', region: 'TR' },   // Турция
-    { lang: 'es', region: 'CL' },   // Чили
-    { lang: 'es', region: 'AR' },   // Аргентина
-    { lang: 'en', region: 'CA' },   // Канада
-    { lang: 'es', region: 'CO' },   // Колумбия
-    { lang: 'id', region: 'ID' },   // Индонезия
-    { lang: 'bn', region: 'BD' },   // Бангладеш
+    { lang: 'ru', region: 'RU' }, // Россия
+    { lang: 'en', region: 'IN' }, // Индия
+    { lang: 'pt', region: 'BR' }, // Бразилия
+    { lang: 'uz', region: 'UZ' }, // Узбекистан
+    { lang: 'az', region: 'AZ' }, // Азербайджан
+    { lang: 'tr', region: 'TR' }, // Турция
+    { lang: 'es', region: 'CL' }, // Чили
+    { lang: 'es', region: 'AR' }, // Аргентина
+    { lang: 'en', region: 'CA' }, // Канада
+    { lang: 'es', region: 'CO' }, // Колумбия
+    { lang: 'id', region: 'ID' }, // Индонезия
+    { lang: 'bn', region: 'BD' }, // Бангладеш
   ]
 
   // Добавляем только если регион в списке целевых
-  const geoTargets = slot.geo_target_regions?.split(',').map(r => r.trim()) || []
+  const geoTargets =
+    slot.geo_target_regions?.split(',').map((r) => r.trim()) || []
 
   targetRegions.forEach(({ lang, region }) => {
     if (geoTargets.length === 0 || geoTargets.includes(region)) {
       links.push({
         rel: 'alternate',
         hreflang: `${lang}-${region}`,
-        href: `${baseUrl}${slotUrl}`
+        href: `${baseUrl}${slotUrl}`,
       })
     }
   })
