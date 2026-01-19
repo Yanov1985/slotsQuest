@@ -371,34 +371,3 @@ h3 {
 .animate-beam {
   animation: beam 8s ease-in-out infinite;
 }
-
-/* 🎨 Synthwave градиент анимация */
-@keyframes gradient-x {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-gradient-x {
-  animation: gradient-x 4s ease infinite;
-  background-size: 200% 200%;
-}
-
-/* Synthwave градиент с неоновым свечением */
-.synthwave-text {
-  background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff, #ff6b6b, #00ffff);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-x 6s ease infinite;
-  text-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
-}
-
-/* Неоновое свечение для текста */
-.neon-glow {
-  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5)) drop-shadow(0 0 20px rgba(236, 72, 153, 0.3));
-}

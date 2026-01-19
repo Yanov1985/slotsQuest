@@ -654,27 +654,6 @@ model slots {
   competitor_positions  String? // JSON позиции конкурентов по ключевым словам
   competitor_last_check DateTime? // Дата последней проверки конкурентов
 
-  // 2️⃣9️⃣ ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ
-  article_author_name           String? // Имя автора статьи
-  article_author_role           String? // Роль/должность автора (например, "Основатель", "Эксперт")
-  article_author_photo          String? // URL фото автора
-  article_author_bio            String? // Краткая биография автора
-  article_author_social_linkedin String? // Ссылка на LinkedIn
-  article_author_social_twitter  String? // Ссылка на Twitter/X
-  article_author_social_website  String? // Ссылка на персональный сайт/портфолио
-
-  article_published_date        String? // Дата первой публикации статьи
-  article_updated_date          String? // Дата последнего обновления статьи
-  article_updated_time          String? // Время обновления (HH:MM)
-  article_updated_by            String? // Кто обновил (если отличается от автора)
-
-  article_reading_time          Int?    @default(9) // Время чтения статьи в минутах
-  article_reading_time_label    String? @default("мин") // Метка для времени чтения
-
-  article_show_author_block     Boolean @default(true) // Показывать блок автора на клиентской части
-  article_show_reading_time     Boolean @default(true) // Показывать время чтения
-  article_show_update_date      Boolean @default(true) // Показывать дату обновления
-
   // ========================================
 
   slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
