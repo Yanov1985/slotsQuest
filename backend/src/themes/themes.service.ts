@@ -4,7 +4,7 @@ import { CreateThemeDto, UpdateThemeDto, ThemeQueryDto } from './dto/theme.dto';
 
 @Injectable()
 export class ThemesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async findAll(query: ThemeQueryDto) {
     const { search, status, limit = 1000, offset = 0 } = query;
@@ -147,15 +147,28 @@ export class ThemesService {
   }
 
   async update(id: string, updateThemeDto: UpdateThemeDto) {
-    const updateData: any = { ...updateThemeDto };
+    // Фильтруем только допустимые поля для обновления
+    const allowedFields = [
+      'name', 'slug', 'description', 'color', 'icon',
+      'image_url', 'sort_order', 'is_active', 'is_featured', 'is_popular'
+    ];
 
-    // Update slug if name is changed
-    if (updateThemeDto.name) {
+    const updateData: any = {};
+    for (const field of allowedFields) {
+      if (updateThemeDto[field] !== undefined) {
+        updateData[field] = updateThemeDto[field];
+      }
+    }
+
+    // Update slug if name is changed and slug is not provided
+    if (updateThemeDto.name && !updateThemeDto.slug) {
       updateData.slug = updateThemeDto.name
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '');
     }
+
+    updateData.updated_at = new Date();
 
     return this.prisma.themes.update({
       where: { id },

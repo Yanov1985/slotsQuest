@@ -1,8 +1,12 @@
-import { IsString, IsOptional, IsBoolean, IsIn } from 'class-validator';
+import { IsString, IsOptional, IsBoolean, IsIn, IsNumber } from 'class-validator';
 
 export class CreateThemeDto {
   @IsString()
   name: string;
+
+  @IsOptional()
+  @IsString()
+  slug?: string;
 
   @IsOptional()
   @IsString()
@@ -17,8 +21,24 @@ export class CreateThemeDto {
   icon?: string;
 
   @IsOptional()
+  @IsString()
+  image_url?: string;
+
+  @IsOptional()
+  @IsNumber()
+  sort_order?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  is_active?: boolean;
+
+  @IsOptional()
   @IsBoolean()
   is_featured?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  is_popular?: boolean;
 }
 
 export class UpdateThemeDto {
@@ -28,6 +48,10 @@ export class UpdateThemeDto {
 
   @IsOptional()
   @IsString()
+  slug?: string;
+
+  @IsOptional()
+  @IsString()
   description?: string;
 
   @IsOptional()
@@ -39,12 +63,24 @@ export class UpdateThemeDto {
   icon?: string;
 
   @IsOptional()
+  @IsString()
+  image_url?: string;
+
+  @IsOptional()
+  @IsNumber()
+  sort_order?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  is_active?: boolean;
+
+  @IsOptional()
   @IsBoolean()
   is_featured?: boolean;
 
   @IsOptional()
   @IsBoolean()
-  is_active?: boolean;
+  is_popular?: boolean;
 }
 
 export class ThemeQueryDto {

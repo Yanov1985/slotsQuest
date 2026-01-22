@@ -12717,12 +12717,14 @@ const loadBonuses = async () => {
   }
 }
 
-// Загрузка списка тематик
+// Загрузка списка тематик (только активные!)
 const loadThemes = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/themes')
     const data = response.data || response
-    availableThemes.value = JSON.parse(JSON.stringify(data))
+    // Фильтруем только активные темы для отображения в списке выбора
+    const allThemes = JSON.parse(JSON.stringify(data))
+    availableThemes.value = allThemes.filter(theme => theme.is_active === true)
   } catch (error) {
     console.error('Ошибка загрузки тематик:', error)
   }
