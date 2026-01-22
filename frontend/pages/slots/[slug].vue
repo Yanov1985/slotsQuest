@@ -158,7 +158,18 @@
               itemtype="https://schema.org/Game"
             >
               <!-- 🎯 SEO: Дополнительные мета-теги для Game schema -->
+              <!-- Genre теги - динамически генерируются из тематик слота -->
+              <template v-if="getSlotThemesFromDB(slot).length > 0">
+                <meta
+                  v-for="theme in getSlotThemesFromDB(slot)"
+                  :key="`game-genre-${theme.id}`"
+                  itemprop="genre"
+                  :content="theme.name"
+                />
+              </template>
+              <!-- Fallback если тематик нет -->
               <meta
+                v-else
                 itemprop="genre"
                 :content="slot.hero_keyword || 'Slot Game'"
               />
@@ -2039,10 +2050,21 @@
                 Features
               </h2>
               <div class="space-y-2 sm:space-y-3">
-                <!-- 📱 Main features - адаптивная карточка -->
-                <div
+                <!-- 📱 Main features - адаптивная карточка + SEO ОПТИМИЗАЦИЯ -->
+                <!-- 🎯 SEO: Секция механик с Schema.org разметкой -->
+                <section
                   class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-indigo-400/30 relative overflow-hidden"
+                  aria-labelledby="mechanics-heading"
+                  role="region"
+                  itemscope
+                  itemtype="https://schema.org/ItemList"
+                  :data-mechanics-count="slot?.slot_mechanics?.length || 0"
                 >
+                  <!-- 🎯 SEO: Мета-информация для Schema.org -->
+                  <meta itemprop="name" :content="`${slot.name} Game Mechanics`">
+                  <meta itemprop="description" :content="`Special game features and mechanics in ${slot.name} slot`">
+                  <meta itemprop="numberOfItems" :content="slot?.slot_mechanics?.length || 0">
+
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
@@ -2055,37 +2077,77 @@
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <h3
+                    id="mechanics-heading"
                     class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
+                    itemprop="alternateName"
                   >
-                    <span class="text-base sm:text-lg">🎮</span>
-                    Game mechanics
+                    <span class="text-base sm:text-lg" aria-hidden="true">🎮</span>
+                    <span>Game mechanics</span>
+                    <span class="sr-only">- Special features of {{ slot.name }}</span>
                   </h3>
-                  <div class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10">
+                  <div
+                    class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10"
+                    role="list"
+                    aria-label="Slot game mechanics and features"
+                  >
                     <span
-                      v-for="slotMechanic in slot?.slot_mechanics || []"
+                      v-for="(slotMechanic, index) in slot?.slot_mechanics || []"
                       :key="slotMechanic.mechanics.id"
                       class="px-3 py-1 rounded-full text-xs font-medium border text-white"
                       :style="{
                         backgroundColor: `${slotMechanic.mechanics.color}30`,
                         borderColor: `${slotMechanic.mechanics.color}40`,
                       }"
+                      role="listitem"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                      :data-mechanic-id="slotMechanic.mechanics.id"
+                      :data-mechanic-name="slotMechanic.mechanics.name"
+                      :title="`${slot.name} - ${slotMechanic.mechanics.name} feature`"
+                      :aria-label="`Mechanic: ${slotMechanic.mechanics.name}`"
                     >
-                      {{ slotMechanic.mechanics.icon }}
-                      {{ slotMechanic.mechanics.name }}
+                      <meta itemprop="position" :content="index + 1">
+                      <span itemprop="item" itemscope itemtype="https://schema.org/Thing">
+                        <meta itemprop="name" :content="slotMechanic.mechanics.name">
+                        <span aria-hidden="true">{{ slotMechanic.mechanics.icon }}</span>
+                        <span itemprop="alternateName">{{ slotMechanic.mechanics.name }}</span>
+                      </span>
                     </span>
                     <span
                       v-if="!slot?.slot_mechanics?.length"
                       class="px-3 py-1 bg-gray-500/30 text-gray-400 rounded-full text-xs font-medium border border-gray-500/40"
+                      role="listitem"
                     >
                       Mechanics not specified
                     </span>
                   </div>
-                </div>
+                  <!-- 🎯 SEO: gameFeature для Schema.org Game -->
+                  <template v-if="slot?.slot_mechanics?.length">
+                    <meta
+                      v-for="slotMechanic in slot.slot_mechanics"
+                      :key="`feature-${slotMechanic.mechanics.id}`"
+                      itemprop="gameFeature"
+                      :content="slotMechanic.mechanics.name"
+                    >
+                  </template>
+                </section>
 
-                <!-- 📱 Bonus features - адаптивная карточка -->
-                <div
+                <!-- 📱 Bonus features - адаптивная карточка + SEO ОПТИМИЗАЦИЯ -->
+                <!-- 🎯 SEO: Секция бонусов с Schema.org разметкой -->
+                <section
                   class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-emerald-400/30 relative overflow-hidden"
+                  aria-labelledby="bonuses-heading"
+                  role="region"
+                  itemscope
+                  itemtype="https://schema.org/ItemList"
+                  :data-bonuses-count="slot?.slot_bonuses?.length || 0"
                 >
+                  <!-- 🎯 SEO: Мета-информация для Schema.org -->
+                  <meta itemprop="name" :content="`${slot.name} Bonus Features`">
+                  <meta itemprop="description" :content="`Bonus features and special rewards in ${slot.name} slot game`">
+                  <meta itemprop="numberOfItems" :content="slot?.slot_bonuses?.length || 0">
+
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
@@ -2098,20 +2160,39 @@
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
                   <h3
+                    id="bonuses-heading"
                     class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
+                    itemprop="alternateName"
                   >
-                    <span class="text-base sm:text-lg">🎁</span>
-                    Bonuses
+                    <span class="text-base sm:text-lg" aria-hidden="true">🎁</span>
+                    <span>Bonuses</span>
+                    <span class="sr-only">- Special bonus features in {{ slot.name }}</span>
                   </h3>
-                  <div class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10">
+                  <div
+                    class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10"
+                    role="list"
+                    aria-label="Slot game bonus features"
+                  >
                     <!-- New implementation: use slot_bonuses directly like in mechanics -->
                     <span
-                      v-for="slotBonus in slot?.slot_bonuses || []"
+                      v-for="(slotBonus, index) in slot?.slot_bonuses || []"
                       :key="slotBonus.bonuses?.id || slotBonus.id"
                       class="px-3 py-1 bg-emerald-500/30 text-white rounded-full text-xs font-medium border border-emerald-400/20"
+                      role="listitem"
+                      itemprop="itemListElement"
+                      itemscope
+                      itemtype="https://schema.org/ListItem"
+                      :data-bonus-id="slotBonus.bonuses?.id"
+                      :data-bonus-name="slotBonus.bonuses?.name"
+                      :title="`${slot.name} - ${slotBonus.bonuses?.name} bonus`"
+                      :aria-label="`Bonus: ${slotBonus.bonuses?.name}`"
                     >
-                      {{ slotBonus.bonuses?.icon }}
-                      {{ slotBonus.bonuses?.name }}
+                      <meta itemprop="position" :content="index + 1">
+                      <span itemprop="item" itemscope itemtype="https://schema.org/Thing">
+                        <meta itemprop="name" :content="slotBonus.bonuses?.name">
+                        <span aria-hidden="true">{{ slotBonus.bonuses?.icon }}</span>
+                        <span itemprop="alternateName">{{ slotBonus.bonuses?.name }}</span>
+                      </span>
                     </span>
                     <!-- Fallback through function for compatibility -->
                     <template
@@ -2122,11 +2203,20 @@
                       "
                     >
                       <span
-                        v-for="bonus in getSlotBonuses(slot)"
+                        v-for="(bonus, index) in getSlotBonuses(slot)"
                         :key="bonus.id || bonus.name"
                         class="px-3 py-1 bg-emerald-500/30 text-white rounded-full text-xs font-medium border border-emerald-400/20"
+                        role="listitem"
+                        itemprop="itemListElement"
+                        itemscope
+                        itemtype="https://schema.org/ListItem"
+                        :aria-label="`Bonus: ${bonus.name}`"
                       >
-                        {{ bonus.name }}
+                        <meta itemprop="position" :content="index + 1">
+                        <span itemprop="item" itemscope itemtype="https://schema.org/Thing">
+                          <meta itemprop="name" :content="bonus.name">
+                          <span itemprop="alternateName">{{ bonus.name }}</span>
+                        </span>
                       </span>
                     </template>
                     <!-- Show message if no bonuses -->
@@ -2138,16 +2228,37 @@
                           getSlotBonuses(slot).length === 0)
                       "
                       class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
+                      role="listitem"
                     >
                       Bonuses not specified
                     </span>
                   </div>
-                </div>
+                  <!-- 🎯 SEO: Bonus feature keywords для SEO -->
+                  <template v-if="slot?.slot_bonuses?.length">
+                    <meta
+                      itemprop="keywords"
+                      :content="slot.slot_bonuses.map(b => `${b.bonuses?.name} bonus, ${slot.name} ${b.bonuses?.name}`).join(', ')"
+                    >
+                  </template>
+                </section>
 
-                <!-- 📱 Themes - адаптивная карточка -->
-                <div
+                <!-- 📱 Themes - адаптивная карточка + МАКСИМАЛЬНАЯ SEO ОПТИМИЗАЦИЯ -->
+                <!-- 🎯 SEO: Секция тематик с полной Schema.org разметкой -->
+                <section
                   class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-yellow-400/30 relative overflow-hidden"
+                  aria-labelledby="themes-heading"
+                  role="region"
+                  itemscope
+                  itemtype="https://schema.org/ItemList"
+                  :data-themes-count="getSlotThemesFromDB(slot).length"
+                  :data-slot-name="slot.name"
+                  :data-slot-provider="slot.providers?.name"
                 >
+                  <!-- 🎯 SEO: Мета-информация для Schema.org ItemList -->
+                  <meta itemprop="name" :content="`${slot.name} Game Themes`">
+                  <meta itemprop="description" :content="`Slot game themes and categories for ${slot.name}: ${getSlotThemesFromDB(slot).map(t => t.name).join(', ') || 'Various themes'}`">
+                  <meta itemprop="numberOfItems" :content="getSlotThemesFromDB(slot).length || 0">
+
                   <CanvasRevealEffect
                     class="hidden sm:block"
                     :animationSpeed="0.8"
@@ -2159,32 +2270,84 @@
                     :intensity="2.0"
                     containerClassName="absolute inset-0 pointer-events-none"
                   />
+
+                  <!-- 🎯 SEO: Заголовок секции с семантикой -->
                   <h3
+                    id="themes-heading"
                     class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
+                    itemprop="alternateName"
                   >
-                    <span class="text-base sm:text-lg">🏛️</span>
-                    Themes
+                    <span class="text-base sm:text-lg" aria-hidden="true">🏛️</span>
+                    <span>Themes</span>
+                    <!-- 🎯 SEO: Скрытый текст для поисковиков -->
+                    <span class="sr-only">- Game genre and categories for {{ slot.name }}</span>
                   </h3>
-                  <div class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10">
-                    <!-- 🎨 Отображаем ВСЕ выбранные тематики (до 5 штук!) -->
+
+                  <!-- 🎯 SEO: Список тематик с полной разметкой -->
+                  <div
+                    class="flex flex-wrap gap-1.5 sm:gap-2 relative z-10"
+                    role="list"
+                    aria-label="Slot game themes and genres"
+                  >
+                    <!-- 🎨 Отображаем ВСЕ выбранные тематики с Schema.org разметкой -->
                     <template v-if="getSlotThemesFromDB(slot).length > 0">
                       <span
-                        v-for="theme in getSlotThemesFromDB(slot)"
+                        v-for="(theme, index) in getSlotThemesFromDB(slot)"
                         :key="theme.id"
-                        class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20 hover:bg-yellow-500/50 transition-colors"
+                        class="px-3 py-1 bg-yellow-500/30 text-white rounded-full text-xs font-medium border border-yellow-400/20 hover:bg-yellow-500/50 transition-colors cursor-default"
+                        role="listitem"
+                        itemprop="itemListElement"
+                        itemscope
+                        itemtype="https://schema.org/ListItem"
+                        :data-theme-id="theme.id"
+                        :data-theme-name="theme.name"
+                        :data-theme-slug="theme.slug"
+                        :data-theme-color="theme.color"
+                        :data-position="index + 1"
+                        :title="`${slot.name} - ${theme.name} theme slot game`"
+                        :aria-label="`Theme: ${theme.name}`"
                       >
-                        {{ theme.icon }} {{ theme.name }}
+                        <!-- 🎯 SEO: Schema.org ListItem мета-данные -->
+                        <meta itemprop="position" :content="index + 1">
+                        <span itemprop="item" itemscope itemtype="https://schema.org/Thing">
+                          <meta itemprop="@type" content="DefinedTerm">
+                          <meta itemprop="name" :content="theme.name">
+                          <meta itemprop="identifier" :content="theme.slug || theme.id">
+                          <link v-if="theme.slug" itemprop="url" :href="`https://slotquest.com/themes/${theme.slug}`">
+                          <span aria-hidden="true">{{ theme.icon }}</span>
+                          <span itemprop="alternateName">{{ theme.name }}</span>
+                        </span>
                       </span>
                     </template>
+
                     <!-- ⚠️ Сообщение если тематики не указаны -->
                     <span
                       v-else
                       class="px-3 py-1 bg-gray-500/30 text-gray-300 rounded-full text-xs font-medium border border-gray-400/20"
+                      role="listitem"
+                      aria-label="No themes specified"
                     >
                       Themes not specified
                     </span>
                   </div>
-                </div>
+
+                  <!-- 🎯 SEO: Дополнительные мета-теги для связи с Game schema -->
+                  <!-- Эти теги связывают тематики со слотом через itemprop="genre" и "keywords" -->
+                  <template v-if="getSlotThemesFromDB(slot).length > 0">
+                    <!-- Genre для Schema.org Game -->
+                    <meta
+                      v-for="theme in getSlotThemesFromDB(slot)"
+                      :key="`genre-${theme.id}`"
+                      itemprop="genre"
+                      :content="theme.name"
+                    >
+                    <!-- Keywords для SEO -->
+                    <meta
+                      itemprop="keywords"
+                      :content="getSlotThemesFromDB(slot).map(t => `${t.name} slot, ${t.name} game, ${slot.name} ${t.name}`).join(', ')"
+                    >
+                  </template>
+                </section>
               </div>
             </section>
           </div>
@@ -7533,8 +7696,10 @@ const getStructuredData = (slot) => {
     },
 
     datePublished: slot.release_date || '2021-02-13',
-    // Используем hero_keyword для определения жанра
-    genre: slot.hero_keyword || 'Slot Game',
+    // 🎯 SEO: Используем тематики из БД для genre (финальная оптимизация)
+    genre: getSlotThemesFromDB(slot)?.length > 0
+      ? getSlotThemesFromDB(slot).map(t => t.name)
+      : (slot.hero_keyword || 'Slot Game'),
     gamePlatform: ['Web Browser', 'Mobile', 'Desktop'],
     applicationCategory: 'Game',
     contentRating: '18+',
@@ -7914,6 +8079,61 @@ const getStructuredData = (slot) => {
         }
       : null
 
+  // 🎯 NEW: Game Features Schema (тематики, механики, бонусы) - ФИНАЛЬНАЯ SEO ОПТИМИЗАЦИЯ
+  // Эта схема специально для Google чтобы понимать genre, features и bonus types слота
+  const gameFeaturesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${slotUrl}#features`,
+    name: `${slot.name} Game Features, Themes & Bonuses`,
+    description: `Complete list of themes, game mechanics and bonus features in ${slot.name} slot by ${slot.providers?.name || 'provider'}`,
+    numberOfItems:
+      (getSlotThemesFromDB(slot)?.length || 0) +
+      (slot.slot_mechanics?.length || 0) +
+      (slot.slot_bonuses?.length || 0),
+    itemListElement: [
+      // Тематики/Жанры
+      ...(getSlotThemesFromDB(slot) || []).map((theme, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'DefinedTerm',
+          '@id': `${slotUrl}#theme-${theme.slug || theme.id}`,
+          name: theme.name,
+          description: `${theme.name} theme in ${slot.name} slot game`,
+          inDefinedTermSet: {
+            '@type': 'DefinedTermSet',
+            name: 'Slot Game Themes',
+          },
+        },
+      })),
+      // Механики
+      ...(slot.slot_mechanics || []).map((slotMechanic, index) => ({
+        '@type': 'ListItem',
+        position: (getSlotThemesFromDB(slot)?.length || 0) + index + 1,
+        item: {
+          '@type': 'Thing',
+          '@id': `${slotUrl}#mechanic-${slotMechanic.mechanics?.id || index}`,
+          name: slotMechanic.mechanics?.name,
+          description: `${slotMechanic.mechanics?.name} game mechanic feature`,
+          additionalType: 'GameFeature',
+        },
+      })),
+      // Бонусы
+      ...(slot.slot_bonuses || []).map((slotBonus, index) => ({
+        '@type': 'ListItem',
+        position: (getSlotThemesFromDB(slot)?.length || 0) + (slot.slot_mechanics?.length || 0) + index + 1,
+        item: {
+          '@type': 'Offer',
+          '@id': `${slotUrl}#bonus-${slotBonus.bonuses?.id || index}`,
+          name: slotBonus.bonuses?.name,
+          description: `${slotBonus.bonuses?.name} bonus feature in ${slot.name}`,
+          category: 'Bonus Feature',
+        },
+      })),
+    ].filter(item => item.item?.name), // Фильтруем пустые элементы
+  }
+
   // Combine all schemas into array (filter null values)
   const allSchemas = [
     gameSchema,
@@ -7923,6 +8143,8 @@ const getStructuredData = (slot) => {
     reviewSchema,
     howToSchema,
     similarSlotsSchema,
+    // 🎯 NEW: Добавляем схему Features только если есть данные
+    gameFeaturesSchema.itemListElement.length > 0 ? gameFeaturesSchema : null,
   ].filter(Boolean)
 
   return JSON.stringify(allSchemas)
