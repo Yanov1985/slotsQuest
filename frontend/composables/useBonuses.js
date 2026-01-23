@@ -1,9 +1,11 @@
 export const useBonuses = () => {
-  // Используем прокси настройку из nuxt.config.ts
+  // Используем прямой URL бэкенда
+  const API_BASE = 'http://localhost:3001'
+
   const getBonuses = async (params = {}) => {
     try {
       const query = new URLSearchParams()
-      
+
       if (params.search) query.append('search', params.search)
       if (params.type) query.append('type', params.type)
       if (params.is_active !== undefined) query.append('is_active', params.is_active)
@@ -13,21 +15,21 @@ export const useBonuses = () => {
       if (params.offset) query.append('offset', params.offset)
       if (params.sort_by) query.append('sort_by', params.sort_by)
       if (params.sort_order) query.append('sort_order', params.sort_order)
-      
+
       const queryString = query.toString()
-      const url = `/api/bonuses${queryString ? `?${queryString}` : ''}`
-      
+      const url = `${API_BASE}/api/bonuses${queryString ? `?${queryString}` : ''}`
+
       const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -38,17 +40,17 @@ export const useBonuses = () => {
 
   const getBonus = async (id) => {
     try {
-      const response = await fetch(`/api/bonuses/${id}`, {
+      const response = await fetch(`${API_BASE}/api/bonuses/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -59,18 +61,18 @@ export const useBonuses = () => {
 
   const createBonus = async (bonusData) => {
     try {
-      const response = await fetch(`/api/bonuses`, {
+      const response = await fetch(`${API_BASE}/api/bonuses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(bonusData)
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -81,18 +83,18 @@ export const useBonuses = () => {
 
   const updateBonus = async (id, bonusData) => {
     try {
-      const response = await fetch(`/api/bonuses/${id}`, {
+      const response = await fetch(`${API_BASE}/api/bonuses/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(bonusData)
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -103,17 +105,17 @@ export const useBonuses = () => {
 
   const deleteBonus = async (id) => {
     try {
-      const response = await fetch(`/api/bonuses/${id}`, {
+      const response = await fetch(`${API_BASE}/api/bonuses/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -124,17 +126,17 @@ export const useBonuses = () => {
 
   const toggleBonusStatus = async (id) => {
     try {
-      const response = await fetch(`/api/bonuses/${id}/toggle`, {
+      const response = await fetch(`${API_BASE}/api/bonuses/${id}/toggle`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -145,17 +147,17 @@ export const useBonuses = () => {
 
   const getBonusStats = async () => {
     try {
-      const response = await fetch(`/api/bonuses/stats`, {
+      const response = await fetch(`${API_BASE}/api/bonuses/stats`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
-      
+
       const data = await response.json()
       return data
     } catch (error) {
@@ -170,7 +172,7 @@ export const useBonuses = () => {
         search: searchTerm,
         ...filters
       }
-      
+
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при поиске бонусов:', error)
@@ -186,7 +188,7 @@ export const useBonuses = () => {
         sort_by: 'popularity_score',
         sort_order: 'desc'
       }
-      
+
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении популярных бонусов:', error)
@@ -202,7 +204,7 @@ export const useBonuses = () => {
         sort_by: 'created_at',
         sort_order: 'desc'
       }
-      
+
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении рекомендуемых бонусов:', error)
@@ -219,7 +221,7 @@ export const useBonuses = () => {
         sort_by: 'name',
         sort_order: 'asc'
       }
-      
+
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении бонусов по типу:', error)

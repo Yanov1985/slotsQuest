@@ -10,17 +10,17 @@ export default defineNuxtConfig({
   ],
 
   icon: {
-     serverBundle: {
-       collections: ['heroicons']
-     },
-     clientBundle: {
-       scan: true,
-       sizeLimitKb: 512
-     },
-     provider: 'iconify',
-     fallbackToApi: true,
-     mode: 'svg'
-   },
+    serverBundle: {
+      collections: ['heroicons']
+    },
+    clientBundle: {
+      scan: true,
+      sizeLimitKb: 512
+    },
+    provider: 'iconify',
+    fallbackToApi: true,
+    mode: 'svg'
+  },
 
   googleFonts: {
     families: {
@@ -53,12 +53,17 @@ export default defineNuxtConfig({
     host: 'localhost'
   },
 
+  routeRules: {
+    '/api/**': {
+      proxy: 'http://localhost:3001/api/**'
+    }
+  },
+
   nitro: {
     devProxy: {
       '/api': {
         target: 'http://localhost:3001',
-        changeOrigin: true,
-        prependPath: true
+        changeOrigin: true
       }
     },
     experimental: {
