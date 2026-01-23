@@ -199,9 +199,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.757Z"
   },
   {
     "id": "cmeob7j4q000hu5xgtz0pjpar",
@@ -211,9 +211,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.763Z"
   },
   {
     "id": "cmeob7j4q000iu5xgcy2y0okh",
@@ -223,9 +223,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.770Z"
   },
   {
     "id": "cmeob7j4q000ju5xg91qcovdp",
@@ -235,9 +235,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.776Z"
   },
   {
     "id": "cmeob7j4q000ku5xgojanbch7",
@@ -403,9 +403,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.783Z"
   },
   {
     "id": "cmeob7j4q000yu5xg26l1c2d5",
@@ -415,9 +415,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.789Z"
   },
   {
     "id": "cmeob7j4r000zu5xg662cv1gv",
@@ -427,9 +427,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.795Z"
   },
   {
     "id": "cmeob7j4r0010u5xg2wuogrwy",
@@ -439,9 +439,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.802Z"
   },
   {
     "id": "cmeob7j4r0011u5xgdzbgea51",
@@ -451,9 +451,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.811Z"
   },
   {
     "id": "cmeob7j4r0012u5xg6hi96oqv",
@@ -571,9 +571,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.827Z"
   },
   {
     "id": "cmeob7j4r001cu5xgo3sv7fxj",
@@ -607,9 +607,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.834Z"
   },
   {
     "id": "cmeob7j4r001fu5xgb8jcctiu",
@@ -655,9 +655,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.840Z"
   },
   {
     "id": "cmeob7j4r001ju5xgsa4tu9x1",
@@ -667,9 +667,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.847Z"
   },
   {
     "id": "cmeob7j4r001ku5xgk532ihws",
@@ -691,9 +691,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.853Z"
   },
   {
     "id": "cmeob7j4r001mu5xgyp5cuw2x",
@@ -703,9 +703,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.860Z"
   },
   {
     "id": "cmeob7j4r001nu5xgwjqlq1k8",
@@ -715,9 +715,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.866Z"
   },
   {
     "id": "cmeob7j4r001ou5xghs3shepq",
@@ -1063,9 +1063,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.872Z"
   },
   {
     "id": "cmeob7j4r002hu5xgynexjpc5",
@@ -1387,9 +1387,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.878Z"
   },
   {
     "id": "cmeob7j4r0038u5xgjqotui5f",
@@ -1639,9 +1639,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.885Z"
   },
   {
     "id": "cmeob7j4r003tu5xgvwfowbly",
@@ -1723,9 +1723,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.891Z"
   },
   {
     "id": "cmeob7j4s0040u5xgmgqookeb",
@@ -1843,9 +1843,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.897Z"
   },
   {
     "id": "cmeob7j4s004au5xgzplfx0p5",
@@ -1939,9 +1939,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.904Z"
   },
   {
     "id": "cmeob7j4s004iu5xgx9vlumkk",
@@ -1987,9 +1987,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.910Z"
   },
   {
     "id": "cmeob7j4s004mu5xgbxmnz2nu",
@@ -2035,9 +2035,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.916Z"
   },
   {
     "id": "cmeob7j4s004qu5xgsvclhu19",
@@ -2251,9 +2251,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.923Z"
   },
   {
     "id": "cmeob7j4s0058u5xgbbvy3q90",
@@ -2323,9 +2323,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-22T20:49:53.929Z"
   },
   {
     "id": "cmeob7j4s005eu5xgomtae0db",

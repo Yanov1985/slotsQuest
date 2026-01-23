@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-01-22T20:25:16.275Z",
-  "dbFile": "dev_backup_2026-01-22T20-25-16.db",
+  "timestamp": "2026-01-23T17:41:41.527Z",
+  "dbFile": "dev_backup_2026-01-23T17-41-41.db",
   "dbSize": "396.00 KB",
   "counts": {
     "providers": 94,
-    "mechanics": 6,
+    "mechanics": 37,
     "themes": 241,
     "categories": 31,
     "slots": 5

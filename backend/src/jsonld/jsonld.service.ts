@@ -173,7 +173,7 @@ export class JsonLdService {
   // 🌐 Базовый URL сайта (используется для генерации абсолютных URL)
   private readonly baseUrl = 'https://slotquest.com';
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   // ==========================================================================
   // 📥 ОСНОВНЫЕ МЕТОДЫ API
@@ -492,7 +492,7 @@ export class JsonLdService {
    * 🎮 Генерация Game Schema
    *
    * Основная схема для игрового слота.
-   * Включает название, описание, рейтинг, платформы и т.д.
+   * Включает название, описание, рейтинг, платформы, механики, бонусы и тематики.
    */
   generateGameSchema(slot: any): GameSchema {
     const schema: GameSchema = {
@@ -520,9 +520,18 @@ export class JsonLdService {
       };
     }
 
-    // 🎭 Жанр
+    // 🎭 Жанр - из тематик слота или кастомного поля
     if (slot.jsonld_game_genre) {
       schema.genre = slot.jsonld_game_genre;
+    } else if (slot.slotThemes && slot.slotThemes.length > 0) {
+      // Собираем жанры из связанных тематик
+      const genres = slot.slotThemes
+        .filter((st: any) => st.themes && st.themes.is_active)
+        .map((st: any) => st.themes.name)
+        .slice(0, 5); // Максимум 5 жанров
+      if (genres.length > 0) {
+        schema.genre = genres.join(', ');
+      }
     }
 
     // 📱 Платформы
@@ -549,6 +558,69 @@ export class JsonLdService {
         bestRating: 5,
         worstRating: 1,
       };
+    }
+
+    // 🎯 SEO: Дополнительные свойства для механик и бонусов
+    const additionalProperties: any[] = [];
+
+    // ⚙️ Механики слота
+    if (slot.slot_mechanics && slot.slot_mechanics.length > 0) {
+      const mechanics = slot.slot_mechanics
+        .filter((sm: any) => sm.mechanics && sm.mechanics.is_active)
+        .map((sm: any) => sm.mechanics);
+
+      if (mechanics.length > 0) {
+        additionalProperties.push({
+          '@type': 'PropertyValue',
+          name: 'Game Mechanics',
+          value: mechanics.map((m: any) => m.name).join(', '),
+        });
+      }
+    }
+
+    // 🎁 Бонусы слота
+    if (slot.slot_bonuses && slot.slot_bonuses.length > 0) {
+      const bonuses = slot.slot_bonuses
+        .filter((sb: any) => sb.bonuses && sb.bonuses.is_active)
+        .map((sb: any) => sb.bonuses);
+
+      if (bonuses.length > 0) {
+        additionalProperties.push({
+          '@type': 'PropertyValue',
+          name: 'Bonus Features',
+          value: bonuses.map((b: any) => b.name).join(', '),
+        });
+      }
+    }
+
+    // 📊 RTP и характеристики как PropertyValue
+    if (slot.rtp) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'RTP',
+        value: `${slot.rtp}%`,
+      });
+    }
+
+    if (slot.volatility) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Volatility',
+        value: slot.volatility,
+      });
+    }
+
+    if (slot.max_win) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Max Win',
+        value: `${slot.max_win}x`,
+      });
+    }
+
+    // Добавляем дополнительные свойства если есть
+    if (additionalProperties.length > 0) {
+      (schema as any).additionalProperty = additionalProperties;
     }
 
     return schema;
