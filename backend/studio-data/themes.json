@@ -3,1573 +3,1573 @@
     "id": "cmeob7j4q0000u5xgxxd6fasa",
     "name": "Action",
     "slug": "action",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Action — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T19:08:02.230Z"
+    "updated_at": "2026-01-23T17:55:32.761Z"
   },
   {
     "id": "cmeob7j4q0001u5xgpptohore",
     "name": "Adventure",
     "slug": "adventure",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Adventure — захватывающие приключения в поисках сокровищ и артефактов",
+    "color": "#D97706",
+    "icon": "🗺️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.769Z"
   },
   {
     "id": "cmeob7j4q0002u5xg7j6ld3zp",
     "name": "Ancient",
     "slug": "ancient",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Ancient — захватывающие приключения в поисках сокровищ и артефактов",
+    "color": "#D97706",
+    "icon": "🗺️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.777Z"
   },
   {
     "id": "cmeob7j4q0003u5xg6ogzfz4s",
     "name": "Animals",
     "slug": "animals",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Animals — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.785Z"
   },
   {
     "id": "cmeob7j4q0004u5xgi05iixdz",
     "name": "Anime",
     "slug": "anime",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Anime — азиатская культура и восточная эстетика",
+    "color": "#E11D48",
+    "icon": "🎎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.793Z"
   },
   {
     "id": "cmeob7j4q0005u5xg47oiepeu",
     "name": "Apocalypse",
     "slug": "apocalypse",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Apocalypse — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.800Z"
   },
   {
     "id": "cmeob7j4q0006u5xg5vhp8vcy",
     "name": "Arabian",
     "slug": "arabian",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Arabian — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.808Z"
   },
   {
     "id": "cmeob7j4q0007u5xgp2odvh73",
     "name": "Asian",
     "slug": "asian",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Asian — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.819Z"
   },
   {
     "id": "cmeob7j4q0008u5xg6o9bp5fz",
     "name": "Aztec",
     "slug": "aztec",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Aztec — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.828Z"
   },
   {
     "id": "cmeob7j4q0009u5xg6igdinha",
     "name": "Bars",
     "slug": "bars",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Bars — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.836Z"
   },
   {
     "id": "cmeob7j4q000au5xgzfihmbob",
     "name": "Battle",
     "slug": "battle",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Battle — эпические битвы и героические сражения",
+    "color": "#78716C",
+    "icon": "⚔️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.842Z"
   },
   {
     "id": "cmeob7j4q000bu5xg52a9osic",
     "name": "Beach",
     "slug": "beach",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Beach — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.849Z"
   },
   {
     "id": "cmeob7j4q000cu5xgrx50a4ge",
     "name": "Bells",
     "slug": "bells",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Bells — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.856Z"
   },
   {
     "id": "cmeob7j4q000du5xgjqr35f1q",
     "name": "Best American Style Slots",
     "slug": "best-american-style-slots",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Best American Style Slots — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.865Z"
   },
   {
     "id": "cmeob7j4q000eu5xgqfx65qq5",
     "name": "Bet Slip",
     "slug": "bet-slip",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bet Slip — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.871Z"
   },
   {
     "id": "cmeob7j4q000fu5xge62psvym",
     "name": "Bombs",
     "slug": "bombs",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bombs — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.878Z"
   },
   {
     "id": "cmeob7j4q000gu5xgxef01ojq",
     "name": "Bonus Bet",
     "slug": "bonus-bet",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bonus Bet — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.757Z"
+    "updated_at": "2026-01-23T17:55:32.885Z"
   },
   {
     "id": "cmeob7j4q000hu5xgtz0pjpar",
     "name": "Bonus Buy",
     "slug": "bonus-buy",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bonus Buy — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.763Z"
+    "updated_at": "2026-01-23T17:55:32.891Z"
   },
   {
     "id": "cmeob7j4q000iu5xgcy2y0okh",
     "name": "Bonus Multiplier",
     "slug": "bonus-multiplier",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bonus Multiplier — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.770Z"
+    "updated_at": "2026-01-23T17:55:32.898Z"
   },
   {
     "id": "cmeob7j4q000ju5xg91qcovdp",
     "name": "Bonus Wheel",
     "slug": "bonus-wheel",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bonus Wheel — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.776Z"
+    "updated_at": "2026-01-23T17:55:32.904Z"
   },
   {
     "id": "cmeob7j4q000ku5xgojanbch7",
     "name": "Books",
     "slug": "books",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Books — волшебные миры с магическими бонусами и заклинаниями",
+    "color": "#8B5CF6",
+    "icon": "🧙",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.911Z"
   },
   {
     "id": "cmeob7j4q000lu5xg8kct7tk2",
     "name": "Branded",
     "slug": "branded",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Branded — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.917Z"
   },
   {
     "id": "cmeob7j4q000mu5xg43midlzy",
     "name": "Buffalos",
     "slug": "buffalos",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Buffalos — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.923Z"
   },
   {
     "id": "cmeob7j4q000nu5xgzbmrsac3",
     "name": "Candy",
     "slug": "candy",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Candy — сладкие выигрыши и аппетитные бонусы",
+    "color": "#EC4899",
+    "icon": "🍬",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.929Z"
   },
   {
     "id": "cmeob7j4q000ou5xgbkdeqb4b",
     "name": "Carnival",
     "slug": "carnival",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Carnival — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.936Z"
   },
   {
     "id": "cmeob7j4q000pu5xg6ni00k49",
     "name": "Cars",
     "slug": "cars",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Cars — спортивные эмоции и командный дух",
+    "color": "#10B981",
+    "icon": "⚽",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.943Z"
   },
   {
     "id": "cmeob7j4q000qu5xg2y7ro64l",
     "name": "Cascading Reels",
     "slug": "cascading-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Cascading Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.949Z"
   },
   {
     "id": "cmeob7j4q000ru5xg45zyhy1s",
     "name": "Cashpots",
     "slug": "cashpots",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Cashpots — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.955Z"
   },
   {
     "id": "cmeob7j4q000su5xg9rd0dkzm",
     "name": "Cats",
     "slug": "cats",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Cats — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.961Z"
   },
   {
     "id": "cmeob7j4q000tu5xg6znal3s1",
     "name": "Christmas",
     "slug": "christmas",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Christmas — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.968Z"
   },
   {
     "id": "cmeob7j4q000uu5xgjlsa23uy",
     "name": "Circus",
     "slug": "circus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Circus — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.974Z"
   },
   {
     "id": "cmeob7j4q000vu5xgmhzta2su",
     "name": "Classic",
     "slug": "classic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Classic — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.981Z"
   },
   {
     "id": "cmeob7j4q000wu5xggml9i8s5",
     "name": "Clover",
     "slug": "clover",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Clover — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:32.987Z"
   },
   {
     "id": "cmeob7j4q000xu5xgzjnwj2nh",
     "name": "Cluster Pays",
     "slug": "cluster-pays",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Cluster Pays — игровая механика слотов",
+    "color": "#6B7280",
+    "icon": "⚙️",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.783Z"
+    "updated_at": "2026-01-23T17:55:32.993Z"
   },
   {
     "id": "cmeob7j4q000yu5xg26l1c2d5",
     "name": "Coin Win",
     "slug": "coin-win",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Coin Win — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.789Z"
+    "updated_at": "2026-01-23T17:55:33.000Z"
   },
   {
     "id": "cmeob7j4r000zu5xg662cv1gv",
     "name": "Collect Symbols",
     "slug": "collect-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Collect Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.795Z"
+    "updated_at": "2026-01-23T17:55:33.007Z"
   },
   {
     "id": "cmeob7j4r0010u5xg2wuogrwy",
     "name": "Colossal Symbols",
     "slug": "colossal-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Colossal Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.802Z"
+    "updated_at": "2026-01-23T17:55:33.016Z"
   },
   {
     "id": "cmeob7j4r0011u5xgdzbgea51",
     "name": "Colossal Wilds",
     "slug": "colossal-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Colossal Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.811Z"
+    "updated_at": "2026-01-23T17:55:33.022Z"
   },
   {
     "id": "cmeob7j4r0012u5xg6hi96oqv",
     "name": "Comics",
     "slug": "comics",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Comics — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.028Z"
   },
   {
     "id": "cmeob7j4r0013u5xgp7pqz84g",
     "name": "Cowboys",
     "slug": "cowboys",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Cowboys — атмосфера Дикого Запада с ковбоями и золотой лихорадкой",
+    "color": "#A16207",
+    "icon": "🤠",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.035Z"
   },
   {
     "id": "cmeob7j4r0014u5xggyxycn5d",
     "name": "Cyberpunk",
     "slug": "cyberpunk",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Cyberpunk — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.041Z"
   },
   {
     "id": "cmeob7j4r0015u5xgijpf0g1x",
     "name": "Dance",
     "slug": "dance",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Dance — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.047Z"
   },
   {
     "id": "cmeob7j4r0016u5xg25t91l83",
     "name": "Demons",
     "slug": "demons",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Demons — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.054Z"
   },
   {
     "id": "cmeob7j4r0017u5xgdn01tnej",
     "name": "Detective",
     "slug": "detective",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Detective — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.060Z"
   },
   {
     "id": "cmeob7j4r0018u5xgph3orgjt",
     "name": "Devil",
     "slug": "devil",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Devil — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.066Z"
   },
   {
     "id": "cmeob7j4r0019u5xgc4styyom",
     "name": "Diamonds",
     "slug": "diamonds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Diamonds — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.072Z"
   },
   {
     "id": "cmeob7j4r001au5xg6rhe6qh6",
     "name": "Disco",
     "slug": "disco",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Disco — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.079Z"
   },
   {
     "id": "cmeob7j4r001bu5xgebef32uv",
     "name": "Double Symbols",
     "slug": "double-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Double Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.827Z"
+    "updated_at": "2026-01-23T17:55:33.085Z"
   },
   {
     "id": "cmeob7j4r001cu5xgo3sv7fxj",
     "name": "Dragons",
     "slug": "dragons",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Dragons — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.091Z"
   },
   {
     "id": "cmeob7j4r001du5xgdcghgaye",
     "name": "Dream Drop",
     "slug": "dream-drop",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Dream Drop — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.097Z"
   },
   {
     "id": "cmeob7j4r001eu5xgjnvz7imn",
     "name": "Dual Spin",
     "slug": "dual-spin",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Dual Spin — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.834Z"
+    "updated_at": "2026-01-23T17:55:33.104Z"
   },
   {
     "id": "cmeob7j4r001fu5xgb8jcctiu",
     "name": "Dynamite",
     "slug": "dynamite",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Dynamite — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.110Z"
   },
   {
     "id": "cmeob7j4r001gu5xglhq9a4rb",
     "name": "Eagles",
     "slug": "eagles",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Eagles — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.116Z"
   },
   {
     "id": "cmeob7j4r001hu5xga32rfvwn",
     "name": "Egyptian",
     "slug": "egyptian",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Egyptian — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.124Z"
   },
   {
     "id": "cmeob7j4r001iu5xggzz0pxcu",
     "name": "Expanding Reels",
     "slug": "expanding-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Expanding Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.840Z"
+    "updated_at": "2026-01-23T17:55:33.131Z"
   },
   {
     "id": "cmeob7j4r001ju5xgsa4tu9x1",
     "name": "Expanding Symbols",
     "slug": "expanding-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Expanding Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.847Z"
+    "updated_at": "2026-01-23T17:55:33.137Z"
   },
   {
     "id": "cmeob7j4r001ku5xgk532ihws",
     "name": "Expanding Wilds",
     "slug": "expanding-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Expanding Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.143Z"
   },
   {
     "id": "cmeob7j4r001lu5xg6b7n56qm",
     "name": "Extra Reels",
     "slug": "extra-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Extra Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.853Z"
+    "updated_at": "2026-01-23T17:55:33.152Z"
   },
   {
     "id": "cmeob7j4r001mu5xgyp5cuw2x",
     "name": "Extra Spins",
     "slug": "extra-spins",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Extra Spins — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.860Z"
+    "updated_at": "2026-01-23T17:55:33.159Z"
   },
   {
     "id": "cmeob7j4r001nu5xgwjqlq1k8",
     "name": "Extra Wilds",
     "slug": "extra-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Extra Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.866Z"
+    "updated_at": "2026-01-23T17:55:33.165Z"
   },
   {
     "id": "cmeob7j4r001ou5xghs3shepq",
     "name": "Fairy Tales",
     "slug": "fairy-tales",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Fairy Tales — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.171Z"
   },
   {
     "id": "cmeob7j4r001pu5xg6ipdmcxo",
     "name": "Fantastic",
     "slug": "fantastic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Fantastic — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.178Z"
   },
   {
     "id": "cmeob7j4r001qu5xgxi8v77gw",
     "name": "Fantasy",
     "slug": "fantasy",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Fantasy — волшебные миры с магическими бонусами и заклинаниями",
+    "color": "#8B5CF6",
+    "icon": "🧙",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.184Z"
   },
   {
     "id": "cmeob7j4r001ru5xghfbskz2b",
     "name": "Festival",
     "slug": "festival",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Festival — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.190Z"
   },
   {
     "id": "cmeob7j4r001su5xgbp193bbs",
     "name": "Fire",
     "slug": "fire",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Fire — красота природы и сила стихий",
+    "color": "#22C55E",
+    "icon": "🌿",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.197Z"
   },
   {
     "id": "cmeob7j4r001tu5xgpx4z6vhl",
     "name": "Fish",
     "slug": "fish",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Fish — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.203Z"
   },
   {
     "id": "cmeob7j4r001uu5xg3oygfvj7",
     "name": "Fishing",
     "slug": "fishing",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Fishing — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.209Z"
   },
   {
     "id": "cmeob7j4r001vu5xgcvh4z8pg",
     "name": "Flowers",
     "slug": "flowers",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Flowers — красота природы и сила стихий",
+    "color": "#22C55E",
+    "icon": "🌿",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.215Z"
   },
   {
     "id": "cmeob7j4r001wu5xg3eno6090",
     "name": "Food",
     "slug": "food",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Food — сладкие выигрыши и аппетитные бонусы",
+    "color": "#EC4899",
+    "icon": "🍬",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.222Z"
   },
   {
     "id": "cmeob7j4r001xu5xgs3eu9qnc",
     "name": "Football",
     "slug": "football",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Football — спортивные эмоции и командный дух",
+    "color": "#10B981",
+    "icon": "⚽",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.228Z"
   },
   {
     "id": "cmeob7j4r001yu5xgh39nz5ki",
     "name": "Forest",
     "slug": "forest",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Forest — красота природы и сила стихий",
+    "color": "#22C55E",
+    "icon": "🌿",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.234Z"
   },
   {
     "id": "cmeob7j4r001zu5xgu28wf0eb",
     "name": "FreeSpins Multiplier",
     "slug": "freespins-multiplier",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты FreeSpins Multiplier — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.241Z"
   },
   {
     "id": "cmeob7j4r0020u5xg4dr2zpjy",
     "name": "Fruits",
     "slug": "fruits",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Fruits — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.247Z"
   },
   {
     "id": "cmeob7j4r0021u5xgy8kf2w7s",
     "name": "Future",
     "slug": "future",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Future — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.253Z"
   },
   {
     "id": "cmeob7j4r0022u5xggcjhvsbr",
     "name": "Futuristic",
     "slug": "futuristic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Futuristic — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.263Z"
   },
   {
     "id": "cmeob7j4r0023u5xga7jyiwoi",
     "name": "Gamble",
     "slug": "gamble",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gamble — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.269Z"
   },
   {
     "id": "cmeob7j4r0024u5xg2ixu96xn",
     "name": "Gangsters",
     "slug": "gangsters",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gangsters — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.275Z"
   },
   {
     "id": "cmeob7j4r0025u5xgz9rqva06",
     "name": "Gems",
     "slug": "gems",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gems — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.282Z"
   },
   {
     "id": "cmeob7j4r0026u5xgg8vscdhh",
     "name": "Gigablox",
     "slug": "gigablox",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gigablox — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.288Z"
   },
   {
     "id": "cmeob7j4r0027u5xg9dfbldc6",
     "name": "Girls",
     "slug": "girls",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Girls — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.295Z"
   },
   {
     "id": "cmeob7j4r0028u5xgpub79n2q",
     "name": "Gladiators",
     "slug": "gladiators",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gladiators — эпические битвы и героические сражения",
+    "color": "#78716C",
+    "icon": "⚔️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.301Z"
   },
   {
     "id": "cmeob7j4r0029u5xg2pn81531",
     "name": "Goblins",
     "slug": "goblins",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Goblins — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.307Z"
   },
   {
     "id": "cmeob7j4r002au5xg6ufl7z35",
     "name": "Gods",
     "slug": "gods",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gods — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.313Z"
   },
   {
     "id": "cmeob7j4r002bu5xgnkqhq973",
     "name": "Gold",
     "slug": "gold",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Gold — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.320Z"
   },
   {
     "id": "cmeob7j4r002cu5xgje7c1b1a",
     "name": "Greek",
     "slug": "greek",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Greek — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.326Z"
   },
   {
     "id": "cmeob7j4r002du5xgklw0vn4a",
     "name": "Guns",
     "slug": "guns",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Guns — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.332Z"
   },
   {
     "id": "cmeob7j4r002eu5xg7vxsl5uk",
     "name": "Halloween",
     "slug": "halloween",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Halloween — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.339Z"
   },
   {
     "id": "cmeob7j4r002fu5xg8latd2ru",
     "name": "Hold and Spin",
     "slug": "hold-and-spin",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Hold and Spin — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.345Z"
   },
   {
     "id": "cmeob7j4r002gu5xgszj7wkt6",
     "name": "Hold and Win",
     "slug": "hold-and-win",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Hold and Win — игровая механика слотов",
+    "color": "#6B7280",
+    "icon": "⚙️",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.872Z"
+    "updated_at": "2026-01-23T17:55:33.351Z"
   },
   {
     "id": "cmeob7j4r002hu5xgynexjpc5",
     "name": "Holiday",
     "slug": "holiday",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Holiday — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.358Z"
   },
   {
     "id": "cmeob7j4r002iu5xgzu0bdmz3",
     "name": "Horror",
     "slug": "horror",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Horror — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.365Z"
   },
   {
     "id": "cmeob7j4r002ju5xg6kekxoic",
     "name": "Hyper Clusters",
     "slug": "hyper-clusters",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Hyper Clusters — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.371Z"
   },
   {
     "id": "cmeob7j4r002ku5xg795nl46h",
     "name": "Hyper Hold",
     "slug": "hyper-hold",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Hyper Hold — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.377Z"
   },
   {
     "id": "cmeob7j4r002lu5xgr857daog",
     "name": "Increasing Multiplier",
     "slug": "increasing-multiplier",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Increasing Multiplier — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.384Z"
   },
   {
     "id": "cmeob7j4r002mu5xg3t8qw3qv",
     "name": "Infinity Reels",
     "slug": "infinity-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Infinity Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.390Z"
   },
   {
     "id": "cmeob7j4r002nu5xg7st9n2i6",
     "name": "Jackpot",
     "slug": "jackpot",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Jackpot — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.396Z"
   },
   {
     "id": "cmeob7j4r002ou5xgebktld97",
     "name": "Japanese",
     "slug": "japanese",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Japanese — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.403Z"
   },
   {
     "id": "cmeob7j4r002pu5xgwqgr4d1n",
     "name": "Jewels",
     "slug": "jewels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Jewels — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.410Z"
   },
   {
     "id": "cmeob7j4r002qu5xg3kkq7qfv",
     "name": "Joker",
     "slug": "joker",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Joker — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.416Z"
   },
   {
     "id": "cmeob7j4r002ru5xgoo0yczgf",
     "name": "Jungle",
     "slug": "jungle",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Jungle — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.422Z"
   },
   {
     "id": "cmeob7j4r002su5xg1oqco2or",
     "name": "Legend",
     "slug": "legend",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Legend — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.429Z"
   },
   {
     "id": "cmeob7j4r002tu5xgrhokb687",
     "name": "Leprechauns",
     "slug": "leprechauns",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Leprechauns — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.435Z"
   },
   {
     "id": "cmeob7j4r002uu5xgayd2brnw",
     "name": "Level Up",
     "slug": "level-up",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Level Up — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.441Z"
   },
   {
     "id": "cmeob7j4r002vu5xgrg0bic32",
     "name": "Linked Reels",
     "slug": "linked-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Linked Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.448Z"
   },
   {
     "id": "cmeob7j4r002wu5xgzczkxtzo",
     "name": "Locked Reels",
     "slug": "locked-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Locked Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.454Z"
   },
   {
     "id": "cmeob7j4r002xu5xgxj0f21s3",
     "name": "Locked Symbols",
     "slug": "locked-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Locked Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.461Z"
   },
   {
     "id": "cmeob7j4r002yu5xge405ee09",
     "name": "Locked Wilds",
     "slug": "locked-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Locked Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.469Z"
   },
   {
     "id": "cmeob7j4r002zu5xgqyksu2tx",
     "name": "Luxury",
     "slug": "luxury",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Luxury — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.475Z"
   },
   {
     "id": "cmeob7j4r0030u5xgl9n0ixgz",
     "name": "Mafia",
     "slug": "mafia",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mafia — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.481Z"
   },
   {
     "id": "cmeob7j4r0031u5xgiq2w7ziq",
     "name": "Magic",
     "slug": "magic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Magic — волшебные миры с магическими бонусами и заклинаниями",
+    "color": "#8B5CF6",
+    "icon": "🧙",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.488Z"
   },
   {
     "id": "cmeob7j4r0032u5xguahkn7l0",
     "name": "Mayan",
     "slug": "mayan",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Mayan — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.494Z"
   },
   {
     "id": "cmeob7j4r0033u5xg29xens47",
     "name": "Mega Fire Blaze",
     "slug": "mega-fire-blaze",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mega Fire Blaze — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.501Z"
   },
   {
     "id": "cmeob7j4r0034u5xgt1qklpc5",
     "name": "Mega Symbols",
     "slug": "mega-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mega Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.507Z"
   },
   {
     "id": "cmeob7j4r0035u5xglgdj87ys",
     "name": "Megaclusters",
     "slug": "megaclusters",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Megaclusters — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.514Z"
   },
   {
     "id": "cmeob7j4r0036u5xgbilvxr9o",
     "name": "Megaquads",
     "slug": "megaquads",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Megaquads — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.521Z"
   },
   {
     "id": "cmeob7j4r0037u5xgrajs2n2v",
     "name": "Megaways",
     "slug": "megaways",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Megaways — игровая механика слотов",
+    "color": "#6B7280",
+    "icon": "⚙️",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.878Z"
+    "updated_at": "2026-01-23T17:55:33.528Z"
   },
   {
     "id": "cmeob7j4r0038u5xgjqotui5f",
     "name": "Millionways",
     "slug": "millionways",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Millionways — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.535Z"
   },
   {
     "id": "cmeob7j4r0039u5xg5zyh5beh",
     "name": "Mining",
     "slug": "mining",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mining — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.541Z"
   },
   {
     "id": "cmeob7j4r003au5xgkfpr6rwx",
     "name": "Monsters",
     "slug": "monsters",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Monsters — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.547Z"
   },
   {
     "id": "cmeob7j4r003bu5xguyntaq31",
     "name": "MultiJump",
     "slug": "multijump",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты MultiJump — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.554Z"
   },
   {
     "id": "cmeob7j4r003cu5xg4cnvyvro",
     "name": "Multiplier Wilds",
     "slug": "multiplier-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Multiplier Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.560Z"
   },
   {
     "id": "cmeob7j4r003du5xg7r4jl1dt",
     "name": "Multiplier",
     "slug": "multiplier",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Multiplier — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.566Z"
   },
   {
     "id": "cmeob7j4r003eu5xg01bdk3y7",
     "name": "Music",
     "slug": "music",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Music — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.573Z"
   },
   {
     "id": "cmeob7j4r003fu5xgdt1vcmfb",
     "name": "Mystery Symbols",
     "slug": "mystery-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mystery Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.579Z"
   },
   {
     "id": "cmeob7j4r003gu5xgqzegcf9d",
     "name": "Mystic",
     "slug": "mystic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mystic — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.587Z"
   },
   {
     "id": "cmeob7j4r003hu5xgpvrpuc8q",
     "name": "Mythical",
     "slug": "mythical",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mythical — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.593Z"
   },
   {
     "id": "cmeob7j4r003iu5xgpst7qfmm",
     "name": "Mythology",
     "slug": "mythology",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Mythology — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.600Z"
   },
   {
     "id": "cmeob7j4r003ju5xgjb3la3op",
     "name": "Nature",
     "slug": "nature",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Nature — красота природы и сила стихий",
+    "color": "#22C55E",
+    "icon": "🌿",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.606Z"
   },
   {
     "id": "cmeob7j4r003ku5xgzf04u06y",
     "name": "Neon",
     "slug": "neon",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Neon — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.612Z"
   },
   {
     "id": "cmeob7j4r003lu5xgsva7yahq",
     "name": "Nordic",
     "slug": "nordic",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Nordic — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.619Z"
   },
   {
     "id": "cmeob7j4r003mu5xg66qgswpf",
     "name": "Norse",
     "slug": "norse",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Norse — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.625Z"
   },
   {
     "id": "cmeob7j4r003nu5xgl99f2rd3",
@@ -1579,105 +1579,105 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.632Z"
   },
   {
     "id": "cmeob7j4r003ou5xguysj66bk",
     "name": "Ocean",
     "slug": "ocean",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Ocean — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.638Z"
   },
   {
     "id": "cmeob7j4r003pu5xgakci3120",
     "name": "Olympus",
     "slug": "olympus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Olympus — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.645Z"
   },
   {
     "id": "cmeob7j4r003qu5xgwc58i1sp",
     "name": "Oriental",
     "slug": "oriental",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Oriental — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.651Z"
   },
   {
     "id": "cmeob7j4r003ru5xgfoqdtgp1",
     "name": "Party",
     "slug": "party",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Party — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.658Z"
   },
   {
     "id": "cmeob7j4r003su5xgmoue5b4l",
     "name": "Pick Bonus",
     "slug": "pick-bonus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Pick Bonus — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.885Z"
+    "updated_at": "2026-01-23T17:55:33.664Z"
   },
   {
     "id": "cmeob7j4r003tu5xgvwfowbly",
     "name": "Piggy bank",
     "slug": "piggy-bank",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Piggy bank — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.670Z"
   },
   {
     "id": "cmeob7j4s003uu5xgjit87t9p",
     "name": "Pirates",
     "slug": "pirates",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Pirates — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.677Z"
   },
   {
     "id": "cmeob7j4s003vu5xg2c2ae5mp",
     "name": "Pixel Art Slot Machines",
     "slug": "pixel-art-slot-machines",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Pixel Art Slot Machines — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.684Z"
   },
   {
     "id": "cmeob7j4s003wu5xge17l30k7",
@@ -1687,9 +1687,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.690Z"
   },
   {
     "id": "cmeob7j4s003xu5xg4dhia8xm",
@@ -1699,657 +1699,657 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.698Z"
   },
   {
     "id": "cmeob7j4s003yu5xggedgv0z5",
     "name": "Random Multiplier",
     "slug": "random-multiplier",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Random Multiplier — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.705Z"
   },
   {
     "id": "cmeob7j4s003zu5xg8kew4be8",
     "name": "Random Wilds",
     "slug": "random-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Random Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.891Z"
+    "updated_at": "2026-01-23T17:55:33.711Z"
   },
   {
     "id": "cmeob7j4s0040u5xgmgqookeb",
     "name": "Respin Wild",
     "slug": "respin-wild",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Respin Wild — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.717Z"
   },
   {
     "id": "cmeob7j4s0041u5xgvhiifrm1",
     "name": "Respins",
     "slug": "respins",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Respins — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.724Z"
   },
   {
     "id": "cmeob7j4s0042u5xg9xpu73aj",
     "name": "Retrigger",
     "slug": "retrigger",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Retrigger — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.730Z"
   },
   {
     "id": "cmeob7j4s0043u5xgqmy0a03w",
     "name": "Retro",
     "slug": "retro",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Retro — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.736Z"
   },
   {
     "id": "cmeob7j4s0044u5xg3kepg6v2",
     "name": "Riches",
     "slug": "riches",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Riches — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.742Z"
   },
   {
     "id": "cmeob7j4s0045u5xg9khil7jg",
     "name": "Robots",
     "slug": "robots",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Robots — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.748Z"
   },
   {
     "id": "cmeob7j4s0046u5xgcp853wb7",
     "name": "Rock",
     "slug": "rock",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Rock — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.755Z"
   },
   {
     "id": "cmeob7j4s0047u5xgxditj6ys",
     "name": "Rome",
     "slug": "rome",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Rome — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.761Z"
   },
   {
     "id": "cmeob7j4s0048u5xgsbsqa1vp",
     "name": "Santa Claus",
     "slug": "santa-claus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Santa Claus — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.767Z"
   },
   {
     "id": "cmeob7j4s0049u5xgu1yz37fo",
     "name": "Scatter Pays",
     "slug": "scatter-pays",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Scatter Pays — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.897Z"
+    "updated_at": "2026-01-23T17:55:33.774Z"
   },
   {
     "id": "cmeob7j4s004au5xgzplfx0p5",
     "name": "Sea",
     "slug": "sea",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Sea — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.781Z"
   },
   {
     "id": "cmeob7j4s004bu5xg3few08um",
     "name": "Sevens",
     "slug": "sevens",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Классические слоты Sevens — ностальгия по традиционным игровым автоматам",
+    "color": "#EF4444",
+    "icon": "🍒",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.788Z"
   },
   {
     "id": "cmeob7j4s004cu5xgcs4jqgqw",
     "name": "Ships",
     "slug": "ships",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Ships — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.794Z"
   },
   {
     "id": "cmeob7j4s004du5xgbhpd3wio",
     "name": "Slingo",
     "slug": "slingo",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Slingo — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.801Z"
   },
   {
     "id": "cmeob7j4s004eu5xgkl4ra8ma",
     "name": "Snow",
     "slug": "snow",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Snow — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.809Z"
   },
   {
     "id": "cmeob7j4s004fu5xgq5993dgu",
     "name": "Space",
     "slug": "space",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Space — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.815Z"
   },
   {
     "id": "cmeob7j4s004gu5xguqbwm5d1",
     "name": "Special Symbol",
     "slug": "special-symbol",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Special Symbol — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.822Z"
   },
   {
     "id": "cmeob7j4s004hu5xgos2v1yck",
     "name": "Split Symbols",
     "slug": "split-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Split Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.904Z"
+    "updated_at": "2026-01-23T17:55:33.828Z"
   },
   {
     "id": "cmeob7j4s004iu5xgx9vlumkk",
     "name": "Sports",
     "slug": "sports",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Sports — спортивные эмоции и командный дух",
+    "color": "#10B981",
+    "icon": "⚽",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.835Z"
   },
   {
     "id": "cmeob7j4s004ju5xgbiehihht",
     "name": "Spreading Wilds",
     "slug": "spreading-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Spreading Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.841Z"
   },
   {
     "id": "cmeob7j4s004ku5xgm7jhi9po",
     "name": "Stacked Symbols",
     "slug": "stacked-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Stacked Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.847Z"
   },
   {
     "id": "cmeob7j4s004lu5xgty9b5wir",
     "name": "Stacked Wilds",
     "slug": "stacked-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Stacked Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.910Z"
+    "updated_at": "2026-01-23T17:55:33.853Z"
   },
   {
     "id": "cmeob7j4s004mu5xgbxmnz2nu",
     "name": "Stars",
     "slug": "stars",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Stars — космические путешествия и футуристические технологии",
+    "color": "#3B82F6",
+    "icon": "🚀",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.861Z"
   },
   {
     "id": "cmeob7j4s004nu5xgm4jwdhj9",
     "name": "Steampunk",
     "slug": "steampunk",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Steampunk — викторианская эстетика и паровые механизмы",
+    "color": "#78350F",
+    "icon": "⚙️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.868Z"
   },
   {
     "id": "cmeob7j4s004ou5xgrk10i2fo",
     "name": "Sticky Symbols",
     "slug": "sticky-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Sticky Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.874Z"
   },
   {
     "id": "cmeob7j4s004pu5xgcs641j5g",
     "name": "Sticky Wilds",
     "slug": "sticky-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Sticky Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.916Z"
+    "updated_at": "2026-01-23T17:55:33.881Z"
   },
   {
     "id": "cmeob7j4s004qu5xgsvclhu19",
     "name": "Substitution Symbols",
     "slug": "substitution-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Substitution Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.887Z"
   },
   {
     "id": "cmeob7j4s004ru5xg88f0gzak",
     "name": "Superheroes",
     "slug": "superheroes",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Superheroes — музыка, кино и яркие шоу на барабанах",
+    "color": "#6366F1",
+    "icon": "🎸",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.893Z"
   },
   {
     "id": "cmeob7j4s004su5xgkined5wn",
     "name": "Symbol Removal",
     "slug": "symbol-removal",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Symbol Removal — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.900Z"
   },
   {
     "id": "cmeob7j4s004tu5xgdgost6ag",
     "name": "Symbol Swap",
     "slug": "symbol-swap",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Symbol Swap — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.907Z"
   },
   {
     "id": "cmeob7j4s004uu5xg52ou6wol",
     "name": "Symbol Upgrade",
     "slug": "symbol-upgrade",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Symbol Upgrade — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.914Z"
   },
   {
     "id": "cmeob7j4s004vu5xgeym6vokd",
     "name": "Synchronizing Reels",
     "slug": "synchronizing-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Synchronizing Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.921Z"
   },
   {
     "id": "cmeob7j4s004wu5xgnd5jrey7",
     "name": "Temple",
     "slug": "temple",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Temple — захватывающие приключения в поисках сокровищ и артефактов",
+    "color": "#D97706",
+    "icon": "🗺️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.927Z"
   },
   {
     "id": "cmeob7j4s004xu5xgqsco1606",
     "name": "Tiki",
     "slug": "tiki",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Tiki — морские приключения с пиратами и подводными сокровищами",
+    "color": "#0891B2",
+    "icon": "🏴‍☠️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.934Z"
   },
   {
     "id": "cmeob7j4s004yu5xggtzfy015",
     "name": "TNT",
     "slug": "tnt",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты TNT — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.941Z"
   },
   {
     "id": "cmeob7j4s004zu5xg7uks2ze0",
     "name": "Totem",
     "slug": "totem",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Totem — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.947Z"
   },
   {
     "id": "cmeob7j4s0050u5xgzhyaqlmq",
     "name": "Trailing Wilds",
     "slug": "trailing-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Trailing Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.953Z"
   },
   {
     "id": "cmeob7j4s0051u5xg9chldfb5",
     "name": "Transforming Symbols",
     "slug": "transforming-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Transforming Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.961Z"
   },
   {
     "id": "cmeob7j4s0052u5xg6s5veblf",
     "name": "Treasures",
     "slug": "treasures",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Treasures — захватывающие приключения в поисках сокровищ и артефактов",
+    "color": "#D97706",
+    "icon": "🗺️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.968Z"
   },
   {
     "id": "cmeob7j4s0053u5xglv6dd6ec",
     "name": "Trolls",
     "slug": "trolls",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Trolls — волшебные миры с магическими бонусами и заклинаниями",
+    "color": "#8B5CF6",
+    "icon": "🧙",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.975Z"
   },
   {
     "id": "cmeob7j4s0054u5xgg2i65ngj",
     "name": "Vampires",
     "slug": "vampires",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Vampires — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.981Z"
   },
   {
     "id": "cmeob7j4s0055u5xgqqye5axg",
     "name": "Vikings",
     "slug": "vikings",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты в стиле Vikings — погрузитесь в атмосферу древних цивилизаций с уникальными символами и бонусами",
+    "color": "#C9A227",
+    "icon": "🏛️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.987Z"
   },
   {
     "id": "cmeob7j4s0056u5xgujtly77p",
     "name": "Walking Symbols",
     "slug": "walking-symbols",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Walking Symbols — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:33.994Z"
   },
   {
     "id": "cmeob7j4s0057u5xga080s58t",
     "name": "Walking Wilds",
     "slug": "walking-wilds",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Walking Wilds — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.923Z"
+    "updated_at": "2026-01-23T17:55:34.000Z"
   },
   {
     "id": "cmeob7j4s0058u5xgbbvy3q90",
     "name": "Warriors",
     "slug": "warriors",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Warriors — эпические битвы и героические сражения",
+    "color": "#78716C",
+    "icon": "⚔️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.007Z"
   },
   {
     "id": "cmeob7j4s0059u5xgwisqwc5n",
     "name": "Water",
     "slug": "water",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Water — красота природы и сила стихий",
+    "color": "#22C55E",
+    "icon": "🌿",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.013Z"
   },
   {
     "id": "cmeob7j4s005au5xgz5jnrwrs",
     "name": "Wild Nudge",
     "slug": "wild-nudge",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Wild Nudge — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.022Z"
   },
   {
     "id": "cmeob7j4s005bu5xg2it5m5yc",
     "name": "Wild Reels",
     "slug": "wild-reels",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Wild Reels — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.028Z"
   },
   {
     "id": "cmeob7j4s005cu5xgvf4wakgp",
     "name": "Wild West",
     "slug": "wild-west",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Wild West — атмосфера Дикого Запада с ковбоями и золотой лихорадкой",
+    "color": "#A16207",
+    "icon": "🤠",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.035Z"
   },
   {
     "id": "cmeob7j4s005du5xggmng29zb",
     "name": "Win Both Ways",
     "slug": "win-both-ways",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Win Both Ways — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2026-01-22T20:49:53.929Z"
+    "updated_at": "2026-01-23T17:55:34.042Z"
   },
   {
     "id": "cmeob7j4s005eu5xgomtae0db",
     "name": "Winter",
     "slug": "winter",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Winter — праздничное настроение с тематическими бонусами",
+    "color": "#DC2626",
+    "icon": "🎄",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.048Z"
   },
   {
     "id": "cmeob7j4s005fu5xg6jzs6a46",
     "name": "Wolf",
     "slug": "wolf",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты с тематикой Wolf — дикая природа и экзотические животные на барабанах",
+    "color": "#059669",
+    "icon": "🦁",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.055Z"
   },
   {
     "id": "cmeob7j4s005gu5xg44wkluim",
@@ -2359,9 +2359,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.062Z"
   },
   {
     "id": "cmeob7j4s005hu5xghgjsrx5l",
@@ -2371,21 +2371,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.068Z"
   },
   {
     "id": "cmeob7j4s005iu5xgtt2rr83x",
     "name": "Zombies",
     "slug": "zombies",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Zombies — жуткие приключения с монстрами и потусторонними силами",
+    "color": "#991B1B",
+    "icon": "👻",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.075Z"
   },
   {
     "id": "cmeob7j4s005ju5xgmouzl22s",
@@ -2395,21 +2395,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.082Z"
   },
   {
     "id": "cmeob7j4s005ku5xgm3hrdkxp",
     "name": "Bonus",
     "slug": "bonus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Bonus — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.089Z"
   },
   {
     "id": "cmeob7j4s005lu5xgbn1b0lv1",
@@ -2419,9 +2419,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.096Z"
   },
   {
     "id": "cmeob7j4s005mu5xgte0c1wvd",
@@ -2431,33 +2431,33 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.103Z"
   },
   {
     "id": "cmeob7j4s005nu5xgumecaixu",
     "name": "gem",
     "slug": "gem",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты gem — роскошь, драгоценности и большие выигрыши",
+    "color": "#F59E0B",
+    "icon": "💎",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.110Z"
   },
   {
     "id": "cmeob7j4s005ou5xge4j47yam",
     "name": "gol",
     "slug": "gol",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты gol — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.118Z"
   },
   {
     "id": "cmeob7j4s005pu5xgcr4yrccy",
@@ -2467,9 +2467,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.124Z"
   },
   {
     "id": "cmeob7j4s005qu5xgamzgyphr",
@@ -2479,9 +2479,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.131Z"
   },
   {
     "id": "cmeob7j4s005ru5xgkt2h82cm",
@@ -2491,9 +2491,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.138Z"
   },
   {
     "id": "cmeob7j4s005su5xgh5cfmm8q",
@@ -2503,9 +2503,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.144Z"
   },
   {
     "id": "cmeob7j4s005tu5xgq87jbng2",
@@ -2515,9 +2515,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.150Z"
   },
   {
     "id": "cmeob7j4s005uu5xg4ebi8atd",
@@ -2527,21 +2527,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.157Z"
   },
   {
     "id": "cmeob7j4s005vu5xgo1fn57ei",
     "name": "ni",
     "slug": "ni",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты ni — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.163Z"
   },
   {
     "id": "cmeob7j4s005wu5xgoetinnp1",
@@ -2551,9 +2551,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.169Z"
   },
   {
     "id": "cmeob7j4s005xu5xg6bughb6z",
@@ -2563,33 +2563,33 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.175Z"
   },
   {
     "id": "cmeob7j4s005yu5xg6t8m6k43",
     "name": "Odin",
     "slug": "odin",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Odin — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.183Z"
   },
   {
     "id": "cmeob7j4s005zu5xgeujuf0gk",
     "name": "Poseidon",
     "slug": "poseidon",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Poseidon — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.190Z"
   },
   {
     "id": "cmeob7j4s0060u5xg5uxh2je2",
@@ -2599,21 +2599,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.196Z"
   },
   {
     "id": "cmeob7j4s0061u5xg95awk4uv",
     "name": "Queen",
     "slug": "queen",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Queen — эпические битвы и героические сражения",
+    "color": "#78716C",
+    "icon": "⚔️",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.202Z"
   },
   {
     "id": "cmeob7j4s0062u5xg370ebm60",
@@ -2623,9 +2623,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.208Z"
   },
   {
     "id": "cmeob7j4s0063u5xgrfm5936z",
@@ -2635,21 +2635,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.214Z"
   },
   {
     "id": "cmeob7j4s0064u5xg9yyn4pto",
     "name": "Thor",
     "slug": "thor",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Thor — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.220Z"
   },
   {
     "id": "cmeob7j4s0065u5xgsqdpjjdq",
@@ -2659,21 +2659,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.226Z"
   },
   {
     "id": "cmeob7j4s0066u5xgyep3f5hf",
     "name": "Voodoo",
     "slug": "voodoo",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Voodoo — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.233Z"
   },
   {
     "id": "cmeob7j4s0067u5xgi1s63nvp",
@@ -2683,9 +2683,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.241Z"
   },
   {
     "id": "cmeob7j4s0068u5xgb3wu931k",
@@ -2695,9 +2695,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.247Z"
   },
   {
     "id": "cmeob7j4s0069u5xggkxrcqxt",
@@ -2707,9 +2707,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.253Z"
   },
   {
     "id": "cmeob7j4s006au5xgpw6f3qie",
@@ -2719,21 +2719,21 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.260Z"
   },
   {
     "id": "cmeob7j4s006bu5xgsjsijgov",
     "name": "WowPot",
     "slug": "wowpot",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты WowPot — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.267Z"
   },
   {
     "id": "cmeob7j4s006cu5xgcnnroaz8",
@@ -2743,9 +2743,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.273Z"
   },
   {
     "id": "cmeob7j4s006du5xgteg21lin",
@@ -2755,9 +2755,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.280Z"
   },
   {
     "id": "cmeob7j4s006eu5xgisod2ei2",
@@ -2767,9 +2767,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.286Z"
   },
   {
     "id": "cmeob7j4s006fu5xgbew71tx0",
@@ -2779,9 +2779,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.293Z"
   },
   {
     "id": "cmeob7j4s006gu5xgbhtnww7u",
@@ -2791,9 +2791,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.302Z"
   },
   {
     "id": "cmeob7j4s006hu5xg6kqem233",
@@ -2803,9 +2803,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.308Z"
   },
   {
     "id": "cmeob7j4s006iu5xgrq1h2v7p",
@@ -2815,9 +2815,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.314Z"
   },
   {
     "id": "cmeob7j4s006ju5xgjw1voffn",
@@ -2827,9 +2827,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.321Z"
   },
   {
     "id": "cmeob7j4s006ku5xgrw9ex81b",
@@ -2839,9 +2839,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.327Z"
   },
   {
     "id": "cmeob7j4s006lu5xgfpfaq359",
@@ -2851,9 +2851,9 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.334Z"
   },
   {
     "id": "cmeob7j4s006mu5xgwhmvc5yq",
@@ -2863,32 +2863,32 @@
     "color": null,
     "icon": null,
     "is_featured": false,
-    "is_active": true,
+    "is_active": false,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.340Z"
   },
   {
     "id": "cmeob7j4s006nu5xg02cpieh3",
     "name": "Zeus",
     "slug": "zeus",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Zeus — легендарные игры с богами и мифическими существами",
+    "color": "#7C3AED",
+    "icon": "⚡",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.347Z"
   },
   {
     "id": "cmeob7j4s006ou5xgqaovc8g6",
     "name": "Zevs",
     "slug": "zevs",
-    "description": null,
-    "color": null,
-    "icon": null,
+    "description": "Слоты Zevs — уникальная тематика с захватывающим геймплеем",
+    "color": "#6366F1",
+    "icon": "🎰",
     "is_featured": false,
     "is_active": true,
     "created_at": "2025-08-23T10:42:58.202Z",
-    "updated_at": "2025-08-23T10:42:58.202Z"
+    "updated_at": "2026-01-23T17:55:34.353Z"
   }
 ]

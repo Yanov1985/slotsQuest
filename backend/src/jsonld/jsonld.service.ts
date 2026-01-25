@@ -597,8 +597,9 @@ export class JsonLdService {
     if (slot.rtp) {
       additionalProperties.push({
         '@type': 'PropertyValue',
-        name: 'RTP',
+        name: 'Return to Player (RTP)',
         value: `${slot.rtp}%`,
+        unitCode: 'P1',
       });
     }
 
@@ -613,14 +614,97 @@ export class JsonLdService {
     if (slot.max_win) {
       additionalProperties.push({
         '@type': 'PropertyValue',
-        name: 'Max Win',
+        name: 'Maximum Win Multiplier',
         value: `${slot.max_win}x`,
+        unitText: 'x bet',
+      });
+    }
+
+    // 🎰 Структура игры
+    if (slot.reels && slot.rows) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Game Layout',
+        value: `${slot.reels}x${slot.rows}`,
+      });
+    }
+
+    if (slot.paylines) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Paylines',
+        value: String(slot.paylines),
+      });
+    }
+
+    // 💰 Ставки
+    if (slot.min_bet) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Minimum Bet',
+        value: String(slot.min_bet),
+        unitCode: 'currency',
+      });
+    }
+
+    if (slot.max_bet) {
+      additionalProperties.push({
+        '@type': 'PropertyValue',
+        name: 'Maximum Bet',
+        value: String(slot.max_bet),
+        unitCode: 'currency',
       });
     }
 
     // Добавляем дополнительные свойства если есть
     if (additionalProperties.length > 0) {
       (schema as any).additionalProperty = additionalProperties;
+    }
+
+    // 🎮 SEO: potentialAction для кнопок Demo и Real Money
+    const potentialActions: any[] = [];
+
+    // PlayAction для Demo кнопки (бесплатная игра)
+    if (slot.demo_url || slot.is_demo_available) {
+      potentialActions.push({
+        '@type': 'PlayAction',
+        name: 'Play Free Demo',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: slot.demo_url || `${this.baseUrl}/slots/${slot.slug}/demo`,
+          actionPlatform: [
+            'https://schema.org/DesktopWebPlatform',
+            'https://schema.org/MobileWebPlatform',
+            'https://schema.org/IOSPlatform',
+            'https://schema.org/AndroidPlatform',
+          ],
+        },
+        actionStatus: 'https://schema.org/PotentialActionStatus',
+        description: `Play ${slot.name} slot for free in demo mode without registration`,
+      });
+    }
+
+    // ViewAction для Real Money кнопки (ссылка на казино)
+    if (slot.real_play_url) {
+      potentialActions.push({
+        '@type': 'ViewAction',
+        name: 'Play for Real Money',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: slot.real_play_url,
+          actionPlatform: [
+            'https://schema.org/DesktopWebPlatform',
+            'https://schema.org/MobileWebPlatform',
+          ],
+        },
+        actionStatus: 'https://schema.org/PotentialActionStatus',
+        description: `Play ${slot.name} slot for real money at licensed casino`,
+      });
+    }
+
+    // Добавляем potentialAction если есть действия
+    if (potentialActions.length > 0) {
+      (schema as any).potentialAction = potentialActions;
     }
 
     return schema;

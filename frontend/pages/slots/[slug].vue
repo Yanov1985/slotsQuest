@@ -291,123 +291,206 @@
                       ></span>
                     </p>
 
-                    <!-- 📊 Характеристики с Schema.org microdata - улучшенный дизайн -->
-                    <div
+                    <!-- 📊 Характеристики с Schema.org microdata - полная SEO оптимизация -->
+                    <section
                       class="flex flex-wrap items-center gap-2 xs:gap-3 sm:gap-4 pt-1 xs:pt-2"
-                      v-if="slot.rtp || slot.volatility || slot.min_bet"
+                      v-if="slot.rtp || slot.volatility || slot.min_bet || slot.max_win || slot.reels || slot.paylines"
+                      role="region"
+                      aria-label="Game specifications and technical characteristics"
+                      itemscope
+                      itemtype="https://schema.org/PropertyValueSpecification"
                     >
-                      <!-- 🎯 SEO: RTP как PropertyValue -->
+                      <!-- 🎯 SEO: RTP (Return to Player) -->
                       <span
                         v-if="slot.rtp"
-                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
-                        itemprop="gameFeature"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Return to Player: ${slot.rtp} percent`"
                       >
-                        <meta itemprop="name" content="RTP" />
+                        <meta itemprop="name" content="Return to Player (RTP)" />
                         <meta itemprop="value" :content="String(slot.rtp)" />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">RTP:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-emerald-400" itemprop="value"
-                          >{{ slot.rtp }}%</span
-                        >
+                        <meta itemprop="unitCode" content="P1" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">RTP:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-emerald-400">{{ slot.rtp }}%</span>
                       </span>
 
-                      <!-- 🎯 SEO: Volatility как PropertyValue -->
+                      <!-- 🎯 SEO: Volatility / Variance -->
                       <span
                         v-if="slot.volatility"
-                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
-                        itemprop="gameFeature"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Volatility level: ${slot.volatility}`"
                       >
                         <meta itemprop="name" content="Volatility" />
                         <meta itemprop="value" :content="slot.volatility" />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Vol:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-sky-400 capitalize" itemprop="value">{{
-                          slot.volatility
-                        }}</span>
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">Vol:</span>
+                        <span
+                          class="text-xs xs:text-sm sm:text-base font-bold capitalize"
+                          :class="{
+                            'text-green-400': slot.volatility?.toLowerCase() === 'low',
+                            'text-yellow-400': slot.volatility?.toLowerCase() === 'medium',
+                            'text-orange-400': slot.volatility?.toLowerCase() === 'medium-high',
+                            'text-red-400': slot.volatility?.toLowerCase() === 'high',
+                            'text-sky-400': !['low', 'medium', 'medium-high', 'high'].includes(slot.volatility?.toLowerCase())
+                          }"
+                        >{{ slot.volatility }}</span>
                       </span>
 
-                      <!-- 🎯 SEO: Min Bet как PropertyValue -->
+                      <!-- 🎯 SEO: Max Win (ключевой показатель!) -->
                       <span
-                        v-if="slot.min_bet"
-                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20"
-                        itemprop="gameFeature"
+                        v-if="slot.max_win"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm rounded-md xs:rounded-lg border border-yellow-400/30 hover:from-yellow-500/30 hover:to-orange-500/30 transition-all"
+                        itemprop="additionalProperty"
                         itemscope
                         itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Maximum win: ${formatMaxWin(slot.max_win)} times your bet`"
                       >
-                        <meta itemprop="name" content="Min Bet" />
-                        <meta
-                          itemprop="value"
-                          :content="String(slot.min_bet)"
-                        />
-                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70">Min:</span>
-                        <span class="text-xs xs:text-sm sm:text-base font-bold text-amber-400" itemprop="value">{{
-                          slot.min_bet
-                        }}</span>
+                        <meta itemprop="name" content="Maximum Win Multiplier" />
+                        <meta itemprop="value" :content="String(slot.max_win)" />
+                        <meta itemprop="unitText" content="x bet" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-yellow-300/80" aria-hidden="true">Max:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-yellow-400">{{ formatMaxWin(slot.max_win) }}x</span>
                       </span>
-                    </div>
+
+                      <!-- 🎯 SEO: Game Layout (Reels × Rows) -->
+                      <span
+                        v-if="slot.reels && slot.rows"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Game layout: ${slot.reels} reels by ${slot.rows} rows`"
+                      >
+                        <meta itemprop="name" content="Game Layout" />
+                        <meta itemprop="value" :content="`${slot.reels}x${slot.rows}`" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">Layout:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-purple-400">{{ slot.reels }}×{{ slot.rows }}</span>
+                      </span>
+
+                      <!-- 🎯 SEO: Paylines / Ways -->
+                      <span
+                        v-if="slot.paylines"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`${formatPaylines(slot.paylines)} pay lines or ways to win`"
+                      >
+                        <meta itemprop="name" content="Paylines" />
+                        <meta itemprop="value" :content="String(slot.paylines)" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">Lines:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-cyan-400">{{ formatPaylines(slot.paylines) }}</span>
+                      </span>
+
+                      <!-- 🎯 SEO: Min Bet -->
+                      <span
+                        v-if="slot.min_bet"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Minimum bet: ${slot.min_bet} currency units`"
+                      >
+                        <meta itemprop="name" content="Minimum Bet" />
+                        <meta itemprop="value" :content="String(slot.min_bet)" />
+                        <meta itemprop="unitCode" content="currency" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">Min:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-amber-400">{{ slot.min_bet }}</span>
+                      </span>
+
+                      <!-- 🎯 SEO: Max Bet (если есть) -->
+                      <span
+                        v-if="slot.max_bet"
+                        class="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-2.5 sm:px-3 py-1 xs:py-1.5 bg-white/10 backdrop-blur-sm rounded-md xs:rounded-lg border border-white/20 hover:bg-white/15 transition-colors"
+                        itemprop="additionalProperty"
+                        itemscope
+                        itemtype="https://schema.org/PropertyValue"
+                        role="listitem"
+                        :aria-label="`Maximum bet: ${slot.max_bet} currency units`"
+                      >
+                        <meta itemprop="name" content="Maximum Bet" />
+                        <meta itemprop="value" :content="String(slot.max_bet)" />
+                        <meta itemprop="unitCode" content="currency" />
+                        <span class="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70" aria-hidden="true">Max Bet:</span>
+                        <span class="text-xs xs:text-sm sm:text-base font-bold text-rose-400">{{ slot.max_bet }}</span>
+                      </span>
+                    </section>
                   </div>
                 </section>
 
-                <!-- Rating and voting (mobile version) -->
+                <!-- Rating and voting (mobile version) - полностью динамическое -->
                 <div
-                  class="flex flex-wrap items-center gap-6 mb-8 lg:hidden"
+                  class="flex flex-wrap items-center gap-4 mb-8 lg:hidden"
                   role="group"
-                  aria-label="Rating and voting"
+                  aria-label="Rating, popularity and voting"
                   itemprop="aggregateRating"
                   itemscope
                   itemtype="https://schema.org/AggregateRating"
                 >
-                  <!-- 🎯 SEO: Meta-теги для Google Rich Snippets (звёздочки в поиске!) -->
-                  <meta
-                    itemprop="ratingValue"
-                    :content="String(slot.rating || 4.8)"
-                  />
+                  <!-- 🎯 SEO: Meta-теги для Google Rich Snippets -->
+                  <meta itemprop="ratingValue" :content="String(slot.rating || 4.5)" />
                   <meta itemprop="bestRating" content="5" />
-                  <meta
-                    itemprop="ratingCount"
-                    :content="String(slot.reviews_count || 1247)"
-                  />
                   <meta itemprop="worstRating" content="1" />
+                  <meta itemprop="ratingCount" :content="String(slot.reviews_count || 100)" />
+                  <meta itemprop="reviewCount" :content="String(slot.reviews_count || 100)" />
 
-                  <!-- Current rating -->
-                  <div class="flex items-center gap-2">
-                    <div
-                      class="flex text-yellow-400"
-                      aria-label="Rating 4.8 out of 5 stars"
-                    >
+                  <!-- 🎯 SEO: itemReviewed - связь рейтинга с игрой -->
+                  <span itemprop="itemReviewed" itemscope itemtype="https://schema.org/Game" class="hidden">
+                    <meta itemprop="name" :content="slot.name" />
+                    <link itemprop="url" :href="`https://slotquest.com/slots/${slot.slug}`" />
+                  </span>
+
+                  <!-- Current rating - динамическое -->
+                  <div
+                    class="flex items-center gap-2"
+                    :aria-label="`Rating ${slot.rating || 4.5} out of 5 stars`"
+                  >
+                    <!-- Динамические звёзды -->
+                    <div class="flex text-yellow-400" aria-hidden="true">
                       <svg
                         v-for="n in 5"
                         :key="n"
-                        class="w-7 h-7 lg:w-6 lg:h-6 drop-shadow-lg"
-                        :class="n <= 4 ? 'text-yellow-400' : 'text-gray-400'"
+                        class="w-6 h-6 xs:w-7 xs:h-7 drop-shadow-lg"
+                        :class="n <= Math.round(slot.rating || 4.5) ? 'text-yellow-400' : 'text-gray-400'"
                         fill="currentColor"
                         viewBox="0 0 20 20"
-                        :aria-hidden="true"
                       >
                         <path
                           d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                         />
                       </svg>
                     </div>
-                    <span
-                      class="text-white font-bold text-lg"
-                      itemprop="ratingValue"
-                      >{{ slot.rating || 4.8 }}</span
-                    >
-                    <span class="text-white/60">/ 5</span>
+                    <span class="text-white font-bold text-lg">{{ slot.rating || 4.5 }}</span>
+                    <span class="text-white/50 text-sm">({{ formatNumber(slot.reviews_count || 100) }})</span>
+                  </div>
+
+                  <!-- 🔥 Popularity (mobile) -->
+                  <div
+                    v-if="slot.play_count && slot.play_count > 100"
+                    class="flex items-center gap-1.5 px-2.5 py-1 bg-orange-500/20 rounded-full border border-orange-400/30"
+                  >
+                    <span class="text-xs font-bold text-orange-300">🔥 {{ formatNumber(slot.play_count) }}</span>
                   </div>
 
                   <!-- Vote button -->
                   <button
-                    class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
+                    class="px-3 py-1.5 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
                     @click="toggleRatingPicker"
                     :aria-expanded="showRatingPicker"
                     aria-controls="rating-picker"
                     type="button"
                   >
-                    Vote!
+                    ⭐ Rate
                   </button>
                 </div>
 
@@ -656,63 +739,76 @@
                     {{ slot.name || 'Слот' }}
                   </h1>
 
-                  <!-- Rating and voting (desktop) -->
+                  <!-- Rating and voting (desktop) - полностью динамическое с Schema.org -->
                   <section
                     class="flex flex-wrap items-center gap-6 mb-8"
                     role="group"
-                    aria-label="Rating and voting"
-                    :data-rating-value="4.8"
-                    :data-rating-count="1247"
-                    :data-best-rating="5"
-                    :data-worst-rating="1"
+                    aria-label="Rating, popularity and voting"
+                    itemprop="aggregateRating"
+                    itemscope
+                    itemtype="https://schema.org/AggregateRating"
                   >
-                    <!-- Current rating -->
+                    <!-- 🎯 SEO: Meta-теги для Google Rich Snippets -->
+                    <meta itemprop="ratingValue" :content="String(slot.rating || 4.5)" />
+                    <meta itemprop="bestRating" content="5" />
+                    <meta itemprop="worstRating" content="1" />
+                    <meta itemprop="ratingCount" :content="String(slot.reviews_count || 100)" />
+                    <meta itemprop="reviewCount" :content="String(slot.reviews_count || 100)" />
+
+                    <!-- 🎯 SEO: itemReviewed - связь рейтинга с игрой -->
+                    <span itemprop="itemReviewed" itemscope itemtype="https://schema.org/Game" class="hidden">
+                      <meta itemprop="name" :content="slot.name" />
+                      <link itemprop="url" :href="`https://slotquest.com/slots/${slot.slug}`" />
+                    </span>
+
+                    <!-- Current rating - динамическое -->
                     <div
                       class="flex items-center gap-2"
                       role="img"
-                      :aria-label="`Rating ${4.8} из ${5} stars на основе ${1247} reviews`"
-                      :data-rating="4.8"
-                      :data-max-rating="5"
-                      :data-review-count="1247"
+                      :aria-label="`Rating ${slot.rating || 4.5} out of 5 stars based on ${slot.reviews_count || 100} reviews`"
                     >
+                      <!-- Динамические звёзды -->
                       <div
                         class="flex text-yellow-400"
                         role="presentation"
                         aria-hidden="true"
-                        :title="`${4.8} stars из ${5}`"
+                        :title="`${slot.rating || 4.5} stars out of 5`"
                       >
                         <svg
                           v-for="n in 5"
                           :key="n"
                           class="w-6 h-6 drop-shadow-lg transition-colors duration-200"
-                          :class="n <= 4 ? 'text-yellow-400' : 'text-gray-400'"
+                          :class="n <= Math.round(slot.rating || 4.5) ? 'text-yellow-400' : 'text-gray-400'"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           aria-hidden="true"
-                          :data-star-number="n"
-                          :data-star-filled="n <= 4"
-                          role="presentation"
                         >
                           <path
                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                           />
                         </svg>
                       </div>
-                      <span
-                        class="text-white font-bold text-lg"
-                        aria-label="Rating 4.8"
-                        >4.8</span
-                      >
-                      <span class="text-white/60" aria-label="из 5 максимум">
-                        / <span aria-label="максимальный рейтинг">5</span>
-                      </span>
+                      <span class="text-white font-bold text-lg">{{ slot.rating || 4.5 }}</span>
+                      <span class="text-white/60">/ 5</span>
                       <span
                         class="text-white/40 text-sm ml-2"
-                        aria-label="количество reviews"
-                        :title="`Based on ${1247} отзывах users`"
+                        :title="`Based on ${slot.reviews_count || 100} user reviews`"
                       >
-                        ({{ 1247 }} reviews)
+                        ({{ formatNumber(slot.reviews_count || 100) }} reviews)
                       </span>
+                    </div>
+
+                    <!-- 🔥 Popularity indicator (если есть play_count) -->
+                    <div
+                      v-if="slot.play_count && slot.play_count > 0"
+                      class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full border border-orange-400/30"
+                      role="status"
+                      :aria-label="`Played ${formatNumber(slot.play_count)} times`"
+                    >
+                      <svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-sm font-bold text-orange-300">{{ formatNumber(slot.play_count) }} plays</span>
                     </div>
 
                     <!-- Vote button -->
@@ -722,15 +818,10 @@
                       :aria-expanded="showRatingPicker"
                       aria-controls="rating-picker-desktop"
                       type="button"
-                      :aria-label="`Проголосовать за slot ${slot?.name || 'игру'}`"
-                      :title="`Оценить ${slot?.name || 'игру'} - текущий рейтинг ${4.8}/5`"
-                      role="button"
-                      :data-action-type="'vote'"
-                      :data-target-item="slot?.name"
-                      :data-current-rating="4.8"
-                      :data-vote-count="1247"
+                      :aria-label="`Rate ${slot?.name || 'this slot'} - current rating ${slot.rating || 4.5}/5`"
+                      :title="`Rate ${slot?.name || 'this slot'}`"
                     >
-                      <span role="presentation" aria-hidden="true">Vote!</span>
+                      <span aria-hidden="true">⭐ Rate</span>
                     </button>
                   </section>
 
@@ -908,7 +999,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Demo slot</span
+                          >Play Free Demo</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
@@ -952,7 +1043,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Demo Slot</span
+                          >Play Free Demo</span
                         >
                         <span
                           class="relative z-10 bg-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg"
@@ -1007,7 +1098,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Real Slot</span
+                          >Play for Real Money</span
                         >
                         <span
                           class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
@@ -1038,7 +1129,7 @@
                         </svg>
                         <span
                           class="relative z-10 whitespace-nowrap font-extrabold tracking-wide"
-                          >Real Slot</span
+                          >Play for Real Money</span
                         >
                         <span
                           class="relative z-10 bg-orange-500/30 text-xs px-3 py-1 rounded-full font-bold border border-orange-400/50 shadow-lg"
@@ -7435,6 +7526,51 @@ const generateHreflangLinks = (slot) => {
   })
 
   return links
+}
+
+/**
+ * 🎰 Форматирование Max Win для отображения
+ * Преобразует большие числа: 10000 → 10,000
+ */
+const formatMaxWin = (maxWin) => {
+  if (!maxWin) return '0'
+  const num = Number(maxWin)
+  if (num >= 1000) {
+    return num.toLocaleString('en-US')
+  }
+  return String(num)
+}
+
+/**
+ * 📊 Форматирование Paylines для отображения
+ * Большие числа как "243 Ways" или "Megaways"
+ */
+const formatPaylines = (paylines) => {
+  if (!paylines) return '0'
+  const num = Number(paylines)
+  if (num >= 100000) {
+    return 'Megaways'
+  }
+  if (num >= 1000) {
+    return num.toLocaleString('en-US')
+  }
+  return String(num)
+}
+
+/**
+ * 📈 Форматирование больших чисел
+ * 1000 → 1K, 1000000 → 1M для компактного отображения
+ */
+const formatNumber = (num) => {
+  if (!num) return '0'
+  const n = Number(num)
+  if (n >= 1000000) {
+    return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M'
+  }
+  if (n >= 1000) {
+    return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
+  }
+  return n.toLocaleString('en-US')
 }
 
 const generateSEODescription = (slot) => {
