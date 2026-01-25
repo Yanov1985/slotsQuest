@@ -978,9 +978,9 @@
                               v-model="form.volatility"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                             >
-                              <option value="low">Низкая</option>
-                              <option value="medium">Средняя</option>
-                              <option value="high">Высокая</option>
+                            <option value="low">Low</option>
+                              <option value="medium">Medium</option>
+                              <option value="high">High</option>
                             </select>
                           </div>
 

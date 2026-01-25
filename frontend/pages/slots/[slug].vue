@@ -566,11 +566,11 @@
                         type="button"
                         :aria-label="
                           ratingSubmitting
-                            ? 'Отправка оценки'
-                            : 'Отправить оценку'
+                            ? 'Submitting rating'
+                            : 'Submit your rating'
                         "
                       >
-                        {{ ratingSubmitting ? 'Отправка…' : 'Голосовать' }}
+                        {{ ratingSubmitting ? 'Submitting…' : 'Submit' }}
                       </button>
                       <div
                         v-if="ratingSubmitted"
@@ -579,7 +579,7 @@
                         aria-live="polite"
                       >
                         <span aria-hidden="true">✔</span>
-                        <span>Голос учтён</span>
+                        <span>Vote counted!</span>
                       </div>
                     </div>
                   </div>
@@ -896,14 +896,14 @@
                           @click="submitRating"
                           type="button"
                         >
-                          {{ ratingSubmitting ? 'Отправка...' : 'Отправить' }}
+                          {{ ratingSubmitting ? 'Submitting...' : 'Submit' }}
                         </button>
                         <button
                           class="px-4 py-2 rounded-xl text-sm font-bold bg-white/10 hover:bg-white/20 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-white/30"
                           @click="toggleRatingPicker"
                           type="button"
                         >
-                          Отмена
+                          Cancel
                         </button>
                       </div>
                     </div>
@@ -6940,12 +6940,12 @@ const getSlotIcon = (name) => {
 }
 
 const getVolatilityText = (volatility) => {
-  if (!volatility) return 'Высокая'
+  if (!volatility) return 'High'
 
   const vol = volatility.toLowerCase()
-  if (vol.includes('high') || vol === 'высокая') return 'Высокая'
-  if (vol.includes('medium') || vol === 'средняя') return 'Средняя'
-  if (vol.includes('low') || vol === 'низкая') return 'Низкая'
+  if (vol.includes('high') || vol === 'высокая') return 'High'
+  if (vol.includes('medium') || vol === 'средняя') return 'Medium'
+  if (vol.includes('low') || vol === 'низкая') return 'Low'
   return volatility
 }
 

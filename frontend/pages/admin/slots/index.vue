@@ -164,10 +164,10 @@
               v-model="selectedVolatility"
               class="w-full h-12 px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
             >
-              <option value="">Любая</option>
-              <option value="Низкая">Низкая</option>
-              <option value="Средняя">Средняя</option>
-              <option value="Высокая">Высокая</option>
+              <option value="">Any</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
             </select>
           </div>
           <div>
@@ -543,10 +543,10 @@
                   v-model="slotForm.volatility"
                   class="w-full px-4 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-white focus:border-[#FF6E48] focus:outline-none transition-colors"
                 >
-                  <option value="">Не указана</option>
-                  <option value="Низкая">Низкая</option>
-                  <option value="Средняя">Средняя</option>
-                  <option value="Высокая">Высокая</option>
+                <option value="">Not specified</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </select>
               </div>
               <div>
@@ -1039,12 +1039,13 @@ const closeModal = () => {
 }
 
 const getVolatilityClass = (volatility) => {
-  switch (volatility) {
-    case 'Низкая':
+  const vol = volatility?.toLowerCase()
+  switch (vol) {
+    case 'low':
       return 'bg-green-500/20 border border-green-500/30 text-green-400'
-    case 'Средняя':
+    case 'medium':
       return 'bg-yellow-500/20 border border-yellow-500/30 text-yellow-400'
-    case 'Высокая':
+    case 'high':
       return 'bg-red-500/20 border border-red-500/30 text-red-400'
     default:
       return 'bg-gray-500/20 border border-gray-500/30 text-gray-400'
