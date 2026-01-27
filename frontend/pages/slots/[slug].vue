@@ -627,6 +627,7 @@
                         <!-- 🎯 SEO: Метаданные изображения для Google -->
                         <meta itemprop="url" :content="slot.image_url" />
                         <meta itemprop="contentUrl" :content="slot.image_url" />
+                        <meta itemprop="thumbnail" :content="slot.image_url" />
                         <meta
                           itemprop="name"
                           :content="`${slot.name} - Slot Screenshot`"
@@ -639,6 +640,10 @@
                           itemprop="caption"
                           :content="`${slot.name} slot machine gameplay`"
                         />
+                        <!-- 🎯 SEO: Дополнительные метаданные для максимальной оптимизации -->
+                        <meta itemprop="representativeOfPage" content="true" />
+                        <meta itemprop="encodingFormat" :content="getImageFormat(slot.image_url)" />
+                        <meta itemprop="uploadDate" :content="slot.created_at || new Date().toISOString()" />
                         <meta itemprop="width" content="1200" />
                         <meta itemprop="height" content="630" />
 
@@ -6971,6 +6976,21 @@ const getSlotIcon = (name) => {
     return '⚡'
   }
   return '🎰'
+}
+
+/**
+ * 🎯 SEO: Определение формата изображения по URL
+ * Возвращает MIME тип для Schema.org encodingFormat
+ */
+const getImageFormat = (url) => {
+  if (!url) return 'image/jpeg'
+  const lower = url.toLowerCase()
+  if (lower.includes('.webp')) return 'image/webp'
+  if (lower.includes('.png')) return 'image/png'
+  if (lower.includes('.gif')) return 'image/gif'
+  if (lower.includes('.svg')) return 'image/svg+xml'
+  if (lower.includes('.avif')) return 'image/avif'
+  return 'image/jpeg'
 }
 
 const getVolatilityText = (volatility) => {
