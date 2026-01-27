@@ -485,6 +485,58 @@ export class JsonLdService {
   }
 
   // ==========================================================================
+  // 🛠️ ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ДЛЯ ОБРАБОТКИ ТЕКСТА
+  // ==========================================================================
+
+  /**
+   * 🔄 Обработка описания с заменой ключевых слов
+   *
+   * Заменяет [keyword_1], [keyword_2], [keyword_3] на значения из слота.
+   * Удаляет HTML теги (JSON-LD не поддерживает HTML).
+   *
+   * @param slot - Объект слота с hero_keyword, hero_keyword_2, hero_keyword_3
+   * @returns Обработанное описание без HTML и с замененными переменными
+   */
+  private processDescription(slot: any): string | null {
+    if (!slot?.description) return null;
+
+    let result = slot.description;
+
+    // 🔑 Замена [keyword_1] на hero_keyword
+    if (slot.hero_keyword) {
+      result = result.replace(/\[keyword_1\]/g, slot.hero_keyword);
+    }
+
+    // 🔑 Замена [keyword_2] на hero_keyword_2
+    if (slot.hero_keyword_2) {
+      result = result.replace(/\[keyword_2\]/g, slot.hero_keyword_2);
+    }
+
+    // 🔑 Замена [keyword_3] на hero_keyword_3
+    if (slot.hero_keyword_3) {
+      result = result.replace(/\[keyword_3\]/g, slot.hero_keyword_3);
+    }
+
+    // 🧹 Удаление оставшихся незамененных переменных
+    result = result.replace(/\[keyword_\d\]/g, '');
+
+    // 🧹 Удаление HTML тегов (JSON-LD не поддерживает HTML)
+    result = this.stripHtmlTags(result);
+
+    // 🧹 Нормализация пробелов
+    result = result.replace(/\s+/g, ' ').trim();
+
+    return result;
+  }
+
+  /**
+   * 🧹 Удаление HTML тегов из текста
+   */
+  private stripHtmlTags(text: string): string {
+    return text.replace(/<[^>]*>/g, '');
+  }
+
+  // ==========================================================================
   // 🏭 МЕТОДЫ ГЕНЕРАЦИИ ОТДЕЛЬНЫХ СХЕМ
   // ==========================================================================
 
@@ -502,9 +554,10 @@ export class JsonLdService {
       url: `${this.baseUrl}/slots/${slot.slug}`,
     };
 
-    // 📝 Описание
-    if (slot.description) {
-      schema.description = slot.description;
+    // 📝 Описание с заменой ключевых слов [keyword_1/2/3]
+    const processedDescription = this.processDescription(slot);
+    if (processedDescription) {
+      schema.description = processedDescription;
     }
 
     // 🖼️ Изображение
@@ -721,7 +774,7 @@ export class JsonLdService {
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: slot.name,
-      description: slot.description || `Играйте в ${slot.name} онлайн`,
+      description: this.processDescription(slot) || `Play ${slot.name} online`,
       image: slot.image_url,
       brand: slot.providers ? {
         '@type': 'Brand',
@@ -774,7 +827,8 @@ export class JsonLdService {
       datePublished: slot.jsonld_review_date
         ? new Date(slot.jsonld_review_date).toISOString().split('T')[0]
         : new Date().toISOString().split('T')[0],
-      reviewBody: slot.jsonld_review_text || slot.description,
+      // 🎯 SEO: reviewBody с замененными ключевыми словами
+      reviewBody: slot.jsonld_review_text || this.processDescription(slot) || `Expert review of ${slot.name} slot game.`,
     };
   }
 

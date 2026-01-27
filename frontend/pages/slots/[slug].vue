@@ -236,15 +236,15 @@
                   tabindex="0"
                   role="heading"
                   aria-level="1"
-                  aria-label="Название slot machine"
+                  :aria-label="`${slot.name || 'Slot'} - Online slot game`"
                   itemprop="name"
                 >
-                  <span class="block sm:inline">{{ slot.name || 'Слот' }}</span>
+                  <span class="block sm:inline" itemprop="headline">{{ slot.name || 'Slot' }}</span>
                   <span
-                    v-if="slot.provider?.name"
+                    v-if="slot.providers?.name"
                     class="block sm:inline text-base sm:text-lg font-medium opacity-90 mt-1 sm:mt-0"
                   >
-                    от <span>{{ slot.provider.name }}</span>
+                    by <span itemprop="creator">{{ slot.providers.name }}</span>
                   </span>
                   <span
                     v-if="slot.rtp"
@@ -264,7 +264,7 @@
                     id="slot-description"
                     class="space-y-2 xs:space-y-2.5 sm:space-y-3"
                     role="text"
-                    aria-label="Подробное описание slot machine с характеристиками"
+                    aria-label="Detailed slot machine description with specifications"
                   >
                     <!-- 🎯 SEO: description с microdata для Google -->
                     <meta
@@ -277,13 +277,6 @@
                       class="text-sm xs:text-base sm:text-lg leading-relaxed xs:leading-relaxed sm:leading-loose text-justify text-white/90 font-normal tracking-wide"
                       style="text-align-last: left; hyphens: auto;"
                     >
-                      <strong class="text-white font-semibold">{{
-                        getSlotNameWithKeyword(slot)
-                      }}</strong>
-                      <span v-if="slot.provider?.name" class="text-white/95">
-                        от <span class="font-medium text-cyan-300/90">{{ slot.provider.name }}</span>
-                      </span>
-                      <span class="text-white/70 mx-1">—</span>
                       <!-- 🎯 SEO: v-html позволяет отображать <strong> теги для выделения keywords -->
                       <span
                         class="text-white/85"
@@ -482,16 +475,26 @@
                     <span class="text-xs font-bold text-orange-300">🔥 {{ formatNumber(slot.play_count) }}</span>
                   </div>
 
-                  <!-- Vote button -->
+                  <!-- Vote button с Schema.org VoteAction -->
                   <button
                     class="px-3 py-1.5 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
                     @click="toggleRatingPicker"
                     :aria-expanded="showRatingPicker"
                     aria-controls="rating-picker"
+                    aria-describedby="vote-description-mobile"
                     type="button"
+                    itemprop="potentialAction"
+                    itemscope
+                    itemtype="https://schema.org/VoteAction"
                   >
+                    <meta itemprop="name" content="Rate this slot game" />
+                    <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus" />
+                    <span itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" class="hidden">
+                      <meta itemprop="urlTemplate" :content="`https://slotquest.com/slots/${slot.slug}#rate`" />
+                    </span>
                     ⭐ Rate
                   </button>
+                  <span id="vote-description-mobile" class="sr-only">Click to rate this slot from 0 to 5 stars</span>
                 </div>
 
                 <!-- Voting panel (mobile version) -->
@@ -691,12 +694,28 @@
 
                 <!-- Правая колонка: провайдер, h1, рейтинг, описание, CTA (desktop) -->
                 <section class="flex-1 min-w-0">
-                  <!-- Provider (desktop) - SEO оптимизированный -->
+                  <!-- Provider (desktop) - SEO оптимизированный с полной Schema.org разметкой -->
                   <section
                     class="flex items-center gap-3 mb-6 flex-wrap"
                     aria-labelledby="provider-label-desktop"
                     role="region"
+                    itemprop="provider"
+                    itemscope
+                    itemtype="https://schema.org/Organization"
                   >
+                    <!-- 🎯 SEO: Meta-теги для Schema.org Organization -->
+                    <meta itemprop="name" :content="slot.providers?.name || 'Pragmatic Play'" />
+                    <link
+                      v-if="slot.providers?.website"
+                      itemprop="url"
+                      :href="slot.providers.website"
+                    />
+                    <link
+                      v-if="slot.providers?.slug"
+                      itemprop="sameAs"
+                      :href="`https://slotquest.com/providers/${slot.providers.slug}`"
+                    />
+
                     <h3 id="provider-label-desktop" class="sr-only">
                       Game Provider Information
                     </h3>
@@ -705,38 +724,28 @@
                       role="contentinfo"
                       aria-label="Game developer and publisher information"
                     >
-                      <span class="font-semibold" title="Game Provider">
+                      <span
+                        class="font-semibold"
+                        title="Game Provider"
+                        itemprop="name"
+                      >
                         {{ slot.providers?.name || 'Pragmatic Play' }}
                       </span>
                     </address>
                   </section>
 
-                  <!-- Главный заголовок (desktop) -->
+                  <!-- Главный заголовок (desktop) - SEO оптимизированный -->
                   <h1
                     class="hidden lg:block text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-6 leading-tight drop-shadow-md transition-all duration-500"
                     style="line-height: 1.3"
                     tabindex="0"
-                    :data-game-name="slot.name"
-                    :data-game-provider="slot.providers?.name"
-                    :data-game-category="slot.slot_categories?.name"
-                    :data-game-rtp="slot.rtp"
-                    :data-game-volatility="slot.volatility"
-                    :data-game-min-bet="slot.min_bet"
-                    :data-game-max-bet="slot.max_bet"
-                    :data-game-max-win="slot.max_win"
-                    :data-game-reels="slot.reels"
-                    :data-game-rows="slot.rows"
-                    :data-game-paylines="slot.paylines"
-                    :data-game-release-date="slot.release_date"
-                    :data-game-mobile="slot.is_mobile_compatible"
-                    :data-game-demo="slot.is_demo_available"
-                    :data-game-rating="slot.rating"
-                    :data-game-play-count="slot.play_count"
                     role="heading"
                     aria-level="1"
+                    :aria-label="`${slot.name || 'Slot'} - Online slot game by ${slot.providers?.name || 'Provider'}`"
                     aria-describedby="game-description"
+                    itemprop="name"
                   >
-                    {{ slot.name || 'Слот' }}
+                    <span itemprop="headline">{{ slot.name || 'Slot' }}</span>
                   </h1>
 
                   <!-- Rating and voting (desktop) - полностью динамическое с Schema.org -->
@@ -811,18 +820,41 @@
                       <span class="text-sm font-bold text-orange-300">{{ formatNumber(slot.play_count) }} plays</span>
                     </div>
 
-                    <!-- Vote button -->
+                    <!-- 📊 InteractionCounter для отзывов -->
+                    <span
+                      itemprop="interactionStatistic"
+                      itemscope
+                      itemtype="https://schema.org/InteractionCounter"
+                      class="hidden"
+                    >
+                      <meta itemprop="interactionType" content="https://schema.org/ReviewAction" />
+                      <meta itemprop="userInteractionCount" :content="String(slot.reviews_count || 100)" />
+                    </span>
+
+                    <!-- Vote button с Schema.org VoteAction -->
                     <button
                       class="px-4 py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30"
                       @click="toggleRatingPicker"
                       :aria-expanded="showRatingPicker"
                       aria-controls="rating-picker-desktop"
+                      aria-describedby="vote-description-desktop"
                       type="button"
                       :aria-label="`Rate ${slot?.name || 'this slot'} - current rating ${slot.rating || 4.5}/5`"
                       :title="`Rate ${slot?.name || 'this slot'}`"
+                      itemprop="potentialAction"
+                      itemscope
+                      itemtype="https://schema.org/VoteAction"
                     >
+                      <meta itemprop="name" content="Rate this slot game" />
+                      <meta itemprop="description" content="Submit your rating from 0 to 5 stars" />
+                      <meta itemprop="actionStatus" content="https://schema.org/PotentialActionStatus" />
+                      <span itemprop="target" itemscope itemtype="https://schema.org/EntryPoint" class="hidden">
+                        <meta itemprop="urlTemplate" :content="`https://slotquest.com/slots/${slot.slug}#rate`" />
+                        <meta itemprop="actionPlatform" content="https://schema.org/DesktopWebPlatform" />
+                      </span>
                       <span aria-hidden="true">⭐ Rate</span>
                     </button>
+                    <span id="vote-description-desktop" class="sr-only">Click to rate this slot from 0 to 5 stars. Your vote affects the overall rating.</span>
                   </section>
 
                   <!-- Voting panel (desktop) -->
@@ -914,16 +946,18 @@
                     class="mb-4 md:mb-5 lg:mb-6"
                     role="region"
                     aria-labelledby="slot-description-desktop"
+                    itemprop="abstract"
                   >
+                    <!-- 🎯 SEO: Meta description для Schema.org -->
+                    <meta itemprop="description" :content="getShortDescription(slot, false)" />
+
                     <p
                       id="slot-description-desktop"
                       class="text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose text-justify text-white/90 font-normal tracking-wide max-w-prose"
                       style="text-align-last: left; hyphens: auto;"
                       role="text"
-                      aria-label="Подробное описание slot machine"
+                      aria-label="Slot game description"
                     >
-                      <strong class="text-white font-semibold">{{ getSlotNameWithKeyword(slot) }}</strong>
-                      <span class="text-white/70 mx-1.5">—</span>
                       <!-- 🎯 SEO: v-html для отображения <strong> тегов вокруг keywords -->
                       <span class="text-white/85" v-html="getShortDescription(slot)"></span>
                     </p>
@@ -7308,10 +7342,20 @@ const replaceKeywordsInText = (text, slot, wrapInStrong = true) => {
 
   console.log('🔄 Замена ключевых слов в тексте:', {
     originalText: text,
+    hero_keyword: slot.hero_keyword,
     hero_keyword_2: slot.hero_keyword_2,
     hero_keyword_3: slot.hero_keyword_3,
     wrapInStrong,
   })
+
+  // Замена [keyword_1] с SEO-выделением в <strong>
+  if (slot.hero_keyword) {
+    const replacement = wrapInStrong
+      ? `<strong>${slot.hero_keyword}</strong>`
+      : slot.hero_keyword
+    result = result.replace(/\[keyword_1\]/g, replacement)
+    console.log('✅ Заменили [keyword_1] на:', replacement)
+  }
 
   // Замена [keyword_2] с SEO-выделением в <strong>
   if (slot.hero_keyword_2) {
