@@ -147,7 +147,7 @@
           class="dark w-full lg:w-[70%] lg:sticky lg:top-0 lg:self-start order-1"
         >
           <AuroraBackground
-            class="!h-auto !min-h-[70vh] sm:!min-h-[80vh] lg:!min-h-screen !flex-col !justify-start !items-stretch"
+            class="!h-auto !min-h-fit sm:!min-h-[60vh] lg:!min-h-screen !flex-col !justify-start !items-stretch"
             :show-radial-gradient="true"
           >
             <article
@@ -191,10 +191,10 @@
               />
 
               <!-- Title and main information -->
-              <header class="mb-8" role="banner">
+              <header class="mb-4 sm:mb-6 lg:mb-8" role="banner">
                 <!-- Provider (mobile version) -->
                 <section
-                  class="flex items-center gap-3 mb-6 flex-wrap lg:hidden"
+                  class="flex items-center gap-3 mb-3 sm:mb-4 flex-wrap lg:hidden"
                   aria-labelledby="provider-label"
                   role="region"
                   itemprop="provider"
@@ -231,7 +231,7 @@
                 <!-- 📱 Главный заголовок - адаптивные размеры для всех устройств -->
                 <h1
                   id="slot-title"
-                  class="text-xl xs:text-2xl sm:text-3xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-2 xs:mb-3 sm:mb-4 leading-tight drop-shadow-md transition-all duration-500 py-1 sm:py-2"
+                  class="text-xl xs:text-2xl sm:text-3xl lg:hidden font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-1 xs:mb-2 sm:mb-3 leading-tight drop-shadow-md transition-all duration-500"
                   style="line-height: 1.3"
                   tabindex="0"
                   role="heading"
@@ -242,13 +242,13 @@
                   <span class="block sm:inline" itemprop="headline">{{ slot.name || 'Slot' }}</span>
                   <span
                     v-if="slot.providers?.name"
-                    class="block sm:inline text-base sm:text-lg font-medium opacity-90 mt-1 sm:mt-0"
+                    class="block sm:inline text-base sm:text-lg font-medium opacity-90"
                   >
                     by <span itemprop="creator">{{ slot.providers.name }}</span>
                   </span>
                   <span
                     v-if="slot.rtp"
-                    class="block sm:inline text-sm sm:text-base font-normal opacity-80 mt-1 sm:mt-0"
+                    class="block sm:inline text-sm sm:text-base font-normal opacity-80"
                   >
                     • RTP <span>{{ slot.rtp }}%</span>
                   </span>
@@ -256,13 +256,13 @@
 
                 <!-- 📱 Slot description (mobile version) - Полностью адаптивное -->
                 <section
-                  class="lg:hidden mb-4 xs:mb-5 sm:mb-6"
+                  class="lg:hidden mb-2 xs:mb-3 sm:mb-4"
                   role="region"
                   aria-labelledby="slot-description"
                 >
                   <div
                     id="slot-description"
-                    class="space-y-2 xs:space-y-2.5 sm:space-y-3"
+                    class="space-y-1.5 xs:space-y-2 sm:space-y-2.5"
                     role="text"
                     aria-label="Detailed slot machine description with specifications"
                   >
@@ -423,7 +423,7 @@
 
                 <!-- Rating and voting (mobile version) - полностью динамическое -->
                 <div
-                  class="flex flex-wrap items-center gap-4 mb-8 lg:hidden"
+                  class="flex flex-wrap items-center gap-4 mb-4 lg:hidden"
                   role="group"
                   aria-label="Rating, popularity and voting"
                   itemprop="aggregateRating"
@@ -651,6 +651,7 @@
                           :src="slot.image_url"
                           :alt="`${slot.name} - Slot Screenshot | ${slot.providers?.name || 'Provider'} | Play Free Demo`"
                           class="w-full h-full object-cover"
+                          :style="`object-position: ${slot.image_focus_point || 'center 20%'}`"
                           loading="eager"
                           decoding="async"
                           fetchpriority="high"
@@ -1184,7 +1185,7 @@
 
               <!-- 📱 Игровой экран - адаптивный для всех устройств -->
               <div
-                class="lg:hidden aspect-video bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-xl sm:rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-4 sm:mb-6 md:mb-8 relative overflow-hidden group"
+                class="lg:hidden aspect-[4/3] sm:aspect-[3/2] bg-gradient-to-br from-black/40 via-purple-900/30 to-black/40 rounded-xl sm:rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center mb-4 sm:mb-6 md:mb-8 relative overflow-hidden group"
                 role="img"
                 :aria-label="`Game preview ${slot.name || 'slot'}`"
                 :data-media-type="slot.media_type"
@@ -1207,9 +1208,10 @@
                 >
                   <img
                     :src="slot.image_url"
-                    :alt="`Изображение slotа ${slot.name} - Превью slot machine от ${slot.providers?.name || 'Pragmatic Play'}`"
+                    :alt="`${slot.name} slot game preview - ${slot.providers?.name || 'Pragmatic Play'}`"
                     :title="`${slot.name} - Demo version slot machine`"
-                    class="w-full h-full object-contain"
+                    class="w-full h-full object-cover"
+                    :style="`object-position: ${slot.image_focus_point || 'center 20%'}`"
                     loading="lazy"
                     decoding="async"
                     :data-slot-id="slot.id"

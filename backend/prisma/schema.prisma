@@ -45,6 +45,7 @@ model slots {
   thumbnail_url                         String?
   media_type                            String?
   image_url                             String?
+  image_focus_point                     String?  @default("center 20%") // Точка фокуса для адаптивного кропа (CSS object-position)
   video_url                             String?
   demo_url                              String?
   real_play_url                         String?

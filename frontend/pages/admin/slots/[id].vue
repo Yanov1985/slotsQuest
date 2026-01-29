@@ -1381,6 +1381,33 @@
                         </p>
                       </div>
 
+                      <!-- Точка фокуса изображения (для адаптивного кропа) -->
+                      <div v-if="form.media_type === 'image' && form.image_url">
+                        <label
+                          class="block text-sm font-medium text-gray-300 mb-2"
+                        >
+                          📍 Точка фокуса (для адаптивного кропа)
+                        </label>
+                        <select
+                          v-model="form.image_focus_point"
+                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                        >
+                          <option value="center 20%">🎯 Верхняя часть (по умолчанию)</option>
+                          <option value="center center">⚪ Центр</option>
+                          <option value="center top">⬆️ Верх</option>
+                          <option value="center 30%">📍 Верхняя треть</option>
+                          <option value="center 40%">📍 Чуть выше центра</option>
+                          <option value="center 60%">📍 Чуть ниже центра</option>
+                          <option value="center bottom">⬇️ Низ</option>
+                          <option value="left center">⬅️ Левый центр</option>
+                          <option value="right center">➡️ Правый центр</option>
+                        </select>
+                        <p class="mt-1 text-xs text-gray-400">
+                          Выберите точку фокуса для умного кропа на планшетах и мобильных устройствах.
+                          Это определяет какая часть изображения будет видна при обрезке.
+                        </p>
+                      </div>
+
                       <!-- URL видео (показывается если выбрано видео) -->
                       <div v-if="form.media_type === 'video'">
                         <label
@@ -11885,6 +11912,7 @@ const form = ref({
   // Медиа поля
   media_type: 'image', // 'image' или 'video'
   image_url: '',
+  image_focus_point: 'center 20%', // Точка фокуса для адаптивного кропа
   video_url: '',
   // Ссылки кнопок
   demo_url: '', // Ссылка для кнопки "Играть бесплатно"
