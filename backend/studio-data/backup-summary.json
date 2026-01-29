@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-01-27T09:52:25.046Z",
-  "dbFile": "dev_backup_2026-01-27T09-52-25.db",
-  "dbSize": "396.00 KB",
+  "timestamp": "2026-01-29T19:53:50.390Z",
+  "dbFile": "dev_backup_2026-01-29T19-53-50.db",
+  "dbSize": "428.00 KB",
   "counts": {
     "providers": 94,
     "mechanics": 37,
