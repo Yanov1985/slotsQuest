@@ -191,7 +191,7 @@
               />
 
               <!-- Title and main information -->
-              <header class="mb-4 sm:mb-6 lg:mb-8" role="banner">
+              <header class="mb-2 xs:mb-3 sm:mb-4 lg:mb-8" role="banner">
                 <!-- Provider (mobile version) -->
                 <section
                   class="flex items-center gap-3 mb-3 sm:mb-4 flex-wrap lg:hidden"
@@ -242,13 +242,13 @@
                   <span class="block sm:inline" itemprop="headline">{{ slot.name || 'Slot' }}</span>
                   <span
                     v-if="slot.providers?.name"
-                    class="block sm:inline text-base sm:text-lg font-medium opacity-90"
+                    class="hidden sm:inline text-base sm:text-lg font-medium opacity-90"
                   >
                     by <span itemprop="creator">{{ slot.providers.name }}</span>
                   </span>
                   <span
                     v-if="slot.rtp"
-                    class="block sm:inline text-sm sm:text-base font-normal opacity-80"
+                    class="hidden sm:inline text-sm sm:text-base font-normal opacity-80"
                   >
                     • RTP <span>{{ slot.rtp }}%</span>
                   </span>
@@ -423,7 +423,7 @@
 
                 <!-- Rating and voting (mobile version) - полностью динамическое -->
                 <div
-                  class="flex flex-wrap items-center gap-4 mb-4 lg:hidden"
+                  class="flex flex-wrap items-center gap-4 mb-2 xs:mb-3 lg:hidden"
                   role="group"
                   aria-label="Rating, popularity and voting"
                   itemprop="aggregateRating"
@@ -1387,7 +1387,7 @@
                         ></path>
                       </svg>
                       <span class="relative z-10 whitespace-nowrap"
-                        >Играть бесплатно</span
+                        >Play Free Demo</span
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
@@ -1430,7 +1430,7 @@
                         ></path>
                       </svg>
                       <span class="relative z-10 whitespace-nowrap"
-                        >Играть бесплатно</span
+                        >Play Free Demo</span
                       >
                       <span
                         class="relative z-10 bg-white/20 text-xs px-3 py-1 rounded-full font-semibold"
@@ -1442,10 +1442,10 @@
                   </BackgroundGradient>
                 </section>
 
-                <!-- Реальная игра -->
+                <!-- Real Money Play -->
                 <section class="relative" aria-labelledby="real-play-heading">
                   <h3 id="real-play-heading" class="sr-only">
-                    Игра for real money
+                    Play for Real Money
                   </h3>
 
                   <BackgroundGradient
@@ -1495,11 +1495,11 @@
                         ></path>
                       </svg>
                       <span class="relative z-10 whitespace-nowrap"
-                        >Играть на деньги</span
+                        >Play for Real Money</span
                       >
                       <span
                         class="relative z-10 bg-orange-500/20 text-xs px-3 py-1 rounded-full font-semibold"
-                        aria-label="Реальные деньги"
+                        aria-label="Real Money"
                       >
                         18+
                       </span>
@@ -1545,11 +1545,11 @@
                         ></path>
                       </svg>
                       <span class="relative z-10 whitespace-nowrap"
-                        >Играть на деньги</span
+                        >Play for Real Money</span
                       >
                       <span
                         class="relative z-10 bg-orange-500/20 text-xs px-3 py-1 rounded-full font-semibold"
-                        aria-label="Реальные деньги"
+                        aria-label="Real Money"
                       >
                         18+
                       </span>
