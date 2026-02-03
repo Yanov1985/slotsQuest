@@ -2677,8 +2677,8 @@ watchEffect(() => {
         // Основные SEO мета-теги
         {
           name: 'description',
-          // 🎯 SEO: Используем функцию с hero keywords для максимального CTR
-          content: generateSEODescription(slot.value),
+          // 🎯 SEO: Приоритет: 1) seo_description из БД, 2) авто-генерация как fallback
+          content: slot.value.seo_description || generateSEODescription(slot.value),
         },
         {
           name: 'keywords',
@@ -2710,7 +2710,7 @@ watchEffect(() => {
         {
           property: 'og:description',
           content:
-            slot.value.og_description || generateSEODescription(slot.value),
+            slot.value.og_description || slot.value.seo_description || generateSEODescription(slot.value),
         },
         { property: 'og:type', content: slot.value.og_type || 'article' },
         { property: 'og:site_name', content: slot.value.og_site_name || 'SlotQuest' },

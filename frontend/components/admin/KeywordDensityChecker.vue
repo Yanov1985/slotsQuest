@@ -1,15 +1,15 @@
 <template>
   <!--
-    🔍 Keyword Density Checker Component
+    🔍 Keyword Density Checker Component v2.0
 
-    Анализирует плотность ключевых слов в контенте:
-    - Primary keywords
-    - LSI keywords
-    - Keyword stuffing detection
-    - Recommendations
+    Enhanced with:
+    - GEO-location tabs for keywords from Semrush
+    - Quick import from CSV/text
+    - Keyword Score indicator
+    - Integration with SEO keywords fields
   -->
-  <div class="space-y-4">
-    <!-- Header -->
+  <div class="space-y-6">
+    <!-- Header with Score -->
     <div class="flex items-center justify-between p-4 bg-gradient-to-r from-[#EC4899]/20 to-[#DB2777]/20 rounded-xl border border-[#EC4899]/30">
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
@@ -17,150 +17,253 @@
         </div>
         <div>
           <h3 class="text-lg font-medium text-[#E5E7EB]">Keyword Density Checker</h3>
-          <p class="text-sm text-[#9CA3AF]">Анализ плотности ключевых слов</p>
+          <p class="text-sm text-[#9CA3AF]">Анализ ключевых слов по GEO-локациям</p>
         </div>
       </div>
-      <button
-        type="button"
-        @click="analyzeContent"
-        :disabled="analyzing"
-        class="px-4 py-2 bg-[#EC4899] text-white rounded-lg text-sm font-medium hover:bg-[#DB2777] transition-colors disabled:opacity-50 flex items-center gap-2"
-      >
-        <svg v-if="analyzing" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-        </svg>
-        <span>{{ analyzing ? 'Анализ...' : '🔄 Анализировать' }}</span>
-      </button>
-    </div>
-
-    <!-- Target Keywords Input -->
-    <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-      <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
-        🎯 Целевые ключевые слова
-      </label>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs text-[#9CA3AF] mb-1">Primary Keyword</label>
-          <input
-            type="text"
-            v-model="primaryKeyword"
-            :placeholder="slotName || 'Gates of Olympus'"
-            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#EC4899] text-sm"
-          />
-        </div>
-        <div>
-          <label class="block text-xs text-[#9CA3AF] mb-1">Secondary Keywords (через запятую)</label>
-          <input
-            type="text"
-            v-model="secondaryKeywords"
-            placeholder="free spins, bonus, RTP, slot review"
-            class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#EC4899] text-sm"
-          />
-        </div>
-      </div>
-    </div>
-
-    <!-- Density Score -->
-    <div v-if="analysisResult" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-      <div class="flex items-center justify-between mb-4">
-        <h4 class="text-sm font-medium text-[#E5E7EB]">📊 Результаты анализа</h4>
+      <!-- Keyword Score -->
+      <div class="flex items-center gap-4">
         <div
-          class="px-3 py-1 rounded-full text-sm font-medium"
-          :class="scoreClass"
+          class="relative w-14 h-14 rounded-full flex items-center justify-center"
+          :class="{
+            'bg-[#EF4444]/20': keywordScore < 40,
+            'bg-[#F59E0B]/20': keywordScore >= 40 && keywordScore < 70,
+            'bg-[#EC4899]/20': keywordScore >= 70,
+          }"
         >
-          Score: {{ densityScore }}/100
+          <span
+            class="text-lg font-bold"
+            :class="{
+              'text-[#EF4444]': keywordScore < 40,
+              'text-[#F59E0B]': keywordScore >= 40 && keywordScore < 70,
+              'text-[#EC4899]': keywordScore >= 70,
+            }"
+          >{{ keywordScore }}%</span>
+        </div>
+        <button
+          type="button"
+          @click="analyzeAllLocations"
+          :disabled="analyzing"
+          class="px-4 py-2 bg-[#EC4899] text-white rounded-lg text-sm font-medium hover:bg-[#DB2777] transition-colors disabled:opacity-50 flex items-center gap-2"
+        >
+          <svg v-if="analyzing" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+          </svg>
+          <span>{{ analyzing ? 'Анализ...' : '🔄 Анализировать' }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Score Details Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div v-for="geo in geoLocations" :key="geo.code" class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-3">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-lg">{{ geo.flag }}</span>
+          <span
+            class="text-xs font-medium px-2 py-0.5 rounded-full"
+            :class="getGeoScoreClass(geo.code)"
+          >
+            {{ getGeoKeywordCount(geo.code) }} ключей
+          </span>
+        </div>
+        <p class="text-xs text-[#9CA3AF]">{{ geo.name }}</p>
+        <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden mt-2">
+          <div
+            class="h-full rounded-full transition-all bg-[#EC4899]"
+            :style="{ width: `${Math.min((getGeoKeywordCount(geo.code) / 10) * 100, 100)}%` }"
+          ></div>
         </div>
       </div>
+    </div>
 
-      <!-- Primary Keyword Analysis -->
-      <div class="space-y-4">
-        <div class="p-3 bg-[#161A21] rounded-lg">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-sm text-[#E5E7EB]">{{ primaryKeyword || 'Primary Keyword' }}</span>
+    <!-- GEO Tabs -->
+    <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl overflow-hidden">
+      <!-- Tab Headers -->
+      <div class="flex overflow-x-auto border-b border-[#353A4A]">
+        <button
+          v-for="geo in geoLocations"
+          :key="geo.code"
+          type="button"
+          @click="activeGeo = geo.code"
+          class="flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2"
+          :class="{
+            'text-[#EC4899] border-[#EC4899] bg-[#EC4899]/10': activeGeo === geo.code,
+            'text-[#9CA3AF] border-transparent hover:text-[#E5E7EB] hover:bg-[#353A4A]/50': activeGeo !== geo.code
+          }"
+        >
+          <span class="text-lg">{{ geo.flag }}</span>
+          <span>{{ geo.code }}</span>
+          <span
+            v-if="getGeoKeywordCount(geo.code) > 0"
+            class="px-1.5 py-0.5 text-xs rounded-full bg-[#EC4899]/20 text-[#EC4899]"
+          >
+            {{ getGeoKeywordCount(geo.code) }}
+          </span>
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="p-4 space-y-4">
+        <!-- Import Section -->
+        <div class="flex items-center gap-3 mb-4">
+          <button
+            type="button"
+            @click="showImportModal = true"
+            class="flex items-center gap-2 px-3 py-2 bg-[#EC4899]/20 text-[#EC4899] rounded-lg text-sm font-medium hover:bg-[#EC4899]/30 border border-[#EC4899]/30 transition-all"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+            </svg>
+            Импорт из Semrush
+          </button>
+          <button
+            type="button"
+            @click="copyFromPrimary"
+            class="flex items-center gap-2 px-3 py-2 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-sm hover:text-[#E5E7EB] hover:bg-[#353A4A]/70 transition-all"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            Копировать из Primary
+          </button>
+          <span class="text-xs text-[#6B7280]">
+            Активная локация: <strong class="text-[#EC4899]">{{ getActiveGeoName() }}</strong>
+          </span>
+        </div>
+
+        <!-- Keywords Input for Active GEO -->
+        <div class="space-y-3">
+          <label class="block text-sm font-medium text-[#E5E7EB]">
+            🎯 Ключевые слова для {{ getActiveGeoName() }} ({{ activeGeo }})
+          </label>
+          <textarea
+            v-model="geoKeywords[activeGeo]"
+            rows="6"
+            :placeholder="getPlaceholder()"
+            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#EC4899] text-sm font-mono resize-none"
+          ></textarea>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[#9CA3AF]">
+              Одна фраза на строку или через запятую. Поддерживается формат Semrush CSV.
+            </span>
             <span
-              class="text-sm font-mono"
-              :class="primaryDensityClass"
+              class="font-medium"
+              :class="getGeoKeywordCount(activeGeo) > 0 ? 'text-[#EC4899]' : 'text-[#6B7280]'"
             >
-              {{ analysisResult.primaryDensity.toFixed(2) }}%
+              {{ getGeoKeywordCount(activeGeo) }} ключевых слов
             </span>
           </div>
-          <div class="w-full bg-[#353A4A] rounded-full h-2">
-            <div
-              class="h-2 rounded-full transition-all duration-300"
-              :class="primaryDensityBarClass"
-              :style="{ width: `${Math.min(analysisResult.primaryDensity * 20, 100)}%` }"
-            ></div>
-          </div>
-          <div class="flex justify-between text-xs text-[#6B7280] mt-1">
-            <span>0%</span>
-            <span class="text-[#10B981]">1-2% optimal</span>
-            <span>5%+</span>
-          </div>
         </div>
 
-        <!-- Secondary Keywords -->
-        <div class="p-3 bg-[#161A21] rounded-lg">
-          <h5 class="text-sm font-medium text-[#E5E7EB] mb-3">Secondary Keywords</h5>
-          <div class="space-y-2">
-            <div
-              v-for="(keyword, index) in analysisResult.secondaryKeywords"
-              :key="index"
-              class="flex items-center justify-between text-sm"
+        <!-- Quick Add Tags -->
+        <div class="space-y-2">
+          <label class="block text-xs font-medium text-[#9CA3AF]">
+            Быстрое добавление популярных фраз:
+          </label>
+          <div class="flex flex-wrap gap-2">
+            <button
+              v-for="phrase in getSuggestedPhrases()"
+              :key="phrase"
+              type="button"
+              @click="addQuickPhrase(phrase)"
+              class="px-3 py-1.5 text-xs rounded-full bg-[#353A4A] text-[#9CA3AF] hover:bg-[#EC4899]/20 hover:text-[#EC4899] transition-all"
             >
-              <span class="text-[#9CA3AF]">{{ keyword.word }}</span>
-              <div class="flex items-center gap-2">
-                <span class="text-[#6B7280]">{{ keyword.count }}x</span>
-                <span
-                  class="font-mono"
-                  :class="keyword.density > 3 ? 'text-[#EF4444]' : keyword.density > 0.5 ? 'text-[#10B981]' : 'text-[#F59E0B]'"
-                >
-                  {{ keyword.density.toFixed(2) }}%
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Word Count Stats -->
-        <div class="grid grid-cols-3 gap-3">
-          <div class="p-3 bg-[#161A21] rounded-lg text-center">
-            <p class="text-2xl font-bold text-[#E5E7EB]">{{ analysisResult.wordCount }}</p>
-            <p class="text-xs text-[#9CA3AF]">Слов</p>
-          </div>
-          <div class="p-3 bg-[#161A21] rounded-lg text-center">
-            <p class="text-2xl font-bold text-[#E5E7EB]">{{ analysisResult.uniqueWords }}</p>
-            <p class="text-xs text-[#9CA3AF]">Уникальных</p>
-          </div>
-          <div class="p-3 bg-[#161A21] rounded-lg text-center">
-            <p class="text-2xl font-bold text-[#E5E7EB]">{{ analysisResult.sentenceCount }}</p>
-            <p class="text-xs text-[#9CA3AF]">Предложений</p>
+              + {{ phrase }}
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Issues & Recommendations -->
-    <div v-if="analysisResult && (analysisResult.issues.length > 0 || analysisResult.suggestions.length > 0)"
-         class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-      <h4 class="text-sm font-medium text-[#E5E7EB] mb-3">💡 Рекомендации</h4>
-
-      <!-- Issues -->
-      <div v-if="analysisResult.issues.length > 0" class="space-y-2 mb-4">
+    <!-- Analysis Results for Active GEO -->
+    <div v-if="geoAnalysis[activeGeo]" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4 space-y-4">
+      <div class="flex items-center justify-between">
+        <h4 class="text-sm font-medium text-[#E5E7EB]">📊 Результаты анализа для {{ getActiveGeoName() }}</h4>
         <div
-          v-for="(issue, index) in analysisResult.issues"
-          :key="'issue-' + index"
-          class="flex items-start gap-2 p-2 bg-[#EF4444]/10 border border-[#EF4444]/20 rounded-lg text-sm"
+          class="px-3 py-1 rounded-full text-sm font-medium"
+          :class="getScoreClass(geoAnalysis[activeGeo]?.score || 0)"
         >
-          <span class="text-[#EF4444]">❌</span>
-          <span class="text-[#EF4444]">{{ issue }}</span>
+          Score: {{ geoAnalysis[activeGeo]?.score || 0 }}/100
         </div>
       </div>
 
-      <!-- Suggestions -->
-      <div v-if="analysisResult.suggestions.length > 0" class="space-y-2">
+      <!-- Keyword Coverage -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Found Keywords -->
+        <div class="p-3 bg-[#161A21] rounded-lg">
+          <h5 class="text-sm font-medium text-[#10B981] mb-3 flex items-center gap-2">
+            <span>✅</span> Найдены в контенте
+          </h5>
+          <div class="space-y-2 max-h-48 overflow-y-auto">
+            <div
+              v-for="(kw, index) in geoAnalysis[activeGeo]?.found || []"
+              :key="'found-' + index"
+              class="flex items-center justify-between text-sm px-2 py-1 bg-[#10B981]/10 rounded"
+            >
+              <span class="text-[#E5E7EB]">{{ kw.word }}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-[#6B7280]">{{ kw.count }}x</span>
+                <span class="text-[#10B981] font-mono text-xs">{{ kw.density.toFixed(2) }}%</span>
+              </div>
+            </div>
+            <p v-if="!(geoAnalysis[activeGeo]?.found?.length)" class="text-xs text-[#6B7280]">
+              Ключевых слов не найдено
+            </p>
+          </div>
+        </div>
+
+        <!-- Missing Keywords -->
+        <div class="p-3 bg-[#161A21] rounded-lg">
+          <h5 class="text-sm font-medium text-[#EF4444] mb-3 flex items-center gap-2">
+            <span>❌</span> Отсутствуют в контенте
+          </h5>
+          <div class="space-y-2 max-h-48 overflow-y-auto">
+            <div
+              v-for="(kw, index) in geoAnalysis[activeGeo]?.missing || []"
+              :key="'missing-' + index"
+              class="flex items-center justify-between text-sm px-2 py-1 bg-[#EF4444]/10 rounded"
+            >
+              <span class="text-[#EF4444]">{{ kw }}</span>
+              <button
+                type="button"
+                @click="suggestAddKeyword(kw)"
+                class="text-xs text-[#F59E0B] hover:underline"
+              >
+                + Добавить
+              </button>
+            </div>
+            <p v-if="!(geoAnalysis[activeGeo]?.missing?.length)" class="text-xs text-[#10B981]">
+              Все ключевые слова найдены! 🎉
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Stats -->
+      <div class="grid grid-cols-4 gap-3">
+        <div class="p-3 bg-[#161A21] rounded-lg text-center">
+          <p class="text-2xl font-bold text-[#E5E7EB]">{{ geoAnalysis[activeGeo]?.wordCount || 0 }}</p>
+          <p class="text-xs text-[#9CA3AF]">Слов</p>
+        </div>
+        <div class="p-3 bg-[#161A21] rounded-lg text-center">
+          <p class="text-2xl font-bold text-[#E5E7EB]">{{ geoAnalysis[activeGeo]?.coverage || 0 }}%</p>
+          <p class="text-xs text-[#9CA3AF]">Покрытие</p>
+        </div>
+        <div class="p-3 bg-[#161A21] rounded-lg text-center">
+          <p class="text-2xl font-bold text-[#10B981]">{{ geoAnalysis[activeGeo]?.found?.length || 0 }}</p>
+          <p class="text-xs text-[#9CA3AF]">Найдено</p>
+        </div>
+        <div class="p-3 bg-[#161A21] rounded-lg text-center">
+          <p class="text-2xl font-bold text-[#EF4444]">{{ geoAnalysis[activeGeo]?.missing?.length || 0 }}</p>
+          <p class="text-xs text-[#9CA3AF]">Отсутствует</p>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div v-if="geoAnalysis[activeGeo]?.suggestions?.length" class="space-y-2">
+        <h5 class="text-sm font-medium text-[#E5E7EB]">💡 Рекомендации</h5>
         <div
-          v-for="(suggestion, index) in analysisResult.suggestions"
+          v-for="(suggestion, index) in geoAnalysis[activeGeo]?.suggestions"
           :key="'suggestion-' + index"
           class="flex items-start gap-2 p-2 bg-[#F59E0B]/10 border border-[#F59E0B]/20 rounded-lg text-sm"
         >
@@ -170,32 +273,84 @@
       </div>
     </div>
 
-    <!-- Keyword Distribution Chart -->
-    <div v-if="analysisResult" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-      <h4 class="text-sm font-medium text-[#E5E7EB] mb-3">📈 Топ-10 слов по частоте</h4>
-      <div class="space-y-2">
-        <div
-          v-for="(word, index) in analysisResult.topWords"
-          :key="'top-' + index"
-          class="flex items-center gap-3"
-        >
-          <span class="text-xs text-[#6B7280] w-4">{{ index + 1 }}</span>
-          <span class="text-sm text-[#E5E7EB] flex-1">{{ word.word }}</span>
-          <div class="w-32 bg-[#353A4A] rounded-full h-2">
-            <div
-              class="h-2 rounded-full bg-gradient-to-r from-[#EC4899] to-[#8B5CF6]"
-              :style="{ width: `${(word.count / analysisResult.topWords[0].count) * 100}%` }"
-            ></div>
+    <!-- Import Modal -->
+    <Teleport to="body">
+      <div
+        v-if="showImportModal"
+        class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+        @click.self="showImportModal = false"
+      >
+        <div class="bg-[#1B1E26] border border-[#353A4A] rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
+          <div class="flex items-center justify-between p-4 border-b border-[#353A4A]">
+            <h3 class="text-lg font-medium text-[#E5E7EB]">
+              📥 Импорт ключевых слов из Semrush
+            </h3>
+            <button
+              type="button"
+              @click="showImportModal = false"
+              class="p-2 hover:bg-[#353A4A] rounded-lg transition-colors"
+            >
+              <svg class="w-5 h-5 text-[#9CA3AF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
           </div>
-          <span class="text-xs text-[#9CA3AF] w-8 text-right">{{ word.count }}</span>
+
+          <div class="p-4 space-y-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-[#E5E7EB]">
+                Выберите локацию для импорта:
+              </label>
+              <select
+                v-model="importGeo"
+                class="w-full px-4 py-3 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#EC4899]"
+              >
+                <option v-for="geo in geoLocations" :key="geo.code" :value="geo.code">
+                  {{ geo.flag }} {{ geo.name }} ({{ geo.code }})
+                </option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-[#E5E7EB]">
+                Вставьте данные из Semrush (Keyword, Search Volume, etc.):
+              </label>
+              <textarea
+                v-model="importData"
+                rows="10"
+                placeholder="Keyword;Search Volume;CPC;Competition&#10;gates of olympus;135000;1.20;0.85&#10;gates of olympus free;45000;0.80;0.65&#10;gates of olympus demo;32000;0.50;0.40&#10;&#10;Или просто список ключевых слов (одно на строку):"
+                class="w-full px-4 py-3 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#EC4899] font-mono text-sm resize-none"
+              ></textarea>
+              <p class="text-xs text-[#6B7280]">
+                Поддерживается CSV экспорт из Semrush (с разделителем ; или ,) или простой список.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex justify-end gap-3 p-4 border-t border-[#353A4A]">
+            <button
+              type="button"
+              @click="showImportModal = false"
+              class="px-4 py-2 text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
+            >
+              Отмена
+            </button>
+            <button
+              type="button"
+              @click="processImport"
+              class="px-4 py-2 bg-[#EC4899] text-white rounded-lg font-medium hover:bg-[#DB2777] transition-colors"
+            >
+              Импортировать
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, reactive } from 'vue'
 
 // Props
 const props = defineProps({
@@ -204,199 +359,312 @@ const props = defineProps({
   content: { type: String, default: '' },
   seoTitle: { type: String, default: '' },
   seoDescription: { type: String, default: '' },
-  keywords: { type: String, default: '' }
+  keywords: { type: String, default: '' },
+  keywordsGeo: { type: String, default: '' },
+  keywordsLsi: { type: String, default: '' },
+  keywordsLongtail: { type: String, default: '' }
 })
 
 // Emits
-const emit = defineEmits(['update:analysisResult', 'update:densityScore'])
+const emit = defineEmits([
+  'update:analysisResult',
+  'update:densityScore',
+  'update:geoKeywords'
+])
+
+// GEO Locations Config
+const geoLocations = [
+  { code: 'US', flag: '🇺🇸', name: 'United States' },
+  { code: 'RU', flag: '🇷🇺', name: 'Россия' },
+  { code: 'BR', flag: '🇧🇷', name: 'Brasil' },
+  { code: 'IN', flag: '🇮🇳', name: 'India' },
+  { code: 'TR', flag: '🇹🇷', name: 'Türkiye' },
+  { code: 'DE', flag: '🇩🇪', name: 'Deutschland' },
+]
 
 // State
 const analyzing = ref(false)
-const analysisResult = ref(null)
-const primaryKeyword = ref(props.slotName || '')
-const secondaryKeywords = ref(props.keywords || '')
+const activeGeo = ref('US')
+const showImportModal = ref(false)
+const importData = ref('')
+const importGeo = ref('US')
 
-// Watch props
-watch(() => props.slotName, (val) => { if (val && !primaryKeyword.value) primaryKeyword.value = val })
-watch(() => props.keywords, (val) => { if (val) secondaryKeywords.value = val })
+// Keywords per GEO
+const geoKeywords = reactive({
+  US: '',
+  RU: '',
+  BR: '',
+  IN: '',
+  TR: '',
+  DE: '',
+})
+
+// Analysis results per GEO
+const geoAnalysis = reactive({
+  US: null,
+  RU: null,
+  BR: null,
+  IN: null,
+  TR: null,
+  DE: null,
+})
+
+// Initialize from props
+watch(() => props.keywordsGeo, (val) => {
+  if (val) {
+    try {
+      // Try to parse as JSON format: {"US": "keywords", "RU": "keywords", ...}
+      const parsed = JSON.parse(val)
+      Object.keys(parsed).forEach(geo => {
+        if (geoKeywords[geo] !== undefined) {
+          geoKeywords[geo] = parsed[geo]
+        }
+      })
+    } catch {
+      // If not JSON, assume it's for active geo
+      geoKeywords[activeGeo.value] = val
+    }
+  }
+}, { immediate: true })
+
+// Watch keywords and emit updates
+watch(geoKeywords, (val) => {
+  emit('update:geoKeywords', JSON.stringify(val))
+}, { deep: true })
 
 // Computed
-const densityScore = computed(() => {
-  if (!analysisResult.value) return 0
-  return analysisResult.value.score
-})
+const keywordScore = computed(() => {
+  let totalScore = 0
+  let geoCount = 0
 
-const scoreClass = computed(() => {
-  const score = densityScore.value
-  if (score >= 80) return 'bg-[#10B981]/20 text-[#10B981]'
-  if (score >= 60) return 'bg-[#F59E0B]/20 text-[#F59E0B]'
-  return 'bg-[#EF4444]/20 text-[#EF4444]'
-})
+  for (const geo of geoLocations) {
+    if (geoAnalysis[geo.code]?.score) {
+      totalScore += geoAnalysis[geo.code].score
+      geoCount++
+    }
+  }
 
-const primaryDensityClass = computed(() => {
-  if (!analysisResult.value) return 'text-[#9CA3AF]'
-  const density = analysisResult.value.primaryDensity
-  if (density >= 1 && density <= 2) return 'text-[#10B981]'
-  if (density > 3) return 'text-[#EF4444]'
-  return 'text-[#F59E0B]'
-})
+  if (geoCount === 0) {
+    // Calculate based on keyword presence
+    let hasKeywords = 0
+    for (const geo of geoLocations) {
+      if (getGeoKeywordCount(geo.code) > 0) hasKeywords++
+    }
+    return Math.round((hasKeywords / geoLocations.length) * 50)
+  }
 
-const primaryDensityBarClass = computed(() => {
-  if (!analysisResult.value) return 'bg-[#9CA3AF]'
-  const density = analysisResult.value.primaryDensity
-  if (density >= 1 && density <= 2) return 'bg-[#10B981]'
-  if (density > 3) return 'bg-[#EF4444]'
-  return 'bg-[#F59E0B]'
+  return Math.round(totalScore / geoCount)
 })
 
 // Methods
-function analyzeContent() {
+function getGeoKeywordCount(geoCode) {
+  const keywords = geoKeywords[geoCode] || ''
+  if (!keywords.trim()) return 0
+
+  // Split by newlines or commas
+  const items = keywords.split(/[\n,]/).filter(k => k.trim())
+  return items.length
+}
+
+function getGeoScoreClass(geoCode) {
+  const count = getGeoKeywordCount(geoCode)
+  if (count === 0) return 'bg-[#353A4A] text-[#6B7280]'
+  if (count < 3) return 'bg-[#F59E0B]/20 text-[#F59E0B]'
+  return 'bg-[#10B981]/20 text-[#10B981]'
+}
+
+function getActiveGeoName() {
+  return geoLocations.find(g => g.code === activeGeo.value)?.name || activeGeo.value
+}
+
+function getPlaceholder() {
+  const examples = {
+    US: 'gates of olympus free\ngates of olympus demo\nslot machine online',
+    RU: 'врата олимпа бесплатно\nигровой автомат врата олимпа\ngates of olympus демо',
+    BR: 'gates of olympus grátis\njogo de cassino online\nslot gates of olympus',
+    IN: 'gates of olympus india\nonline slot games\nfree casino slots',
+    TR: 'gates of olympus ücretsiz\nçevrimiçi slot oyunları\n',
+    DE: 'gates of olympus kostenlos\nspielautomaten online\ncasino slot spiele'
+  }
+  return examples[activeGeo.value] || 'keyword phrase 1\nkeyword phrase 2'
+}
+
+function getSuggestedPhrases() {
+  const slotName = props.slotName || 'slot'
+  const base = [
+    `${slotName} free`,
+    `${slotName} demo`,
+    `${slotName} online`,
+    `${slotName} rtp`,
+    `play ${slotName}`,
+  ]
+
+  const localized = {
+    US: [...base, 'free spins', 'real money'],
+    RU: [`${slotName} бесплатно`, `${slotName} демо`, 'игровой автомат'],
+    BR: [`${slotName} grátis`, 'jogo de cassino', 'rodadas grátis'],
+    IN: [...base, 'indian casino', 'rupee slots'],
+    TR: [`${slotName} ücretsiz`, 'bedava slot', 'çevrimiçi casino'],
+    DE: [`${slotName} kostenlos`, 'freispiele', 'spielautomaten']
+  }
+
+  return localized[activeGeo.value] || base
+}
+
+function addQuickPhrase(phrase) {
+  const current = geoKeywords[activeGeo.value] || ''
+  const phrases = current.split('\n').map(p => p.trim()).filter(p => p)
+
+  if (!phrases.includes(phrase.toLowerCase())) {
+    phrases.push(phrase.toLowerCase())
+    geoKeywords[activeGeo.value] = phrases.join('\n')
+  }
+}
+
+function copyFromPrimary() {
+  const primary = props.keywords || props.slotName || ''
+  if (primary) {
+    geoKeywords[activeGeo.value] = primary.split(',').map(k => k.trim()).join('\n')
+  }
+}
+
+function processImport() {
+  if (!importData.value.trim()) {
+    showImportModal.value = false
+    return
+  }
+
+  const lines = importData.value.split('\n').filter(l => l.trim())
+  const keywords = []
+
+  for (const line of lines) {
+    // Try to parse as CSV (Semrush format)
+    const parts = line.split(/[;,]/)
+    if (parts.length > 0) {
+      // First column is usually the keyword
+      const keyword = parts[0].trim()
+      // Skip header rows
+      if (keyword && keyword.toLowerCase() !== 'keyword' && !keyword.includes('Search Volume')) {
+        keywords.push(keyword.toLowerCase())
+      }
+    }
+  }
+
+  // Append to existing keywords for the geo
+  const current = geoKeywords[importGeo.value] || ''
+  const existing = current.split('\n').map(k => k.trim()).filter(k => k)
+  const merged = [...new Set([...existing, ...keywords])]
+
+  geoKeywords[importGeo.value] = merged.join('\n')
+
+  showImportModal.value = false
+  importData.value = ''
+  activeGeo.value = importGeo.value
+}
+
+function analyzeAllLocations() {
   analyzing.value = true
 
-  // Combine all text content for analysis
+  // Combine all content for analysis
   const fullContent = [
     props.seoTitle,
     props.seoDescription,
     props.description,
     props.content
-  ].filter(Boolean).join(' ')
+  ].filter(Boolean).join(' ').toLowerCase()
 
   setTimeout(() => {
-    analysisResult.value = performAnalysis(fullContent)
-    emit('update:analysisResult', JSON.stringify(analysisResult.value))
-    emit('update:densityScore', analysisResult.value.score)
+    for (const geo of geoLocations) {
+      geoAnalysis[geo.code] = analyzeGeo(geo.code, fullContent)
+    }
+
+    emit('update:analysisResult', JSON.stringify(geoAnalysis))
+    emit('update:densityScore', keywordScore.value)
     analyzing.value = false
   }, 500)
 }
 
-function performAnalysis(text) {
-  if (!text) {
-    return {
-      score: 0,
-      wordCount: 0,
-      uniqueWords: 0,
-      sentenceCount: 0,
-      primaryDensity: 0,
-      secondaryKeywords: [],
-      topWords: [],
-      issues: ['Нет контента для анализа'],
-      suggestions: ['Добавьте описание и контент для слота']
-    }
+function analyzeGeo(geoCode, content) {
+  const keywords = (geoKeywords[geoCode] || '').split(/[\n,]/).map(k => k.trim().toLowerCase()).filter(k => k)
+
+  if (keywords.length === 0) {
+    return null
   }
 
-  // Normalize text
-  const normalizedText = text.toLowerCase()
-  const words = normalizedText.match(/[a-zA-Zа-яА-ЯёЁ]+/g) || []
-  const sentences = text.split(/[.!?]+/).filter(s => s.trim())
-
-  // Count words
+  const words = content.match(/[a-zA-Zа-яА-ЯёЁ]+/gi) || []
   const wordCount = words.length
-  const wordFrequency = {}
-  words.forEach(word => {
-    if (word.length > 2) { // Ignore short words
-      wordFrequency[word] = (wordFrequency[word] || 0) + 1
+
+  const found = []
+  const missing = []
+
+  for (const keyword of keywords) {
+    const keywordRegex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')
+    const matches = content.match(keywordRegex)
+    const count = matches ? matches.length : 0
+
+    if (count > 0) {
+      found.push({
+        word: keyword,
+        count,
+        density: wordCount > 0 ? (count / wordCount) * 100 : 0
+      })
+    } else {
+      missing.push(keyword)
     }
-  })
-
-  const uniqueWords = Object.keys(wordFrequency).length
-
-  // Calculate primary keyword density
-  const primaryWords = primaryKeyword.value.toLowerCase().split(/\s+/)
-  let primaryCount = 0
-  primaryWords.forEach(pw => {
-    if (pw.length > 2) {
-      primaryCount += wordFrequency[pw] || 0
-    }
-  })
-  const primaryDensity = wordCount > 0 ? (primaryCount / wordCount) * 100 : 0
-
-  // Analyze secondary keywords
-  const secondaryList = secondaryKeywords.value.split(',').map(k => k.trim().toLowerCase()).filter(k => k)
-  const secondaryAnalysis = secondaryList.map(keyword => {
-    const keywordWords = keyword.split(/\s+/)
-    let count = 0
-    keywordWords.forEach(kw => {
-      if (kw.length > 2) {
-        count += wordFrequency[kw] || 0
-      }
-    })
-    return {
-      word: keyword,
-      count,
-      density: wordCount > 0 ? (count / wordCount) * 100 : 0
-    }
-  })
-
-  // Get top words
-  const sortedWords = Object.entries(wordFrequency)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10)
-    .map(([word, count]) => ({ word, count }))
-
-  // Generate issues and suggestions
-  const issues = []
-  const suggestions = []
-
-  // Check primary keyword density
-  if (primaryDensity < 0.5) {
-    issues.push(`Primary keyword "${primaryKeyword.value}" встречается слишком редко (${primaryDensity.toFixed(2)}%)`)
-    suggestions.push(`Добавьте больше упоминаний "${primaryKeyword.value}" в контент`)
-  } else if (primaryDensity > 3) {
-    issues.push(`Возможный keyword stuffing: "${primaryKeyword.value}" (${primaryDensity.toFixed(2)}%)`)
-    suggestions.push(`Уменьшите количество повторений "${primaryKeyword.value}"`)
   }
 
-  // Check content length
-  if (wordCount < 300) {
-    suggestions.push(`Контент слишком короткий (${wordCount} слов). Рекомендуется минимум 300-500 слов`)
-  }
-
-  // Check secondary keywords
-  const missingSecondary = secondaryAnalysis.filter(k => k.count === 0)
-  if (missingSecondary.length > 0) {
-    suggestions.push(`Добавьте ключевые слова: ${missingSecondary.map(k => k.word).join(', ')}`)
-  }
+  const coverage = Math.round((found.length / keywords.length) * 100)
 
   // Calculate score
-  let score = 50 // Base score
+  let score = 50
 
-  // Primary keyword density (up to 30 points)
-  if (primaryDensity >= 1 && primaryDensity <= 2) score += 30
-  else if (primaryDensity >= 0.5 && primaryDensity <= 3) score += 20
-  else if (primaryDensity > 0) score += 10
+  // Coverage bonus (up to 30 points)
+  score += Math.round(coverage * 0.3)
 
-  // Content length (up to 20 points)
-  if (wordCount >= 500) score += 20
-  else if (wordCount >= 300) score += 15
-  else if (wordCount >= 100) score += 10
+  // Keyword count bonus (up to 10 points)
+  if (keywords.length >= 5) score += 10
+  else if (keywords.length >= 3) score += 5
 
-  // Secondary keywords coverage (up to 20 points)
-  const coveredSecondary = secondaryAnalysis.filter(k => k.count > 0).length
-  if (secondaryList.length > 0) {
-    score += Math.round((coveredSecondary / secondaryList.length) * 20)
+  // Density check (up to 10 points)
+  const avgDensity = found.reduce((sum, k) => sum + k.density, 0) / (found.length || 1)
+  if (avgDensity >= 0.5 && avgDensity <= 2) score += 10
+  else if (avgDensity > 0) score += 5
+
+  score = Math.min(100, Math.max(0, score))
+
+  // Generate suggestions
+  const suggestions = []
+
+  if (missing.length > 0) {
+    suggestions.push(`Добавьте в контент: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? '...' : ''}`)
   }
 
-  // Penalties
-  if (primaryDensity > 4) score -= 20 // Keyword stuffing
-  if (issues.length > 2) score -= 10
+  if (found.some(k => k.density > 3)) {
+    suggestions.push('Возможен keyword stuffing. Уменьшите повторения некоторых ключевых слов.')
+  }
 
-  score = Math.max(0, Math.min(100, score))
+  if (keywords.length < 5) {
+    suggestions.push(`Добавьте больше ключевых слов для ${geoCode} (рекомендуется минимум 5)`)
+  }
 
   return {
     score,
     wordCount,
-    uniqueWords,
-    sentenceCount: sentences.length,
-    primaryDensity,
-    secondaryKeywords: secondaryAnalysis,
-    topWords: sortedWords,
-    issues,
+    coverage,
+    found,
+    missing,
     suggestions
   }
 }
 
-// Auto-analyze on mount if content exists
-if (props.description || props.content) {
-  analyzeContent()
+function getScoreClass(score) {
+  if (score >= 70) return 'bg-[#10B981]/20 text-[#10B981]'
+  if (score >= 40) return 'bg-[#F59E0B]/20 text-[#F59E0B]'
+  return 'bg-[#EF4444]/20 text-[#EF4444]'
+}
+
+function suggestAddKeyword(keyword) {
+  // This could trigger a suggestion to add to description
+  console.log('Suggest adding keyword:', keyword)
 }
 </script>

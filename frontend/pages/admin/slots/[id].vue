@@ -2258,77 +2258,319 @@
                       <div v-show="showMetaSection" class="space-y-6">
                         <!-- SEO Title -->
                         <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            SEO Title
-                            <span class="text-[#10B981] ml-1">*</span>
-                          </label>
+                          <div class="flex items-center justify-between">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              SEO Title
+                              <span class="text-[#10B981] ml-1">*</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="generateSeoTitle"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#10B981]/20 text-[#10B981] hover:bg-[#10B981]/30 border border-[#10B981]/30 transition-all duration-200"
+                              title="Сгенерировать Title на основе данных слота"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                              </svg>
+                              Авто-генерация
+                            </button>
+                          </div>
                           <input
                             v-model="form.seo_title"
                             type="text"
                             placeholder="Играть в [Name слота] онлайн бесплатно | SlotQuest"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                            maxlength="60"
+                            :class="{
+                              'border-[#EF4444]/50': (form.seo_title || '').length > 60,
+                              'border-[#F59E0B]/50': (form.seo_title || '').length > 0 && (form.seo_title || '').length < 30,
+                              'border-[#10B981]/50': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+                            }"
+                            maxlength="70"
                           />
-                          <div class="flex justify-between text-xs">
-                            <span class="text-[#9CA3AF]"
-                              >Рекомендуется: 50-60 символов</span
-                            >
-                            <span
-                              class="text-[#9CA3AF]"
-                              :class="{
-                                'text-[#EF4444]':
-                                  (form.seo_title || '').length > 60,
-                                'text-[#10B981]':
-                                  (form.seo_title || '').length <= 60 &&
-                                  (form.seo_title || '').length >= 50,
-                              }"
-                            >
-                              {{ (form.seo_title || '').length }}/60
-                            </span>
+                          <!-- Индикатор длины с прогресс-баром -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 50-60 символов</span>
+                                <span
+                                  v-if="(form.seo_title || '').length > 0 && (form.seo_title || '').length < 30"
+                                  class="text-[#F59E0B]"
+                                >
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.seo_title || '').length > 60,
+                                  'text-[#F59E0B]': (form.seo_title || '').length > 0 && (form.seo_title || '').length < 30,
+                                  'text-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+                                  'text-[#9CA3AF]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+                                }"
+                              >
+                                {{ (form.seo_title || '').length }}/60
+                              </span>
+                            </div>
+                            <!-- Прогресс-бар -->
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.seo_title || '').length > 60,
+                                  'bg-[#F59E0B]': (form.seo_title || '').length > 0 && (form.seo_title || '').length < 30,
+                                  'bg-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+                                  'bg-[#3B82F6]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+                                }"
+                                :style="{ width: `${Math.min(((form.seo_title || '').length / 60) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации (если пусто) -->
+                          <div
+                            v-if="!(form.seo_title || '').length && form.name"
+                            class="p-2 bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg"
+                          >
+                            <p class="text-xs text-[#9CA3AF]">
+                              💡 <span class="text-[#10B981]">Авто-генерация:</span>
+                              <span class="text-[#E5E7EB]">{{ generateAutoTitle() }}</span>
+                            </p>
                           </div>
                         </div>
 
                         <!-- SEO Description -->
                         <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            SEO Description
-                            <span class="text-[#10B981] ml-1">*</span>
-                          </label>
+                          <div class="flex items-center justify-between">
+                            <label
+                              class="block text-sm font-medium text-[#E5E7EB]"
+                            >
+                              SEO Description
+                              <span class="text-[#10B981] ml-1">*</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="generateSeoDescription"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#10B981]/20 text-[#10B981] hover:bg-[#10B981]/30 border border-[#10B981]/30 transition-all duration-200"
+                              title="Сгенерировать Description на основе данных слота"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                              </svg>
+                              Авто-генерация
+                            </button>
+                          </div>
                           <textarea
                             v-model="form.seo_description"
                             rows="3"
                             placeholder="Играйте в [Name слота] от [Провайдер] бесплатно и на реальные деньги. RTP [%], волатильность [уровень]. Бонусы, фриспины и джекпоты."
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
-                            maxlength="160"
+                            :class="{
+                              'border-[#EF4444]/50': (form.seo_description || '').length > 160,
+                              'border-[#F59E0B]/50': (form.seo_description || '').length > 0 && (form.seo_description || '').length < 100,
+                              'border-[#10B981]/50': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+                            }"
+                            maxlength="170"
                           ></textarea>
-                          <div class="flex justify-between text-xs">
-                            <span class="text-[#9CA3AF]"
-                              >Рекомендуется: 150-160 символов</span
-                            >
-                            <span
-                              class="text-[#9CA3AF]"
-                              :class="{
-                                'text-[#EF4444]':
-                                  (form.seo_description || '').length > 160,
-                                'text-[#10B981]':
-                                  (form.seo_description || '').length <= 160 &&
-                                  (form.seo_description || '').length >= 150,
-                              }"
-                            >
-                              {{ (form.seo_description || '').length }}/160
-                            </span>
+                          <!-- Индикатор длины с прогресс-баром -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 150-160 символов</span>
+                                <span
+                                  v-if="(form.seo_description || '').length > 0 && (form.seo_description || '').length < 100"
+                                  class="text-[#F59E0B]"
+                                >
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.seo_description || '').length > 160,
+                                  'text-[#F59E0B]': (form.seo_description || '').length > 0 && (form.seo_description || '').length < 100,
+                                  'text-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+                                  'text-[#9CA3AF]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+                                }"
+                              >
+                                {{ (form.seo_description || '').length }}/160
+                              </span>
+                            </div>
+                            <!-- Прогресс-бар -->
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.seo_description || '').length > 160,
+                                  'bg-[#F59E0B]': (form.seo_description || '').length > 0 && (form.seo_description || '').length < 100,
+                                  'bg-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+                                  'bg-[#3B82F6]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+                                }"
+                                :style="{ width: `${Math.min(((form.seo_description || '').length / 160) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации (если пусто) -->
+                          <div
+                            v-if="!(form.seo_description || '').length && form.name"
+                            class="p-2 bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg"
+                          >
+                            <p class="text-xs text-[#9CA3AF]">
+                              💡 <span class="text-[#10B981]">Авто-генерация:</span>
+                              <span class="text-[#E5E7EB]">{{ generateAutoDescription() }}</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- 📊 SEO Score Indicator -->
+                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+                          <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                              <div class="w-8 h-8 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 class="text-sm font-medium text-[#E5E7EB]">SEO Score</h4>
+                                <p class="text-xs text-[#9CA3AF]">Качество Meta тегов</p>
+                              </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                              <!-- Score Circle -->
+                              <div
+                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+                                :class="{
+                                  'bg-[#EF4444]/20': calculateMetaScore() < 40,
+                                  'bg-[#F59E0B]/20': calculateMetaScore() >= 40 && calculateMetaScore() < 70,
+                                  'bg-[#10B981]/20': calculateMetaScore() >= 70,
+                                }"
+                              >
+                                <span
+                                  class="text-lg font-bold"
+                                  :class="{
+                                    'text-[#EF4444]': calculateMetaScore() < 40,
+                                    'text-[#F59E0B]': calculateMetaScore() >= 40 && calculateMetaScore() < 70,
+                                    'text-[#10B981]': calculateMetaScore() >= 70,
+                                  }"
+                                >{{ calculateMetaScore() }}%</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Score Details Grid -->
+                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                            <!-- Title Length -->
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Title</span>
+                                <span
+                                  :class="{
+                                    'text-[#EF4444]': (form.seo_title || '').length > 60 || (form.seo_title || '').length < 30,
+                                    'text-[#F59E0B]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+                                    'text-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+                                  }"
+                                >
+                                  {{ (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="{
+                                    'bg-[#EF4444]': (form.seo_title || '').length > 60 || (form.seo_title || '').length < 30,
+                                    'bg-[#F59E0B]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+                                    'bg-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+                                  }"
+                                  :style="{ width: `${Math.min(((form.seo_title || '').length / 60) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <!-- Description Length -->
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Description</span>
+                                <span
+                                  :class="{
+                                    'text-[#EF4444]': (form.seo_description || '').length > 160 || (form.seo_description || '').length < 100,
+                                    'text-[#F59E0B]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+                                    'text-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+                                  }"
+                                >
+                                  {{ (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="{
+                                    'bg-[#EF4444]': (form.seo_description || '').length > 160 || (form.seo_description || '').length < 100,
+                                    'bg-[#F59E0B]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+                                    'bg-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+                                  }"
+                                  :style="{ width: `${Math.min(((form.seo_description || '').length / 160) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Keywords</span>
+                                <span
+                                  :class="{
+                                    'text-[#EF4444]': !(form.seo_keywords_primary || '').length,
+                                    'text-[#10B981]': (form.seo_keywords_primary || '').length > 0,
+                                  }"
+                                >
+                                  {{ (form.seo_keywords_primary || '').length > 0 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="{
+                                    'bg-[#EF4444]': !(form.seo_keywords_primary || '').length,
+                                    'bg-[#10B981]': (form.seo_keywords_primary || '').length > 0,
+                                  }"
+                                  :style="{ width: (form.seo_keywords_primary || '').length > 0 ? '100%' : '0%' }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <!-- Slug -->
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Slug</span>
+                                <span
+                                  :class="{
+                                    'text-[#EF4444]': !(form.slug || '').length,
+                                    'text-[#10B981]': (form.slug || '').length > 0,
+                                  }"
+                                >
+                                  {{ (form.slug || '').length > 0 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="{
+                                    'bg-[#EF4444]': !(form.slug || '').length,
+                                    'bg-[#10B981]': (form.slug || '').length > 0,
+                                  }"
+                                  :style="{ width: (form.slug || '').length > 0 ? '100%' : '0%' }"
+                                ></div>
+                              </div>
+                            </div>
                           </div>
                         </div>
 
                         <!-- 🔍 SERP Preview - Как страница выглядит в Google -->
                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
                           <SerpPreview
-                            :title="form.seo_title_use_template ? generatedTitleFromTemplate : form.seo_title"
-                            :description="form.seo_description"
+                            :title="form.seo_title_use_template ? generatedTitleFromTemplate : (form.seo_title || generateAutoTitle())"
+                            :description="form.seo_description || generateAutoDescription()"
                             :slug="form.slug"
                             :slot-name="form.name"
                             :provider-name="slot?.providers?.name || ''"
@@ -2604,59 +2846,376 @@
                       </div>
 
                       <div v-show="showOpenGraphSection" class="space-y-6">
+                        <!-- 📊 OG Score Indicator -->
+                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+                          <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                              <div class="w-8 h-8 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 class="text-sm font-medium text-[#E5E7EB]">OG Score</h4>
+                                <p class="text-xs text-[#9CA3AF]">Качество Open Graph тегов</p>
+                              </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                              <div
+                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+                                :class="{
+                                  'bg-[#EF4444]/20': calculateOgScore() < 40,
+                                  'bg-[#F59E0B]/20': calculateOgScore() >= 40 && calculateOgScore() < 70,
+                                  'bg-[#3B82F6]/20': calculateOgScore() >= 70,
+                                }"
+                              >
+                                <span
+                                  class="text-lg font-bold"
+                                  :class="{
+                                    'text-[#EF4444]': calculateOgScore() < 40,
+                                    'text-[#F59E0B]': calculateOgScore() >= 40 && calculateOgScore() < 70,
+                                    'text-[#3B82F6]': calculateOgScore() >= 70,
+                                  }"
+                                >{{ calculateOgScore() }}%</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Score Details Grid -->
+                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Title</span>
+                                <span :class="getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+                                  :style="{ width: `${Math.min((getOgTitleLen() / 90) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Description</span>
+                                <span :class="getOgDescLen() >= 100 && getOgDescLen() <= 250 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ getOgDescLen() >= 100 && getOgDescLen() <= 250 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getOgDescLen() >= 100 && getOgDescLen() <= 250 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+                                  :style="{ width: `${Math.min((getOgDescLen() / 250) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Image</span>
+                                <span :class="getOgImageUrl() ? 'text-[#10B981]' : 'text-[#EF4444]'">
+                                  {{ getOgImageUrl() ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getOgImageUrl() ? 'bg-[#10B981]' : 'bg-[#EF4444]'"
+                                  :style="{ width: getOgImageUrl() ? '100%' : '0%' }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Type</span>
+                                <span :class="form.og_type ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ form.og_type ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="form.og_type ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+                                  :style="{ width: form.og_type ? '100%' : '50%' }"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <!-- OG Title -->
                         <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            OG Title
-                          </label>
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              OG Title
+                              <span class="text-[#3B82F6] ml-1 text-xs">(60-90 символов)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromSeoTitle"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
+                              title="Копировать из SEO Title"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                              </svg>
+                              Из SEO Title
+                            </button>
+                          </div>
                           <input
                             v-model="form.og_title"
                             type="text"
                             placeholder="Автоматически из SEO заголовка"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            :class="{
+                              'border-[#EF4444]/50': (form.og_title || '').length > 90,
+                              'border-[#F59E0B]/50': (form.og_title || '').length > 0 && (form.og_title || '').length < 40,
+                              'border-[#10B981]/50': (form.og_title || '').length >= 40 && (form.og_title || '').length <= 90,
+                            }"
+                            maxlength="100"
                           />
+                          <!-- Индикатор длины -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 60-90 символов</span>
+                                <span v-if="(form.og_title || '').length > 0 && (form.og_title || '').length < 40" class="text-[#F59E0B]">
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.og_title || '').length > 90,
+                                  'text-[#F59E0B]': (form.og_title || '').length > 0 && (form.og_title || '').length < 40,
+                                  'text-[#10B981]': (form.og_title || '').length >= 60 && (form.og_title || '').length <= 90,
+                                  'text-[#3B82F6]': (form.og_title || '').length >= 40 && (form.og_title || '').length < 60,
+                                }"
+                              >
+                                {{ (form.og_title || '').length }}/90
+                              </span>
+                            </div>
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.og_title || '').length > 90,
+                                  'bg-[#F59E0B]': (form.og_title || '').length > 0 && (form.og_title || '').length < 40,
+                                  'bg-[#10B981]': (form.og_title || '').length >= 60 && (form.og_title || '').length <= 90,
+                                  'bg-[#3B82F6]': (form.og_title || '').length >= 40 && (form.og_title || '').length < 60,
+                                }"
+                                :style="{ width: `${Math.min(((form.og_title || '').length / 90) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации -->
+                          <div
+                            v-if="!(form.og_title || '').length && (form.seo_title || form.name)"
+                            class="p-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-lg"
+                          >
+                            <p class="text-xs text-[#9CA3AF]">
+                              💡 <span class="text-[#3B82F6]">Будет использовано:</span>
+                              <span class="text-[#E5E7EB]">{{ form.seo_title || generateAutoOgTitle() }}</span>
+                            </p>
+                          </div>
                         </div>
 
                         <!-- OG Description -->
                         <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            OG Description
-                          </label>
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              OG Description
+                              <span class="text-[#3B82F6] ml-1 text-xs">(150-250 символов)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromSeoDescription"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
+                              title="Копировать из SEO Description"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                              </svg>
+                              Из SEO Description
+                            </button>
+                          </div>
                           <textarea
                             v-model="form.og_description"
-                            rows="2"
+                            rows="3"
                             placeholder="Автоматически из SEO описания"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200 resize-none"
+                            :class="{
+                              'border-[#EF4444]/50': (form.og_description || '').length > 250,
+                              'border-[#F59E0B]/50': (form.og_description || '').length > 0 && (form.og_description || '').length < 100,
+                              'border-[#10B981]/50': (form.og_description || '').length >= 150 && (form.og_description || '').length <= 250,
+                            }"
+                            maxlength="300"
                           ></textarea>
+                          <!-- Индикатор длины -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 150-250 символов</span>
+                                <span v-if="(form.og_description || '').length > 0 && (form.og_description || '').length < 100" class="text-[#F59E0B]">
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.og_description || '').length > 250,
+                                  'text-[#F59E0B]': (form.og_description || '').length > 0 && (form.og_description || '').length < 100,
+                                  'text-[#10B981]': (form.og_description || '').length >= 150 && (form.og_description || '').length <= 250,
+                                  'text-[#3B82F6]': (form.og_description || '').length >= 100 && (form.og_description || '').length < 150,
+                                }"
+                              >
+                                {{ (form.og_description || '').length }}/250
+                              </span>
+                            </div>
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.og_description || '').length > 250,
+                                  'bg-[#F59E0B]': (form.og_description || '').length > 0 && (form.og_description || '').length < 100,
+                                  'bg-[#10B981]': (form.og_description || '').length >= 150 && (form.og_description || '').length <= 250,
+                                  'bg-[#3B82F6]': (form.og_description || '').length >= 100 && (form.og_description || '').length < 150,
+                                }"
+                                :style="{ width: `${Math.min(((form.og_description || '').length / 250) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации -->
+                          <div
+                            v-if="!(form.og_description || '').length && (form.seo_description || form.name)"
+                            class="p-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-lg"
+                          >
+                            <p class="text-xs text-[#9CA3AF]">
+                              💡 <span class="text-[#3B82F6]">Будет использовано:</span>
+                              <span class="text-[#E5E7EB]">{{ form.seo_description || generateAutoOgDescription() }}</span>
+                            </p>
+                          </div>
                         </div>
 
-                        <!-- OG Image -->
+                        <!-- OG Image с preview -->
                         <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            OG Изображение
-                          </label>
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              OG Изображение
+                              <span class="text-[#3B82F6] ml-1 text-xs">(1200×630 px)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromMainImage"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
+                              title="Копировать из основного изображения"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                              </svg>
+                              Из слота
+                            </button>
+                          </div>
                           <input
                             v-model="form.og_image"
                             type="url"
                             placeholder="Автоматически из основного изображения слота"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                           />
+                          <!-- Image Preview -->
+                          <div
+                            v-if="getOgImageUrl()"
+                            class="relative aspect-[1200/630] max-w-md bg-[#1B1E26] border border-[#353A4A] rounded-lg overflow-hidden"
+                          >
+                            <img
+                              :src="getOgImageUrl()"
+                              :alt="form.og_title || form.name || 'OG Preview'"
+                              class="w-full h-full object-cover"
+                              @error="handleOgImageError"
+                            />
+                            <div class="absolute bottom-2 left-2 px-2 py-1 bg-black/70 rounded text-xs text-white">
+                              1200 × 630 px (рекомендуется)
+                            </div>
+                          </div>
                           <p class="text-xs text-[#9CA3AF]">
-                            Рекомендуемый размер: 1200x630 пикселей
+                            Рекомендуемый размер: 1200×630 пикселей для оптимального отображения
+                          </p>
+                        </div>
+
+                        <!-- OG Type & Locale Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <!-- OG Type -->
+                          <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              OG Type
+                            </label>
+                            <select
+                              v-model="form.og_type"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            >
+                              <option value="">Автоматически (article)</option>
+                              <option value="article">Article</option>
+                              <option value="website">Website</option>
+                              <option value="game">Game</option>
+                              <option value="product">Product</option>
+                            </select>
+                            <p class="text-xs text-[#9CA3AF]">
+                              Тип контента для Facebook/LinkedIn
+                            </p>
+                          </div>
+
+                          <!-- OG Locale -->
+                          <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              OG Locale
+                            </label>
+                            <select
+                              v-model="form.og_locale"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            >
+                              <option value="">Автоматически (en_US)</option>
+                              <option value="en_US">English (US)</option>
+                              <option value="en_GB">English (UK)</option>
+                              <option value="ru_RU">Русский</option>
+                              <option value="pt_BR">Português (Brasil)</option>
+                              <option value="es_ES">Español</option>
+                              <option value="de_DE">Deutsch</option>
+                              <option value="fr_FR">Français</option>
+                              <option value="tr_TR">Türkçe</option>
+                            </select>
+                            <p class="text-xs text-[#9CA3AF]">
+                              Язык контента для соцсетей
+                            </p>
+                          </div>
+                        </div>
+
+                        <!-- OG Video (опционально) -->
+                        <div class="space-y-2">
+                          <label class="block text-sm font-medium text-[#E5E7EB]">
+                            🎬 OG Video (опционально)
+                          </label>
+                          <input
+                            v-model="form.og_video"
+                            type="url"
+                            placeholder="https://youtube.com/embed/... или прямая ссылка на видео"
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                          />
+                          <p class="text-xs text-[#9CA3AF]">
+                            Ссылка на видео для автопроигрывания в соцсетях (Facebook, LinkedIn)
                           </p>
                         </div>
 
                         <!-- 📱 Social Preview Cards (Фаза 2) -->
                         <div class="border-t border-[#353A4A] pt-6">
                           <SocialPreviewCards
-                            :og-title="form.og_title || form.seo_title"
-                            :og-description="form.og_description || form.seo_description"
+                            :og-title="form.og_title || form.seo_title || generateAutoOgTitle()"
+                            :og-description="form.og_description || form.seo_description || generateAutoOgDescription()"
                             :og-image="form.og_image || form.image_url"
                             :twitter-title="form.twitter_title"
                             :twitter-description="form.twitter_description"
@@ -2695,7 +3254,7 @@
                               Twitter Card
                             </h3>
                             <p class="text-sm text-[#1DA1F2]">
-                              Настройки для отображения в Twitter
+                              Настройки для отображения в Twitter/X
                             </p>
                           </div>
                         </div>
@@ -2724,146 +3283,364 @@
                       </div>
 
                       <div v-show="showTwitterSection" class="space-y-6">
+                        <!-- 📊 Twitter Score Indicator -->
+                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+                          <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                              <div class="w-8 h-8 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 class="text-sm font-medium text-[#E5E7EB]">Twitter Score</h4>
+                                <p class="text-xs text-[#9CA3AF]">Качество Twitter Card</p>
+                              </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                              <div
+                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+                                :class="{
+                                  'bg-[#EF4444]/20': calculateTwitterScore() < 40,
+                                  'bg-[#F59E0B]/20': calculateTwitterScore() >= 40 && calculateTwitterScore() < 70,
+                                  'bg-[#1DA1F2]/20': calculateTwitterScore() >= 70,
+                                }"
+                              >
+                                <span
+                                  class="text-lg font-bold"
+                                  :class="{
+                                    'text-[#EF4444]': calculateTwitterScore() < 40,
+                                    'text-[#F59E0B]': calculateTwitterScore() >= 40 && calculateTwitterScore() < 70,
+                                    'text-[#1DA1F2]': calculateTwitterScore() >= 70,
+                                  }"
+                                >{{ calculateTwitterScore() }}%</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Score Details Grid -->
+                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Title</span>
+                                <span :class="getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+                                  :style="{ width: `${Math.min((getTwitterTitleLen() / 70) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Description</span>
+                                <span :class="getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+                                  :style="{ width: `${Math.min((getTwitterDescLen() / 200) * 100, 100)}%` }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Image</span>
+                                <span :class="getTwitterImageUrl() ? 'text-[#10B981]' : 'text-[#EF4444]'">
+                                  {{ getTwitterImageUrl() ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all"
+                                  :class="getTwitterImageUrl() ? 'bg-[#10B981]' : 'bg-[#EF4444]'"
+                                  :style="{ width: getTwitterImageUrl() ? '100%' : '0%' }"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+                              <div class="flex items-center justify-between mb-1">
+                                <span class="text-[#9CA3AF]">Card</span>
+                                <span :class="form.twitter_card === 'summary_large_image' ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+                                  {{ form.twitter_card === 'summary_large_image' ? '✓' : '!' }}
+                                </span>
+                              </div>
+                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                                <div
+                                  class="h-full rounded-full transition-all bg-[#10B981]"
+                                  :style="{ width: form.twitter_card ? '100%' : '50%' }"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <!-- Twitter Card Type -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                          >
+                        <div class="space-y-2">
+                          <label class="block text-sm font-medium text-[#E5E7EB]">
                             Тип карточки
+                            <span class="text-[#1DA1F2] ml-1 text-xs">(рекомендуется: Large Image)</span>
                           </label>
                           <select
                             v-model="form.twitter_card"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            :class="{
+                              'border-[#10B981]/50': form.twitter_card === 'summary_large_image',
+                              'border-[#F59E0B]/50': form.twitter_card === 'summary',
+                            }"
                           >
-                            <option value="summary">Summary</option>
-                            <option value="summary_large_image">
-                              Summary Large Image
-                            </option>
+                            <option value="summary">Summary (маленькое изображение)</option>
+                            <option value="summary_large_image">Summary Large Image (рекомендуется)</option>
                             <option value="app">App</option>
-                            <option value="player">Player</option>
+                            <option value="player">Player (видео)</option>
                           </select>
-                          <p class="text-xs text-[#9CA3AF] mt-2">
-                            Рекомендуется: Summary Large Image для игровых
-                            слотов
+                          <p class="text-xs text-[#9CA3AF]">
+                            🎯 Summary Large Image обеспечивает максимальную видимость в ленте
                           </p>
                         </div>
 
                         <!-- Twitter Title -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                          >
-                            Twitter Title
-                          </label>
+                        <div class="space-y-2">
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              Twitter Title
+                              <span class="text-[#1DA1F2] ml-1 text-xs">(40-70 символов)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromOgTitle"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+                              title="Копировать из OG Title"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                              </svg>
+                              Из OG Title
+                            </button>
+                          </div>
                           <input
                             v-model="form.twitter_title"
                             type="text"
-                            placeholder="Автоматически из SEO заголовка"
+                            placeholder="Автоматически из OG/SEO заголовка"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            :class="{
+                              'border-[#EF4444]/50': (form.twitter_title || '').length > 70,
+                              'border-[#F59E0B]/50': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+                              'border-[#10B981]/50': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+                            }"
+                            maxlength="100"
                           />
-                          <div class="flex justify-between items-center mt-2">
+                          <!-- Индикатор длины -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 40-70 символов</span>
+                                <span v-if="(form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30" class="text-[#F59E0B]">
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.twitter_title || '').length > 70,
+                                  'text-[#F59E0B]': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+                                  'text-[#10B981]': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+                                  'text-[#1DA1F2]': (form.twitter_title || '').length >= 30 && (form.twitter_title || '').length < 40,
+                                }"
+                              >
+                                {{ (form.twitter_title || '').length }}/70
+                              </span>
+                            </div>
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.twitter_title || '').length > 70,
+                                  'bg-[#F59E0B]': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+                                  'bg-[#10B981]': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+                                  'bg-[#1DA1F2]': (form.twitter_title || '').length >= 30 && (form.twitter_title || '').length < 40,
+                                }"
+                                :style="{ width: `${Math.min(((form.twitter_title || '').length / 70) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации -->
+                          <div
+                            v-if="!(form.twitter_title || '').length && (form.og_title || form.seo_title || form.name)"
+                            class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
+                          >
                             <p class="text-xs text-[#9CA3AF]">
-                              Максимум 70 символов для лучшего отображения
+                              💡 <span class="text-[#1DA1F2]">Будет использовано:</span>
+                              <span class="text-[#E5E7EB]">{{ form.og_title || form.seo_title || generateAutoTitle() }}</span>
                             </p>
-                            <span
-                              class="text-xs"
-                              :class="{
-                                'text-[#10B981]':
-                                  (form.twitter_title || '').length <= 70,
-                                'text-[#F59E0B]':
-                                  (form.twitter_title || '').length > 70 &&
-                                  (form.twitter_title || '').length <= 100,
-                                'text-[#EF4444]':
-                                  (form.twitter_title || '').length > 100,
-                              }"
-                            >
-                              {{ (form.twitter_title || '').length }}/70
-                            </span>
                           </div>
                         </div>
 
                         <!-- Twitter Description -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                          >
-                            Twitter Description
-                          </label>
+                        <div class="space-y-2">
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              Twitter Description
+                              <span class="text-[#1DA1F2] ml-1 text-xs">(100-200 символов)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromOgDescription"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+                              title="Копировать из OG Description"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                              </svg>
+                              Из OG Description
+                            </button>
+                          </div>
                           <textarea
                             v-model="form.twitter_description"
                             rows="3"
-                            placeholder="Автоматически из SEO описания"
+                            placeholder="Автоматически из OG/SEO описания"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
+                            :class="{
+                              'border-[#EF4444]/50': (form.twitter_description || '').length > 200,
+                              'border-[#F59E0B]/50': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+                              'border-[#10B981]/50': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+                            }"
+                            maxlength="300"
                           ></textarea>
-                          <div class="flex justify-between items-center mt-2">
+                          <!-- Индикатор длины -->
+                          <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs">
+                              <div class="flex items-center gap-2">
+                                <span class="text-[#9CA3AF]">Рекомендуется: 100-200 символов</span>
+                                <span v-if="(form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80" class="text-[#F59E0B]">
+                                  ⚠️ Слишком короткий
+                                </span>
+                              </div>
+                              <span
+                                class="font-medium"
+                                :class="{
+                                  'text-[#EF4444]': (form.twitter_description || '').length > 200,
+                                  'text-[#F59E0B]': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+                                  'text-[#10B981]': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+                                  'text-[#1DA1F2]': (form.twitter_description || '').length >= 80 && (form.twitter_description || '').length < 100,
+                                }"
+                              >
+                                {{ (form.twitter_description || '').length }}/200
+                              </span>
+                            </div>
+                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+                              <div
+                                class="h-full transition-all duration-300 rounded-full"
+                                :class="{
+                                  'bg-[#EF4444]': (form.twitter_description || '').length > 200,
+                                  'bg-[#F59E0B]': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+                                  'bg-[#10B981]': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+                                  'bg-[#1DA1F2]': (form.twitter_description || '').length >= 80 && (form.twitter_description || '').length < 100,
+                                }"
+                                :style="{ width: `${Math.min(((form.twitter_description || '').length / 200) * 100, 100)}%` }"
+                              ></div>
+                            </div>
+                          </div>
+                          <!-- Preview авто-генерации -->
+                          <div
+                            v-if="!(form.twitter_description || '').length && (form.og_description || form.seo_description || form.name)"
+                            class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
+                          >
                             <p class="text-xs text-[#9CA3AF]">
-                              Максимум 200 символов для лучшего отображения
+                              💡 <span class="text-[#1DA1F2]">Будет использовано:</span>
+                              <span class="text-[#E5E7EB]">{{ form.og_description || form.seo_description || generateAutoDescription() }}</span>
                             </p>
-                            <span
-                              class="text-xs"
-                              :class="{
-                                'text-[#10B981]':
-                                  (form.twitter_description || '').length <=
-                                  200,
-                                'text-[#F59E0B]':
-                                  (form.twitter_description || '').length >
-                                    200 &&
-                                  (form.twitter_description || '').length <=
-                                    300,
-                                'text-[#EF4444]':
-                                  (form.twitter_description || '').length > 300,
-                              }"
-                            >
-                              {{ (form.twitter_description || '').length }}/200
-                            </span>
                           </div>
                         </div>
 
-                        <!-- Twitter Image -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                          >
-                            Twitter Изображение
-                          </label>
+                        <!-- Twitter Image с preview -->
+                        <div class="space-y-2">
+                          <div class="flex items-center justify-between">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              Twitter Изображение
+                              <span class="text-[#1DA1F2] ml-1 text-xs">(1200×628 px)</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="copyFromOgImage"
+                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+                              title="Копировать из OG Image"
+                            >
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                              </svg>
+                              Из OG Image
+                            </button>
+                          </div>
                           <input
                             v-model="form.twitter_image"
                             type="url"
                             placeholder="Автоматически из Open Graph изображения"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                           />
-                          <p class="text-xs text-[#9CA3AF] mt-2">
-                            Рекомендуемый размер: 1200x628 пикселей (соотношение
-                            1.91:1)
+                          <!-- Image Preview -->
+                          <div
+                            v-if="getTwitterImageUrl()"
+                            class="relative aspect-[1200/628] max-w-md bg-[#1B1E26] border border-[#353A4A] rounded-lg overflow-hidden"
+                          >
+                            <img
+                              :src="getTwitterImageUrl()"
+                              :alt="form.twitter_title || form.name || 'Twitter Preview'"
+                              class="w-full h-full object-cover"
+                              @error="handleTwitterImageError"
+                            />
+                            <div class="absolute bottom-2 left-2 px-2 py-1 bg-black/70 rounded text-xs text-white">
+                              1200 × 628 px (соотношение 1.91:1)
+                            </div>
+                          </div>
+                          <p class="text-xs text-[#9CA3AF]">
+                            Рекомендуемый размер: 1200×628 пикселей (соотношение 1.91:1)
                           </p>
                         </div>
 
-                        <!-- Twitter Site -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                          >
-                            Twitter аккаунт сайта
-                          </label>
-                          <input
-                            v-model="form.twitter_site"
-                            type="text"
-                            placeholder="@slotquest"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF] mt-2">
-                            Twitter username сайта (с символом @)
-                          </p>
+                        <!-- Twitter Site & Creator Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <!-- Twitter Site -->
+                          <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              Twitter аккаунт сайта
+                            </label>
+                            <input
+                              v-model="form.twitter_site"
+                              type="text"
+                              placeholder="@slotquest"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            />
+                            <p class="text-xs text-[#9CA3AF]">
+                              Twitter username сайта (с @)
+                            </p>
+                          </div>
+
+                          <!-- Twitter Creator -->
+                          <div class="space-y-2">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
+                              Twitter автора
+                            </label>
+                            <input
+                              v-model="form.twitter_creator"
+                              type="text"
+                              placeholder="@author"
+                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            />
+                            <p class="text-xs text-[#9CA3AF]">
+                              Twitter username автора (с @)
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -3113,121 +3890,11 @@
                           </div>
                         </div>
 
-                        <!-- Целевые локации и Многоязычность -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <h4
-                            class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#059669]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              ></path>
-                            </svg>
-                            Целевые локации и языки (hreflang)
-                          </h4>
-                          <div class="space-y-4">
-                            <!-- Целевые локации -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                Страны и регионы для таргетинга
-                              </label>
-                              <textarea
-                                v-model="form.target_locations"
-                                rows="6"
-                                placeholder="🇷🇺 Россия&#10;🇮🇳 Индия&#10;🇧🇷 Бразилия&#10;🇺🇿 Узбекистан&#10;🇦🇿 Азербайджан&#10;🇹🇷 Турция&#10;🇨🇱 Чили&#10;🇦🇷 Аргентина&#10;🇨🇦 Канада&#10;🇨🇴 Колумбия&#10;🇮🇩 Индонезия&#10;🇧🇩 Бангладеш&#10;🇸🇳 Сенегал&#10;🇺🇬 Уганда"
-                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm leading-relaxed"
-                              ></textarea>
-                              <p class="text-xs text-[#9CA3AF]">
-                                Укажите целевые страны и регионы для
-                                геотаргетинга. Каждая страна с новой строки с
-                                флагом и названием.
-                              </p>
-                            </div>
-
-                            <!-- Язык контента (упрощено - только английский для всех ГЕО) -->
-                            <div
-                              class="space-y-2 border-t border-[#353A4A] pt-4"
-                            >
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                🌐 Язык контента (рекомендуется английский для
-                                международной аудитории)
-                              </label>
-                              <select
-                                v-model="form.content_language"
-                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                              >
-                                <option value="en">
-                                  English (рекомендуется)
-                                </option>
-                                <option value="ru">Русский</option>
-                                <option value="pt">Português</option>
-                                <option value="hi">हिन्दी</option>
-                                <option value="tr">Türkçe</option>
-                                <option value="es">Español</option>
-                                <option value="id">Bahasa Indonesia</option>
-                              </select>
-                              <p class="text-xs text-[#10B981]">
-                                💡 Английский язык + гео-таргетинг = одна
-                                страница для всех стран (без дублирования)
-                              </p>
-                            </div>
-
-                            <!-- Целевые регионы для гео-таргетинга -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                🎯 Целевые регионы (коды стран через запятую)
-                              </label>
-                              <input
-                                v-model="form.geo_target_regions"
-                                type="text"
-                                placeholder="RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD"
-                                class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 font-mono"
-                              />
-                              <p class="text-xs text-[#9CA3AF]">
-                                🌍 Коды ISO стран (RU=Россия, IN=Индия,
-                                BR=Бразилия и т.д.)
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!-- 🤖 Advanced Robots Directives -->
+                        <!-- 🌍 Technical SEO Component (Hreflang + Robots + Canonical) -->
                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-                          <RobotsConfig
-                            v-model:index="form.robots_index"
-                            v-model:follow="form.robots_follow"
-                            v-model:max-snippet="form.robots_max_snippet"
-                            v-model:max-image-preview="form.robots_max_image_preview"
-                            v-model:max-video-preview="form.robots_max_video_preview"
-                            v-model:notranslate="form.robots_notranslate"
-                            v-model:noimageindex="form.robots_noimageindex"
-                            v-model:unavailable-after="form.robots_unavailable_after"
-                          />
-                        </div>
-
-                        <!-- 🌍 Hreflang Configuration -->
-                        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-                          <HreflangConfig
-                            v-model:enabled="form.hreflang_enabled"
-                            v-model:preset="form.hreflang_preset"
+                          <AdminTechnicalSEO
                             :slug="form.slug"
-                            @update:config="form.hreflang_config = $event"
+                            v-model="technicalSeoForm"
                           />
                         </div>
                       </div>
@@ -3267,34 +3934,59 @@
                             </p>
                           </div>
                         </div>
-                        <button
-                          type="button"
-                          @click="showJsonLdSection = !showJsonLdSection"
-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                          :aria-expanded="showJsonLdSection"
-                        >
-                          <svg
-                            class="w-3 h-3 transform transition-transform duration-200"
-                            :class="{ 'rotate-180': showJsonLdSection }"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 9l-7 7-7-7"
+                        <div class="flex items-center gap-3">
+                          <!-- Toggle JSON-LD -->
+                          <label class="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              v-model="jsonLdForm.jsonld_enabled"
+                              class="sr-only peer"
                             />
-                          </svg>
-                          {{ showJsonLdSection ? 'Hide' : 'Show' }}
-                        </button>
+                            <div class="w-11 h-6 bg-[#353A4A] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#8B5CF6]"></div>
+                            <span class="ml-2 text-xs font-medium" :class="jsonLdForm.jsonld_enabled ? 'text-[#8B5CF6]' : 'text-[#9CA3AF]'">
+                              {{ jsonLdForm.jsonld_enabled ? 'ON' : 'OFF' }}
+                            </span>
+                          </label>
+                          <!-- Auto-Generate Button -->
+                          <button
+                            v-if="jsonLdForm.jsonld_enabled"
+                            type="button"
+                            @click="autoGenerateJsonLd"
+                            class="px-3 py-1.5 bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-white rounded-lg text-xs hover:opacity-90 transition-all font-medium"
+                          >
+                            🪄 Авто
+                          </button>
+                          <!-- Show/Hide Button -->
+                          <button
+                            type="button"
+                            @click="showJsonLdSection = !showJsonLdSection"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                            :aria-expanded="showJsonLdSection"
+                          >
+                            <svg
+                              class="w-3 h-3 transform transition-transform duration-200"
+                              :class="{ 'rotate-180': showJsonLdSection }"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                            {{ showJsonLdSection ? 'Hide' : 'Show' }}
+                          </button>
+                        </div>
                       </div>
 
                       <div v-show="showJsonLdSection" class="space-y-6">
                         <!-- 🎯 НОВЫЙ JSON-LD Editor Component -->
                         <JsonLdEditor
                           :slot-id="slot?.id || ''"
+                          :slot-name="form.name || ''"
                           v-model="jsonLdForm"
                         />
 
@@ -4259,8 +4951,12 @@
                           :seo-title="form.seo_title"
                           :seo-description="form.seo_description"
                           :keywords="form.seo_keywords_primary"
+                          :keywords-geo="form.seo_keywords_geo"
+                          :keywords-lsi="form.seo_keywords_lsi"
+                          :keywords-longtail="form.seo_keywords_longtail"
                           @update:analysisResult="form.keyword_analysis_result = $event"
                           @update:densityScore="form.keyword_density_score = $event"
+                          @update:geoKeywords="form.seo_keywords_geo = $event"
                         />
                       </div>
                     </div>
@@ -5364,6 +6060,13 @@ const seoHealthForm = ref({
   seo_health_passed: null,
   seo_health_last_audit: null,
   seo_health_trend: null
+})
+
+// Technical SEO форма (Hreflang + Robots + Canonical)
+const technicalSeoForm = ref({
+  regions: ['RU', 'IN', 'BR', 'UZ', 'AZ', 'TR', 'CL', 'AR', 'CA', 'CO', 'ID', 'BD'],
+  robots: { index: true, follow: true, maxSnippet: '-1', maxImagePreview: 'large' },
+  canonical: ''
 })
 
 // Indexing Status форма
@@ -7292,6 +7995,48 @@ const handleImageLoad = (event) => {
   event.target.style.display = 'block'
 }
 
+// 🪄 Авто-генерация JSON-LD контента
+const autoGenerateJsonLd = () => {
+  const slotName = form.value.name || 'этот слот'
+  const rtp = form.value.rtp || '96%'
+  const provider = form.value.provider_name || 'провайдера'
+
+  // Enable all schemas
+  jsonLdForm.value.jsonld_enable_review = true
+  jsonLdForm.value.jsonld_enable_aggregate = true
+  jsonLdForm.value.jsonld_enable_faq = true
+  jsonLdForm.value.jsonld_enable_howto = true
+  jsonLdForm.value.jsonld_enable_breadcrumb = true
+
+  // Generate Review
+  jsonLdForm.value.jsonld_review_author = 'SlotQuest Editorial Team'
+  jsonLdForm.value.jsonld_review_rating = Math.round((4.5 + Math.random() * 0.4) * 10) / 10
+  jsonLdForm.value.jsonld_review_text = `${slotName} — отличный выбор для любителей качественных слотов. Этот игровой автомат от ${provider} предлагает RTP ${rtp}, захватывающий геймплей и щедрые бонусные функции.`
+
+  // Generate AggregateRating
+  jsonLdForm.value.jsonld_aggregate_rating = Math.round((4.3 + Math.random() * 0.5) * 10) / 10
+  jsonLdForm.value.jsonld_aggregate_count = 500 + Math.floor(Math.random() * 1500)
+
+  // Generate FAQ
+  jsonLdForm.value.jsonld_faq_json = JSON.stringify([
+    { question: `Какой RTP у слота ${slotName}?`, answer: `RTP слота ${slotName} составляет ${rtp}. Это означает, что игрок получает обратно ${rtp} от своих ставок.` },
+    { question: `Можно ли играть в ${slotName} бесплатно?`, answer: `Да, вы можете играть в демо-версию ${slotName} бесплатно без регистрации на SlotQuest.` },
+    { question: `Какие бонусные функции есть в ${slotName}?`, answer: `${slotName} включает фриспины с множителями, символы Wild и Scatter, уникальные механики от ${provider}.` },
+    { question: `На каких устройствах можно играть в ${slotName}?`, answer: `${slotName} оптимизирован для ПК, планшетов и смартфонов (iOS/Android). Используется HTML5.` },
+    { question: `Как выиграть в ${slotName}?`, answer: `Соберите комбинацию из 3+ одинаковых символов на линии выплат. Бонусные символы активируют специальные раунды.` }
+  ])
+
+  // Generate HowTo
+  jsonLdForm.value.jsonld_howto_json = JSON.stringify([
+    { step: 1, name: 'Откройте слот', text: `Перейдите на страницу ${slotName} и нажмите "Играть бесплатно" или "Демо".` },
+    { step: 2, name: 'Настройте ставку', text: 'Используйте кнопки +/- для настройки размера ставки на спин.' },
+    { step: 3, name: 'Запустите барабаны', text: 'Нажмите Spin для запуска. Можно включить Autoplay для автоигры.' },
+    { step: 4, name: 'Соберите выигрыши', text: `Выигрыш в ${slotName} начисляется за 3+ одинаковых символов слева направо.` }
+  ])
+
+  alert('✅ JSON-LD схемы успешно сгенерированы!')
+}
+
 const handleVideoError = (event) => {
   event.target.style.display = 'none'
 }
@@ -7299,6 +8044,46 @@ const handleVideoError = (event) => {
 const handleVideoLoad = (event) => {
   event.target.style.display = 'block'
 }
+
+// Расчёт SEO Score для Meta тегов (0-100%)
+const calculateMetaScore = () => {
+  let score = 0
+  const titleLen = (form.value.seo_title || '').length
+  const descLen = (form.value.seo_description || '').length
+  const hasKeywords = (form.value.seo_keywords_primary || '').length > 0
+  const hasSlug = (form.value.slug || '').length > 0
+
+  // Title Score (25 points)
+  if (titleLen >= 50 && titleLen <= 60) {
+    score += 25
+  } else if (titleLen >= 30 && titleLen < 50) {
+    score += 15
+  } else if (titleLen > 0 && titleLen < 30) {
+    score += 5
+  }
+
+  // Description Score (25 points)
+  if (descLen >= 150 && descLen <= 160) {
+    score += 25
+  } else if (descLen >= 100 && descLen < 150) {
+    score += 15
+  } else if (descLen > 0 && descLen < 100) {
+    score += 5
+  }
+
+  // Keywords Score (25 points)
+  if (hasKeywords) {
+    score += 25
+  }
+
+  // Slug Score (25 points)
+  if (hasSlug) {
+    score += 25
+  }
+
+  return score
+}
+
 
 const handlePreviewImageError = (event) => {
   event.target.parentElement.innerHTML =
@@ -7345,6 +8130,246 @@ const resetForm = () => {
       real_play_url: '',
     })
   }
+}
+
+// ========== ФУНКЦИИ АВТО-ГЕНЕРАЦИИ SEO ==========
+
+// Генерация авто-title (для preview)
+const generateAutoTitle = () => {
+  const name = form.value.name || 'Slot'
+  const provider = slot.value?.providers?.name || ''
+  const rtp = form.value.rtp || ''
+
+  // Формат: "Name Slot by Provider | RTP% | Play Free | SlotQuest"
+  let title = `${name}`
+  if (provider) title += ` by ${provider}`
+  if (rtp) title += ` | RTP ${rtp}%`
+  title += ' | Play Free'
+
+  // Обрезаем до 60 символов
+  if (title.length > 60) {
+    title = title.substring(0, 57) + '...'
+  }
+
+  return title
+}
+
+// Генерация авто-description (для preview)
+const generateAutoDescription = () => {
+  const name = form.value.name || 'this exciting slot'
+  const provider = slot.value?.providers?.name || 'top provider'
+  const rtp = form.value.rtp || '96'
+  const volatility = form.value.volatility || 'medium'
+  const maxWin = form.value.max_win || '5000'
+
+  // Формат: "Play Name slot by Provider. RTP%, Volatility volatility, Max Win x. Free demo & real money!"
+  let desc = `Play ${name} slot by ${provider}. RTP ${rtp}%, ${volatility} volatility, max win ${maxWin}x. Free demo available!`
+
+  // Обрезаем до 160 символов
+  if (desc.length > 160) {
+    desc = desc.substring(0, 157) + '...'
+  }
+
+  return desc
+}
+
+// Функция для кнопки авто-генерации Title
+const generateSeoTitle = () => {
+  form.value.seo_title = generateAutoTitle()
+}
+
+// Функция для кнопки авто-генерации Description
+const generateSeoDescription = () => {
+  form.value.seo_description = generateAutoDescription()
+}
+
+// ========== ФУНКЦИИ ДЛЯ OPEN GRAPH ==========
+
+// Получение длины OG Title (учитывая fallback)
+const getOgTitleLen = () => {
+  return (form.value.og_title || form.value.seo_title || '').length
+}
+
+// Получение длины OG Description (учитывая fallback)
+const getOgDescLen = () => {
+  return (form.value.og_description || form.value.seo_description || '').length
+}
+
+// Получение URL OG Image (учитывая fallback)
+const getOgImageUrl = () => {
+  return form.value.og_image || form.value.image_url || ''
+}
+
+// Расчёт OG Score (0-100%)
+const calculateOgScore = () => {
+  let score = 0
+  const titleLen = getOgTitleLen()
+  const descLen = getOgDescLen()
+  const hasImage = !!getOgImageUrl()
+  const hasType = !!form.value.og_type
+
+  // Title Score (25 points) - оптимально 60-90
+  if (titleLen >= 60 && titleLen <= 90) {
+    score += 25
+  } else if (titleLen >= 40 && titleLen < 60) {
+    score += 15
+  } else if (titleLen > 0) {
+    score += 5
+  }
+
+  // Description Score (25 points) - оптимально 150-250
+  if (descLen >= 150 && descLen <= 250) {
+    score += 25
+  } else if (descLen >= 100 && descLen < 150) {
+    score += 15
+  } else if (descLen > 0) {
+    score += 5
+  }
+
+  // Image Score (30 points)
+  if (hasImage) {
+    score += 30
+  }
+
+  // Type Score (20 points)
+  if (hasType) {
+    score += 20
+  } else {
+    score += 10 // Частичный балл за дефолтное значение
+  }
+
+  return score
+}
+
+// Генерация авто OG Title
+const generateAutoOgTitle = () => {
+  const name = form.value.name || 'Slot Game'
+  const provider = slot.value?.providers?.name || ''
+
+  let title = `🎰 ${name}`
+  if (provider) title += ` by ${provider}`
+  title += ' - Play Free Demo'
+
+  if (title.length > 90) {
+    title = title.substring(0, 87) + '...'
+  }
+
+  return title
+}
+
+// Генерация авто OG Description
+const generateAutoOgDescription = () => {
+  const name = form.value.name || 'this slot'
+  const provider = slot.value?.providers?.name || 'top provider'
+  const rtp = form.value.rtp || '96'
+  const volatility = form.value.volatility || 'medium'
+  const maxWin = form.value.max_win || '5000'
+
+  let desc = `🎰 Play ${name} slot by ${provider} for free! Features: RTP ${rtp}%, ${volatility} volatility, max win ${maxWin}x. Try demo mode or play for real money. No download required!`
+
+  if (desc.length > 250) {
+    desc = desc.substring(0, 247) + '...'
+  }
+
+  return desc
+}
+
+// Копирование из SEO Title
+const copyFromSeoTitle = () => {
+  form.value.og_title = form.value.seo_title || generateAutoTitle()
+}
+
+// Копирование из SEO Description
+const copyFromSeoDescription = () => {
+  form.value.og_description = form.value.seo_description || generateAutoDescription()
+}
+
+// Копирование изображения из слота
+const copyFromMainImage = () => {
+  form.value.og_image = form.value.image_url || ''
+}
+
+// Обработка ошибки загрузки OG изображения
+const handleOgImageError = (event) => {
+  event.target.style.display = 'none'
+}
+
+// ========== ФУНКЦИИ ДЛЯ TWITTER CARD ==========
+
+// Получение длины Twitter Title (учитывая fallback)
+const getTwitterTitleLen = () => {
+  return (form.value.twitter_title || form.value.og_title || form.value.seo_title || '').length
+}
+
+// Получение длины Twitter Description (учитывая fallback)
+const getTwitterDescLen = () => {
+  return (form.value.twitter_description || form.value.og_description || form.value.seo_description || '').length
+}
+
+// Получение URL Twitter Image (учитывая fallback)
+const getTwitterImageUrl = () => {
+  return form.value.twitter_image || form.value.og_image || form.value.image_url || ''
+}
+
+// Расчёт Twitter Score (0-100%)
+const calculateTwitterScore = () => {
+  let score = 0
+  const titleLen = getTwitterTitleLen()
+  const descLen = getTwitterDescLen()
+  const hasImage = !!getTwitterImageUrl()
+  const hasLargeCard = form.value.twitter_card === 'summary_large_image'
+
+  // Title Score (25 points) - оптимально 40-70
+  if (titleLen >= 40 && titleLen <= 70) {
+    score += 25
+  } else if (titleLen >= 30 && titleLen < 40) {
+    score += 15
+  } else if (titleLen > 0) {
+    score += 5
+  }
+
+  // Description Score (25 points) - оптимально 100-200
+  if (descLen >= 100 && descLen <= 200) {
+    score += 25
+  } else if (descLen >= 80 && descLen < 100) {
+    score += 15
+  } else if (descLen > 0) {
+    score += 5
+  }
+
+  // Image Score (30 points)
+  if (hasImage) {
+    score += 30
+  }
+
+  // Card Type Score (20 points)
+  if (hasLargeCard) {
+    score += 20
+  } else if (form.value.twitter_card) {
+    score += 10
+  }
+
+  return score
+}
+
+// Копирование из OG Title
+const copyFromOgTitle = () => {
+  form.value.twitter_title = form.value.og_title || form.value.seo_title || generateAutoTitle()
+}
+
+// Копирование из OG Description
+const copyFromOgDescription = () => {
+  form.value.twitter_description = form.value.og_description || form.value.seo_description || generateAutoDescription()
+}
+
+// Копирование изображения из OG
+const copyFromOgImage = () => {
+  form.value.twitter_image = form.value.og_image || form.value.image_url || ''
+}
+
+// Обработка ошибки загрузки Twitter изображения
+const handleTwitterImageError = (event) => {
+  event.target.style.display = 'none'
 }
 
 // Функции для управления секциями
