@@ -4608,12 +4608,12 @@ const getStructuredData = (slot) => {
     '@id': `${slotUrl}#review`,
     // Используем hero_keyword для формирования заголовка обзора
     headline:
-      slot.schema_review_title || `${getSlotNameWithKeyword(slot.value)} 2025`,
+      slot.overview_title || `${getSlotNameWithKeyword(slot.value)} 2025`,
     description:
-      slot.schema_review_description_1 ||
+      slot.overview_description_1 ||
       `Complete review of ${slot.name} slot from ${slot.providers?.name || 'provider'}. RTP, volatility, bonus features analysis.`,
     articleBody:
-      [slot.schema_review_description_1, slot.schema_review_description_2]
+      [slot.overview_description_1, slot.overview_description_2]
         .filter(Boolean)
         .join(' ') ||
       `${slot.name} is an innovative slot game with high win potential.`,

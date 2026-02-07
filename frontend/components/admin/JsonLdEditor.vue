@@ -300,21 +300,19 @@
         </div>
         <div>
           <label class="block text-xs text-[#9CA3AF] mb-1">Best Rating</label>
-          <input
+                    <input
             v-model.number="localForm.jsonld_aggregate_best"
             type="number"
             min="1"
-            value="5"
             class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#EC4899]"
           />
         </div>
         <div>
           <label class="block text-xs text-[#9CA3AF] mb-1">Worst Rating</label>
-          <input
+                    <input
             v-model.number="localForm.jsonld_aggregate_worst"
             type="number"
             min="1"
-            value="1"
             class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#EC4899]"
           />
         </div>
