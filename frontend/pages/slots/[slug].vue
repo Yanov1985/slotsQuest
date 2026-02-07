@@ -1,4 +1,4 @@
-с
+
 <template>
   <div
     class="min-h-screen bg-zinc-950"
@@ -54,14 +54,69 @@
     </nav>
 
     <!-- Загрузка -->
-    <div v-if="loading" class="flex items-center justify-center min-h-screen">
-      <div class="text-center">
-        <div
-          class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent"
-        ></div>
-        <p class="mt-6 text-xl text-gray-600">Loading slot game...</p>
+    <!-- 💀 Skeleton Loading -->
+    <div v-if="loading" class="min-h-screen bg-zinc-950 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <div class="flex flex-col lg:flex-row gap-8 animate-pulse">
+          <!-- Левая колонка (Основной контент) -->
+          <div class="w-full lg:w-[70%] space-y-8">
+
+            <!-- Mobile Layout (Visible only on mobile) -->
+            <div class="lg:hidden space-y-6">
+               <div class="h-8 w-3/4 bg-white/5 rounded-lg"></div>
+               <div class="h-6 w-1/2 bg-white/5 rounded-full"></div>
+               <div class="space-y-2">
+                 <div class="h-4 w-full bg-white/5 rounded"></div>
+                 <div class="h-4 w-full bg-white/5 rounded"></div>
+                 <div class="h-4 w-2/3 bg-white/5 rounded"></div>
+               </div>
+               <div class="grid grid-cols-2 gap-3 mt-4">
+                 <div class="h-10 bg-white/5 rounded-lg"></div>
+                 <div class="h-10 bg-white/5 rounded-lg"></div>
+                 <div class="h-10 bg-white/5 rounded-lg"></div>
+                 <div class="h-10 bg-white/5 rounded-lg"></div>
+               </div>
+               <div class="h-12 w-full bg-white/5 rounded-xl mt-4"></div>
+            </div>
+
+            <!-- Desktop Layout (Visible only on desktop) -->
+            <div class="hidden lg:flex gap-8 items-start">
+               <!-- Portrait Image Column (2/5) -->
+               <div class="w-2/5 aspect-[3/4] bg-white/5 rounded-2xl border border-white/5"></div>
+
+               <!-- Content Column (3/5) -->
+               <div class="flex-1 space-y-6">
+                 <div class="h-8 w-1/3 bg-white/5 rounded-full"></div>
+                 <div class="h-12 w-3/4 bg-white/5 rounded-xl"></div>
+                 <div class="space-y-3">
+                   <div class="h-4 w-full bg-white/5 rounded"></div>
+                   <div class="h-4 w-full bg-white/5 rounded"></div>
+                   <div class="h-4 w-5/6 bg-white/5 rounded"></div>
+                 </div>
+                 <div class="flex gap-4 pt-4">
+                   <div class="h-14 w-40 bg-white/5 rounded-xl"></div>
+                   <div class="h-14 w-40 bg-white/5 rounded-xl"></div>
+                 </div>
+               </div>
+            </div>
+
+             <!-- Bottom Content (Common) -->
+             <div class="hidden lg:grid grid-cols-2 gap-6 mt-8">
+                 <div class="h-32 bg-white/5 rounded-2xl"></div>
+                 <div class="h-32 bg-white/5 rounded-2xl"></div>
+             </div>
+
+          </div>
+
+          <!-- Правая колонка (Сайдбар) -->
+          <div class="hidden lg:block w-[30%] space-y-6">
+            <div class="w-full h-80 bg-white/5 rounded-3xl border border-white/5"></div>
+            <div class="w-full h-96 bg-white/5 rounded-3xl border border-white/5"></div>
+          </div>
+        </div>
       </div>
     </div>
+
 
     <!-- Ошибка -->
     <div
@@ -2485,6 +2540,155 @@
           </div>
         </aside>
       </div>
+      <!-- 📱 Info Popup & Like Button Control Panel -->
+      <div
+        class="fixed bottom-4 right-4 z-40 flex flex-col gap-3"
+        v-if="slot"
+      >
+        <!-- Info Button -->
+        <button
+          @click="showInfoModal = true"
+          class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg hover:bg-white/20 transition-all hover:scale-105 group animated-gradient-border"
+          aria-label="Slot Information"
+        >
+          <span class="text-2xl group-hover:animate-pulse">ⓘ</span>
+        </button>
+
+        <!-- Like Button -->
+        <button
+          @click="toggleLike"
+          class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg hover:bg-white/20 transition-all hover:scale-105 group animated-gradient-border"
+          :class="{ '!bg-red-500/20 !border-red-500/50': isLiked }"
+          aria-label="Add to Favorites"
+        >
+          <span
+            class="text-2xl transition-transform duration-300"
+            :class="{ 'scale-125': isLiked, 'animate-[heartbeat_1s_ease-in-out_infinite]': isLiked }"
+          >
+            {{ isLiked ? '❤️' : '🤍' }}
+          </span>
+        </button>
+      </div>
+
+      <!-- 📋 Info Modal -->
+      <div
+        v-if="showInfoModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+        @click.self="showInfoModal = false"
+      >
+        <div
+          class="relative w-full max-w-2xl bg-[#161A21] border border-[#353A4A] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar"
+        >
+          <!-- Header -->
+          <div class="sticky top-0 z-10 flex items-center justify-between p-6 bg-[#161A21]/95 backdrop-blur border-b border-[#353A4A]">
+            <h2 class="text-xl font-bold text-white">
+              <span class="text-[#8B5CF6]">#{{ slot.popularity_rank || '1' }}</span>
+              {{ slot.name }}
+            </h2>
+            <button
+              @click="showInfoModal = false"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- Content -->
+          <div class="p-6 space-y-8">
+            <!-- Introduction -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3">Introduction</h3>
+              <div class="text-gray-300 space-y-4 leading-relaxed">
+                <p v-if="slot.info_introduction" v-html="slot.info_introduction"></p>
+                <template v-else>
+                  <p>{{ slot.overview_description_1 || getShortDescription(slot, false) }}</p>
+                  <p v-if="slot.overview_description_2">{{ slot.overview_description_2 }}</p>
+                </template>
+              </div>
+            </section>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-4 bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
+              <div>
+                <div class="text-xs text-gray-500 uppercase mb-1">Year of Release</div>
+                <div class="font-medium text-white">{{ slot.release_date ? new Date(slot.release_date).getFullYear() : '2024' }}</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 uppercase mb-1">RTP</div>
+                <div class="font-medium text-[#10B981]">{{ slot.rtp || '96.0' }}%</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 uppercase mb-1">Bonus Features</div>
+                <div class="font-medium text-white">{{ (slot.slot_bonuses?.length || slot.has_bonuses) ? 'Yes' : 'No' }}</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 uppercase mb-1">Maximum Win</div>
+                <div class="font-medium text-[#F59E0B]">{{ formatMaxWin(slot.max_win) }}</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 uppercase mb-1">Volatility</div>
+                <div class="font-medium text-[#EF4444]">{{ getVolatilityText(slot.volatility) }}</div>
+              </div>
+            </div>
+
+            <!-- Mechanics -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3">Game Mechanics, Graphics & Sounds</h3>
+              <div class="text-gray-300 leading-relaxed">
+                <p v-if="slot.info_mechanics" v-html="slot.info_mechanics"></p>
+                <p v-else>
+                  In {{ slot.name }}, each spin offers unique excitement with its {{ slot.layout || '5x3' }} layout and {{ formatPaylines(slot.paylines) }} ways to win.
+                  The game features immersive graphics and sound effects that transport players to a world of {{ slot.theme || 'adventure' }}.
+                </p>
+              </div>
+            </section>
+
+            <!-- Bonuses -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3">Bonuses and Features</h3>
+              <div class="space-y-4">
+                <div v-if="slot.info_freespins">
+                  <h4 class="font-medium text-[#8B5CF6] mb-1">Free Spins:</h4>
+                  <p class="text-gray-300 text-sm">{{ slot.info_freespins }}</p>
+                </div>
+                <div v-if="slot.info_buy_feature">
+                  <h4 class="font-medium text-[#8B5CF6] mb-1">Buy Free Spins:</h4>
+                  <p class="text-gray-300 text-sm">{{ slot.info_buy_feature }}</p>
+                </div>
+                <!-- Fallback if specific info fields are empty -->
+                <div v-if="!slot.info_freespins && !slot.info_buy_feature">
+                  <ul class="list-disc list-inside text-gray-300 space-y-1">
+                    <li v-for="bonus in getSlotBonuses(slot)" :key="bonus.id">
+                      {{ bonus.name }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-[#8B5CF6] mb-1">{{ getVolatilityText(slot.volatility) }} Volatility:</h4>
+                  <p class="text-gray-300 text-sm">
+                    {{ slot.info_volatility_note || `${slot.name} is a ${getVolatilityText(slot.volatility).toLowerCase()}-volatility slot, offering a balanced mix of risk and potential rewards.` }}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 p-4 rounded-xl border border-[#8B5CF6]/20">
+              <h3 class="text-lg font-bold text-white mb-2">Free Play or Demo</h3>
+              <p class="text-gray-300 mb-4 text-sm">
+                {{ slot.info_demo_cta || `You can easily try out ${slot.name} online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!` }}
+              </p>
+              <button
+                @click="playSlot(); showInfoModal = false"
+                class="w-full py-3 bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-[1.02]"
+              >
+                Play Demo Now
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
@@ -3258,6 +3462,43 @@ const getAwardEffectColors = (gradient) => {
     [51, 65, 85],
     [30, 41, 59],
   ]
+}
+
+// 📱 Info Popup & Like State
+const showInfoModal = ref(false)
+const isLiked = ref(false)
+
+// Инициализация лайка из localStorage
+onMounted(() => {
+  if (process.client && slot.value?.id) {
+    const key = `slot_like_${slot.value.id}`
+    isLiked.value = localStorage.getItem(key) === 'true'
+  }
+})
+
+// Отслеживание изменения слота для обновления статуса лайка
+watch(
+  () => slot.value?.id,
+  (newId) => {
+    if (process.client && newId) {
+      const key = `slot_like_${newId}`
+      isLiked.value = localStorage.getItem(key) === 'true'
+    }
+  }
+)
+
+const toggleLike = () => {
+  if (!process.client || !slot.value?.id) return
+
+  isLiked.value = !isLiked.value
+  const key = `slot_like_${slot.value.id}`
+
+  if (isLiked.value) {
+    localStorage.setItem(key, 'true')
+    // Можно добавить аналитику или отправку на сервер в будущем
+  } else {
+    localStorage.removeItem(key)
+  }
 }
 
 const getEffectColorsFor = (theme) => {
@@ -4819,6 +5060,16 @@ const getStructuredData = (slot) => {
   }
 }
 
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1.2); }
+  50% { transform: scale(1.35); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 3s ease infinite;
@@ -4850,5 +5101,46 @@ article {
   outline: 3px solid #4f46e5;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Animated Gradient Border for Icons */
+@keyframes spin-gradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animated-gradient-border {
+  position: relative;
+  z-index: 10;
+  border: none !important; /* Remove defaults if any */
+}
+
+.animated-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #3B82F6, #8B5CF6, #EC4899, #EF4444, #F59E0B, #10B981, #3B82F6);
+  z-index: -1;
+  animation: spin-gradient 4s linear infinite;
+
+  /* Create a hollow ring */
+  padding: 2px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* Optional: Glow effect */
+.animated-gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(5px);
+  z-index: -2;
+  opacity: 0.5;
 }
 </style>

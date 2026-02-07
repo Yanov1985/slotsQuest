@@ -1154,6 +1154,116 @@
                       </div>
                     </div>
 
+
+                    <!-- Info Popup Content (New Section) -->
+                    <div
+                      class="group bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/40 transition-all duration-300"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-2xl"
+                          >
+                            ℹ️
+                          </div>
+                          <div>
+                            <h3
+                              class="text-lg font-medium text-[#E5E7EB] font-display"
+                            >
+                              Info Popup Content
+                            </h3>
+                            <p class="text-sm text-purple-400">
+                              Контент для модального окна ⓘ
+                            </p>
+                          </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                           <button
+                            type="button"
+                            @click="generateInfoContent"
+                            class="px-3 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-xs font-medium transition-colors flex items-center gap-2"
+                          >
+                            <span>🪄</span> Auto-Generate
+                          </button>
+                          <button
+                            type="button"
+                            @click="showInfoPopupSection = !showInfoPopupSection"
+                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-purple-500/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                          >
+                            {{ showInfoPopupSection ? 'Hide' : 'Show' }}
+                          </button>
+                        </div>
+                      </div>
+
+                      <div v-show="showInfoPopupSection" class="space-y-6 animate-fade-in">
+                        <!-- Introduction -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Introduction (2 paragraphs)</label>
+                          <textarea
+                            v-model="form.info_introduction"
+                            rows="4"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-sm"
+                            placeholder="<p>Paragraph 1...</p><p>Paragraph 2...</p>"
+                          ></textarea>
+                        </div>
+
+                        <!-- Game Mechanics -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Game Mechanics, Graphics & Sounds</label>
+                          <textarea
+                            v-model="form.info_mechanics"
+                            rows="3"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                            placeholder="Describe mechanics, visuals and audio..."
+                          ></textarea>
+                        </div>
+
+                        <!-- Free Spins -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Free Spins Description</label>
+                          <textarea
+                            v-model="form.info_freespins"
+                            rows="2"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                            placeholder="Details about Free Spins feature..."
+                          ></textarea>
+                        </div>
+
+                        <!-- Buy Feature -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Buy Feature Description</label>
+                          <textarea
+                            v-model="form.info_buy_feature"
+                            rows="2"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                            placeholder="Details about Buy Feature..."
+                          ></textarea>
+                        </div>
+
+                        <!-- Volatility Note -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Volatility Note</label>
+                          <textarea
+                            v-model="form.info_volatility_note"
+                            rows="2"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                            placeholder="Note about volatility..."
+                          ></textarea>
+                        </div>
+
+                        <!-- Demo CTA -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">Demo CTA Text</label>
+                          <textarea
+                            v-model="form.info_demo_cta"
+                            rows="2"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                            placeholder="Call to action for demo play..."
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+
                     <!-- Рейтинг и популярность -->
                     <div
                       class="group bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6 hover:border-[#CD0F8B]/40 transition-all duration-300"
@@ -5099,6 +5209,7 @@ const showIndexingStatusSection = ref(false)
 const showPageSpeedSection = ref(false)
 const showSitemapSection = ref(false)
 const showSEOHealthSection = ref(false)
+const showInfoPopupSection = ref(true)
 
 // Фаза 2: переменные для Title Templates
 const generatedTitleFromTemplate = ref('')
@@ -5288,6 +5399,14 @@ const form = ref({
   media_type: 'image', // 'image' или 'video'
   image_url: '',
   image_focus_point: 'center 20%', // Точка фокуса для адаптивного кропа
+
+  // Info Popup Content
+  info_introduction: '',
+  info_mechanics: '',
+  info_freespins: '',
+  info_buy_feature: '',
+  info_volatility_note: '',
+  info_demo_cta: '',
   video_url: '',
   // Ссылки кнопок
   demo_url: '', // Ссылка для кнопки "Играть бесплатно"
@@ -6578,8 +6697,14 @@ const saveSlot = async () => {
       'free_spins_5_scatter',
       'free_spins_5_scatter_desc',
       'free_spins_6_scatter',
-      'free_spins_6_scatter_desc',
-      'free_spins_features_title',
+
+  'info_introduction',
+  'info_mechanics',
+  'info_freespins',
+  'info_buy_feature',
+  'info_volatility_note',
+  'info_demo_cta',
+  'free_spins_features_title',
       'free_spins_feature_1',
       'free_spins_feature_2',
       'free_spins_feature_3',
@@ -7798,6 +7923,65 @@ const handleSearch = () => {
   // Автоматически переходим к первому результату
   if (results.length > 0) {
     navigateToSearchResult(0)
+  }
+}
+
+// 🪄 Авто-генерация контента для Info Popup
+const generateInfoContent = () => {
+  if (!form.value.name) return
+
+  // 1. Introduction
+  if (!form.value.info_introduction) {
+    const intro = []
+    intro.push(`<p><strong>${form.value.name}</strong> is a pleasing online slot game developed by <strong>${providers.value.find(p => p.id === form.value.provider_id)?.name || 'Provider'}</strong> that takes players on an exciting adventure. The game offers a unique atmosphere with high-quality graphics and immersive sound effects.</p>`)
+
+    if (form.value.description) {
+      intro.push(`<p>${form.value.description}</p>`)
+    } else {
+      intro.push(`<p>This slot features a <strong>${form.value.reels}x${form.value.rows}</strong> layout with <strong>${form.value.paylines}</strong> ways to win, offering players multiple opportunities to land winning combinations and trigger bonus features.</p>`)
+    }
+    form.value.info_introduction = intro.join('\n')
+  }
+
+  // 2. Mechanics
+  if (!form.value.info_mechanics) {
+    form.value.info_mechanics = `<p>In <strong>${form.value.name}</strong>, each reel can display symbols that form winning combinations across <strong>${form.value.paylines}</strong> paylines. The game includes mechanics like <strong>${form.value.volatility} volatility</strong> math model and an RTP of <strong>${form.value.rtp}%</strong>, providing a balanced gaming experience.</p>`
+  }
+
+  // 3. Free Spins
+  if (!form.value.info_freespins) {
+    form.value.info_freespins = `You can trigger Free Spins by landing 3 or more Scatter symbols. During this feature, you can win additional spins and potentially increase your winnings with special multipliers or expanding symbols.`
+  }
+
+  // 4. Buy Feature
+  if (!form.value.info_buy_feature && form.value.bonus_buy) {
+    form.value.info_buy_feature = `For players who want instant action, the game offers a Buy Feature option, allowing you to purchase direct access to the bonus round for a set multiple of your bet.`
+  }
+
+  // 5. Volatility Note
+  if (!form.value.info_volatility_note) {
+    form.value.info_volatility_note = `${form.value.name} is a <strong>${form.value.volatility}</strong> volatility slot, which means that while wins may be ${form.value.volatility === 'high' ? 'less frequent, they have the potential to be substantial' : 'more frequent but typically smaller in size'}.`
+  }
+
+  // 6. Demo CTA
+  if (!form.value.info_demo_cta) {
+    form.value.info_demo_cta = `You can easily try out any slot at <strong>SlotQuest</strong> without paying real money. The <strong>${form.value.name}</strong> is one of them, so take advantage of it and dive right in!`
+  }
+
+  // Обновляем JSON-LD Review Text если он доступен
+  try {
+    if (typeof jsonLdForm !== 'undefined' && jsonLdForm.value) {
+      const combinedText = [
+        form.value.info_introduction,
+        form.value.info_mechanics
+      ].filter(Boolean).join('\n\n').replace(/<[^>]*>/g, '') // Убираем HTML теги
+
+      if (combinedText && !jsonLdForm.value.jsonld_review_text) {
+         jsonLdForm.value.jsonld_review_text = combinedText
+      }
+    }
+  } catch (e) {
+    console.error('Error updating JSON-LD form:', e)
   }
 }
 
