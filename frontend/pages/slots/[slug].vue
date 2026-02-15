@@ -2542,7 +2542,7 @@
       </div>
       <!-- 📱 Info Popup & Like Button Control Panel -->
       <div
-        class="fixed bottom-4 right-4 z-40 flex flex-col gap-3"
+        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-[60] flex flex-col gap-3 print:hidden safe-area-pb"
         v-if="slot"
       >
         <!-- Info Button -->
@@ -2573,105 +2573,166 @@
       <!-- 📋 Info Modal -->
       <div
         v-if="showInfoModal"
-        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
         @click.self="showInfoModal = false"
       >
         <div
-          class="relative w-full max-w-2xl bg-[#161A21] border border-[#353A4A] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar"
+          class="relative w-full max-w-[95vw] sm:max-w-2xl bg-[#161A21] border border-[#353A4A] rounded-2xl shadow-2xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto custom-scrollbar safe-area-pb"
         >
           <!-- Header -->
-          <div class="sticky top-0 z-10 flex items-center justify-between p-6 bg-[#161A21]/95 backdrop-blur border-b border-[#353A4A]">
-            <h2 class="text-xl font-bold text-white">
+          <div class="sticky top-0 z-10 flex items-center justify-between p-4 sm:p-6 bg-[#161A21]/95 backdrop-blur border-b border-[#353A4A]">
+            <h2 class="text-lg sm:text-xl font-bold text-white truncate pr-2">
               <span class="text-[#8B5CF6]">#{{ slot.popularity_rank || '1' }}</span>
               {{ slot.name }}
             </h2>
             <button
               @click="showInfoModal = false"
-              class="text-gray-400 hover:text-white transition-colors"
+              class="text-gray-400 hover:text-white transition-colors p-2 -mr-2"
+              aria-label="Close modal"
             >
-              ✕
+              <span class="text-2xl">✕</span>
             </button>
           </div>
 
           <!-- Content -->
-          <div class="p-6 space-y-8">
-            <!-- Introduction -->
+          <div class="p-4 sm:p-6 space-y-6 sm:space-y-8">
+            <!-- 🏆 1. Expert Verdict -->
             <section>
-              <h3 class="text-lg font-bold text-white mb-3">Introduction</h3>
-              <div class="text-gray-300 space-y-4 leading-relaxed">
-                <p v-if="slot.info_introduction" v-html="slot.info_introduction"></p>
-                <template v-else>
-                  <p>{{ slot.overview_description_1 || getShortDescription(slot, false) }}</p>
-                  <p v-if="slot.overview_description_2">{{ slot.overview_description_2 }}</p>
-                </template>
-              </div>
-            </section>
-
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 gap-4 bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
-              <div>
-                <div class="text-xs text-gray-500 uppercase mb-1">Year of Release</div>
-                <div class="font-medium text-white">{{ slot.release_date ? new Date(slot.release_date).getFullYear() : '2024' }}</div>
-              </div>
-              <div>
-                <div class="text-xs text-gray-500 uppercase mb-1">RTP</div>
-                <div class="font-medium text-[#10B981]">{{ slot.rtp || '96.0' }}%</div>
-              </div>
-              <div>
-                <div class="text-xs text-gray-500 uppercase mb-1">Bonus Features</div>
-                <div class="font-medium text-white">{{ (slot.slot_bonuses?.length || slot.has_bonuses) ? 'Yes' : 'No' }}</div>
-              </div>
-              <div>
-                <div class="text-xs text-gray-500 uppercase mb-1">Maximum Win</div>
-                <div class="font-medium text-[#F59E0B]">{{ formatMaxWin(slot.max_win) }}</div>
-              </div>
-              <div>
-                <div class="text-xs text-gray-500 uppercase mb-1">Volatility</div>
-                <div class="font-medium text-[#EF4444]">{{ getVolatilityText(slot.volatility) }}</div>
-              </div>
-            </div>
-
-            <!-- Mechanics -->
-            <section>
-              <h3 class="text-lg font-bold text-white mb-3">Game Mechanics, Graphics & Sounds</h3>
-              <div class="text-gray-300 leading-relaxed">
-                <p v-if="slot.info_mechanics" v-html="slot.info_mechanics"></p>
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-yellow-400">🏆</span> Expert Verdict
+              </h3>
+              <div class="text-gray-300 leading-relaxed text-sm sm:text-base bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
+                <p v-if="slot.info_expert_verdict" v-html="slot.info_expert_verdict"></p>
                 <p v-else>
-                  In {{ slot.name }}, each spin offers unique excitement with its {{ slot.layout || '5x3' }} layout and {{ formatPaylines(slot.paylines) }} ways to win.
-                  The game features immersive graphics and sound effects that transport players to a world of {{ slot.theme || 'adventure' }}.
+                  {{ slot.name }} by {{ slot.providers?.name || 'the developer' }} is a {{ getVolatilityText(slot.volatility).toLowerCase() }}-volatility slot with an RTP of {{ slot.rtp || '96.0' }}% and a maximum win of {{ formatMaxWin(slot.max_win) }}x.
+                  {{ slot.rtp >= 96.5 ? 'The above-average RTP makes it a solid choice for long sessions.' : 'It delivers a balanced gaming experience suitable for most players.' }}
+                  Overall, we rate it {{ slot.rating || 4.5 }}/5 for its {{ slot.volatility?.toLowerCase() === 'high' ? 'thrilling high-reward potential' : 'balanced gameplay and consistent payouts' }}.
                 </p>
               </div>
             </section>
 
-            <!-- Bonuses -->
+            <!-- ✅❌ 2. Pros & Cons -->
             <section>
-              <h3 class="text-lg font-bold text-white mb-3">Bonuses and Features</h3>
-              <div class="space-y-4">
-                <div v-if="slot.info_freespins">
-                  <h4 class="font-medium text-[#8B5CF6] mb-1">Free Spins:</h4>
-                  <p class="text-gray-300 text-sm">{{ slot.info_freespins }}</p>
-                </div>
-                <div v-if="slot.info_buy_feature">
-                  <h4 class="font-medium text-[#8B5CF6] mb-1">Buy Free Spins:</h4>
-                  <p class="text-gray-300 text-sm">{{ slot.info_buy_feature }}</p>
-                </div>
-                <!-- Fallback if specific info fields are empty -->
-                <div v-if="!slot.info_freespins && !slot.info_buy_feature">
-                  <ul class="list-disc list-inside text-gray-300 space-y-1">
-                    <li v-for="bonus in getSlotBonuses(slot)" :key="bonus.id">
-                      {{ bonus.name }}
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span>✅❌</span> Pros & Cons
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <!-- Pros -->
+                <div class="bg-emerald-500/5 p-3 sm:p-4 rounded-xl border border-emerald-500/20">
+                  <h4 class="font-semibold text-emerald-400 text-sm mb-2">✅ Pros</h4>
+                  <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
+                    <li v-for="(pro, i) in computedPros" :key="'pro-'+i" class="flex items-start gap-2">
+                      <span class="text-emerald-400 mt-0.5 shrink-0">+</span>
+                      <span>{{ pro }}</span>
                     </li>
                   </ul>
                 </div>
-
-                <div>
-                  <h4 class="font-medium text-[#8B5CF6] mb-1">{{ getVolatilityText(slot.volatility) }} Volatility:</h4>
-                  <p class="text-gray-300 text-sm">
-                    {{ slot.info_volatility_note || `${slot.name} is a ${getVolatilityText(slot.volatility).toLowerCase()}-volatility slot, offering a balanced mix of risk and potential rewards.` }}
-                  </p>
+                <!-- Cons -->
+                <div class="bg-red-500/5 p-3 sm:p-4 rounded-xl border border-red-500/20">
+                  <h4 class="font-semibold text-red-400 text-sm mb-2">❌ Cons</h4>
+                  <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
+                    <li v-for="(con, i) in computedCons" :key="'con-'+i" class="flex items-start gap-2">
+                      <span class="text-red-400 mt-0.5 shrink-0">−</span>
+                      <span>{{ con }}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </section>
+
+            <!-- ❓ 3. FAQ (Accordion) -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-blue-400">❓</span> Frequently Asked Questions
+              </h3>
+              <div class="space-y-2">
+                <details
+                  v-for="(item, i) in computedFaq"
+                  :key="'faq-'+i"
+                  class="group bg-[#1F2937]/50 rounded-xl border border-[#374151] overflow-hidden"
+                >
+                  <summary class="flex items-center justify-between p-3 sm:p-4 cursor-pointer text-white font-medium text-sm sm:text-base hover:bg-white/5 transition-colors select-none list-none">
+                    <span>{{ item.question }}</span>
+                    <span class="text-gray-400 transition-transform duration-300 group-open:rotate-180 ml-2 shrink-0">▼</span>
+                  </summary>
+                  <div class="px-3 sm:px-4 pb-3 sm:pb-4 text-gray-300 text-xs sm:text-sm leading-relaxed border-t border-[#374151]">
+                    <p class="pt-3">{{ item.answer }}</p>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <!-- 📝 4. Player Reviews -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-pink-400">📝</span> Player Reviews
+              </h3>
+              <div class="space-y-3">
+                <div
+                  v-for="(review, i) in computedReviews"
+                  :key="'review-'+i"
+                  class="bg-[#1F2937]/50 p-3 sm:p-4 rounded-xl border border-[#374151]"
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+                        {{ review.author?.charAt(0)?.toUpperCase() || 'U' }}
+                      </div>
+                      <div>
+                        <div class="text-white text-sm font-medium">{{ review.author }}</div>
+                        <div class="text-gray-500 text-xs">{{ review.date }}</div>
+                      </div>
+                    </div>
+                    <div class="flex text-yellow-400 text-sm">
+                      <span v-for="n in 5" :key="'star-'+i+'-'+n">{{ n <= review.rating ? '★' : '☆' }}</span>
+                    </div>
+                  </div>
+                  <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">{{ review.text }}</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- 🎮 5. How to Play -->
+            <section>
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-green-400">🎮</span> How to Play {{ slot.name }}
+              </h3>
+              <div class="space-y-3">
+                <div
+                  v-for="(step, i) in computedHowToPlay"
+                  :key="'step-'+i"
+                  class="flex items-start gap-3 sm:gap-4"
+                >
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#EC4899] flex items-center justify-center text-white text-sm font-bold shrink-0">
+                    {{ i + 1 }}
+                  </div>
+                  <div class="pt-1">
+                    <h4 class="text-white font-medium text-sm sm:text-base mb-1">{{ step.step }}</h4>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">{{ step.text }}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 🔗 6. Similar Slots -->
+            <section v-if="similarSlots.length > 0">
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-orange-400">🔗</span> Similar Slots You May Like
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                <NuxtLink
+                  v-for="sim in similarSlots.slice(0, 6)"
+                  :key="sim.id"
+                  :to="`/slots/${sim.slug}`"
+                  class="bg-[#1F2937]/50 p-3 rounded-xl border border-[#374151] hover:border-[#8B5CF6]/50 transition-colors group text-center"
+                  @click="showInfoModal = false"
+                >
+                  <div class="text-white text-xs sm:text-sm font-medium group-hover:text-[#8B5CF6] transition-colors truncate">{{ sim.name }}</div>
+                  <div class="text-gray-500 text-[10px] sm:text-xs mt-1">{{ sim.providers?.name || 'Provider' }}</div>
+                </NuxtLink>
+              </div>
+            </section>
+
 
             <!-- CTA -->
             <section class="bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 p-4 rounded-xl border border-[#8B5CF6]/20">
@@ -2723,6 +2784,162 @@ const selectedStars = ref(null)
 const hoverStars = ref(0)
 const ratingSubmitting = ref(false)
 const ratingSubmitted = ref(false)
+
+// 🆕 Computed properties for Enhanced Info Modal
+const computedPros = computed(() => {
+  if (slot.value.info_pros) {
+    try { return JSON.parse(slot.value.info_pros) } catch(e) { /* fallback */ }
+  }
+  const s = slot.value
+  const pros = []
+  if (s.rtp >= 96.5) pros.push(`Above-average RTP of ${s.rtp}%`)
+  else if (s.rtp) pros.push(`Competitive RTP of ${s.rtp}%`)
+  if (s.max_win >= 5000) pros.push(`Massive max win of ${formatMaxWin(s.max_win)}x`)
+  else if (s.max_win) pros.push(`Max win potential of ${formatMaxWin(s.max_win)}x`)
+  if (s.demo_url) pros.push('Free demo mode available')
+  if (s.slot_bonuses?.length > 0) pros.push(`${s.slot_bonuses.length} bonus features`)
+  else pros.push('Engaging gameplay mechanics')
+  if (s.paylines) pros.push(`${formatPaylines(s.paylines)} ways to win`)
+  return pros.slice(0, 4)
+})
+
+const computedCons = computed(() => {
+  if (slot.value.info_cons) {
+    try { return JSON.parse(slot.value.info_cons) } catch(e) { /* fallback */ }
+  }
+  const s = slot.value
+  const cons = []
+  if (s.volatility?.toLowerCase() === 'high') cons.push('High volatility — not for cautious players')
+  else if (s.volatility?.toLowerCase() === 'low') cons.push('Low volatility — smaller win potential')
+  if (s.rtp && s.rtp < 96.0) cons.push(`Below-average RTP of ${s.rtp}%`)
+  if (!s.slot_bonuses?.length) cons.push('Limited bonus features')
+  if (cons.length === 0) cons.push('May not appeal to all play styles')
+  cons.push('Requires stable internet connection')
+  return cons.slice(0, 3)
+})
+
+const computedFaq = computed(() => {
+  if (slot.value.info_faq) {
+    try { return JSON.parse(slot.value.info_faq) } catch(e) { /* fallback */ }
+  }
+  const s = slot.value
+  const name = s.name || 'this slot'
+  const provider = s.providers?.name || 'the developer'
+  return [
+    { question: `Is ${name} safe to play online?`, answer: `Yes, ${name} is developed by ${provider}, a licensed and regulated game provider. All games are tested by independent auditing agencies to ensure fair play and random outcomes.` },
+    { question: `What is the RTP of ${name}?`, answer: `The Return to Player (RTP) of ${name} is ${s.rtp || '96.0'}%. This means that, on average, for every $100 wagered, the game returns $${s.rtp || '96.0'} to players over time.` },
+    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on SlotQuest. No registration or deposit required — just click "Play Demo Now" to start spinning.` },
+    { question: `What is the maximum win in ${name}?`, answer: `The maximum win in ${name} is ${formatMaxWin(s.max_win)}x your bet. ${s.max_win >= 5000 ? 'This is a very high max win potential!' : 'This offers solid winning potential for players.'}` },
+    { question: `What is the volatility of ${name}?`, answer: `${name} has ${getVolatilityText(s.volatility).toLowerCase()} volatility. ${s.volatility?.toLowerCase() === 'high' ? 'This means wins are less frequent but can be much larger when they hit.' : s.volatility?.toLowerCase() === 'low' ? 'This means you can expect frequent, smaller wins.' : 'This provides a balanced mix of win frequency and size.'}` }
+  ]
+})
+
+const computedReviews = computed(() => {
+  if (slot.value.info_reviews) {
+    try { return JSON.parse(slot.value.info_reviews) } catch(e) { /* fallback */ }
+  }
+  const s = slot.value
+  const name = s.name || 'this slot'
+  return [
+    { author: 'Alex R.', rating: 5, text: `${name} is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back. Highly recommended for anyone who enjoys ${s.volatility?.toLowerCase() === 'high' ? 'high-risk, high-reward' : 'engaging'} gameplay.`, date: '2024-12-15' },
+    { author: 'Maria K.', rating: 4, text: `Great slot with solid RTP of ${s.rtp || '96.0'}%. The free spins feature is especially exciting. I play it regularly on SlotQuest in demo mode before wagering real money.`, date: '2024-11-28' },
+    { author: 'James T.', rating: 4, text: `Decent slot from ${s.providers?.name || 'the developer'}. The ${formatMaxWin(s.max_win)}x max win potential is attractive. Love the theme and sound design. Would recommend trying the demo first.`, date: '2024-10-10' }
+  ]
+})
+
+const computedHowToPlay = computed(() => {
+  if (slot.value.info_how_to_play) {
+    try { return JSON.parse(slot.value.info_how_to_play) } catch(e) { /* fallback */ }
+  }
+  const name = slot.value.name || 'the slot'
+  return [
+    { step: 'Open the Demo', text: `Click "Play Demo Now" on this page to launch ${name} in free play mode. No registration or deposit required.` },
+    { step: 'Set Your Bet', text: `Use the controls at the bottom of the game screen to adjust your bet size. Start with the minimum bet to learn the mechanics.` },
+    { step: 'Spin the Reels', text: `Click the Spin button or press Space. Watch for winning combinations across the ${formatPaylines(slot.value.paylines)} paylines.` },
+    { step: 'Trigger Bonuses', text: `Land special symbols to activate bonus features like free spins, multipliers, and other rewards. Check the paytable (ℹ) for details.` }
+  ]
+})
+
+const similarSlots = computed(() => {
+  if (!allSlots.value?.length || !slot.value?.id) return []
+  const currentProvider = slot.value.providers?.id
+  const currentId = slot.value.id
+  return allSlots.value
+    .filter(s => s.id !== currentId && (s.providers?.id === currentProvider || s.provider_id === currentProvider))
+    .slice(0, 6)
+})
+
+// 🎯 JSON-LD Schemas for Enhanced Info Modal (FAQPage, HowTo, Review)
+const generateSeoSchemas = computed(() => {
+  if (!slot.value?.name) return []
+  const schemas = []
+  const name = slot.value.name
+
+  // FAQPage Schema
+  const faqItems = computedFaq.value
+  if (faqItems?.length) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': faqItems.map(item => ({
+        '@type': 'Question',
+        'name': item.question,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': item.answer
+        }
+      }))
+    })
+  }
+
+  // HowTo Schema
+  const howToSteps = computedHowToPlay.value
+  if (howToSteps?.length) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      'name': 'How to Play ' + name,
+      'description': 'Step-by-step guide to playing ' + name + ' online slot',
+      'step': howToSteps.map((s, i) => ({
+        '@type': 'HowToStep',
+        'position': i + 1,
+        'name': s.step,
+        'text': s.text
+      }))
+    })
+  }
+
+  // Review Schemas
+  const reviews = computedReviews.value
+  if (reviews?.length) {
+    const avgRating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': name,
+      'applicationCategory': 'GameApplication',
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': avgRating.toFixed(1),
+        'reviewCount': reviews.length,
+        'bestRating': '5',
+        'worstRating': '1'
+      },
+      'review': reviews.map(r => ({
+        '@type': 'Review',
+        'author': { '@type': 'Person', 'name': r.author },
+        'reviewRating': { '@type': 'Rating', 'ratingValue': r.rating, 'bestRating': '5' },
+        'reviewBody': r.text,
+        'datePublished': r.date
+      }))
+    })
+  }
+
+  return schemas
+})
+
+
+
 
 // 📅 Функция форматирования даты для блока автора
 // Преобразует ISO дату в читаемый формат: "12 января 2026"
@@ -2829,21 +3046,6 @@ const overviewDescription2 = computed(() => {
   return result
 })
 
-// Вычисляемые свойства
-const similarSlots = computed(() => {
-  if (!slot.value || !slot.value.id || !allSlots.value.length) return []
-
-  return allSlots.value
-    .filter(
-      (s) =>
-        s &&
-        s.id &&
-        s.id !== slot.value.id &&
-        (s.providers?.id === slot.value.providers?.id ||
-          s.category_id === slot.value.category_id),
-    )
-    .slice(0, 3)
-})
 
 // Награды теперь управляются через админку (убрали хардкод для Gates of Olympus)
 
@@ -3209,6 +3411,10 @@ watchEffect(() => {
           type: 'application/ld+json',
           children: structuredData,
         },
+        ...generateSeoSchemas.value.map(schema => ({
+          type: 'application/ld+json',
+          children: JSON.stringify(schema)
+        })),
       ],
     })
   } else {

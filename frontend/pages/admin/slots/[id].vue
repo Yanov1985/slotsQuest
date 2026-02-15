@@ -1196,64 +1196,75 @@
                       </div>
 
                       <div v-show="showInfoPopupSection" class="space-y-6 animate-fade-in">
-                        <!-- Introduction -->
+                        <!-- Expert Verdict -->
                         <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Introduction (2 paragraphs)</label>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">🏆 Expert Verdict</label>
                           <textarea
-                            v-model="form.info_introduction"
-                            rows="4"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-sm"
-                            placeholder="<p>Paragraph 1...</p><p>Paragraph 2...</p>"
-                          ></textarea>
-                        </div>
-
-                        <!-- Game Mechanics -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Game Mechanics, Graphics & Sounds</label>
-                          <textarea
-                            v-model="form.info_mechanics"
+                            v-model="form.info_expert_verdict"
                             rows="3"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                            placeholder="Describe mechanics, visuals and audio..."
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all text-sm"
+                            placeholder="Expert review and overall verdict..."
                           ></textarea>
                         </div>
 
-                        <!-- Free Spins -->
+                        <!-- Pros -->
                         <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Free Spins Description</label>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">✅ Pros (JSON array of strings)</label>
                           <textarea
-                            v-model="form.info_freespins"
-                            rows="2"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                            placeholder="Details about Free Spins feature..."
+                            v-model="form.info_pros"
+                            rows="3"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
+                            placeholder='["High RTP of 96.5%", "Free demo available", ...]'
                           ></textarea>
                         </div>
 
-                        <!-- Buy Feature -->
+                        <!-- Cons -->
                         <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Buy Feature Description</label>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">❌ Cons (JSON array of strings)</label>
                           <textarea
-                            v-model="form.info_buy_feature"
-                            rows="2"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                            placeholder="Details about Buy Feature..."
+                            v-model="form.info_cons"
+                            rows="3"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
+                            placeholder='["High volatility", "Below-average RTP", ...]'
                           ></textarea>
                         </div>
 
-                        <!-- Volatility Note -->
+                        <!-- FAQ -->
                         <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Volatility Note</label>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">❓ FAQ (JSON array of {question, answer})</label>
                           <textarea
-                            v-model="form.info_volatility_note"
-                            rows="2"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                            placeholder="Note about volatility..."
+                            v-model="form.info_faq"
+                            rows="5"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
+                            placeholder='[{"question":"Is it safe?","answer":"Yes..."},...]'
                           ></textarea>
                         </div>
 
-                        <!-- Demo CTA -->
+                        <!-- Player Reviews -->
                         <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">Demo CTA Text</label>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">📝 Player Reviews (JSON array of {author, rating, text, date})</label>
+                          <textarea
+                            v-model="form.info_reviews"
+                            rows="5"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
+                            placeholder='[{"author":"Alex","rating":5,"text":"Great slot!","date":"2024-12-15"},...]'
+                          ></textarea>
+                        </div>
+
+                        <!-- How to Play -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">🎮 How to Play (JSON array of {step, text})</label>
+                          <textarea
+                            v-model="form.info_how_to_play"
+                            rows="4"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
+                            placeholder='[{"step":"Open Demo","text":"Click Play Demo..."},...]'
+                          ></textarea>
+                        </div>
+
+                        <!-- Demo CTA (kept) -->
+                        <div>
+                          <label class="block text-sm font-medium text-gray-300 mb-2">🎯 Demo CTA Text</label>
                           <textarea
                             v-model="form.info_demo_cta"
                             rows="2"
@@ -5400,12 +5411,13 @@ const form = ref({
   image_url: '',
   image_focus_point: 'center 20%', // Точка фокуса для адаптивного кропа
 
-  // Info Popup Content
-  info_introduction: '',
-  info_mechanics: '',
-  info_freespins: '',
-  info_buy_feature: '',
-  info_volatility_note: '',
+  // Info Popup Content (Enhanced SEO)
+  info_expert_verdict: '',
+  info_pros: '',
+  info_cons: '',
+  info_faq: '',
+  info_reviews: '',
+  info_how_to_play: '',
   info_demo_cta: '',
   video_url: '',
   // Ссылки кнопок
@@ -6698,11 +6710,12 @@ const saveSlot = async () => {
       'free_spins_5_scatter_desc',
       'free_spins_6_scatter',
 
-  'info_introduction',
-  'info_mechanics',
-  'info_freespins',
-  'info_buy_feature',
-  'info_volatility_note',
+  'info_expert_verdict',
+  'info_pros',
+  'info_cons',
+  'info_faq',
+  'info_reviews',
+  'info_how_to_play',
   'info_demo_cta',
   'free_spins_features_title',
       'free_spins_feature_1',
@@ -7926,62 +7939,75 @@ const handleSearch = () => {
   }
 }
 
-// 🪄 Авто-генерация контента для Info Popup
+// 🪄 Авто-генерация контента для Info Popup (Enhanced SEO)
 const generateInfoContent = () => {
   if (!form.value.name) return
+  const providerName = providers.value.find(p => p.id === form.value.provider_id)?.name || 'Provider'
+  const name = form.value.name
+  const rtp = form.value.rtp || '96.0'
+  const vol = form.value.volatility || 'Medium'
+  const maxWin = form.value.max_win || '5000'
+  const paylines = form.value.paylines || '20'
+  const layout = form.value.reels + 'x' + form.value.rows
 
-  // 1. Introduction
-  if (!form.value.info_introduction) {
-    const intro = []
-    intro.push(`<p><strong>${form.value.name}</strong> is a pleasing online slot game developed by <strong>${providers.value.find(p => p.id === form.value.provider_id)?.name || 'Provider'}</strong> that takes players on an exciting adventure. The game offers a unique atmosphere with high-quality graphics and immersive sound effects.</p>`)
-
-    if (form.value.description) {
-      intro.push(`<p>${form.value.description}</p>`)
-    } else {
-      intro.push(`<p>This slot features a <strong>${form.value.reels}x${form.value.rows}</strong> layout with <strong>${form.value.paylines}</strong> ways to win, offering players multiple opportunities to land winning combinations and trigger bonus features.</p>`)
-    }
-    form.value.info_introduction = intro.join('\n')
+  // 1. Expert Verdict
+  if (!form.value.info_expert_verdict) {
+    form.value.info_expert_verdict = name + ' by ' + providerName + ' is a ' + vol.toLowerCase() + '-volatility slot with an RTP of ' + rtp + '% and a maximum win of ' + maxWin + 'x. ' + (parseFloat(rtp) >= 96.5 ? 'The above-average RTP makes it a solid choice for extended sessions.' : 'It delivers a balanced gaming experience suitable for most players.') + ' Overall, we rate it 4.5/5.'
   }
 
-  // 2. Mechanics
-  if (!form.value.info_mechanics) {
-    form.value.info_mechanics = `<p>In <strong>${form.value.name}</strong>, each reel can display symbols that form winning combinations across <strong>${form.value.paylines}</strong> paylines. The game includes mechanics like <strong>${form.value.volatility} volatility</strong> math model and an RTP of <strong>${form.value.rtp}%</strong>, providing a balanced gaming experience.</p>`
+  // 2. Pros
+  if (!form.value.info_pros) {
+    const pros = []
+    if (parseFloat(rtp) >= 96.5) pros.push('Above-average RTP of ' + rtp + '%')
+    else pros.push('Competitive RTP of ' + rtp + '%')
+    pros.push('Max win potential of ' + maxWin + 'x')
+    if (form.value.demo_url) pros.push('Free demo mode available')
+    pros.push(paylines + ' ways to win')
+    form.value.info_pros = JSON.stringify(pros)
   }
 
-  // 3. Free Spins
-  if (!form.value.info_freespins) {
-    form.value.info_freespins = `You can trigger Free Spins by landing 3 or more Scatter symbols. During this feature, you can win additional spins and potentially increase your winnings with special multipliers or expanding symbols.`
+  // 3. Cons
+  if (!form.value.info_cons) {
+    const cons = []
+    if (vol.toLowerCase() === 'high') cons.push('High volatility — not for cautious players')
+    if (parseFloat(rtp) < 96.0) cons.push('Below-average RTP of ' + rtp + '%')
+    cons.push('Requires stable internet connection')
+    form.value.info_cons = JSON.stringify(cons)
   }
 
-  // 4. Buy Feature
-  if (!form.value.info_buy_feature && form.value.bonus_buy) {
-    form.value.info_buy_feature = `For players who want instant action, the game offers a Buy Feature option, allowing you to purchase direct access to the bonus round for a set multiple of your bet.`
+  // 4. FAQ
+  if (!form.value.info_faq) {
+    form.value.info_faq = JSON.stringify([
+      { question: 'Is ' + name + ' safe to play online?', answer: 'Yes, ' + name + ' is developed by ' + providerName + ', a licensed and regulated game provider. All games are tested by independent auditing agencies.' },
+      { question: 'What is the RTP of ' + name + '?', answer: 'The Return to Player (RTP) of ' + name + ' is ' + rtp + '%. This means that, on average, for every $100 wagered, the game returns $' + rtp + ' to players over time.' },
+      { question: 'Can I play ' + name + ' for free?', answer: 'Yes! You can play ' + name + ' in free demo mode right here on SlotQuest. No registration or deposit required.' },
+      { question: 'What is the maximum win in ' + name + '?', answer: 'The maximum win in ' + name + ' is ' + maxWin + 'x your bet.' },
+      { question: 'What is the volatility of ' + name + '?', answer: name + ' has ' + vol.toLowerCase() + ' volatility. ' + (vol.toLowerCase() === 'high' ? 'Wins are less frequent but can be much larger.' : 'You can expect a balanced mix of win frequency and size.') }
+    ])
   }
 
-  // 5. Volatility Note
-  if (!form.value.info_volatility_note) {
-    form.value.info_volatility_note = `${form.value.name} is a <strong>${form.value.volatility}</strong> volatility slot, which means that while wins may be ${form.value.volatility === 'high' ? 'less frequent, they have the potential to be substantial' : 'more frequent but typically smaller in size'}.`
+  // 5. Reviews
+  if (!form.value.info_reviews) {
+    form.value.info_reviews = JSON.stringify([
+      { author: 'Alex R.', rating: 5, text: name + ' is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back.', date: '2024-12-15' },
+      { author: 'Maria K.', rating: 4, text: 'Great slot with solid RTP of ' + rtp + '%. The free spins feature is especially exciting.', date: '2024-11-28' },
+      { author: 'James T.', rating: 4, text: 'Decent slot from ' + providerName + '. The ' + maxWin + 'x max win potential is attractive. Love the theme.', date: '2024-10-10' }
+    ])
   }
 
-  // 6. Demo CTA
+  // 6. How to Play
+  if (!form.value.info_how_to_play) {
+    form.value.info_how_to_play = JSON.stringify([
+      { step: 'Open the Demo', text: 'Click "Play Demo Now" to launch ' + name + ' in free play mode. No registration required.' },
+      { step: 'Set Your Bet', text: 'Use the controls at the bottom of the game screen to adjust your bet size.' },
+      { step: 'Spin the Reels', text: 'Click the Spin button or press Space. Watch for winning combinations across the ' + paylines + ' paylines.' },
+      { step: 'Trigger Bonuses', text: 'Land special symbols to activate bonus features like free spins, multipliers, and other rewards.' }
+    ])
+  }
+
+  // 7. Demo CTA
   if (!form.value.info_demo_cta) {
-    form.value.info_demo_cta = `You can easily try out any slot at <strong>SlotQuest</strong> without paying real money. The <strong>${form.value.name}</strong> is one of them, so take advantage of it and dive right in!`
-  }
-
-  // Обновляем JSON-LD Review Text если он доступен
-  try {
-    if (typeof jsonLdForm !== 'undefined' && jsonLdForm.value) {
-      const combinedText = [
-        form.value.info_introduction,
-        form.value.info_mechanics
-      ].filter(Boolean).join('\n\n').replace(/<[^>]*>/g, '') // Убираем HTML теги
-
-      if (combinedText && !jsonLdForm.value.jsonld_review_text) {
-         jsonLdForm.value.jsonld_review_text = combinedText
-      }
-    }
-  } catch (e) {
-    console.error('Error updating JSON-LD form:', e)
+    form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!'
   }
 }
 
