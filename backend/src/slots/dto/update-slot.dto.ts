@@ -163,6 +163,15 @@ export class UpdateSlotDto {
   ante_bet_description?: string;
   ante_bet_warning?: string;
 
+  // Info Popup Content (для модального окна ⓘ на клиенте)
+  info_expert_verdict?: string;
+  info_pros?: string;
+  info_cons?: string;
+  info_faq?: string;
+  info_reviews?: string;
+  info_how_to_play?: string;
+  info_demo_cta?: string;
+
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];

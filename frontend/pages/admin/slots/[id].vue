@@ -1196,82 +1196,291 @@
                       </div>
 
                       <div v-show="showInfoPopupSection" class="space-y-6 animate-fade-in">
-                        <!-- Expert Verdict -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">🏆 Expert Verdict</label>
+
+                        <!-- 🏆 Expert Verdict -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-[#353A4A]">
+                          <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-3">
+                            <span class="text-yellow-400">🏆</span> Expert Verdict
+                          </label>
                           <textarea
                             v-model="form.info_expert_verdict"
                             rows="3"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all text-sm"
-                            placeholder="Expert review and overall verdict..."
+                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            placeholder="Expert review and overall verdict for this slot..."
                           ></textarea>
                         </div>
 
-                        <!-- Pros -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">✅ Pros (JSON array of strings)</label>
-                          <textarea
-                            v-model="form.info_pros"
-                            rows="3"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
-                            placeholder='["High RTP of 96.5%", "Free demo available", ...]'
-                          ></textarea>
+                        <!-- ✅ Pros -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-emerald-500/20">
+                          <div class="flex items-center justify-between mb-3">
+                            <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                              <span class="text-emerald-400">✅</span> Pros
+                              <span class="text-xs text-[#6B7280]">({{ infoProsItems.length }})</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="addInfoProsItem"
+                              class="flex items-center gap-1 px-2.5 py-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 rounded-lg text-xs font-medium transition-colors border border-emerald-500/30"
+                            >
+                              <span>➕</span> Добавить
+                            </button>
+                          </div>
+                          <div class="space-y-2">
+                            <div
+                              v-for="(item, i) in infoProsItems"
+                              :key="'pro-'+i"
+                              class="flex items-center gap-2"
+                            >
+                              <span class="text-emerald-400 text-xs shrink-0 w-5 text-center">+</span>
+                              <input
+                                v-model="infoProsItems[i]"
+                                type="text"
+                                class="flex-1 px-3 py-2 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all text-sm"
+                                :placeholder="'Pro ' + (i + 1) + '...'"
+                                @input="syncInfoPros"
+                              />
+                              <button
+                                type="button"
+                                @click="removeInfoProsItem(i)"
+                                class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0"
+                                title="Удалить"
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                            <p v-if="infoProsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет элементов. Нажмите «Добавить» или «Auto-Generate».</p>
+                          </div>
                         </div>
 
-                        <!-- Cons -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">❌ Cons (JSON array of strings)</label>
-                          <textarea
-                            v-model="form.info_cons"
-                            rows="3"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
-                            placeholder='["High volatility", "Below-average RTP", ...]'
-                          ></textarea>
+                        <!-- ❌ Cons -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-red-500/20">
+                          <div class="flex items-center justify-between mb-3">
+                            <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                              <span class="text-red-400">❌</span> Cons
+                              <span class="text-xs text-[#6B7280]">({{ infoConsItems.length }})</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="addInfoConsItem"
+                              class="flex items-center gap-1 px-2.5 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg text-xs font-medium transition-colors border border-red-500/30"
+                            >
+                              <span>➕</span> Добавить
+                            </button>
+                          </div>
+                          <div class="space-y-2">
+                            <div
+                              v-for="(item, i) in infoConsItems"
+                              :key="'con-'+i"
+                              class="flex items-center gap-2"
+                            >
+                              <span class="text-red-400 text-xs shrink-0 w-5 text-center">−</span>
+                              <input
+                                v-model="infoConsItems[i]"
+                                type="text"
+                                class="flex-1 px-3 py-2 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all text-sm"
+                                :placeholder="'Con ' + (i + 1) + '...'"
+                                @input="syncInfoCons"
+                              />
+                              <button
+                                type="button"
+                                @click="removeInfoConsItem(i)"
+                                class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0"
+                                title="Удалить"
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                            <p v-if="infoConsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет элементов. Нажмите «Добавить» или «Auto-Generate».</p>
+                          </div>
                         </div>
 
-                        <!-- FAQ -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">❓ FAQ (JSON array of {question, answer})</label>
-                          <textarea
-                            v-model="form.info_faq"
-                            rows="5"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
-                            placeholder='[{"question":"Is it safe?","answer":"Yes..."},...]'
-                          ></textarea>
+                        <!-- ❓ FAQ -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-blue-500/20">
+                          <div class="flex items-center justify-between mb-3">
+                            <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                              <span class="text-blue-400">❓</span> FAQ
+                              <span class="text-xs text-[#6B7280]">({{ infoFaqItems.length }})</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="addInfoFaqItem"
+                              class="flex items-center gap-1 px-2.5 py-1.5 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 rounded-lg text-xs font-medium transition-colors border border-blue-500/30"
+                            >
+                              <span>➕</span> Добавить вопрос
+                            </button>
+                          </div>
+                          <div class="space-y-4">
+                            <div
+                              v-for="(item, i) in infoFaqItems"
+                              :key="'faq-'+i"
+                              class="bg-[#0D1117] rounded-lg p-3 border border-[#353A4A] relative"
+                            >
+                              <div class="flex items-center justify-between mb-2">
+                                <span class="text-blue-400 text-xs font-medium">Вопрос {{ i + 1 }}</span>
+                                <button
+                                  type="button"
+                                  @click="removeInfoFaqItem(i)"
+                                  class="p-1 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
+                                  title="Удалить вопрос"
+                                >
+                                  🗑️
+                                </button>
+                              </div>
+                              <input
+                                v-model="item.question"
+                                type="text"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm mb-2"
+                                placeholder="Вопрос..."
+                                @input="syncInfoFaq"
+                              />
+                              <textarea
+                                v-model="item.answer"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm"
+                                placeholder="Ответ..."
+                                @input="syncInfoFaq"
+                              ></textarea>
+                            </div>
+                            <p v-if="infoFaqItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет вопросов. Нажмите «Добавить вопрос» или «Auto-Generate».</p>
+                          </div>
                         </div>
 
-                        <!-- Player Reviews -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">📝 Player Reviews (JSON array of {author, rating, text, date})</label>
-                          <textarea
-                            v-model="form.info_reviews"
-                            rows="5"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
-                            placeholder='[{"author":"Alex","rating":5,"text":"Great slot!","date":"2024-12-15"},...]'
-                          ></textarea>
+                        <!-- 📝 Player Reviews -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-pink-500/20">
+                          <div class="flex items-center justify-between mb-3">
+                            <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                              <span class="text-pink-400">📝</span> Player Reviews
+                              <span class="text-xs text-[#6B7280]">({{ infoReviewItems.length }})</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="addInfoReviewItem"
+                              class="flex items-center gap-1 px-2.5 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 text-pink-400 rounded-lg text-xs font-medium transition-colors border border-pink-500/30"
+                            >
+                              <span>➕</span> Добавить отзыв
+                            </button>
+                          </div>
+                          <div class="space-y-4">
+                            <div
+                              v-for="(item, i) in infoReviewItems"
+                              :key="'review-'+i"
+                              class="bg-[#0D1117] rounded-lg p-3 border border-[#353A4A]"
+                            >
+                              <div class="flex items-center justify-between mb-2">
+                                <span class="text-pink-400 text-xs font-medium">Отзыв {{ i + 1 }}</span>
+                                <button
+                                  type="button"
+                                  @click="removeInfoReviewItem(i)"
+                                  class="p-1 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
+                                  title="Удалить отзыв"
+                                >
+                                  🗑️
+                                </button>
+                              </div>
+                              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+                                <input
+                                  v-model="item.author"
+                                  type="text"
+                                  class="px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
+                                  placeholder="Автор"
+                                  @input="syncInfoReviews"
+                                />
+                                <select
+                                  v-model.number="item.rating"
+                                  class="px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
+                                  @change="syncInfoReviews"
+                                >
+                                  <option :value="5">★★★★★ (5)</option>
+                                  <option :value="4">★★★★☆ (4)</option>
+                                  <option :value="3">★★★☆☆ (3)</option>
+                                  <option :value="2">★★☆☆☆ (2)</option>
+                                  <option :value="1">★☆☆☆☆ (1)</option>
+                                </select>
+                                <input
+                                  v-model="item.date"
+                                  type="date"
+                                  class="px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
+                                  @input="syncInfoReviews"
+                                />
+                              </div>
+                              <textarea
+                                v-model="item.text"
+                                rows="2"
+                                class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
+                                placeholder="Текст отзыва..."
+                                @input="syncInfoReviews"
+                              ></textarea>
+                            </div>
+                            <p v-if="infoReviewItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет отзывов. Нажмите «Добавить отзыв» или «Auto-Generate».</p>
+                          </div>
                         </div>
 
-                        <!-- How to Play -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">🎮 How to Play (JSON array of {step, text})</label>
-                          <textarea
-                            v-model="form.info_how_to_play"
-                            rows="4"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-mono text-xs"
-                            placeholder='[{"step":"Open Demo","text":"Click Play Demo..."},...]'
-                          ></textarea>
+                        <!-- 🎮 How to Play -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-green-500/20">
+                          <div class="flex items-center justify-between mb-3">
+                            <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
+                              <span class="text-green-400">🎮</span> How to Play
+                              <span class="text-xs text-[#6B7280]">({{ infoHowToPlayItems.length }})</span>
+                            </label>
+                            <button
+                              type="button"
+                              @click="addInfoHowToPlayItem"
+                              class="flex items-center gap-1 px-2.5 py-1.5 bg-green-600/20 hover:bg-green-600/30 text-green-400 rounded-lg text-xs font-medium transition-colors border border-green-500/30"
+                            >
+                              <span>➕</span> Добавить шаг
+                            </button>
+                          </div>
+                          <div class="space-y-3">
+                            <div
+                              v-for="(item, i) in infoHowToPlayItems"
+                              :key="'step-'+i"
+                              class="bg-[#0D1117] rounded-lg p-3 border border-[#353A4A] flex gap-3"
+                            >
+                              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-bold shrink-0 mt-1">
+                                {{ i + 1 }}
+                              </div>
+                              <div class="flex-1 space-y-2">
+                                <input
+                                  v-model="item.step"
+                                  type="text"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm font-medium"
+                                  placeholder="Название шага..."
+                                  @input="syncInfoHowToPlay"
+                                />
+                                <textarea
+                                  v-model="item.text"
+                                  rows="2"
+                                  class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm"
+                                  placeholder="Описание шага..."
+                                  @input="syncInfoHowToPlay"
+                                ></textarea>
+                              </div>
+                              <button
+                                type="button"
+                                @click="removeInfoHowToPlayItem(i)"
+                                class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0 self-start mt-1"
+                                title="Удалить шаг"
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                            <p v-if="infoHowToPlayItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет шагов. Нажмите «Добавить шаг» или «Auto-Generate».</p>
+                          </div>
                         </div>
 
-                        <!-- Demo CTA (kept) -->
-                        <div>
-                          <label class="block text-sm font-medium text-gray-300 mb-2">🎯 Demo CTA Text</label>
+                        <!-- 🎯 Demo CTA Text -->
+                        <div class="bg-[#1B1E26] rounded-lg p-4 border border-[#353A4A]">
+                          <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-3">
+                            <span class="text-purple-400">🎯</span> Demo CTA Text
+                          </label>
                           <textarea
                             v-model="form.info_demo_cta"
                             rows="2"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                            placeholder="Call to action for demo play..."
+                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            placeholder="Call to action text for demo play button..."
                           ></textarea>
                         </div>
+
                       </div>
                     </div>
 
@@ -5220,7 +5429,54 @@ const showIndexingStatusSection = ref(false)
 const showPageSpeedSection = ref(false)
 const showSitemapSection = ref(false)
 const showSEOHealthSection = ref(false)
-const showInfoPopupSection = ref(true)
+const showInfoPopupSection = ref(false)
+
+// ===== Info Popup Content: reactive массивы для удобного редактирования =====
+const infoProsItems = reactive([])
+const infoConsItems = reactive([])
+const infoFaqItems = reactive([])
+const infoReviewItems = reactive([])
+const infoHowToPlayItems = reactive([])
+
+// Sync-функции: из массивов → JSON в form
+const syncInfoPros = () => { form.value.info_pros = JSON.stringify(infoProsItems.filter(s => s.trim())) }
+const syncInfoCons = () => { form.value.info_cons = JSON.stringify(infoConsItems.filter(s => s.trim())) }
+const syncInfoFaq = () => { form.value.info_faq = JSON.stringify(infoFaqItems.filter(i => i.question || i.answer)) }
+const syncInfoReviews = () => { form.value.info_reviews = JSON.stringify(infoReviewItems.filter(i => i.author || i.text)) }
+const syncInfoHowToPlay = () => { form.value.info_how_to_play = JSON.stringify(infoHowToPlayItems.filter(i => i.step || i.text)) }
+
+// Add функции
+const addInfoProsItem = () => { infoProsItems.push(''); }
+const addInfoConsItem = () => { infoConsItems.push(''); }
+const addInfoFaqItem = () => { infoFaqItems.push({ question: '', answer: '' }); }
+const addInfoReviewItem = () => { infoReviewItems.push({ author: '', rating: 5, text: '', date: new Date().toISOString().split('T')[0] }); }
+const addInfoHowToPlayItem = () => { infoHowToPlayItems.push({ step: '', text: '' }); }
+
+// Remove функции
+const removeInfoProsItem = (i) => { infoProsItems.splice(i, 1); syncInfoPros(); }
+const removeInfoConsItem = (i) => { infoConsItems.splice(i, 1); syncInfoCons(); }
+const removeInfoFaqItem = (i) => { infoFaqItems.splice(i, 1); syncInfoFaq(); }
+const removeInfoReviewItem = (i) => { infoReviewItems.splice(i, 1); syncInfoReviews(); }
+const removeInfoHowToPlayItem = (i) => { infoHowToPlayItems.splice(i, 1); syncInfoHowToPlay(); }
+
+// Инициализация массивов из JSON-строк формы (вызывается при загрузке данных)
+const initInfoArrays = () => {
+  // Pros
+  infoProsItems.length = 0
+  try { const arr = JSON.parse(form.value.info_pros || '[]'); arr.forEach(s => infoProsItems.push(s)) } catch(e) {}
+  // Cons
+  infoConsItems.length = 0
+  try { const arr = JSON.parse(form.value.info_cons || '[]'); arr.forEach(s => infoConsItems.push(s)) } catch(e) {}
+  // FAQ
+  infoFaqItems.length = 0
+  try { const arr = JSON.parse(form.value.info_faq || '[]'); arr.forEach(i => infoFaqItems.push({ question: i.question || '', answer: i.answer || '' })) } catch(e) {}
+  // Reviews
+  infoReviewItems.length = 0
+  try { const arr = JSON.parse(form.value.info_reviews || '[]'); arr.forEach(i => infoReviewItems.push({ author: i.author || '', rating: i.rating || 5, text: i.text || '', date: i.date || '' })) } catch(e) {}
+  // How to Play
+  infoHowToPlayItems.length = 0
+  try { const arr = JSON.parse(form.value.info_how_to_play || '[]'); arr.forEach(i => infoHowToPlayItems.push({ step: i.step || '', text: i.text || '' })) } catch(e) {}
+}
 
 // Фаза 2: переменные для Title Templates
 const generatedTitleFromTemplate = ref('')
@@ -6453,6 +6709,10 @@ const loadSlot = async () => {
         paylineType.value = 'text'
       }
     }
+
+    // Авто-заполняем пустые Info Popup поля дефолтным контентом (как на клиенте)
+    // generateInfoContent заполняет только пустые поля и вызывает initInfoArrays() в конце
+    generateInfoContent()
   } catch (error) {
     console.error('Ошибка загрузки слота:', error)
     await router.push('/admin/slots')
@@ -7274,11 +7534,14 @@ const handleImageLoad = (event) => {
   event.target.style.display = 'block'
 }
 
-// 🪄 Авто-генерация JSON-LD контента
+// 🪄 Авто-генерация JSON-LD контента (использует данные из Info Popup Content)
 const autoGenerateJsonLd = () => {
   const slotName = form.value.name || 'этот слот'
-  const rtp = form.value.rtp || '96%'
-  const provider = form.value.provider_name || 'провайдера'
+
+  // Сначала убедимся, что Info Popup Content заполнен
+  if (!form.value.info_faq || !form.value.info_reviews || !form.value.info_how_to_play) {
+    generateInfoContent()
+  }
 
   // Enable all schemas
   jsonLdForm.value.jsonld_enable_review = true
@@ -7287,33 +7550,40 @@ const autoGenerateJsonLd = () => {
   jsonLdForm.value.jsonld_enable_howto = true
   jsonLdForm.value.jsonld_enable_breadcrumb = true
 
-  // Generate Review
-  jsonLdForm.value.jsonld_review_author = 'SlotQuest Editorial Team'
-  jsonLdForm.value.jsonld_review_rating = Math.round((4.5 + Math.random() * 0.4) * 10) / 10
-  jsonLdForm.value.jsonld_review_text = `${slotName} — отличный выбор для любителей качественных слотов. Этот игровой автомат от ${provider} предлагает RTP ${rtp}, захватывающий геймплей и щедрые бонусные функции.`
+  // Review & AggregateRating — из info_reviews
+  try {
+    const reviews = JSON.parse(form.value.info_reviews || '[]')
+    if (reviews.length > 0) {
+      jsonLdForm.value.jsonld_review_author = reviews[0].author || 'SlotQuest Editorial Team'
+      jsonLdForm.value.jsonld_review_rating = reviews[0].rating || 5
+      jsonLdForm.value.jsonld_review_text = reviews[0].text || ''
+      // AggregateRating из всех отзывов
+      const avgRating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length
+      jsonLdForm.value.jsonld_aggregate_rating = Math.round(avgRating * 10) / 10
+      jsonLdForm.value.jsonld_aggregate_count = reviews.length
+    }
+  } catch(e) {
+    jsonLdForm.value.jsonld_review_author = 'SlotQuest Editorial Team'
+    jsonLdForm.value.jsonld_review_rating = 4.5
+    jsonLdForm.value.jsonld_review_text = slotName + ' — отличный выбор для любителей качественных слотов.'
+    jsonLdForm.value.jsonld_aggregate_rating = 4.5
+    jsonLdForm.value.jsonld_aggregate_count = 3
+  }
 
-  // Generate AggregateRating
-  jsonLdForm.value.jsonld_aggregate_rating = Math.round((4.3 + Math.random() * 0.5) * 10) / 10
-  jsonLdForm.value.jsonld_aggregate_count = 500 + Math.floor(Math.random() * 1500)
+  // FAQ — напрямую из info_faq
+  jsonLdForm.value.jsonld_faq_json = form.value.info_faq || '[]'
 
-  // Generate FAQ
-  jsonLdForm.value.jsonld_faq_json = JSON.stringify([
-    { question: `Какой RTP у слота ${slotName}?`, answer: `RTP слота ${slotName} составляет ${rtp}. Это означает, что игрок получает обратно ${rtp} от своих ставок.` },
-    { question: `Можно ли играть в ${slotName} бесплатно?`, answer: `Да, вы можете играть в демо-версию ${slotName} бесплатно без регистрации на SlotQuest.` },
-    { question: `Какие бонусные функции есть в ${slotName}?`, answer: `${slotName} включает фриспины с множителями, символы Wild и Scatter, уникальные механики от ${provider}.` },
-    { question: `На каких устройствах можно играть в ${slotName}?`, answer: `${slotName} оптимизирован для ПК, планшетов и смартфонов (iOS/Android). Используется HTML5.` },
-    { question: `Как выиграть в ${slotName}?`, answer: `Соберите комбинацию из 3+ одинаковых символов на линии выплат. Бонусные символы активируют специальные раунды.` }
-  ])
+  // HowTo — из info_how_to_play (адаптируем формат)
+  try {
+    const steps = JSON.parse(form.value.info_how_to_play || '[]')
+    jsonLdForm.value.jsonld_howto_json = JSON.stringify(
+      steps.map((s, i) => ({ step: i + 1, name: s.step, text: s.text }))
+    )
+  } catch(e) {
+    jsonLdForm.value.jsonld_howto_json = '[]'
+  }
 
-  // Generate HowTo
-  jsonLdForm.value.jsonld_howto_json = JSON.stringify([
-    { step: 1, name: 'Откройте слот', text: `Перейдите на страницу ${slotName} и нажмите "Играть бесплатно" или "Демо".` },
-    { step: 2, name: 'Настройте ставку', text: 'Используйте кнопки +/- для настройки размера ставки на спин.' },
-    { step: 3, name: 'Запустите барабаны', text: 'Нажмите Spin для запуска. Можно включить Autoplay для автоигры.' },
-    { step: 4, name: 'Соберите выигрыши', text: `Выигрыш в ${slotName} начисляется за 3+ одинаковых символов слева направо.` }
-  ])
-
-  alert('✅ JSON-LD схемы успешно сгенерированы!')
+  alert('✅ JSON-LD схемы синхронизированы с Info Popup Content!')
 }
 
 const handleVideoError = (event) => {
@@ -8009,6 +8279,9 @@ const generateInfoContent = () => {
   if (!form.value.info_demo_cta) {
     form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!'
   }
+
+  // Синхронизируем reactive массивы с новыми данными формы
+  initInfoArrays()
 }
 
 const navigateToSearchResult = (index) => {
