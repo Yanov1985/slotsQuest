@@ -175,10 +175,11 @@
           :key="continent.id"
           class="border border-[#353A4A] rounded-lg overflow-hidden"
         >
-          <button
-            type="button"
+          <div
             @click="toggleContinent(continent.id)"
-            class="w-full flex items-center justify-between p-3 bg-[#161A21] hover:bg-[#1B1E26] transition-all"
+            class="w-full flex items-center justify-between p-3 bg-[#161A21] hover:bg-[#1B1E26] transition-all cursor-pointer select-none"
+            role="button"
+            tabindex="0"
           >
             <div class="flex items-center gap-3">
               <span class="text-xl">{{ continent.icon }}</span>
@@ -201,7 +202,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </div>
-          </button>
+          </div>
           <div v-show="expandedContinents.includes(continent.id)" class="p-3 bg-[#1B1E26]/50">
             <div class="flex flex-wrap gap-2">
               <button
@@ -532,7 +533,7 @@ const allRegions = [
 
 // Continents
 const continents = [
-  { id: 'europe', name: 'Europe', icon: '🇪🇺', regions: ['RU', 'UA', 'DE', 'GB', 'FR', 'IT', 'ES', 'PT', 'NL', 'PL', 'SE', 'NO', 'FI', 'CZ', 'AT', 'CH', 'GR', 'RO', 'BY'] },
+  { id: 'europe', name: 'Europe', icon: '🌍', regions: ['RU', 'UA', 'DE', 'GB', 'FR', 'IT', 'ES', 'PT', 'NL', 'PL', 'SE', 'NO', 'FI', 'CZ', 'AT', 'CH', 'GR', 'RO', 'BY'] },
   { id: 'asia', name: 'Asia', icon: '🌏', regions: ['KZ', 'UZ', 'AZ', 'GE', 'AM', 'IN', 'BD', 'PK', 'LK', 'NP', 'ID', 'TH', 'VN', 'PH', 'MY', 'SG', 'JP', 'KR', 'CN', 'TW', 'HK', 'TR', 'AE', 'SA', 'IL'] },
   { id: 'northamerica', name: 'North America', icon: '🌎', regions: ['US', 'CA', 'MX'] },
   { id: 'southamerica', name: 'South America', icon: '🌎', regions: ['BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC'] },
@@ -542,7 +543,7 @@ const continents = [
 
 // State
 const selectedRegions = ref(['RU', 'IN', 'BR', 'UZ', 'AZ', 'TR', 'CL', 'AR', 'CA', 'CO', 'ID', 'BD'])
-const expandedContinents = ref(['europe', 'asia'])
+const expandedContinents = ref([])
 const robotsConfig = ref({
   index: true,
   follow: true,
