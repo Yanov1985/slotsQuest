@@ -392,7 +392,10 @@
           class="px-4 py-2 bg-[#059669] text-white rounded-lg text-sm hover:bg-[#047857] transition-all"
         >Auto</button>
       </div>
-      <p class="text-xs text-[#6B7280] mt-2">Canonical URL предотвращает дублирование контента</p>
+      <p class="text-xs text-[#6B7280] mt-2">
+        Canonical URL предотвращает дублирование контента.
+        <span class="text-[#059669]">Auto</span> приводит URL к стандарту: без <code>www</code> и <code>/</code> на конце.
+      </p>
     </div>
 
     <!-- Hreflang Preview -->
@@ -713,7 +716,18 @@ function clearAll() {
 }
 
 function generateCanonical() {
-  canonicalUrl.value = `${props.baseUrl}/slots/${props.slug}`
+  let url = props.baseUrl || 'https://slotquest.com'
+
+  // 1. Принудительно убираем www (стандарт для современных SPA)
+  url = url.replace('://www.', '://')
+
+  // 2. Убираем trailing slash из домена
+  url = url.replace(/\/$/, '')
+
+  // 3. Формируем путь
+  // Nuxt 3 по умолчанию нормализует URL без слэша на конце
+  // Лучшая практика для Google: быть консистентным с поведением сервера
+  canonicalUrl.value = `${url}/slots/${props.slug}`
 }
 
 function copyRobots() {

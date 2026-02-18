@@ -3371,7 +3371,7 @@ watchEffect(() => {
           rel: 'canonical',
           href:
             slot.value.canonical_url ||
-            `https://slotquest.com/slots/${slot.value.slug || slug}`,
+            `https://slotquest.com/slots/${slot.value.slug || slug}`, // Strict format: no-www, no-slash
         },
         // 🌍 HREFLANG ТЕГИ (международное SEO)
         // Генерируем hreflang заголовки на основе выбранных регионов Geo Targeting
