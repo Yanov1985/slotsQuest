@@ -4002,10 +4002,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Технический SEO
+                              Technical SEO
                             </h3>
                             <p class="text-sm text-[#059669]">
-                              Дополнительные настройки для поисковой оптимизации
+                              Additional search engine optimization settings
                             </p>
                           </div>
                         </div>
@@ -4051,7 +4051,7 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
                               <option value="index, follow">
-                                index, follow (по умолчанию)
+                                index, follow (default)
                               </option>
                               <option value="noindex, follow">
                                 noindex, follow
@@ -4064,7 +4064,7 @@
                               </option>
                             </select>
                             <p class="text-xs text-[#9CA3AF] mt-2">
-                              Указания для поисковых роботов
+                              Instructions for search engine robots
                             </p>
                           </div>
 
@@ -4084,7 +4084,7 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF] mt-2">
-                              Настройки отображения на мобильных устройствах
+                              Mobile display settings
                             </p>
                           </div>
 
@@ -4095,20 +4095,20 @@
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-3"
                             >
-                              Кодировка
+                              Charset
                             </label>
                             <select
                               v-model="form.charset_meta"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
                               <option value="UTF-8">
-                                UTF-8 (рекомендуется)
+                                UTF-8 (recommended)
                               </option>
                               <option value="ISO-8859-1">ISO-8859-1</option>
                               <option value="Windows-1251">Windows-1251</option>
                             </select>
                             <p class="text-xs text-[#9CA3AF] mt-2">
-                              Кодировка символов страницы
+                              Character encoding of the page
                             </p>
                           </div>
 
@@ -4119,7 +4119,7 @@
                             <label
                               class="block text-sm font-medium text-[#E5E7EB] mb-3"
                             >
-                              Язык страницы
+                              Page Language
                             </label>
                             <select
                               v-model="form.language_meta"
@@ -4131,7 +4131,7 @@
                               <option value="kk">Қазақша (kk)</option>
                             </select>
                             <p class="text-xs text-[#9CA3AF] mt-2">
-                              Основной язык контента страницы
+                              Main content language of the page
                             </p>
                           </div>
                         </div>
@@ -4156,7 +4156,7 @@
                                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                               ></path>
                             </svg>
-                            Дополнительные мета-теги
+                            Additional Meta Tags
                           </h4>
                           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- Author -->
@@ -4164,7 +4164,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Автор
+                                Author
                               </label>
                               <input
                                 v-model="form.author_meta"
@@ -4179,12 +4179,12 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Авторские права
+                                Copyright
                               </label>
                               <input
                                 v-model="form.copyright_meta"
                                 type="text"
-                                placeholder="© 2025 SlotQuest. Все права защищены."
+                                placeholder="© 2025 SlotQuest. All rights reserved."
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
                               />
                             </div>
@@ -4194,7 +4194,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Генератор
+                                Generator
                               </label>
                               <input
                                 v-model="form.generator_meta"
@@ -4209,7 +4209,7 @@
                               <label
                                 class="block text-sm font-medium text-[#E5E7EB]"
                               >
-                                Цвет темы
+                                Theme Color
                               </label>
                               <input
                                 v-model="form.theme_color_meta"
@@ -6311,13 +6311,13 @@ const form = ref({
   robots_meta: 'index, follow',
   viewport_meta: 'width=device-width, initial-scale=1',
   charset_meta: 'UTF-8',
-  language_meta: 'ru',
+  language_meta: 'en',
   author_meta: 'SlotQuest Team',
-  copyright_meta: '© 2025 SlotQuest. Все права защищены.',
+  copyright_meta: '© 2025 SlotQuest. All rights reserved.',
   generator_meta: 'Nuxt.js',
   theme_color_meta: '#1F2937',
   target_locations:
-    '🇷🇺 Россия\n🇮🇳 Индия\n🇧🇷 Бразилия\n🇺🇿 Узбекистан\n🇦🇿 Азербайджан\n🇹🇷 Турция\n🇨🇱 Чили\n🇦🇷 Аргентина\n🇨🇦 Канада\n🇨🇴 Колумбия\n🇮🇩 Индонезия\n🇧🇩 Бангладеш\n🇸🇳 Сенегал\n🇺🇬 Уганда',
+    '🇺🇸 USA\n🇬🇧 UK\n🇨🇦 Canada\n🇦🇺 Australia\n🇳🇿 New Zealand\n🇮🇪 Ireland\n🇩🇪 Germany\n🇫🇷 France\n🇮🇹 Italy\n🇪🇸 Spain\n🇧🇷 Brazil\n🇮🇳 India',
 
   // JSON-LD Schema fields
   schema_game_genre: '',

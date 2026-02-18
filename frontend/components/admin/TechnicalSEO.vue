@@ -68,21 +68,21 @@
       <div class="flex items-center justify-between mb-4">
         <h4 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span class="text-lg">🗺️</span>
-          Geo Targeting — Карта мира
+          Geo Targeting — World Map
         </h4>
         <div class="flex items-center gap-3">
-          <span class="text-xs text-[#9CA3AF]">{{ selectedRegions.length }} / {{ allRegions.length }} регионов</span>
+          <span class="text-xs text-[#9CA3AF]">{{ selectedRegions.length }} / {{ allRegions.length }} regions</span>
           <div class="flex gap-1">
             <button
               type="button"
               @click="selectAll"
               class="px-2 py-1 bg-[#059669]/20 text-[#10B981] rounded text-xs hover:bg-[#059669]/30 transition-all"
-            >Все</button>
+            >All</button>
             <button
               type="button"
               @click="clearAll"
               class="px-2 py-1 bg-[#EF4444]/20 text-[#EF4444] rounded text-xs hover:bg-[#EF4444]/30 transition-all"
-            >Очистить</button>
+            >Clear</button>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@
                 type="button"
                 @click.stop="selectContinent(continent.id)"
                 class="px-2 py-1 bg-[#059669]/10 text-[#059669] rounded text-xs hover:bg-[#059669]/20"
-              >+Все</button>
+              >+All</button>
               <svg
                 class="w-4 h-4 text-[#9CA3AF] transition-transform"
                 :class="{ 'rotate-180': expandedContinents.includes(continent.id) }"
@@ -224,84 +224,15 @@
       </div>
     </div>
 
-    <!-- 🎯 Geo Intelligence -->
-    <div class="bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/30 rounded-xl p-4">
-      <h4 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-4">
-        <span class="text-lg">🎯</span>
-        Geo Intelligence
-        <span class="px-2 py-0.5 bg-[#3B82F6]/20 text-[#3B82F6] rounded text-xs">PRO</span>
-      </h4>
 
-      <!-- Traffic Potential -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A] text-center">
-          <div class="text-2xl font-bold text-[#10B981]">{{ estimatedTraffic }}M</div>
-          <div class="text-xs text-[#9CA3AF]">Est. Traffic</div>
-        </div>
-        <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A] text-center">
-          <div class="text-2xl font-bold text-[#F59E0B]">{{ iGamingScore }}%</div>
-          <div class="text-xs text-[#9CA3AF]">iGaming Score</div>
-        </div>
-        <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A] text-center">
-          <div class="text-2xl font-bold text-[#8B5CF6]">{{ topLanguages }}</div>
-          <div class="text-xs text-[#9CA3AF]">Top Languages</div>
-        </div>
-        <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A] text-center">
-          <div class="text-2xl font-bold text-[#EC4899]">{{ competitionLevel }}</div>
-          <div class="text-xs text-[#9CA3AF]">Competition</div>
-        </div>
-      </div>
 
-      <!-- Recommendations -->
-      <div class="space-y-2">
-        <div v-for="rec in recommendations" :key="rec.code"
-          class="flex items-center justify-between p-2 bg-[#161A21] rounded-lg border"
-          :class="rec.type === 'success' ? 'border-[#10B981]/30' : rec.type === 'warning' ? 'border-[#F59E0B]/30' : 'border-[#3B82F6]/30'"
-        >
-          <div class="flex items-center gap-2">
-            <span>{{ rec.icon }}</span>
-            <span class="text-sm text-[#E5E7EB]">{{ rec.text }}</span>
-          </div>
-          <button v-if="rec.action" type="button" @click="rec.action"
-            class="px-2 py-1 bg-[#3B82F6]/20 text-[#3B82F6] rounded text-xs hover:bg-[#3B82F6]/30">
-            {{ rec.actionText }}
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <!-- 💾 Custom Presets -->
-    <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
-        <h4 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
-          <span class="text-lg">💾</span>
-          Мои пресеты
-        </h4>
-        <button type="button" @click="saveCurrentPreset"
-          class="px-3 py-1.5 bg-[#8B5CF6]/20 text-[#8B5CF6] rounded-lg text-xs hover:bg-[#8B5CF6]/30">
-          + Сохранить текущий
-        </button>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <button v-for="preset in customPresets" :key="preset.name" type="button"
-          @click="applyPreset(preset)"
-          class="px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-sm text-[#E5E7EB] hover:border-[#8B5CF6]/40 flex items-center gap-2">
-          <span>{{ preset.icon }}</span>
-          <span>{{ preset.name }}</span>
-          <span class="text-xs text-[#9CA3AF]">({{ preset.regions.length }})</span>
-        </button>
-        <button type="button" @click="showPresetModal = true"
-          class="px-3 py-2 border border-dashed border-[#353A4A] rounded-lg text-sm text-[#9CA3AF] hover:border-[#8B5CF6]/40">
-          + Создать
-        </button>
-      </div>
-    </div>
 
     <!-- ⚠️ Live Validation -->
     <div v-if="validationWarnings.length > 0" class="bg-[#F59E0B]/10 border border-[#F59E0B]/30 rounded-xl p-4">
       <h4 class="flex items-center gap-2 text-sm font-medium text-[#F59E0B] mb-3">
         <span class="text-lg">⚠️</span>
-        Предупреждения
+        Warnings
       </h4>
       <div class="space-y-2">
         <div v-for="(warning, idx) in validationWarnings" :key="idx"
@@ -328,7 +259,7 @@
               <div class="w-9 h-5 bg-[#353A4A] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#10B981]"></div>
             </label>
           </div>
-          <p class="text-xs text-[#6B7280]">{{ robotsConfig.index ? 'Страница индексируется' : 'Noindex' }}</p>
+          <p class="text-xs text-[#6B7280]">{{ robotsConfig.index ? 'Page is indexed' : 'Noindex' }}</p>
         </div>
         <!-- Follow Toggle -->
         <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A]">
@@ -339,16 +270,16 @@
               <div class="w-9 h-5 bg-[#353A4A] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#10B981]"></div>
             </label>
           </div>
-          <p class="text-xs text-[#6B7280]">{{ robotsConfig.follow ? 'Ссылки follow' : 'Nofollow' }}</p>
+          <p class="text-xs text-[#6B7280]">{{ robotsConfig.follow ? 'Links follow' : 'Nofollow' }}</p>
         </div>
         <!-- Max Snippet -->
         <div class="p-3 bg-[#161A21] rounded-lg border border-[#353A4A]">
           <label class="text-sm text-[#E5E7EB] block mb-2">Max Snippet</label>
           <select v-model="robotsConfig.maxSnippet" class="w-full px-2 py-1 bg-[#1B1E26] border border-[#353A4A] rounded text-sm text-[#E5E7EB]">
-            <option value="-1">Без ограничений</option>
-            <option value="0">Без сниппета</option>
-            <option value="160">160 символов</option>
-            <option value="320">320 символов</option>
+            <option value="-1">No limit</option>
+            <option value="0">No snippet</option>
+            <option value="160">160 chars</option>
+            <option value="320">320 chars</option>
           </select>
         </div>
         <!-- Max Image Preview -->
@@ -393,8 +324,8 @@
         >Auto</button>
       </div>
       <p class="text-xs text-[#6B7280] mt-2">
-        Canonical URL предотвращает дублирование контента.
-        <span class="text-[#059669]">Auto</span> приводит URL к стандарту: без <code>www</code> и <code>/</code> на конце.
+        Canonical URL prevents content duplication.
+        <span class="text-[#059669]">Auto</span> standardizes URL: no <code>www</code>, no trailing slash.
       </p>
     </div>
 
@@ -596,7 +527,7 @@ const robotsConfig = ref(
 )
 const canonicalUrl = ref(props.modelValue?.canonical || '')
 
-// Синхронизация при изменении modelValue извне (например при loadSlot)
+// Sync when modelValue changes externally (e.g. on loadSlot)
 watch(() => props.modelValue, (newVal) => {
   if (newVal?.regions?.length) {
     selectedRegions.value = [...newVal.regions]
@@ -718,15 +649,15 @@ function clearAll() {
 function generateCanonical() {
   let url = props.baseUrl || 'https://slotquest.com'
 
-  // 1. Принудительно убираем www (стандарт для современных SPA)
+  // 1. Force remove www (standard for modern SPAs)
   url = url.replace('://www.', '://')
 
-  // 2. Убираем trailing slash из домена
+  // 2. Remove trailing slash from domain
   url = url.replace(/\/$/, '')
 
-  // 3. Формируем путь
-  // Nuxt 3 по умолчанию нормализует URL без слэша на конце
-  // Лучшая практика для Google: быть консистентным с поведением сервера
+  // 3. Construct path
+  // Nuxt 3 defaults to normalizing URL without trailing slash
+  // Best practice for Google: be consistent with server behavior
   canonicalUrl.value = `${url}/slots/${props.slug}`
 }
 
@@ -756,86 +687,9 @@ watch([selectedRegions, robotsConfig, canonicalUrl], () => {
   })
 }, { deep: true })
 
-// ========== GEO INTELLIGENCE ==========
 
-// Traffic data by region (estimated monthly iGaming traffic in millions)
-const trafficData = {
-  'RU': 8.5, 'IN': 12.0, 'BR': 9.2, 'DE': 7.8, 'GB': 6.5, 'US': 15.0, 'CA': 4.2,
-  'TR': 5.1, 'ID': 3.8, 'PH': 2.9, 'TH': 2.1, 'VN': 1.8, 'PL': 2.4, 'UA': 1.9,
-  'AR': 2.8, 'CL': 1.5, 'CO': 1.7, 'MX': 3.2, 'AU': 2.3, 'NZ': 0.8, 'ZA': 1.2,
-  'NG': 1.8, 'KE': 0.6, 'KZ': 0.9, 'UZ': 0.7, 'AZ': 0.5, 'BD': 1.4, 'PK': 2.0
-}
 
-const estimatedTraffic = computed(() => {
-  const total = selectedRegions.value.reduce((sum, code) => {
-    return sum + (trafficData[code] || 0.5)
-  }, 0)
-  return total.toFixed(1)
-})
 
-const iGamingScore = computed(() => {
-  const topRegions = ['DE', 'GB', 'US', 'CA', 'AU', 'BR', 'IN', 'TR', 'PL']
-  const hasTop = selectedRegions.value.filter(r => topRegions.includes(r)).length
-  return Math.min(Math.round((hasTop / topRegions.length) * 100 + geoScore.value / 2), 100)
-})
-
-const topLanguages = computed(() => {
-  return Math.min(languageCount.value, 10)
-})
-
-const competitionLevel = computed(() => {
-  if (selectedRegions.value.length > 30) return 'High'
-  if (selectedRegions.value.length > 15) return 'Mid'
-  return 'Low'
-})
-
-const recommendations = computed(() => {
-  const recs = []
-
-  // Check for top markets
-  if (!selectedRegions.value.includes('DE')) {
-    recs.push({ code: 'DE', icon: '🇩🇪', text: 'Добавьте Германию — топ-рынок iGaming', type: 'info', actionText: '+DE', action: () => toggleRegion('DE') })
-  }
-  if (!selectedRegions.value.includes('GB')) {
-    recs.push({ code: 'GB', icon: '🇬🇧', text: 'Добавьте UK — регулируемый рынок', type: 'info', actionText: '+UK', action: () => toggleRegion('GB') })
-  }
-
-  // Success messages
-  if (selectedRegions.value.includes('BR') && selectedRegions.value.includes('IN')) {
-    recs.push({ code: 'emerging', icon: '✅', text: 'Отлично! Охвачены развивающиеся рынки', type: 'success' })
-  }
-
-  // Warnings
-  if (selectedRegions.value.length < 5) {
-    recs.push({ code: 'low', icon: '⚠️', text: 'Мало регионов — расширьте охват', type: 'warning' })
-  }
-
-  return recs.slice(0, 4)
-})
-
-// ========== CUSTOM PRESETS ==========
-
-const showPresetModal = ref(false)
-const customPresets = ref([
-  { name: 'CIS Focus', icon: '🏛️', regions: ['RU', 'UA', 'KZ', 'UZ', 'AZ', 'BY'] },
-  { name: 'LATAM', icon: '🌎', regions: ['BR', 'AR', 'CL', 'CO', 'MX', 'PE'] },
-  { name: 'High Revenue', icon: '💰', regions: ['DE', 'GB', 'US', 'CA', 'AU'] }
-])
-
-function saveCurrentPreset() {
-  const name = prompt('Название пресета:')
-  if (name) {
-    customPresets.value.push({
-      name,
-      icon: '📌',
-      regions: [...selectedRegions.value]
-    })
-  }
-}
-
-function applyPreset(preset) {
-  selectedRegions.value = [...preset.regions]
-}
 
 // ========== LIVE VALIDATION ==========
 
@@ -843,19 +697,19 @@ const validationWarnings = computed(() => {
   const warnings = []
 
   if (!robotsConfig.value.index) {
-    warnings.push('Страница помечена как noindex — не будет индексироваться Google')
+    warnings.push('Page marked as noindex — will not be indexed by Google')
   }
 
   if (!robotsConfig.value.follow) {
-    warnings.push('Ссылки nofollow — PageRank не передаётся')
+    warnings.push('Links are nofollow — PageRank is not passed')
   }
 
   if (!canonicalUrl.value && selectedRegions.value.length > 0) {
-    warnings.push('Canonical URL не указан — рекомендуется для предотвращения дубликатов')
+    warnings.push('Canonical URL is missing — recommended to prevent duplicates')
   }
 
   if (selectedRegions.value.length > 40) {
-    warnings.push('Большое количество hreflang тегов (' + selectedRegions.value.length + ') — может замедлить парсинг')
+    warnings.push('Large number of hreflang tags (' + selectedRegions.value.length + ') — may slow down parsing')
   }
 
   return warnings

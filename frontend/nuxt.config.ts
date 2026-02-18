@@ -9,6 +9,14 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts'
   ],
 
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'en'
+      }
+    }
+  },
+
   icon: {
     serverBundle: {
       collections: ['heroicons']
