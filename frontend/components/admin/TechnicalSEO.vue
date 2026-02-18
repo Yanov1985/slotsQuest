@@ -434,7 +434,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 // Props
 const props = defineProps({
@@ -457,8 +457,11 @@ const allRegions = [
   { code: 'BY', flag: '🇧🇾', name: 'Belarus', lang: 'be', continent: 'europe', x: 460, y: 90 },
   { code: 'GE', flag: '🇬🇪', name: 'Georgia', lang: 'ka', continent: 'asia', x: 490, y: 110 },
   { code: 'AM', flag: '🇦🇲', name: 'Armenia', lang: 'hy', continent: 'asia', x: 495, y: 115 },
+  { code: 'KG', flag: '🇰🇬', name: 'Kyrgyzstan', lang: 'ky', continent: 'asia', x: 530, y: 115 },
+  { code: 'TJ', flag: '🇹🇯', name: 'Tajikistan', lang: 'tg', continent: 'asia', x: 525, y: 125 },
+  { code: 'MD', flag: '🇲🇩', name: 'Moldova', lang: 'ro', continent: 'europe', x: 465, y: 98 },
 
-  // Europe
+  // Western & Northern Europe
   { code: 'DE', flag: '🇩🇪', name: 'Germany', lang: 'de', continent: 'europe', x: 420, y: 80 },
   { code: 'GB', flag: '🇬🇧', name: 'UK', lang: 'en', continent: 'europe', x: 395, y: 75 },
   { code: 'FR', flag: '🇫🇷', name: 'France', lang: 'fr', continent: 'europe', x: 400, y: 90 },
@@ -466,15 +469,33 @@ const allRegions = [
   { code: 'ES', flag: '🇪🇸', name: 'Spain', lang: 'es', continent: 'europe', x: 385, y: 105 },
   { code: 'PT', flag: '🇵🇹', name: 'Portugal', lang: 'pt', continent: 'europe', x: 375, y: 105 },
   { code: 'NL', flag: '🇳🇱', name: 'Netherlands', lang: 'nl', continent: 'europe', x: 410, y: 75 },
-  { code: 'PL', flag: '🇵🇱', name: 'Poland', lang: 'pl', continent: 'europe', x: 445, y: 80 },
+  { code: 'BE', flag: '🇧🇪', name: 'Belgium', lang: 'nl', continent: 'europe', x: 407, y: 78 },
   { code: 'SE', flag: '🇸🇪', name: 'Sweden', lang: 'sv', continent: 'europe', x: 435, y: 55 },
   { code: 'NO', flag: '🇳🇴', name: 'Norway', lang: 'no', continent: 'europe', x: 420, y: 50 },
   { code: 'FI', flag: '🇫🇮', name: 'Finland', lang: 'fi', continent: 'europe', x: 460, y: 50 },
-  { code: 'CZ', flag: '🇨🇿', name: 'Czechia', lang: 'cs', continent: 'europe', x: 435, y: 85 },
-  { code: 'AT', flag: '🇦🇹', name: 'Austria', lang: 'de', continent: 'europe', x: 430, y: 90 },
+  { code: 'DK', flag: '🇩🇰', name: 'Denmark', lang: 'da', continent: 'europe', x: 420, y: 65 },
+  { code: 'IE', flag: '🇮🇪', name: 'Ireland', lang: 'en', continent: 'europe', x: 385, y: 70 },
+  { code: 'IS', flag: '🇮🇸', name: 'Iceland', lang: 'is', continent: 'europe', x: 370, y: 45 },
   { code: 'CH', flag: '🇨🇭', name: 'Switzerland', lang: 'de', continent: 'europe', x: 415, y: 90 },
-  { code: 'GR', flag: '🇬🇷', name: 'Greece', lang: 'el', continent: 'europe', x: 455, y: 110 },
+  { code: 'AT', flag: '🇦🇹', name: 'Austria', lang: 'de', continent: 'europe', x: 430, y: 90 },
+
+  // Central & Eastern Europe
+  { code: 'PL', flag: '🇵🇱', name: 'Poland', lang: 'pl', continent: 'europe', x: 445, y: 80 },
+  { code: 'CZ', flag: '🇨🇿', name: 'Czechia', lang: 'cs', continent: 'europe', x: 435, y: 85 },
+  { code: 'SK', flag: '🇸🇰', name: 'Slovakia', lang: 'sk', continent: 'europe', x: 440, y: 88 },
+  { code: 'HU', flag: '🇭🇺', name: 'Hungary', lang: 'hu', continent: 'europe', x: 445, y: 92 },
   { code: 'RO', flag: '🇷🇴', name: 'Romania', lang: 'ro', continent: 'europe', x: 460, y: 100 },
+  { code: 'BG', flag: '🇧🇬', name: 'Bulgaria', lang: 'bg', continent: 'europe', x: 458, y: 105 },
+  { code: 'HR', flag: '🇭🇷', name: 'Croatia', lang: 'hr', continent: 'europe', x: 435, y: 96 },
+  { code: 'RS', flag: '🇷🇸', name: 'Serbia', lang: 'sr', continent: 'europe', x: 448, y: 100 },
+  { code: 'GR', flag: '🇬🇷', name: 'Greece', lang: 'el', continent: 'europe', x: 455, y: 110 },
+  { code: 'CY', flag: '🇨🇾', name: 'Cyprus', lang: 'el', continent: 'europe', x: 470, y: 120 },
+  { code: 'MT', flag: '🇲🇹', name: 'Malta', lang: 'en', continent: 'europe', x: 430, y: 112 },
+
+  // Baltic States
+  { code: 'LT', flag: '🇱🇹', name: 'Lithuania', lang: 'lt', continent: 'europe', x: 455, y: 70 },
+  { code: 'LV', flag: '🇱🇻', name: 'Latvia', lang: 'lv', continent: 'europe', x: 458, y: 65 },
+  { code: 'EE', flag: '🇪🇪', name: 'Estonia', lang: 'et', continent: 'europe', x: 460, y: 60 },
 
   // South Asia
   { code: 'IN', flag: '🇮🇳', name: 'India', lang: 'en', continent: 'asia', x: 560, y: 160 },
@@ -497,12 +518,17 @@ const allRegions = [
   { code: 'CN', flag: '🇨🇳', name: 'China', lang: 'zh', continent: 'asia', x: 620, y: 120 },
   { code: 'TW', flag: '🇹🇼', name: 'Taiwan', lang: 'zh', continent: 'asia', x: 670, y: 150 },
   { code: 'HK', flag: '🇭🇰', name: 'Hong Kong', lang: 'zh', continent: 'asia', x: 655, y: 155 },
+  { code: 'MN', flag: '🇲🇳', name: 'Mongolia', lang: 'mn', continent: 'asia', x: 600, y: 90 },
 
   // Middle East
   { code: 'TR', flag: '🇹🇷', name: 'Turkey', lang: 'tr', continent: 'asia', x: 475, y: 115 },
   { code: 'AE', flag: '🇦🇪', name: 'UAE', lang: 'ar', continent: 'asia', x: 510, y: 155 },
   { code: 'SA', flag: '🇸🇦', name: 'Saudi Arabia', lang: 'ar', continent: 'asia', x: 490, y: 160 },
   { code: 'IL', flag: '🇮🇱', name: 'Israel', lang: 'he', continent: 'asia', x: 475, y: 135 },
+  { code: 'QA', flag: '🇶🇦', name: 'Qatar', lang: 'ar', continent: 'asia', x: 505, y: 155 },
+  { code: 'KW', flag: '🇰🇼', name: 'Kuwait', lang: 'ar', continent: 'asia', x: 500, y: 148 },
+  { code: 'BH', flag: '🇧🇭', name: 'Bahrain', lang: 'ar', continent: 'asia', x: 503, y: 152 },
+  { code: 'JO', flag: '🇯🇴', name: 'Jordan', lang: 'ar', continent: 'asia', x: 478, y: 140 },
 
   // North America
   { code: 'US', flag: '🇺🇸', name: 'USA', lang: 'en', continent: 'northamerica', x: 140, y: 110 },
@@ -517,6 +543,12 @@ const allRegions = [
   { code: 'PE', flag: '🇵🇪', name: 'Peru', lang: 'es', continent: 'southamerica', x: 140, y: 230 },
   { code: 'VE', flag: '🇻🇪', name: 'Venezuela', lang: 'es', continent: 'southamerica', x: 160, y: 195 },
   { code: 'EC', flag: '🇪🇨', name: 'Ecuador', lang: 'es', continent: 'southamerica', x: 135, y: 210 },
+  { code: 'UY', flag: '🇺🇾', name: 'Uruguay', lang: 'es', continent: 'southamerica', x: 165, y: 295 },
+  { code: 'PY', flag: '🇵🇾', name: 'Paraguay', lang: 'es', continent: 'southamerica', x: 162, y: 275 },
+  { code: 'BO', flag: '🇧🇴', name: 'Bolivia', lang: 'es', continent: 'southamerica', x: 152, y: 260 },
+  { code: 'CR', flag: '🇨🇷', name: 'Costa Rica', lang: 'es', continent: 'southamerica', x: 125, y: 185 },
+  { code: 'PA', flag: '🇵🇦', name: 'Panama', lang: 'es', continent: 'southamerica', x: 130, y: 190 },
+  { code: 'DO', flag: '🇩🇴', name: 'Dominican Rep.', lang: 'es', continent: 'southamerica', x: 168, y: 178 },
 
   // Africa
   { code: 'NG', flag: '🇳🇬', name: 'Nigeria', lang: 'en', continent: 'africa', x: 415, y: 195 },
@@ -525,6 +557,11 @@ const allRegions = [
   { code: 'EG', flag: '🇪🇬', name: 'Egypt', lang: 'ar', continent: 'africa', x: 460, y: 150 },
   { code: 'MA', flag: '🇲🇦', name: 'Morocco', lang: 'ar', continent: 'africa', x: 385, y: 140 },
   { code: 'GH', flag: '🇬🇭', name: 'Ghana', lang: 'en', continent: 'africa', x: 400, y: 195 },
+  { code: 'TZ', flag: '🇹🇿', name: 'Tanzania', lang: 'en', continent: 'africa', x: 470, y: 230 },
+  { code: 'UG', flag: '🇺🇬', name: 'Uganda', lang: 'en', continent: 'africa', x: 465, y: 215 },
+  { code: 'ET', flag: '🇪🇹', name: 'Ethiopia', lang: 'am', continent: 'africa', x: 478, y: 200 },
+  { code: 'CM', flag: '🇨🇲', name: 'Cameroon', lang: 'fr', continent: 'africa', x: 425, y: 200 },
+  { code: 'SN', flag: '🇸🇳', name: 'Senegal', lang: 'fr', continent: 'africa', x: 372, y: 180 },
 
   // Oceania
   { code: 'AU', flag: '🇦🇺', name: 'Australia', lang: 'en', continent: 'oceania', x: 680, y: 290 },
@@ -533,24 +570,41 @@ const allRegions = [
 
 // Continents
 const continents = [
-  { id: 'europe', name: 'Europe', icon: '🌍', regions: ['RU', 'UA', 'DE', 'GB', 'FR', 'IT', 'ES', 'PT', 'NL', 'PL', 'SE', 'NO', 'FI', 'CZ', 'AT', 'CH', 'GR', 'RO', 'BY'] },
-  { id: 'asia', name: 'Asia', icon: '🌏', regions: ['KZ', 'UZ', 'AZ', 'GE', 'AM', 'IN', 'BD', 'PK', 'LK', 'NP', 'ID', 'TH', 'VN', 'PH', 'MY', 'SG', 'JP', 'KR', 'CN', 'TW', 'HK', 'TR', 'AE', 'SA', 'IL'] },
+  { id: 'europe', name: 'Europe', icon: '🌍', regions: ['RU', 'UA', 'BY', 'MD', 'DE', 'GB', 'FR', 'IT', 'ES', 'PT', 'NL', 'BE', 'SE', 'NO', 'FI', 'DK', 'IE', 'IS', 'CH', 'AT', 'PL', 'CZ', 'SK', 'HU', 'RO', 'BG', 'HR', 'RS', 'GR', 'CY', 'MT', 'LT', 'LV', 'EE'] },
+  { id: 'asia', name: 'Asia', icon: '🌏', regions: ['KZ', 'UZ', 'AZ', 'GE', 'AM', 'KG', 'TJ', 'MN', 'IN', 'BD', 'PK', 'LK', 'NP', 'ID', 'TH', 'VN', 'PH', 'MY', 'SG', 'JP', 'KR', 'CN', 'TW', 'HK', 'TR', 'AE', 'SA', 'IL', 'QA', 'KW', 'BH', 'JO'] },
   { id: 'northamerica', name: 'North America', icon: '🌎', regions: ['US', 'CA', 'MX'] },
-  { id: 'southamerica', name: 'South America', icon: '🌎', regions: ['BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC'] },
-  { id: 'africa', name: 'Africa', icon: '🌍', regions: ['NG', 'ZA', 'KE', 'EG', 'MA', 'GH'] },
+  { id: 'southamerica', name: 'South America', icon: '🌎', regions: ['BR', 'AR', 'CL', 'CO', 'PE', 'VE', 'EC', 'UY', 'PY', 'BO', 'CR', 'PA', 'DO'] },
+  { id: 'africa', name: 'Africa', icon: '🌍', regions: ['NG', 'ZA', 'KE', 'EG', 'MA', 'GH', 'TZ', 'UG', 'ET', 'CM', 'SN'] },
   { id: 'oceania', name: 'Oceania', icon: '🌏', regions: ['AU', 'NZ'] },
 ]
 
 // State
-const selectedRegions = ref(['RU', 'IN', 'BR', 'UZ', 'AZ', 'TR', 'CL', 'AR', 'CA', 'CO', 'ID', 'BD'])
+const selectedRegions = ref(
+  props.modelValue?.regions?.length ? [...props.modelValue.regions] : ['RU', 'IN', 'BR', 'UZ', 'AZ', 'TR', 'CL', 'AR', 'CA', 'CO', 'ID', 'BD']
+)
 const expandedContinents = ref([])
-const robotsConfig = ref({
-  index: true,
-  follow: true,
-  maxSnippet: '-1',
-  maxImagePreview: 'large'
-})
-const canonicalUrl = ref('')
+const robotsConfig = ref(
+  props.modelValue?.robots ? { ...props.modelValue.robots } : {
+    index: true,
+    follow: true,
+    maxSnippet: '-1',
+    maxImagePreview: 'large'
+  }
+)
+const canonicalUrl = ref(props.modelValue?.canonical || '')
+
+// Синхронизация при изменении modelValue извне (например при loadSlot)
+watch(() => props.modelValue, (newVal) => {
+  if (newVal?.regions?.length) {
+    selectedRegions.value = [...newVal.regions]
+  }
+  if (newVal?.robots) {
+    robotsConfig.value = { ...newVal.robots }
+  }
+  if (newVal?.canonical !== undefined) {
+    canonicalUrl.value = newVal.canonical
+  }
+}, { deep: true })
 
 // Computed
 const techScore = computed(() => {

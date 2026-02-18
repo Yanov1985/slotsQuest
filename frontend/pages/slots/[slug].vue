@@ -2869,6 +2869,17 @@ const similarSlots = computed(() => {
     .slice(0, 6)
 })
 
+// 🌍 Geo Targeting: Парсинг регионов из БД
+const parsedGeoRegions = computed(() => {
+  if (!slot.value?.geo_regions) return []
+  try {
+    const regions = JSON.parse(slot.value.geo_regions)
+    return Array.isArray(regions) ? regions : []
+  } catch (e) {
+    return []
+  }
+})
+
 // 🎯 JSON-LD Schemas for Enhanced Info Modal (FAQPage, HowTo, Review)
 const generateSeoSchemas = computed(() => {
   if (!slot.value?.name) return []
@@ -2931,7 +2942,14 @@ const generateSeoSchemas = computed(() => {
         'reviewRating': { '@type': 'Rating', 'ratingValue': r.rating, 'bestRating': '5' },
         'reviewBody': r.text,
         'datePublished': r.date
-      }))
+      })),
+      // 🌍 Geo Targeting в Schema.org
+      ...(parsedGeoRegions.value.length ? {
+        'areaServed': parsedGeoRegions.value.map(code => ({
+          '@type': 'Country',
+          'name': code
+        }))
+      } : {})
     })
   }
 
@@ -3259,9 +3277,9 @@ watchEffect(() => {
         // Geo-targeting meta tags (for targeting specific countries)
         {
           name: 'geo.region',
-          content:
-            slot.value.geo_target_regions ||
-            'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD',
+          content: parsedGeoRegions.value.length
+            ? parsedGeoRegions.value.join(', ')
+            : 'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD',
         },
         {
           name: 'distribution',
@@ -3356,7 +3374,14 @@ watchEffect(() => {
             `https://slotquest.com/slots/${slot.value.slug || slug}`,
         },
         // 🌍 HREFLANG ТЕГИ (международное SEO)
-        ...(slot.value.hreflang_enabled !== false ? generateHreflangLinks(slot.value) : []),
+        // Генерируем hreflang заголовки на основе выбранных регионов Geo Targeting
+        { rel: 'alternate', hreflang: 'x-default', href: `https://slotquest.com/slots/${slot.value.slug || slug}` },
+        { rel: 'alternate', hreflang: 'en', href: `https://slotquest.com/slots/${slot.value.slug || slug}` },
+        ...parsedGeoRegions.value.map(code => ({
+          rel: 'alternate',
+          hreflang: `en-${code}`,
+          href: `https://slotquest.com/slots/${slot.value.slug || slug}`
+        })),
         // 🚀 ТЕХНИЧЕСКИЕ ОПТИМИЗАЦИИ (Preconnect, DNS-Prefetch, Preload)
         {
           rel: 'preconnect',

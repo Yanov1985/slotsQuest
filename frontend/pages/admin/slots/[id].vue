@@ -6688,6 +6688,22 @@ const loadSlot = async () => {
     })
     console.log('✅ ФАЗА 3: SEO аналитика загружена')
 
+    // 🌍 Загружаем Geo Targeting из БД в technicalSeoForm
+    if (slot.value?.geo_regions) {
+      try {
+        const regions = JSON.parse(slot.value.geo_regions)
+        if (Array.isArray(regions) && regions.length > 0) {
+          technicalSeoForm.value = {
+            ...technicalSeoForm.value,
+            regions: regions
+          }
+          console.log('✅ Geo Targeting загружен:', regions.length, 'регионов')
+        }
+      } catch (e) {
+        console.warn('⚠️ Ошибка парсинга geo_regions:', e)
+      }
+    }
+
     // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
     if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
       const match = slot.value.game_field.match(/(\d+)×(\d+)/)
@@ -6977,6 +6993,7 @@ const saveSlot = async () => {
   'info_reviews',
   'info_how_to_play',
   'info_demo_cta',
+  'geo_regions',
   'free_spins_features_title',
       'free_spins_feature_1',
       'free_spins_feature_2',
@@ -7482,6 +7499,9 @@ const saveSlot = async () => {
     dataToSend.selected_mechanics = selectedMechanics.value
     dataToSend.selected_bonuses = selectedBonuses.value
     dataToSend.selected_themes = selectedThemes.value
+
+    // 🌍 Geo Targeting — сохраняем выбранные регионы из TechnicalSEO
+    dataToSend.geo_regions = JSON.stringify(technicalSeoForm.value.regions || [])
 
     // Автоматически формируем game_field из reels и rows
     dataToSend.game_field =

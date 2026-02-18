@@ -172,6 +172,9 @@ export class UpdateSlotDto {
   info_how_to_play?: string;
   info_demo_cta?: string;
 
+  // Geo Targeting
+  geo_regions?: string;
+
   // Связи с другими сущностями
   selected_mechanics?: any[];
   selected_bonuses?: any[];
