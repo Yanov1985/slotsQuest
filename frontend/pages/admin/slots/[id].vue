@@ -4417,6 +4417,7 @@
                           :keywords-geo="form.seo_keywords_geo"
                           :keywords-lsi="form.seo_keywords_lsi"
                           :keywords-longtail="form.seo_keywords_longtail"
+                          :active-regions="technicalSeoForm.regions"
                           @update:analysisResult="form.keyword_analysis_result = $event"
                           @update:densityScore="form.keyword_density_score = $event"
                           @update:geoKeywords="form.seo_keywords_geo = $event"

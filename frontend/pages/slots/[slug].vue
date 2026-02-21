@@ -4684,12 +4684,37 @@ const generateOptimizedKeywords = (slot) => {
     keywords.push(slot.seo_keywords_longtail)
   }
 
-  // 4. Fallback на старое поле
+  // 4. Локализованные Geo-ключи (для международного SEO)
+  if (slot.seo_keywords_geo) {
+    try {
+      // Пытаемся распарсить JSON (он может быть сохранён как строка)
+      const geoData = typeof slot.seo_keywords_geo === 'string'
+        ? JSON.parse(slot.seo_keywords_geo)
+        : slot.seo_keywords_geo
+
+      // Извлекаем все значения из объекта { "RU": "слоты...", "BR": "caça-níqueis..." }
+      if (geoData && typeof geoData === 'object') {
+        Object.values(geoData).forEach(geoKeywordStr => {
+          if (geoKeywordStr && geoKeywordStr.trim()) {
+            keywords.push(geoKeywordStr.trim())
+          }
+        })
+      }
+    } catch (e) {
+      console.warn('⚠️ Ошибка при парсинге seo_keywords_geo:', e)
+      // Если это не JSON, а просто строка (маловероятно для этого поля, но на всякий случай)
+      if (typeof slot.seo_keywords_geo === 'string' && slot.seo_keywords_geo.trim()) {
+         keywords.push(slot.seo_keywords_geo.trim())
+      }
+    }
+  }
+
+  // 5. Fallback на старое поле
   if (slot.seo_keywords) {
     keywords.push(slot.seo_keywords)
   }
 
-  // 5. If nothing available - generate automatically
+  // 6. If nothing available - generate automatically
   // Даже в автоматической генерации используем hero keywords если есть
   if (keywords.length === 0) {
     const autoKeywords = [

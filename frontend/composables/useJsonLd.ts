@@ -213,6 +213,72 @@ export const useJsonLd = () => {
       }
     }
 
+    // 🎯 SEO Ключевые слова
+    const keywords: string[] = []
+
+    // 0. Hero Keywords
+    if ((slot as any).hero_keyword) keywords.push((slot as any).hero_keyword);
+    if ((slot as any).hero_keyword_2) keywords.push((slot as any).hero_keyword_2);
+    if ((slot as any).hero_keyword_3) keywords.push((slot as any).hero_keyword_3);
+
+    // 1. Основные (Primary)
+    if ((slot as any).seo_keywords_primary) keywords.push((slot as any).seo_keywords_primary);
+
+    // 2. LSI
+    if ((slot as any).seo_keywords_lsi) keywords.push((slot as any).seo_keywords_lsi);
+
+    // 3. Long-tail
+    if ((slot as any).seo_keywords_longtail) keywords.push((slot as any).seo_keywords_longtail);
+
+    // 4. Локализованные Geo-ключи
+    if ((slot as any).seo_keywords_geo) {
+      try {
+        const geoData = typeof (slot as any).seo_keywords_geo === 'string'
+          ? JSON.parse((slot as any).seo_keywords_geo)
+          : (slot as any).seo_keywords_geo;
+
+        if (geoData && typeof geoData === 'object') {
+          Object.values(geoData).forEach((kw: any) => {
+            if (kw && typeof kw === 'string' && kw.trim()) {
+              keywords.push(kw.trim());
+            }
+          });
+        }
+      } catch (e) {
+        if (typeof (slot as any).seo_keywords_geo === 'string' && (slot as any).seo_keywords_geo.trim()) {
+          keywords.push((slot as any).seo_keywords_geo.trim());
+        }
+      }
+    }
+
+    // 5. Fallback на старое поле
+    if ((slot as any).seo_keywords) keywords.push((slot as any).seo_keywords);
+
+    // 6. Автогенерация, если ничего нет
+    if (keywords.length === 0) {
+      const autoKeywords = [
+        (slot as any).hero_keyword,
+        (slot as any).hero_keyword_2,
+        (slot as any).hero_keyword_3,
+        slot.name,
+        slot.providers?.name,
+        'slot',
+        'slot machine',
+        'online casino',
+        'demo game',
+        'free play',
+        slot.rtp ? `RTP ${slot.rtp}%` : null,
+        slot.volatility ? `${slot.volatility} volatility` : null,
+        'real money',
+        'bonuses',
+        'free spins',
+        'SlotQuest',
+      ].filter(Boolean)
+      schema.keywords = autoKeywords.join(', ')
+    } else {
+      schema.keywords = keywords.join(', ')
+    }
+
     return schema
   }
 

@@ -362,7 +362,8 @@ const props = defineProps({
   keywords: { type: String, default: '' },
   keywordsGeo: { type: String, default: '' },
   keywordsLsi: { type: String, default: '' },
-  keywordsLongtail: { type: String, default: '' }
+  keywordsLongtail: { type: String, default: '' },
+  activeRegions: { type: Array, default: () => [] }
 })
 
 // Emits
@@ -372,15 +373,48 @@ const emit = defineEmits([
   'update:geoKeywords'
 ])
 
-// GEO Locations Config
-const geoLocations = [
+// Master GEO Locations Config
+const allGeoLocations = [
   { code: 'US', flag: '🇺🇸', name: 'United States' },
   { code: 'RU', flag: '🇷🇺', name: 'Россия' },
   { code: 'BR', flag: '🇧🇷', name: 'Brasil' },
   { code: 'IN', flag: '🇮🇳', name: 'India' },
   { code: 'TR', flag: '🇹🇷', name: 'Türkiye' },
   { code: 'DE', flag: '🇩🇪', name: 'Deutschland' },
+  { code: 'AZ', flag: '🇦🇿', name: 'Azərbaycan' },
+  { code: 'UZ', flag: '🇺🇿', name: 'Oʻzbekiston' },
+  { code: 'KZ', flag: '🇰🇿', name: 'Қазақстан' },
+  { code: 'ES', flag: '🇪🇸', name: 'España' },
+  { code: 'PT', flag: '🇵🇹', name: 'Portugal' },
+  { code: 'FR', flag: '🇫🇷', name: 'France' },
+  { code: 'IT', flag: '🇮🇹', name: 'Italia' },
+  { code: 'PL', flag: '🇵🇱', name: 'Polska' },
+  { code: 'EN', flag: '🇬🇧', name: 'Global English' }
 ]
+
+// Computed GEO Locations based on active regions
+const defaultRegions = ['US', 'RU', 'BR', 'IN', 'TR', 'DE']
+
+const geoLocations = computed(() => {
+  const regionsToUse = props.activeRegions && props.activeRegions.length > 0
+    ? props.activeRegions
+    : defaultRegions;
+
+  return regionsToUse.map(code => {
+    const found = allGeoLocations.find(g => g.code === code)
+    if (found) return found;
+    // Fallback dictionary for regions not in allGeoLocations
+    const fallbacks = {
+      'CL': { code: 'CL', flag: '🇨🇱', name: 'Chile' },
+      'AR': { code: 'AR', flag: '🇦🇷', name: 'Argentina' },
+      'CA': { code: 'CA', flag: '🇨🇦', name: 'Canada' },
+      'CO': { code: 'CO', flag: '🇨🇴', name: 'Colombia' },
+      'ID': { code: 'ID', flag: '🇮🇩', name: 'Indonesia' },
+      'BD': { code: 'BD', flag: '🇧🇩', name: 'Bangladesh' }
+    };
+    return fallbacks[code] || { code, flag: '🌍', name: code }
+  })
+})
 
 // State
 const analyzing = ref(false)
@@ -389,25 +423,21 @@ const showImportModal = ref(false)
 const importData = ref('')
 const importGeo = ref('US')
 
+// Maintain active tab
+watch(geoLocations, (newLocs) => {
+  if (newLocs.length > 0 && !newLocs.some(g => g.code === activeGeo.value)) {
+    activeGeo.value = newLocs[0].code;
+  }
+  if (!importGeo.value || !newLocs.some(g => g.code === importGeo.value)) {
+    importGeo.value = newLocs.length > 0 ? newLocs[0].code : 'US';
+  }
+}, { immediate: true })
+
 // Keywords per GEO
-const geoKeywords = reactive({
-  US: '',
-  RU: '',
-  BR: '',
-  IN: '',
-  TR: '',
-  DE: '',
-})
+const geoKeywords = reactive({})
 
 // Analysis results per GEO
-const geoAnalysis = reactive({
-  US: null,
-  RU: null,
-  BR: null,
-  IN: null,
-  TR: null,
-  DE: null,
-})
+const geoAnalysis = reactive({})
 
 // Initialize from props
 watch(() => props.keywordsGeo, (val) => {
@@ -437,7 +467,7 @@ const keywordScore = computed(() => {
   let totalScore = 0
   let geoCount = 0
 
-  for (const geo of geoLocations) {
+  for (const geo of geoLocations.value) {
     if (geoAnalysis[geo.code]?.score) {
       totalScore += geoAnalysis[geo.code].score
       geoCount++
@@ -447,10 +477,12 @@ const keywordScore = computed(() => {
   if (geoCount === 0) {
     // Calculate based on keyword presence
     let hasKeywords = 0
-    for (const geo of geoLocations) {
+    for (const geo of geoLocations.value) {
       if (getGeoKeywordCount(geo.code) > 0) hasKeywords++
     }
-    return Math.round((hasKeywords / geoLocations.length) * 50)
+    return geoLocations.value.length > 0
+      ? Math.round((hasKeywords / geoLocations.value.length) * 50)
+      : 0
   }
 
   return Math.round(totalScore / geoCount)
@@ -474,7 +506,7 @@ function getGeoScoreClass(geoCode) {
 }
 
 function getActiveGeoName() {
-  return geoLocations.find(g => g.code === activeGeo.value)?.name || activeGeo.value
+  return geoLocations.value.find(g => g.code === activeGeo.value)?.name || activeGeo.value
 }
 
 function getPlaceholder() {
@@ -574,7 +606,7 @@ function analyzeAllLocations() {
   ].filter(Boolean).join(' ').toLowerCase()
 
   setTimeout(() => {
-    for (const geo of geoLocations) {
+    for (const geo of geoLocations.value) {
       geoAnalysis[geo.code] = analyzeGeo(geo.code, fullContent)
     }
 

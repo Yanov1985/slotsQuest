@@ -62,6 +62,7 @@ interface GameSchema {
     availability: string;
     itemCondition: string;
   };
+  keywords?: string;                // 🎯 SEO Ключевые слова
 }
 
 /**
@@ -760,7 +761,89 @@ export class JsonLdService {
       (schema as any).potentialAction = potentialActions;
     }
 
+    // 🎯 SEO: Добавляем ключевые слова (с учетом Geo Targeting)
+    const optimizedKeywords = this.generateOptimizedKeywords(slot);
+    if (optimizedKeywords) {
+      schema.keywords = optimizedKeywords;
+    }
+
     return schema;
+  }
+
+  /**
+   * 🎯 SEO: Генерация оптимизированных ключевых слов для JSON-LD
+   *
+   * Использует Hero Keywords, LSI, Long-tail и Geo-ключи из seo_keywords_geo
+   */
+  private generateOptimizedKeywords(slot: any): string {
+    if (!slot) return '';
+
+    const keywords: string[] = [];
+
+    // 🎯 0. HERO KEYWORDS - САМЫЙ ВЫСОКИЙ ПРИОРИТЕТ
+    if (slot.hero_keyword) keywords.push(slot.hero_keyword);
+    if (slot.hero_keyword_2) keywords.push(slot.hero_keyword_2);
+    if (slot.hero_keyword_3) keywords.push(slot.hero_keyword_3);
+
+    // 1. Основные ключевые слова (Primary)
+    if (slot.seo_keywords_primary) keywords.push(slot.seo_keywords_primary);
+
+    // 2. LSI ключевые слова (Semantic)
+    if (slot.seo_keywords_lsi) keywords.push(slot.seo_keywords_lsi);
+
+    // 3. Long-tail ключевые слова
+    if (slot.seo_keywords_longtail) keywords.push(slot.seo_keywords_longtail);
+
+    // 4. Локализованные Geo-ключи (для международного SEO)
+    if (slot.seo_keywords_geo) {
+      try {
+        const geoData = typeof slot.seo_keywords_geo === 'string'
+          ? JSON.parse(slot.seo_keywords_geo)
+          : slot.seo_keywords_geo;
+
+        if (geoData && typeof geoData === 'object') {
+          Object.values(geoData).forEach((geoKeywordStr: any) => {
+            if (geoKeywordStr && typeof geoKeywordStr === 'string' && geoKeywordStr.trim()) {
+              keywords.push(geoKeywordStr.trim());
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('⚠️ Ошибка при парсинге seo_keywords_geo:', e);
+        if (typeof slot.seo_keywords_geo === 'string' && slot.seo_keywords_geo.trim()) {
+          keywords.push(slot.seo_keywords_geo.trim());
+        }
+      }
+    }
+
+    // 5. Fallback на старое поле
+    if (slot.seo_keywords) keywords.push(slot.seo_keywords);
+
+    // 6. Авто-генерация, если ничего нет
+    if (keywords.length === 0) {
+      const autoKeywords = [
+        slot.hero_keyword,
+        slot.hero_keyword_2,
+        slot.hero_keyword_3,
+        slot.name,
+        slot.providers?.name,
+        'slot',
+        'slot machine',
+        'online casino',
+        'demo game',
+        'free play',
+        `RTP ${slot.rtp || '96'}%`,
+        `${slot.volatility || 'medium'} volatility`,
+        slot.category?.name || 'slots',
+        'real money',
+        'bonuses',
+        'free spins',
+        'SlotQuest',
+      ].filter(Boolean);
+      return autoKeywords.join(', ');
+    }
+
+    return keywords.join(', ');
   }
 
   /**
