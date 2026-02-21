@@ -346,24 +346,7 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="flex flex-wrap gap-2">
-      <a
-        href="https://technicalseo.com/tools/hreflang/"
-        target="_blank"
-        class="px-3 py-2 bg-[#3B82F6]/20 text-[#3B82F6] border border-[#3B82F6]/30 rounded-lg text-xs hover:bg-[#3B82F6]/30 transition-colors"
-      >🔧 Hreflang Validator</a>
-      <a
-        href="https://www.google.com/webmasters/tools/robots-testing-tool"
-        target="_blank"
-        class="px-3 py-2 bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/30 rounded-lg text-xs hover:bg-[#F59E0B]/30 transition-colors"
-      >🤖 Robots Tester</a>
-      <a
-        href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
-        target="_blank"
-        class="px-3 py-2 bg-[#8B5CF6]/20 text-[#8B5CF6] border border-[#8B5CF6]/30 rounded-lg text-xs hover:bg-[#8B5CF6]/30 transition-colors"
-      >📘 Canonical Guide</a>
-    </div>
+
   </div>
 </template>
 
