@@ -10,14 +10,14 @@
   -->
   <div class="space-y-6">
     <!-- Header with Score -->
-    <div class="flex items-center justify-between p-4 bg-gradient-to-r from-[#EC4899]/20 to-[#DB2777]/20 rounded-xl border border-[#EC4899]/30">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#EC4899]/20 to-[#DB2777]/20 rounded-xl border border-[#EC4899]/30">
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
           <span class="text-2xl">🔍</span>
         </div>
         <div>
           <h3 class="text-lg font-medium text-[#E5E7EB]">Keyword Density Checker</h3>
-          <p class="text-sm text-[#9CA3AF]">Анализ ключевых слов по GEO-локациям</p>
+          <p class="text-sm text-[#9CA3AF]">Keyword analysis by GEO location</p>
         </div>
       </div>
       <!-- Keyword Score -->
@@ -49,7 +49,7 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
           </svg>
-          <span>{{ analyzing ? 'Анализ...' : '🔄 Анализировать' }}</span>
+          <span>{{ analyzing ? 'Analyzing...' : '🔄 Analyze' }}</span>
         </button>
       </div>
     </div>
@@ -63,7 +63,7 @@
             class="text-xs font-medium px-2 py-0.5 rounded-full"
             :class="getGeoScoreClass(geo.code)"
           >
-            {{ getGeoKeywordCount(geo.code) }} ключей
+            {{ getGeoKeywordCount(geo.code) }} keywords
           </span>
         </div>
         <p class="text-xs text-[#9CA3AF]">{{ geo.name }}</p>
@@ -105,7 +105,7 @@
       <!-- Tab Content -->
       <div class="p-4 space-y-4">
         <!-- Import Section -->
-        <div class="flex items-center gap-3 mb-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-4">
           <button
             type="button"
             @click="showImportModal = true"
@@ -114,7 +114,7 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
             </svg>
-            Импорт из Semrush
+            Import from Semrush
           </button>
           <button
             type="button"
@@ -124,17 +124,17 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
             </svg>
-            Копировать из Primary
+            Copy from Primary
           </button>
           <span class="text-xs text-[#6B7280]">
-            Активная локация: <strong class="text-[#EC4899]">{{ getActiveGeoName() }}</strong>
+            Active location: <strong class="text-[#EC4899]">{{ getActiveGeoName() }}</strong>
           </span>
         </div>
 
         <!-- Keywords Input for Active GEO -->
         <div class="space-y-3">
           <label class="block text-sm font-medium text-[#E5E7EB]">
-            🎯 Ключевые слова для {{ getActiveGeoName() }} ({{ activeGeo }})
+            🎯 Keywords for {{ getActiveGeoName() }} ({{ activeGeo }})
           </label>
           <textarea
             v-model="geoKeywords[activeGeo]"
@@ -144,13 +144,13 @@
           ></textarea>
           <div class="flex items-center justify-between text-xs">
             <span class="text-[#9CA3AF]">
-              Одна фраза на строку или через запятую. Поддерживается формат Semrush CSV.
+              One phrase per line or comma-separated. Semrush CSV format supported.
             </span>
             <span
               class="font-medium"
               :class="getGeoKeywordCount(activeGeo) > 0 ? 'text-[#EC4899]' : 'text-[#6B7280]'"
             >
-              {{ getGeoKeywordCount(activeGeo) }} ключевых слов
+              {{ getGeoKeywordCount(activeGeo) }} keywords
             </span>
           </div>
         </div>
@@ -158,7 +158,7 @@
         <!-- Quick Add Tags -->
         <div class="space-y-2">
           <label class="block text-xs font-medium text-[#9CA3AF]">
-            Быстрое добавление популярных фраз:
+            Quick add popular phrases:
           </label>
           <div class="flex flex-wrap gap-2">
             <button
@@ -178,7 +178,7 @@
     <!-- Analysis Results for Active GEO -->
     <div v-if="geoAnalysis[activeGeo]" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4 space-y-4">
       <div class="flex items-center justify-between">
-        <h4 class="text-sm font-medium text-[#E5E7EB]">📊 Результаты анализа для {{ getActiveGeoName() }}</h4>
+        <h4 class="text-sm font-medium text-[#E5E7EB]">📊 Analysis results for {{ getActiveGeoName() }}</h4>
         <div
           class="px-3 py-1 rounded-full text-sm font-medium"
           :class="getScoreClass(geoAnalysis[activeGeo]?.score || 0)"
@@ -192,7 +192,7 @@
         <!-- Found Keywords -->
         <div class="p-3 bg-[#161A21] rounded-lg">
           <h5 class="text-sm font-medium text-[#10B981] mb-3 flex items-center gap-2">
-            <span>✅</span> Найдены в контенте
+            <span>✅</span> Found in content
           </h5>
           <div class="space-y-2 max-h-48 overflow-y-auto">
             <div
@@ -207,7 +207,7 @@
               </div>
             </div>
             <p v-if="!(geoAnalysis[activeGeo]?.found?.length)" class="text-xs text-[#6B7280]">
-              Ключевых слов не найдено
+              No keywords found
             </p>
           </div>
         </div>
@@ -215,7 +215,7 @@
         <!-- Missing Keywords -->
         <div class="p-3 bg-[#161A21] rounded-lg">
           <h5 class="text-sm font-medium text-[#EF4444] mb-3 flex items-center gap-2">
-            <span>❌</span> Отсутствуют в контенте
+            <span>❌</span> Missing in content
           </h5>
           <div class="space-y-2 max-h-48 overflow-y-auto">
             <div
@@ -229,11 +229,11 @@
                 @click="suggestAddKeyword(kw)"
                 class="text-xs text-[#F59E0B] hover:underline"
               >
-                + Добавить
+                + Add
               </button>
             </div>
             <p v-if="!(geoAnalysis[activeGeo]?.missing?.length)" class="text-xs text-[#10B981]">
-              Все ключевые слова найдены! 🎉
+              All keywords found! 🎉
             </p>
           </div>
         </div>
@@ -243,25 +243,25 @@
       <div class="grid grid-cols-4 gap-3">
         <div class="p-3 bg-[#161A21] rounded-lg text-center">
           <p class="text-2xl font-bold text-[#E5E7EB]">{{ geoAnalysis[activeGeo]?.wordCount || 0 }}</p>
-          <p class="text-xs text-[#9CA3AF]">Слов</p>
+          <p class="text-xs text-[#9CA3AF]">Words</p>
         </div>
         <div class="p-3 bg-[#161A21] rounded-lg text-center">
           <p class="text-2xl font-bold text-[#E5E7EB]">{{ geoAnalysis[activeGeo]?.coverage || 0 }}%</p>
-          <p class="text-xs text-[#9CA3AF]">Покрытие</p>
+          <p class="text-xs text-[#9CA3AF]">Coverage</p>
         </div>
         <div class="p-3 bg-[#161A21] rounded-lg text-center">
           <p class="text-2xl font-bold text-[#10B981]">{{ geoAnalysis[activeGeo]?.found?.length || 0 }}</p>
-          <p class="text-xs text-[#9CA3AF]">Найдено</p>
+          <p class="text-xs text-[#9CA3AF]">Found</p>
         </div>
         <div class="p-3 bg-[#161A21] rounded-lg text-center">
           <p class="text-2xl font-bold text-[#EF4444]">{{ geoAnalysis[activeGeo]?.missing?.length || 0 }}</p>
-          <p class="text-xs text-[#9CA3AF]">Отсутствует</p>
+          <p class="text-xs text-[#9CA3AF]">Missing</p>
         </div>
       </div>
 
       <!-- Recommendations -->
       <div v-if="geoAnalysis[activeGeo]?.suggestions?.length" class="space-y-2">
-        <h5 class="text-sm font-medium text-[#E5E7EB]">💡 Рекомендации</h5>
+        <h5 class="text-sm font-medium text-[#E5E7EB]">💡 Recommendations</h5>
         <div
           v-for="(suggestion, index) in geoAnalysis[activeGeo]?.suggestions"
           :key="'suggestion-' + index"
@@ -283,7 +283,7 @@
         <div class="bg-[#1B1E26] border border-[#353A4A] rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-hidden">
           <div class="flex items-center justify-between p-4 border-b border-[#353A4A]">
             <h3 class="text-lg font-medium text-[#E5E7EB]">
-              📥 Импорт ключевых слов из Semrush
+              📥 Import Keywords from Semrush
             </h3>
             <button
               type="button"
@@ -299,7 +299,7 @@
           <div class="p-4 space-y-4">
             <div class="space-y-2">
               <label class="block text-sm font-medium text-[#E5E7EB]">
-                Выберите локацию для импорта:
+                Select location to import:
               </label>
               <select
                 v-model="importGeo"
@@ -313,16 +313,16 @@
 
             <div class="space-y-2">
               <label class="block text-sm font-medium text-[#E5E7EB]">
-                Вставьте данные из Semrush (Keyword, Search Volume, etc.):
+                Paste data from Semrush (Keyword, Search Volume, etc.):
               </label>
               <textarea
                 v-model="importData"
                 rows="10"
-                placeholder="Keyword;Search Volume;CPC;Competition&#10;gates of olympus;135000;1.20;0.85&#10;gates of olympus free;45000;0.80;0.65&#10;gates of olympus demo;32000;0.50;0.40&#10;&#10;Или просто список ключевых слов (одно на строку):"
+                placeholder="Keyword;Search Volume;CPC;Competition&#10;gates of olympus;135000;1.20;0.85&#10;gates of olympus free;45000;0.80;0.65&#10;gates of olympus demo;32000;0.50;0.40&#10;&#10;Or just a list of keywords (one per line):"
                 class="w-full px-4 py-3 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#EC4899] font-mono text-sm resize-none"
               ></textarea>
               <p class="text-xs text-[#6B7280]">
-                Поддерживается CSV экспорт из Semrush (с разделителем ; или ,) или простой список.
+                Supported Semrush CSV export (with ; or , delimiter) or simple list.
               </p>
             </div>
           </div>
@@ -333,14 +333,14 @@
               @click="showImportModal = false"
               class="px-4 py-2 text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
             >
-              Отмена
+              Cancel
             </button>
             <button
               type="button"
               @click="processImport"
               class="px-4 py-2 bg-[#EC4899] text-white rounded-lg font-medium hover:bg-[#DB2777] transition-colors"
             >
-              Импортировать
+              Import
             </button>
           </div>
         </div>
@@ -376,14 +376,14 @@ const emit = defineEmits([
 // Master GEO Locations Config
 const allGeoLocations = [
   { code: 'US', flag: '🇺🇸', name: 'United States' },
-  { code: 'RU', flag: '🇷🇺', name: 'Россия' },
+  { code: 'RU', flag: '🇷🇺', name: 'Russia' },
   { code: 'BR', flag: '🇧🇷', name: 'Brasil' },
   { code: 'IN', flag: '🇮🇳', name: 'India' },
   { code: 'TR', flag: '🇹🇷', name: 'Türkiye' },
   { code: 'DE', flag: '🇩🇪', name: 'Deutschland' },
   { code: 'AZ', flag: '🇦🇿', name: 'Azərbaycan' },
   { code: 'UZ', flag: '🇺🇿', name: 'Oʻzbekiston' },
-  { code: 'KZ', flag: '🇰🇿', name: 'Қазақстан' },
+  { code: 'KZ', flag: '🇰🇿', name: 'Kazakhstan' },
   { code: 'ES', flag: '🇪🇸', name: 'España' },
   { code: 'PT', flag: '🇵🇹', name: 'Portugal' },
   { code: 'FR', flag: '🇫🇷', name: 'France' },
@@ -668,15 +668,15 @@ function analyzeGeo(geoCode, content) {
   const suggestions = []
 
   if (missing.length > 0) {
-    suggestions.push(`Добавьте в контент: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? '...' : ''}`)
+    suggestions.push(`Add to content: ${missing.slice(0, 3).join(', ')}${missing.length > 3 ? '...' : ''}`)
   }
 
   if (found.some(k => k.density > 3)) {
-    suggestions.push('Возможен keyword stuffing. Уменьшите повторения некоторых ключевых слов.')
+    suggestions.push('Possible keyword stuffing. Reduce repetitions of some keywords.')
   }
 
   if (keywords.length < 5) {
-    suggestions.push(`Добавьте больше ключевых слов для ${geoCode} (рекомендуется минимум 5)`)
+    suggestions.push(`Add more keywords for ${geoCode} (recommended minimum 5)`)
   }
 
   return {

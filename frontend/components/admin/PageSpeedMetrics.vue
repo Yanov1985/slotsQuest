@@ -92,7 +92,7 @@
     </div>
 
     <!-- PageSpeed Scores Visual -->
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Mobile Score Circle -->
       <div
         class="bg-[#1B1E26]/50 border rounded-xl p-6 transition-all"
@@ -196,7 +196,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <!-- LCP -->
         <div class="p-4 bg-[#161A21] rounded-xl">
           <div class="flex items-center justify-between mb-3">
@@ -307,7 +307,7 @@
     </div>
 
     <!-- Additional Metrics -->
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4 text-center">
         <p class="text-xs text-[#9CA3AF] mb-1">TTFB</p>
         <p class="text-2xl font-bold text-[#E5E7EB]">{{ modelValue.cwv_ttfb || 0 }}<span class="text-sm text-[#6B7280]">ms</span></p>

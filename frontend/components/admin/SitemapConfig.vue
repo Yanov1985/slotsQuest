@@ -13,18 +13,18 @@
   -->
   <div class="space-y-6">
     <!-- Header with Score -->
-    <div class="flex items-center justify-between p-4 bg-gradient-to-r from-[#10B981]/20 to-[#34D399]/20 rounded-xl border border-[#10B981]/30">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#10B981]/20 to-[#34D399]/20 rounded-xl border border-[#10B981]/30">
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#34D399] rounded-xl flex items-center justify-center">
           <span class="text-2xl">🗺️</span>
         </div>
         <div>
           <h3 class="text-lg font-medium text-[#E5E7EB]">Sitemap Configuration</h3>
-          <p class="text-sm text-[#9CA3AF]">XML карта сайта и индексация</p>
+          <p class="text-sm text-[#9CA3AF]">XML sitemap and indexing</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center justify-between w-full sm:w-auto sm:justify-end gap-4">
         <!-- Sitemap Score -->
         <div
           class="relative w-14 h-14 rounded-full flex items-center justify-center"
@@ -46,7 +46,7 @@
 
         <!-- Include Toggle -->
         <div class="flex items-center gap-2">
-          <span class="text-sm text-[#9CA3AF]">В sitemap</span>
+          <span class="text-sm text-[#9CA3AF]">In sitemap</span>
           <label class="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
@@ -61,7 +61,7 @@
     </div>
 
     <!-- Score Details -->
-    <div class="grid grid-cols-5 gap-3">
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
       <div
         v-for="item in scoreItems"
         :key="item.key"
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Main Settings Grid -->
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <!-- Priority -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
         <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-4">
@@ -89,9 +89,9 @@
         <!-- Visual Priority Scale -->
         <div class="relative mb-4">
           <div class="flex justify-between mb-2">
-            <span class="text-xs text-[#6B7280]">Низкий</span>
+            <span class="text-xs text-[#6B7280]">Low</span>
             <span class="text-2xl font-bold text-[#10B981]">{{ (modelValue.sitemap_priority || 0.8).toFixed(1) }}</span>
-            <span class="text-xs text-[#6B7280]">Высокий</span>
+            <span class="text-xs text-[#6B7280]">High</span>
           </div>
           <input
             type="range"
@@ -108,7 +108,7 @@
         </div>
 
         <!-- Priority Presets -->
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button
             v-for="preset in priorityPresets"
             :key="preset.value"
@@ -134,7 +134,7 @@
         </label>
 
         <!-- Frequency Grid -->
-        <div class="grid grid-cols-4 gap-2 mb-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
           <button
             v-for="freq in frequencies"
             :key="freq.value"
@@ -152,7 +152,7 @@
         </div>
 
         <p class="text-xs text-[#6B7280]">
-          Как часто контент обновляется. Для слотов рекомендуется <strong class="text-[#10B981]">weekly</strong> или <strong class="text-[#10B981]">monthly</strong>.
+          How often content is updated. For slots, <strong class="text-[#10B981]">weekly</strong> or <strong class="text-[#10B981]">monthly</strong> is recommended.
         </p>
       </div>
     </div>
@@ -161,41 +161,44 @@
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
       <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-3">
         <span class="text-lg">📅</span>
-        LastMod (Дата изменения)
+        LastMod (Last Modified)
       </label>
-      <div class="flex items-center gap-3">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <input
           type="datetime-local"
           :value="formatDatetimeForInput(modelValue.sitemap_last_mod)"
           @input="updateField('sitemap_last_mod', $event.target.value)"
-          class="flex-1 px-4 py-2.5 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#10B981]"
+          class="flex-1 px-4 py-2.5 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#10B981] w-full"
         />
-        <button
-          type="button"
-          @click="setCurrentDate"
-          class="px-4 py-2.5 bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30 rounded-lg text-sm font-medium hover:bg-[#10B981]/30 transition-colors"
-        >
-          📍 Сейчас
-        </button>
-        <button
-          type="button"
-          @click="clearDate"
-          class="px-4 py-2.5 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-sm hover:text-[#E5E7EB] transition-colors"
-        >
-          Очистить
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button
+            type="button"
+            @click="setCurrentDate"
+            class="flex-1 sm:flex-none px-4 py-2.5 bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30 rounded-lg text-sm font-medium hover:bg-[#10B981]/30 transition-colors whitespace-nowrap flex items-center justify-center gap-1"
+          >
+            <span>📍</span>
+            <span>Now</span>
+          </button>
+          <button
+            type="button"
+            @click="clearDate"
+            class="flex-1 sm:flex-none px-4 py-2.5 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-sm hover:text-[#E5E7EB] transition-colors whitespace-nowrap flex items-center justify-center"
+          >
+            Clear
+          </button>
+        </div>
       </div>
       <p class="text-xs text-[#6B7280] mt-2">
-        Дата последнего изменения контента. Оставьте пустым для автоматического определения.
+        Date of last content modification. Leave blank for automatic detection.
       </p>
     </div>
 
     <!-- Images Section -->
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span class="text-lg">🖼️</span>
-          Изображения для Sitemap
+          Sitemap Images
           <span class="px-2 py-0.5 rounded-full text-xs bg-[#10B981]/20 text-[#10B981]">
             {{ parsedImages.length }} img
           </span>
@@ -207,20 +210,20 @@
             @click="addSlotImage"
             class="px-3 py-1.5 bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30 rounded-lg text-xs font-medium hover:bg-[#10B981]/30 transition-colors"
           >
-            + Добавить из слота
+            + Add from slot
           </button>
           <button
             type="button"
             @click="addEmptyImage"
             class="px-3 py-1.5 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-xs hover:text-[#E5E7EB] transition-colors"
           >
-            + Новое
+            + Add new
           </button>
         </div>
       </div>
 
       <!-- Image Cards -->
-      <div v-if="parsedImages.length > 0" class="grid grid-cols-2 gap-3 mb-4">
+      <div v-if="parsedImages.length > 0" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
         <div
           v-for="(img, i) in parsedImages"
           :key="i"
@@ -244,13 +247,13 @@
               <input
                 v-model="img.title"
                 @input="updateImages"
-                placeholder="Заголовок"
+                placeholder="Title"
                 class="w-full px-2 py-1 bg-[#1B1E26] border border-[#353A4A] rounded text-xs text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-1 focus:ring-[#10B981] mb-1"
               />
               <input
                 v-model="img.loc"
                 @input="updateImages"
-                placeholder="URL изображения"
+                placeholder="Image URL"
                 class="w-full px-2 py-1 bg-[#1B1E26] border border-[#353A4A] rounded text-xs text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-1 focus:ring-[#10B981] font-mono"
               />
             </div>
@@ -259,16 +262,16 @@
       </div>
 
       <p v-else class="text-sm text-[#6B7280] text-center py-4">
-        Нет изображений. Добавьте изображения для улучшения SEO.
+        No images. Add images to improve SEO.
       </p>
     </div>
 
     <!-- Videos Section -->
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span class="text-lg">🎬</span>
-          Видео для Sitemap
+          Sitemap Videos
           <span class="px-2 py-0.5 rounded-full text-xs bg-[#8B5CF6]/20 text-[#8B5CF6]">
             {{ parsedVideos.length }} video
           </span>
@@ -278,7 +281,7 @@
           @click="addEmptyVideo"
           class="px-3 py-1.5 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-xs hover:text-[#E5E7EB] transition-colors"
         >
-          + Новое видео
+          + Add video
         </button>
       </div>
 
@@ -294,13 +297,13 @@
             @click="removeVideo(i)"
             class="absolute top-2 right-2 w-6 h-6 bg-[#EF4444]/20 text-[#EF4444] rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs"
           >×</button>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="text-xs text-[#6B7280] block mb-1">Заголовок</label>
+              <label class="text-xs text-[#6B7280] block mb-1">Title</label>
               <input
                 v-model="video.title"
                 @input="updateVideos"
-                placeholder="Обзор слота"
+                placeholder="Slot review"
                 class="w-full px-2 py-1.5 bg-[#1B1E26] border border-[#353A4A] rounded text-xs text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6]"
               />
             </div>
@@ -313,12 +316,12 @@
                 class="w-full px-2 py-1.5 bg-[#1B1E26] border border-[#353A4A] rounded text-xs text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] font-mono"
               />
             </div>
-            <div class="col-span-2">
+            <div class="col-span-1 sm:col-span-2">
               <label class="text-xs text-[#6B7280] block mb-1">Content URL</label>
               <input
                 v-model="video.content_loc"
                 @input="updateVideos"
-                placeholder="https://youtube.com/... или прямой URL"
+                placeholder="https://youtube.com/... or direct URL"
                 class="w-full px-2 py-1.5 bg-[#1B1E26] border border-[#353A4A] rounded text-xs text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] font-mono"
               />
             </div>
@@ -327,12 +330,12 @@
       </div>
 
       <p v-else class="text-sm text-[#6B7280] text-center py-4">
-        Нет видео. Добавьте видео для Video Sitemap.
+        No videos. Add videos for Video Sitemap.
       </p>
     </div>
 
     <!-- Extended Settings -->
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <!-- Google News -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
         <div class="flex items-center justify-between mb-4">
@@ -366,14 +369,14 @@
             <input
               v-model="modelValue.news_title"
               @input="updateField('news_title', $event.target.value)"
-              :placeholder="slotName || 'Заголовок новости'"
+              :placeholder="slotName || 'News Title'"
               class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-sm text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#10B981]"
             />
           </div>
         </div>
 
         <p v-else class="text-xs text-[#6B7280]">
-          Включить для новостных результатов Google
+          Enable for Google News results
         </p>
       </div>
 
@@ -396,7 +399,7 @@
         </div>
 
         <p class="text-xs text-[#6B7280]">
-          Включить страницу в мобильный sitemap. Рекомендуется для всех адаптивных страниц.
+          Include page in mobile sitemap. Recommended for all responsive pages.
         </p>
       </div>
     </div>
@@ -413,7 +416,7 @@
           @click="copyXml"
           class="px-3 py-1.5 bg-[#353A4A] text-[#9CA3AF] rounded-lg text-xs hover:text-[#E5E7EB] transition-colors flex items-center gap-1"
         >
-          📋 Копировать
+          📋 Copy
         </button>
       </div>
       <div class="bg-[#161A21] rounded-lg p-4 overflow-x-auto">
@@ -423,14 +426,14 @@
 
     <!-- Quick Actions -->
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
-      <h4 class="text-sm font-medium text-[#E5E7EB] mb-4">🔗 Быстрые действия</h4>
-      <div class="flex flex-wrap gap-3">
+      <h4 class="text-sm font-medium text-[#E5E7EB] mb-4">🔗 Quick Actions</h4>
+      <div class="flex flex-col sm:flex-row flex-wrap gap-3">
         <a
           :href="sitemapUrl"
           target="_blank"
           class="px-4 py-2 bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30 rounded-lg text-sm hover:bg-[#10B981]/30 transition-colors flex items-center gap-2"
         >
-          🗺️ Открыть sitemap.xml
+          🗺️ Open sitemap.xml
         </a>
         <a
           href="https://search.google.com/search-console/sitemaps"
@@ -445,7 +448,7 @@
           :disabled="validating"
           class="px-4 py-2 bg-[#F59E0B]/20 text-[#F59E0B] border border-[#F59E0B]/30 rounded-lg text-sm hover:bg-[#F59E0B]/30 transition-colors flex items-center gap-2 disabled:opacity-50"
         >
-          {{ validating ? '⏳ Проверка...' : '✓ Проверить sitemap' }}
+          {{ validating ? '⏳ Checking...' : '✓ Validate sitemap' }}
         </button>
       </div>
     </div>
@@ -551,7 +554,7 @@ const sitemapScore = computed(() => {
 })
 
 const scoreItems = computed(() => [
-  { key: 'include', icon: '✓', label: 'Включен', active: props.modelValue.sitemap_include !== false },
+  { key: 'include', icon: '✓', label: 'Included', active: props.modelValue.sitemap_include !== false },
   { key: 'priority', icon: '📊', label: 'Priority', active: props.modelValue.sitemap_priority >= 0.7 },
   { key: 'frequency', icon: '🔄', label: 'Frequency', active: !!props.modelValue.sitemap_frequency },
   { key: 'images', icon: '🖼️', label: 'Images', active: parsedImages.length > 0 },

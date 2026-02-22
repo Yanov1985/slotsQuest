@@ -1,11 +1,11 @@
 <template>
   <!--
-    🎯 SERP Preview Component - Предпросмотр в поисковой выдаче Google
+    🎯 SERP Preview Component - Preview in Google Search Results
 
-    Показывает как страница будет выглядеть в результатах Google:
-    - Desktop preview (стандартный вид)
-    - Mobile preview (мобильная выдача)
-    - Rich Snippet preview (с рейтингом, FAQ, breadcrumbs)
+    Shows how the page will look in Google results:
+    - Desktop preview (standard view)
+    - Mobile preview (mobile search)
+    - Rich Snippet preview (with rating, FAQ, breadcrumbs)
   -->
   <div class="space-y-4">
     <!-- Заголовок секции -->
@@ -134,7 +134,7 @@
     </div>
 
     <!-- Character Counters & Warnings -->
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <!-- Title Counter -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-3">
         <div class="flex items-center justify-between mb-2">
@@ -154,13 +154,13 @@
           ></div>
         </div>
         <p v-if="titleLength > 60" class="text-xs text-[#EF4444] mt-2">
-          ⚠️ Title будет обрезан в SERP
+          ⚠️ Title will be truncated in SERP
         </p>
         <p v-else-if="titleLength < 30" class="text-xs text-[#F59E0B] mt-2">
-          💡 Слишком короткий, добавьте ключевые слова
+          💡 Too short, add keywords
         </p>
         <p v-else-if="titleLength >= 50 && titleLength <= 60" class="text-xs text-[#10B981] mt-2">
-          ✅ Идеальная длина для SEO
+          ✅ Ideal length for SEO
         </p>
       </div>
 
@@ -183,13 +183,13 @@
           ></div>
         </div>
         <p v-if="descriptionLength > 160" class="text-xs text-[#EF4444] mt-2">
-          ⚠️ Description будет обрезан
+          ⚠️ Description will be truncated
         </p>
         <p v-else-if="descriptionLength < 120" class="text-xs text-[#F59E0B] mt-2">
-          💡 Можно добавить CTA или ключевые слова
+          💡 Add CTA or keywords
         </p>
         <p v-else-if="descriptionLength >= 150 && descriptionLength <= 160" class="text-xs text-[#10B981] mt-2">
-          ✅ Идеальная длина для SERP
+          ✅ Ideal length for SERP
         </p>
       </div>
     </div>
@@ -220,7 +220,7 @@
 
       <!-- Tips -->
       <div v-if="seoTips.length > 0" class="space-y-2">
-        <p class="text-xs font-medium text-[#9CA3AF]">Рекомендации:</p>
+        <p class="text-xs font-medium text-[#9CA3AF]">Recommendations:</p>
         <ul class="space-y-1">
           <li
             v-for="(tip, index) in seoTips"
@@ -455,31 +455,31 @@ const seoTips = computed(() => {
 
   // Title tips
   if (titleLength.value > 60) {
-    tips.push({ type: 'error', message: 'Title слишком длинный, будет обрезан в Google' })
+    tips.push({ type: 'error', message: 'Title is too long, will be truncated' })
   } else if (titleLength.value < 30) {
-    tips.push({ type: 'warning', message: 'Title слишком короткий, добавьте ключевые слова' })
+    tips.push({ type: 'warning', message: 'Title is too short, add keywords' })
   } else if (titleLength.value >= 50 && titleLength.value <= 60) {
-    tips.push({ type: 'success', message: 'Title оптимальной длины' })
+    tips.push({ type: 'success', message: 'Optimal title length' })
   }
 
   if (!props.title?.toLowerCase().includes(props.slotName?.toLowerCase()) && props.slotName) {
-    tips.push({ type: 'warning', message: 'Добавьте название слота в Title' })
+    tips.push({ type: 'warning', message: 'Add slot name to Title' })
   }
 
   // Description tips
   if (descriptionLength.value > 160) {
-    tips.push({ type: 'error', message: 'Description будет обрезан в поисковой выдаче' })
+    tips.push({ type: 'error', message: 'Description will be truncated in search results' })
   } else if (descriptionLength.value < 120) {
-    tips.push({ type: 'warning', message: 'Description можно расширить для лучшего CTR' })
+    tips.push({ type: 'warning', message: 'Description can be expanded for better CTR' })
   }
 
   // Rich Snippets tips
   if (!props.showRating) {
-    tips.push({ type: 'warning', message: 'Включите Review Schema для звёзд в SERP' })
+    tips.push({ type: 'warning', message: 'Enable Review Schema for stars in SERP' })
   }
 
   if (props.showFaq && (!props.faqItems || props.faqItems.length === 0)) {
-    tips.push({ type: 'warning', message: 'FAQ включён, но вопросы не добавлены' })
+    tips.push({ type: 'warning', message: 'FAQ is enabled, but no questions added' })
   }
 
   // Power words check
@@ -490,7 +490,7 @@ const seoTips = computed(() => {
   )
 
   if (!hasPowerWord) {
-    tips.push({ type: 'warning', message: 'Добавьте продающие слова (Free, Demo, Bonus)' })
+    tips.push({ type: 'warning', message: 'Add power words (Free, Demo, Bonus)' })
   }
 
   return tips

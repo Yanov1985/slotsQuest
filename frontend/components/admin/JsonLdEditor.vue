@@ -13,7 +13,7 @@
   -->
   <div class="space-y-6">
     <!-- Header with Score -->
-    <div class="flex items-center justify-between p-4 bg-gradient-to-r from-[#8B5CF6]/20 to-[#7C3AED]/20 rounded-xl border border-[#8B5CF6]/30">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-gradient-to-r from-[#8B5CF6]/20 to-[#7C3AED]/20 rounded-xl border border-[#8B5CF6]/30">
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center">
           <span class="text-2xl">🎯</span>
@@ -23,7 +23,7 @@
           <p class="text-sm text-[#9CA3AF]">Структурированные данные для SEO</p>
         </div>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center justify-between w-full sm:w-auto sm:justify-end gap-4">
         <!-- Schema Score -->
         <div
           class="relative w-14 h-14 rounded-full flex items-center justify-center"
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Schema Count & Quick Actions -->
-    <div v-if="localForm.jsonld_enabled" class="flex items-center justify-between p-3 bg-[#1B1E26] border border-[#353A4A] rounded-xl">
+    <div v-if="localForm.jsonld_enabled" class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-3 bg-[#1B1E26] border border-[#353A4A] rounded-xl">
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-2">
           <span class="text-2xl font-bold text-[#8B5CF6]">{{ enabledSchemasCount }}</span>
@@ -73,7 +73,7 @@
           >{{ schema.icon }}</span>
         </div>
       </div>
-      <div class="flex gap-2">
+      <div class="flex flex-wrap sm:flex-nowrap gap-2 w-full sm:w-auto">
         <button
           type="button"
           @click="autoGenerateAll"
@@ -105,7 +105,7 @@
     </div>
 
     <!-- Schema Cards Grid -->
-    <div v-if="localForm.jsonld_enabled" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div v-if="localForm.jsonld_enabled" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
       <!-- Game Schema (always on) -->
       <div class="bg-[#8B5CF6]/10 border-2 border-[#8B5CF6]/50 rounded-xl p-4 relative">
         <div class="absolute top-2 right-2 w-5 h-5 bg-[#8B5CF6] rounded-full flex items-center justify-center">
@@ -275,7 +275,7 @@
         <span class="w-8 h-8 bg-[#EC4899]/20 rounded-lg flex items-center justify-center">📊</span>
         AggregateRating — Рейтинг пользователей
       </h5>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <label class="block text-xs text-[#9CA3AF] mb-1">Средний рейтинг</label>
           <input
@@ -325,7 +325,7 @@
     <!-- FAQ Editor -->
     <div v-if="localForm.jsonld_enabled && localForm.jsonld_enable_faq"
          class="bg-[#1B1E26]/50 border border-[#3B82F6]/30 rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <h5 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span class="w-8 h-8 bg-[#3B82F6]/20 rounded-lg flex items-center justify-center">❓</span>
           FAQ Schema — Вопросы и ответы
@@ -384,7 +384,7 @@
     <!-- HowTo Editor -->
     <div v-if="localForm.jsonld_enabled && localForm.jsonld_enable_howto"
          class="bg-[#1B1E26]/50 border border-[#10B981]/30 rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <h5 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span class="w-8 h-8 bg-[#10B981]/20 rounded-lg flex items-center justify-center">📋</span>
           HowTo Schema — Как играть
@@ -489,7 +489,7 @@
     <!-- JSON-LD Preview -->
     <div v-if="localForm.jsonld_enabled && jsonLdPreview"
          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-4">
-      <div class="flex items-center justify-between mb-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <h5 class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB]">
           <span>👁️</span>
           JSON-LD Preview
@@ -530,7 +530,7 @@
         @click="showFullPreview = !showFullPreview"
         class="w-full mt-2 py-2 text-xs text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
       >
-        {{ showFullPreview ? '↑ Свернуть' : '↓ Показать полностью' }}
+        {{ showFullPreview ? '↑ Collapse' : '↓ Show Full Preview' }}
       </button>
     </div>
 

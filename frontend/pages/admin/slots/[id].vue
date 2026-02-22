@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans relative overflow-hidden"
+    class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans relative"
   >
     <!-- Background Beams эффект для админ панели (увеличенная интенсивность) -->
     <BackgroundBeams :intensity="0.9" :speed="1.2" />
@@ -11,13 +11,13 @@
       <nav
         class="bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50"
       >
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div class="flex items-center justify-between">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
             <!-- Навигация назад -->
             <NuxtLink
               to="/admin/slots"
               class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:text-[#FF6E48] hover:border-[#FF6E48]/40 hover:bg-[#353A4A] transition-all duration-200"
-              title="Назад к управлению слотами"
+              title="Back to slots management"
             >
               <svg
                 class="w-5 h-5"
@@ -38,20 +38,20 @@
             <div class="flex items-center">
               <div class="text-center">
                 <h1 class="text-xl font-semibold text-[#E5E7EB] font-display">
-                  {{ form.name || 'Новый слот' }}
+                  {{ form.name || 'New Slot' }}
                 </h1>
-                <p class="text-sm text-[#9CA3AF]">Редактирование слота</p>
+                <p class="text-sm text-[#9CA3AF]">Edit slot</p>
               </div>
             </div>
 
             <!-- Action buttons -->
-            <div class="flex items-center gap-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
               <!-- Управление секциями -->
-              <div class="flex items-center gap-2">
+              <div class="flex flex-wrap items-center gap-2 hidden sm:flex">
                 <button
                   @click="closeAllSections"
                   class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
-                  title="Закрыть все секции"
+                  title="Close all sections"
                 >
                   <svg
                     class="w-4 h-4 mr-1 inline-block"
@@ -66,12 +66,12 @@
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
-                  Закрыть все
+                  Close all
                 </button>
                 <button
                   @click="openAllSections"
                   class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#10B981]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
-                  title="Открыть все секции"
+                  title="Open all sections"
                 >
                   <svg
                     class="w-4 h-4 mr-1 inline-block"
@@ -86,76 +86,14 @@
                       d="M5 15l7-7 7 7"
                     />
                   </svg>
-                  Открыть все
+                  Open all
                 </button>
-              </div>
-
-              <!-- Поисковая строка в навигации -->
-              <div class="flex items-center gap-2">
-                <div class="relative">
-                  <input
-                    ref="navSearchInput"
-                    v-model="searchQuery"
-                    @input="handleSearch"
-                    @keydown="handleSearchKeydown"
-                    placeholder="Поиск по секциям... (Ctrl+F)"
-                    class="w-48 sm:w-56 lg:w-64 px-3 py-2 pl-9 pr-20 text-xs bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
-                  />
-                  <svg
-                    class="w-4 h-4 absolute left-3 top-2.5 text-[#9CA3AF]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                  <!-- Счетчик результатов -->
-                  <div
-                    v-if="searchQuery && searchResults.length > 0"
-                    class="absolute right-8 top-1.5 text-xs text-[#9CA3AF] bg-[#353A4A] px-2 py-1 rounded"
-                  >
-                    {{ currentSearchIndex + 1 }}/{{ searchResults.length }}
-                  </div>
-                  <!-- Кнопка очистки -->
-                  <button
-                    v-if="searchQuery"
-                    @click="clearSearch"
-                    class="absolute right-2 top-2.5 text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
-                  >
-                    <svg
-                      class="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- Результаты поиска (компактное отображение) -->
-                <div
-                  v-if="searchQuery && searchResults.length === 0"
-                  class="text-xs text-[#EF4444] bg-[#EF4444]/10 px-2 py-1 rounded border border-[#EF4444]/20"
-                >
-                  Не найдено
-                </div>
               </div>
 
               <button
                 @click="resetForm"
                 class="px-4 py-2 border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#63F3AB]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
-                title="Сбросить все изменения"
+                title="Reset all changes"
               >
                 <svg
                   class="w-4 h-4 mr-1 inline-block"
@@ -170,13 +108,13 @@
                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                   />
                 </svg>
-                Сброс
+                Reset
               </button>
               <button
                 @click="saveSlot"
                 :disabled="saving"
                 class="px-6 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] disabled:from-[#353A4A] disabled:to-[#353A4A] text-white rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 disabled:scale-100"
-                title="Сохранить изменения (Ctrl+S)"
+                title="Save changes (Ctrl+S)"
               >
                 <svg
                   class="w-4 h-4 mr-1 inline-block"
@@ -191,13 +129,13 @@
                     d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"
                   />
                 </svg>
-                {{ saving ? 'Сохранение...' : 'Сохранить' }}
+                {{ saving ? 'Saving...' : 'Save' }}
               </button>
               <NuxtLink
                 :to="`/slots/${form.slug || 'preview'}`"
                 target="_blank"
-                class="px-4 py-2 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
-                title="Открыть предпросмотр в новой вкладке"
+                class="px-4 py-2 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg font-semibold transition-all duration-200 transform sm:hover:scale-105 flex items-center justify-center"
+                title="Open preview in new tab"
               >
                 <svg
                   class="w-4 h-4 mr-1 inline-block"
@@ -218,124 +156,21 @@
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   />
                 </svg>
-                Предпросмотр
+                Preview
               </NuxtLink>
             </div>
           </div>
         </div>
       </nav>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Мобильная поисковая строка (показывается только на малых экранах) -->
-        <div class="lg:hidden mb-6">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Основной контент: Редактирование -->
+        <form @submit.prevent="saveSlot" class="w-full space-y-6 sm:space-y-8">
           <div
-            class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-4 border border-[#353A4A]"
+            id="hero"
+            data-section="hero"
+            class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-[#353A4A] relative overflow-hidden"
           >
-            <h3
-              class="text-sm font-semibold text-[#E5E7EB] mb-3 flex items-center gap-2"
-            >
-              <svg
-                class="w-4 h-4 text-[#FF6E48]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              Поиск по секциям
-            </h3>
-
-            <!-- Поисковая строка -->
-            <div class="relative">
-              <input
-                ref="mobileSearchInput"
-                v-model="searchQuery"
-                @input="handleSearch"
-                @keydown="handleSearchKeydown"
-                placeholder="Поиск по секциям... (Ctrl+F)"
-                class="w-full px-4 py-2 pl-10 pr-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200 text-sm"
-              />
-              <svg
-                class="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <!-- Счетчик результатов -->
-              <div
-                v-if="searchQuery && searchResults.length > 0"
-                class="absolute right-3 top-2 text-xs text-[#9CA3AF] bg-[#353A4A] px-2 py-1 rounded"
-              >
-                {{ currentSearchIndex + 1 }}/{{ searchResults.length }}
-              </div>
-              <!-- Кнопка очистки -->
-              <button
-                v-if="searchQuery"
-                @click="clearSearch"
-                class="absolute right-3 top-3 text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <!-- Результаты поиска -->
-            <div
-              v-if="searchQuery && searchResults.length === 0"
-              class="mt-3 p-3 bg-[#353A4A]/30 rounded-lg border border-[#353A4A]"
-            >
-              <div class="flex items-center gap-2 text-sm text-[#9CA3AF]">
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                Ничего не найдено
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Основной контент -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Левая панель: Редактирование -->
-          <form @submit.prevent="saveSlot" class="lg:col-span-2 space-y-8">
-            <div
-              id="hero"
-              data-section="hero"
-              class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
-            >
               <!-- Декоративный фон -->
               <div
                 class="absolute inset-0 bg-gradient-to-br from-[#FF6E48]/5 via-transparent to-[#00EDFF]/5"
@@ -368,7 +203,7 @@
                       <h2
                         class="text-2xl font-semibold text-[#E5E7EB] font-display"
                       >
-                        Hero Секция
+                        Hero Section
                       </h2>
                       <div
                         class="h-1 w-28 bg-gradient-to-r from-[#FF6E48] to-[#00EDFF] rounded-full mt-2"
@@ -429,10 +264,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Основная информация
+                              Basic Information
                             </h3>
                             <p class="text-sm text-[#FF6E48]">
-                              Базовые данные слота
+                              Basic slot data
                             </p>
                           </div>
                         </div>
@@ -478,14 +313,14 @@
                                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                               ></path>
                             </svg>
-                            Name слота *
+                            Slot Name *
                           </label>
                           <input
                             v-model="form.name"
                             type="text"
                             required
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
-                            placeholder="Например: Gates of Olympus"
+                            placeholder="Example: Gates of Olympus"
                           />
                         </div>
 
@@ -507,7 +342,7 @@
                                 d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
                               ></path>
                             </svg>
-                            URL адрес (slug) *
+                            URL path (slug) *
                           </label>
                           <input
                             v-model="form.slug"
@@ -517,7 +352,7 @@
                             placeholder="gates-of-olympus"
                           />
                           <p class="mt-1 text-xs text-[#9CA3AF]">
-                            Будет доступен по адресу: /slots/{{
+                            Will be available at: /slots/{{
                               form.slug || 'your-slug'
                             }}
                           </p>
@@ -541,14 +376,14 @@
                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                               ></path>
                             </svg>
-                            Провайдер *
+                            Provider *
                           </label>
                           <select
                             v-model="form.provider_id"
                             required
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
                           >
-                            <option value="">Выберите провайдера</option>
+                            <option value="">Select a provider</option>
                             <option
                               v-for="provider in providers"
                               :key="provider.id"
@@ -564,17 +399,17 @@
                           <label
                             class="block text-sm font-medium text-gray-300 mb-2"
                           >
-                            Description для Hero секции
+                            Description for Hero section
                           </label>
                           <div class="text-xs text-gray-400 mb-2">
-                            Максимум 400 символов
+                            Maximum 400 characters
                           </div>
                           <textarea
                             v-model="form.description"
                             rows="4"
                             maxlength="400"
                             class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                            placeholder="Краткое описание слота, которое будет отображаться в Hero секции"
+                            placeholder="Short description of the slot, which will be displayed in the Hero section"
                           ></textarea>
                         </div>
 
@@ -585,7 +420,7 @@
                           <div class="flex items-center gap-2 mb-2">
                             <span class="text-emerald-400 text-lg">✨</span>
                             <h4 class="text-sm font-bold text-emerald-300">
-                              Ключевые слова для Hero секции (3 переменные)
+                              Keywords for Hero section (3 variables)
                             </h4>
                           </div>
 
@@ -593,21 +428,21 @@
                             class="text-xs text-gray-300 bg-blue-900/30 p-3 rounded-lg border border-blue-500/30 space-y-1"
                           >
                             <div class="font-bold text-blue-300">
-                              📝 Как использовать в описании:
+                              📝 How to use in description:
                             </div>
                             <div class="text-gray-400">
-                              В тексте описания используй плейсхолдеры:
+                              Use placeholders in the description text:
                             </div>
                             <div
                               class="font-mono text-xs bg-gray-800/50 p-2 rounded mt-1"
                             >
                               <span class="text-emerald-400">[keyword_2]</span>
-                              - заменится на значение из поля 2<br />
+                              - will be replaced by the value from field 2<br />
                               <span class="text-purple-400">[keyword_3]</span> -
-                              заменится на значение из поля 3
+                              will be replaced by the value from field 3
                             </div>
                             <div class="text-yellow-300 mt-2">
-                              💡 Пример: "We love
+                              💡 Example: "We love
                               <span class="text-emerald-400">[keyword_2]</span>
                               and
                               <span class="text-purple-400">[keyword_3]</span>"
@@ -619,15 +454,15 @@
                             <label
                               class="block text-sm font-medium text-emerald-300 mb-2"
                             >
-                              1️⃣ Ключевое слово - Заголовок Hero секции
+                              1️⃣ Keyword - Hero section title
                             </label>
                             <div class="text-xs text-gray-400 mb-2 space-y-1">
                               <div>
-                                📌 Отображается как <strong>заголовок</strong> в
-                                Hero секции (вместо названия слота)
+                                📌 Displayed as the <strong>title</strong> in the
+                                Hero section (instead of the slot name)
                               </div>
                               <div class="text-blue-300">
-                                Результат:
+                                Result:
                                 <span class="font-bold text-emerald-300"
                                   >"{{
                                     form.hero_keyword || 'Slot Review'
@@ -640,7 +475,7 @@
                               type="text"
                               maxlength="100"
                               class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-                              placeholder='Например: "Premium Casino Experience"'
+                              placeholder='Example: "Premium Casino Experience"'
                             />
                           </div>
 
@@ -649,18 +484,18 @@
                             <label
                               class="block text-sm font-medium text-emerald-300 mb-2"
                             >
-                              2️⃣ Переменная [keyword_2] - Для описания
+                              2️⃣ Variable [keyword_2] - For description
                             </label>
                             <div class="text-xs text-gray-400 mb-2 space-y-1">
                               <div>
-                                📌 Используется в тексте описания как
+                                📌 Used in the description text as
                                 <span
                                   class="font-mono text-emerald-400 bg-gray-800 px-1 rounded"
                                   >[keyword_2]</span
                                 >
                               </div>
                               <div class="text-blue-300">
-                                Например: название слота или его особенность
+                                Example: slot name or its feature
                               </div>
                             </div>
                             <input
@@ -668,7 +503,7 @@
                               type="text"
                               maxlength="200"
                               class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
-                              placeholder='Например: "Gates of Olympus"'
+                              placeholder='Example: "Gates of Olympus"'
                             />
                           </div>
 
@@ -677,19 +512,18 @@
                             <label
                               class="block text-sm font-medium text-purple-300 mb-2"
                             >
-                              3️⃣ Переменная [keyword_3] - Для описания
+                              3️⃣ Variable [keyword_3] - For description
                             </label>
                             <div class="text-xs text-gray-400 mb-2 space-y-1">
                               <div>
-                                📌 Используется в тексте описания как
+                                📌 Used in the description text as
                                 <span
                                   class="font-mono text-purple-400 bg-gray-800 px-1 rounded"
                                   >[keyword_3]</span
                                 >
                               </div>
                               <div class="text-blue-300">
-                                Например: модификация слота или дополнительная
-                                информация
+                                Example: slot modification or additional information
                               </div>
                             </div>
                             <input
@@ -697,7 +531,7 @@
                               type="text"
                               maxlength="200"
                               class="w-full px-4 py-3 bg-gray-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                              placeholder='Например: "Gates of Olympus 1,000"'
+                              placeholder='Example: "Gates of Olympus 1,000"'
                             />
                           </div>
 
@@ -706,7 +540,7 @@
                             class="bg-gray-800/50 p-3 rounded-lg border border-gray-600"
                           >
                             <div class="text-xs text-gray-400 mb-1">
-                              Пример текста с переменными:
+                              Example of text with variables:
                             </div>
                             <div class="text-xs text-white font-mono">
                               "We love
@@ -751,10 +585,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Ссылки кнопок действий
+                              Action button links
                             </h3>
                             <p class="text-sm text-[#00EDFF]">
-                              Кнопки в Hero секции
+                              Buttons in Hero section
                             </p>
                           </div>
                         </div>
@@ -803,7 +637,7 @@
                                   d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-5.5 2a3 3 0 105 0m-5 0a3 3 0 105 0m7.744-1.245l-.001.001m-7.743-1.245l-.001.001"
                                 ></path>
                               </svg>
-                              Ссылка кнопки "Играть бесплатно" (демо-режим)
+                              Link for "Play for Free" button (demo mode)
                             </label>
                             <input
                               v-model="form.demo_url"
@@ -812,8 +646,8 @@
                               placeholder="https://demo.provider.com/gates-of-olympus"
                             />
                             <p class="mt-1 text-xs text-[#9CA3AF]">
-                              URL для запуска демо-версии игры. Если не указано,
-                              будет показано предупреждение.
+                              URL to launch the demo version of the game. If not specified,
+                              a warning will be shown.
                             </p>
                           </div>
 
@@ -835,7 +669,7 @@
                                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                 ></path>
                               </svg>
-                              Ссылка кнопки "Играть на деньги"
+                              Link for "Play for Real Money" button
                             </label>
                             <input
                               v-model="form.real_play_url"
@@ -844,8 +678,8 @@
                               placeholder="https://casino.com/games/gates-of-olympus"
                             />
                             <p class="mt-1 text-xs text-[#9CA3AF]">
-                              URL для игры на реальные деньги в казино. Если не
-                              указано, будет показано предупреждение.
+                              URL for playing for real money in a casino. If not
+                              specified, a warning will be shown.
                             </p>
                           </div>
                         </div>
@@ -879,10 +713,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Характеристики игры
+                              Game Characteristics
                             </h3>
                             <p class="text-sm text-[#63F3AB]">
-                              Технические параметры
+                              Technical parameters
                             </p>
                           </div>
                         </div>
@@ -913,8 +747,8 @@
                           </svg>
                           <span>{{
                             showGameCharacteristicsSection
-                              ? 'Скрыть'
-                              : 'Показать'
+                              ? 'Hide'
+                              : 'Show'
                           }}</span>
                         </button>
                       </div>
@@ -972,7 +806,7 @@
                                   d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
                                 ></path>
                               </svg>
-                              Волатильность
+                              Volatility
                             </label>
                             <select
                               v-model="form.volatility"
@@ -1002,7 +836,7 @@
                                   d="M19 14l-7 7m0 0l-7-7m7 7V3"
                                 ></path>
                               </svg>
-                              Минимальная ставка
+                              Min Bet
                             </label>
                             <input
                               v-model="form.min_bet"
@@ -1030,7 +864,7 @@
                                   d="M5 10l7-7m0 0l7 7m-7-7v18"
                                 ></path>
                               </svg>
-                              Максимальная ставка
+                              Max Bet
                             </label>
                             <input
                               v-model="form.max_bet"
@@ -1058,7 +892,7 @@
                                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                                 ></path>
                               </svg>
-                              Максимальный выигрыш (x от ставки)
+                              Max Win (x of bet)
                             </label>
                             <input
                               v-model.number="form.max_win"
@@ -1074,7 +908,7 @@
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Date выпуска
+                              Release Date
                             </label>
                             <input
                               v-model="form.release_date"
@@ -1088,7 +922,7 @@
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Количество барабанов
+                              Number of reels
                             </label>
                             <input
                               v-model.number="form.reels"
@@ -1105,7 +939,7 @@
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Количество рядов
+                              Number of rows
                             </label>
                             <input
                               v-model.number="form.rows"
@@ -1122,15 +956,15 @@
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Линии выплат
+                              Paylines
                             </label>
                             <div class="relative">
                               <select
                                 v-model="paylineType"
                                 class="absolute right-2 top-2 z-10 px-2 py-1 bg-gray-600 border border-gray-500 rounded text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                               >
-                                <option value="number">Число</option>
-                                <option value="text">Текст</option>
+                                <option value="number">Number</option>
+                                <option value="text">Text</option>
                               </select>
                               <input
                                 v-if="paylineType === 'number'"
@@ -1173,7 +1007,7 @@
                               Info Popup Content
                             </h3>
                             <p class="text-sm text-purple-400">
-                              Контент для модального окна ⓘ
+                              Content for modal window ⓘ
                             </p>
                           </div>
                         </div>
@@ -1222,7 +1056,7 @@
                               @click="addInfoProsItem"
                               class="flex items-center gap-1 px-2.5 py-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 rounded-lg text-xs font-medium transition-colors border border-emerald-500/30"
                             >
-                              <span>➕</span> Добавить
+                              <span>➕</span> Add
                             </button>
                           </div>
                           <div class="space-y-2">
@@ -1243,12 +1077,12 @@
                                 type="button"
                                 @click="removeInfoProsItem(i)"
                                 class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0"
-                                title="Удалить"
+                                title="Delete"
                               >
                                 🗑️
                               </button>
                             </div>
-                            <p v-if="infoProsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет элементов. Нажмите «Добавить» или «Auto-Generate».</p>
+                            <p v-if="infoProsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">No items. Click "Add" or "Auto-Generate".</p>
                           </div>
                         </div>
 
@@ -1264,7 +1098,7 @@
                               @click="addInfoConsItem"
                               class="flex items-center gap-1 px-2.5 py-1.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg text-xs font-medium transition-colors border border-red-500/30"
                             >
-                              <span>➕</span> Добавить
+                              <span>➕</span> Add
                             </button>
                           </div>
                           <div class="space-y-2">
@@ -1285,12 +1119,12 @@
                                 type="button"
                                 @click="removeInfoConsItem(i)"
                                 class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0"
-                                title="Удалить"
+                                title="Delete"
                               >
                                 🗑️
                               </button>
                             </div>
-                            <p v-if="infoConsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет элементов. Нажмите «Добавить» или «Auto-Generate».</p>
+                            <p v-if="infoConsItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">No items. Click "Add" or "Auto-Generate".</p>
                           </div>
                         </div>
 
@@ -1306,7 +1140,7 @@
                               @click="addInfoFaqItem"
                               class="flex items-center gap-1 px-2.5 py-1.5 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 rounded-lg text-xs font-medium transition-colors border border-blue-500/30"
                             >
-                              <span>➕</span> Добавить вопрос
+                              <span>➕</span> Add question
                             </button>
                           </div>
                           <div class="space-y-4">
@@ -1316,12 +1150,12 @@
                               class="bg-[#0D1117] rounded-lg p-3 border border-[#353A4A] relative"
                             >
                               <div class="flex items-center justify-between mb-2">
-                                <span class="text-blue-400 text-xs font-medium">Вопрос {{ i + 1 }}</span>
+                                <span class="text-blue-400 text-xs font-medium">Question {{ i + 1 }}</span>
                                 <button
                                   type="button"
                                   @click="removeInfoFaqItem(i)"
                                   class="p-1 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
-                                  title="Удалить вопрос"
+                                  title="Delete question"
                                 >
                                   🗑️
                                 </button>
@@ -1330,18 +1164,18 @@
                                 v-model="item.question"
                                 type="text"
                                 class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm mb-2"
-                                placeholder="Вопрос..."
+                                placeholder="Question..."
                                 @input="syncInfoFaq"
                               />
                               <textarea
                                 v-model="item.answer"
                                 rows="2"
                                 class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm"
-                                placeholder="Ответ..."
+                                placeholder="Answer..."
                                 @input="syncInfoFaq"
                               ></textarea>
                             </div>
-                            <p v-if="infoFaqItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет вопросов. Нажмите «Добавить вопрос» или «Auto-Generate».</p>
+                            <p v-if="infoFaqItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">No questions. Click "Add question" or "Auto-Generate".</p>
                           </div>
                         </div>
 
@@ -1357,7 +1191,7 @@
                               @click="addInfoReviewItem"
                               class="flex items-center gap-1 px-2.5 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 text-pink-400 rounded-lg text-xs font-medium transition-colors border border-pink-500/30"
                             >
-                              <span>➕</span> Добавить отзыв
+                              <span>➕</span> Add review
                             </button>
                           </div>
                           <div class="space-y-4">
@@ -1367,12 +1201,12 @@
                               class="bg-[#0D1117] rounded-lg p-3 border border-[#353A4A]"
                             >
                               <div class="flex items-center justify-between mb-2">
-                                <span class="text-pink-400 text-xs font-medium">Отзыв {{ i + 1 }}</span>
+                                <span class="text-pink-400 text-xs font-medium">Review {{ i + 1 }}</span>
                                 <button
                                   type="button"
                                   @click="removeInfoReviewItem(i)"
                                   class="p-1 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded transition-colors"
-                                  title="Удалить отзыв"
+                                  title="Delete review"
                                 >
                                   🗑️
                                 </button>
@@ -1382,7 +1216,7 @@
                                   v-model="item.author"
                                   type="text"
                                   class="px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
-                                  placeholder="Автор"
+                                  placeholder="Author"
                                   @input="syncInfoReviews"
                                 />
                                 <select
@@ -1407,11 +1241,11 @@
                                 v-model="item.text"
                                 rows="2"
                                 class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all text-sm"
-                                placeholder="Текст отзыва..."
+                                placeholder="Review text..."
                                 @input="syncInfoReviews"
                               ></textarea>
                             </div>
-                            <p v-if="infoReviewItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет отзывов. Нажмите «Добавить отзыв» или «Auto-Generate».</p>
+                            <p v-if="infoReviewItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">No reviews. Click "Add review" or "Auto-Generate".</p>
                           </div>
                         </div>
 
@@ -1427,7 +1261,7 @@
                               @click="addInfoHowToPlayItem"
                               class="flex items-center gap-1 px-2.5 py-1.5 bg-green-600/20 hover:bg-green-600/30 text-green-400 rounded-lg text-xs font-medium transition-colors border border-green-500/30"
                             >
-                              <span>➕</span> Добавить шаг
+                              <span>➕</span> Add step
                             </button>
                           </div>
                           <div class="space-y-3">
@@ -1444,14 +1278,14 @@
                                   v-model="item.step"
                                   type="text"
                                   class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm font-medium"
-                                  placeholder="Название шага..."
+                                  placeholder="Step title..."
                                   @input="syncInfoHowToPlay"
                                 />
                                 <textarea
                                   v-model="item.text"
                                   rows="2"
                                   class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm"
-                                  placeholder="Описание шага..."
+                                  placeholder="Step description..."
                                   @input="syncInfoHowToPlay"
                                 ></textarea>
                               </div>
@@ -1459,12 +1293,12 @@
                                 type="button"
                                 @click="removeInfoHowToPlayItem(i)"
                                 class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0 self-start mt-1"
-                                title="Удалить шаг"
+                                title="Delete step"
                               >
                                 🗑️
                               </button>
                             </div>
-                            <p v-if="infoHowToPlayItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">Нет шагов. Нажмите «Добавить шаг» или «Auto-Generate».</p>
+                            <p v-if="infoHowToPlayItems.length === 0" class="text-[#6B7280] text-xs py-2 text-center">No steps. Click "Add step" or "Auto-Generate".</p>
                           </div>
                         </div>
 
@@ -1511,10 +1345,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Рейтинг и популярность
+                              Rating & Popularity
                             </h3>
                             <p class="text-sm text-[#CD0F8B]">
-                              Позиции и оценки
+                              Positions and ratings
                             </p>
                           </div>
                         </div>
@@ -1547,7 +1381,7 @@
                                 d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
                               ></path>
                             </svg>
-                            Позиция в рейтинге
+                            Rating Rank
                           </label>
                           <input
                             v-model.number="form.popularity_rank"
@@ -1577,7 +1411,7 @@
                                   d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                                 ></path>
                               </svg>
-                              Реальный RTP (%)
+                              Real RTP (%)
                             </label>
                             <input
                               v-model.number="form.real_rtp"
@@ -1595,7 +1429,7 @@
                             <label
                               class="block text-sm font-medium text-gray-300 mb-2"
                             >
-                              Частота бонуса
+                              Bonus Frequency
                             </label>
                             <input
                               v-model="form.bonus_frequency"
@@ -1613,7 +1447,7 @@
                       <h3
                         class="text-lg font-semibold text-pink-400 border-b border-gray-600 pb-2"
                       >
-                        Медиа контент Hero секции
+                        Hero Section Media Content
                       </h3>
 
                       <!-- Ремарка с размерами -->
@@ -1644,30 +1478,30 @@
                             <h4
                               class="text-sm font-semibold text-blue-300 mb-2"
                             >
-                              📐 Рекомендуемые размеры медиа
+                              📐 Recommended Media Sizes
                             </h4>
                             <div class="text-xs text-blue-200 space-y-1">
                               <div>
-                                <strong>🖼️ Изображение:</strong> 1200x1600
-                                пикселей (соотношение 3:4)
+                                <strong>🖼️ Image:</strong> 1200x1600
+                                pixels (3:4 ratio)
                               </div>
                               <div>
-                                <strong>🎬 Видео:</strong> 1200x1600 пикселей,
-                                длительность до 30 секунд
+                                <strong>🎬 Video:</strong> 1200x1600 pixels,
+                                up to 30 seconds duration
                               </div>
                               <div>
-                                <strong>📱 Мобильная версия:</strong>
-                                Автоматически адаптируется под экран
+                                <strong>📱 Mobile version:</strong>
+                                Automatically adapts to the screen
                               </div>
                               <div>
-                                <strong>💾 Размер файла:</strong> Изображения до
-                                2MB, видео до 10MB
+                                <strong>💾 File size:</strong> Images up to
+                                2MB, videos up to 10MB
                               </div>
                             </div>
                             <div class="mt-2 text-xs text-blue-300">
-                              💡 <strong>Совет:</strong> Используйте
-                              высококачественные изображения для лучшего
-                              отображения на ретина-дисплеях
+                              💡 <strong>Tip:</strong> Use
+                              high-quality images for better
+                              rendering on retina displays
                             </div>
                           </div>
                         </div>
@@ -1678,17 +1512,17 @@
                         <label
                           class="block text-sm font-medium text-gray-300 mb-2"
                         >
-                          Тип медиа контента
+                          Media content type
                         </label>
                         <select
                           v-model="form.media_type"
                           class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                         >
-                          <option value="image">Изображение</option>
-                          <option value="video">Видео</option>
+                          <option value="image">Image</option>
+                          <option value="video">Video</option>
                         </select>
                         <p class="mt-1 text-xs text-gray-400">
-                          Выберите тип медиа контента для обложки слота
+                          Select media content type for slot cover
                         </p>
                       </div>
 
@@ -1697,7 +1531,7 @@
                         <label
                           class="block text-sm font-medium text-gray-300 mb-2"
                         >
-                          URL изображения
+                          Image URL
                         </label>
                         <input
                           v-model="form.image_url"
@@ -1706,8 +1540,8 @@
                           placeholder="https://example.com/slot-image.jpg"
                         />
                         <p class="mt-1 text-xs text-gray-400">
-                          Добавьте ссылку на изображение слота. Рекомендуемый
-                          размер: 1200x1600px (3:4)
+                          Add a link to the slot image. Recommended
+                          size: 1200x1600px (3:4)
                         </p>
                       </div>
 
@@ -1716,25 +1550,25 @@
                         <label
                           class="block text-sm font-medium text-gray-300 mb-2"
                         >
-                          📍 Точка фокуса (для адаптивного кропа)
+                          📍 Focus point (for responsive crop)
                         </label>
                         <select
                           v-model="form.image_focus_point"
                           class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                         >
-                          <option value="center 20%">🎯 Верхняя часть (по умолчанию)</option>
-                          <option value="center center">⚪ Центр</option>
-                          <option value="center top">⬆️ Верх</option>
-                          <option value="center 30%">📍 Верхняя треть</option>
-                          <option value="center 40%">📍 Чуть выше центра</option>
-                          <option value="center 60%">📍 Чуть ниже центра</option>
-                          <option value="center bottom">⬇️ Низ</option>
-                          <option value="left center">⬅️ Левый центр</option>
-                          <option value="right center">➡️ Правый центр</option>
+                          <option value="center 20%">🎯 Top (default)</option>
+                          <option value="center center">⚪ Center</option>
+                          <option value="center top">⬆️ Top</option>
+                          <option value="center 30%">📍 Top third</option>
+                          <option value="center 40%">📍 Slightly above center</option>
+                          <option value="center 60%">📍 Slightly below center</option>
+                          <option value="center bottom">⬇️ Bottom</option>
+                          <option value="left center">⬅️ Left center</option>
+                          <option value="right center">➡️ Right center</option>
                         </select>
                         <p class="mt-1 text-xs text-gray-400">
-                          Выберите точку фокуса для умного кропа на планшетах и мобильных устройствах.
-                          Это определяет какая часть изображения будет видна при обрезке.
+                          Select a focus point for smart crop on tablets and mobile devices.
+                          This determines which part of the image will be visible when cropped.
                         </p>
                       </div>
 
@@ -1743,7 +1577,7 @@
                         <label
                           class="block text-sm font-medium text-gray-300 mb-2"
                         >
-                          URL видео
+                          Video URL
                         </label>
                         <input
                           v-model="form.video_url"
@@ -1752,8 +1586,8 @@
                           placeholder="https://example.com/slot-video.mp4"
                         />
                         <p class="mt-1 text-xs text-gray-400">
-                          Добавьте ссылку на видео слота. Рекомендуемый размер:
-                          1200x1600px, до 30 сек. Поддерживаются форматы: .mp4,
+                          Add a link to the slot video. Recommended size:
+                          1200x1600px, up to 30 sec. Supported formats: .mp4,
                           .webm, .ogg
                         </p>
                       </div>
@@ -1763,16 +1597,16 @@
                         <label
                           class="block text-sm font-medium text-gray-300 mb-2"
                         >
-                          Превью медиа
+                          Media preview
                         </label>
                         <div
                           class="bg-gray-700 rounded-lg p-4 border border-gray-600"
                         >
-                          <!-- Превью изображения -->
+                          <!-- Image preview -->
                           <div
                             v-if="form.media_type === 'image' && form.image_url"
                           >
-                            <!-- Диагностическая информация -->
+                            <!-- Diagnostic information -->
                             <div
                               class="mb-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg"
                             >
@@ -1794,7 +1628,7 @@
                                   <div
                                     class="text-sm font-medium text-blue-300"
                                   >
-                                    URL изображения:
+                                    Image URL:
                                   </div>
                                   <div
                                     class="text-xs text-gray-300 mt-1 break-all font-mono bg-gray-800 p-2 rounded"
@@ -1823,12 +1657,12 @@
                                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                                     ></path>
                                   </svg>
-                                  Открыть в новой вкладке
+                                  Open in new tab
                                 </a>
                               </div>
                             </div>
 
-                            <!-- Само изображение с обработкой состояний -->
+                            <!-- Image itself with state handling -->
                             <div class="relative">
                               <div
                                 v-if="imageLoading"
@@ -1856,7 +1690,7 @@
                                     ></path>
                                   </svg>
                                   <p class="text-sm text-gray-300">
-                                    Загрузка изображения...
+                                    Loading image...
                                   </p>
                                 </div>
                               </div>
@@ -1881,20 +1715,19 @@
                                 <p
                                   class="text-sm font-medium text-red-300 mb-2"
                                 >
-                                  ❌ Ошибка загрузки изображения
+                                  ❌ Image loading error
                                 </p>
                                 <p class="text-xs text-gray-400 mb-3">
-                                  Проверьте правильность URL. Это должна быть
-                                  ПРЯМАЯ ссылка на изображение.
+                                  Check the URL. It must be a DIRECT link to the image.
                                 </p>
                                 <div
                                   class="text-xs text-left bg-gray-800 p-3 rounded space-y-1"
                                 >
                                   <p class="text-green-400">
-                                    ✅ Правильно: https://i.imgur.com/abc123.jpg
+                                    ✅ Correct: https://i.imgur.com/abc123.jpg
                                   </p>
                                   <p class="text-red-400">
-                                    ❌ Неправильно: https://imgur.com/a/abc123
+                                    ❌ Incorrect: https://imgur.com/a/abc123
                                   </p>
                                 </div>
                               </div>
@@ -1902,14 +1735,14 @@
                               <img
                                 v-show="!imageLoading && !imageError"
                                 :src="form.image_url"
-                                :alt="form.name || 'Слот'"
+                                :alt="form.name || 'Slot'"
                                 class="w-full max-w-sm h-48 object-cover rounded-lg mx-auto"
                                 @error="handleImageError"
                                 @load="handleImageLoad"
                               />
                             </div>
                           </div>
-                          <!-- Превью видео -->
+                          <!-- Video preview -->
                           <div
                             v-else-if="
                               form.media_type === 'video' && form.video_url
@@ -1924,14 +1757,14 @@
                               @error="handleVideoError"
                               @loadeddata="handleVideoLoad"
                             >
-                              Ваш браузер не поддерживает воспроизведение видео.
+                              Your browser does not support video playback.
                             </video>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <!-- Игровые механики Hero секции -->
+                    <!-- Hero Section Game Mechanics -->
                     <div
                       class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
                     >
@@ -1964,10 +1797,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Игровые механики
+                              Game Mechanics
                             </h3>
                             <p class="text-sm text-[#FF6E48]">
-                              Hero секция механик
+                              Mechanics Hero section
                             </p>
                           </div>
                         </div>
@@ -1982,11 +1815,10 @@
                       </div>
                       <div v-show="showMechanicsSection" class="space-y-4">
                         <p class="text-sm text-gray-400">
-                          Выберите игровые механики, которые будут отображаться
-                          в Hero секции слота
+                          Select the game mechanics to be displayed in the slot's Hero section
                         </p>
 
-                        <!-- Список доступных механик -->
+                        <!-- List of available mechanics -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                           <div
                             v-for="mechanic in availableMechanics"
@@ -2026,7 +1858,7 @@
                           </div>
                         </div>
 
-                        <!-- Выбранные механики -->
+                        <!-- Selected mechanics -->
                         <div
                           v-if="
                             selectedMechanics && selectedMechanics.length > 0
@@ -2034,7 +1866,7 @@
                           class="mt-4"
                         >
                           <h4 class="text-sm font-medium text-gray-300 mb-2">
-                            Выбранные механики:
+                            Selected mechanics:
                           </h4>
                           <div class="flex flex-wrap gap-2">
                             <span
@@ -2049,7 +1881,7 @@
                       </div>
                     </div>
 
-                    <!-- Бонусы Hero секции -->
+                    <!-- Hero Section Bonuses -->
                     <div
                       class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
                     >
@@ -2076,15 +1908,15 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display flex items-center gap-2"
                             >
-                              Бонусы Hero секции
+                              Hero Section Bonuses
                               <span
                                 class="text-xs bg-[#63F3AB]/20 text-[#63F3AB] px-3 py-1 rounded-full border border-[#63F3AB]/30"
                               >
-                                {{ selectedBonuses.length }} выбрано
+                                {{ selectedBonuses.length }} selected
                               </span>
                             </h3>
                             <p class="text-sm text-[#63F3AB]">
-                              Управление бонусными предложениями
+                              Manage bonus offers
                             </p>
                           </div>
                         </div>
@@ -2117,17 +1949,16 @@
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                               ></path>
                             </svg>
-                            Выберите бонусы, которые будут отображаться в Hero
-                            секции слота на клиентской странице
+                            Select the bonuses to be displayed in the slot's Hero section on the client page
                           </p>
                         </div>
 
-                        <!-- Поиск бонусов -->
+                        <!-- Search bonuses -->
                         <div class="relative">
                           <input
                             v-model="bonusSearchQuery"
                             type="text"
-                            placeholder="Поиск бонусов..."
+                            placeholder="Search bonuses..."
                             class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#63F3AB] focus:ring-1 focus:ring-[#63F3AB] transition-all duration-200"
                           />
                           <svg
@@ -2145,32 +1976,32 @@
                           </svg>
                         </div>
 
-                        <!-- Быстрые фильтры -->
+                        <!-- Quick filters -->
                         <div class="flex flex-wrap gap-2">
                           <button
                             @click="selectAllBonuses"
                             type="button"
                             class="text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md transition-colors"
                           >
-                            Выбрать все
+                            Select all
                           </button>
                           <button
                             @click="clearAllBonuses"
                             type="button"
                             class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
                           >
-                            Очистить все
+                            Clear all
                           </button>
                           <button
                             @click="selectPopularBonuses"
                             type="button"
                             class="text-xs px-3 py-1 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
                           >
-                            Только популярные
+                            Popular only
                           </button>
                         </div>
 
-                        <!-- Список доступных бонусов -->
+                        <!-- List of available bonuses -->
                         <div
                           class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
                         >
@@ -2217,13 +2048,13 @@
                           </div>
                         </div>
 
-                        <!-- Выбранные бонусы -->
+                        <!-- Selected bonuses -->
                         <div
                           v-if="selectedBonuses && selectedBonuses.length > 0"
                           class="mt-4"
                         >
                           <h4 class="text-sm font-medium text-gray-300 mb-2">
-                            Выбранные бонусы:
+                            Selected bonuses:
                           </h4>
                           <div class="flex flex-wrap gap-2">
                             <span
@@ -2238,7 +2069,7 @@
                       </div>
                     </div>
 
-                    <!-- Тематики Hero секции -->
+                    <!-- Hero Section Themes -->
                     <div
                       class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
                     >
@@ -2265,15 +2096,15 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display flex items-center gap-2"
                             >
-                              Тематики Hero секции
+                              Hero Section Themes
                               <span
                                 class="text-xs bg-[#00EDFF]/20 text-[#00EDFF] px-3 py-1 rounded-full border border-[#00EDFF]/30"
                               >
-                                {{ selectedThemes.length }} выбрано
+                                {{ selectedThemes.length }} selected
                               </span>
                             </h3>
                             <p class="text-sm text-[#00EDFF]">
-                              Управление тематическими категориями
+                              Manage theme categories
                             </p>
                           </div>
                         </div>
@@ -2306,17 +2137,16 @@
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                               ></path>
                             </svg>
-                            Выберите тематики, которые будут отображаться в Hero
-                            секции слота на клиентской странице
+                            Select the themes to be displayed in the slot's Hero section on the client page
                           </p>
                         </div>
 
-                        <!-- Поиск тематик -->
+                        <!-- Search themes -->
                         <div class="relative">
                           <input
                             v-model="themeSearchQuery"
                             type="text"
-                            placeholder="Поиск тематик..."
+                            placeholder="Search themes..."
                             class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-4 py-2 pl-10 text-[#E5E7EB] placeholder-[#9CA3AF] focus:border-[#00EDFF] focus:ring-1 focus:ring-[#00EDFF] transition-all duration-200"
                           />
                           <svg
@@ -2334,14 +2164,14 @@
                           </svg>
                         </div>
 
-                        <!-- Быстрые фильтры -->
+                        <!-- Quick filters -->
                         <div class="flex flex-wrap gap-2">
                           <button
                             @click="clearAllThemes"
                             type="button"
                             class="text-xs px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
                           >
-                            Очистить выбор
+                            Clear selection
                           </button>
                           <span
                             class="text-xs px-3 py-1 rounded-md border"
@@ -2353,13 +2183,13 @@
                           >
                             {{
                               selectedThemes.length >= 5
-                                ? '⚠️ Достигнут лимит!'
-                                : `✅ Выбрано ${selectedThemes.length}/5`
+                                ? '⚠️ Limit reached!'
+                                : `✅ Selected ${selectedThemes.length}/5`
                             }}
                           </span>
                         </div>
 
-                        <!-- Список доступных тематик -->
+                        <!-- List of available themes -->
                         <div
                           class="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-60 overflow-y-auto"
                         >
@@ -2410,13 +2240,13 @@
                           </div>
                         </div>
 
-                        <!-- Выбранные тематики (до 5 штук!) -->
+                        <!-- Selected themes (up to 5!) -->
                         <div
                           v-if="selectedThemes && selectedThemes.length > 0"
                           class="mt-4"
                         >
                           <h4 class="text-sm font-medium text-gray-300 mb-2">
-                            Выбранные тематики ({{ selectedThemes.length }}/5):
+                            Selected themes ({{ selectedThemes.length }}/5):
                           </h4>
                           <div class="flex flex-wrap gap-2">
                             <span
@@ -2431,11 +2261,11 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Конец Hero секций -->
+                  <!-- End of Hero sections -->
                 </div>
               </div>
             </div>
-            <!-- Кнопки сохранения -->
+            <!-- Save buttons -->
             <div class="mt-8">
               <div class="flex justify-end gap-4 pt-6 border-t border-gray-600">
                 <button
@@ -2443,25 +2273,25 @@
                   @click="resetForm"
                   class="px-6 py-3 border border-gray-600 text-gray-300 bg-gray-800 rounded-lg hover:bg-gray-700 hover:border-gray-500 font-medium transition-all duration-200"
                 >
-                  Сброс формы
+                  Reset form
                 </button>
                 <button
                   type="submit"
                   :disabled="saving"
                   class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-600 text-white rounded-lg font-semibold transition-all duration-200"
                 >
-                  {{ saving ? 'Сохранение...' : 'Сохранить изменения' }}
+                  {{ saving ? 'Saving...' : 'Save changes' }}
                 </button>
               </div>
             </div>
 
-            <!-- SEO Секция -->
+            <!-- SEO Section -->
             <div
               id="seo"
               data-section="seo"
               class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-8 border border-[#353A4A] relative overflow-hidden"
             >
-              <!-- Декоративный фон -->
+              <!-- Decorative background -->
               <div
                 class="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 via-transparent to-[#3B82F6]/5"
               ></div>
@@ -2493,14 +2323,14 @@
                       <h2
                         class="text-2xl font-semibold text-[#E5E7EB] font-display"
                       >
-                        SEO Оптимизация
+                        SEO Optimization
                       </h2>
                       <div
                         class="h-1 w-28 bg-gradient-to-r from-[#10B981] to-[#3B82F6] rounded-full mt-2"
                       ></div>
                     </div>
                   </div>
-                  <!-- Кнопка сворачивания/разворачивания SEO секции -->
+                  <!-- Collapse/expand SEO section button -->
                   <button
                     type="button"
                     @click="showSeoSection = !showSeoSection"
@@ -2525,9 +2355,9 @@
                 </div>
 
                 <div class="space-y-8">
-                  <!-- Все SEO секции (управляемые через v-show) -->
+                  <!-- All SEO sections (managed via v-show) -->
                   <div v-show="showSeoSection" class="space-y-8">
-                    <!-- Meta теги -->
+                    <!-- Meta tags -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
@@ -2554,10 +2384,10 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              Meta теги
+                              Meta tags
                             </h3>
                             <p class="text-sm text-[#10B981]">
-                              Основные SEO meta теги
+                              Main SEO meta tags
                             </p>
                           </div>
                         </div>
@@ -2599,18 +2429,18 @@
                               type="button"
                               @click="generateSeoTitle"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#10B981]/20 text-[#10B981] hover:bg-[#10B981]/30 border border-[#10B981]/30 transition-all duration-200"
-                              title="Сгенерировать Title на основе данных слота"
+                              title="Generate Title based on slot data"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                               </svg>
-                              Авто-генерация
+                              Auto-generate
                             </button>
                           </div>
                           <input
                             v-model="form.seo_title"
                             type="text"
-                            placeholder="Играть в [Name слота] онлайн бесплатно | SlotQuest"
+                            placeholder="Play [Slot Name] online for free | SlotQuest"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.seo_title || '').length > 60,
@@ -2623,12 +2453,12 @@
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 50-60 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 50-60 characters</span>
                                 <span
                                   v-if="(form.seo_title || '').length > 0 && (form.seo_title || '').length < 30"
                                   class="text-[#F59E0B]"
                                 >
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -2657,13 +2487,13 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации (если пусто) -->
+                          <!-- Preview of auto-generation (if empty) -->
                           <div
                             v-if="!(form.seo_title || '').length && form.name"
                             class="p-2 bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#10B981]">Авто-генерация:</span>
+                              💡 <span class="text-[#10B981]">Auto-generation:</span>
                               <span class="text-[#E5E7EB]">{{ generateAutoTitle() }}</span>
                             </p>
                           </div>
@@ -2682,18 +2512,18 @@
                               type="button"
                               @click="generateSeoDescription"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#10B981]/20 text-[#10B981] hover:bg-[#10B981]/30 border border-[#10B981]/30 transition-all duration-200"
-                              title="Сгенерировать Description на основе данных слота"
+                              title="Generate Description based on slot data"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                               </svg>
-                              Авто-генерация
+                              Auto-generate
                             </button>
                           </div>
                           <textarea
                             v-model="form.seo_description"
                             rows="3"
-                            placeholder="Играйте в [Name слота] от [Провайдер] бесплатно и на реальные деньги. RTP [%], волатильность [уровень]. Бонусы, фриспины и джекпоты."
+                            placeholder="Play [Slot Name] by [Provider] for free and real money. RTP [%], volatility [level]. Bonuses, free spins and jackpots."
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.seo_description || '').length > 160,
@@ -2706,12 +2536,12 @@
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 150-160 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 150-160 characters</span>
                                 <span
                                   v-if="(form.seo_description || '').length > 0 && (form.seo_description || '').length < 100"
                                   class="text-[#F59E0B]"
                                 >
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -2740,13 +2570,13 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации (если пусто) -->
+                          <!-- Preview of auto-generation (if empty) -->
                           <div
                             v-if="!(form.seo_description || '').length && form.name"
                             class="p-2 bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#10B981]">Авто-генерация:</span>
+                              💡 <span class="text-[#10B981]">Auto-generation:</span>
                               <span class="text-[#E5E7EB]">{{ generateAutoDescription() }}</span>
                             </p>
                           </div>
@@ -2763,7 +2593,7 @@
                               </div>
                               <div>
                                 <h4 class="text-sm font-medium text-[#E5E7EB]">SEO Score</h4>
-                                <p class="text-xs text-[#9CA3AF]">Качество Meta тегов</p>
+                                <p class="text-xs text-[#9CA3AF]">Meta tags quality</p>
                               </div>
                             </div>
                             <div class="flex items-center gap-3">
@@ -2896,7 +2726,7 @@
                           </div>
                         </div>
 
-                        <!-- 🔍 SERP Preview - Как страница выглядит в Google -->
+                        <!-- 🔍 SERP Preview - How the page looks in Google -->
                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
                           <SerpPreview
                             :title="form.seo_title_use_template ? generatedTitleFromTemplate : (form.seo_title || generateAutoTitle())"
@@ -2916,7 +2746,7 @@
                           />
                         </div>
 
-                        <!-- 🎯 Title Templates - Система шаблонов заголовков (Фаза 2) -->
+                        <!-- 🎯 Title Templates - Title Template System (Phase 2) -->
                         <div class="bg-[#1B1E26]/50 border border-[#F59E0B]/20 rounded-lg p-4">
                           <TitleTemplates
                             v-model:template="form.seo_title_template"
@@ -2932,22 +2762,21 @@
                           />
                         </div>
 
-                        <!-- SEO Keywords - РАСШИРЕННАЯ СИСТЕМА -->
+                        <!-- SEO Keywords - EXTENDED SYSTEM -->
                         <div class="space-y-4">
                           <h4
                             class="text-md font-medium text-[#E5E7EB] border-b border-[#353A4A] pb-2"
                           >
-                            🎯 Система ключевых слов (для уникальности каждого
-                            слота)
+                            🎯 Keyword System (for uniqueness of each slot)
                           </h4>
 
-                          <!-- 1. Основные ключевые слова (Primary) -->
+                          <!-- 1. Primary Keywords -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
-                              1️⃣ Основные ключевые слова (Primary)
-                              <span class="text-[#10B981] ml-1">3-5 слов</span>
+                              1️⃣ Primary Keywords
+                              <span class="text-[#10B981] ml-1">3-5 words</span>
                             </label>
                             <input
                               v-model="form.seo_keywords_primary"
@@ -2956,19 +2785,19 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
-                              🔑 Главные термины, по которым ищут ваш слот
-                              (через запятую)
+                              🔑 Main terms people use to search for your slot
+                              (comma-separated)
                             </p>
                           </div>
 
-                          <!-- 2. LSI ключевые слова (Semantic) -->
+                          <!-- 2. LSI Keywords (Semantic) -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
-                              2️⃣ LSI-ключевые слова (Semantic)
+                              2️⃣ LSI Keywords (Semantic)
                               <span class="text-[#3B82F6] ml-1"
-                                >10-15 связанных терминов</span
+                                >10-15 related terms</span
                               >
                             </label>
                             <textarea
@@ -2978,40 +2807,38 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             ></textarea>
                             <p class="text-xs text-[#9CA3AF]">
-                              🔗 Связанные термины, которые Google ассоциирует с
-                              вашим слотом
+                              🔗 Related terms Google associates with your slot
                             </p>
                           </div>
 
-                          <!-- 3. Локальные ключевые слова (Geo-targeted) -->
+                          <!-- 3. Local Keywords (Geo-targeted) -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
-                              3️⃣ Локальные ключевые слова (для ГЕО-таргетинга)
+                              3️⃣ Local Keywords (Geo-targeted)
                               <span class="text-[#F59E0B] ml-1"
-                                >для разных стран</span
+                                >for different countries</span
                               >
                             </label>
                             <textarea
                               v-model="form.seo_keywords_geo"
                               rows="4"
-                              placeholder="🇷🇺: игровой автомат Врата Олимпа, бесплатные вращения, слот с выводом&#10;🇮🇳: Gates of Olympus online, free play demo, real money casino&#10;🇧🇷: Gates of Olympus grátis, jogo de cassino online&#10;🇹🇷: Gates of Olympus ücretsiz, çevrimiçi slot oyunu"
+                              placeholder="🇷🇺: slot machine Gates of Olympus, free spins, real money slot&#10;🇮🇳: Gates of Olympus online, free play demo, real money casino&#10;🇧🇷: Gates of Olympus grátis, jogo de cassino online&#10;🇹🇷: Gates of Olympus ücretsiz, çevrimiçi slot oyunu"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm"
                             ></textarea>
                             <p class="text-xs text-[#9CA3AF]">
-                              🌍 Ключевые слова на языках целевых стран (формат:
-                              флаг+код страны: термины)
+                              🌍 Keywords in target country languages (format: flag+country code: terms)
                             </p>
                           </div>
 
-                          <!-- 4. Long-tail ключевые слова -->
+                          <!-- 4. Long-tail phrases (specific queries) -->
                           <div class="space-y-2">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
-                              4️⃣ Long-tail фразы (конкретные запросы)
-                              <span class="text-[#EC4899] ml-1">5-10 фраз</span>
+                              4️⃣ Long-tail phrases (specific queries)
+                              <span class="text-[#EC4899] ml-1">5-10 phrases</span>
                             </label>
                             <textarea
                               v-model="form.seo_keywords_longtail"
@@ -3020,22 +2847,21 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             ></textarea>
                             <p class="text-xs text-[#9CA3AF]">
-                              🎯 Длинные целевые фразы, по которым ищут
-                              конкретную информацию
+                              🎯 Long target phrases used to search for specific information
                             </p>
                           </div>
 
-                          <!-- Старое поле для обратной совместимости -->
+                          <!-- Old field for backward compatibility -->
                           <div class="space-y-2 opacity-50">
                             <label
                               class="block text-sm font-medium text-[#9CA3AF]"
                             >
-                              Старое поле (для совместимости)
+                              Old field (for compatibility)
                             </label>
                             <input
                               v-model="form.seo_keywords"
                               type="text"
-                              placeholder="Автоматически генерируется из новых полей выше"
+                              placeholder="Automatically generated from new fields above"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#9CA3AF] placeholder-[#6B7280] focus:outline-none transition-all duration-200"
                               readonly
                             />
@@ -3056,16 +2882,16 @@
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
-                            Оставьте пустым для автоматической генерации
+                            Leave empty for automatic generation
                           </p>
                         </div>
 
-                        <!-- 🎬 Видео геймплея (для VideoObject Schema) -->
+                        <!-- 🎬 Gameplay Video (for VideoObject Schema) -->
                         <div class="space-y-2">
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            🎬 Видео геймплея (Video URL)
+                            🎬 Gameplay Video (Video URL)
                           </label>
                           <input
                             v-model="form.video_url"
@@ -3074,35 +2900,34 @@
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
-                            🎥 Ссылка на видео обзор/геймплей (улучшает SEO с
-                            VideoObject Schema)
+                            🎥 Link to video review/gameplay (improves SEO with VideoObject Schema)
                           </p>
                         </div>
 
-                        <!-- ⏱️ Длительность видео -->
+                        <!-- ⏱️ Video Duration -->
                         <div class="space-y-2">
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            ⏱️ Длительность видео (ISO 8601)
+                            ⏱️ Video Duration (ISO 8601)
                           </label>
                           <input
                             v-model="form.video_duration"
                             type="text"
-                            placeholder="PT3M (3 минуты)"
+                            placeholder="PT3M (3 minutes)"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
-                            Формат: PT3M (3 мин), PT5M30S (5 мин 30 сек)
+                            Format: PT3M (3 min), PT5M30S (5 min 30 sec)
                           </p>
                         </div>
 
-                        <!-- 🌐 Альтернативные названия слота -->
+                        <!-- 🌐 Alternative Slot Names -->
                         <div class="space-y-2">
                           <label
                             class="block text-sm font-medium text-[#E5E7EB]"
                           >
-                            🌐 Альтернативные названия (для разных рынков)
+                            🌐 Alternative Names (for different markets)
                           </label>
                           <input
                             v-model="form.alternative_names"
@@ -3111,7 +2936,7 @@
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
-                            📝 Названия слота на разных языках (через запятую)
+                            📝 Slot names in different languages (comma-separated)
                           </p>
                         </div>
                       </div>
@@ -3147,7 +2972,7 @@
                               Open Graph
                             </h3>
                             <p class="text-sm text-[#3B82F6]">
-                              Социальные сети и мессенджеры
+                              Social networks and messengers
                             </p>
                           </div>
                         </div>
@@ -3187,7 +3012,7 @@
                               </div>
                               <div>
                                 <h4 class="text-sm font-medium text-[#E5E7EB]">OG Score</h4>
-                                <p class="text-xs text-[#9CA3AF]">Качество Open Graph тегов</p>
+                                <p class="text-xs text-[#9CA3AF]">Open Graph tags quality</p>
                               </div>
                             </div>
                             <div class="flex items-center gap-3">
@@ -3284,24 +3109,24 @@
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               OG Title
-                              <span class="text-[#3B82F6] ml-1 text-xs">(60-90 символов)</span>
+                              <span class="text-[#3B82F6] ml-1 text-xs">(60-90 characters)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromSeoTitle"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
-                              title="Копировать из SEO Title"
+                              title="Copy from SEO Title"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                               </svg>
-                              Из SEO Title
+                              From SEO Title
                             </button>
                           </div>
                           <input
                             v-model="form.og_title"
                             type="text"
-                            placeholder="Автоматически из SEO заголовка"
+                            placeholder="Automatically from SEO title"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.og_title || '').length > 90,
@@ -3310,13 +3135,13 @@
                             }"
                             maxlength="100"
                           />
-                          <!-- Индикатор длины -->
+                          <!-- Length indicator -->
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 60-90 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 60-90 characters</span>
                                 <span v-if="(form.og_title || '').length > 0 && (form.og_title || '').length < 40" class="text-[#F59E0B]">
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -3344,13 +3169,13 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации -->
+                          <!-- Preview auto-generation -->
                           <div
                             v-if="!(form.og_title || '').length && (form.seo_title || form.name)"
                             class="p-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#3B82F6]">Будет использовано:</span>
+                              💡 <span class="text-[#3B82F6]">Will be used:</span>
                               <span class="text-[#E5E7EB]">{{ form.seo_title || generateAutoOgTitle() }}</span>
                             </p>
                           </div>
@@ -3361,13 +3186,13 @@
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               OG Description
-                              <span class="text-[#3B82F6] ml-1 text-xs">(150-250 символов)</span>
+                              <span class="text-[#3B82F6] ml-1 text-xs">(150-250 characters)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromSeoDescription"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
-                              title="Копировать из SEO Description"
+                              title="Copy from SEO Description"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -3378,7 +3203,7 @@
                           <textarea
                             v-model="form.og_description"
                             rows="3"
-                            placeholder="Автоматически из SEO описания"
+                            placeholder="Automatically from SEO description"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.og_description || '').length > 250,
@@ -3387,13 +3212,13 @@
                             }"
                             maxlength="300"
                           ></textarea>
-                          <!-- Индикатор длины -->
+                          <!-- Length indicator -->
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 150-250 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 150-250 characters</span>
                                 <span v-if="(form.og_description || '').length > 0 && (form.og_description || '').length < 100" class="text-[#F59E0B]">
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -3421,41 +3246,41 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации -->
+                          <!-- Preview auto-generation -->
                           <div
                             v-if="!(form.og_description || '').length && (form.seo_description || form.name)"
                             class="p-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#3B82F6]">Будет использовано:</span>
+                              💡 <span class="text-[#3B82F6]">Will be used:</span>
                               <span class="text-[#E5E7EB]">{{ form.seo_description || generateAutoOgDescription() }}</span>
                             </p>
                           </div>
                         </div>
 
-                        <!-- OG Image с preview -->
+                        <!-- OG Image with preview -->
                         <div class="space-y-2">
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
-                              OG Изображение
+                              OG Image
                               <span class="text-[#3B82F6] ml-1 text-xs">(1200×630 px)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromMainImage"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#3B82F6]/20 text-[#3B82F6] hover:bg-[#3B82F6]/30 border border-[#3B82F6]/30 transition-all duration-200"
-                              title="Копировать из основного изображения"
+                              title="Copy from main image"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                               </svg>
-                              Из слота
+                              From slot
                             </button>
                           </div>
                           <input
                             v-model="form.og_image"
                             type="url"
-                            placeholder="Автоматически из основного изображения слота"
+                            placeholder="Automatically from main slot image"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                           />
                           <!-- Image Preview -->
@@ -3470,11 +3295,11 @@
                               @error="handleOgImageError"
                             />
                             <div class="absolute bottom-2 left-2 px-2 py-1 bg-black/70 rounded text-xs text-white">
-                              1200 × 630 px (рекомендуется)
+                              1200 × 630 px (recommended)
                             </div>
                           </div>
                           <p class="text-xs text-[#9CA3AF]">
-                            Рекомендуемый размер: 1200×630 пикселей для оптимального отображения
+                            Recommended size: 1200×630 pixels for optimal display
                           </p>
                         </div>
 
@@ -3489,14 +3314,14 @@
                               v-model="form.og_type"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             >
-                              <option value="">Автоматически (article)</option>
+                              <option value="">Automatically (article)</option>
                               <option value="article">Article</option>
                               <option value="website">Website</option>
                               <option value="game">Game</option>
                               <option value="product">Product</option>
                             </select>
                             <p class="text-xs text-[#9CA3AF]">
-                              Тип контента для Facebook/LinkedIn
+                              Content type for Facebook/LinkedIn
                             </p>
                           </div>
 
@@ -3509,10 +3334,10 @@
                               v-model="form.og_locale"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             >
-                              <option value="">Автоматически (en_US)</option>
+                              <option value="">Automatically (en_US)</option>
                               <option value="en_US">English (US)</option>
                               <option value="en_GB">English (UK)</option>
-                              <option value="ru_RU">Русский</option>
+                              <option value="ru_RU">Russian</option>
                               <option value="pt_BR">Português (Brasil)</option>
                               <option value="es_ES">Español</option>
                               <option value="de_DE">Deutsch</option>
@@ -3520,28 +3345,28 @@
                               <option value="tr_TR">Türkçe</option>
                             </select>
                             <p class="text-xs text-[#9CA3AF]">
-                              Язык контента для соцсетей
+                              Content language for social networks
                             </p>
                           </div>
                         </div>
 
-                        <!-- OG Video (опционально) -->
+                        <!-- OG Video (optional) -->
                         <div class="space-y-2">
                           <label class="block text-sm font-medium text-[#E5E7EB]">
-                            🎬 OG Video (опционально)
+                            🎬 OG Video (optional)
                           </label>
                           <input
                             v-model="form.og_video"
                             type="url"
-                            placeholder="https://youtube.com/embed/... или прямая ссылка на видео"
+                            placeholder="https://youtube.com/embed/... or direct link to video"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
-                            Ссылка на видео для автопроигрывания в соцсетях (Facebook, LinkedIn)
+                            Video link for autoplay on social networks (Facebook, LinkedIn)
                           </p>
                         </div>
 
-                        <!-- 📱 Social Preview Cards (Фаза 2) -->
+                        <!-- 📱 Social Preview Cards (Phase 2) -->
                         <div class="border-t border-[#353A4A] pt-6">
                           <SocialPreviewCards
                             :og-title="form.og_title || form.seo_title || generateAutoOgTitle()"
@@ -3584,7 +3409,7 @@
                               Twitter Card
                             </h3>
                             <p class="text-sm text-[#1DA1F2]">
-                              Настройки для отображения в Twitter/X
+                              Settings for display on Twitter/X
                             </p>
                           </div>
                         </div>
@@ -3624,7 +3449,7 @@
                               </div>
                               <div>
                                 <h4 class="text-sm font-medium text-[#E5E7EB]">Twitter Score</h4>
-                                <p class="text-xs text-[#9CA3AF]">Качество Twitter Card</p>
+                                <p class="text-xs text-[#9CA3AF]">Twitter Card quality</p>
                               </div>
                             </div>
                             <div class="flex items-center gap-3">
@@ -3718,8 +3543,8 @@
                         <!-- Twitter Card Type -->
                         <div class="space-y-2">
                           <label class="block text-sm font-medium text-[#E5E7EB]">
-                            Тип карточки
-                            <span class="text-[#1DA1F2] ml-1 text-xs">(рекомендуется: Large Image)</span>
+                            Card Type
+                            <span class="text-[#1DA1F2] ml-1 text-xs">(recommended: Large Image)</span>
                           </label>
                           <select
                             v-model="form.twitter_card"
@@ -3729,13 +3554,13 @@
                               'border-[#F59E0B]/50': form.twitter_card === 'summary',
                             }"
                           >
-                            <option value="summary">Summary (маленькое изображение)</option>
-                            <option value="summary_large_image">Summary Large Image (рекомендуется)</option>
+                            <option value="summary">Summary (small image)</option>
+                            <option value="summary_large_image">Summary Large Image (recommended)</option>
                             <option value="app">App</option>
-                            <option value="player">Player (видео)</option>
+                            <option value="player">Player (video)</option>
                           </select>
                           <p class="text-xs text-[#9CA3AF]">
-                            🎯 Summary Large Image обеспечивает максимальную видимость в ленте
+                            🎯 Summary Large Image provides maximum visibility in the feed
                           </p>
                         </div>
 
@@ -3744,24 +3569,24 @@
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               Twitter Title
-                              <span class="text-[#1DA1F2] ml-1 text-xs">(40-70 символов)</span>
+                              <span class="text-[#1DA1F2] ml-1 text-xs">(40-70 characters)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromOgTitle"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
-                              title="Копировать из OG Title"
+                              title="Copy from OG Title"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                               </svg>
-                              Из OG Title
+                              From OG Title
                             </button>
                           </div>
                           <input
                             v-model="form.twitter_title"
                             type="text"
-                            placeholder="Автоматически из OG/SEO заголовка"
+                            placeholder="Automatically from OG/SEO title"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.twitter_title || '').length > 70,
@@ -3770,13 +3595,13 @@
                             }"
                             maxlength="100"
                           />
-                          <!-- Индикатор длины -->
+                          <!-- Length indicator -->
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 40-70 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 40-70 characters</span>
                                 <span v-if="(form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30" class="text-[#F59E0B]">
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -3804,13 +3629,13 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации -->
+                          <!-- Preview auto-generation -->
                           <div
                             v-if="!(form.twitter_title || '').length && (form.og_title || form.seo_title || form.name)"
                             class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#1DA1F2]">Будет использовано:</span>
+                              💡 <span class="text-[#1DA1F2]">Will be used:</span>
                               <span class="text-[#E5E7EB]">{{ form.og_title || form.seo_title || generateAutoTitle() }}</span>
                             </p>
                           </div>
@@ -3821,24 +3646,24 @@
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               Twitter Description
-                              <span class="text-[#1DA1F2] ml-1 text-xs">(100-200 символов)</span>
+                              <span class="text-[#1DA1F2] ml-1 text-xs">(100-200 characters)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromOgDescription"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
-                              title="Копировать из OG Description"
+                              title="Copy from OG Description"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                               </svg>
-                              Из OG Description
+                              From OG Description
                             </button>
                           </div>
                           <textarea
                             v-model="form.twitter_description"
                             rows="3"
-                            placeholder="Автоматически из OG/SEO описания"
+                            placeholder="Automatically from OG/SEO description"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.twitter_description || '').length > 200,
@@ -3847,13 +3672,13 @@
                             }"
                             maxlength="300"
                           ></textarea>
-                          <!-- Индикатор длины -->
+                          <!-- Length indicator -->
                           <div class="space-y-1.5">
                             <div class="flex justify-between text-xs">
                               <div class="flex items-center gap-2">
-                                <span class="text-[#9CA3AF]">Рекомендуется: 100-200 символов</span>
+                                <span class="text-[#9CA3AF]">Recommended: 100-200 characters</span>
                                 <span v-if="(form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80" class="text-[#F59E0B]">
-                                  ⚠️ Слишком короткий
+                                  ⚠️ Too short
                                 </span>
                               </div>
                               <span
@@ -3881,41 +3706,41 @@
                               ></div>
                             </div>
                           </div>
-                          <!-- Preview авто-генерации -->
+                          <!-- Preview auto-generation -->
                           <div
                             v-if="!(form.twitter_description || '').length && (form.og_description || form.seo_description || form.name)"
                             class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
                           >
                             <p class="text-xs text-[#9CA3AF]">
-                              💡 <span class="text-[#1DA1F2]">Будет использовано:</span>
+                              💡 <span class="text-[#1DA1F2]">Will be used:</span>
                               <span class="text-[#E5E7EB]">{{ form.og_description || form.seo_description || generateAutoDescription() }}</span>
                             </p>
                           </div>
                         </div>
 
-                        <!-- Twitter Image с preview -->
+                        <!-- Twitter Image with preview -->
                         <div class="space-y-2">
                           <div class="flex items-center justify-between">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
-                              Twitter Изображение
+                              Twitter Image
                               <span class="text-[#1DA1F2] ml-1 text-xs">(1200×628 px)</span>
                             </label>
                             <button
                               type="button"
                               @click="copyFromOgImage"
                               class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
-                              title="Копировать из OG Image"
+                              title="Copy from OG Image"
                             >
                               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                               </svg>
-                              Из OG Image
+                              From OG Image
                             </button>
                           </div>
                           <input
                             v-model="form.twitter_image"
                             type="url"
-                            placeholder="Автоматически из Open Graph изображения"
+                            placeholder="Automatically from Open Graph image"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                           />
                           <!-- Image Preview -->
@@ -3930,11 +3755,11 @@
                               @error="handleTwitterImageError"
                             />
                             <div class="absolute bottom-2 left-2 px-2 py-1 bg-black/70 rounded text-xs text-white">
-                              1200 × 628 px (соотношение 1.91:1)
+                              1200 × 628 px (ratio 1.91:1)
                             </div>
                           </div>
                           <p class="text-xs text-[#9CA3AF]">
-                            Рекомендуемый размер: 1200×628 пикселей (соотношение 1.91:1)
+                            Recommended size: 1200×628 pixels (ratio 1.91:1)
                           </p>
                         </div>
 
@@ -3943,7 +3768,7 @@
                           <!-- Twitter Site -->
                           <div class="space-y-2">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
-                              Twitter аккаунт сайта
+                              Twitter site account
                             </label>
                             <input
                               v-model="form.twitter_site"
@@ -3952,14 +3777,14 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
-                              Twitter username сайта (с @)
+                              Twitter username of the website (with @)
                             </p>
                           </div>
 
                           <!-- Twitter Creator -->
                           <div class="space-y-2">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
-                              Twitter автора
+                              Twitter creator
                             </label>
                             <input
                               v-model="form.twitter_creator"
@@ -3968,14 +3793,14 @@
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
-                              Twitter username автора (с @)
+                              Twitter username of the author (with @)
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <!-- Технический SEO -->
+                    <!-- Technical SEO -->
                     <div
                       class="group bg-gradient-to-r from-[#059669]/10 to-[#047857]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
                     >
@@ -4125,10 +3950,10 @@
                               v-model="form.language_meta"
                               class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
-                              <option value="ru">Русский (ru)</option>
+                              <option value="ru">Russian (ru)</option>
                               <option value="en">English (en)</option>
-                              <option value="uk">Українська (uk)</option>
-                              <option value="kk">Қазақша (kk)</option>
+                              <option value="uk">Ukrainian (uk)</option>
+                              <option value="kk">Kazakh (kk)</option>
                             </select>
                             <p class="text-xs text-[#9CA3AF] mt-2">
                               Main content language of the page
@@ -4136,7 +3961,7 @@
                           </div>
                         </div>
 
-                        <!-- Дополнительные мета-теги -->
+                        <!-- Additional meta tags -->
                         <div
                           class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
                         >
@@ -4230,11 +4055,11 @@
                       </div>
                     </div>
 
-                    <!-- JSON-LD Схемы -->
+                    <!-- JSON-LD Schemas -->
                     <div
-                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-4 sm:p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
@@ -4257,14 +4082,14 @@
                             <h3
                               class="text-lg font-medium text-[#E5E7EB] font-display"
                             >
-                              JSON-LD Схемы
+                              JSON-LD Schemas
                             </h3>
                             <p class="text-sm text-[#8B5CF6]">
-                              Структурированные данные для поисковых систем
+                              Structured data for search engines
                             </p>
                           </div>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex flex-wrap items-center gap-3 mt-3 sm:mt-0 w-full sm:w-auto">
                           <!-- Toggle JSON-LD -->
                           <label class="relative inline-flex items-center cursor-pointer">
                             <input
@@ -4284,7 +4109,7 @@
                             @click="autoGenerateJsonLd"
                             class="px-3 py-1.5 bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-white rounded-lg text-xs hover:opacity-90 transition-all font-medium"
                           >
-                            🪄 Авто
+                            🪄 Auto
                           </button>
                           <!-- Show/Hide Button -->
                           <button
@@ -4313,7 +4138,7 @@
                       </div>
 
                       <div v-show="showJsonLdSection" class="space-y-6">
-                        <!-- 🎯 НОВЫЙ JSON-LD Editor Component -->
+                        <!-- 🎯 NEW JSON-LD Editor Component -->
                         <JsonLdEditor
                           :slot-id="slot?.id || ''"
                           :slot-name="form.name || ''"
@@ -4322,7 +4147,7 @@
                       </div>
                     </div>
 
-                    <!-- ========== ФАЗА 3: АНАЛИТИКА И ПРОИЗВОДИТЕЛЬНОСТЬ ========== -->
+                    <!-- ========== PHASE 3: ANALYTICS AND PERFORMANCE ========== -->
 
                     <!-- SEO Health Score -->
                     <div
@@ -4338,7 +4163,7 @@
                               SEO Health Score
                             </h3>
                             <p class="text-sm text-[#3B82F6]">
-                              Общая оценка SEO здоровья страницы
+                              Overall SEO health score of the page
                             </p>
                           </div>
                         </div>
@@ -4356,7 +4181,7 @@
                           >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
-                          <span>{{ showSEOHealthSection ? 'Свернуть' : 'Развернуть' }}</span>
+                          <span>{{ showSEOHealthSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
                       <div v-show="showSEOHealthSection" class="space-y-6">
@@ -4385,7 +4210,7 @@
                               Keyword Density Checker
                             </h3>
                             <p class="text-sm text-[#EC4899]">
-                              Анализ плотности ключевых слов
+                              Keyword density analysis
                             </p>
                           </div>
                         </div>
@@ -4403,7 +4228,7 @@
                           >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
-                          <span>{{ showKeywordDensitySection ? 'Свернуть' : 'Развернуть' }}</span>
+                          <span>{{ showKeywordDensitySection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
                       <div v-show="showKeywordDensitySection" class="space-y-6">
@@ -4439,7 +4264,7 @@
                               Indexing Status
                             </h3>
                             <p class="text-sm text-[#6366F1]">
-                              Статус индексации в поисковых системах
+                              Indexing status in search engines
                             </p>
                           </div>
                         </div>
@@ -4457,7 +4282,7 @@
                           >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
-                          <span>{{ showIndexingStatusSection ? 'Свернуть' : 'Развернуть' }}</span>
+                          <span>{{ showIndexingStatusSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
                       <div v-show="showIndexingStatusSection" class="space-y-6">
@@ -4483,7 +4308,7 @@
                               Core Web Vitals
                             </h3>
                             <p class="text-sm text-[#F59E0B]">
-                              Метрики производительности страницы
+                              Page performance metrics
                             </p>
                           </div>
                         </div>
@@ -4501,7 +4326,7 @@
                           >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
-                          <span>{{ showPageSpeedSection ? 'Свернуть' : 'Развернуть' }}</span>
+                          <span>{{ showPageSpeedSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
                       <div v-show="showPageSpeedSection" class="space-y-6">
@@ -4526,7 +4351,7 @@
                               Sitemap Configuration
                             </h3>
                             <p class="text-sm text-[#10B981]">
-                              Настройки XML карты сайта
+                              XML sitemap settings
                             </p>
                           </div>
                         </div>
@@ -4544,7 +4369,7 @@
                           >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
-                          <span>{{ showSitemapSection ? 'Свернуть' : 'Развернуть' }}</span>
+                          <span>{{ showSitemapSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
                       <div v-show="showSitemapSection" class="space-y-6">
@@ -4562,7 +4387,7 @@
             </div>
           </form>
 
-          <!-- Правая панель: Превью -->
+          <!-- Right panel: Preview -->
           <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
             <div
               class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
@@ -4589,14 +4414,14 @@
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   />
                 </svg>
-                Превью Hero секции
+                Hero Section Preview
               </h2>
 
-              <!-- Новое превью Hero секции (макет, приближенный к клиентскому) -->
+              <!-- New Hero section preview (layout closer to client's) -->
               <div
                 class="relative rounded-xl p-4 bg-zinc-950 text-slate-100 border border-white/10 overflow-hidden"
               >
-                <!-- Декоративные подсветки -->
+                <!-- Decorative highlights -->
                 <div class="absolute inset-0 opacity-20 pointer-events-none">
                   <div
                     class="absolute top-2 left-2 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
@@ -4608,7 +4433,7 @@
 
                 <div class="relative z-10">
                   <div class="hidden lg:flex gap-6 items-start">
-                    <!-- Медиа (портрет 3:4) -->
+                    <!-- Media (portrait 3:4) -->
                     <div class="w-2/5">
                       <CometCard
                         :rotate-depth="17.5"
@@ -4623,7 +4448,7 @@
                           >
                             <img
                               :src="form.image_url"
-                              :alt="form.name || 'Слот'"
+                              :alt="form.name || 'Slot'"
                               class="w-full h-full object-cover"
                               @error="handlePreviewImageError"
                             />
@@ -4657,13 +4482,13 @@
                             v-if="!form.image_url && !form.video_url"
                             class="flex items-center justify-center h-full text-white/70 bg-black/30"
                           >
-                            Изображение слота
+                            Slot Image
                           </div>
                         </div>
                       </CometCard>
                     </div>
 
-                    <!-- Правая колонка: провайдер, название, описание, CTA -->
+                    <!-- Right column: provider, title, description, CTA -->
                     <div class="flex-1 min-w-0">
                       <div class="mb-3">
                         <span
@@ -4675,7 +4500,7 @@
                       <h1
                         class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
                       >
-                        {{ form.name || 'Name слота' }}
+                        {{ form.name || 'Slot Name' }}
                       </h1>
 
                       <p
@@ -4683,7 +4508,7 @@
                       >
                         {{
                           form.description ||
-                          'Description слота будет отображаться здесь...'
+                          'Slot description will be displayed here...'
                         }}
                       </p>
 
@@ -4701,7 +4526,7 @@
                             rel="nofollow noopener"
                             class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
                           >
-                            <span class="relative z-10">Играть бесплатно</span>
+                            <span class="relative z-10">Play for Free</span>
                             <span
                               class="relative z-10 bg-emerald-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-emerald-400/50"
                               >DEMO</span
@@ -4712,7 +4537,7 @@
                             type="button"
                             class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
                           >
-                            Играть бесплатно
+                            Play for Free
                           </button>
                         </BackgroundGradient>
 
@@ -4730,7 +4555,7 @@
                             rel="nofollow sponsored noopener"
                             class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
                           >
-                            <span class="relative z-10">Играть на деньги</span>
+                            <span class="relative z-10">Play for Real</span>
                             <span
                               class="relative z-10 bg-orange-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-orange-400/50"
                               >REAL</span
@@ -4741,12 +4566,12 @@
                             type="button"
                             class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
                           >
-                            Играть на деньги
+                            Play for Real
                           </button>
                         </BackgroundGradient>
                       </div>
 
-                      <!-- Рейтинг и мини-характеристики -->
+                      <!-- Rating and mini-specs -->
                       <div class="mt-4">
                         <div class="flex items-center gap-2 mb-3">
                           <div class="flex text-yellow-400 text-sm">
@@ -4772,7 +4597,7 @@
                             class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
                           >
                             <div class="text-orange-300 font-bold">
-                              Волатильность
+                              Volatility
                             </div>
                             <div class="text-white capitalize">
                               {{ currentVolatilityText }}
@@ -4782,7 +4607,7 @@
                             class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
                           >
                             <div class="text-purple-300 font-bold">
-                              Макс. выигрыш
+                              Max Win
                             </div>
                             <div class="text-white">
                               {{ form.max_win || '5000' }}x
@@ -4792,7 +4617,7 @@
                             class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
                           >
                             <div class="text-blue-300 font-bold">
-                              Мин. ставка
+                              Min Bet
                             </div>
                             <div class="text-white">
                               {{ form.min_bet || '€0.20' }}
@@ -4805,11 +4630,11 @@
                         >
                           <div class="flex justify-between items-center mb-1">
                             <span class="text-white font-semibold text-xs"
-                              >Рейтинг</span
+                              >Rating</span
                             >
                             <span
                               class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
-                              >#{{ form.popularity_rank || '12' }} из
+                              >#{{ form.popularity_rank || '12' }} of
                               2000+</span
                             >
                           </div>
@@ -4824,18 +4649,18 @@
                         </div>
                       </div>
 
-                      <!-- Награды -->
+                      <!-- Awards -->
                     </div>
                   </div>
 
-                  <!-- Мобильное превью медиа (если нет большого экрана) -->
+                  <!-- Mobile media preview (if no large screen) -->
                   <div
                     class="lg:hidden mt-2 aspect-video bg-black/30 rounded-xl overflow-hidden border border-white/10"
                   >
                     <img
                       v-if="form.media_type === 'image' && form.image_url"
                       :src="form.image_url"
-                      :alt="form.name || 'Слот'"
+                      :alt="form.name || 'Slot'"
                       class="w-full h-full object-cover"
                       @error="handlePreviewImageError"
                     />
@@ -4853,27 +4678,26 @@
                       v-else
                       class="w-full h-full flex items-center justify-center text-white/60"
                     >
-                      Превью недоступно
+                      Preview not available
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Информация о превью -->
+              <!-- Preview information -->
               <div
                 class="mt-4 p-3 bg-blue-500/10 border border-blue-400/30 rounded-lg"
               >
                 <p class="text-blue-300 text-sm">
-                  💡 Это миниатюрное превью Hero секции. Полный вид можно
-                  посмотреть по кнопке "Предпросмотр" выше.
+                  💡 This is a miniature preview of the Hero section. The full view can be seen by clicking the "Preview" button above.
                 </p>
               </div>
             </div>
 
-            <!-- Правая панель: Навигация и Предпросмотр -->
+            <!-- Right panel: Navigation and Preview -->
             <div class="lg:col-span-1">
               <div class="sticky top-24 space-y-6">
-                <!-- Навигация по секциям -->
+                <!-- Section navigation -->
                 <div
                   class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#353A4A]"
                 >
@@ -4893,17 +4717,17 @@
                         d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                       ></path>
                     </svg>
-                    Навигация по секциям
+                    Section Navigation
                   </h3>
 
-                  <!-- Поисковая строка -->
+                  <!-- Search bar -->
                   <div class="mb-4 relative">
                     <input
                       ref="searchInput"
                       v-model="searchQuery"
                       @input="handleSearch"
                       @keydown="handleSearchKeydown"
-                      placeholder="Поиск по секциям... (Ctrl+F)"
+                      placeholder="Search sections... (Ctrl+F)"
                       class="w-full px-4 py-2 pl-10 pr-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200 text-sm"
                     />
                     <svg
@@ -4919,14 +4743,14 @@
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       />
                     </svg>
-                    <!-- Счетчик результатов -->
+                    <!-- Results counter -->
                     <div
                       v-if="searchQuery && searchResults.length > 0"
                       class="absolute right-3 top-2 text-xs text-[#9CA3AF] bg-[#353A4A] px-2 py-1 rounded"
                     >
                       {{ currentSearchIndex + 1 }}/{{ searchResults.length }}
                     </div>
-                    <!-- Кнопка очистки -->
+                    <!-- Clear button -->
                     <button
                       v-if="searchQuery"
                       @click="clearSearch"
@@ -4948,7 +4772,7 @@
                     </button>
                   </div>
 
-                  <!-- Результаты поиска -->
+                  <!-- Search results -->
                   <div
                     v-if="searchQuery && searchResults.length === 0"
                     class="mb-4 p-3 bg-[#353A4A]/30 rounded-lg border border-[#353A4A]"
@@ -4967,11 +4791,11 @@
                           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                      Ничего не найдено
+                      Nothing found
                     </div>
                   </div>
                   <div class="space-y-2">
-                    <!-- Главная Hero секция (коллапсируемая) -->
+                    <!-- Main Hero section (collapsible) -->
                     <button
                       @click="showHeroSection = !showHeroSection"
                       class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-purple-400/40 transition-all duration-200"
@@ -4997,7 +4821,7 @@
                             d="M13 10V3L4 14h7v7l9-11h-7z"
                           ></path>
                         </svg>
-                        Hero секция
+                        Hero Section
                       </span>
                       <svg
                         class="w-4 h-4 text-gray-400 transition-transform"
@@ -5015,7 +4839,7 @@
                       </svg>
                     </button>
 
-                    <!-- Подразделы Hero секции (показываются только если Hero открыт) -->
+                    <!-- Hero section subsections (shown only if Hero is open) -->
                     <div
                       v-show="showHeroSection"
                       class="ml-4 space-y-1 border-l-2 border-purple-400/20 pl-3"
@@ -5024,47 +4848,47 @@
                         @click="scrollToSection('basic-info')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Основная информация
+                        Basic Information
                       </button>
                       <button
                         @click="scrollToSection('hero-links')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Hero ссылки
+                        Hero Links
                       </button>
                       <button
                         @click="scrollToSection('game-characteristics')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Характеристики игры
+                        Game Characteristics
                       </button>
                       <button
                         @click="scrollToSection('rating-popularity')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Рейтинг и популярность
+                        Rating and Popularity
                       </button>
                       <button
                         @click="scrollToSection('game-mechanics')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Игровые механики
+                        Game Mechanics
                       </button>
                       <button
                         @click="scrollToSection('bonuses')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Бонусы
+                        Bonuses
                       </button>
                       <button
                         @click="scrollToSection('themes')"
                         class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                       >
-                        Тематики
+                        Themes
                       </button>
                     </div>
 
-                    <!-- 👤 Секция "Информация об авторе" (отдельный блок) -->
+                    <!-- 👤 "Author Information" section (separate block) -->
                     <button
                       @click="scrollToSection('author-info'); showAuthorSection = !showAuthorSection"
                       class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#353A4A]/30 hover:border-[#8B5CF6]/40 transition-all duration-200"
@@ -5074,7 +4898,7 @@
                         <svg class="w-4 h-4 text-[#8B5CF6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
-                        Информация об авторе
+                        Author Information
                       </span>
                       <svg
                         class="w-4 h-4 text-gray-400 transition-transform"
@@ -5089,7 +4913,7 @@
 
                     <div class="space-y-1 border-l-2 border-[#353A4A]/30 pl-3">
 
-                      <!-- Секция "Полный обзор слота 2025" -->
+                      <!-- "Full Slot Review 2025" section -->
                       <button
                         @click="
                           showFullOverviewSection = !showFullOverviewSection
@@ -5117,7 +4941,7 @@
                               d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                             ></path>
                           </svg>
-                          Полный обзор слота 2025
+                          Full Slot Review 2025
                         </span>
                         <svg
                           class="w-4 h-4 text-gray-400 transition-transform"
@@ -5135,7 +4959,7 @@
                         </svg>
                       </button>
 
-                      <!-- Подразделы секции "Полный обзор слота 2025" (показываются только если секция открыта) -->
+                      <!-- Subsections of the "Full Slot Review 2025" section (shown only if section is open) -->
                       <div
                         v-show="showFullOverviewSection"
                         class="ml-4 space-y-1 border-l-2 border-[#4F46E5]/20 pl-3"
@@ -5144,7 +4968,7 @@
                           @click="scrollToSection('overview-main')"
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Основное описание
+                          Main Description
                         </button>
                         <button
                           @click="
@@ -5153,7 +4977,7 @@
                           "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          В чем секрет успеха
+                          What is the Secret of Success
                         </button>
                         <button
                           @click="
@@ -5162,7 +4986,7 @@
                           "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Основные механики
+                          Core Mechanics
                         </button>
                         <button
                           @click="
@@ -5171,7 +4995,7 @@
                           "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Бесплатные спины
+                          Free Spins
                         </button>
                         <button
                           @click="
@@ -5180,12 +5004,12 @@
                           "
                           class="w-full text-left p-2 rounded-md text-sm text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#353A4A]/20 transition-all duration-200"
                         >
-                          Стратегии и советы
+                          Strategies and Tips
                         </button>
                       </div>
                     </div>
 
-                    <!-- Секция "FAQ" -->
+                    <!-- "FAQ" section -->
                     <button
                       @click="scrollToSection('faq-section')"
                       class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#F59E0B]/10 hover:border-[#F59E0B]/40 transition-all duration-200"
@@ -5206,7 +5030,7 @@
                             FAQ
                           </div>
                           <div class="text-xs text-[#9CA3AF]">
-                            Часто задаваемые вопросы
+                            Frequently Asked Questions
                           </div>
                         </div>
                       </div>
@@ -5233,7 +5057,7 @@
                       </div>
                     </button>
 
-                    <!-- Секция "Отзывы игроков" -->
+                    <!-- "Player Reviews" section -->
                     <button
                       @click="scrollToSection('reviews-section')"
                       class="w-full text-left flex items-center justify-between p-3 rounded-lg border border-[#353A4A]/50 bg-[#1B1E26]/50 hover:bg-[#3B82F6]/10 hover:border-[#3B82F6]/40 transition-all duration-200"
@@ -5251,10 +5075,10 @@
                         </div>
                         <div>
                           <div class="text-sm font-medium text-[#E5E7EB]">
-                            Отзывы игроков
+                            Player Reviews
                           </div>
                           <div class="text-xs text-[#9CA3AF]">
-                            Рейтинг и отзывы
+                            Rating and reviews
                           </div>
                         </div>
                       </div>
@@ -5282,7 +5106,7 @@
                     </button>
                   </div>
 
-                  <!-- Предпросмотр Hero секции -->
+                  <!-- Hero Section Preview -->
                   <HeroPreview
                     :slot-data="form"
                     :selected-bonuses="selectedBonuses"
@@ -5298,7 +5122,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -5321,12 +5144,12 @@ import PageSpeedMetrics from '~/components/admin/PageSpeedMetrics.vue'
 import SitemapConfig from '~/components/admin/SitemapConfig.vue'
 import SEOHealthScore from '~/components/admin/SEOHealthScore.vue'
 
-// Получаем ID слота из роута
+// Get slot ID from route
 const route = useRoute()
 const router = useRouter()
 const slotId = route.params.id
 
-// Состояние
+// State
 const slot = ref(null)
 const providers = ref([])
 const saving = ref(false)
@@ -5340,14 +5163,14 @@ const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
 const showThemesSection = ref(false)
 
-// Состояние для секции "Информация об авторе"
+// State for "Author Information" section
 const showAuthorSection = ref(false)
 
-// Состояние загрузки медиа
+// Media loading state
 const imageLoading = ref(true)
 const imageError = ref(false)
 
-// Состояние для секции "Полный обзор слота 2025"
+// State for "Full Slot Review 2025" section
 const showFullOverviewSection = ref(false)
 const showOverviewMainSection = ref(false)
 const showOverviewPopularitySection = ref(false)
@@ -5356,20 +5179,20 @@ const showOverviewMechanicsSection = ref(false)
 const showOverviewFreeSpinsSection = ref(false)
 const showOverviewStrategiesSection = ref(false)
 
-// Состояние для секции "Насколько популярен"
+// State for "How Popular Is" section
 const showPopularitySection = ref(false)
 const showPopularityTitleSection = ref(false)
 const showPopularityMetricsSection = ref(false)
 const showPopularityConclusionSection = ref(false)
 
-// Состояние для секции "Рейтинг и награды"
+// State for "Rating and Awards" section
 const showRatingAwardsSection = ref(false)
 const showRatingTitleSection = ref(false)
 const showRatingMainSection = ref(false)
 const showRatingDetailsSection = ref(false)
 const showAwardsSection = ref(false)
 
-// Состояние для секции "FAQ"
+// State for "FAQ" section
 const showFaqSection = ref(false)
 const showFaqTitleSection = ref(false)
 const showFaqQuestion1 = ref(false)
@@ -5377,7 +5200,7 @@ const showFaqQuestion2 = ref(false)
 const showFaqQuestion3 = ref(false)
 const showFaqQuestion4 = ref(false)
 
-// Состояние для секции "Отзывы игроков"
+// State for "Player Reviews" section
 const showReviewsSection = ref(false)
 const showReviewsTitleSection = ref(false)
 const showReviewsStatsSection = ref(false)
@@ -5385,7 +5208,7 @@ const showReviewsDistributionSection = ref(false)
 const showReviewsSentimentsSection = ref(false)
 const showReviewsItemsSection = ref(false)
 
-// Состояние для секции "Профессиональная оценка"
+// State for "Professional Rating" section
 const showProfessionalRatingSection = ref(false)
 const showProfRatingTitleSection = ref(false)
 const showProfRatingOverallSection = ref(false)
@@ -5396,7 +5219,7 @@ const showProfRatingProsSection = ref(false)
 const showProfRatingConsSection = ref(false)
 const showProfRatingRecommendationSection = ref(false)
 
-// Состояние для секции "Conclusion"
+// State for "Conclusion" section
 const showConclusionSection = ref(false)
 const showConclusionTitleSection = ref(false)
 const showConclusionTextSection = ref(false)
@@ -5404,14 +5227,14 @@ const showConclusionSuitableSection = ref(false)
 const showConclusionWarningSection = ref(false)
 const showConclusionVerdictSection = ref(false)
 
-// Состояние для секции "Время побеждать!" (CTA)
+// State for "Time to Win!" (CTA) section
 const showCtaSection = ref(false)
 const showCtaTitleSection = ref(false)
 const showCtaFeaturesSection = ref(false)
 const showCtaButtonsSection = ref(false)
 const showCtaTrustSection = ref(false)
 
-// Состояние для SEO секции
+// State for SEO section
 const showSeoSection = ref(false)
 const showMetaSection = ref(false)
 const showOpenGraphSection = ref(false)
@@ -5420,11 +5243,11 @@ const showTechnicalSeoSection = ref(false)
 const showJsonLdSection = ref(false)
 const showBreadcrumbSection = ref(false)
 const showImageObjectSection = ref(false)
-// Фаза 2: новые секции
+// Phase 2: new sections
 const showEEATSection = ref(false)
 const showContentFreshnessSection = ref(false)
 
-// Фаза 3: новые секции
+// Phase 3: new sections
 const showKeywordDensitySection = ref(false)
 const showIndexingStatusSection = ref(false)
 const showPageSpeedSection = ref(false)
@@ -5432,14 +5255,14 @@ const showSitemapSection = ref(false)
 const showSEOHealthSection = ref(false)
 const showInfoPopupSection = ref(false)
 
-// ===== Info Popup Content: reactive массивы для удобного редактирования =====
+// ===== Info Popup Content: reactive arrays for easy editing =====
 const infoProsItems = reactive([])
 const infoConsItems = reactive([])
 const infoFaqItems = reactive([])
 const infoReviewItems = reactive([])
 const infoHowToPlayItems = reactive([])
 
-// Sync-функции: из массивов → JSON в form
+// Sync functions: from arrays → JSON in form
 const syncInfoPros = () => { form.value.info_pros = JSON.stringify(infoProsItems.filter(s => s.trim())) }
 const syncInfoCons = () => { form.value.info_cons = JSON.stringify(infoConsItems.filter(s => s.trim())) }
 const syncInfoFaq = () => { form.value.info_faq = JSON.stringify(infoFaqItems.filter(i => i.question || i.answer)) }
@@ -5460,7 +5283,7 @@ const removeInfoFaqItem = (i) => { infoFaqItems.splice(i, 1); syncInfoFaq(); }
 const removeInfoReviewItem = (i) => { infoReviewItems.splice(i, 1); syncInfoReviews(); }
 const removeInfoHowToPlayItem = (i) => { infoHowToPlayItems.splice(i, 1); syncInfoHowToPlay(); }
 
-// Инициализация массивов из JSON-строк формы (вызывается при загрузке данных)
+// Initialize arrays from form JSON strings (called upon data load)
 const initInfoArrays = () => {
   // Pros
   infoProsItems.length = 0
@@ -5485,11 +5308,11 @@ const showVideoObjectSection = ref(false)
 
 const paylineType = ref('text') // 'number' или 'text'
 
-// Поиск и фильтры для бонусов и тематик
+// Search and filters for bonuses and themes
 const bonusSearchQuery = ref('')
 const themeSearchQuery = ref('')
 
-// Поиск по секциям (как в VS Code)
+// Search by sections (like in VS Code)
 const searchQuery = ref('')
 const searchResults = ref([])
 const currentSearchIndex = ref(0)
@@ -5497,14 +5320,14 @@ const searchInput = ref(null)
 const mobileSearchInput = ref(null)
 const navSearchInput = ref(null)
 
-// Данные для механик, бонусов и тематик
+// Data for mechanics, bonuses and themes
 const availableMechanics = ref([])
 const availableBonuses = ref([])
 const availableThemes = ref([])
 
 // 🎯 JSON-LD форма для нового компонента
 const jsonLdForm = ref({
-  // Основные настройки JSON-LD
+  // Basic JSON-LD settings
   jsonld_enabled: true,
   jsonld_type: 'Game',
   jsonld_game_genre: 'Casino',
@@ -5512,7 +5335,7 @@ const jsonLdForm = ref({
   jsonld_content_rating: '18+',
   jsonld_is_free: true,
 
-  // Включение дополнительных схем
+  // Enable additional schemas
   jsonld_enable_product: false,
   jsonld_enable_review: true,
   jsonld_enable_faq: false,
@@ -5532,10 +5355,10 @@ const jsonLdForm = ref({
   jsonld_aggregate_best: 5,
   jsonld_aggregate_worst: 1,
 
-  // FAQ Schema (JSON строка)
+  // FAQ Schema (JSON string)
   jsonld_faq_json: '',
 
-  // HowTo Schema (JSON строка)
+  // HowTo Schema (JSON string)
   jsonld_howto_json: '',
 
   // Video Schema
@@ -5544,33 +5367,33 @@ const jsonLdForm = ref({
   jsonld_video_duration: '',
   jsonld_video_description: '',
 
-  // ========== 👤 ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ ==========
-  // Данные автора статьи
-  article_author_name: 'Yanov Kyryl', // Имя автора
-  article_author_role: 'основатель', // Роль/должность
-  article_author_photo: '', // URL фото автора
-  article_author_bio: '', // Краткая биография
+  // ========== 👤 AUTHOR INFORMATION AND UPDATE DATE ==========
+  // Article author data
+  article_author_name: 'Yanov Kyryl', // Author name
+  article_author_role: 'founder', // Role/title
+  article_author_photo: '', // Author photo URL
+  article_author_bio: '', // Short biography
   article_author_social_linkedin: '', // LinkedIn
   article_author_social_twitter: '', // Twitter/X
-  article_author_social_website: '', // Персональный сайт
+  article_author_social_website: '', // Personal website
 
-  // Дата и время обновления
-  article_published_date: '', // Дата первой публикации
-  article_updated_date: '', // Дата последнего обновления
-  article_updated_time: '', // Время обновления (HH:MM)
-  article_updated_by: '', // Кто обновил (если отличается от автора)
+  // Update date and time
+  article_published_date: '', // First publication date
+  article_updated_date: '', // Last update date
+  article_updated_time: '', // Update time (HH:MM)
+  article_updated_by: '', // Who updated (if different from author)
 
-  // Время чтения
-  article_reading_time: 9, // Время чтения в минутах
-  article_reading_time_label: 'мин', // Метка: мин, минут, min
+  // Reading time
+  article_reading_time: 9, // Reading time in minutes
+  article_reading_time_label: 'min', // Label: min, minutes
 
-  // Настройки отображения
-  article_show_author_block: true, // Показывать блок автора
-  article_show_reading_time: true, // Показывать время чтения
-  article_show_update_date: true, // Показывать дату обновления
+  // Display settings
+  article_show_author_block: true, // Show author block
+  article_show_reading_time: true, // Show reading time
+  article_show_update_date: true, // Show update date
 })
 
-// ========== ФАЗА 3: Формы для аналитики и производительности ==========
+// ========== PHASE 3: Forms for analytics and performance ==========
 
 // SEO Health Score форма
 const seoHealthForm = ref({
@@ -5645,10 +5468,10 @@ const form = ref({
   name: '',
   slug: '',
   description: '',
-  // Ключевые слова для Hero секции
-  hero_keyword: 'Slot Review', // Заголовок
-  hero_keyword_2: '', // Первая переменная в описании
-  hero_keyword_3: '', // Вторая переменная в описании
+  // Keywords for Hero section
+  hero_keyword: 'Slot Review', // Title
+  hero_keyword_2: '', // First variable in description
+  hero_keyword_3: '', // Second variable in description
   provider_id: null,
   rtp: 96.5,
   volatility: 'medium',
@@ -5659,14 +5482,14 @@ const form = ref({
   reels: 5,
   rows: 3,
   popularity_rank: 12,
-  real_rtp: 97.45, // Реальный RTP
-  bonus_frequency: '1:448', // Частота бонуса
+  real_rtp: 97.45, // Real RTP
+  bonus_frequency: '1:448', // Bonus frequency
   game_field: '6×5',
   paylines: 'Scatter Pays',
-  // Медиа поля
-  media_type: 'image', // 'image' или 'video'
+  // Media fields
+  media_type: 'image', // 'image' or 'video'
   image_url: '',
-  image_focus_point: 'center 20%', // Точка фокуса для адаптивного кропа
+  image_focus_point: 'center 20%', // Focus point for adaptive crop
 
   // Info Popup Content (Enhanced SEO)
   info_expert_verdict: '',
@@ -5677,319 +5500,319 @@ const form = ref({
   info_how_to_play: '',
   info_demo_cta: '',
   video_url: '',
-  // Ссылки кнопок
-  demo_url: '', // Ссылка для кнопки "Играть бесплатно"
-  real_play_url: '', // Ссылка для кнопки "Играть на деньги"
+  // Button links
+  demo_url: '', // Link for "Play for Free" button
+  real_play_url: '', // Link for "Play for Real" button
 
-  // Поля для секции "Полный обзор слота 2025"
-  // Основное описание
-  overview_title: 'Полный обзор слота 2025',
-  // Ключевые слова для замены в тексте
-  overview_keyword_1: '', // Замена для [keyword_1] - например: "Pragmatic Play"
-  overview_keyword_2: '', // Замена для [keyword_2] - например: "Scatter Pays"
-  overview_keyword_3: '', // Замена для [keyword_3] - например: "бесплатные спины"
+  // Fields for "Full Slot Review 2025" section
+  // Main description
+  overview_title: 'Full Slot Review 2025',
+  // Keywords for replacement in text
+  overview_keyword_1: '', // Replacement for [keyword_1] - e.g.: "Pragmatic Play"
+  overview_keyword_2: '', // Replacement for [keyword_2] - e.g.: "Scatter Pays"
+  overview_keyword_3: '', // Replacement for [keyword_3] - e.g.: "free spins"
   overview_description_1:
-    'Этот захватывающий слот от [keyword_1] представляет собой идеальное сочетание инновационной механики, потрясающей графики и щедрых выигрышей. Благодаря уникальной системе [keyword_2] и захватывающим бонусным функциям, этот слот завоевал сердца миллионов игроков по всему миру и стал одним из самых обсуждаемых релизов в индустрии онлайн-гемблинга.',
+    'This exciting slot from [keyword_1] is the perfect combination of innovative mechanics, stunning graphics, and generous wins. Thanks to its unique [keyword_2] system and thrilling bonus features, this slot has won the hearts of millions of players worldwide and become one of the most discussed releases in the online gambling industry.',
   overview_description_2:
-    'Слот привлекает высоким показателем RTP и сбалансированной волатильностью, что делает его идеальным выбором как для новичков, так и для опытных игроков. Особое внимание привлекает функция [keyword_3], которая открывает путь к действительно впечатляющим выигрышам. Продуманная математическая модель игры обеспечивает захватывающий геймплей с регулярными выплатами и возможностью крупных побед.',
-  // Заголовок для секции ключевых особенностей
-  overview_features_title: '⚡ Ключевые характеристики слота:',
+    'The slot attracts with its high RTP and balanced volatility, making it ideal for both beginners and experienced players. Special attention is drawn to the [keyword_3] feature, which paves the way to truly impressive wins. The game\'s well-thought-out mathematical model ensures captivating gameplay with regular payouts and the possibility of massive victories.',
+  // Title for key features section
+  overview_features_title: '⚡ Key characteristics of the slot:',
   overview_features_1:
-    'Инновационная игровая механика от [keyword_1] с уникальными возможностями',
+    'Innovative game mechanics by [keyword_1] with unique capabilities',
   overview_features_2:
-    'Система [keyword_2] для максимально простого формирования выигрышей',
+    '[keyword_2] system for the easiest possible winning formations',
   overview_features_3:
-    'Щедрая функция [keyword_3] с повышенными шансами на крупные выплаты',
+    'Generous [keyword_3] feature with increased chances for huge payouts',
   overview_features_4:
-    'Каскадные выигрыши (Tumble/Avalanche) для цепочек последовательных побед',
-  overview_features_5: 'Множители выигрышей и специальные бонусные символы',
+    'Cascading wins (Tumble/Avalanche) for consecutive winning streaks',
+  overview_features_5: 'Win multipliers and special bonus symbols',
   overview_features_6:
-    'Высокий потенциал максимального выигрыша и сбалансированная волатильность',
+    'High max win potential and balanced volatility',
 
-  // Подсекция "Насколько популярен"
-  popularity_title: 'Насколько популярен [popularity_keyword]?',
-  popularity_title_keyword: '', // Ключевое слово для замены в заголовке
+  // "How Popular Is" subsection
+  popularity_title: 'How popular is [popularity_keyword]?',
+  popularity_title_keyword: '', // Keyword for replacement in title
   popularity_ranking_position: '12',
   popularity_user_rating: '4.8',
   popularity_monthly_players: '2M+',
   popularity_description:
-    'Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
+    'This slot has maintained its top positions in rankings for several consecutive years, which confirms its exceptional quality and engaging gameplay.',
 
-  // Detailed metrics популярности (3 карточки)
-  popularity_global_rank_title: 'Глобальный рейтинг',
+  // Detailed popularity metrics (3 cards)
+  popularity_global_rank_title: 'Global Ranking',
   popularity_global_rank_value: 'TOP 3',
   popularity_global_rank_description:
-    'Входит в ТОП-3 самых популярных слотов мира уже 3 года подряд',
+    'In the TOP-3 of the world\'s most popular slots for 3 consecutive years',
 
-  popularity_active_players_title: 'Активные игроки',
+  popularity_active_players_title: 'Active Players',
   popularity_active_players_value: '2.4M+',
   popularity_active_players_description:
-    'Ежемесячно играют более 2.4 млн уникальных игроков',
+    'Played by over 2.4 million unique players monthly',
 
-  popularity_rtp_volatility_title: 'RTP + Волатильность',
+  popularity_rtp_volatility_title: 'RTP + Volatility',
   popularity_rtp_volatility_value: '96.5%',
   popularity_rtp_volatility_description:
-    'Высокая отдача и захватывающие колебания выигрышей',
+    'High return and thrilling win swings',
 
-  // Статистика по годам (4 года: 2021-2024)
-  popularity_stats_title: 'Статистика популярности по годам',
+  // Statistics by years (4 years: 2021-2024)
+  popularity_stats_title: 'Popularity statistics by year',
   popularity_2021_rank: '#1',
-  popularity_2021_description: 'Лучший новый слот',
+  popularity_2021_description: 'Best new slot',
   popularity_2021_width: '100%',
 
   popularity_2022_rank: '#1',
-  popularity_2022_description: 'Самый популярный',
+  popularity_2022_description: 'Most popular',
   popularity_2022_width: '95%',
 
   popularity_2023_rank: '#1',
-  popularity_2023_description: 'Рекордсмен',
+  popularity_2023_description: 'Record holder',
   popularity_2023_width: '90%',
 
   popularity_2024_rank: '#12',
-  popularity_2024_description: 'Стабильный хит',
+  popularity_2024_description: 'Stable hit',
   popularity_2024_width: '70%',
 
-  // Тренд популярности
-  popularity_trend_title: 'Тренд популярности (симулированный график)',
+  // Popularity trend
+  popularity_trend_title: 'Popularity Trend (Simulated Chart)',
   popularity_trend_description:
-    'График показывает устойчивый рост популярности',
+    'The chart shows a steady growth in popularity',
 
-  // Подсекция "Основные особенности и механики игры"
-  mechanics_title: 'Игровые механики и особенности',
+  // "Main Game Features and Mechanics" subsection
+  mechanics_title: 'Game Mechanics and Features',
   mechanics_intro:
-    'Этот слот предлагает захватывающий игровой опыт благодаря современным механикам и инновационным функциям:',
+    'This slot offers an exciting gaming experience thanks to modern mechanics and innovative features:',
 
-  // Scatter Pays (детальное описание)
+  // Scatter Pays (detailed description)
   mechanics_scatter_title: 'Scatter Pays',
   mechanics_scatter_description:
-    'Система выплат Scatter Pays упрощает формирование выигрышей - символы не обязательно должны располагаться на активных линиях. Достаточно определенного количества одинаковых символов в любом месте игрового поля.',
+    'The Scatter Pays system simplifies winning formations - symbols do not have to be on active paylines. A certain number of matching symbols anywhere on the reels is enough.',
   mechanics_scatter_details:
-    'Минимум 8 одинаковых символов в любом месте барабанов = гарантированный выигрыш! Специальные scatter-символы активируются от 4+ символов.',
+    'A minimum of 8 matching symbols anywhere on the reels = a guaranteed win! Special scatter symbols trigger from 4+ symbols.',
 
-  // Tumbles (каскады)
-  mechanics_cascade_title: 'Каскадные выигрыши',
+  // Tumbles (cascades)
+  mechanics_cascade_title: 'Cascading Wins',
   mechanics_cascade_description:
-    'После каждого выигрыша активируется механика каскадов. Выигрышные символы исчезают с барабанов, а на их место падают новые символы, создавая возможности для дополнительных выигрышей.',
+    'After every win, the cascading mechanic activates. Winning symbols disappear from the reels, and new symbols fall into their places, creating opportunities for additional wins.',
   mechanics_cascade_details:
-    'Каскады могут продолжаться неограниченно долго, создавая цепочки последовательных выигрышей в рамках одного спина.',
+    'Cascades can continue indefinitely, creating chains of consecutive wins within a single spin.',
 
-  // Множители
-  mechanics_multipliers_title: 'Случайные множители',
+  // Multipliers
+  mechanics_multipliers_title: 'Random Multipliers',
   mechanics_multipliers_description:
-    'В любом спине на барабанах могут появиться случайные множители от x2 до x500, которые значительно увеличивают размер выигрыша.',
+    'In any spin, random multipliers from x2 to x500 can appear on the reels, significantly increasing the win amount.',
   mechanics_multipliers_details:
-    'Множители накапливаются в течение всех каскадов и применяются к итоговому выигрышу спина.',
-  mechanics_multipliers_important_title: 'Особенности применения множителей',
+    'Multipliers accumulate during all cascades and are applied to the final win of the spin.',
+  mechanics_multipliers_important_title: 'Multiplier Application Features',
   mechanics_multipliers_important:
-    'Множители не применяются к каждому отдельному каскаду, а накапливаются в течение всего спина и применяются к общему выигрышу всех каскадов в конце раунда.',
+    'Multipliers are not applied to each individual cascade, but accumulate throughout the entire spin and are applied to the total win of all cascades at the end of the round.',
 
-  // Бесплатные спины (механики)
-  mechanics_freespins_title: 'Бесплатные спины',
+  // Free Spins (mechanics)
+  mechanics_freespins_title: 'Free Spins',
   mechanics_freespins_description:
-    'Активируются при выпадении 3 или более scatter-символов на барабанах. Предоставляют дополнительные возможности для выигрыша без дополнительных ставок.',
+    'Triggered when 3 or more scatter symbols hit the reels. Provide extra winning opportunities without additional bets.',
   mechanics_freespins_details:
-    'Во время бесплатных спинов действуют все основные механики игры с повышенными шансами на крупные выигрыши.',
+    'During free spins, all main game mechanics are active with increased chances for big wins.',
 
-  // Wild символы (механики)
-  mechanics_wilds_title: 'Wild символы',
+  // Wild Symbols (mechanics)
+  mechanics_wilds_title: 'Wild Symbols',
   mechanics_wilds_description:
-    'Универсальные символы, которые могут заменить любые другие символы (кроме специальных) для формирования выигрышных комбинаций.',
+    'Universal symbols that can substitute for any other symbols (except specials) to form winning combinations.',
   mechanics_wilds_details:
-    'Wild символы могут появляться в различных вариациях: обычные, расширяющиеся, липкие или с множителями.',
+    'Wild symbols can appear in various variations: regular, expanding, sticky, or with multipliers.',
 
-  // Бонусные игры (механики)
-  mechanics_bonus_title: 'Бонусные игры',
+  // Bonus Games (mechanics)
+  mechanics_bonus_title: 'Bonus Games',
   mechanics_bonus_description:
-    'Специальные игровые режимы, активируемые определенными комбинациями символов. Предлагают уникальный геймплей и повышенные выплаты.',
+    'Special game modes triggered by specific symbol combinations. Offer unique gameplay and higher payouts.',
   mechanics_bonus_details:
-    'Бонусные раунды могут включать мини-игры, колесо фортуны, выбор призов или другие интерактивные элементы.',
+    'Bonus rounds may include mini-games, a wheel of fortune, prize picks, or other interactive elements.',
 
-  // Подсекция "Бесплатные спины Gates of Olympus"
-  free_spins_title: 'Бесплатные спины Gates of Olympus',
+  // "Gates of Olympus Free Spins" subsection
+  free_spins_title: 'Gates of Olympus Free Spins',
   free_spins_intro:
-    'Четыре символа Зевса предоставляют игрокам вход в самую сочную часть игры. Не важно, получите ли вы 4 или больше символов — количество спинов всегда составляет 15. Но больше scatter-символов все же предпочтительнее, поскольку они дают мгновенную выплату.',
+    'Four Zeus symbols grant players entry to the juiciest part of the game. It doesn\'t matter whether you get 4 or more symbols — the number of spins is always 15. However, more scatter symbols are still preferable as they provide an instant payout.',
 
-  // Мгновенные выплаты за scatter
-  free_spins_instant_title: '💰 Мгновенные выплаты за Scatter',
-  free_spins_4_scatter_desc: '4 символа Зевса:',
-  free_spins_4_scatter: 'x3 от ставки',
-  free_spins_5_scatter_desc: '5 символов Зевса:',
-  free_spins_5_scatter: 'x5 от ставки',
-  free_spins_6_scatter_desc: '6 символов Зевса:',
-  free_spins_6_scatter: 'x100 от ставки',
+  // Instant scatter payouts
+  free_spins_instant_title: '💰 Instant Scatter Payouts',
+  free_spins_4_scatter_desc: '4 Zeus symbols:',
+  free_spins_4_scatter: '3x the bet',
+  free_spins_5_scatter_desc: '5 Zeus symbols:',
+  free_spins_5_scatter: '5x the bet',
+  free_spins_6_scatter_desc: '6 Zeus symbols:',
+  free_spins_6_scatter: '100x the bet',
 
-  // Особенности бонусной игры
-  free_spins_features_title: '🚀 Особенности бонусной игры',
+  // Bonus Game Features
+  free_spins_features_title: '🚀 Bonus Game Features',
   free_spins_feature_1:
-    '15 бесплатных спинов независимо от количества scatter-символов',
-  free_spins_feature_2: 'Total Multiplier не сбрасывается между раундами',
-  free_spins_feature_3: 'Возможность получить дополнительные бесплатные спины',
-  free_spins_feature_4: 'Опция купить бонус за 100x от общей ставки',
+    '15 free spins regardless of the number of scatter symbols',
+  free_spins_feature_2: 'Total Multiplier does not reset between rounds',
+  free_spins_feature_3: 'Opportunity to win additional free spins',
+  free_spins_feature_4: 'Option to buy the bonus for 100x the total bet',
 
-  // Ante Bet и покупка бонуса
-  free_spins_ante_title: '🎯 Ante Bet и покупка бонуса',
+  // Ante Bet and Bonus Buy
+  free_spins_ante_title: '🎯 Ante Bet and Bonus Buy',
   free_spins_ante_description:
-    'Игроки могут купить бесплатные спины, заплатив 100x от общей ставки, или активировать Ante Bet.',
-  free_spins_ante_bet_value: '25% дополнительно к ставке',
-  free_spins_ante_bet_effect: 'удваивает шансы получить бесплатные спины',
+    'Players can buy free spins for 100x the total bet or activate the Ante Bet.',
+  free_spins_ante_bet_value: '25% on top of the bet',
+  free_spins_ante_bet_effect: 'doubles the chances of getting free spins',
 
-  // Новые поля Ante Bet
+  // New Ante Bet fields
   ante_bet_title: 'Ante Bet',
   ante_bet_description:
-    'Функция Ante Bet позволяет увеличить шансы на получение бонусных раундов за дополнительную плату.',
+    'The Ante Bet feature allows you to increase your chances of triggering bonus rounds for an additional cost.',
   ante_bet_warning:
-    'Внимание: использование Ante Bet увеличивает размер ставки и может привести к более быстрой потере средств.',
+    'Warning: using Ante Bet increases the bet size and can lead to a faster loss of funds.',
 
-  // Подсекция "Стратегии и советы для игры"
-  strategies_title: 'Стратегии и советы для игры',
+  // "Game Strategies and Tips" subsection
+  strategies_title: 'Game Strategies and Tips',
   strategies_intro:
-    'Эффективные подходы для максимизации удовольствия от игры:',
+    'Effective approaches to maximize your gaming enjoyment:',
 
-  // Рекомендации для новичков
-  strategies_beginners_title: '💡 Рекомендации для новичков',
-  strategy_beginner_1: 'Начните с демо-версии для изучения механик',
-  strategy_beginner_2: 'Устанавливайте лимиты перед началом игры',
-  strategy_beginner_3: 'Начинайте с минимальных ставок',
-  strategy_beginner_4: 'Изучите таблицу выплат перед игрой',
+  // Recommendations for beginners
+  strategies_beginners_title: '💡 Recommendations for Beginners',
+  strategy_beginner_1: 'Start with the demo version to learn the mechanics',
+  strategy_beginner_2: 'Set limits before you start playing',
+  strategy_beginner_3: 'Start with minimum bets',
+  strategy_beginner_4: 'Study the paytable before playing',
 
-  // Продвинутые стратегии
-  strategies_advanced_title: '⚡ Продвинутые стратегии',
-  strategy_advanced_1: 'Управление банкроллом: не более 1-2% от банка на спин',
+  // Advanced Strategies
+  strategies_advanced_title: '⚡ Advanced Strategies',
+  strategy_advanced_1: 'Bankroll management: no more than 1-2% of the bankroll per spin',
   strategy_advanced_2:
-    'Ante Bet увеличивает шансы на бонус, но требует больших ставок',
-  strategy_advanced_3: 'Покупка бонуса оправдана только при достаточном банке',
-  strategy_advanced_4: 'Ведите статистику сессий для анализа результатов',
+    'Ante Bet increases bonus chances but requires larger bets',
+  strategy_advanced_3: 'Bonus buy is only justified with a sufficient bankroll',
+  strategy_advanced_4: 'Keep track of session statistics to analyze results',
 
-  // Важные предупреждения (2 карточки)
-  strategy_warnings_title: '⚠️ Важные предупреждения',
-  strategy_warning_1_title: 'Высокая волатильность',
+  // Important Warnings (2 cards)
+  strategy_warnings_title: '⚠️ Important Warnings',
+  strategy_warning_1_title: 'High Volatility',
   strategy_warning_1_text:
-    'Длительные периоды без крупных выигрышей — это нормально. Будьте готовы к затяжным потерям.',
-  strategy_warning_2_title: 'Покупка бонуса',
+    'Long stretches without significant wins are normal. Be prepared for prolonged cold streaks.',
+  strategy_warning_2_title: 'Bonus Buy',
   strategy_warning_2_text:
-    '100x ставка за бонус не гарантирует прибыль. Используйте эту функцию разумно.',
+    '100x bet for the bonus does not guarantee a profit. Use this feature wisely.',
 
-  // Подсекция "В чем секрет успеха?"
-  success_secret_title: 'В чем секрет такого огромного успеха?',
+  // "What is the secret of success?" subsection
+  success_secret_title: 'What is the secret to such huge success?',
   success_secret_intro:
-    'Одним из ключей к такому огромному успеху является механика Scatter Pays — то, что объединяет многие популярные онлайн-slotы. Вам не нужны линии выплат, кластеры или способы выигрыша... Одинаковые символы могут появиться в любом месте сетки и принести вам выигрыши.',
-  success_secret_card_1_title: '🍭 Связь с Sweet Bonanza',
+    'One of the keys to such massive success is the Scatter Pays mechanic—something that unites many popular online slots. You don\'t need paylines, clusters, or ways to win... Matching symbols can appear anywhere on the grid and bring you wins.',
+  success_secret_card_1_title: '🍭 Connection to Sweet Bonanza',
   success_secret_card_1_text:
-    'Sweet Bonanza был тайтлом, который протестировал воды для Gates of Olympus. Эти две игры имеют много общих геймплейных сходств. И кажется, что игроки больше любят эпическую тему греческих богов, чем сладкую природу Sweet Bonanza.',
-  success_secret_card_2_title: '⚖️ Идеальный баланс',
+    'Sweet Bonanza was the title that tested the waters for Gates of Olympus. These two games share many gameplay similarities. And it seems players prefer the epic theme of Greek gods over the sugary nature of Sweet Bonanza.',
+  success_secret_card_2_title: '⚖️ Perfect Balance',
   success_secret_card_2_text:
-    'Pragmatic Play использовала проверенный и испытанный рецепт для достижения идеального баланса между сложностью и простотой. Три элемента — scatter pays, tumbles и множители — создают идеальную основу для захватывающего, но не слишком сложного геймплея.',
+    'Pragmatic Play used a tried and tested recipe to strike the perfect balance between complexity and simplicity. Three elements—scatter pays, tumbles, and multipliers—create the perfect foundation for continuous, yet not overly complicated gameplay.',
   success_secret_outro:
-    'Эта комбинация творит чудеса, и наши рейтинги, основанные на реальных данных казино, подтверждают это. Количество tumbles не ограничено, и у вас может быть один раунд, который продолжается намного дольше обычного спина.',
+    'This combination works wonders, and our rankings, based on real casino data, confirm this. There is no limit to tumbles, and you can have a single round that lasts much longer than a typical spin.',
 
-  // === Секция "Насколько популярен" ===
+  // === "How Popular" Section ===
   // Title секции
-  popularity_section_title: 'Насколько популярен',
+  popularity_section_title: 'How popular is',
 
-  // Основные метрики популярности (3 карточки)
+  // Main Popularity Metrics (3 cards)
   popularity_rank_2024: '12',
-  popularity_rank_2024_label: 'Рейтинг 2024',
+  popularity_rank_2024_label: '2024 Ranking',
 
   popularity_user_rating: '4.8/5',
-  popularity_user_rating_label: 'Пользовательский рейтинг',
+  popularity_user_rating_label: 'User Rating',
 
   popularity_monthly_players: '2M+',
-  popularity_monthly_players_label: 'Игроков в месяц',
+  popularity_monthly_players_label: 'Monthly Players',
 
-  // Conclusion о популярности
+  // Popularity conclusion
   popularity_conclusion:
-    '🏆 Этот слот удерживает топовые позиции в рейтингах уже несколько лет подряд, что подтверждает его исключительное качество и увлекательность геймплея.',
+    '🏆 This slot has maintained top positions in rankings for several consecutive years, confirming its exceptional quality and engaging gameplay.',
 
-  // === Секция "Рейтинг и награды" ===
+  // === "Rating and Awards" Section ===
   // Title секции
-  rating_awards_title: 'Рейтинг и награды',
+  rating_awards_title: 'Rating and Awards',
 
-  // Основной рейтинг
+  // Main Rating
   rating_main_score: '4.8',
   rating_main_max: '5',
-  rating_description: 'Средний рейтинг игроков',
+  rating_description: 'Average player rating',
   rating_reviews_count: '1,247',
-  rating_reviews_text: 'отзывах',
+  rating_reviews_text: 'reviews',
 
-  // Детализация рейтинга (5 строк)
+  // Rating details (5 rows)
   rating_5_stars_percent: '68',
   rating_4_stars_percent: '22',
   rating_3_stars_percent: '7',
   rating_2_stars_percent: '2',
   rating_1_stars_percent: '1',
 
-  // Награды (4 награды)
+  // Awards (4 awards)
   award_1_emoji: '🏆',
-  award_1_title: 'Слот года 2024',
+  award_1_title: 'Slot of the Year 2024',
   award_1_description: 'Casino Awards',
   award_1_color: 'yellow', // yellow, purple, green, blue
 
   award_2_emoji: '🎖️',
-  award_2_title: 'Лучший дизайн',
+  award_2_title: 'Best Design',
   award_2_description: 'Gaming Excellence',
   award_2_color: 'purple',
 
   award_3_emoji: '💎',
-  award_3_title: 'Платиновый статус',
-  award_3_description: '10M+ игроков',
+  award_3_title: 'Platinum Status',
+  award_3_description: '10M+ players',
   award_3_color: 'green',
 
   award_4_emoji: '⭐',
-  award_4_title: 'Выбор игроков',
-  award_4_description: 'Народное голосование',
+  award_4_title: 'Players\' Choice',
+  award_4_description: 'Popular vote',
   award_4_color: 'blue',
 
-  // === Секция "FAQ (Часто задаваемые вопросы)" ===
-  faq_title: 'Часто задаваемые вопросы',
+  // === "FAQ" Section ===
+  faq_title: 'Frequently Asked Questions',
 
-  // Вопрос 1
+  // Question 1
   faq_q1_emoji: '🎮',
-  faq_q1_question: 'Можно ли играть в слот бесплатно?',
+  faq_q1_question: 'Can I play the slot for free?',
   faq_q1_answer:
-    'Да, абсолютно бесплатно! Вы можете играть в демо-версию слота без регистрации и депозита. Это отличный способ изучить механику игры и бонусные функции перед игрой на реальные деньги.',
+    'Yes, absolutely free! You can play the slot\'s demo version without registration or deposit. It\'s a great way to learn the game mechanics and bonus features before playing for real money.',
 
-  // Вопрос 2
+  // Question 2
   faq_q2_emoji: '💰',
-  faq_q2_question: 'Какова максимальная выплата в слоте?',
+  faq_q2_question: 'What is the maximum payout in the slot?',
   faq_q2_answer:
-    'Максимальная выплата: 5,000x от ставки. Это означает, что при ставке €100 вы можете выиграть до €500,000! Такие выигрыши случаются крайне редко - примерно 1 раз в 697,350 спинов.',
+    'Maximum payout: 5,000x the bet. This means with a €100 bet you can win up to €500,000! Such wins happen quite rarely - about 1 in 697,350 spins.',
 
-  // Вопрос 3
+  // Question 3
   faq_q3_emoji: '🛒',
-  faq_q3_question: 'Стоит ли покупать бонусные спины?',
+  faq_q3_question: 'Is it worth buying bonus spins?',
   faq_q3_answer:
-    'Покупка бонуса стоит 100x от ставки. Плюсы: гарантированный доступ к бонусной игре с множителями. Минусы: высокая стоимость и нет гарантии большого выигрыша. Совет: покупайте бонус только при достаточном банкролле и помните о высокой волатильности.',
+    'Buying the bonus costs 100x the bet. Pros: guaranteed access to the bonus game with multipliers. Cons: high cost and no guarantee of a big win. Advice: only buy the bonus with an adequate bankroll and keep the high volatility in mind.',
 
-  // Вопрос 4
+  // Question 4
   faq_q4_emoji: '📱',
-  faq_q4_question: 'Работает ли слот на мобильных устройствах?',
+  faq_q4_question: 'Does the slot work on mobile devices?',
   faq_q4_answer:
-    'Да, полностью оптимизирован! Поддерживает iOS и Android, работает в браузере без установки приложений, сохраняет все функции и качество графики, быстрая загрузка и плавная анимация.',
+    'Yes, fully optimized! Supports iOS and Android, works in the browser without installing apps, retains all features and graphic quality, fast loading, and smooth animations.',
 
-  // === Секция "Отзывы игроков" ===
+  // === "Player Reviews" Section ===
   // Headings
-  reviews_title: 'Отзывы игроков',
-  reviews_subtitle: 'Реальные мнения от сообщества слот-игроков',
+  reviews_title: 'Player Reviews',
+  reviews_subtitle: 'Real opinions from the slot gaming community',
 
-  // Карточки статистики (Общая статистика)
+  // Stat cards (General Stats)
   reviews_overall_rating: '4.3',
-  reviews_overall_label: 'Общий рейтинг',
+  reviews_overall_label: 'Overall Rating',
   reviews_overall_stars: '★★★★☆',
   reviews_total_count: '1.2K+',
-  reviews_total_label: 'Всего отзывов',
-  reviews_total_desc: 'активное сообщество',
+  reviews_total_label: 'Total Reviews',
+  reviews_total_desc: 'active community',
   reviews_positive_percent: '75%',
-  reviews_positive_label: 'Положительные',
-  reviews_positive_desc: '4-5 звёзд',
+  reviews_positive_label: 'Positive',
+  reviews_positive_desc: '4-5 stars',
   reviews_recommend_percent: '68%',
-  reviews_recommend_label: 'Рекомендуют',
-  reviews_recommend_desc: 'друзьям играть',
-  // Заголовки секций
-  reviews_distribution_title: 'Распределение оценок',
-  reviews_sentiments_title: 'Анализ настроений',
-  reviews_featured_title: 'Избранные отзывы игроков',
+  reviews_recommend_label: 'Recommend',
+  reviews_recommend_desc: 'to friends',
+  // Section Headings
+  reviews_distribution_title: 'Rating Distribution',
+  reviews_sentiments_title: 'Sentiment Analysis',
+  reviews_featured_title: 'Featured Player Reviews',
 
-  // Распределение оценок
+  // Rating distribution
   reviews_5_stars_percent: '45%',
   reviews_5_stars_count: '562',
   reviews_4_stars_percent: '30%',
@@ -6001,225 +5824,225 @@ const form = ref({
   reviews_1_stars_percent: '3%',
   reviews_1_stars_count: '37',
 
-  // Анализ настроений (4 пункта)
-  reviews_sentiment_1_title: 'Потрясающая графика',
-  reviews_sentiment_1_desc: 'Упоминается в 89% позитивных отзывов',
-  reviews_sentiment_2_title: 'Мегавыигрыши',
-  reviews_sentiment_2_desc: 'Крупные множители в бонусах',
-  reviews_sentiment_3_title: 'Стабильная работа',
-  reviews_sentiment_3_desc: 'Без лагов и багов',
-  reviews_sentiment_4_title: 'Высокая волатильность',
-  reviews_sentiment_4_desc: 'Требует терпения',
+  // Sentiment Analysis (4 points)
+  reviews_sentiment_1_title: 'Stunning graphics',
+  reviews_sentiment_1_desc: 'Mentioned in 89% of positive reviews',
+  reviews_sentiment_2_title: 'Mega wins',
+  reviews_sentiment_2_desc: 'Large multipliers in bonuses',
+  reviews_sentiment_3_title: 'Stable performance',
+  reviews_sentiment_3_desc: 'No lags or bugs',
+  reviews_sentiment_4_title: 'High volatility',
+  reviews_sentiment_4_desc: 'Requires patience',
 
   // Review 1
-  review_1_author: 'Александр К.',
-  review_1_avatar_letter: 'А',
+  review_1_author: 'Alexander K.',
+  review_1_avatar_letter: 'A',
   review_1_rating: '★★★★★',
-  review_1_badge: 'Проверенный игрок',
+  review_1_badge: 'Verified Player',
   review_1_text:
-    'Реально крутой слот! Множители действительно работают - словил x1200 на бонусе, эмоции зашкаливали! Графика топ, анимации плавные. Играю полгода, очень доволен. Каскады постоянно продлевают удовольствие 🎰⚡',
-  review_1_likes: '47 лайков',
-  review_1_replies: '12 ответов',
-  review_1_date: '2 дня назад',
+    'A truly awesome slot! The multipliers really work - caught x1200 on a bonus, emotions were off the charts! Graphics are top-notch, animations are smooth. Been playing for half a year, very satisfied. Cascades constantly prolong the fun 🎰⚡',
+  review_1_likes: '47 likes',
+  review_1_replies: '12 replies',
+  review_1_date: '2 days ago',
 
   // Review 2
-  review_2_author: 'Мария В.',
-  review_2_avatar_letter: 'М',
+  review_2_author: 'Maria V.',
+  review_2_avatar_letter: 'M',
   review_2_rating: '★★★★☆',
-  review_2_badge: 'Активный игрок',
+  review_2_badge: 'Active Player',
   review_2_text:
-    'Визуально великолепно! Тематика Олимпа реализована шикарно. Геймплей затягивает, но волатильность зашкаливает - нужен большой банкролл. Когда заходят бонусы - сказка! 🏛️✨',
-  review_2_likes: '31 лайк',
-  review_2_replies: '8 ответов',
-  review_2_date: '1 неделю назад',
+    'Visually magnificent! The Olympus theme is beautifully done. Gameplay is addicting, but the volatility is through the roof - you need a large bankroll. When the bonuses hit, it\'s a fairytale! 🏛️✨',
+  review_2_likes: '31 likes',
+  review_2_replies: '8 replies',
+  review_2_date: '1 week ago',
 
   // Review 3
-  review_3_author: 'Дмитрий С.',
-  review_3_avatar_letter: 'Д',
+  review_3_author: 'Dmitry S.',
+  review_3_avatar_letter: 'D',
   review_3_rating: '★★★★★',
-  review_3_badge: 'VIP игрок',
+  review_3_badge: 'VIP Player',
   review_3_text:
-    'ЭПИК! Pragmatic Play превзошли сами себя! Максимальный выигрыш 3,200x - чуть со стула не упал! 😱 Звук, графика, математика - всё идеально. Мой фаворит уже 2 года! 🎮👑',
-  review_3_likes: '93 лайка',
-  review_3_replies: '25 ответов',
-  review_3_date: '3 дня назад',
+    'EPIC! Pragmatic Play outdid themselves! Max win of 3,200x - almost fell off my chair! 😱 Sound, graphics, math - everything is perfect. My favorite for 2 years! 🎮👑',
+  review_3_likes: '93 likes',
+  review_3_replies: '25 replies',
+  review_3_date: '3 days ago',
 
-  // === Секция "Профессиональная оценка" ===
+  // === "Professional Rating" Section ===
   // Headings
-  prof_rating_title: 'Профессиональная оценка',
-  prof_rating_subtitle: 'Детальный анализ от экспертов индустрии 🎯',
+  prof_rating_title: 'Professional Rating',
+  prof_rating_subtitle: 'Detailed analysis from industry experts 🎯',
 
-  // Общая оценка
-  prof_rating_overall_title: 'Общая экспертная оценка',
+  // Overall Rating
+  prof_rating_overall_title: 'Overall Expert Rating',
   prof_rating_overall_desc:
-    'Превосходный слот с инновационной механикой и высоким потенциалом выигрыша 🏆',
+    'An excellent slot with innovative mechanics and high win potential 🏆',
   prof_rating_overall_score: '8.5',
   prof_rating_overall_stars: '⭐⭐⭐⭐☆',
 
-  // Метрика 1: Графика
+  // Metric 1: Graphics
   prof_rating_metric_1_emoji: '🎨',
-  prof_rating_metric_1_name: 'Графика и анимация',
+  prof_rating_metric_1_name: 'Graphics and Animation',
   prof_rating_metric_1_score: '9.0',
 
-  // Метрика 2: Геймплей
+  // Metric 2: Gameplay
   prof_rating_metric_2_emoji: '🎮',
-  prof_rating_metric_2_name: 'Геймплей',
+  prof_rating_metric_2_name: 'Gameplay',
   prof_rating_metric_2_score: '8.0',
 
-  // Метрика 3: Win potential
+  // Metric 3: Win Potential
   prof_rating_metric_3_emoji: '💎',
   prof_rating_metric_3_name: 'Win potential',
   prof_rating_metric_3_score: '9.0',
 
-  // Метрика 4: Бонусные функции
+  // Metric 4: Bonus Features
   prof_rating_metric_4_emoji: '🎁',
-  prof_rating_metric_4_name: 'Бонусные функции',
+  prof_rating_metric_4_name: 'Bonus Features',
   prof_rating_metric_4_score: '8.0',
 
-  // Метрика 5: Частота выплат
+  // Metric 5: Payout Frequency
   prof_rating_metric_5_emoji: '⏰',
-  prof_rating_metric_5_name: 'Частота выплат',
+  prof_rating_metric_5_name: 'Payout Frequency',
   prof_rating_metric_5_score: '7.0',
 
-  // Экспертное заключение
-  prof_rating_expert_title: 'Экспертное заключение', // Заголовок секции
-  prof_rating_expert_name: 'Сертифицированный эксперт', // Имя эксперта (badge)
+  // Expert Conclusion
+  prof_rating_expert_title: 'Expert Conclusion', // Заголовок секции
+  prof_rating_expert_name: 'Certified Expert', // Имя эксперта (badge)
   prof_rating_expert_position:
-    'Ведущий аналитик игровой индустрии • 8+ лет опыта', // Должность
+    'Lead Gaming Industry Analyst • 8+ years experience', // Должность
   prof_rating_expert_quote:
-    '[prof_expert_keyword] представляет собой революционный подход к созданию видеослотов. Механика Scatter Pays полностью меняет привычные правила игры, создавая уникальный опыт для каждого спина. Высокий потенциал выигрыша x5,000 в сочетании с каскадными символами делают каждый раунд непредсказуемым и захватывающим. 🎯',
-  prof_rating_expert_quote_keyword: '', // Ключевое слово для цитаты эксперта
-  // Предупреждение о волатильности
-  prof_rating_warning_title: 'Предупреждение о волатильности',
+    '[prof_expert_keyword] presents a revolutionary approach to creating video slots. The Scatter Pays mechanic completely changes the usual rules of the game, creating a unique experience for every spin. The high max win potential of x5,000 combined with cascading symbols makes every round unpredictable and exciting. 🎯',
+  prof_rating_expert_quote_keyword: '', // Keyword for expert quote
+  // Volatility warning
+  prof_rating_warning_title: 'Volatility Warning',
   prof_rating_warning_text:
-    'Слот имеет высокую волатильность, что означает редкие, но крупные выигрыши. Рекомендуется иметь достаточный банкролл и играть ответственно. Устанавливайте лимиты и никогда не играйте деньгами, которые не можете позволить себе потерять. 💰',
-  // Преимущества (5 пунктов)
-  prof_rating_pros_title: '✅ ПРЕИМУЩЕСТВА',
-  prof_rating_pros_1_title: 'Инновационная механика Scatter Pays',
-  prof_rating_pros_1_desc: 'Революционная система выплат',
-  prof_rating_pros_2_title: 'Потенциал выигрыша x5,000',
-  prof_rating_pros_2_desc: 'Огромные возможности для выигрыша',
-  prof_rating_pros_3_title: 'Превосходная графика',
-  prof_rating_pros_3_desc: 'Визуальное наслаждение на высоком уровне',
-  prof_rating_pros_4_title: 'Каскадные выигрыши',
-  prof_rating_pros_4_desc: 'Множественные выплаты в одном спине',
-  prof_rating_pros_5_title: 'Мобильная оптимизация',
-  prof_rating_pros_5_desc: 'Идеальная работа на всех устройствах',
-  // Недостатки (5 пунктов)
-  prof_rating_cons_title: '❌ НЕДОСТАТКИ',
-  prof_rating_cons_1_title: 'Высокая волатильность',
-  prof_rating_cons_1_desc: 'Редкие, но крупные выигрыши',
-  prof_rating_cons_2_title: 'Требует большой банкролл',
-  prof_rating_cons_2_desc: 'Необходим солидный стартовый капитал',
-  prof_rating_cons_3_title: 'Не для новичков',
-  prof_rating_cons_3_desc: 'Сложно для консервативных игроков',
-  prof_rating_cons_4_title: 'Риск больших потерь',
-  prof_rating_cons_4_desc: 'Возможны продолжительные проигрыши',
-  prof_rating_cons_5_title: 'Высокая дисперсия',
-  prof_rating_cons_5_desc: 'Нестабильные результаты',
-  // Итоговая рекомендация
-  prof_rating_recommendation_title: 'Итоговая рекомендация',
-  prof_rating_recommendation_subtitle: 'От экспертов SlotQuest',
+    'The slot features high volatility, which means wins may be infrequent but have the potential to be large. It is recommended to have a sufficient bankroll and play responsibly. Set limits and never gamble with money you cannot afford to lose. 💰',
+  // Pros (5 items)
+  prof_rating_pros_title: '✅ PROS',
+  prof_rating_pros_1_title: 'Innovative Scatter Pays mechanic',
+  prof_rating_pros_1_desc: 'Revolutionary payout system',
+  prof_rating_pros_2_title: 'x5,000 Win Potential',
+  prof_rating_pros_2_desc: 'Huge winning opportunities',
+  prof_rating_pros_3_title: 'Superb Graphics',
+  prof_rating_pros_3_desc: 'High-level visual enjoyment',
+  prof_rating_pros_4_title: 'Cascading Wins',
+  prof_rating_pros_4_desc: 'Multiple payouts in a single spin',
+  prof_rating_pros_5_title: 'Mobile Optimization',
+  prof_rating_pros_5_desc: 'Flawless performance on all devices',
+  // Cons (5 items)
+  prof_rating_cons_title: '❌ CONS',
+  prof_rating_cons_1_title: 'High volatility',
+  prof_rating_cons_1_desc: 'Rare but large wins',
+  prof_rating_cons_2_title: 'Requires a large bankroll',
+  prof_rating_cons_2_desc: 'A solid starting capital is needed',
+  prof_rating_cons_3_title: 'Not for beginners',
+  prof_rating_cons_3_desc: 'Difficult for conservative players',
+  prof_rating_cons_4_title: 'Risk of large losses',
+  prof_rating_cons_4_desc: 'Prolonged losing streaks are possible',
+  prof_rating_cons_5_title: 'High variance',
+  prof_rating_cons_5_desc: 'Inconsistent results',
+  // Final recommendation
+  prof_rating_recommendation_title: 'Final Recommendation',
+  prof_rating_recommendation_subtitle: 'From SlotQuest experts',
   prof_rating_recommendation_text:
-    '[prof_recommendation_keyword] - это выдающийся slot для опытных игроков, которые ценят инновационную механику и готовы к высокой волатильности ради потенциала больших выигрышей. Новичкам рекомендуем начать с менее волатильных slotов. Этот slot станет идеальным выбором для тех, кто ищет адреналин и готов к серьёзной игре! 🚀',
-  prof_rating_recommendation_keyword: '', // Ключевое слово для итоговой рекомендации
+    '[prof_recommendation_keyword] is an outstanding slot for experienced players who appreciate innovative mechanics and are prepared for high volatility in exchange for the potential of big wins. We recommend beginners start with less volatile slots. This slot is the perfect choice for those seeking adrenaline and ready for serious play! 🚀',
+  prof_rating_recommendation_keyword: '', // Keyword for final recommendation
 
-  // === Секция "Conclusion" ===
+  // === "Conclusion" Section ===
   conclusion_title: 'Conclusion',
 
-  // Final rating - заголовок с ключевым словом
-  conclusion_rating_title: 'Итоговая оценка [conclusion_keyword]',
-  conclusion_rating_keyword: '', // Ключевое слово для Final Rating заголовка
+  // Final rating - title with keyword
+  conclusion_rating_title: 'Final Rating [conclusion_keyword]',
+  conclusion_rating_keyword: '', // Keyword for Final Rating title
 
-  // Final rating - тексты
+  // Final rating - texts
   conclusion_text_1:
-    '[conclusion_text_keyword] заслуженно считается одним из лучших слотов от Pragmatic Play. Сочетание инновационной механики Scatter Pays, высокого потенциала выигрыша до x5,000 и превосходной графики делают его обязательным для всех любителей азартных игр.',
-  conclusion_text_1_keyword: '', // Ключевое слово для Paragraph 1
+    '[conclusion_text_keyword] is deservedly considered one of the best slots from Pragmatic Play. The combination of the innovative Scatter Pays mechanic, high win potential up to x5,000, and superb graphics make it a must-try for all gambling enthusiasts.',
+  conclusion_text_1_keyword: '', // Keyword for Paragraph 1
   conclusion_text_2:
-    'Революционная система выплат, где выигрыши начисляются за 8+ одинаковых символов в любом месте экрана, открывает новые горизонты в мире видеослотов. Каскадные выигрыши и множители создают уникальную атмосферу постоянного ожидания больших выплат.',
+    'The revolutionary payout system, where wins are awarded for 8+ matching symbols anywhere on the screen, opens new horizons in the world of video slots. Cascading wins and multipliers create a unique atmosphere of constant anticipation for big payouts.',
 
-  // Suitable for (заголовок + 4 пункта)
-  conclusion_suitable_title: 'Кому подходит',
-  conclusion_suitable_1: 'Опытным игрокам',
-  conclusion_suitable_2: 'Любителям высокой волатильности',
-  conclusion_suitable_3: 'Игрокам с большим банкроллом',
-  conclusion_suitable_4: 'Поклонникам инноваций',
+  // Suitable for (title + 4 items)
+  conclusion_suitable_title: 'Best Suited For',
+  conclusion_suitable_1: 'Experienced players',
+  conclusion_suitable_2: 'High volatility enthusiasts',
+  conclusion_suitable_3: 'Players with large bankrolls',
+  conclusion_suitable_4: 'Fans of innovation',
 
-  // Important to remember (заголовок + 4 пункта)
-  conclusion_warning_title: 'Важно помнить',
-  conclusion_warning_1: 'Высокая волатильность',
-  conclusion_warning_2: 'Нужен большой банкролл',
-  conclusion_warning_3: 'Играйте ответственно',
-  conclusion_warning_4: 'Устанавливайте лимиты',
+  // Important to remember (title + 4 items)
+  conclusion_warning_title: 'Keep in Mind',
+  conclusion_warning_1: 'High volatility',
+  conclusion_warning_2: 'Requires a large bankroll',
+  conclusion_warning_3: 'Play responsibly',
+  conclusion_warning_4: 'Set limits',
 
-  // Финальный вердикт
-  conclusion_verdict_title: 'Финальный вердикт', // Заголовок секции
+  // Final verdict
+  conclusion_verdict_title: 'Final Verdict', // Заголовок секции
   conclusion_verdict_text:
-    '[conclusion_verdict_keyword] - это не просто slot, это новая эра в мире азартных игр. Если вы готовы к вызову и хотите испытать настоящий адреналин от игры, этот slot создан именно для вас. Помните: играйте ответственно и наслаждайтесь процессом! 🎰',
-  conclusion_verdict_keyword: '', // Ключевое слово для финального вердикта
+    '[conclusion_verdict_keyword] is not just a slot; it\'s a new era in the world of gambling. If you are ready for a challenge and want to experience the true adrenaline of gaming, this slot was created specifically for you. Remember: play responsibly and enjoy the process! 🎰',
+  conclusion_verdict_keyword: '', // Keyword for final verdict
 
-  // === Секция "Время побеждать!" ===
+  // === "Time to Win!" Section ===
   // Headings
-  cta_title: 'Время побеждать!',
-  cta_subtitle: 'Окунитесь в легендарный мир [cta_keyword]',
-  cta_subtitle_keyword: '', // Ключевое слово для замены [cta_keyword] в subtitle
+  cta_title: 'Time to Win!',
+  cta_subtitle: 'Dive into the legendary world of [cta_keyword]',
+  cta_subtitle_keyword: '', // Keyword to replace [cta_keyword] in subtitle
   cta_potential: 'x5,000',
-  cta_potential_prefix: 'Потенциал выигрыша до', // Текст перед значением win potential
-  cta_potential_suffix: 'ждёт вас!', // Текст после значения win potential
+  cta_potential_prefix: 'Win potential up to', // Текст перед значением win potential
+  cta_potential_suffix: 'awaits you!', // Текст после значения win potential
 
   // Card 1
   cta_feature_1_emoji: '🎰',
-  cta_feature_1_title: 'Демо режим',
-  cta_feature_1_desc: 'Изучите все механики игры совершенно бесплатно',
+  cta_feature_1_title: 'Demo Mode',
+  cta_feature_1_desc: 'Learn all the game mechanics absolutely for free',
 
   // Card 2
   cta_feature_2_emoji: '💰',
-  cta_feature_2_title: 'Реальные деньги',
-  cta_feature_2_desc: 'Играйте на деньги в лучших онлайн казино',
+  cta_feature_2_title: 'Real Money',
+  cta_feature_2_desc: 'Play for real money at the best online casinos',
 
   // Card 3
   cta_feature_3_emoji: '🎁',
-  cta_feature_3_title: 'Эксклюзивные бонусы',
-  cta_feature_3_desc: 'Получите дополнительные средства для игры',
+  cta_feature_3_title: 'Exclusive Bonuses',
+  cta_feature_3_desc: 'Get extra funds to play with',
 
   // Action buttons
   cta_button_demo_emoji: '🎮',
-  cta_button_demo_text: 'Играть демо',
+  cta_button_demo_text: 'Play Demo',
   cta_button_demo_url: '/slots/gates-of-olympus/demo',
   cta_button_real_emoji: '💎',
-  cta_button_real_text: 'Играть на деньги',
+  cta_button_real_text: 'Play for Real',
   cta_button_real_url: '/casinos/best-for-gates-of-olympus',
 
   // Trust indicators
-  cta_trust_1_text: 'Лицензированные операторы',
-  cta_trust_2_text: 'Безопасность SSL',
-  cta_trust_3_text: 'Поддержка 24/7',
+  cta_trust_1_text: 'Licensed Operators',
+  cta_trust_2_text: 'SSL Security',
+  cta_trust_3_text: '24/7 Support',
 
-  // SEO поля
+  // SEO fields
   seo_title: '',
   seo_description: '',
-  seo_keywords: '', // Старое поле (для совместимости)
+  seo_keywords: '', // Old field (for compatibility)
 
-  // Новая система ключевых слов (4 типа)
-  seo_keywords_primary: '', // Основные ключевые слова (3-5)
-  seo_keywords_lsi: '', // LSI семантические ключевые слова (10-15)
-  seo_keywords_geo: '', // Локальные ключевые слова для гео-таргетинга
-  seo_keywords_longtail: '', // Long-tail фразы (5-10)
+  // New keyword system (4 types)
+  seo_keywords_primary: '', // Primary keywords (3-5)
+  seo_keywords_lsi: '', // LSI semantic keywords (10-15)
+  seo_keywords_geo: '', // Local keywords for geo-targeting
+  seo_keywords_longtail: '', // Long-tail phrases (5-10)
 
   canonical_url: '',
 
-  // Видео и мультимедиа (для VideoObject Schema)
-  video_url: '', // URL видео геймплея
-  video_duration: 'PT3M', // Длительность видео (ISO 8601)
+  // Video and multimedia (for VideoObject Schema)
+  video_url: '', // Gameplay video URL
+  video_duration: 'PT3M', // Video duration (ISO 8601)
 
-  // Альтернативные названия (для разных рынков)
-  alternative_names: '', // Названия на разных языках
+  // Alternative names (for different markets)
+  alternative_names: '', // Names in different languages
 
-  // Язык и гео-таргетинг (упрощенная система - один язык для всех стран)
-  content_language: 'en', // Основной язык контента (английский - международный)
-  geo_target_regions: 'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD', // Целевые страны (коды ISO)
+  // Language and geo-targeting (simplified system - one language for all countries)
+  content_language: 'en', // Main content language (English - international)
+  geo_target_regions: 'RU, IN, BR, UZ, AZ, TR, CL, AR, CA, CO, ID, BD', // Target countries (ISO codes)
 
-  // Open Graph поля (расширенные)
+  // Open Graph fields (advanced)
   og_title: '',
   og_description: '',
   og_image: '',
@@ -6236,7 +6059,7 @@ const form = ref({
   og_image_height: 630,
   og_image_alt: '',
 
-  // Twitter Card поля (расширенные)
+  // Twitter Card fields (advanced)
   twitter_card: 'summary_large_image',
   twitter_site: '@SlotQuest',
   twitter_creator: '@SlotQuest',
@@ -6248,23 +6071,23 @@ const form = ref({
   twitter_player_width: 1280,
   twitter_player_height: 720,
 
-  // Advanced Robots директивы (Фаза 1)
+  // Advanced Robots directives (Phase 1)
   robots_index: true,
   robots_follow: true,
-  robots_max_snippet: -1, // -1 = без ограничений
+  robots_max_snippet: -1, // -1 = unlimited
   robots_max_image_preview: 'large', // none, standard, large
-  robots_max_video_preview: -1, // -1 = без ограничений
+  robots_max_video_preview: -1, // -1 = unlimited
   robots_notranslate: false,
   robots_noimageindex: false,
   robots_unavailable_after: '',
 
-  // Hreflang конфигурация (Фаза 1)
+  // Hreflang configuration (Phase 1)
   hreflang_enabled: true,
   hreflang_x_default: '',
-  hreflang_config: '', // JSON массив конфигурации
+  hreflang_config: '', // JSON array of configuration
   hreflang_preset: 'international', // international, cis, latam, asia, custom
 
-  // ============ ФАЗА 2: РАСШИРЕННОЕ SEO ============
+  // ============ PHASE 2: ADVANCED SEO ============
 
   // Title Templates
   seo_title_template: '{name} Slot by {provider} | Play Free Demo {year}',
@@ -6308,7 +6131,7 @@ const form = ref({
   social_custom_hashtags: '#slots #casino #pragmatic',
   social_cta_text: 'Check out this amazing slot!',
 
-  // Технический SEO поля (обновлено)
+  // Technical SEO fields (updated)
   robots_meta: 'index, follow',
   viewport_meta: 'width=device-width, initial-scale=1',
   charset_meta: 'UTF-8',
@@ -6359,16 +6182,16 @@ const form = ref({
   schema_provider_logo: '',
 
   // Game Actions Schema
-  schema_demo_action_name: 'Играть в демо',
+  schema_demo_action_name: 'Play Demo',
   schema_demo_action_url: '',
-  schema_real_action_name: 'Играть на деньги',
+  schema_real_action_name: 'Play for Real Money',
   schema_real_action_url: '',
 
   // Breadcrumb Schema fields
   breadcrumb_enabled: true,
   breadcrumb_items: [
-    { name: 'Главная', url: 'https://slotquest.com' },
-    { name: 'Слоты', url: 'https://slotquest.com/slots' },
+    { name: 'Home', url: 'https://slotquest.com' },
+    { name: 'Slots', url: 'https://slotquest.com/slots' },
   ],
 
   // ImageObject Schema fields
@@ -6403,12 +6226,12 @@ const form = ref({
   schema_global_rating: '',
   schema_popularity_description: '',
 
-  // Новые поля для раздела "Насколько популярен" (добавлены динамически)
-  // Заголовки подразделов
+  // New fields for the "How Popular" section (added dynamically)
+  // Subsection headings
   popularity_stats_title: null,
   popularity_trend_title: null,
   popularity_facts_title: null,
-  // Статистика по годам (4 года × 4 поля = 16 полей)
+  // Statistics by years (4 years × 4 fields = 16 fields)
   popularity_year_1: null,
   popularity_rank_1: null,
   popularity_width_1: null,
@@ -6425,7 +6248,7 @@ const form = ref({
   popularity_rank_4: null,
   popularity_width_4: null,
   popularity_label_4: null,
-  // Ключевые факты (4 факта × 2 поля = 8 полей)
+  // Key facts (4 facts × 2 fields = 8 fields)
   popularity_fact_icon_1: null,
   popularity_fact_text_1: null,
   popularity_fact_icon_2: null,
@@ -6434,36 +6257,36 @@ const form = ref({
   popularity_fact_text_3: null,
   popularity_fact_icon_4: null,
   popularity_fact_text_4: null,
-  // Тренд популярности (график, 4 точки)
+  // Popularity trend (chart, 4 points)
   popularity_trend_y1: null,
   popularity_trend_y2: null,
   popularity_trend_y3: null,
   popularity_trend_y4: null,
 })
 
-// Отдельные реактивные переменные для выбранных элементов (чтобы избежать проблем с сериализацией)
+// Separate reactive variables for selected items (to avoid serialization issues)
 const selectedMechanics = ref([])
 const selectedBonuses = ref([])
 const selectedThemes = ref([])
 
-// Отслеживаем изменение URL изображения для сброса состояния загрузки
+// Track image URL change to reset loading state
 watch(
   () => form.value.image_url,
   (newUrl) => {
     if (newUrl) {
       imageLoading.value = true
       imageError.value = false
-      console.log('🔄 Изменён URL изображения:', newUrl)
+      console.log('🔄 Image URL changed:', newUrl)
     }
   },
 )
 
-// Title страницы
+// Page Title
 useHead({
-  title: 'Редактирование слота - SlotQuest Admin',
+  title: 'Edit Slot - SlotQuest Admin',
 })
 
-// Загрузка данных при монтировании
+// Load data on mount
 onMounted(async () => {
   await Promise.all([
     loadProviders(),
@@ -6475,55 +6298,55 @@ onMounted(async () => {
   loading.value = false
 })
 
-// Загрузка списка провайдеров
+// Load providers list
 const loadProviders = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/providers')
     const data = response.data || response
     providers.value = JSON.parse(JSON.stringify(data))
   } catch (error) {
-    console.error('Ошибка загрузки провайдеров:', error)
+    console.error('Error loading providers:', error)
   }
 }
 
-// Загрузка списка механик
+// Load mechanics list
 const loadMechanics = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/mechanics')
     const data = response.data || response
     availableMechanics.value = JSON.parse(JSON.stringify(data))
   } catch (error) {
-    console.error('Ошибка загрузки механик:', error)
+    console.error('Error loading mechanics:', error)
   }
 }
 
-// Загрузка списка бонусов
+// Load bonuses list
 const loadBonuses = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/bonuses')
     const data = response.data || response
     availableBonuses.value = JSON.parse(JSON.stringify(data))
   } catch (error) {
-    console.error('Ошибка загрузки бонусов:', error)
+    console.error('Error loading bonuses:', error)
   }
 }
 
-// Загрузка списка тематик (только активные!)
+// Load themes list (active only!)
 const loadThemes = async () => {
   try {
     const response = await $fetch('http://localhost:3001/api/themes')
     const data = response.data || response
-    // Фильтруем только активные темы для отображения в списке выбора
+    // Filter active themes for display in selection list
     const allThemes = JSON.parse(JSON.stringify(data))
     availableThemes.value = allThemes.filter(theme => theme.is_active === true)
   } catch (error) {
-    console.error('Ошибка загрузки тематик:', error)
+    console.error('Error loading themes:', error)
   }
 }
 
-// 🔧 Вспомогательные функции для SEO компонентов
+// 🔧 Helper functions for SEO components
 
-// Парсинг FAQ JSON для SerpPreview
+// Parse FAQ JSON for SerpPreview
 const parseFaqItems = (faqJson) => {
   if (!faqJson) return []
   try {
@@ -6534,7 +6357,7 @@ const parseFaqItems = (faqJson) => {
   }
 }
 
-// Генерация robots content из отдельных полей
+// Generate robots content from individual fields
 const generateRobotsContent = () => {
   const directives = []
   directives.push(form.robots_index ? 'index' : 'noindex')
@@ -6551,7 +6374,7 @@ const generateRobotsContent = () => {
   return directives.join(', ')
 }
 
-// Загрузка данных слота
+// Load slot data
 const loadSlot = async () => {
   if (slotId === 'new') return
 
@@ -6562,22 +6385,22 @@ const loadSlot = async () => {
     const data = response.data || response
     slot.value = JSON.parse(JSON.stringify(data))
 
-    // Заполняем форму данными слота
+    // Fill the form with slot data
     Object.keys(form.value).forEach((key) => {
       if (slot.value?.[key] !== undefined) {
-        // Для полей механик не перезаписываем, если значение пустое в БД
+        // For mechanics fields, do not overwrite if the value is empty in DB
         if (
           key.startsWith('mechanics_') &&
           (!slot.value[key] || slot.value[key].trim() === '')
         ) {
-          // Оставляем значение по умолчанию из формы
+          // Keep default form value
           return
         }
         form.value[key] = slot.value[key]
       }
     })
 
-    // Явно маппим поля стратегий из API (strategy_*) в форму (strategies_*)
+    // Explicitly map strategy fields from API (strategy_*) to form (strategies_*)
     form.value.strategies_title =
       slot.value.strategy_title ?? form.value.strategies_title
     form.value.strategies_intro =
@@ -6593,7 +6416,7 @@ const loadSlot = async () => {
       slot.value.strategy_beginner_3 ?? form.value.strategy_beginner_3
     form.value.strategy_beginner_4 =
       slot.value.strategy_beginner_4 ?? form.value.strategy_beginner_4
-    // В БД нет strategy_beginner_5 — оставляем как есть в форме
+    // strategy_beginner_5 is not in DB — leave as is in form
     form.value.strategies_advanced_title =
       slot.value.strategy_advanced_title ?? form.value.strategies_advanced_title
     form.value.strategy_advanced_1 =
@@ -6605,7 +6428,7 @@ const loadSlot = async () => {
     form.value.strategy_advanced_4 =
       slot.value.strategy_advanced_4 ?? form.value.strategy_advanced_4
 
-    // Заполняем отдельные массивы для механик, бонусов и тематик
+    // Fill separate arrays for mechanics, bonuses, and themes
     if (
       slot.value?.slot_mechanics &&
       Array.isArray(slot.value.slot_mechanics)
@@ -6617,17 +6440,17 @@ const loadSlot = async () => {
     if (slot.value?.slot_bonuses && Array.isArray(slot.value.slot_bonuses)) {
       selectedBonuses.value = slot.value.slot_bonuses.map((sb) => sb.bonus_id)
     }
-    // 🎨 Загружаем МНОЖЕСТВЕННЫЕ тематики (до 5 штук!)
+    // 🎨 Load MULTIPLE themes (up to 5!)
     if (slot.value?.slotThemes && Array.isArray(slot.value.slotThemes)) {
       selectedThemes.value = slot.value.slotThemes.map((st) => st.theme_id)
       console.log(
-        '✅ Загружено тематик:',
+        '✅ Themes loaded:',
         selectedThemes.value.length,
         selectedThemes.value,
       )
     }
 
-    // 🎯 Загружаем JSON-LD настройки в отдельную форму
+    // 🎯 Load JSON-LD settings into a separate form
     const jsonLdFields = [
       'jsonld_enabled', 'jsonld_type', 'jsonld_game_genre', 'jsonld_game_platform',
       'jsonld_content_rating', 'jsonld_is_free', 'jsonld_enable_product', 'jsonld_enable_review',
@@ -6641,9 +6464,9 @@ const loadSlot = async () => {
         jsonLdForm.value[field] = slot.value[field]
       }
     })
-    console.log('✅ JSON-LD настройки загружены:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
+    console.log('✅ JSON-LD settings loaded:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
 
-    // 📊 ФАЗА 3: Загружаем SEO Health Score настройки
+    // 📊 PHASE 3: Load SEO Health Score settings
     const seoHealthFields = [
       'seo_health_score', 'seo_health_issues', 'seo_health_warnings',
       'seo_health_passed', 'seo_health_last_audit', 'seo_health_trend'
@@ -6654,7 +6477,7 @@ const loadSlot = async () => {
       }
     })
 
-    // 📈 ФАЗА 3: Загружаем Indexing Status настройки
+    // 📈 PHASE 3: Load Indexing Status settings
     const indexingFields = [
       'indexing_status', 'indexing_first_date', 'indexing_last_crawl', 'indexing_crawl_frequency',
       'indexing_impressions', 'indexing_clicks', 'indexing_position', 'indexing_internal_links',
@@ -6666,7 +6489,7 @@ const loadSlot = async () => {
       }
     })
 
-    // ⚡ ФАЗА 3: Загружаем Page Speed / Core Web Vitals настройки
+    // ⚡ PHASE 3: Load Page Speed / Core Web Vitals settings
     const pageSpeedFields = [
       'cwv_lcp', 'cwv_fid', 'cwv_cls', 'cwv_ttfb', 'cwv_fcp', 'cwv_inp',
       'cwv_score_mobile', 'cwv_score_desktop', 'cwv_last_check', 'cwv_issues', 'cwv_opportunities'
@@ -6677,7 +6500,7 @@ const loadSlot = async () => {
       }
     })
 
-    // 🗺️ ФАЗА 3: Загружаем Sitemap настройки
+    // 🗺️ PHASE 3: Load Sitemap settings
     const sitemapFields = [
       'sitemap_include', 'sitemap_priority', 'sitemap_frequency',
       'sitemap_last_mod', 'sitemap_images', 'sitemap_videos', 'sitemap_news'
@@ -6687,9 +6510,9 @@ const loadSlot = async () => {
         sitemapForm.value[field] = slot.value[field]
       }
     })
-    console.log('✅ ФАЗА 3: SEO аналитика загружена')
+    console.log('✅ PHASE 3: SEO analytics loaded')
 
-    // 🌍 Загружаем Geo Targeting из БД в technicalSeoForm
+    // 🌍 Load Geo Targeting from DB into technicalSeoForm
     if (slot.value?.geo_regions) {
       try {
         const regions = JSON.parse(slot.value.geo_regions)
@@ -6698,14 +6521,14 @@ const loadSlot = async () => {
             ...technicalSeoForm.value,
             regions: regions
           }
-          console.log('✅ Geo Targeting загружен:', regions.length, 'регионов')
+          console.log('✅ Geo Targeting loaded:', regions.length, 'regions')
         }
       } catch (e) {
-        console.warn('⚠️ Ошибка парсинга geo_regions:', e)
+        console.warn('⚠️ Error parsing geo_regions:', e)
       }
     }
 
-    // Если reels и rows не заданы, но есть game_field, пытаемся извлечь их
+    // If reels and rows are not set, but game_field is, try to extract them
     if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
       const match = slot.value.game_field.match(/(\d+)×(\d+)/)
       if (match) {
@@ -6714,7 +6537,7 @@ const loadSlot = async () => {
       }
     }
 
-    // Определяем тип paylines (число или текст)
+    // Determine paylines type (number or text)
     if (slot.value?.paylines !== undefined) {
       const paylineValue = slot.value.paylines
       if (
@@ -6727,16 +6550,16 @@ const loadSlot = async () => {
       }
     }
 
-    // Авто-заполняем пустые Info Popup поля дефолтным контентом (как на клиенте)
-    // generateInfoContent заполняет только пустые поля и вызывает initInfoArrays() в конце
+    // Auto-fill empty Info Popup fields with default content (like on client)
+    // generateInfoContent fills only empty fields and calls initInfoArrays() at the end
     generateInfoContent()
   } catch (error) {
-    console.error('Ошибка загрузки слота:', error)
+    console.error('Error loading slot:', error)
     await router.push('/admin/slots')
   }
 }
 
-// Автогенерация slug из названия
+// Auto-generation of slug from name
 watch(
   () => form.value.name,
   (newName) => {
@@ -6750,38 +6573,38 @@ watch(
   },
 )
 
-// Computed свойства для получения названий (избегаем проблем с сериализацией функций)
+// Computed properties for getting names (avoiding function serialization issues)
 const currentProviderName = computed(() => {
   const provider = providers.value.find((p) => p.id === form.value.provider_id)
-  return provider?.name || 'Провайдер'
+  return provider?.name || 'Provider'
 })
 
 const currentVolatilityText = computed(() => {
   const map = {
-    low: 'Низкая',
-    medium: 'Средняя',
-    high: 'Высокая',
+    low: 'Low',
+    medium: 'Medium',
+    high: 'High',
   }
-  return map[form.value.volatility] || 'Средняя'
+  return map[form.value.volatility] || 'Medium'
 })
 
-// Функции для получения названий по ID (используются только в шаблоне)
+// Functions to get names by ID (used only in template)
 const getMechanicName = (mechanicId) => {
   const mechanic = availableMechanics.value.find((m) => m.id === mechanicId)
-  return mechanic?.name || 'Неизвестная механика'
+  return mechanic?.name || 'Unknown mechanic'
 }
 
 const getBonusName = (bonusId) => {
   const bonus = availableBonuses.value.find((b) => b.id === bonusId)
-  return bonus?.name || 'Неизвестный бонус'
+  return bonus?.name || 'Unknown bonus'
 }
 
 const getThemeName = (themeId) => {
   const theme = availableThemes.value.find((t) => t.id === themeId)
-  return theme?.name || 'Неизвестная тематика'
+  return theme?.name || 'Unknown theme'
 }
 
-// Computed свойства для фильтрации бонусов и тематик
+// Computed properties for filtering bonuses and themes
 const filteredBonuses = computed(() => {
   let filtered = availableBonuses.value
 
@@ -6813,7 +6636,7 @@ const filteredThemes = computed(() => {
   return filtered
 })
 
-// Функции для управления бонусами
+// Functions for managing bonuses
 const selectAllBonuses = () => {
   selectedBonuses.value = filteredBonuses.value.map((bonus) => bonus.id)
 }
@@ -6828,12 +6651,12 @@ const selectPopularBonuses = () => {
     .map((bonus) => bonus.id)
 }
 
-// Функции для управления тематиками (только одна тематика)
+// Functions for managing themes (only one theme)
 const clearAllThemes = () => {
   selectedThemes.value = []
 }
 
-// Функция для прокрутки к секции
+// Function to scroll to a section
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
   if (element) {
@@ -6841,7 +6664,7 @@ const scrollToSection = (sectionId) => {
   }
 }
 
-// Сохранение изменений
+// Save changes
 const saveSlot = async () => {
   if (saving.value) return
 
@@ -6855,14 +6678,14 @@ const saveSlot = async () => {
 
     const method = slotId === 'new' ? 'POST' : 'PUT'
 
-    // Список полей, которые разрешены в UpdateSlotDto
+    // List of fields allowed in UpdateSlotDto
     const allowedFields = [
       'slug',
       'name',
       'description',
-      'hero_keyword', // Ключевое слово для заголовка Hero секции
-      'hero_keyword_2', // Первая переменная в описании
-      'hero_keyword_3', // Вторая переменная в описании
+      'hero_keyword', // Keyword for Hero section title
+      'hero_keyword_2', // First variable in description
+      'hero_keyword_3', // Second variable in description
       'provider_id',
       'category_id',
       'media_type',
@@ -6895,7 +6718,7 @@ const saveSlot = async () => {
       'bonus_frequency',
       'show_awards',
       'awards',
-      // Полный обзор слота 2025
+      // Full Slot Review 2025
       'overview_title',
       'overview_keyword_1',
       'overview_keyword_2',
@@ -6909,7 +6732,7 @@ const saveSlot = async () => {
       'overview_features_4',
       'overview_features_5',
       'overview_features_6',
-      // Раздел "Насколько популярен"
+      // "How Popular" Section
       'popularity_title',
       'popularity_title_keyword',
       'popularity_global_rank',
@@ -6918,11 +6741,11 @@ const saveSlot = async () => {
       'popularity_players_desc',
       'popularity_rtp_score',
       'popularity_rtp_desc',
-      // Заголовки подразделов
+      // Subsection headings
       'popularity_stats_title',
       'popularity_trend_title',
       'popularity_facts_title',
-      // Статистика по годам
+      // Statistics by year
       'popularity_year_1',
       'popularity_rank_1',
       'popularity_width_1',
@@ -6939,7 +6762,7 @@ const saveSlot = async () => {
       'popularity_rank_4',
       'popularity_width_4',
       'popularity_label_4',
-      // Ключевые факты
+      // Key facts
       'popularity_fact_icon_1',
       'popularity_fact_text_1',
       'popularity_fact_icon_2',
@@ -6948,12 +6771,12 @@ const saveSlot = async () => {
       'popularity_fact_text_3',
       'popularity_fact_icon_4',
       'popularity_fact_text_4',
-      // Тренд популярности
+      // Popularity trend
       'popularity_trend_y1',
       'popularity_trend_y2',
       'popularity_trend_y3',
       'popularity_trend_y4',
-      // Основные механики
+      // Core mechanics
       'mechanics_title',
       'mechanics_intro',
       'mechanics_scatter_title',
@@ -6967,7 +6790,7 @@ const saveSlot = async () => {
       'mechanics_multipliers_details',
       'mechanics_multipliers_important_title',
       'mechanics_multipliers_important',
-      // Дополнительные механики
+      // Additional mechanics
       'mechanics_freespins_title',
       'mechanics_freespins_description',
       'mechanics_freespins_details',
@@ -6977,7 +6800,7 @@ const saveSlot = async () => {
       'mechanics_bonus_title',
       'mechanics_bonus_description',
       'mechanics_bonus_details',
-      // Бесплатные спины
+      // Free spins
       'free_spins_title',
       'free_spins_intro',
       'free_spins_instant_title',
@@ -7022,10 +6845,10 @@ const saveSlot = async () => {
       'faq_q4_emoji',
       'faq_q4_question',
       'faq_q4_answer',
-      // Отзывы игроков - заголовки и статистика
+      // Player reviews - headings and statistics
       'reviews_title',
       'reviews_subtitle',
-      // Карточки статистики
+      // Stat cards
       'reviews_overall_rating',
       'reviews_overall_label',
       'reviews_overall_stars',
@@ -7038,11 +6861,11 @@ const saveSlot = async () => {
       'reviews_recommend_percent',
       'reviews_recommend_label',
       'reviews_recommend_desc',
-      // Заголовки секций
+      // Section headings
       'reviews_distribution_title',
       'reviews_sentiments_title',
       'reviews_featured_title',
-      // Распределение оценок
+      // Rating distribution
       'reviews_5_stars_percent',
       'reviews_5_stars_count',
       'reviews_4_stars_percent',
@@ -7053,7 +6876,7 @@ const saveSlot = async () => {
       'reviews_2_stars_count',
       'reviews_1_stars_percent',
       'reviews_1_stars_count',
-      // Ключевые моменты из отзывов (sentiment analysis)
+      // Key points from reviews (sentiment analysis)
       'reviews_sentiment_1_title',
       'reviews_sentiment_1_desc',
       'reviews_sentiment_2_title',
@@ -7062,7 +6885,7 @@ const saveSlot = async () => {
       'reviews_sentiment_3_desc',
       'reviews_sentiment_4_title',
       'reviews_sentiment_4_desc',
-      // Индивидуальные отзывы
+      // Individual reviews
       'review_1_author',
       'review_1_avatar_letter',
       'review_1_rating',
@@ -7087,14 +6910,14 @@ const saveSlot = async () => {
       'review_3_likes',
       'review_3_replies',
       'review_3_date',
-      // Профессиональная оценка - заголовки и общая информация
+      // Professional rating - headings and general info
       'prof_rating_title',
       'prof_rating_subtitle',
       'prof_rating_overall_title',
       'prof_rating_overall_desc',
       'prof_rating_overall_score',
       'prof_rating_overall_stars',
-      // Детальные метрики (5 категорий оценки)
+      // Detailed metrics (5 evaluation categories)
       'prof_rating_metric_1_emoji',
       'prof_rating_metric_1_name',
       'prof_rating_metric_1_score',
@@ -7110,16 +6933,16 @@ const saveSlot = async () => {
       'prof_rating_metric_5_emoji',
       'prof_rating_metric_5_name',
       'prof_rating_metric_5_score',
-      // Экспертное заключение
-      'prof_rating_expert_title', // Заголовок секции
-      'prof_rating_expert_name', // Имя эксперта (badge)
-      'prof_rating_expert_position', // Должность эксперта
-      'prof_rating_expert_quote', // Цитата эксперта
-      'prof_rating_expert_quote_keyword', // Ключевое слово для цитаты
-      // Предупреждение о волатильности
+      // Expert Conclusion
+      'prof_rating_expert_title', // Section title
+      'prof_rating_expert_name', // Expert name (badge)
+      'prof_rating_expert_position', // Expert position
+      'prof_rating_expert_quote', // Expert quote
+      'prof_rating_expert_quote_keyword', // Keyword for quote
+      // Volatility warning
       'prof_rating_warning_title',
       'prof_rating_warning_text',
-      // Преимущества
+      // Pros
       'prof_rating_pros_title',
       'prof_rating_pros_1_title',
       'prof_rating_pros_1_desc',
@@ -7131,7 +6954,7 @@ const saveSlot = async () => {
       'prof_rating_pros_4_desc',
       'prof_rating_pros_5_title',
       'prof_rating_pros_5_desc',
-      // Недостатки
+      // Cons
       'prof_rating_cons_title',
       'prof_rating_cons_1_title',
       'prof_rating_cons_1_desc',
@@ -7143,38 +6966,38 @@ const saveSlot = async () => {
       'prof_rating_cons_4_desc',
       'prof_rating_cons_5_title',
       'prof_rating_cons_5_desc',
-      // Итоговая рекомендация
+      // Final recommendation
       'prof_rating_recommendation_title',
       'prof_rating_recommendation_subtitle',
       'prof_rating_recommendation_text',
       'prof_rating_recommendation_keyword',
-      // Секция "Заключение" (Conclusion)
+      // "Conclusion" Section
       'conclusion_title',
-      'conclusion_rating_title', // Заголовок Final Rating с плейсхолдером
-      'conclusion_rating_keyword', // Ключевое слово для Final Rating
+      'conclusion_rating_title', // Final Rating title with placeholder
+      'conclusion_rating_keyword', // Keyword for Final Rating
       'conclusion_text_1',
-      'conclusion_text_1_keyword', // Ключевое слово для Paragraph 1
+      'conclusion_text_1_keyword', // Keyword for Paragraph 1
       'conclusion_text_2',
-      'conclusion_suitable_title', // Заголовок секции "Кому подходит"
+      'conclusion_suitable_title', // "Best Suited For" section title
       'conclusion_suitable_1',
       'conclusion_suitable_2',
       'conclusion_suitable_3',
       'conclusion_suitable_4',
-      'conclusion_warning_title', // Заголовок секции "Важно помнить"
+      'conclusion_warning_title', // "Keep in Mind" section title
       'conclusion_warning_1',
       'conclusion_warning_2',
       'conclusion_warning_3',
       'conclusion_warning_4',
-      'conclusion_verdict_title', // Заголовок секции Финальный вердикт
-      'conclusion_verdict_text', // Текст финального вердикта
-      'conclusion_verdict_keyword', // Ключевое слово для финального вердикта
-      // Секция CTA "Время побеждать"
+      'conclusion_verdict_title', // Final verdict section title
+      'conclusion_verdict_text', // Final verdict text
+      'conclusion_verdict_keyword', // Keyword for final verdict
+      // CTA Section "Time to Win"
       'cta_title',
       'cta_subtitle',
-      'cta_subtitle_keyword', // Ключевое слово для subtitle
+      'cta_subtitle_keyword', // Keyword for subtitle
       'cta_potential',
-      'cta_potential_prefix', // Текст перед win potential
-      'cta_potential_suffix', // Текст после win potential
+      'cta_potential_prefix', // Text before win potential
+      'cta_potential_suffix', // Text after win potential
       'cta_feature_1_emoji',
       'cta_feature_1_title',
       'cta_feature_1_desc',
@@ -7215,7 +7038,7 @@ const saveSlot = async () => {
       'jsonld_video_thumbnail',
       'jsonld_video_duration',
       'jsonld_video_description',
-      // ========== SEO МЕТА-ТЕГИ ==========
+      // ========== SEO META TAGS ==========
       'seo_title',
       'seo_description',
       'seo_keywords_primary',
@@ -7229,7 +7052,7 @@ const saveSlot = async () => {
       'seo_title_use_template',
       'search_intent',
       'canonical_url',
-      // ========== OPEN GRAPH ТЕГИ ==========
+      // ========== OPEN GRAPH TAGS ==========
       'og_title',
       'og_description',
       'og_image',
@@ -7245,7 +7068,7 @@ const saveSlot = async () => {
       'og_image_width',
       'og_image_height',
       'og_image_alt',
-      // ========== TWITTER CARD ТЕГИ ==========
+      // ========== TWITTER CARD TAGS ==========
       'twitter_card',
       'twitter_site',
       'twitter_creator',
@@ -7270,7 +7093,7 @@ const saveSlot = async () => {
       'hreflang_x_default',
       'hreflang_config',
       'hreflang_preset',
-      // ========== ТЕХНИЧЕСКИЕ SEO ==========
+      // ========== TECHNICAL SEO ==========
       'author_meta',
       'publisher_meta',
       'copyright_meta',
@@ -7280,7 +7103,7 @@ const saveSlot = async () => {
       'preconnect_urls',
       'preload_image',
       'dns_prefetch_urls',
-      // ========== E-E-A-T СИГНАЛЫ ==========
+      // ========== E-E-A-T SIGNALS ==========
       'eeat_experience_date',
       'eeat_experience_hours',
       'eeat_experience_sessions',
@@ -7327,7 +7150,7 @@ const saveSlot = async () => {
       'cta_secondary_url',
       'cta_urgency_text',
       'cta_social_proof',
-      // ========== ФАЗА 3: Поля аналитики и производительности ==========
+      // ========== PHASE 3: Analytics and performance fields ==========
       // Keyword Density
       'keyword_primary_target',
       'keyword_density_score',
@@ -7378,7 +7201,7 @@ const saveSlot = async () => {
       'competitor_urls',
       'competitor_positions',
       'competitor_last_check',
-      // ========== 👤 ИНФОРМАЦИЯ ОБ АВТОРЕ И ДАТЕ ОБНОВЛЕНИЯ ==========
+      // ========== 👤 AUTHOR INFOMATION AND UPDATE DATE ==========
       'article_author_name',
       'article_author_role',
       'article_author_photo',
@@ -7397,74 +7220,74 @@ const saveSlot = async () => {
       'article_show_update_date',
     ]
 
-    // Подготавливаем данные для отправки - только разрешенные поля
+    // Prepare data to send - only allowed fields
     const dataToSend = {}
 
-    // 🎯 Добавляем JSON-LD поля из отдельной формы
+    // 🎯 Add JSON-LD fields from a separate form
     Object.keys(jsonLdForm.value).forEach((key) => {
       if (jsonLdForm.value[key] !== undefined && jsonLdForm.value[key] !== null) {
         dataToSend[key] = jsonLdForm.value[key]
       }
     })
 
-    // 📊 ФАЗА 3: Добавляем SEO Health Score поля
+    // 📊 PHASE 3: Add SEO Health Score fields
     Object.keys(seoHealthForm.value).forEach((key) => {
       if (seoHealthForm.value[key] !== undefined) {
         dataToSend[key] = seoHealthForm.value[key]
       }
     })
 
-    // 📈 ФАЗА 3: Добавляем Indexing Status поля
+    // 📈 PHASE 3: Add Indexing Status fields
     Object.keys(indexingForm.value).forEach((key) => {
       if (indexingForm.value[key] !== undefined) {
         dataToSend[key] = indexingForm.value[key]
       }
     })
 
-    // ⚡ ФАЗА 3: Добавляем Page Speed / Core Web Vitals поля
+    // ⚡ PHASE 3: Add Page Speed / Core Web Vitals fields
     Object.keys(pageSpeedForm.value).forEach((key) => {
       if (pageSpeedForm.value[key] !== undefined) {
         dataToSend[key] = pageSpeedForm.value[key]
       }
     })
 
-    // 🗺️ ФАЗА 3: Добавляем Sitemap поля
+    // 🗺️ PHASE 3: Add Sitemap fields
     Object.keys(sitemapForm.value).forEach((key) => {
       if (sitemapForm.value[key] !== undefined) {
         dataToSend[key] = sitemapForm.value[key]
       }
     })
 
-    console.log('🔍 Форма перед сохранением:', form.value)
-    console.log('📋 Разрешенные поля:', allowedFields)
+    console.log('🔍 Form before save:', form.value)
+    console.log('📋 Allowed fields:', allowedFields)
 
-    // Специальная проверка overview_features полей
-    console.log('🎯 Проверка overview_features:')
+    // Special check for overview_features fields
+    console.log('🎯 Checking overview_features:')
     for (let i = 1; i <= 6; i++) {
       const fieldName = `overview_features_${i}`
       console.log(`  ${fieldName}:`, form.value[fieldName])
     }
 
-    // Копируем только разрешенные поля из формы
+    // Copy only allowed fields from the form
     allowedFields.forEach((field) => {
       if (form.value[field] !== undefined) {
-        // Специальная обработка для числовых полей
+        // Special handling for numeric fields
         if (field.startsWith('popularity_width_')) {
           dataToSend[field] = parseInt(form.value[field]) || 0
         } else if (field.startsWith('popularity_trend_y')) {
-          // Для графика: null если пусто, иначе число
+          // For chart: null if empty, otherwise number
           dataToSend[field] =
             form.value[field] === null ? null : parseInt(form.value[field])
         } else {
           dataToSend[field] = form.value[field]
         }
-        console.log(`✅ Копируем поле ${field}:`, form.value[field])
+        console.log(`✅ Copying field ${field}:`, form.value[field])
       } else {
-        console.log(`❌ Пропускаем поле ${field}: undefined`)
+        console.log(`❌ Skipping field ${field}: undefined`)
       }
     })
 
-    // Маппинг полей стратегий из формы (strategies_*) в DTO бэкенда (strategy_*)
+    // Mapping strategy fields from form (strategies_*) to backend DTO (strategy_*)
     dataToSend.strategy_title = form.value.strategies_title
     dataToSend.strategy_intro = form.value.strategies_intro
     dataToSend.strategy_beginner_title = form.value.strategies_beginners_title
@@ -7477,13 +7300,13 @@ const saveSlot = async () => {
     dataToSend.strategy_advanced_2 = form.value.strategy_advanced_2
     dataToSend.strategy_advanced_3 = form.value.strategy_advanced_3
     dataToSend.strategy_advanced_4 = form.value.strategy_advanced_4
-    // Важные предупреждения
+    // Important warnings
     dataToSend.strategy_warnings_title = form.value.strategy_warnings_title
     dataToSend.strategy_warning_1_title = form.value.strategy_warning_1_title
     dataToSend.strategy_warning_1_text = form.value.strategy_warning_1_text
     dataToSend.strategy_warning_2_title = form.value.strategy_warning_2_title
     dataToSend.strategy_warning_2_text = form.value.strategy_warning_2_text
-    // В чем секрет успеха
+    // Secret of success
     dataToSend.success_secret_title = form.value.success_secret_title
     dataToSend.success_secret_intro = form.value.success_secret_intro
     dataToSend.success_secret_card_1_title =
@@ -7496,22 +7319,22 @@ const saveSlot = async () => {
       form.value.success_secret_card_2_text
     dataToSend.success_secret_outro = form.value.success_secret_outro
 
-    // Добавляем данные из отдельных переменных
+    // Add data from separate variables
     dataToSend.selected_mechanics = selectedMechanics.value
     dataToSend.selected_bonuses = selectedBonuses.value
     dataToSend.selected_themes = selectedThemes.value
 
-    // 🌍 Geo Targeting — сохраняем выбранные регионы из TechnicalSEO
+    // 🌍 Geo Targeting — save selected regions from TechnicalSEO
     dataToSend.geo_regions = JSON.stringify(technicalSeoForm.value.regions || [])
 
-    // Автоматически формируем game_field из reels и rows
+    // Automatically form game_field from reels and rows
     dataToSend.game_field =
       form.value.reels && form.value.rows
         ? `${form.value.reels}×${form.value.rows}`
         : form.value.game_field
 
-    // Отладочный вывод данных перед отправкой
-    console.log('Отправляем данные:', {
+    // Debug output data before sending
+    console.log('Sending data:', {
       url,
       method,
       data: dataToSend,
@@ -7522,44 +7345,44 @@ const saveSlot = async () => {
       body: dataToSend,
     })
 
-    // Отладочный вывод ответа
-    console.log('Ответ сервера:', response)
+    // Debug output response
+    console.log('Server response:', response)
 
-    // Показываем уведомление об успешном сохранении
-    alert('Слот успешно сохранен!')
+    // Show success notification
+    alert('Slot saved successfully!')
 
     if (slotId === 'new' && response.data?.id) {
-      // После создания нового слота переходим на его страницу редактирования по корректному маршруту
+      // After creating a new slot, navigate to its edit page via the correct route
       await router.push(`/admin/slots/${response.data.id}`)
     }
   } catch (error) {
-    console.error('Ошибка сохранения:', error)
-    alert(`Ошибка сохранения: ${error.message || error}`)
+    console.error('Save error:', error)
+    alert(`Save error: ${error.message || error}`)
   } finally {
     saving.value = false
   }
 }
 
-// Обработчики медиа событий
+// Media event handlers
 const handleImageError = (event) => {
-  console.error('❌ Ошибка загрузки изображения:', form.value.image_url)
+  console.error('❌ Error loading image:', form.value.image_url)
   imageLoading.value = false
   imageError.value = true
   event.target.style.display = 'none'
 }
 
 const handleImageLoad = (event) => {
-  console.log('✅ Изображение успешно загружено:', form.value.image_url)
+  console.log('✅ Image successfully loaded:', form.value.image_url)
   imageLoading.value = false
   imageError.value = false
   event.target.style.display = 'block'
 }
 
-// 🪄 Авто-генерация JSON-LD контента (использует данные из Info Popup Content)
+// 🪄 Auto-generate JSON-LD content (uses data from Info Popup Content)
 const autoGenerateJsonLd = () => {
-  const slotName = form.value.name || 'этот слот'
+  const slotName = form.value.name || 'this slot'
 
-  // Сначала убедимся, что Info Popup Content заполнен
+  // First, make sure Info Popup Content is filled
   if (!form.value.info_faq || !form.value.info_reviews || !form.value.info_how_to_play) {
     generateInfoContent()
   }
@@ -7571,14 +7394,14 @@ const autoGenerateJsonLd = () => {
   jsonLdForm.value.jsonld_enable_howto = true
   jsonLdForm.value.jsonld_enable_breadcrumb = true
 
-  // Review & AggregateRating — из info_reviews
+  // Review & AggregateRating — from info_reviews
   try {
     const reviews = JSON.parse(form.value.info_reviews || '[]')
     if (reviews.length > 0) {
       jsonLdForm.value.jsonld_review_author = reviews[0].author || 'SlotQuest Editorial Team'
       jsonLdForm.value.jsonld_review_rating = reviews[0].rating || 5
       jsonLdForm.value.jsonld_review_text = reviews[0].text || ''
-      // AggregateRating из всех отзывов
+      // AggregateRating from all reviews
       const avgRating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length
       jsonLdForm.value.jsonld_aggregate_rating = Math.round(avgRating * 10) / 10
       jsonLdForm.value.jsonld_aggregate_count = reviews.length
@@ -7586,15 +7409,15 @@ const autoGenerateJsonLd = () => {
   } catch(e) {
     jsonLdForm.value.jsonld_review_author = 'SlotQuest Editorial Team'
     jsonLdForm.value.jsonld_review_rating = 4.5
-    jsonLdForm.value.jsonld_review_text = slotName + ' — отличный выбор для любителей качественных слотов.'
+    jsonLdForm.value.jsonld_review_text = slotName + ' is a great choice for quality slots lovers.'
     jsonLdForm.value.jsonld_aggregate_rating = 4.5
     jsonLdForm.value.jsonld_aggregate_count = 3
   }
 
-  // FAQ — напрямую из info_faq
+  // FAQ — directly from info_faq
   jsonLdForm.value.jsonld_faq_json = form.value.info_faq || '[]'
 
-  // HowTo — из info_how_to_play (адаптируем формат)
+  // HowTo — from info_how_to_play (adapt format)
   try {
     const steps = JSON.parse(form.value.info_how_to_play || '[]')
     jsonLdForm.value.jsonld_howto_json = JSON.stringify(
@@ -7604,7 +7427,7 @@ const autoGenerateJsonLd = () => {
     jsonLdForm.value.jsonld_howto_json = '[]'
   }
 
-  alert('✅ JSON-LD схемы синхронизированы с Info Popup Content!')
+  alert('✅ JSON-LD schemas synchronized with Info Popup Content!')
 }
 
 const handleVideoError = (event) => {
@@ -7615,7 +7438,7 @@ const handleVideoLoad = (event) => {
   event.target.style.display = 'block'
 }
 
-// Расчёт SEO Score для Meta тегов (0-100%)
+// Calculate SEO Score for Meta tags (0-100%)
 const calculateMetaScore = () => {
   let score = 0
   const titleLen = (form.value.seo_title || '').length
@@ -7657,25 +7480,25 @@ const calculateMetaScore = () => {
 
 const handlePreviewImageError = (event) => {
   event.target.parentElement.innerHTML =
-    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки изображения</div>'
+    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Error loading image</div>'
 }
 
 const handlePreviewVideoError = (event) => {
   event.target.parentElement.innerHTML =
-    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Ошибка загрузки видео</div>'
+    '<div class="flex items-center justify-center h-full text-white/60 text-xs">Error loading video</div>'
 }
 
-// Сброс формы к исходному состоянию
+// Reset form to initial state
 const resetForm = () => {
   if (slot.value) {
-    // Восстанавливаем из исходных данных слота
+    // Restore from initial slot data
     Object.keys(form.value).forEach((key) => {
       if (slot.value?.[key] !== undefined) {
         form.value[key] = slot.value[key]
       }
     })
   } else {
-    // Сброс к значениям по умолчанию для нового слота
+    // Reset to default values for a new slot
     Object.assign(form.value, {
       name: '',
       slug: '',
@@ -7691,32 +7514,32 @@ const resetForm = () => {
       popularity_rank: 12,
       game_field: '6×5',
       paylines: 'Scatter Pays',
-      // Медиа поля
+      // Media fields
       media_type: 'image',
       image_url: '',
       video_url: '',
-      // Ссылки кнопок
+      // Button links
       demo_url: '',
       real_play_url: '',
     })
   }
 }
 
-// ========== ФУНКЦИИ АВТО-ГЕНЕРАЦИИ SEO ==========
+// ========== SEO AUTO-GENERATION FUNCTIONS ==========
 
-// Генерация авто-title (для preview)
+// Auto-title generation (for preview)
 const generateAutoTitle = () => {
   const name = form.value.name || 'Slot'
   const provider = slot.value?.providers?.name || ''
   const rtp = form.value.rtp || ''
 
-  // Формат: "Name Slot by Provider | RTP% | Play Free | SlotQuest"
+  // Format: "Name Slot by Provider | RTP% | Play Free | SlotQuest"
   let title = `${name}`
   if (provider) title += ` by ${provider}`
   if (rtp) title += ` | RTP ${rtp}%`
   title += ' | Play Free'
 
-  // Обрезаем до 60 символов
+  // Trim to 60 characters
   if (title.length > 60) {
     title = title.substring(0, 57) + '...'
   }
@@ -7724,7 +7547,7 @@ const generateAutoTitle = () => {
   return title
 }
 
-// Генерация авто-description (для preview)
+// Auto-description generation (for preview)
 const generateAutoDescription = () => {
   const name = form.value.name || 'this exciting slot'
   const provider = slot.value?.providers?.name || 'top provider'
@@ -7732,10 +7555,10 @@ const generateAutoDescription = () => {
   const volatility = form.value.volatility || 'medium'
   const maxWin = form.value.max_win || '5000'
 
-  // Формат: "Play Name slot by Provider. RTP%, Volatility volatility, Max Win x. Free demo & real money!"
+  // Format: "Play Name slot by Provider. RTP%, Volatility volatility, Max Win x. Free demo & real money!"
   let desc = `Play ${name} slot by ${provider}. RTP ${rtp}%, ${volatility} volatility, max win ${maxWin}x. Free demo available!`
 
-  // Обрезаем до 160 символов
+  // Trim to 160 characters
   if (desc.length > 160) {
     desc = desc.substring(0, 157) + '...'
   }
@@ -7743,34 +7566,34 @@ const generateAutoDescription = () => {
   return desc
 }
 
-// Функция для кнопки авто-генерации Title
+// Function for Title auto-generation button
 const generateSeoTitle = () => {
   form.value.seo_title = generateAutoTitle()
 }
 
-// Функция для кнопки авто-генерации Description
+// Function for Description auto-generation button
 const generateSeoDescription = () => {
   form.value.seo_description = generateAutoDescription()
 }
 
-// ========== ФУНКЦИИ ДЛЯ OPEN GRAPH ==========
+// ========== OPEN GRAPH FUNCTIONS ==========
 
-// Получение длины OG Title (учитывая fallback)
+// Get OG Title length (considering fallback)
 const getOgTitleLen = () => {
   return (form.value.og_title || form.value.seo_title || '').length
 }
 
-// Получение длины OG Description (учитывая fallback)
+// Get OG Description length (considering fallback)
 const getOgDescLen = () => {
   return (form.value.og_description || form.value.seo_description || '').length
 }
 
-// Получение URL OG Image (учитывая fallback)
+// Get OG Image URL (considering fallback)
 const getOgImageUrl = () => {
   return form.value.og_image || form.value.image_url || ''
 }
 
-// Расчёт OG Score (0-100%)
+// Calculate OG Score (0-100%)
 const calculateOgScore = () => {
   let score = 0
   const titleLen = getOgTitleLen()
@@ -7778,7 +7601,7 @@ const calculateOgScore = () => {
   const hasImage = !!getOgImageUrl()
   const hasType = !!form.value.og_type
 
-  // Title Score (25 points) - оптимально 60-90
+  // Title Score (25 points) - optimal 60-90
   if (titleLen >= 60 && titleLen <= 90) {
     score += 25
   } else if (titleLen >= 40 && titleLen < 60) {
@@ -7787,7 +7610,7 @@ const calculateOgScore = () => {
     score += 5
   }
 
-  // Description Score (25 points) - оптимально 150-250
+  // Description Score (25 points) - optimal 150-250
   if (descLen >= 150 && descLen <= 250) {
     score += 25
   } else if (descLen >= 100 && descLen < 150) {
@@ -7805,13 +7628,13 @@ const calculateOgScore = () => {
   if (hasType) {
     score += 20
   } else {
-    score += 10 // Частичный балл за дефолтное значение
+    score += 10 // Partial score for default value
   }
 
   return score
 }
 
-// Генерация авто OG Title
+// Generate auto OG Title
 const generateAutoOgTitle = () => {
   const name = form.value.name || 'Slot Game'
   const provider = slot.value?.providers?.name || ''
@@ -7827,7 +7650,7 @@ const generateAutoOgTitle = () => {
   return title
 }
 
-// Генерация авто OG Description
+// Generate auto OG Description
 const generateAutoOgDescription = () => {
   const name = form.value.name || 'this slot'
   const provider = slot.value?.providers?.name || 'top provider'
@@ -7844,44 +7667,44 @@ const generateAutoOgDescription = () => {
   return desc
 }
 
-// Копирование из SEO Title
+// Copy from SEO Title
 const copyFromSeoTitle = () => {
   form.value.og_title = form.value.seo_title || generateAutoTitle()
 }
 
-// Копирование из SEO Description
+// Copy from SEO Description
 const copyFromSeoDescription = () => {
   form.value.og_description = form.value.seo_description || generateAutoDescription()
 }
 
-// Копирование изображения из слота
+// Copy image from slot
 const copyFromMainImage = () => {
   form.value.og_image = form.value.image_url || ''
 }
 
-// Обработка ошибки загрузки OG изображения
+// Handle OG image load error
 const handleOgImageError = (event) => {
   event.target.style.display = 'none'
 }
 
-// ========== ФУНКЦИИ ДЛЯ TWITTER CARD ==========
+// ========== TWITTER CARD FUNCTIONS ==========
 
-// Получение длины Twitter Title (учитывая fallback)
+// Get Twitter Title length (considering fallback)
 const getTwitterTitleLen = () => {
   return (form.value.twitter_title || form.value.og_title || form.value.seo_title || '').length
 }
 
-// Получение длины Twitter Description (учитывая fallback)
+// Get Twitter Description length (considering fallback)
 const getTwitterDescLen = () => {
   return (form.value.twitter_description || form.value.og_description || form.value.seo_description || '').length
 }
 
-// Получение URL Twitter Image (учитывая fallback)
+// Get Twitter Image URL (considering fallback)
 const getTwitterImageUrl = () => {
   return form.value.twitter_image || form.value.og_image || form.value.image_url || ''
 }
 
-// Расчёт Twitter Score (0-100%)
+// Calculate Twitter Score (0-100%)
 const calculateTwitterScore = () => {
   let score = 0
   const titleLen = getTwitterTitleLen()
@@ -7889,7 +7712,7 @@ const calculateTwitterScore = () => {
   const hasImage = !!getTwitterImageUrl()
   const hasLargeCard = form.value.twitter_card === 'summary_large_image'
 
-  // Title Score (25 points) - оптимально 40-70
+  // Title Score (25 points) - optimal 40-70
   if (titleLen >= 40 && titleLen <= 70) {
     score += 25
   } else if (titleLen >= 30 && titleLen < 40) {
@@ -7898,7 +7721,7 @@ const calculateTwitterScore = () => {
     score += 5
   }
 
-  // Description Score (25 points) - оптимально 100-200
+  // Description Score (25 points) - optimal 100-200
   if (descLen >= 100 && descLen <= 200) {
     score += 25
   } else if (descLen >= 80 && descLen < 100) {
@@ -7922,29 +7745,29 @@ const calculateTwitterScore = () => {
   return score
 }
 
-// Копирование из OG Title
+// Copy from OG Title
 const copyFromOgTitle = () => {
   form.value.twitter_title = form.value.og_title || form.value.seo_title || generateAutoTitle()
 }
 
-// Копирование из OG Description
+// Copy from OG Description
 const copyFromOgDescription = () => {
   form.value.twitter_description = form.value.og_description || form.value.seo_description || generateAutoDescription()
 }
 
-// Копирование изображения из OG
+// Copy image from OG
 const copyFromOgImage = () => {
   form.value.twitter_image = form.value.og_image || form.value.image_url || ''
 }
 
-// Обработка ошибки загрузки Twitter изображения
+// Handle Twitter image loader error
 const handleTwitterImageError = (event) => {
   event.target.style.display = 'none'
 }
 
-// Функции для управления секциями
+// Section management functions
 const closeAllSections = () => {
-  // Основные секции
+  // Main sections
   showHeroSection.value = false
   showBasicSection.value = false
   showHeroLinksSection.value = false
@@ -7978,7 +7801,7 @@ const closeAllSections = () => {
 }
 
 const openAllSections = () => {
-  // Основные секции
+  // Main sections
   showHeroSection.value = true
   showBasicSection.value = true
   showHeroLinksSection.value = true
@@ -8011,189 +7834,189 @@ const openAllSections = () => {
   showAwardsSection.value = true
 }
 
-// Структура секций для поиска
+// Section structure for search
 const searchableItems = [
-  // Основные секции
+  // Main sections
   {
     id: 'hero',
-    name: 'Hero Секция',
+    name: 'Hero Section',
     section: 'showHeroSection',
-    keywords: ['hero', 'главная', 'основная', 'заголовок'],
+    keywords: ['hero', 'main', 'primary', 'title'],
   },
   {
     id: 'basic',
-    name: 'Основная информация',
+    name: 'Basic Information',
     section: 'showBasicSection',
     parent: 'showHeroSection',
-    keywords: ['основная', 'название', 'слаг', 'описание', 'провайдер'],
+    keywords: ['basic', 'name', 'slug', 'description', 'provider'],
   },
   {
     id: 'links',
-    name: 'Кнопки Hero секции',
+    name: 'Hero Section Buttons',
     section: 'showHeroLinksSection',
     parent: 'showHeroSection',
-    keywords: ['кнопки', 'ссылки', 'demo', 'real', 'бесплатно', 'деньги'],
+    keywords: ['buttons', 'links', 'demo', 'real', 'free', 'money'],
   },
   {
     id: 'characteristics',
-    name: 'Характеристики игры',
+    name: 'Game Characteristics',
     section: 'showGameCharacteristicsSection',
     parent: 'showHeroSection',
     keywords: [
-      'характеристики',
+      'characteristics',
       'rtp',
-      'волатильность',
-      'ставка',
-      'выигрыш',
-      'линии',
+      'volatility',
+      'bet',
+      'win',
+      'lines',
     ],
   },
   {
     id: 'rating',
-    name: 'Рейтинг и популярность',
+    name: 'Rating and Popularity',
     section: 'showRatingSection',
     parent: 'showHeroSection',
-    keywords: ['рейтинг', 'популярность', 'позиция', 'оценка'],
+    keywords: ['rating', 'popularity', 'rank', 'score'],
   },
   {
     id: 'mechanics',
-    name: 'Игровые механики',
+    name: 'Game Mechanics',
     section: 'showMechanicsSection',
     parent: 'showHeroSection',
-    keywords: ['механики', 'игровые', 'функции'],
+    keywords: ['mechanics', 'game', 'features'],
   },
   {
     id: 'bonuses',
-    name: 'Бонусы Hero секции',
+    name: 'Hero Section Bonuses',
     section: 'showBonusesSection',
     parent: 'showHeroSection',
-    keywords: ['бонусы', 'акции', 'предложения'],
+    keywords: ['bonuses', 'promotions', 'offers'],
   },
   {
     id: 'themes',
-    name: 'Тематики Hero секции',
+    name: 'Hero Section Themes',
     section: 'showThemesSection',
     parent: 'showHeroSection',
-    keywords: ['тематики', 'темы', 'категории'],
+    keywords: ['themes', 'theme', 'categories'],
   },
 
-  // Секция "Полный обзор слота 2025"
+  // Full Slot Review 2025
   {
     id: 'overview',
-    name: 'Полный обзор слота 2025',
+    name: 'Full Slot Review 2025',
     section: 'showFullOverviewSection',
-    keywords: ['обзор', 'полный', '2025', 'описание'],
+    keywords: ['review', 'full', '2025', 'description'],
   },
   {
     id: 'overview-main',
-    name: 'Основное описание',
+    name: 'Main Description',
     section: 'showOverviewMainSection',
     parent: 'showFullOverviewSection',
-    keywords: ['основное', 'описание', 'главное'],
+    keywords: ['main', 'description', 'primary'],
   },
   {
     id: 'overview-popularity',
-    name: 'Насколько популярен',
+    name: 'How Popular',
     section: 'showOverviewPopularitySection',
     parent: 'showFullOverviewSection',
-    keywords: ['популярность', 'популярен', 'статистика'],
+    keywords: ['popularity', 'popular', 'statistics'],
   },
   {
     id: 'overview-secret',
-    name: 'В чем секрет успеха?',
+    name: 'Secret of Success?',
     section: 'showOverviewSuccessSecretSection',
     parent: 'showFullOverviewSection',
-    keywords: ['секрет', 'успех', 'причины'],
+    keywords: ['secret', 'success', 'reasons'],
   },
   {
     id: 'overview-mechanics',
-    name: 'Основные механики',
+    name: 'Core Mechanics',
     section: 'showOverviewMechanicsSection',
     parent: 'showFullOverviewSection',
-    keywords: ['механики', 'основные', 'функции'],
+    keywords: ['mechanics', 'core', 'features'],
   },
   {
     id: 'overview-freespins',
-    name: 'Бесплатные спины',
+    name: 'Free Spins',
     section: 'showOverviewFreeSpinsSection',
     parent: 'showFullOverviewSection',
-    keywords: ['бесплатные', 'спины', 'фриспины', 'free spins'],
+    keywords: ['free', 'spins', 'freespins'],
   },
   {
     id: 'overview-strategies',
-    name: 'Стратегии и советы',
+    name: 'Strategies and Tips',
     section: 'showOverviewStrategiesSection',
     parent: 'showFullOverviewSection',
-    keywords: ['стратегии', 'советы', 'рекомендации'],
+    keywords: ['strategies', 'tips', 'recommendations'],
   },
 
-  // Секция "Насколько популярен"
+  // "How Popular" Section
   {
     id: 'popularity',
-    name: 'Насколько популярен',
+    name: 'How Popular',
     section: 'showPopularitySection',
-    keywords: ['популярность', 'популярен', 'рейтинг'],
+    keywords: ['popularity', 'popular', 'rating'],
   },
   {
     id: 'popularity-title',
-    name: 'Title секции',
+    name: 'Section Title',
     section: 'showPopularityTitleSection',
     parent: 'showPopularitySection',
-    keywords: ['заголовок', 'название'],
+    keywords: ['title', 'name'],
   },
   {
     id: 'popularity-metrics',
-    name: 'Метрики популярности',
+    name: 'Popularity Metrics',
     section: 'showPopularityMetricsSection',
     parent: 'showPopularitySection',
-    keywords: ['метрики', 'статистика', 'данные'],
+    keywords: ['metrics', 'statistics', 'data'],
   },
   {
     id: 'popularity-conclusion',
-    name: 'Conclusion о популярности',
+    name: 'Popularity Conclusion',
     section: 'showPopularityConclusionSection',
     parent: 'showPopularitySection',
-    keywords: ['заключение', 'вывод', 'итог'],
+    keywords: ['conclusion', 'summary', 'result'],
   },
 
-  // Секция "Рейтинг и награды"
+  // Rating and Awards Section
   {
     id: 'awards',
-    name: 'Рейтинг и награды',
+    name: 'Rating and Awards',
     section: 'showRatingAwardsSection',
-    keywords: ['рейтинг', 'награды', 'достижения'],
+    keywords: ['rating', 'awards', 'achievements'],
   },
   {
     id: 'awards-title',
-    name: 'Title секции',
+    name: 'Section Title',
     section: 'showRatingTitleSection',
     parent: 'showRatingAwardsSection',
-    keywords: ['заголовок', 'название'],
+    keywords: ['title', 'name'],
   },
   {
     id: 'awards-main',
-    name: 'Основной рейтинг',
+    name: 'Main Rating',
     section: 'showRatingMainSection',
     parent: 'showRatingAwardsSection',
-    keywords: ['основной', 'рейтинг', 'оценка'],
+    keywords: ['main', 'rating', 'score'],
   },
   {
     id: 'awards-details',
-    name: 'Детализация рейтинга',
+    name: 'Rating Details',
     section: 'showRatingDetailsSection',
     parent: 'showRatingAwardsSection',
-    keywords: ['детализация', 'подробности', 'детали'],
+    keywords: ['details', 'breakdown', 'specifics'],
   },
   {
     id: 'awards-list',
-    name: 'Награды',
+    name: 'Awards',
     section: 'showAwardsSection',
     parent: 'showRatingAwardsSection',
-    keywords: ['награды', 'достижения', 'призы'],
+    keywords: ['awards', 'achievements', 'prizes'],
   },
 ]
 
-// Функции поиска
+// Search functions
 const handleSearch = () => {
   if (!searchQuery.value.trim()) {
     searchResults.value = []
@@ -8205,13 +8028,13 @@ const handleSearch = () => {
   const results = []
 
   searchableItems.forEach((item) => {
-    // Поиск по названию
+    // Search by name
     if (item.name.toLowerCase().includes(query)) {
       results.push({ ...item, matchType: 'name' })
       return
     }
 
-    // Поиск по ключевым словам
+    // Search by keywords
     if (
       item.keywords.some(
         (keyword) => keyword.includes(query) || query.includes(keyword),
@@ -8224,13 +8047,13 @@ const handleSearch = () => {
   searchResults.value = results
   currentSearchIndex.value = 0
 
-  // Автоматически переходим к первому результату
+  // Automatically navigate to first result
   if (results.length > 0) {
     navigateToSearchResult(0)
   }
 }
 
-// 🪄 Авто-генерация контента для Info Popup (Enhanced SEO)
+// 🪄 Auto-generate Info Popup Content (Enhanced SEO)
 const generateInfoContent = () => {
   if (!form.value.name) return
   const providerName = providers.value.find(p => p.id === form.value.provider_id)?.name || 'Provider'
@@ -8301,7 +8124,7 @@ const generateInfoContent = () => {
     form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!'
   }
 
-  // Синхронизируем reactive массивы с новыми данными формы
+  // Synchronize reactive arrays with new form data
   initInfoArrays()
 }
 
@@ -8311,7 +8134,7 @@ const navigateToSearchResult = (index) => {
   currentSearchIndex.value = index
   const result = searchResults.value[index]
 
-  // Открываем родительскую секцию если есть
+  // Open parent section if exists
   if (result.parent) {
     const parentSection = result.parent
     if (parentSection === 'showHeroSection') showHeroSection.value = true
@@ -8323,7 +8146,7 @@ const navigateToSearchResult = (index) => {
       showRatingAwardsSection.value = true
   }
 
-  // Открываем целевую секцию
+  // Open target section
   const sectionRef = result.section
   if (sectionRef === 'showHeroSection') showHeroSection.value = true
   else if (sectionRef === 'showBasicSection') showBasicSection.value = true
@@ -8368,14 +8191,14 @@ const navigateToSearchResult = (index) => {
     showRatingDetailsSection.value = true
   else if (sectionRef === 'showAwardsSection') showAwardsSection.value = true
 
-  // Прокручиваем к секции
+  // Scroll to section
   nextTick(() => {
     const element =
       document.getElementById(result.id) ||
       document.querySelector(`[data-section="${result.id}"]`)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      // Добавляем подсветку
+      // Add highlight
       element.classList.add('search-highlight')
       setTimeout(() => {
         element.classList.remove('search-highlight')
@@ -8390,14 +8213,14 @@ const handleSearchKeydown = (event) => {
   if (event.key === 'Enter') {
     event.preventDefault()
     if (event.shiftKey) {
-      // Shift+Enter - предыдущий результат
+      // Shift+Enter - previous result
       const newIndex =
         currentSearchIndex.value > 0
           ? currentSearchIndex.value - 1
           : searchResults.value.length - 1
       navigateToSearchResult(newIndex)
     } else {
-      // Enter - следующий результат
+      // Enter - next result
       const newIndex =
         currentSearchIndex.value < searchResults.value.length - 1
           ? currentSearchIndex.value + 1
@@ -8415,17 +8238,17 @@ const clearSearch = () => {
   currentSearchIndex.value = 0
 }
 
-// Горячие клавиши
+// Global hotkeys
 const handleGlobalKeydown = (event) => {
-  // Ctrl+F - фокус на поиск
+  // Ctrl+F - focus search
   if (event.ctrlKey && event.key === 'f') {
     event.preventDefault()
-    // Приоритет: навигационная поисковая строка (всегда видна)
+    // Priority: navigation search bar (always visible)
     if (navSearchInput.value) {
       navSearchInput.value.focus()
       navSearchInput.value.select()
     }
-    // Резерв: мобильная или боковая панель
+    // Fallback: mobile or sidebar search
     else {
       const isMobile = window.innerWidth < 1024
       const targetInput = isMobile ? mobileSearchInput.value : searchInput.value
@@ -8435,18 +8258,18 @@ const handleGlobalKeydown = (event) => {
       }
     }
   }
-  // Ctrl+S - сохранить
+  // Ctrl+S - save
   else if (event.ctrlKey && event.key === 's') {
     event.preventDefault()
     saveSlot()
   }
-  // Escape - очистить поиск
+  // Escape - clear search
   else if (event.key === 'Escape' && searchQuery.value) {
     clearSearch()
   }
 }
 
-// Подключаем обработчики клавиш при монтировании
+// Connect key bindings on mount
 onMounted(() => {
   document.addEventListener('keydown', handleGlobalKeydown)
 })
@@ -8465,7 +8288,7 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-/* Подсветка найденных элементов */
+/* Highlight for found items */
 .search-highlight {
   border: 2px solid rgba(251, 146, 60, 0.75);
   background-color: rgba(251, 146, 60, 0.1);
@@ -8488,7 +8311,7 @@ onUnmounted(() => {
   }
 }
 
-/* Улучшенная анимация фокуса на поиске */
+/* Improved search focus animation */
 .search-input:focus {
   border-color: rgb(251, 146, 60);
   outline: 2px solid rgba(251, 146, 60, 0.5);

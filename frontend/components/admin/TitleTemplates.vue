@@ -2,14 +2,14 @@
   <!--
     🎯 Title Templates Component
 
-    Система шаблонов заголовков с переменными:
-    - {name} - название слота
-    - {provider} - провайдер
+    Title template system with variables:
+    - {name} - slot name
+    - {provider} - provider
     - {rtp} - RTP
-    - {volatility} - волатильность
-    - {max_win} - максимальный выигрыш
-    - {year} - текущий год
-    - {rating} - рейтинг
+    - {volatility} - volatility
+    - {max_win} - max win
+    - {year} - current year
+    - {rating} - rating
   -->
   <div class="space-y-4">
     <!-- Переключатель режима -->
@@ -22,7 +22,7 @@
         </div>
         <div>
           <h4 class="font-medium text-[#E5E7EB]">Title Template System</h4>
-          <p class="text-xs text-[#9CA3AF]">Автоматическая генерация SEO заголовков</p>
+          <p class="text-xs text-[#9CA3AF]">Automatic SEO title generation</p>
         </div>
       </div>
       <label class="relative inline-flex items-center cursor-pointer">
@@ -32,7 +32,7 @@
           class="sr-only peer"
         />
         <div class="w-11 h-6 bg-[#353A4A] peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-[#F59E0B] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#F59E0B]"></div>
-        <span class="ml-3 text-sm font-medium text-[#E5E7EB]">{{ localUseTemplate ? 'Шаблон' : 'Ручной' }}</span>
+        <span class="ml-3 text-sm font-medium text-[#E5E7EB]">{{ localUseTemplate ? 'Template' : 'Manual' }}</span>
       </label>
     </div>
 
@@ -41,7 +41,7 @@
       <!-- Preset Templates -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
         <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
-          📋 Готовые шаблоны
+          📋 Preset Templates
         </label>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
           <button
@@ -65,7 +65,7 @@
       <!-- Custom Template Input -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
         <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
-          ✏️ Свой шаблон
+          ✏️ Custom Template
         </label>
         <textarea
           v-model="localTemplate"
@@ -78,7 +78,7 @@
       <!-- Available Variables -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
         <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
-          🔧 Доступные переменные
+          🔧 Available Variables
         </label>
         <div class="flex flex-wrap gap-2">
           <button
@@ -98,7 +98,7 @@
       <!-- Power Words -->
       <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
         <label class="block text-sm font-medium text-[#E5E7EB] mb-3">
-          ⚡ Power Words (продающие слова)
+          ⚡ Power Words
         </label>
         <div class="flex flex-wrap gap-2 mb-3">
           <button
@@ -117,7 +117,7 @@
           </button>
         </div>
         <p class="text-xs text-[#9CA3AF]">
-          💡 Выбранные слова будут добавлены в title для повышения CTR
+          💡 Selected words will be added to the title to improve CTR
         </p>
       </div>
 
@@ -129,7 +129,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            Превью заголовка
+            Title Preview
           </label>
           <span
             class="text-xs font-mono"
@@ -140,14 +140,14 @@
         </div>
         <div class="bg-[#161A21] rounded-lg p-4">
           <p class="text-[#1A0DAB] text-lg hover:underline cursor-pointer">
-            {{ generatedTitle || 'Заполните шаблон для превью...' }}
+            {{ generatedTitle || 'Fill in the template for preview...' }}
           </p>
         </div>
         <div v-if="generatedTitle.length > 60" class="mt-2 text-xs text-[#EF4444] flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
-          Заголовок будет обрезан в Google (макс. 60 символов)
+          Title will be truncated in Google (max 60 characters)
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@
     <!-- Manual Mode Info -->
     <div v-else class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4 text-center">
       <p class="text-[#9CA3AF] text-sm">
-        Ручной режим: используйте поле SEO Title выше для ввода заголовка вручную
+        Manual mode: use the SEO Title field above to enter the title manually
       </p>
     </div>
   </div>
@@ -190,32 +190,32 @@ const emit = defineEmits([
 const presetTemplates = [
   {
     id: 'standard',
-    name: 'Стандартный',
+    name: 'Standard',
     template: '{name} Slot by {provider} | Play Free Demo {year}'
   },
   {
     id: 'rtp-focused',
-    name: 'RTP в фокусе',
+    name: 'RTP Focused',
     template: '{name} - RTP {rtp}% | {volatility} Volatility Slot'
   },
   {
     id: 'win-focused',
-    name: 'Выигрыш в фокусе',
+    name: 'Win Focused',
     template: 'Play {name} | Max Win {max_win}x | Free Demo & Real Money'
   },
   {
     id: 'branded',
-    name: 'Брендированный',
+    name: 'Branded',
     template: '{name} 🎰 by {provider} | SlotQuest Review {year}'
   },
   {
     id: 'review',
-    name: 'Обзор',
+    name: 'Review',
     template: '{name} Slot Review - ★{rating}/5 | {provider} | {year}'
   },
   {
     id: 'minimal',
-    name: 'Минимальный',
+    name: 'Minimal',
     template: '{name} | Free Slot Demo | SlotQuest'
   }
 ]

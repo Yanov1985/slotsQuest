@@ -32,7 +32,7 @@
           `hover:border-${color === 'orange' ? '[#FF6E48]' : color === 'cyan' ? '[#00EDFF]' : color === 'green' ? '[#63F3AB]' : '[#CD0F8B]'}/40`,
         ]"
       >
-        {{ isOpen ? 'Скрыть' : 'Показать' }}
+        {{ isOpen ? 'Hide' : 'Show' }}
       </button>
     </div>
 

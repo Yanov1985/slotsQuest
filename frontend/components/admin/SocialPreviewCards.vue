@@ -2,7 +2,7 @@
   <!--
     📱 Social Preview Cards Component
 
-    Предпросмотр как страница будет выглядеть при шеринге:
+    Preview how the page will look when shared:
     - Facebook/Meta
     - Twitter/X
     - LinkedIn
@@ -17,7 +17,7 @@
       </div>
       <div>
         <h3 class="text-lg font-medium text-[#E5E7EB]">Social Preview Cards</h3>
-        <p class="text-sm text-[#9CA3AF]">Как страница выглядит при шеринге в соцсетях</p>
+        <p class="text-sm text-[#9CA3AF]">How the page looks when shared on social media</p>
       </div>
     </div>
 
@@ -136,20 +136,20 @@
       </h4>
       <div class="space-y-2">
         <div class="flex items-center justify-between text-sm">
-          <span class="text-[#9CA3AF]">Рекомендуемый размер:</span>
+          <span class="text-[#9CA3AF]">Recommended size:</span>
           <span class="text-[#E5E7EB]">1200 × 630 px</span>
         </div>
         <div class="flex items-center justify-between text-sm">
-          <span class="text-[#9CA3AF]">Соотношение сторон:</span>
+          <span class="text-[#9CA3AF]">Aspect ratio:</span>
           <span class="text-[#E5E7EB]">1.91:1</span>
         </div>
         <div class="flex items-center justify-between text-sm">
-          <span class="text-[#9CA3AF]">Формат:</span>
+          <span class="text-[#9CA3AF]">Format:</span>
           <span class="text-[#E5E7EB]">JPG, PNG, GIF</span>
         </div>
         <div class="flex items-center justify-between text-sm">
-          <span class="text-[#9CA3AF]">Макс. размер файла:</span>
-          <span class="text-[#E5E7EB]">8 MB (рекомендуется < 300 KB)</span>
+          <span class="text-[#9CA3AF]">Max file size:</span>
+          <span class="text-[#E5E7EB]">8 MB (recommended < 300 KB)</span>
         </div>
       </div>
 
@@ -166,13 +166,13 @@
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
       <h4 class="text-sm font-medium text-[#E5E7EB] mb-3 flex items-center gap-2">
         <span>📊</span>
-        Настройки шеринга
+        Sharing Settings
       </h4>
 
       <div class="space-y-3">
         <!-- Custom Hashtags -->
         <div class="space-y-2">
-          <label class="block text-xs font-medium text-[#9CA3AF]">Хештеги (для Twitter)</label>
+          <label class="block text-xs font-medium text-[#9CA3AF]">Hashtags (for Twitter)</label>
           <input
             type="text"
             v-model="localHashtags"
@@ -183,7 +183,7 @@
 
         <!-- CTA Text -->
         <div class="space-y-2">
-          <label class="block text-xs font-medium text-[#9CA3AF]">CTA текст для шеринга</label>
+          <label class="block text-xs font-medium text-[#9CA3AF]">CTA text for sharing</label>
           <input
             type="text"
             v-model="localCtaText"
@@ -198,13 +198,13 @@
     <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
       <h4 class="text-sm font-medium text-[#E5E7EB] mb-3 flex items-center gap-2">
         <span>🔗</span>
-        Готовые ссылки для шеринга
+        Ready-to-use Share Links
       </h4>
 
       <div class="space-y-2">
         <div v-for="link in shareLinks" :key="link.name" class="flex items-center gap-3 p-2 bg-[#161A21] rounded-lg">
           <span class="text-lg">{{ link.icon }}</span>
-          <span class="flex-1 text-sm text-[#9CA3AF] truncate font-mono">{{ link.url }}</span>
+          <span class="flex-1 min-w-0 text-sm text-[#9CA3AF] truncate font-mono">{{ link.url }}</span>
           <button
             type="button"
             @click="copyLink(link.url)"
@@ -265,7 +265,7 @@ const imageStatus = computed(() => {
     return {
       class: 'bg-[#EF4444]/20 text-[#EF4444]',
       icon: '❌',
-      message: 'Изображение не установлено'
+      message: 'Image not set'
     }
   }
   // Basic URL validation
@@ -273,13 +273,13 @@ const imageStatus = computed(() => {
     return {
       class: 'bg-[#10B981]/20 text-[#10B981]',
       icon: '✅',
-      message: 'Изображение установлено'
+      message: 'Image set'
     }
   }
   return {
     class: 'bg-[#F59E0B]/20 text-[#F59E0B]',
     icon: '⚠️',
-    message: 'Проверьте URL изображения'
+    message: 'Check image URL'
   }
 })
 
