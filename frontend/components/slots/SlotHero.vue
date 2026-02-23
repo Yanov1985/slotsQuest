@@ -70,7 +70,7 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
                     <div v-if="slot.media_type === 'image' && slot.image_url" class="absolute inset-0">
-                      <img :src="slot.image_url" :alt="slot.name" class="w-full h-full object-cover" :style="`object-position: ${slot.image_focus_point || 'center 20%'}`" loading="eager" @error="$emit('image-error', $event)" />
+                      <NuxtImg :src="slot.image_url" :alt="slot.name" class="w-full h-full object-cover" :style="`object-position: ${slot.image_focus_point || 'center 20%'}`" preload format="webp" sizes="sm:100vw md:50vw lg:800px" @error="$emit('image-error', $event)" />
                     </div>
                     <div v-else-if="slot.media_type === 'video' && slot.video_url" class="absolute inset-0">
                       <video :src="slot.video_url" class="w-full h-full object-cover" controls autoplay loop muted :poster="slot.image_url || ''" @error="$emit('video-error', $event)"></video>
@@ -109,9 +109,14 @@
                   <meta itemprop="reviewCount" :content="String(slot.reviews_count || 100)" />
 
                   <div class="flex items-center gap-2" :aria-label="`Rating ${slot.rating || 4.5} out of 5 stars`">
-                    <div class="flex text-yellow-400" aria-hidden="true">
-                      <!-- Responsive stars -->
-                      <svg v-for="n in 5" :key="n" class="w-6 h-6 lg:w-6 lg:h-6 drop-shadow-lg cursor-pointer" :class="n <= Math.round(slot.rating || 4.5) ? 'text-yellow-400' : 'text-gray-400'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <div class="flex text-yellow-400 gap-0.5" aria-hidden="true">
+                      <!-- Responsive stars (Iconify) -->
+                      <Icon
+                        v-for="n in 5" :key="n"
+                        name="solar:star-bold"
+                        class="w-5 h-5 lg:w-6 lg:h-6 drop-shadow-lg cursor-pointer transition-colors"
+                        :class="n <= Math.round(slot.rating || 4.5) ? 'text-yellow-400' : 'text-gray-400/50'"
+                      />
                     </div>
                     <span class="text-white font-bold text-lg lg:text-lg">{{ slot.rating || 4.5 }}</span>
                     <span class="hidden lg:inline text-white/60">/ 5</span>
@@ -119,16 +124,17 @@
                   </div>
 
                   <div v-if="slot.play_count && slot.play_count > 0" class="hidden xs:flex items-center gap-1.5 px-2.5 py-1 lg:px-3 lg:py-1.5 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full border border-orange-400/30">
-                    <span class="text-xs lg:text-sm font-bold text-orange-300">🔥 {{ formatNumber(slot.play_count) }} plays</span>
+                    <Icon name="solar:fire-bold" class="w-4 h-4 lg:w-4 lg:h-4 text-orange-400" />
+                    <span class="text-xs lg:text-sm font-bold text-orange-300">{{ formatNumber(slot.play_count) }} plays</span>
                   </div>
 
                   <button
-                    class="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors ml-auto lg:ml-0"
+                    class="px-3 py-1.5 lg:px-4 lg:py-2 flex items-center gap-2 rounded-full text-sm font-bold bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors ml-auto lg:ml-0"
                     @click="$emit('toggle-rating')"
                     :aria-expanded="showRatingPicker"
                     type="button"
                   >
-                    ⭐ Rate
+                    <Icon name="solar:star-fall-bold" class="w-4 h-4 text-yellow-400" /> Rate
                   </button>
                 </section>
 
@@ -141,14 +147,15 @@
                         :class="{'bg-white/20 text-white': hoverStars === 0 || selectedStars === 0}"
                         @mouseenter="setHover(0)" @mouseleave="setHover(selectedStars ?? 0)" @click="$emit('pick-rating', 0)"
                       >0</button>
-                      <div class="flex text-yellow-400">
+                      <div class="flex text-yellow-400 gap-0.5">
                         <button
                           v-for="n in 5" :key="n"
-                          class="w-6 h-6 lg:w-7 lg:h-7 cursor-pointer transition-all duration-200"
-                          :class="[hoverStars >= n || (hoverStars === 0 && (selectedStars || 0) >= n) ? 'opacity-100 scale-110' : 'opacity-40']"
+                          class="w-6 h-6 lg:w-7 lg:h-7 cursor-pointer transition-all duration-200 flex items-center justify-center p-0.5"
+                          :class="[hoverStars >= n || (hoverStars === 0 && (selectedStars || 0) >= n) ? 'opacity-100 scale-110 text-yellow-400' : 'opacity-40 text-gray-300']"
+                          :aria-label="'Rate ' + n + ' stars'"
                           @mouseenter="setHover(n)" @mouseleave="setHover(selectedStars || 0)" @click="$emit('pick-rating', n)"
                         >
-                          <svg fill="currentColor" viewBox="0 0 20 20" class="w-full h-full"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                          <Icon name="solar:star-bold" class="w-full h-full" />
                         </button>
                       </div>
                     </div>
@@ -175,9 +182,10 @@
                       :href="slot.demo_url ? slot.demo_url : null"
                       target="_blank"
                       rel="nofollow noopener"
-                      class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] lg:hover:-translate-y-2 lg:hover:scale-[1.03] flex items-center justify-center gap-2 lg:gap-3"
+                      class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 ease-out transform-gpu will-change-transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 lg:gap-3"
                       @click="!slot.demo_url ? $emit('play-demo') : null"
                     >
+                      <Icon name="solar:gamepad-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-emerald-300 drop-shadow-md z-10" />
                       <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Play Free Demo</span>
                       <span class="relative z-10 bg-emerald-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg">DEMO</span>
                     </component>
@@ -189,9 +197,10 @@
                       :href="slot.real_play_url ? slot.real_play_url : null"
                       target="_blank"
                       rel="nofollow sponsored noopener"
-                      class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 transform hover:-translate-y-1 hover:scale-[1.02] lg:hover:-translate-y-2 lg:hover:scale-[1.03] flex items-center justify-center gap-2 lg:gap-3"
+                      class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 ease-out transform-gpu will-change-transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 lg:gap-3"
                       @click="!slot.real_play_url ? $emit('play-real') : null"
                     >
+                      <Icon name="solar:play-circle-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-orange-300 drop-shadow-md z-10" />
                       <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Play for Real Money</span>
                       <span class="relative z-10 bg-orange-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-orange-400/50 shadow-lg">REAL</span>
                     </component>

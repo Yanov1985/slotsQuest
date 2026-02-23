@@ -22,26 +22,7 @@
         class="w-7 h-7 bg-[#BDBDBD] rounded-full flex items-center justify-center transition-all duration-300 ease-out flex-shrink-0 group-hover:bg-[#9E9E9E]"
         :class="{ 'rotate-45': isOpen }"
       >
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M6 1V11"
-            stroke="white"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-          <path
-            d="M1 6H11"
-            stroke="white"
-            stroke-width="1.5"
-            stroke-linecap="round"
-          />
-        </svg>
+        <Icon name="solar:add-bold" class="w-4 h-4 text-white" />
       </div>
     </button>
 

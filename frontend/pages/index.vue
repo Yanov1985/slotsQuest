@@ -28,17 +28,19 @@
             Погрузитесь в мир захватывающих слот-машин с потрясающими визуальными эффектами и невероятными выигрышами
           </p>
         </div>
-        
+
         <div class="flex flex-col sm:flex-row gap-6 justify-center mb-20">
-          <NuxtLink 
+          <NuxtLink
             to="/slots"
-            class="group relative px-12 py-5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 text-center"
+            class="group relative px-12 py-5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 text-center flex items-center justify-center gap-2"
           >
-            <span class="relative z-10">🎰 Каталог слотов</span>
+            <Icon name="solar:gamepad-bold" class="w-7 h-7" />
+            <span class="relative z-10">Каталог слотов</span>
             <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </NuxtLink>
-          <button class="group relative px-12 py-5 border-2 border-cyan-400/50 rounded-full font-bold text-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 backdrop-blur-sm">
-            🏆 Турниры
+          <button class="group relative px-12 py-5 border-2 border-cyan-400/50 rounded-full font-bold text-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 backdrop-blur-sm flex items-center justify-center gap-2">
+            <Icon name="solar:cup-bold" class="w-7 h-7 text-yellow-400" />
+            Турниры
           </button>
         </div>
       </section>
@@ -46,14 +48,14 @@
       <!-- Slots Section -->
       <section class="container mx-auto px-4 py-20">
         <div class="text-center mb-16">
-          <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            🎰 Все слоты
+          <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent flex items-center justify-center gap-3">
+            <Icon name="solar:gamepad-bold-duotone" class="text-cyan-400 w-12 h-12" /> Все слоты
           </h2>
           <p class="text-xl text-gray-300 max-w-3xl mx-auto">
             Откройте для себя все доступные игры с невероятными бонусами и джекпотами
           </p>
         </div>
-        
+
         <!-- Loading State -->
         <div v-if="pending" class="flex justify-center items-center py-32">
           <div class="relative">
@@ -61,7 +63,7 @@
             <div class="absolute inset-0 animate-ping rounded-full h-20 w-20 border-2 border-purple-400 opacity-20"></div>
           </div>
         </div>
-        
+
         <!-- Error State -->
         <div v-else-if="error" class="text-center py-32">
           <div class="text-8xl mb-6">⚠️</div>
@@ -70,62 +72,65 @@
             Попробовать снова
           </button>
         </div>
-        
+
         <!-- Slots Grid -->
         <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          <div 
-            v-for="slot in slots" 
-            :key="slot.id" 
-            class="group relative bg-gradient-to-br from-gray-900/90 to-black/90 rounded-2xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 backdrop-blur-sm overflow-hidden"
+          <div
+            v-for="slot in slots"
+            :key="slot.id"
+            class="group relative bg-gradient-to-br from-gray-900/90 to-black/90 rounded-2xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-cyan-500/20 lg:hover:-translate-y-2 backdrop-blur-sm overflow-hidden"
           >
             <!-- Glow Effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
+
             <!-- Content -->
             <div class="relative z-10 p-6">
               <!-- Slot Image -->
               <div class="relative h-48 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-cyan-500/30 group-hover:border-cyan-400/50 transition-colors duration-300">
                 <!-- Image or Placeholder -->
                 <div v-if="!slot.image_url && !slot.thumbnail_url" class="w-full h-full flex flex-col items-center justify-center text-center p-4">
-                  <div class="text-6xl mb-3 filter drop-shadow-lg animate-pulse group-hover:animate-bounce transition-all duration-300">🎰</div>
+                  <Icon name="solar:gamepad-bold-duotone" class="text-6xl mb-3 text-cyan-400/80 filter drop-shadow-lg animate-pulse group-hover:animate-bounce transition-all duration-300" />
                   <div class="text-sm text-cyan-300 font-bold mb-2">{{ slot.name }}</div>
                   <div class="w-12 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"></div>
                 </div>
-                
+
                 <!-- Real image if available -->
-                <img
+                <NuxtImg
                   v-else
                   :src="slot.image_url || slot.thumbnail_url"
                   :alt="slot.name"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   @error="$event.target.style.display = 'none'"
+                  format="webp"
+                  sizes="sm:100vw md:50vw lg:600px"
+                  loading="lazy"
                 />
-                
+
                 <!-- RTP Badge -->
                 <div class="absolute top-3 right-3 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-cyan-400 font-bold border border-cyan-500/30">
                   {{ slot.rtp || '96' }}%
                 </div>
-                
+
                 <!-- Hover Overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
+
               <!-- Slot Title -->
               <h3 class="text-xl font-bold text-white mb-2 line-clamp-1 group-hover:text-cyan-400 transition-colors duration-300">
                 {{ slot.name || 'Slot Game' }}
               </h3>
-              
+
               <!-- Provider -->
               <p class="text-cyan-400 text-sm font-medium mb-4 flex items-center">
-                <span class="mr-2">🏢</span>
+                <Icon name="solar:buildings-bold-duotone" class="w-4 h-4 mr-1.5" />
                 {{ slot.providers?.name || 'Provider' }}
               </p>
-              
+
               <!-- Description -->
               <p class="text-gray-300 text-sm mb-6 line-clamp-2 leading-relaxed">
                 {{ slot.description || 'Захватывающий слот с множеством бонусов и высокими выплатами!' }}
               </p>
-              
+
               <!-- Stats -->
               <div class="flex justify-between items-center mb-6 text-xs">
                 <div class="text-center">
@@ -137,18 +142,18 @@
                   <div class="font-bold text-green-400">{{ slot.max_win || '5000x' }}</div>
                 </div>
               </div>
-              
+
               <!-- Action Buttons -->
               <div class="flex space-x-3">
-                <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
-                  📖 Подробнее
+                <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
+                  <Icon name="solar:document-text-bold" class="w-4 h-4" /> Подробнее
                 </NuxtLink>
-                <button class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
-                  💰 Демо
+                <button class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
+                  <Icon name="solar:wad-of-money-bold" class="w-4 h-4" /> Демо
                 </button>
               </div>
             </div>
-            
+
             <!-- Corner Decorations -->
             <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-purple-400/30 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -159,22 +164,22 @@
       <!-- Statistics Section -->
       <section class="container mx-auto px-4 py-20">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20 hover:-translate-y-1">
+          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-xl hover:shadow-cyan-500/20 lg:hover:-translate-y-1 hover:scale-[1.02]">
             <div class="text-5xl font-black text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300">1000+</div>
             <div class="text-gray-300 font-medium">Игр в коллекции</div>
             <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto mt-3 rounded-full"></div>
           </div>
-          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 hover:border-purple-400/60 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 hover:-translate-y-1">
+          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 hover:border-purple-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-xl hover:shadow-purple-500/20 lg:hover:-translate-y-1 hover:scale-[1.02]">
             <div class="text-5xl font-black text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300">50+</div>
             <div class="text-gray-300 font-medium">Провайдеров</div>
             <div class="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mt-3 rounded-full"></div>
           </div>
-          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/20 hover:border-green-400/60 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-1">
+          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-green-500/10 to-cyan-500/10 border border-green-500/20 hover:border-green-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-xl hover:shadow-green-500/20 lg:hover:-translate-y-1 hover:scale-[1.02]">
             <div class="text-5xl font-black text-green-400 mb-4 group-hover:scale-110 transition-transform duration-300">24/7</div>
             <div class="text-gray-300 font-medium">Поддержка</div>
             <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mx-auto mt-3 rounded-full"></div>
           </div>
-          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 hover:border-yellow-400/60 transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/20 hover:-translate-y-1">
+          <div class="group text-center p-8 rounded-2xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 hover:border-yellow-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-xl hover:shadow-yellow-500/20 lg:hover:-translate-y-1 hover:scale-[1.02]">
             <div class="text-5xl font-black text-yellow-400 mb-4 group-hover:scale-110 transition-transform duration-300">98%</div>
             <div class="text-gray-300 font-medium">RTP</div>
             <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mt-3 rounded-full"></div>
@@ -192,51 +197,51 @@
             Мы предлагаем лучший игровой опыт с передовыми технологиями и честной игрой
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <!-- Feature 1 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-cyan-500/20 hover:border-cyan-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🎰</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-cyan-500/20 hover:border-cyan-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-cyan-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:gamepad-bold-duotone" class="text-6xl mb-6 text-cyan-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-300">Огромная коллекция</h3>
             <p class="text-gray-300 leading-relaxed">Более 1000+ слотов от ведущих мировых провайдеров с уникальными механиками и бонусами</p>
             <div class="w-12 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
           </div>
-          
+
           <!-- Feature 2 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-purple-500/20 hover:border-purple-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">💰</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-purple-500/20 hover:border-purple-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-purple-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:wad-of-money-bold-duotone" class="text-6xl mb-6 text-purple-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300">Щедрые бонусы</h3>
             <p class="text-gray-300 leading-relaxed">Приветственные бонусы до 100%, ежедневные акции и программа лояльности</p>
             <div class="w-12 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
           </div>
-          
+
           <!-- Feature 3 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-500/20 hover:border-green-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">⚡</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-500/20 hover:border-green-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-green-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:bolt-bold-duotone" class="text-6xl mb-6 text-green-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors duration-300">Мгновенные выплаты</h3>
             <p class="text-gray-300 leading-relaxed">Быстрые и безопасные транзакции с поддержкой всех популярных платежных систем</p>
             <div class="w-12 h-1 bg-gradient-to-r from-green-400 to-cyan-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
           </div>
-          
+
           <!-- Feature 4 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-yellow-500/20 hover:border-yellow-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🏆</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-yellow-500/20 hover:border-yellow-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-yellow-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:cup-star-bold-duotone" class="text-6xl mb-6 text-yellow-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-yellow-400 transition-colors duration-300">Турниры</h3>
             <p class="text-gray-300 leading-relaxed">Участвуйте в еженедельных турнирах и соревнуйтесь за крупные призовые фонды</p>
             <div class="w-12 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
           </div>
-          
+
           <!-- Feature 5 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-pink-500/20 hover:border-pink-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-pink-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">🔒</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-pink-500/20 hover:border-pink-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-pink-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:shield-check-bold-duotone" class="text-6xl mb-6 text-pink-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-pink-400 transition-colors duration-300">Безопасность</h3>
             <p class="text-gray-300 leading-relaxed">Лицензированная платформа с SSL-шифрованием и защитой персональных данных</p>
             <div class="w-12 h-1 bg-gradient-to-r from-pink-400 to-red-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
           </div>
-          
+
           <!-- Feature 6 -->
-          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-blue-500/20 hover:border-blue-500/60 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 backdrop-blur-sm">
-            <div class="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">📱</div>
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-blue-500/20 hover:border-blue-500/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-blue-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] backdrop-blur-sm">
+            <Icon name="solar:smartphone-bold-duotone" class="text-6xl mb-6 text-blue-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
             <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">Мобильная версия</h3>
             <p class="text-gray-300 leading-relaxed">Играйте где угодно с адаптивным дизайном и мобильным приложением</p>
             <div class="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mt-4 rounded-full group-hover:w-full transition-all duration-500"></div>
@@ -254,33 +259,39 @@
             Проверьте соединение между фронтендом и бекендом
           </p>
         </div>
-        
+
         <div class="max-w-4xl mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- API Status -->
             <div class="p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-green-500/20 backdrop-blur-sm">
               <div class="text-center">
-                <div class="text-6xl mb-4">{{ apiStatus === 'success' ? '✅' : apiStatus === 'error' ? '❌' : '🔄' }}</div>
+                <div class="text-6xl mb-4 flex justify-center">
+                  <Icon v-if="apiStatus === 'success'" name="solar:check-circle-bold" class="text-green-400" />
+                  <Icon v-else-if="apiStatus === 'error'" name="solar:forbidden-circle-bold" class="text-red-400" />
+                  <Icon v-else name="solar:refresh-circle-bold" class="text-blue-400 animate-spin" />
+                </div>
                 <h3 class="text-2xl font-bold text-white mb-4">Статус API</h3>
                 <p class="text-gray-300 mb-6">
-                  {{ apiStatus === 'success' ? 'API работает корректно' : 
-                     apiStatus === 'error' ? 'Ошибка подключения к API' : 
+                  {{ apiStatus === 'success' ? 'API работает корректно' :
+                     apiStatus === 'error' ? 'Ошибка подключения к API' :
                      'Проверка соединения...' }}
                 </p>
-                <button 
-                  @click="testApi" 
+                <button
+                  @click="testApi"
                   :disabled="apiTesting"
-                  class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg"
+                  class="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg flex items-center justify-center gap-2 mx-auto"
                 >
-                  {{ apiTesting ? '🔄 Проверка...' : '🔍 Проверить API' }}
+                  <Icon v-if="apiTesting" name="solar:refresh-circle-bold" class="animate-spin" />
+                  <Icon v-else name="solar:magnifer-bold" />
+                  {{ apiTesting ? 'Проверка...' : 'Проверить API' }}
                 </button>
               </div>
             </div>
-            
+
             <!-- Slots Count -->
             <div class="p-8 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 border border-purple-500/20 backdrop-blur-sm">
               <div class="text-center">
-                <div class="text-6xl mb-4">🎰</div>
+                <Icon name="solar:gamepad-bold-duotone" class="text-6xl mb-4 text-purple-400 mx-auto" />
                 <h3 class="text-2xl font-bold text-white mb-4">Слоты в базе</h3>
                 <div class="text-4xl font-black text-purple-400 mb-4">
                   {{ slots ? slots.length : '0' }}
@@ -288,17 +299,18 @@
                 <p class="text-gray-300 mb-6">
                   {{ slots && slots.length > 0 ? 'Слоты загружены успешно' : 'Нет данных о слотах' }}
                 </p>
-                <button 
-                  @click="refresh()" 
+                <button
+                  @click="refresh()"
                   :disabled="pending"
-                  class="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg"
+                  class="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-lg transition-all transform hover:scale-105 text-lg flex items-center justify-center gap-2 mx-auto"
                 >
-                  {{ pending ? '🔄 Загрузка...' : '🔄 Обновить данные' }}
+                  <Icon name="solar:refresh-circle-bold" :class="{ 'animate-spin': pending }" />
+                  {{ pending ? 'Загрузка...' : 'Обновить данные' }}
                 </button>
               </div>
             </div>
           </div>
-          
+
           <!-- Debug Info -->
           <div v-if="debugInfo" class="mt-8 p-6 rounded-xl bg-gray-900/50 border border-gray-700">
             <h4 class="text-lg font-bold text-white mb-4">🐛 Отладочная информация</h4>
@@ -312,7 +324,7 @@
         <div class="text-center max-w-5xl mx-auto relative">
           <!-- Background Glow -->
           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl"></div>
-          
+
           <div class="relative z-10 p-12 rounded-3xl border border-cyan-500/20 backdrop-blur-sm">
             <h2 class="text-5xl md:text-7xl font-black mb-8 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               🎯 Готовы начать выигрывать?
@@ -321,13 +333,15 @@
               Присоединяйтесь к тысячам игроков, которые уже выиграли миллионы на SlotQuest!
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-              <button class="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 overflow-hidden">
-                <span class="relative z-10">🚀 Начать играть</span>
+              <button class="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full font-bold text-xl transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 overflow-hidden flex items-center justify-center gap-2">
+                <Icon name="solar:fire-bold" class="w-6 h-6 text-orange-400 group-hover:animate-pulse" />
+                <span class="relative z-10">Начать играть</span>
                 <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </button>
-              <button class="group px-12 py-6 border-2 border-cyan-400/50 text-cyan-400 font-bold rounded-full text-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-xl hover:shadow-cyan-400/30">
-                📖 Узнать больше
+              <button class="group px-12 py-6 border-2 border-cyan-400/50 text-cyan-400 font-bold rounded-full text-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 hover:shadow-xl hover:shadow-cyan-400/30 flex items-center justify-center gap-2">
+                <Icon name="solar:document-text-bold" class="w-6 h-6" />
+                Узнать больше
               </button>
             </div>
           </div>
@@ -341,25 +355,26 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
           <!-- Logo and Description -->
           <div class="md:col-span-2">
-            <h3 class="text-3xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
-              🎰 SlotQuest
+            <h3 class="text-3xl font-black mb-6 flex items-center gap-2">
+              <Icon name="solar:gamepad-bold-duotone" class="w-10 h-10 text-cyan-400" />
+              <span class="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">SlotQuest</span>
             </h3>
             <p class="text-gray-300 mb-6 max-w-md leading-relaxed text-lg">
               Ведущая платформа онлайн-слотов с лучшими играми, щедрыми бонусами и честной игрой.
             </p>
             <div class="flex space-x-4">
-              <div class="group w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12">
-                T
-              </div>
-              <div class="group w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12">
-                F
-              </div>
-              <div class="group w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-12">
-                I
-              </div>
+              <a href="#" aria-label="Telegram" class="group w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center text-white transition-all duration-300 ease-out transform-gpu will-change-transform hover:scale-110 hover:rotate-12">
+                <Icon name="lucide:send" class="w-6 h-6" />
+              </a>
+              <a href="#" aria-label="Facebook" class="group w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-white transition-all duration-300 ease-out transform-gpu will-change-transform hover:scale-110 hover:rotate-12">
+                <Icon name="lucide:facebook" class="w-6 h-6" />
+              </a>
+              <a href="#" aria-label="Instagram" class="group w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-xl flex items-center justify-center text-white transition-all duration-300 ease-out transform-gpu will-change-transform hover:scale-110 hover:rotate-12">
+                <Icon name="lucide:instagram" class="w-6 h-6" />
+              </a>
             </div>
           </div>
-          
+
           <!-- Quick Links -->
           <div>
             <h4 class="text-xl font-bold text-white mb-6">Быстрые ссылки</h4>
@@ -370,7 +385,7 @@
               <li><a href="#" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-lg hover:translate-x-2 inline-block">Джекпоты</a></li>
             </ul>
           </div>
-          
+
           <!-- Support -->
           <div>
             <h4 class="text-xl font-bold text-white mb-6">Поддержка</h4>
@@ -382,7 +397,7 @@
             </ul>
           </div>
         </div>
-        
+
         <div class="border-t border-gray-800 mt-12 pt-8 text-center">
           <p class="text-gray-400 text-lg">
             © 2025 SlotQuest. Все права защищены. | Лицензия №12345 | 18+
@@ -408,19 +423,19 @@ const testApi = async () => {
   apiTesting.value = true
   apiStatus.value = 'testing'
   debugInfo.value = ''
-  
+
   try {
     const config = useRuntimeConfig()
     const baseURL = config.public.apiUrl
-    
+
     // Test backend health
     const healthResponse = await $fetch(`${baseURL}/api/health`).catch(() => null)
-    
+
     // Test slots API
     const slotsResponse = await $fetch(`${baseURL}/api/slots`).catch(err => {
       throw new Error(`Slots API error: ${err.message || err}`)
     })
-    
+
     debugInfo.value = JSON.stringify({
       backend_url: baseURL,
       health_check: healthResponse ? 'OK' : 'Failed',
@@ -428,7 +443,7 @@ const testApi = async () => {
       slots_sample: slotsResponse?.data?.slice(0, 2) || [],
       timestamp: new Date().toISOString()
     }, null, 2)
-    
+
     apiStatus.value = 'success'
   } catch (err) {
     console.error('API Test Error:', err)

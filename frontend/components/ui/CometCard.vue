@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative transition-transform duration-300 hover:scale-[1.02]"
+    class="relative transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:scale-[1.02] lg:hover:-translate-y-1"
     :class="containerClassName"
   >
     <div

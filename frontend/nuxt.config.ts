@@ -6,8 +6,20 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+    'nuxt-security',
+    '@vite-pwa/nuxt',
+    '@nuxtjs/partytown',
+    'nuxt-og-image'
   ],
+
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    name: 'SlotQuest'
+  },
 
   app: {
     head: {
@@ -19,7 +31,7 @@ export default defineNuxtConfig({
 
   icon: {
     serverBundle: {
-      collections: ['heroicons']
+      collections: ['heroicons', 'solar', 'lucide']
     },
     clientBundle: {
       scan: true,
@@ -39,11 +51,17 @@ export default defineNuxtConfig({
     },
     subsets: ['latin', 'cyrillic'],
     display: 'swap',
-    prefetch: false,
-    preconnect: false,
-    preload: false,
+    prefetch: true,
+    preconnect: true,
+    preload: true,
     download: true,
     base64: false
+  },
+
+  image: {
+    quality: 80,
+    format: ['webp', 'avif'],
+    domains: ['localhost']
   },
 
   runtimeConfig: {
@@ -62,12 +80,19 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/api/**': {
-      proxy: 'http://localhost:3001/api/**'
-    }
+    // API proxy
+    '/api/**': { proxy: 'http://localhost:3001/api/**' },
+    // Cache static assets for 1 year
+    '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    // 10-minute Stale-While-Revalidate cache for specific routes
+    '/slots': { swr: 600 },
+    '/slots/**': { swr: 600 },
+    '/': { swr: 600 }
   },
 
   nitro: {
+    compressPublicAssets: true,
     devProxy: {
       '/api': {
         target: 'http://localhost:3001',
@@ -79,12 +104,45 @@ export default defineNuxtConfig({
     }
   },
 
+  security: {
+    headers: {
+      contentSecurityPolicy: false, // Turn off CSP temporarily to avoid breaking existing inline scripts
+      crossOriginEmbedderPolicy: false,
+    }
+  },
+
+  partytown: {
+    forward: ['dataLayer.push'],
+  },
+
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'SlotQuest',
+      short_name: 'SlotQuest',
+      theme_color: '#1a1a2e',
+      background_color: '#1a1a2e',
+      display: 'standalone',
+      scope: '/',
+      start_url: '/',
+      icons: [
+        {
+          src: '/favicon.ico',
+          sizes: '64x64',
+          type: 'image/x-icon'
+        }
+      ]
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+    }
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-
-
 })

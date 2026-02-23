@@ -10,20 +10,11 @@
           class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0"
           aria-hidden="true"
         >
-          <svg
-            class="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <Icon
+            name="solar:hamburger-menu-bold-duotone"
+            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
             aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            ></path>
-          </svg>
+          />
         </div>
         Characteristics
       </h2>
@@ -32,7 +23,7 @@
       <dl class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-3 sm:gap-4">
         <!-- 📱 RTP - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <!-- Canvas Reveal Effect - скрываем на mobile для производительности -->
           <CanvasRevealEffect
@@ -55,20 +46,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg
-                    class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <Icon
+                    name="solar:restart-circle-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
                     aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">RTP</dt>
               </div>
@@ -88,7 +70,7 @@
 
         <!-- 📱 Volatility - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <!-- Canvas Reveal Effect - скрываем на mobile для производительности -->
           <CanvasRevealEffect
@@ -111,20 +93,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg
-                    class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <Icon
+                    name="solar:graph-up-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
                     aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    ></path>
-                  </svg>
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Volatility</dt>
               </div>
@@ -142,7 +115,7 @@
 
         <!-- 📱 Maximum win - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <!-- Canvas Reveal Effect - скрываем на mobile для производительности -->
           <CanvasRevealEffect
@@ -165,20 +138,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg
-                    class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <Icon
+                    name="solar:cup-star-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
                     aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                    ></path>
-                  </svg>
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max win</dt>
               </div>
@@ -198,7 +162,7 @@
 
         <!-- 📱 Minimum bet - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             class="hidden sm:block"
@@ -218,9 +182,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                  </svg>
+                  <Icon
+                    name="solar:dollar-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Min bet</dt>
               </div>
@@ -238,7 +204,7 @@
 
         <!-- 📱 Maximum bet - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-teal-400/30 hover:border-teal-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-teal-400/30 hover:border-teal-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             class="hidden sm:block"
@@ -258,9 +224,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
+                  <Icon
+                    name="solar:wad-of-money-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max bet</dt>
               </div>
@@ -278,7 +246,7 @@
 
         <!-- 📱 Release date - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-amber-400/30 hover:border-amber-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-amber-400/30 hover:border-amber-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             class="hidden sm:block"
@@ -298,9 +266,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
+                  <Icon
+                    name="solar:calendar-date-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Release</dt>
               </div>
@@ -318,7 +288,7 @@
 
         <!-- 📱 Number of reels - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-rose-400/30 hover:border-rose-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-rose-500/20 to-pink-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-rose-400/30 hover:border-rose-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             class="hidden sm:block"
@@ -338,9 +308,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-rose-400 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                  </svg>
+                  <Icon
+                    name="solar:widget-3-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Reels</dt>
               </div>
@@ -358,7 +330,7 @@
 
         <!-- 📱 Payout type - адаптивная карточка -->
         <div
-          class="bg-gradient-to-br from-violet-500/20 to-purple-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
+          class="bg-gradient-to-br from-violet-500/20 to-purple-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-violet-400/30 hover:border-violet-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             class="hidden sm:block"
@@ -378,9 +350,11 @@
                   class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
                   aria-hidden="true"
                 >
-                  <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                  </svg>
+                  <Icon
+                    name="solar:routing-2-bold-duotone"
+                    class="w-5 h-5 md:w-6 md:h-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Paylines</dt>
               </div>
@@ -404,11 +378,11 @@
         id="popularity-heading"
         class="text-base sm:text-lg md:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"
       >
-        <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true">📊</span>
+        <Icon name="solar:chart-square-bold" class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" aria-hidden="true" />
         Popularity
       </h2>
       <div
-        class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-yellow-400/30 relative overflow-hidden"
+        class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-yellow-400/30 hover:border-yellow-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
       >
         <!-- Canvas Reveal Effect -->
         <CanvasRevealEffect
@@ -464,7 +438,7 @@
       <div class="mt-4 grid grid-cols-2 gap-3">
         <!-- RTP rating -->
         <div
-          class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 relative overflow-hidden"
+          class="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm p-4 rounded-xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             :animationSpeed="0.8"
@@ -483,7 +457,7 @@
               <div
                 class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg"
               >
-                <span class="text-white text-xs font-bold">📊</span>
+                <Icon name="solar:chart-2-bold-duotone" class="w-4 h-4 text-white" />
               </div>
               <span class="text-purple-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                 >Real RTP</span
@@ -499,7 +473,7 @@
 
         <!-- Bonus frequency -->
         <div
-          class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30 relative overflow-hidden"
+          class="bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm p-4 rounded-xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
         >
           <CanvasRevealEffect
             :animationSpeed="0.8"
@@ -518,7 +492,7 @@
               <div
                 class="w-6 h-6 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-lg"
               >
-                <span class="text-white text-xs font-bold">🎰</span>
+                <Icon name="solar:gamepad-old-bold-duotone" class="w-4 h-4 text-white" />
               </div>
               <span class="text-orange-300 text-xs font-semibold px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                 >Bonus frequency</span
@@ -540,14 +514,14 @@
         id="features-heading"
         class="text-base sm:text-lg md:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2"
       >
-        <span class="text-lg sm:text-xl md:text-2xl" aria-hidden="true">⚡</span>
+        <Icon name="solar:bolt-bold-duotone" class="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" aria-hidden="true" />
         Features
       </h2>
       <div class="space-y-2 sm:space-y-3">
         <!-- 📱 Main features - адаптивная карточка + SEO ОПТИМИЗАЦИЯ -->
         <!-- 🎯 SEO: Секция механик с Schema.org разметкой -->
         <section
-          class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-indigo-400/30 relative overflow-hidden"
+          class="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-indigo-400/30 hover:border-indigo-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
           aria-labelledby="mechanics-heading"
           role="region"
           itemscope
@@ -575,7 +549,7 @@
             class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
             itemprop="alternateName"
           >
-            <span class="text-base sm:text-lg" aria-hidden="true">🎮</span>
+            <Icon name="solar:gamepad-bold-duotone" class="w-5 h-5 text-indigo-300" aria-hidden="true" />
             <span>Game mechanics</span>
             <span class="sr-only">- Special features of {{ slot.name }}</span>
           </h3>
@@ -630,7 +604,7 @@
         <!-- 📱 Bonus features - адаптивная карточка + SEO ОПТИМИЗАЦИЯ -->
         <!-- 🎯 SEO: Секция бонусов с Schema.org разметкой -->
         <section
-          class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-emerald-400/30 relative overflow-hidden"
+          class="bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-emerald-400/30 hover:border-emerald-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
           aria-labelledby="bonuses-heading"
           role="region"
           itemscope
@@ -658,7 +632,7 @@
             class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
             itemprop="alternateName"
           >
-            <span class="text-base sm:text-lg" aria-hidden="true">🎁</span>
+            <Icon name="solar:gift-bold-duotone" class="w-5 h-5 text-emerald-300" aria-hidden="true" />
             <span>Bonuses</span>
             <span class="sr-only">- Special bonus features in {{ slot.name }}</span>
           </h3>
@@ -739,7 +713,7 @@
         <!-- 📱 Themes - адаптивная карточка + МАКСИМАЛЬНАЯ SEO ОПТИМИЗАЦИЯ -->
         <!-- 🎯 SEO: Секция тематик с полной Schema.org разметкой -->
         <section
-          class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-yellow-400/30 relative overflow-hidden"
+          class="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-yellow-400/30 hover:border-yellow-400/50 transition-all duration-500 ease-out transform-gpu will-change-transform lg:hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
           aria-labelledby="themes-heading"
           role="region"
           itemscope
@@ -771,7 +745,7 @@
             class="text-white font-semibold mb-2 sm:mb-3 flex items-center gap-2 relative z-10 text-sm sm:text-base"
             itemprop="alternateName"
           >
-            <span class="text-base sm:text-lg" aria-hidden="true">🏛️</span>
+            <Icon name="solar:stars-bold-duotone" class="w-5 h-5 text-yellow-300" aria-hidden="true" />
             <span>Themes</span>
             <!-- 🎯 SEO: Скрытый текст для поисковиков -->
             <span class="sr-only">- Game genre and categories for {{ slot.name }}</span>

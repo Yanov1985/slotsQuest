@@ -1,6 +1,7 @@
 <template>
-  <div
-    class="group relative bg-gradient-to-br from-gray-900/90 to-black/90 rounded-2xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 backdrop-blur-sm overflow-hidden"
+  <NuxtLink
+    :to="`/slots/${slot.slug}`"
+    class="group relative bg-gradient-to-br from-gray-900/90 to-black/90 rounded-2xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-cyan-500/20 lg:hover:-translate-y-2 lg:hover:scale-[1.02] backdrop-blur-sm overflow-hidden"
   >
     <!-- Glow Effect -->
     <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -11,16 +12,21 @@
       <div class="relative h-48 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-cyan-500/30 group-hover:border-cyan-400/50 transition-colors duration-300">
         <!-- Image or Placeholder -->
         <div v-if="!slot.image_url && !slot.thumbnail_url" class="w-full h-full flex flex-col items-center justify-center text-center p-4">
-          <div class="text-6xl mb-3 filter drop-shadow-lg animate-pulse group-hover:animate-bounce transition-all duration-300">🎰</div>
+          <div class="mb-3 filter drop-shadow-lg animate-pulse group-hover:animate-bounce transition-all duration-300">
+            <Icon name="solar:gamepad-bold" class="text-6xl text-cyan-400" />
+          </div>
           <div class="text-sm text-cyan-300 font-bold mb-2">{{ slot.name }}</div>
           <div class="w-12 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"></div>
         </div>
 
         <!-- Real image if available -->
-        <img
+        <NuxtImg
           v-else
           :src="slot.image_url || slot.thumbnail_url"
           :alt="slot.name"
+          format="webp"
+          sizes="sm:100vw md:50vw lg:400px"
+          loading="lazy"
           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           @error="$event.target.style.display = 'none'"
         />
@@ -41,7 +47,7 @@
 
       <!-- Provider -->
       <p class="text-cyan-400 text-sm font-medium mb-4 flex items-center">
-        <span class="mr-2">🏢</span>
+        <Icon name="solar:buildings-bold-duotone" class="w-4 h-4 mr-1.5" />
         {{ slot.providers?.name || 'Provider' }}
       </p>
 
@@ -52,9 +58,12 @@
             v-for="award in displayAwards"
             :key="award.id"
             :class="getAwardClasses(award.color_scheme)"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 ease-out transform-gpu will-change-transform lg:hover:scale-105"
           >
-            <span class="mr-1">{{ award.emoji || '🏆' }}</span>
+            <span class="mr-1">
+              <span v-if="!award.emoji"><Icon name="solar:cup-star-bold" class="w-3 h-3" /></span>
+              <span v-else>{{ award.emoji }}</span>
+            </span>
             {{ award.name }}
           </div>
         </div>
@@ -71,22 +80,22 @@
       <!-- Stats -->
       <div class="flex justify-between items-center mb-6 text-xs">
         <div class="text-center">
-          <div class="text-gray-400 mb-1">Волатильность</div>
+          <div class="text-gray-400 mb-1 flex items-center justify-center gap-1"><Icon name="solar:graph-up-bold" class="w-3.5 h-3.5" /> Волатильность</div>
           <div class="font-bold text-cyan-400">{{ slot.volatility || 'Средняя' }}</div>
         </div>
         <div class="text-center">
-          <div class="text-gray-400 mb-1">Макс. выигрыш</div>
+          <div class="text-gray-400 mb-1 flex items-center justify-center gap-1"><Icon name="solar:cup-star-bold" class="w-3.5 h-3.5" /> Макс. выигрыш</div>
           <div class="font-bold text-green-400">{{ slot.max_win || '5000x' }}</div>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="flex space-x-3">
-        <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
-          📖 Подробнее
+        <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
+          <Icon name="solar:document-text-bold" class="w-4 h-4" /> Подробнее
         </NuxtLink>
-        <button class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
-          💰 Демо
+        <button class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
+          <Icon name="solar:wad-of-money-bold" class="w-4 h-4" /> Демо
         </button>
       </div>
     </div>
@@ -94,7 +103,7 @@
     <!-- Corner Decorations -->
     <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-purple-400/30 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
