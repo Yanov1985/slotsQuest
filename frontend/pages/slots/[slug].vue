@@ -179,7 +179,7 @@
               <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center ring-2 ring-white/20" aria-hidden="true">
                 <span class="text-white text-lg">🏆</span>
               </div>
-              <h3 class="text-white font-extrabold text-lg tracking-wide">Награды и достижения</h3>
+              <h2 class="text-white font-extrabold text-lg tracking-wide">Награды и достижения</h2>
             </header>
 
             <div class="grid grid-cols-2 gap-3" role="list">
@@ -296,7 +296,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <!-- Pros -->
                 <div class="bg-emerald-500/5 p-3 sm:p-4 rounded-xl border border-emerald-500/20">
-                  <h4 class="font-semibold text-emerald-400 text-sm mb-2">✅ Pros</h4>
+                  <h3 class="font-semibold text-emerald-400 text-sm mb-2">✅ Pros</h3>
                   <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
                     <li v-for="(pro, i) in computedPros" :key="'pro-'+i" class="flex items-start gap-2">
                       <span class="text-emerald-400 mt-0.5 shrink-0">+</span>
@@ -306,7 +306,7 @@
                 </div>
                 <!-- Cons -->
                 <div class="bg-red-500/5 p-3 sm:p-4 rounded-xl border border-red-500/20">
-                  <h4 class="font-semibold text-red-400 text-sm mb-2">❌ Cons</h4>
+                  <h3 class="font-semibold text-red-400 text-sm mb-2">❌ Cons</h3>
                   <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
                     <li v-for="(con, i) in computedCons" :key="'con-'+i" class="flex items-start gap-2">
                       <span class="text-red-400 mt-0.5 shrink-0">−</span>
@@ -319,9 +319,9 @@
 
             <!-- ❓ 3. FAQ (Accordion) -->
             <section>
-              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <span class="text-blue-400">❓</span> Frequently Asked Questions
-              </h3>
+              </h2>
               <div class="space-y-2">
                 <details
                   v-for="(item, i) in computedFaq"
@@ -341,9 +341,9 @@
 
             <!-- 📝 4. Player Reviews -->
             <section>
-              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <span class="text-pink-400">📝</span> Player Reviews
-              </h3>
+              <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <span class="text-purple-400">📊</span> {{ slot.name }} Review & Analysis
+              </h2>
               <div class="space-y-3">
                 <div
                   v-for="(review, i) in computedReviews"
@@ -371,9 +371,9 @@
 
             <!-- 🎮 5. How to Play -->
             <section>
-              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <span class="text-green-400">🎮</span> How to Play {{ slot.name }}
-              </h3>
+              </h2>
               <div class="space-y-3">
                 <div
                   v-for="(step, i) in computedHowToPlay"
@@ -384,7 +384,7 @@
                     {{ i + 1 }}
                   </div>
                   <div class="pt-1">
-                    <h4 class="text-white font-medium text-sm sm:text-base mb-1">{{ step.step }}</h4>
+                    <h3 class="text-white font-medium text-sm sm:text-base mb-1">{{ step.step }}</h3>
                     <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">{{ step.text }}</p>
                   </div>
                 </div>
@@ -393,9 +393,9 @@
 
             <!-- 🔗 6. Similar Slots -->
             <section v-if="similarSlots.length > 0">
-              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+              <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 <span class="text-orange-400">🔗</span> Similar Slots You May Like
-              </h3>
+              </h2>
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                 <NuxtLink
                   v-for="sim in similarSlots.slice(0, 6)"
@@ -413,7 +413,7 @@
 
             <!-- CTA -->
             <section class="bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 p-4 rounded-xl border border-[#8B5CF6]/20">
-              <h3 class="text-lg font-bold text-white mb-2">Free Play or Demo</h3>
+              <h2 class="text-lg font-bold text-white mb-2">Free Play or Demo</h2>
               <p class="text-gray-300 mb-4 text-sm">
                 {{ slot.info_demo_cta || `You can easily try out ${slot.name} online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!` }}
               </p>
@@ -483,15 +483,51 @@ const { getJsonLdScriptSync, fetchRawJsonLd } = useJsonLd()
 const route = useRoute()
 const slug = route.params.slug
 
-// Состояние
-const slot = ref({})
-const allSlots = ref([])
-const slotMechanics = ref([])
-const loading = ref(true)
-const error = ref(null)
+// --- SSR Data Fetching (Phase 4 SEO Optimization) ---
+const { data: pageData, pending, error: fetchError, refresh } = await useAsyncData(
+  'slot-page-data',
+  async () => {
+    const currentSlug = route.params.slug
+    const slotRes = await $fetch(`http://localhost:3001/api/slots/${currentSlug}`)
+    if (!slotRes) throw new Error(`Слот с адресом "${currentSlug}" не найден`)
 
-// 🎯 Состояние для JSON-LD
-const jsonLdSchemas = ref(null)
+    const [mechanicsRes, slotsRes, jsonLdRes] = await Promise.all([
+      $fetch(`http://localhost:3001/api/mechanics/slot/${slotRes.id}`).catch(() => []),
+      $fetch('http://localhost:3001/api/slots').catch(() => []),
+      fetchRawJsonLd ? fetchRawJsonLd(slotRes.id).catch(() => null) : Promise.resolve(null)
+    ])
+
+    return {
+      slot: slotRes,
+      mechanics: mechanicsRes || [],
+      allSlots: slotsRes?.data || slotsRes || [],
+      jsonLd: jsonLdRes
+    }
+  },
+  { watch: [() => route.params.slug] }
+)
+
+// Инициализация реактивных состояний
+const slot = ref(pageData.value?.slot || {})
+const allSlots = ref(pageData.value?.allSlots || [])
+const slotMechanics = ref(pageData.value?.mechanics || [])
+const jsonLdSchemas = ref(pageData.value?.jsonLd || null)
+
+const loading = ref(pending.value)
+const error = ref(fetchError.value?.message || null)
+
+// Синхронизация данных при клиентских переходах или обновлении
+watch(pageData, (newData) => {
+  if (newData) {
+    slot.value = newData.slot
+    slotMechanics.value = newData.mechanics
+    allSlots.value = newData.allSlots
+    jsonLdSchemas.value = newData.jsonLd
+  }
+}, { deep: true, immediate: true })
+
+watch(pending, (v) => loading.value = v)
+watch(fetchError, (v) => error.value = v?.message || null)
 
 // Состояние для рейтинга
 const showRatingPicker = ref(false)
@@ -697,101 +733,9 @@ useSlotSEO({
   error
 })
 
-const loadSlot = async () => {
-  try {
-    loading.value = true
-    error.value = null
-
-    console.log('🔄 Загрузка слота по slug:', slug)
-
-    // Загружаем конкретный слот по slug с полными данными включая hero_keyword поля
-    const slotData = await $fetch(`http://localhost:3001/api/slots/${slug}`, {
-      headers: {
-        'Cache-Control': 'no-cache',
-        Pragma: 'no-cache',
-      },
-    })
-
-    console.log('✅ Слот загружен:', {
-      name: slotData.name,
-      hero_keyword: slotData.hero_keyword,
-      hero_keyword_2: slotData.hero_keyword_2,
-      hero_keyword_3: slotData.hero_keyword_3,
-      description: slotData.description?.substring(0, 100) + '...',
-    })
-
-    // 🔍 ДИАГНОСТИКА: Проверяем overview keywords
-    console.log('🔑 Overview Keywords:', {
-      overview_keyword_1: slotData.overview_keyword_1,
-      overview_keyword_2: slotData.overview_keyword_2,
-      overview_keyword_3: slotData.overview_keyword_3,
-      overview_description_1:
-        slotData.overview_description_1?.substring(0, 50) + '...',
-    })
-
-    if (!slotData) {
-      throw new Error(`Слот с адресом "${slug}" не найден`)
-    }
-
-    slot.value = slotData
-
-    // Загружаем механики для этого слота
-    try {
-      const mechanicsData = await $fetch(
-        `http://localhost:3001/api/mechanics/slot/${slotData.id}`,
-        {
-          headers: {
-            'Cache-Control': 'no-cache',
-            Pragma: 'no-cache',
-          },
-        },
-      )
-      slotMechanics.value = mechanicsData || []
-      console.log('✅ Механики слота загружены:', slotMechanics.value)
-    } catch (mechanicsError) {
-      console.warn('⚠️ Не удалось загрузить механики слота:', mechanicsError)
-      slotMechanics.value = []
-    }
-
-    // Также загружаем все слоты для похожих слотов (без блокировки основной загрузки)
-    $fetch('http://localhost:3001/api/slots', {
-      headers: {
-        'Cache-Control': 'no-cache',
-        Pragma: 'no-cache',
-      },
-    })
-      .then((slotsResponse) => {
-        const slotsData = slotsResponse.data || slotsResponse
-        allSlots.value = slotsData
-      })
-      .catch((err) => {
-        console.warn('Не удалось загрузить список всех слотов:', err)
-      })
-
-    // 🎯 Асинхронно загружаем JSON-LD с сервера (если слот имеет id)
-    if (slot.value.id) {
-      fetchRawJsonLd(slot.value.id)
-        .then((schemas) => {
-          if (schemas && schemas.length > 0) {
-            jsonLdSchemas.value = schemas
-            console.log(`✅ JSON-LD загружен с сервера: ${schemas.length} схем`)
-          }
-        })
-        .catch((err) => {
-          console.warn('⚠️ Не удалось загрузить JSON-LD с сервера:', err)
-        })
-    }
-  } catch (err) {
-    console.error('❌ Ошибка загрузки slotа:', err)
-    error.value = err.message || 'Произошла ошибка при загрузке slotа'
-  } finally {
-    loading.value = false
-  }
-}
-
 // Функция для принудительного обновления данных slotа
 const refreshSlot = async () => {
-  await loadSlot()
+  await refresh()
 }
 
 const playSlot = () => {
@@ -963,20 +907,7 @@ const submitRating = async () => {
 
 
 
-// Загружаем данные при монтировании
-onMounted(() => {
-  loadSlot()
-})
-
-// Перезагружаем при изменении slug
-watch(
-  () => route.params.slug,
-  () => {
-    if (route.params.slug !== slug) {
-      loadSlot()
-    }
-  },
-)
+// Note: `useAsyncData` automatically handles data fetching on route parameter changes due to the `watch` option.
 
 
 </script>
