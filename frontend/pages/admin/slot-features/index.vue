@@ -409,7 +409,8 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { getThemes, createTheme, updateTheme, deleteTheme as deleteThemeApi } from '~/composables/useThemes'
+
+const { getThemes, createTheme, updateTheme, deleteTheme: deleteThemeApi } = useThemes()
 
 // Reactive data
 const themes = ref([])
