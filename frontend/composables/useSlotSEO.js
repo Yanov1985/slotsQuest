@@ -62,7 +62,8 @@ export const useSlotSEO = ({
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
                 'name': name,
-                'applicationCategory': 'GameApplication',
+                'applicationCategory': 'CasinoGame',
+                'isFamilyFriendly': false,
                 'aggregateRating': {
                     '@type': 'AggregateRating',
                     'ratingValue': avgRating.toFixed(1),
@@ -224,18 +225,19 @@ export const useSlotSEO = ({
         }
 
         const gameSchema = {
-            '@context': 'https://schema.org', '@type': 'Game', '@id': slotUrl,
+            '@context': 'https://schema.org', '@type': 'VideoGame', '@id': slotUrl,
             name: slotData.name, description: getDetailedDescription(slotData), url: slotUrl,
             inLanguage: slotData.content_language || 'en', isAccessibleForFree: Boolean(slotData.demo_url),
+            isFamilyFriendly: false, playMode: 'SinglePlayer',
             keywords: [slotData.hero_keyword, slotData.hero_keyword_2, slotData.hero_keyword_3, slotData.name, slotData.providers?.name, 'Online Slot', 'Casino Game'].filter(Boolean).join(', '),
             audience: slotData.geo_target_regions ? {
-                '@type': 'Audience', audienceType: 'Online Casino Players',
+                '@type': 'PeopleAudience', audienceType: 'Online Casino Players', requiredMinAge: 18,
                 geographicArea: slotData.geo_target_regions.split(',').map(code => code.trim()).filter(Boolean).map(code => ({ '@type': 'Country', identifier: code }))
-            } : undefined,
+            } : { '@type': 'PeopleAudience', audienceType: 'Online Casino Players', requiredMinAge: 18 },
             image: { '@type': 'ImageObject', url: imageUrl, width: 1200, height: 630, caption: `${slotData.name} - slot machine screenshot` },
             datePublished: slotData.release_date || '2021-02-13',
             genre: getSlotThemesFromDB(slotData)?.length > 0 ? getSlotThemesFromDB(slotData).map(t => t.name) : (slotData.hero_keyword || 'Slot Game'),
-            gamePlatform: ['Web Browser', 'Mobile', 'Desktop'], applicationCategory: 'Game', contentRating: '18+',
+            gamePlatform: ['Web Browser', 'Mobile', 'Desktop'], applicationCategory: 'CasinoGame', contentRating: '18+',
             gameItem: [
                 { '@type': 'Thing', name: 'RTP', value: `${slotData.rtp || '96.5'}%`, description: `RTP ${slotData.rtp || '96.5'}%` },
                 { '@type': 'Thing', name: 'Volatility', value: slotData.volatility || 'High', description: `${slotData.volatility || 'High'} volatility` },
@@ -278,6 +280,7 @@ export const useSlotSEO = ({
 
         const websiteSchema = {
             '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${baseUrl}/#website`, name: 'SlotQuest', url: baseUrl,
+            isFamilyFriendly: false,
             potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}/search?q={search_term_string}` }, 'query-input': 'required name=search_term_string' }
         }
 
@@ -394,7 +397,9 @@ export const useSlotSEO = ({
                     ] : []),
                     { name: 'twitter:label1', content: 'RTP' }, { name: 'twitter:data1', content: `${slot.value.rtp || '96'}%` },
                     { name: 'twitter:label2', content: 'Volatility' }, { name: 'twitter:data2', content: slot.value.volatility || 'Medium' },
-                    { name: 'rating', content: '18+' },
+                    { name: 'rating', content: 'adult' },
+                    { name: 'isFamilyFriendly', content: 'false' },
+                    { name: 'contentRating', content: '18+' },
                     { 'http-equiv': 'content-language', content: slot.value.content_language || 'en' },
                     { name: 'googlebot', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' },
                     { name: 'bingbot', content: 'index, follow' },
@@ -408,8 +413,9 @@ export const useSlotSEO = ({
                     { name: 'slot:theme', content: slot.value.theme || slot.value.category?.name || 'casino' },
                     { name: 'casino:demo_available', content: slot.value.demo_url ? 'yes' : 'no' },
                     { name: 'casino:real_money', content: slot.value.real_play_url ? 'yes' : 'no' },
+                    { name: 'audience:requiredMinAge', content: '18' },
                     { name: 'alternative-name', content: slot.value.alternative_names || slot.value.name },
-                    { name: 'rating', content: `${slot.value.rating || '4.8'}/5` }, { name: 'reviewCount', content: slot.value.reviews_count || '1247' },
+                    { name: 'reviewCount', content: slot.value.reviews_count || '1247' },
                     { name: 'release_date', content: slot.value.release_date || '2021-02-13' },
                     { name: 'mobile-web-app-capable', content: 'yes' }, { name: 'apple-mobile-web-app-capable', content: 'yes' }, { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
                 ],
