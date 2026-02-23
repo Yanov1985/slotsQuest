@@ -2744,7 +2744,7 @@
                 @click="playSlot(); showInfoModal = false"
                 class="w-full py-3 bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-[1.02]"
               >
-                Play Demo Now
+                {{ slot.info_demo_btn_text || 'Play Demo Now' }}
               </button>
             </section>
           </div>
@@ -2828,7 +2828,7 @@ const computedFaq = computed(() => {
   return [
     { question: `Is ${name} safe to play online?`, answer: `Yes, ${name} is developed by ${provider}, a licensed and regulated game provider. All games are tested by independent auditing agencies to ensure fair play and random outcomes.` },
     { question: `What is the RTP of ${name}?`, answer: `The Return to Player (RTP) of ${name} is ${s.rtp || '96.0'}%. This means that, on average, for every $100 wagered, the game returns $${s.rtp || '96.0'} to players over time.` },
-    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on SlotQuest. No registration or deposit required — just click "Play Demo Now" to start spinning.` },
+    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on SlotQuest. No registration or deposit required — just click "${s.info_demo_btn_text || 'Play Demo Now'}" to start spinning.` },
     { question: `What is the maximum win in ${name}?`, answer: `The maximum win in ${name} is ${formatMaxWin(s.max_win)}x your bet. ${s.max_win >= 5000 ? 'This is a very high max win potential!' : 'This offers solid winning potential for players.'}` },
     { question: `What is the volatility of ${name}?`, answer: `${name} has ${getVolatilityText(s.volatility).toLowerCase()} volatility. ${s.volatility?.toLowerCase() === 'high' ? 'This means wins are less frequent but can be much larger when they hit.' : s.volatility?.toLowerCase() === 'low' ? 'This means you can expect frequent, smaller wins.' : 'This provides a balanced mix of win frequency and size.'}` }
   ]
@@ -2852,8 +2852,9 @@ const computedHowToPlay = computed(() => {
     try { return JSON.parse(slot.value.info_how_to_play) } catch(e) { /* fallback */ }
   }
   const name = slot.value.name || 'the slot'
+  const btnText = slot.value.info_demo_btn_text || 'Play Demo Now'
   return [
-    { step: 'Open the Demo', text: `Click "Play Demo Now" on this page to launch ${name} in free play mode. No registration or deposit required.` },
+    { step: 'Open the Demo', text: `Click "${btnText}" on this page to launch ${name} in free play mode. No registration or deposit required.` },
     { step: 'Set Your Bet', text: `Use the controls at the bottom of the game screen to adjust your bet size. Start with the minimum bet to learn the mechanics.` },
     { step: 'Spin the Reels', text: `Click the Spin button or press Space. Watch for winning combinations across the ${formatPaylines(slot.value.paylines)} paylines.` },
     { step: 'Trigger Bonuses', text: `Land special symbols to activate bonus features like free spins, multipliers, and other rewards. Check the paytable (ℹ) for details.` }

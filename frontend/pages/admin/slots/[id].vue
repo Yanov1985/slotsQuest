@@ -1313,6 +1313,26 @@
                             class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
                             placeholder="Call to action text for demo play button..."
                           ></textarea>
+
+                          <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mt-4 mb-3">
+                            <span class="text-purple-400">📝</span> Demo Button Text
+                          </label>
+                          <input
+                            v-model="form.info_demo_btn_text"
+                            type="text"
+                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            placeholder="Play Demo Now"
+                          />
+
+                          <label class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mt-4 mb-3">
+                            <span class="text-purple-400">🔗</span> Demo URL
+                          </label>
+                          <input
+                            v-model="form.demo_url"
+                            type="text"
+                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            placeholder="https://provider.com/demo/slot-name"
+                          />
                         </div>
 
                       </div>
@@ -5499,6 +5519,7 @@ const form = ref({
   info_reviews: '',
   info_how_to_play: '',
   info_demo_cta: '',
+  info_demo_btn_text: 'Play Demo Now',
   video_url: '',
   // Button links
   demo_url: '', // Link for "Play for Free" button
@@ -8111,8 +8132,9 @@ const generateInfoContent = () => {
 
   // 6. How to Play
   if (!form.value.info_how_to_play) {
+    const btnText = form.value.info_demo_btn_text || 'Play Demo Now'
     form.value.info_how_to_play = JSON.stringify([
-      { step: 'Open the Demo', text: 'Click "Play Demo Now" to launch ' + name + ' in free play mode. No registration required.' },
+      { step: 'Open the Demo', text: 'Click "' + btnText + '" to launch ' + name + ' in free play mode. No registration required.' },
       { step: 'Set Your Bet', text: 'Use the controls at the bottom of the game screen to adjust your bet size.' },
       { step: 'Spin the Reels', text: 'Click the Spin button or press Space. Watch for winning combinations across the ' + paylines + ' paylines.' },
       { step: 'Trigger Bonuses', text: 'Land special symbols to activate bonus features like free spins, multipliers, and other rewards.' }
@@ -8122,6 +8144,16 @@ const generateInfoContent = () => {
   // 7. Demo CTA
   if (!form.value.info_demo_cta) {
     form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!'
+  }
+  if (!form.value.info_demo_btn_text) {
+    form.value.info_demo_btn_text = 'Play Demo Now'
+  }
+
+  // 8. Demo URL
+  if (!form.value.demo_url) {
+    const defaultProviderStr = providerName.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const defaultSlotStr = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    form.value.demo_url = `https://${defaultProviderStr}.com/demo/${defaultSlotStr}`
   }
 
   // Synchronize reactive arrays with new form data
