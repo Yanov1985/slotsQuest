@@ -1,625 +1,273 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20">
-      <!-- Background Effects -->
-      <div class="absolute inset-0">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+  <div class="min-h-screen bg-zinc-950 font-sans selection:bg-blue-500/30">
 
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="text-center mb-12">
-          <h1 class="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent flex items-center justify-center gap-4">
-            <Icon name="solar:gamepad-bold-duotone" class="text-cyan-400 w-16 h-16 md:w-20 md:h-20" /> Каталог слотов
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Откройте для себя мир захватывающих игровых автоматов от лучших провайдеров
-          </p>
-          <div class="mt-8 flex justify-center items-center space-x-6 text-gray-400">
-            <div class="flex items-center space-x-2">
-              <Icon name="solar:gamepad-bold" class="text-2xl text-cyan-400" />
-              <span class="font-medium">{{ slots?.length || 0 }} игр</span>
-            </div>
-            <div class="w-1 h-1 bg-gray-500 rounded-full"></div>
-            <div class="flex items-center space-x-2">
-              <Icon name="solar:buildings-bold" class="text-2xl text-purple-400" />
-              <span class="font-medium">{{ providers?.length || 0 }} провайдеров</span>
-            </div>
-            <div class="w-1 h-1 bg-gray-500 rounded-full"></div>
-            <div class="flex items-center space-x-2">
-              <Icon name="solar:folder-2-bold" class="text-2xl text-pink-400" />
-              <span class="font-medium">{{ categories?.length || 0 }} категорий</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Filters Section -->
-    <section class="container mx-auto px-4 mb-12">
-      <div class="bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm rounded-3xl border border-cyan-500/20 p-8">
-        <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
-          <Icon name="solar:magnifer-bold" class="text-3xl text-cyan-400 mr-3" />
-          Поиск и фильтры
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Поиск -->
-          <div class="relative">
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Поиск по названию..."
-              class="w-full px-4 py-3 pl-12 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300"
-            >
-            <Icon name="solar:magnifer-bold" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-          </div>
-
-          <!-- Провайдер -->
-          <div class="relative">
-            <select
-              v-model="selectedProvider"
-              class="w-full px-4 py-3 pl-12 bg-gray-800/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 appearance-none cursor-pointer"
-            >
-              <option value="" class="bg-gray-800">Все провайдеры</option>
-              <option
-                v-for="provider in providers"
-                :key="provider.id"
-                :value="provider.id"
-                class="bg-gray-800"
-              >
-                {{ provider.name || 'Провайдер' }}
-              </option>
-            </select>
-            <Icon name="solar:buildings-bold" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-            <Icon name="solar:alt-arrow-down-bold" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none w-5 h-5" />
-          </div>
-
-          <!-- Категория -->
-          <div class="relative">
-            <select
-              v-model="selectedCategory"
-              class="w-full px-4 py-3 pl-12 bg-gray-800/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300 appearance-none cursor-pointer"
-            >
-              <option value="" class="bg-gray-800">Все категории</option>
-              <option
-                v-for="category in categories"
-                :key="category.id"
-                :value="category.id"
-                class="bg-gray-800"
-              >
-                {{ category.name || 'Категория' }}
-              </option>
-            </select>
-            <Icon name="solar:folder-2-bold" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-            <Icon name="solar:alt-arrow-down-bold" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none w-5 h-5" />
-          </div>
-
-          <!-- Сортировка -->
-          <div class="relative">
-            <select
-              v-model="sortBy"
-              class="w-full px-4 py-3 pl-12 bg-gray-800/50 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 appearance-none cursor-pointer"
-            >
-              <option value="name" class="bg-gray-800">По названию</option>
-              <option value="rtp" class="bg-gray-800">По RTP</option>
-              <option value="provider" class="bg-gray-800">По провайдеру</option>
-              <option value="newest" class="bg-gray-800">Новые</option>
-            </select>
-            <Icon name="solar:bolt-bold" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
-            <Icon name="solar:alt-arrow-down-bold" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none w-5 h-5" />
-          </div>
-        </div>
-
-        <!-- Быстрые фильтры -->
-        <div class="mt-6 flex flex-wrap gap-3">
-          <button
-            @click="clearFilters"
-            class="px-4 py-2 bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 rounded-lg transition-all duration-300 text-sm font-medium flex items-center gap-2"
+    <!-- 📱 Навигация - стеклянный эффект (в точности как в [slug].vue) -->
+    <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg shadow-black/20">
+      <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+        <div class="flex items-center justify-between gap-2">
+          <!-- Кнопка назад -->
+          <NuxtLink
+            to="/"
+            class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm sm:text-base min-w-0"
           >
-            <Icon name="solar:trash-bin-trash-bold" class="w-4 h-4" /> Очистить фильтры
-          </button>
-          <button
-            @click="selectedCategory = 'popular'"
-            class="px-4 py-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 hover:from-yellow-500/30 hover:to-orange-500/30 text-yellow-300 border border-yellow-500/30 rounded-lg transition-all duration-300 text-sm font-medium flex items-center gap-2"
-          >
-            <Icon name="solar:fire-bold" class="w-4 h-4" /> Популярные
-          </button>
-          <button
-            @click="selectedCategory = 'new'"
-            class="px-4 py-2 bg-gradient-to-r from-green-500/20 to-cyan-500/20 hover:from-green-500/30 hover:to-cyan-500/30 text-green-300 border border-green-500/30 rounded-lg transition-all duration-300 text-sm font-medium flex items-center gap-2"
-          >
-            <Icon name="solar:star-fall-bold" class="w-4 h-4" /> Новинки
-          </button>
-          <button
-            @click="sortBy = 'rtp'"
-            class="px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all duration-300 text-sm font-medium flex items-center gap-2"
-          >
-            <Icon name="solar:dollar-bold" class="w-4 h-4" /> Высокий RTP
-          </button>
+            <svg
+              class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <span class="hidden xs:inline">Back to </span><span class="hidden sm:inline">Home</span>
+          </NuxtLink>
+
+          <!-- Хлебные крошки -->
+          <div class="hidden md:flex items-center text-xs sm:text-sm text-white/50 truncate">
+            <NuxtLink to="/" class="hover:text-blue-400 transition-colors whitespace-nowrap">Home</NuxtLink>
+            <span class="mx-1 sm:mx-2">/</span>
+            <span class="text-white font-medium truncate">Slots Catalog</span>
+          </div>
+
+          <!-- Мобильные хлебные крошки -->
+          <div class="md:hidden text-xs text-white/70 truncate">
+            Slots Catalog
+          </div>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <!-- Results Section -->
-    <section class="container mx-auto px-4 pb-20">
-      <!-- Loading State -->
-      <div v-if="loading" class="text-center py-20">
-        <div class="inline-block relative">
-          <div class="w-20 h-20 border-4 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin"></div>
-          <div class="absolute inset-0 w-20 h-20 border-4 border-purple-500/30 border-b-purple-500 rounded-full animate-spin animate-reverse"></div>
+    <!-- Загрузка / Skeleton (в стиле [slug].vue) -->
+    <div v-if="loading" class="min-h-screen bg-zinc-950 pt-8 pb-12 w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div class="w-full">
+        <div class="flex flex-col lg:flex-row gap-8 animate-pulse">
+          <!-- Фильтры skeleton -->
+          <div class="w-full lg:w-[280px] space-y-4 shrink-0 hidden lg:block">
+            <div class="h-10 bg-white/5 rounded-xl w-full"></div>
+            <div class="h-10 bg-white/5 rounded-xl w-full"></div>
+            <div class="h-64 bg-white/5 rounded-3xl w-full"></div>
+          </div>
+
+          <!-- Сетка слотов skeleton -->
+          <div class="flex-1">
+             <!-- Top bar skeleton -->
+             <div class="h-14 bg-white/5 rounded-2xl w-full mb-8"></div>
+             <!-- Grid -->
+             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Slot Card Skeletons -->
+                <div v-for="i in 12" :key="'skel-' + i" class="aspect-[3/4] bg-white/5 rounded-3xl border border-white/5 overflow-hidden flex flex-col">
+                   <div class="w-full h-[60%] bg-white/10"></div>
+                   <div class="p-4 space-y-3 flex-1 flex flex-col justify-end">
+                     <div class="h-5 w-3/4 bg-white/10 rounded-full"></div>
+                     <div class="h-4 w-1/2 bg-white/10 rounded-full"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
         </div>
-        <p class="mt-6 text-xl text-gray-300 font-medium flex items-center justify-center gap-2">
-          <Icon name="solar:refresh-circle-bold" class="w-7 h-7 text-cyan-400 animate-spin" />
-          Загружаем лучшие слоты...
-        </p>
-        <p class="mt-2 text-gray-400">Подготавливаем для вас захватывающие игры</p>
       </div>
+    </div>
 
-      <!-- Error State -->
-      <div v-else-if="error" class="text-center py-20">
-        <div class="text-8xl mb-6">
-          <Icon name="solar:sad-face-bold" class="text-red-400 mx-auto" />
+    <!-- Error State -->
+    <div v-else-if="error" class="flex items-center justify-center min-h-[70vh]">
+      <div class="text-center max-w-md mx-auto px-4">
+        <div class="text-red-500 mb-6">
+          <svg class="w-20 h-20 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+          <h2 class="text-3xl font-bold mb-4 text-white">Error Loading Catalog</h2>
+          <p class="text-white/70 mb-6">{{ error }}</p>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">Упс! Что-то пошло не так</h3>
-        <p class="text-gray-400 mb-8">{{ error }}</p>
-        <button
-          @click="loadData"
-          class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 mx-auto"
-        >
-          <Icon name="solar:refresh-circle-bold" /> Попробовать снова
+        <button @click="refreshSlots" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl transition-colors font-semibold">
+           Try Again
         </button>
       </div>
+    </div>
 
-      <!-- Slots Grid -->
-      <div v-else>
-        <!-- Results Header -->
-        <div class="flex justify-between items-center mb-8">
-          <div class="text-white">
-            <h3 class="text-2xl font-bold mb-2">Найдено игр: {{ filteredSlots?.length || 0 }}</h3>
-            <p class="text-gray-400">{{ getFilterDescription() }}</p>
+    <!-- Main Content Area -->
+    <div v-else class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 flex flex-col lg:flex-row gap-8 items-start relative">
+
+      <!-- Off-Canvas / Sidebar Filters -->
+      <FilterSidebar
+        :providers="providers"
+        @update:filters="applyFilters"
+      />
+
+      <!-- Content Column -->
+      <div class="flex-1 w-full min-w-0">
+
+        <!-- Category Chips & Controls (Стеклянная панель) -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 bg-white/5 p-3 sm:p-4 rounded-3xl border border-white/10 backdrop-blur-xl shadow-lg shadow-black/20">
+
+          <!-- Chips (Scrollable) -->
+          <div class="flex flex-1 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-none gap-2 min-w-0">
+            <button
+              v-for="cat in quickCategories"
+              :key="cat.id"
+              @click="activeCategory = cat.id"
+              class="whitespace-nowrap px-5 py-2.5 rounded-2xl text-sm font-semibold tracking-wide transition-all duration-300 transform active:scale-95 border shrink-0 flex items-center gap-2"
+              :class="activeCategory === cat.id
+                ? 'bg-blue-600/20 text-blue-400 border-blue-500/30'
+                : 'bg-white/5 text-white/70 hover:text-white border-white/5 hover:border-white/20 hover:bg-white/10'"
+            >
+              <Icon v-if="cat.icon" :name="cat.icon" class="w-4 h-4" />
+              {{ cat.name }}
+            </button>
           </div>
 
-          <div class="flex items-center space-x-4">
-            <button
-              @click="viewMode = 'grid'"
-              :class="viewMode === 'grid' ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20' : 'bg-gray-700 text-gray-300'"
-              class="p-2.5 rounded-lg transition-all duration-300 flex items-center justify-center"
-              aria-label="Grid view"
+          <!-- Sort Select -->
+          <div class="relative shrink-0 w-full sm:w-auto">
+            <Icon name="solar:sort-from-top-to-bottom-line-duotone" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 w-4 h-4 pointer-events-none" />
+            <select
+              v-model="sortBy"
+              class="appearance-none bg-white/5 border border-white/10 text-white/90 text-sm font-medium py-2.5 pl-9 pr-10 rounded-2xl focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-colors cursor-pointer w-full sm:w-[180px] hover:bg-white/10"
             >
-              <Icon name="solar:widget-3-bold" class="w-6 h-6" />
-            </button>
-            <button
-              @click="viewMode = 'list'"
-              :class="viewMode === 'list' ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/20' : 'bg-gray-700 text-gray-300'"
-              class="p-2.5 rounded-lg transition-all duration-300 flex items-center justify-center"
-              aria-label="List view"
-            >
-              <Icon name="solar:list-bold" class="w-6 h-6" />
-            </button>
+              <option value="popular" class="bg-zinc-900">Популярные</option>
+              <option value="newest" class="bg-zinc-900">Новые</option>
+              <option value="rtp" class="bg-zinc-900">Высокий RTP</option>
+              <option value="a-z" class="bg-zinc-900">А - Я</option>
+            </select>
+            <Icon name="solar:alt-arrow-down-line-duotone" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 w-4 h-4 pointer-events-none" />
           </div>
         </div>
 
-        <!-- Grid View -->
-        <div v-if="viewMode === 'grid'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          <div
-            v-for="(slot, index) in filteredSlots"
-            :key="slot.id"
-            class="group relative bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-sm rounded-2xl border border-gray-700/50 overflow-hidden hover:border-cyan-500/50 transition-all duration-500 ease-out transform-gpu will-change-transform hover:shadow-2xl hover:shadow-cyan-500/20 lg:hover:-translate-y-2 hover:scale-[1.02] cursor-pointer"
-            :style="{ animationDelay: `${index * 100}ms` }"
-          >
-            <!-- Slot Image/Icon -->
-            <div class="relative aspect-video bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 bg-gradient-to-br from-transparent via-black/20 to-black/40"></div>
-              <div class="relative z-10 text-6xl font-black text-white/80 group-hover:scale-110 transition-transform duration-500">
-                <Icon name="solar:gamepad-bold-duotone" />
-              </div>
-
-              <!-- Hover Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                <span class="text-white font-bold text-lg">{{ slot.name || 'Слот' }}</span>
-              </div>
-
-              <!-- RTP Badge -->
-              <div class="absolute top-3 right-3 bg-green-500/90 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded-full">
-                {{ slot.rtp }}% RTP
-              </div>
-            </div>
-
-            <!-- Slot Info -->
-            <div class="p-6">
-              <div class="mb-4">
-                <h3 class="font-bold text-xl text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-1">
-                  {{ slot.name || 'Слот' }}
-                </h3>
-                <p class="text-gray-400 text-sm mb-1 flex items-center">
-                  <Icon name="solar:buildings-bold-duotone" class="w-4 h-4 mr-1.5" />
-                  {{ slot.providers?.name || 'Provider' }}
-                </p>
-                <p class="text-gray-400 text-xs flex items-center">
-                  <Icon name="solar:folder-2-bold-duotone" class="w-4 h-4 mr-1.5" />
-                  {{ slot.slot_categories?.name || slot.category?.name || 'Category' }}
-                </p>
-              </div>
-
-              <!-- Stats -->
-              <div class="grid grid-cols-2 gap-4 mb-6 text-xs">
-                <div class="text-center p-3 bg-gray-800/50 rounded-lg">
-                  <div class="text-gray-400 mb-1">Волатильность</div>
-                  <div class="font-bold text-cyan-400">{{ slot.volatility || 'Средняя' }}</div>
-                </div>
-                <div class="text-center p-3 bg-gray-800/50 rounded-lg">
-                  <div class="text-gray-400 mb-1">Макс. выигрыш</div>
-                  <div class="font-bold text-green-400">{{ slot.max_win || '5000x' }}</div>
-                </div>
-              </div>
-
-              <!-- Action Buttons -->
-              <div class="flex space-x-3">
-                <NuxtLink
-                  :to="`/slots/${slot.slug}`"
-                  class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center"
-                >
-                  <Icon name="solar:document-text-bold" class="w-4 h-4" /> Подробнее
-                </NuxtLink>
-                <button class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
-                  <Icon name="solar:play-bold" class="w-4 h-4" /> Играть
-                </button>
-              </div>
-            </div>
-
-            <!-- Corner Decorations -->
-            <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-purple-400/30 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
+        <!-- Empty State (No matches) -->
+        <div v-if="filteredSlots.length === 0" class="flex flex-col items-center justify-center py-32 border border-white/10 border-dashed rounded-3xl bg-white/5 backdrop-blur-sm">
+          <Icon name="solar:ghost-line-duotone" class="text-white/40 w-24 h-24 mb-6" />
+          <h2 class="text-2xl font-bold text-white mb-2">Ничего не найдено</h2>
+          <p class="text-white/60">Попробуйте изменить фильтры или условия поиска</p>
         </div>
 
-        <!-- List View -->
-        <div v-else class="space-y-4">
-          <div
+        <!-- Slots Grid -->
+        <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" v-auto-animate>
+          <SlotCard
             v-for="slot in filteredSlots"
             :key="slot.id"
-            class="group bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm rounded-xl border border-gray-700/50 p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
-          >
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-6">
-                <div class="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl flex items-center justify-center text-3xl text-cyan-400">
-                  <Icon name="solar:gamepad-bold-duotone" />
-                </div>
-                <div>
-                  <h3 class="font-bold text-xl text-white group-hover:text-cyan-400 transition-colors duration-300">
-                    {{ slot.name || 'Слот' }}
-                  </h3>
-                  <p class="text-gray-400 text-sm">{{ slot.providers?.name }} • {{ slot.slot_categories?.name || slot.category?.name }}</p>
-                  <div class="flex items-center space-x-4 mt-2 text-xs">
-                    <span class="text-green-400 font-medium">RTP: {{ slot.rtp }}%</span>
-                    <span class="text-gray-400">{{ slot.volatility }}</span>
-                    <span class="text-purple-400">Макс: {{ slot.max_win || '5000x' }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex space-x-3">
-                <NuxtLink
-                  :to="`/slots/${slot.slug}`"
-                  class="px-6 py-3 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  <Icon name="solar:document-text-bold" /> Подробнее
-                </NuxtLink>
-                <button class="px-6 py-3 flex items-center justify-center gap-2 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
-                  <Icon name="solar:play-bold" /> Играть
-                </button>
-              </div>
-            </div>
-          </div>
+            :slot="slot"
+          />
         </div>
 
-        <!-- No Results -->
-        <div v-if="(filteredSlots?.length || 0) === 0" class="text-center py-20">
-          <div class="text-8xl mb-6">
-            <Icon name="solar:magnifer-bold" class="text-gray-600 mx-auto" />
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Слоты не найдены</h3>
-          <p class="text-gray-400 mb-8">Попробуйте изменить параметры поиска или очистить фильтры</p>
-          <button
-            @click="clearFilters"
-            class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 mx-auto"
-          >
-            <Icon name="solar:trash-bin-trash-bold" /> Очистить фильтры
-          </button>
-        </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
+import FilterSidebar from '~/components/slots/FilterSidebar.vue'
+import SlotCard from '~/components/slots/SlotCard.vue'
 
-// Load data using the same approach as homepage
+// Data Fetching (SSR via useAsyncData)
 const { getSlots } = useSlotsApi()
 const { getProviders } = useProviders()
 
-// Load data exactly like on homepage
-const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useLazyAsyncData('catalog-slots', () => getSlots())
-const { data: providers, pending: providersLoading, error: providersError } = await useLazyAsyncData('catalog-providers', () => getProviders())
-const { data: categories, pending: categoriesLoading, error: categoriesError } = await useLazyAsyncData('catalog-categories', async () => {
-  const config = useRuntimeConfig()
-  const response = await $fetch(`${config.public.apiUrl}/api/categories`)
-  return response
+// Wait for this data on the server
+const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', () => getSlots())
+const { data: providers, pending: providersLoading, error: providersError } = await useAsyncData('catalog-providers', () => getProviders())
+
+// SEO injection server-side
+const siteUrl = 'https://slotquest.com/slots'
+useCatalogSEO(
+  'Каталог лучших игровых автоматов 2025 | SlotQuest',
+  'Огромный выбор игровых автоматов онлайн. Играйте бесплатно в демо версиях или на реальные деньги в лучших казино. Фильтр по провайдерам, RTP и бонусам.',
+  siteUrl,
+  slots.value?.length || 0
+)
+
+const loading = computed(() => slotsLoading.value || providersLoading.value)
+const error = computed(() => slotsError.value?.message || providersError.value?.message || null)
+
+// Filter State
+const activeCategory = ref('all')
+const sortBy = ref('popular')
+const currentSideFilters = ref({
+  search: '',
+  providerId: '',
+  volatility: '',
+  bonusBuy: false,
+  megaways: false
 })
 
-// Reactive data
-const selectedProvider = ref('')
-const selectedCategory = ref('')
-const searchQuery = ref('')
-const sortBy = ref('name')
-const viewMode = ref('grid')
+const quickCategories = [
+  { id: 'all', name: 'Все слоты', icon: 'solar:gamepad-line-duotone' },
+  { id: 'popular', name: 'Популярные', icon: 'solar:fire-line-duotone' },
+  { id: 'new', name: 'Новинки', icon: 'solar:star-fall-line-duotone' },
+  { id: 'megaways', name: 'Megaways', icon: 'solar:bomb-emoji-line-duotone' },
+  { id: 'bonus-buy', name: 'Покупка бонуса', icon: 'solar:cart-large-line-duotone' }
+]
 
-// Computed loading and error states
-const loading = computed(() => slotsLoading.value || providersLoading.value || categoriesLoading.value)
-const error = computed(() => {
-  if (slotsError.value) return slotsError.value
-  if (providersError.value) return providersError.value
-  if (categoriesError.value) return categoriesError.value
-  return null
-})
+const applyFilters = (filters) => {
+  currentSideFilters.value = filters
+}
 
-// Computed properties
+// Computed Filtered List
 const filteredSlots = computed(() => {
-  if (!slots.value || !Array.isArray(slots.value)) {
-    return []
+  if (!slots.value) return []
+
+  let result = [...slots.value]
+
+  // 1. Sidebar Filters
+  const f = currentSideFilters.value
+
+  if (f.search) {
+    const term = f.search.toLowerCase()
+    result = result.filter(s => s.name?.toLowerCase().includes(term) || s.providers?.name?.toLowerCase().includes(term))
   }
 
-  let filtered = slots.value.filter(slot => {
-    const providerMatch = !selectedProvider.value || slot.providers?.id === selectedProvider.value
-    const categoryMatch = !selectedCategory.value || slot.category_id === selectedCategory.value
-    const searchMatch = !searchQuery.value ||
-      (slot.name || '').toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      (slot.providers?.name || '').toLowerCase().includes(searchQuery.value.toLowerCase())
-
-    return providerMatch && categoryMatch && searchMatch
-  })
-
-  // Сортировка
-  filtered.sort((a, b) => {
-    switch (sortBy.value) {
-      case 'name':
-        return (a.name || '').localeCompare(b.name || '')
-      case 'rtp':
-        return (b.rtp || 0) - (a.rtp || 0)
-      case 'provider':
-        return (a.providers?.name || '').localeCompare(b.providers?.name || '')
-      case 'newest':
-        return new Date(b.created_at || 0) - new Date(a.created_at || 0)
-      default:
-        return 0
-    }
-  })
-
-  return filtered
-})
-
-// Methods
-
-const clearFilters = () => {
-  selectedProvider.value = ''
-  selectedCategory.value = ''
-  searchQuery.value = ''
-  sortBy.value = 'name'
-}
-
-const getFilterDescription = () => {
-  const parts = []
-  if (searchQuery.value) parts.push(`поиск: "${searchQuery.value}"`)
-  if (selectedProvider.value && providers.value && Array.isArray(providers.value)) {
-    const provider = providers.value.find(p => p.id === selectedProvider.value)
-    if (provider) parts.push(`провайдер: ${provider.name || 'неизвестный'}`)
-  }
-  if (selectedCategory.value && categories.value && Array.isArray(categories.value)) {
-    const category = categories.value.find(c => c.id === selectedCategory.value)
-    if (category) parts.push(`категория: ${category.name || 'неизвестная'}`)
+  if (f.providerId) {
+    result = result.filter(s => s.providers?.id === f.providerId)
   }
 
-  return parts.length > 0 ? parts.join(', ') : 'все слоты'
-}
-
-const getSlotEmoji = (name) => {
-  if (!name || typeof name !== 'string') {
-    return '🎰'
+  if (f.volatility) {
+    result = result.filter(s => s.volatility?.toLowerCase() === f.volatility)
   }
-  const emojis = ['🎰', '🎲', '🃏', '💎', '🍒', '🍋', '🍊', '🍇', '⭐', '💰', '🎯', '🎪', '🎭', '🎨', '🎵']
-  const index = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % emojis.length
-  return emojis[index]
-}
 
-// Lifecycle
-// Data is loaded automatically via useLazyAsyncData
+  // Very simplified feature logic (assuming these might be embedded in description or categories for now if no specific column)
+  if (f.bonusBuy) {
+    result = result.filter(s => s.description?.toLowerCase().includes('buy') || s.name?.toLowerCase().includes('bonus'))
+  }
 
-// SEO
-useHead({
-  title: 'Каталог слотов - SlotQuest',
-  meta: [
-    {
-      name: 'description',
-      content: 'Большой каталог игровых автоматов от лучших провайдеров. Найдите свой любимый слот и начните играть прямо сейчас!'
-    }
-  ]
+  if (f.megaways) {
+    result = result.filter(s => s.name?.toLowerCase().includes('megaways'))
+  }
+
+  // 2. Chip Categories
+  if (activeCategory.value === 'popular') {
+    result = result.filter(s => s.popularity_rank && s.popularity_rank <= 20)
+  } else if (activeCategory.value === 'new') {
+    result = result.sort((a,b) => b.id - a.id).slice(0, 50)
+  } else if (activeCategory.value === 'megaways') {
+    result = result.filter(s => s.name?.toLowerCase().includes('megaways'))
+  } else if (activeCategory.value === 'bonus-buy') {
+     result = result.filter(s => s.description?.toLowerCase().includes('buy'))
+  }
+
+  // 3. Sorting
+  switch (sortBy.value) {
+    case 'popular':
+      result.sort((a, b) => (a.popularity_rank || 999) - (b.popularity_rank || 999))
+      break
+    case 'newest':
+      result.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
+      break
+    case 'rtp':
+      result.sort((a, b) => (b.rtp || 0) - (a.rtp || 0))
+      break
+    case 'a-z':
+      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+      break
+  }
+
+  return result
 })
 </script>
 
 <style scoped>
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Custom Scrollbar for chips area */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
-  }
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
-
-.animate-reverse {
-  animation-direction: reverse;
-}
-
-.line-clamp-1 {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Кастомные градиенты */
-.bg-casino-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.bg-slot-gradient {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.bg-gold-gradient {
-  background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
-}
-
-/* Эффекты при наведении */
-.hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Кастомные скроллбары */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(31, 41, 55, 0.5);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #0891b2, #7c3aed);
-}
-
-/* Анимация появления карточек */
-.slot-card {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.slot-card:nth-child(1) { animation-delay: 0.1s; }
-.slot-card:nth-child(2) { animation-delay: 0.2s; }
-.slot-card:nth-child(3) { animation-delay: 0.3s; }
-.slot-card:nth-child(4) { animation-delay: 0.4s; }
-.slot-card:nth-child(5) { animation-delay: 0.5s; }
-.slot-card:nth-child(6) { animation-delay: 0.6s; }
-.slot-card:nth-child(7) { animation-delay: 0.7s; }
-.slot-card:nth-child(8) { animation-delay: 0.8s; }
-
-/* Эффект стекла */
-.glass-effect {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Неоновые эффекты */
-.neon-cyan {
-  text-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4, 0 0 30px #06b6d4;
-}
-
-.neon-purple {
-  text-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6;
-}
-
-.neon-pink {
-  text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899, 0 0 30px #ec4899;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.125rem;
-  }
-
-  .filter-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-grid {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .slot-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .filter-section {
-    padding: 1rem;
-  }
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
