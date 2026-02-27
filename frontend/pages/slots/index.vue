@@ -1,6 +1,11 @@
 <template>
-  <div class="min-h-screen bg-zinc-950 font-sans selection:bg-blue-500/30">
+  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30">
+    <!-- Animated Background from Admin Template -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      <BackgroundBeams :intensity="0.9" :speed="1.2" />
+    </div>
 
+    <div class="relative z-10 flex flex-col min-h-screen">
     <!-- 📱 Навигация - стеклянный эффект (в точности как в [slug].vue) -->
     <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
@@ -37,7 +42,7 @@
     </nav>
 
     <!-- Загрузка / Skeleton (в стиле [slug].vue) -->
-    <div v-if="loading" class="min-h-screen bg-zinc-950 pt-8 pb-12 w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <div v-if="loading" class="min-h-screen pt-8 pb-12 w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
       <div class="w-full">
         <div class="flex flex-col lg:flex-row gap-8 animate-pulse">
           <!-- Фильтры skeleton -->
@@ -149,12 +154,14 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
+import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 
 // Data Fetching (SSR via useAsyncData)
 const { getSlots } = useSlotsApi()
