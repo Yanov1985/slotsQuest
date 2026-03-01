@@ -143,7 +143,7 @@
         </div>
 
         <!-- Slots Grid -->
-        <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" v-auto-animate>
+        <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           <SlotCard
             v-for="slot in filteredSlots"
             :key="slot.id"
@@ -167,9 +167,20 @@ import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 const { getSlots } = useSlotsApi()
 const { getProviders } = useProviders()
 
-// Wait for this data on the server
-const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', () => getSlots())
-const { data: providers, pending: providersLoading, error: providersError } = await useAsyncData('catalog-providers', () => getProviders())
+// Load data. Await on Server (for SEO), but Lazy on Client (to show Skeleton during navigation).
+const fetchSlotsCb = async () => {
+  const data = await getSlots()
+  if (import.meta.client) await new Promise(r => setTimeout(r, 600)) // Artificial delay for premium skeleton feel
+  return data
+}
+const fetchProvidersCb = async () => {
+  const data = await getProviders()
+  if (import.meta.client) await new Promise(r => setTimeout(r, 600))
+  return data
+}
+
+const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', fetchSlotsCb, { lazy: import.meta.client })
+const { data: providers, pending: providersLoading, error: providersError } = await useAsyncData('catalog-providers', fetchProvidersCb, { lazy: import.meta.client })
 
 // SEO injection server-side
 const siteUrl = 'https://slotquest.com/slots'
