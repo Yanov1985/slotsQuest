@@ -37,7 +37,7 @@
       <div class="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
         <h2 class="text-white font-bold text-lg flex items-center gap-2">
           <Icon name="solar:tuning-square-2-line-duotone" class="text-blue-400 w-6 h-6" />
-          Фильтры
+          Filters
         </h2>
         <button
           @click="isOpen = false"
@@ -52,76 +52,122 @@
 
         <!-- Search -->
         <div class="space-y-3">
-          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Поиск</label>
+          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Search</label>
           <div class="relative">
             <Icon name="solar:magnifer-line-duotone" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
             <input
               v-model="filters.search"
               type="text"
-              placeholder="Название слота..."
+              placeholder="Slot name..."
               class="w-full bg-black/20 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-colors shadow-inner"
               @input="emitFilters"
             >
           </div>
         </div>
 
-        <!-- Provider -->
+        <!-- Provider Searchable List -->
         <div class="space-y-3">
-          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Провайдер</label>
-          <div class="space-y-2">
-            <button
-              v-for="provider in providers.slice(0, 5)"
-              :key="provider.id"
-              @click="toggleProvider(provider.id)"
-              class="w-full flex items-center justify-between px-4 py-3 rounded-2xl border transition-all duration-300 transform active:scale-[0.98]"
-              :class="filters.providerId === provider.id ? 'bg-blue-600/20 border-blue-500/50 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.15)]' : 'bg-black/20 border-transparent text-white/70 hover:border-white/10 hover:text-white hover:bg-white/5'"
-            >
-              <span class="text-sm font-medium">{{ provider.name }}</span>
-              <Icon v-if="filters.providerId === provider.id" name="solar:check-circle-bold" class="text-blue-400 w-5 h-5" />
-            </button>
-            <button v-if="providers.length > 5" class="w-full text-center text-sm text-blue-400 hover:text-blue-300 transition-colors pt-3 font-medium">
-              Показать всех ({{ providers.length }})
-            </button>
+          <div class="flex items-center justify-between pl-1">
+             <label class="text-xs font-bold text-white/40 uppercase tracking-wider">Provider</label>
+             <span v-if="filters.providerIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.providerIds.length }}</span>
+          </div>
+
+          <div class="space-y-3 bg-black/20 p-2 sm:p-3 rounded-3xl border border-transparent flex flex-col">
+            <!-- Provider Search Input -->
+            <div class="relative w-full mb-2">
+              <Icon name="solar:magnifer-line-duotone" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 w-4 h-4" />
+              <input
+                v-model="providerSearch"
+                type="text"
+                placeholder="Search provider..."
+                class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
+              >
+            </div>
+
+            <div class="space-y-1.5 max-h-[220px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+              <button
+                v-for="provider in filteredProviders"
+                :key="provider.id"
+                @click="toggleFilterItem('providerIds', provider.id)"
+                class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl border transition-all duration-300 transform active:scale-[0.98]"
+                :class="filters.providerIds.includes(provider.id) ? 'bg-blue-600/20 border-blue-500/50 text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.15)]' : 'bg-transparent border-transparent text-white/70 hover:border-white/10 hover:text-white hover:bg-white/5'"
+              >
+                <span class="text-sm font-medium">{{ provider.name }}</span>
+                <Icon v-if="filters.providerIds.includes(provider.id)" name="solar:check-circle-bold" class="text-blue-400 w-4 h-4" />
+              </button>
+              <div v-if="filteredProviders.length === 0" class="text-center py-4 text-xs text-white/40">
+                Provider not found
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Volatility -->
-        <div class="space-y-3">
-          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Волатильность</label>
-          <div class="grid grid-cols-3 gap-2">
-            <button
-              v-for="level in ['low', 'medium', 'high']"
-              :key="level"
-              @click="filters.volatility = filters.volatility === level ? '' : level; emitFilters()"
-              class="py-3 px-1 rounded-2xl border text-xs font-bold capitalize transition-all duration-300 text-center transform active:scale-[0.98]"
-              :class="filters.volatility === level ? 'bg-amber-500/20 border-amber-500/50 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.15)]' : 'bg-black/20 border-transparent text-white/70 hover:border-white/10 hover:text-white hover:bg-white/5'"
-            >
-              {{ level === 'high' ? 'Высокая' : level === 'low' ? 'Низкая' : 'Средняя' }}
-            </button>
-          </div>
+        <!-- Themes Accordion -->
+        <div class="space-y-3 border-t border-white/5 pt-6">
+           <button @click="accordions.themes = !accordions.themes" class="w-full flex items-center justify-between group pl-1">
+              <div class="flex items-center gap-2">
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Themes</label>
+                 <span v-if="filters.themeIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.themeIds.length }}</span>
+              </div>
+              <Icon :name="accordions.themes ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
+           </button>
+
+           <div v-show="accordions.themes" class="space-y-3 bg-black/20 p-2 sm:p-3 rounded-3xl border border-transparent flex flex-col transform origin-top transition-all">
+              <div class="relative w-full mb-1">
+                <Icon name="solar:magnifer-line-duotone" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 w-4 h-4" />
+                <input
+                  v-model="themeSearch"
+                  type="text"
+                  placeholder="Search theme..."
+                  class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
+                >
+              </div>
+
+              <div class="space-y-1.5 max-h-[180px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                 <button
+                    v-for="theme in filteredThemes"
+                    :key="theme.id"
+                    @click="toggleFilterItem('themeIds', theme.id)"
+                    class="w-full flex items-center gap-3 px-3 py-2 rounded-xl border transition-all duration-300 transform active:scale-[0.98] text-left"
+                    :class="filters.themeIds.includes(theme.id) ? 'bg-blue-600/20 border-blue-500/50 text-blue-400' : 'bg-transparent border-transparent text-white/70 hover:bg-white/5'"
+                 >
+                    <Icon v-if="theme.icon" :name="theme.icon" class="w-5 h-5 shrink-0" />
+                    <span class="text-sm font-medium flex-1 truncate">{{ theme.name }}</span>
+                    <Icon v-if="filters.themeIds.includes(theme.id)" name="solar:check-circle-bold" class="w-4 h-4 shrink-0" />
+                 </button>
+                 <div v-if="filteredThemes.length === 0" class="text-center py-4 text-xs text-white/40">
+                   Theme not found
+                 </div>
+              </div>
+           </div>
         </div>
 
-        <!-- Mechanics/Features Toggles -->
-        <div class="space-y-4">
-          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Особенности</label>
-          <div class="space-y-3 bg-black/20 p-4 rounded-3xl border border-transparent">
-            <label class="flex items-center gap-4 cursor-pointer group">
-              <div class="relative w-12 h-6 bg-black/60 border border-white/10 rounded-full transition-colors duration-300" :class="{ 'bg-blue-500/30 border-blue-500/50': filters.bonusBuy }">
-                <div class="absolute left-1 top-1 w-4 h-4 bg-white/60 rounded-full transition-transform duration-300" :class="{ 'translate-x-6 bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]': filters.bonusBuy }"></div>
+        <!-- Game Mechanics Accordion -->
+        <div class="space-y-3 border-t border-white/5 pt-6">
+           <button @click="accordions.mechanics = !accordions.mechanics" class="w-full flex items-center justify-between group pl-1">
+              <div class="flex items-center gap-2">
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Mechanics</label>
+                 <span v-if="filters.mechanicIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.mechanicIds.length }}</span>
               </div>
-              <input type="checkbox" v-model="filters.bonusBuy" class="sr-only" @change="emitFilters">
-              <span class="text-sm text-white/70 group-hover:text-white transition-colors font-semibold">Покупка бонуса</span>
-            </label>
-            <div class="w-full h-px bg-white/5"></div>
-            <label class="flex items-center gap-4 cursor-pointer group">
-              <div class="relative w-12 h-6 bg-black/60 border border-white/10 rounded-full transition-colors duration-300" :class="{ 'bg-blue-500/30 border-blue-500/50': filters.megaways }">
-                <div class="absolute left-1 top-1 w-4 h-4 bg-white/60 rounded-full transition-transform duration-300" :class="{ 'translate-x-6 bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]': filters.megaways }"></div>
-              </div>
-              <input type="checkbox" v-model="filters.megaways" class="sr-only" @change="emitFilters">
-              <span class="text-sm text-white/70 group-hover:text-white transition-colors font-semibold">Megaways</span>
-            </label>
-          </div>
+              <Icon :name="accordions.mechanics ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
+           </button>
+
+           <div v-show="accordions.mechanics" class="space-y-1.5 bg-black/20 p-2 sm:p-3 rounded-3xl border border-transparent flex flex-col max-h-[220px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+              <button
+                  v-for="mechanic in mechanics"
+                  :key="mechanic.id"
+                  @click="toggleFilterItem('mechanicIds', mechanic.id)"
+                  class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 transform active:scale-[0.98] text-left"
+                  :class="filters.mechanicIds.includes(mechanic.id) ? 'bg-blue-600/20 border-blue-500/50 text-blue-400' : 'bg-transparent border-transparent text-white/70 hover:bg-white/5'"
+               >
+                  <Icon v-if="mechanic.icon" :name="mechanic.icon" class="w-5 h-5 shrink-0 opacity-80" />
+                  <span class="text-sm font-medium flex-1 leading-snug">{{ mechanic.name }}</span>
+                  <Icon v-if="filters.mechanicIds.includes(mechanic.id)" name="solar:check-circle-bold" class="w-4 h-4 shrink-0" />
+               </button>
+           </div>
         </div>
+
+
 
       </div>
 
@@ -132,7 +178,7 @@
           class="w-full flex items-center justify-center gap-2 py-3.5 bg-black/20 text-white/70 hover:text-white hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl text-sm font-bold transition-all duration-300 shadow-inner group"
         >
           <Icon name="solar:trash-bin-trash-line-duotone" class="w-5 h-5 group-hover:text-red-400 transition-colors" />
-          Сбросить все
+          Reset all
         </button>
       </div>
     </aside>
@@ -140,42 +186,71 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 const props = defineProps({
-  providers: {
-    type: Array,
-    default: () => []
-  }
+  providers: { type: Array, default: () => [] },
+  mechanics: { type: Array, default: () => [] },
+  themes: { type: Array, default: () => [] }
 })
 
 const emit = defineEmits(['update:filters'])
 
 const isOpen = ref(false)
 
-const filters = reactive({
-  search: '',
-  providerId: '',
-  volatility: '',
-  bonusBuy: false,
-  megaways: false
+// Accordion states
+const accordions = reactive({
+  themes: false,
+  mechanics: false
 })
 
-const toggleProvider = (id) => {
-  filters.providerId = filters.providerId === id ? '' : id
+// Search strings for specific sections
+const providerSearch = ref('')
+const themeSearch = ref('')
+
+const filters = reactive({
+  search: '',
+  providerIds: [],
+  mechanicIds: [],
+  themeIds: []
+})
+
+// Computed filtered lists for search
+const filteredProviders = computed(() => {
+  if (!providerSearch.value) return props.providers
+  const term = providerSearch.value.toLowerCase()
+  return props.providers.filter(p => p.name.toLowerCase().includes(term))
+})
+
+const filteredThemes = computed(() => {
+  if (!themeSearch.value) return props.themes
+  const term = themeSearch.value.toLowerCase()
+  return props.themes.filter(t => t.name.toLowerCase().includes(term))
+})
+
+// Generic toggle function for array filters
+const toggleFilterItem = (listName, id) => {
+  const index = filters[listName].indexOf(id)
+  if (index === -1) {
+    filters[listName].push(id) // Add if not present
+  } else {
+    filters[listName].splice(index, 1) // Remove if present
+  }
   emitFilters()
 }
 
 const emitFilters = () => {
-  emit('update:filters', { ...filters })
+  // Deep copy to break reactivity when passing up
+  emit('update:filters', JSON.parse(JSON.stringify(filters)))
 }
 
 const resetFilters = () => {
   filters.search = ''
-  filters.providerId = ''
-  filters.volatility = ''
-  filters.bonusBuy = false
-  filters.megaways = false
+  filters.providerIds = []
+  filters.mechanicIds = []
+  filters.themeIds = []
+  providerSearch.value = ''
+  themeSearch.value = ''
   emitFilters()
 }
 </script>

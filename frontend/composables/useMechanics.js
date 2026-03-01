@@ -1,11 +1,11 @@
 export const useMechanics = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl || 'http://localhost:3001'
+  const baseURL = config.public.apiUrl
 
   const getMechanics = async (params = {}) => {
     try {
       const query = new URLSearchParams()
-      
+
       if (params.search) query.append('search', params.search)
       if (params.type) query.append('type', params.type)
       if (params.is_active !== undefined) query.append('is_active', params.is_active)
@@ -15,18 +15,18 @@ export const useMechanics = () => {
       if (params.offset) query.append('offset', params.offset)
       if (params.sort_by) query.append('sort_by', params.sort_by)
       if (params.sort_order) query.append('sort_order', params.sort_order)
-      
+
       const queryString = query.toString()
       const url = `${baseURL}/api/mechanics${queryString ? `?${queryString}` : ''}`
-      
+
       const data = await $fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      
-      return data
+
+      return data?.data || data || []
     } catch (error) {
       console.error('Ошибка при получении механик:', error)
       throw error
@@ -41,7 +41,7 @@ export const useMechanics = () => {
           'Content-Type': 'application/json'
         }
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при получении механики:', error)
@@ -58,7 +58,7 @@ export const useMechanics = () => {
         },
         body: JSON.stringify(mechanicData)
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при создании механики:', error)
@@ -75,7 +75,7 @@ export const useMechanics = () => {
         },
         body: JSON.stringify(mechanicData)
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при обновлении механики:', error)
@@ -91,7 +91,7 @@ export const useMechanics = () => {
           'Content-Type': 'application/json'
         }
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при удалении механики:', error)
@@ -107,7 +107,7 @@ export const useMechanics = () => {
           'Content-Type': 'application/json'
         }
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при изменении статуса механики:', error)
@@ -123,7 +123,7 @@ export const useMechanics = () => {
           'Content-Type': 'application/json'
         }
       })
-      
+
       return data
     } catch (error) {
       console.error('Ошибка при получении статистики механик:', error)
@@ -137,7 +137,7 @@ export const useMechanics = () => {
         search: searchTerm,
         ...filters
       }
-      
+
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при поиске механик:', error)
@@ -153,7 +153,7 @@ export const useMechanics = () => {
         sort_by: 'popularity_score',
         sort_order: 'desc'
       }
-      
+
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении популярных механик:', error)
@@ -169,7 +169,7 @@ export const useMechanics = () => {
         sort_by: 'created_at',
         sort_order: 'desc'
       }
-      
+
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении рекомендуемых механик:', error)
@@ -186,7 +186,7 @@ export const useMechanics = () => {
         sort_by: 'name',
         sort_order: 'asc'
       }
-      
+
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении механик по типу:', error)

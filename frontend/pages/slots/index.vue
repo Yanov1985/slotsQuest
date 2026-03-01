@@ -94,6 +94,8 @@
       <!-- Off-Canvas / Sidebar Filters -->
       <FilterSidebar
         :providers="providers"
+        :mechanics="mechanics"
+        :themes="themes"
         @update:filters="applyFilters"
       />
 
@@ -126,10 +128,10 @@
               v-model="sortBy"
               class="appearance-none bg-white/5 border border-white/10 text-white/90 text-sm font-medium py-2.5 pl-9 pr-10 rounded-2xl focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-colors cursor-pointer w-full sm:w-[180px] hover:bg-white/10"
             >
-              <option value="popular" class="bg-zinc-900">Популярные</option>
-              <option value="newest" class="bg-zinc-900">Новые</option>
-              <option value="rtp" class="bg-zinc-900">Высокий RTP</option>
-              <option value="a-z" class="bg-zinc-900">А - Я</option>
+              <option value="popular" class="bg-zinc-900">Popular</option>
+              <option value="newest" class="bg-zinc-900">Newest</option>
+              <option value="rtp" class="bg-zinc-900">Highest RTP</option>
+              <option value="a-z" class="bg-zinc-900">A - Z</option>
             </select>
             <Icon name="solar:alt-arrow-down-line-duotone" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 w-4 h-4 pointer-events-none" />
           </div>
@@ -138,8 +140,8 @@
         <!-- Empty State (No matches) -->
         <div v-if="filteredSlots.length === 0" class="flex flex-col items-center justify-center py-32 border border-white/10 border-dashed rounded-3xl bg-white/5 backdrop-blur-sm">
           <Icon name="solar:ghost-line-duotone" class="text-white/40 w-24 h-24 mb-6" />
-          <h2 class="text-2xl font-bold text-white mb-2">Ничего не найдено</h2>
-          <p class="text-white/60">Попробуйте изменить фильтры или условия поиска</p>
+          <h2 class="text-2xl font-bold text-white mb-2">No slots found</h2>
+          <p class="text-white/60">Try changing your filters or search terms</p>
         </div>
 
         <!-- Slots Grid -->
@@ -166,6 +168,8 @@ import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 // Data Fetching (SSR via useAsyncData)
 const { getSlots } = useSlotsApi()
 const { getProviders } = useProviders()
+const { getMechanics } = useMechanics()
+const { getThemes } = useThemes()
 
 // Load data. Await on Server (for SEO), but Lazy on Client (to show Skeleton during navigation).
 const fetchSlotsCb = async () => {
@@ -173,44 +177,52 @@ const fetchSlotsCb = async () => {
   if (import.meta.client) await new Promise(r => setTimeout(r, 600)) // Artificial delay for premium skeleton feel
   return data
 }
-const fetchProvidersCb = async () => {
-  const data = await getProviders()
+
+// Fetch all filter data in parallel
+const fetchFiltersCb = async () => {
+  const [provs, mechs, thms] = await Promise.all([
+     getProviders(),
+     getMechanics(),
+     getThemes()
+  ])
   if (import.meta.client) await new Promise(r => setTimeout(r, 600))
-  return data
+  return { providers: provs, mechanics: mechs, themes: thms }
 }
 
 const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', fetchSlotsCb, { lazy: import.meta.client })
-const { data: providers, pending: providersLoading, error: providersError } = await useAsyncData('catalog-providers', fetchProvidersCb, { lazy: import.meta.client })
+const { data: filterData, pending: filtersLoading, error: filtersError } = await useAsyncData('catalog-filters', fetchFiltersCb, { lazy: import.meta.client })
+
+const providers = computed(() => filterData.value?.providers || [])
+const mechanics = computed(() => filterData.value?.mechanics || [])
+const themes = computed(() => filterData.value?.themes || [])
 
 // SEO injection server-side
 const siteUrl = 'https://slotquest.com/slots'
 useCatalogSEO(
-  'Каталог лучших игровых автоматов 2025 | SlotQuest',
-  'Огромный выбор игровых автоматов онлайн. Играйте бесплатно в демо версиях или на реальные деньги в лучших казино. Фильтр по провайдерам, RTP и бонусам.',
+  'Best Online Slots Catalog 2025 | SlotQuest',
+  'Huge selection of online slots. Play for free in demo mode or for real money in top casinos. Filter by providers, mechanics, and themes.',
   siteUrl,
   slots.value?.length || 0
 )
 
-const loading = computed(() => slotsLoading.value || providersLoading.value)
-const error = computed(() => slotsError.value?.message || providersError.value?.message || null)
+const loading = computed(() => slotsLoading.value || filtersLoading.value)
+const error = computed(() => slotsError.value?.message || filtersError.value?.message || null)
 
 // Filter State
 const activeCategory = ref('all')
 const sortBy = ref('popular')
 const currentSideFilters = ref({
   search: '',
-  providerId: '',
-  volatility: '',
-  bonusBuy: false,
-  megaways: false
+  providerIds: [],
+  mechanicIds: [],
+  bonusIds: [],
+  themeIds: []
 })
 
 const quickCategories = [
-  { id: 'all', name: 'Все слоты', icon: 'solar:gamepad-line-duotone' },
-  { id: 'popular', name: 'Популярные', icon: 'solar:fire-line-duotone' },
-  { id: 'new', name: 'Новинки', icon: 'solar:star-fall-line-duotone' },
-  { id: 'megaways', name: 'Megaways', icon: 'solar:bomb-emoji-line-duotone' },
-  { id: 'bonus-buy', name: 'Покупка бонуса', icon: 'solar:cart-large-line-duotone' }
+  { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' },
+  { id: 'popular', name: 'Popular', icon: 'solar:fire-line-duotone' },
+  { id: 'new', name: 'New', icon: 'solar:star-fall-line-duotone' }
 ]
 
 const applyFilters = (filters) => {
@@ -231,21 +243,27 @@ const filteredSlots = computed(() => {
     result = result.filter(s => s.name?.toLowerCase().includes(term) || s.providers?.name?.toLowerCase().includes(term))
   }
 
-  if (f.providerId) {
-    result = result.filter(s => s.providers?.id === f.providerId)
+  if (f.providerIds && f.providerIds.length > 0) {
+    result = result.filter(s => f.providerIds.includes(s.providers?.id))
   }
 
-  if (f.volatility) {
-    result = result.filter(s => s.volatility?.toLowerCase() === f.volatility)
+  // Feature Array Filtering Logic
+  // For each category (mechanics, bonuses, themes), if multiple are selected, it acts as an OR within the category.
+  // But between categories, it acts as an AND.
+
+  if (f.mechanicIds && f.mechanicIds.length > 0) {
+     result = result.filter(slot => {
+        if (!slot.mechanics) return false
+        // Check if the slot has at least one of the selected mechanics
+        return slot.mechanics.some(m => f.mechanicIds.includes(m.id))
+     })
   }
 
-  // Very simplified feature logic (assuming these might be embedded in description or categories for now if no specific column)
-  if (f.bonusBuy) {
-    result = result.filter(s => s.description?.toLowerCase().includes('buy') || s.name?.toLowerCase().includes('bonus'))
-  }
-
-  if (f.megaways) {
-    result = result.filter(s => s.name?.toLowerCase().includes('megaways'))
+  if (f.themeIds && f.themeIds.length > 0) {
+     result = result.filter(slot => {
+        if (!slot.themes) return false
+        return slot.themes.some(t => f.themeIds.includes(t.id))
+     })
   }
 
   // 2. Chip Categories
@@ -253,10 +271,6 @@ const filteredSlots = computed(() => {
     result = result.filter(s => s.popularity_rank && s.popularity_rank <= 20)
   } else if (activeCategory.value === 'new') {
     result = result.sort((a,b) => b.id - a.id).slice(0, 50)
-  } else if (activeCategory.value === 'megaways') {
-    result = result.filter(s => s.name?.toLowerCase().includes('megaways'))
-  } else if (activeCategory.value === 'bonus-buy') {
-     result = result.filter(s => s.description?.toLowerCase().includes('buy'))
   }
 
   // 3. Sorting

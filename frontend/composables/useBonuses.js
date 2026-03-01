@@ -1,6 +1,6 @@
 export const useBonuses = () => {
-  // Используем прямой URL бэкенда
-  const API_BASE = 'http://localhost:3001'
+  const config = useRuntimeConfig()
+  const baseURL = config.public.apiUrl
 
   const getBonuses = async (params = {}) => {
     try {
@@ -17,21 +17,16 @@ export const useBonuses = () => {
       if (params.sort_order) query.append('sort_order', params.sort_order)
 
       const queryString = query.toString()
-      const url = `${API_BASE}/api/bonuses${queryString ? `?${queryString}` : ''}`
+      const url = `${baseURL}/api/bonuses${queryString ? `?${queryString}` : ''}`
 
-      const response = await fetch(url, {
+      const data = await $fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
-      const data = await response.json()
-      return data
+      return data?.data || data || []
     } catch (error) {
       console.error('Ошибка при получении бонусов:', error)
       throw error
