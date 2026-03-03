@@ -37,11 +37,6 @@
           </div>
         </div>
 
-        <div v-if="slot.rtp" class="absolute top-2 right-2 bg-black/60 backdrop-blur-md border border-white/10 px-2 py-0.5 rounded text-[10px] text-white/80 font-semibold z-20 flex items-center gap-1">
-          <Icon name="solar:sort-from-bottom-to-top-bold" class="w-3 h-3 text-emerald-400" />
-          {{ slot.rtp }}%
-        </div>
-
         <!-- Hover Action Overlay -->
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 p-4 z-10 hidden lg:flex">
           <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform active:scale-95 text-sm uppercase tracking-wide">

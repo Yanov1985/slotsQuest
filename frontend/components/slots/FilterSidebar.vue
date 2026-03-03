@@ -48,7 +48,7 @@
       </div>
 
       <!-- Filters Form -->
-      <div class="p-6 flex-1 overflow-y-auto space-y-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+      <div class="p-6 flex-1 overflow-y-auto space-y-8 scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-white/10 scrollbar-track-transparent transition-colors duration-300">
 
         <!-- Search -->
         <div class="space-y-3">

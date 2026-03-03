@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30">
     <!-- Animated Background from Admin Template -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div class="fixed inset-0 z-0 pointer-events-none">
       <BackgroundBeams :intensity="0.9" :speed="1.2" />
     </div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
     <!-- 📱 Навигация - стеклянный эффект (в точности как в [slug].vue) -->
-    <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg shadow-black/20">
+    <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 relative z-40 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div class="flex items-center justify-between gap-2">
           <!-- Кнопка назад -->
@@ -104,7 +104,13 @@
       <div class="flex-1 w-full min-w-0">
 
         <!-- Category Chips & Controls (Стеклянная панель) -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 bg-white/5 p-3 sm:p-4 rounded-3xl border border-white/10 backdrop-blur-xl shadow-lg shadow-black/20">
+        <div ref="chipsAnchor" class="absolute -top-[1px] w-full h-px pointer-events-none"></div>
+        <div
+          class="sticky top-[10px] z-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-3 sm:p-4 rounded-3xl transition-all duration-300"
+          :class="isChipsSticky
+            ? 'bg-black/80 border border-white/10 backdrop-blur-2xl shadow-xl shadow-black/50'
+            : 'bg-white/5 border border-white/5 backdrop-blur-md shadow-lg shadow-black/20'"
+        >
 
           <!-- Chips (Scrollable) -->
           <div class="flex flex-1 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-none gap-2 min-w-0">
@@ -131,7 +137,6 @@
             >
               <option value="popular" class="bg-zinc-900">Popular</option>
               <option value="newest" class="bg-zinc-900">Newest</option>
-              <option value="rtp" class="bg-zinc-900">Highest RTP</option>
               <option value="a-z" class="bg-zinc-900">A - Z</option>
             </select>
             <Icon name="solar:alt-arrow-down-line-duotone" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 w-4 h-4 pointer-events-none" />
@@ -165,6 +170,28 @@ import { ref, computed } from 'vue'
 import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
 import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
+import { onMounted, onUnmounted } from 'vue'
+
+// Sticky header logic
+const chipsAnchor = ref(null)
+const isChipsSticky = ref(false)
+let observer = null
+
+onMounted(() => {
+  if (chipsAnchor.value && window.IntersectionObserver) {
+    observer = new IntersectionObserver(
+      ([e]) => e.intersectionRatio < 1 ? isChipsSticky.value = true : isChipsSticky.value = false,
+      { threshold: [1] }
+    )
+    observer.observe(chipsAnchor.value)
+  }
+})
+
+onUnmounted(() => {
+  if (observer && chipsAnchor.value) {
+    observer.unobserve(chipsAnchor.value)
+  }
+})
 
 // Data Fetching (SSR via useAsyncData)
 const { getSlots } = useSlotsApi()
@@ -226,15 +253,23 @@ const currentSideFilters = ref({
 
 const displayCategories = computed(() => {
   const base = [
-    { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' },
-    { id: 'popular', name: 'Popular', icon: 'solar:fire-line-duotone' },
-    { id: 'new', name: 'New', icon: 'solar:star-fall-line-duotone' }
+    { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' }
   ]
 
   if (categories.value && categories.value.length > 0) {
     // Only show active categories and specific requested ones
-    const allowedNames = ['1w Games', 'Crash Games', 'Best Year 2024']
-    const activeCats = categories.value.filter(c => c.is_active && allowedNames.includes(c.name))
+    const allowedNames = ['Popular', 'New', '1w Games', 'Crash Games', 'Best Year 2024']
+    const activeCats = categories.value
+      .filter(c => c.is_active && allowedNames.includes(c.name))
+      .map(c => {
+        let icon = null
+        if (c.name === 'Popular') icon = 'solar:fire-line-duotone'
+        if (c.name === 'New') icon = 'solar:star-fall-line-duotone'
+        return { ...c, icon: icon || c.icon }
+      })
+
+    // Sort to maintain desired order
+    activeCats.sort((a, b) => allowedNames.indexOf(a.name) - allowedNames.indexOf(b.name))
     return [...base, ...activeCats]
   }
 
@@ -293,16 +328,18 @@ const filteredSlots = computed(() => {
   }
 
   // 2. Chip Categories
-  if (activeCategory.value === 'popular') {
-    result = result.filter(s => s.popularity_rank && s.popularity_rank <= 20)
-  } else if (activeCategory.value === 'new') {
-    result = result.sort((a,b) => b.id - a.id).slice(0, 50)
-  } else if (activeCategory.value !== 'all') {
+  if (activeCategory.value !== 'all') {
     // Exact category match
-    console.log('[DEBUG] Exact Category Match:', activeCategory.value)
+    const filterId = String(activeCategory.value).trim()
+    console.log(`[DEBUG] Exact Category Match Chip Clicked: "${filterId}"`)
     result = result.filter(s => {
-      const isMatch = s.category_id === activeCategory.value || (s.slot_categories && s.slot_categories.id === activeCategory.value)
-      console.log(`[DEBUG] Slot: ${s.name} | exact match: ${isMatch}`)
+      const slotCatId = s.category_id ? String(s.category_id).trim() : null
+      const relCatId = s.slot_categories?.id ? String(s.slot_categories.id).trim() : null
+
+      const isMatch = slotCatId === filterId || relCatId === filterId
+      if (s.name === 'The Gates Of Olympus') {
+         console.log(`[DEBUG] Olympus Check => chip: "${filterId}", my_cat_id: "${slotCatId}", rel_cat_id: "${relCatId}", match: ${isMatch}`)
+      }
       return isMatch
     })
   }
@@ -314,9 +351,6 @@ const filteredSlots = computed(() => {
       break
     case 'newest':
       result.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
-      break
-    case 'rtp':
-      result.sort((a, b) => (b.rtp || 0) - (a.rtp || 0))
       break
     case 'a-z':
       result.sort((a, b) => (a.name || '').localeCompare(b.name || ''))
