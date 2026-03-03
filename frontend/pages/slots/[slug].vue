@@ -11,7 +11,7 @@
         <div class="flex items-center justify-between gap-2">
           <!-- Кнопка назад - компактная на mobile -->
           <NuxtLink
-            to="/slots"
+            to="/"
             class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium text-sm sm:text-base min-w-0"
           >
             <svg
@@ -36,7 +36,7 @@
               >Home</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
-            <NuxtLink to="/slots" class="hover:text-blue-400 transition-colors whitespace-nowrap"
+            <NuxtLink to="/" class="hover:text-blue-400 transition-colors whitespace-nowrap"
               >Slots</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
@@ -142,7 +142,7 @@
           <p class="text-gray-600 mb-6">{{ error }}</p>
         </div>
         <NuxtLink
-          to="/slots"
+          to="/"
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl transition-colors font-semibold"
         >
           Go to Catalog
