@@ -46,14 +46,21 @@
 
               <!-- Title & Provider (Mobile Only - flex order-1) -->
               <header class="w-full lg:hidden flex flex-col gap-2 xs:gap-3 order-1" role="banner">
-                <!-- Provider (mobile version) -->
-                <section class="flex items-center gap-3 flex-wrap" aria-labelledby="provider-label-mobile" role="region" itemprop="provider" itemscope itemtype="https://schema.org/Organization">
-                  <meta itemprop="name" :content="slot.providers?.name || 'Pragmatic Play'" />
-                  <link v-if="slot.providers?.website" itemprop="url" :href="slot.providers.website" />
-                  <h2 id="provider-label-mobile" class="sr-only">Game Provider Information</h2>
-                  <address class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50" role="contentinfo" aria-label="Game developer and publisher information">
-                    <span class="font-semibold" title="Game Provider" itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
-                  </address>
+                <!-- Provider & Category (mobile version) -->
+                <section class="flex items-center gap-2 xs:gap-3 flex-wrap" aria-labelledby="provider-label-mobile" role="region">
+                  <div itemprop="provider" itemscope itemtype="https://schema.org/Organization" class="inline-block">
+                    <meta itemprop="name" :content="slot.providers?.name || 'Pragmatic Play'" />
+                    <link v-if="slot.providers?.website" itemprop="url" :href="slot.providers.website" />
+                    <h2 id="provider-label-mobile" class="sr-only">Game Provider Information</h2>
+                    <address class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-3 py-1.5 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm font-bold border border-purple-400/30 not-italic transition-all duration-300 hover:from-purple-500/40 hover:to-pink-500/40 hover:border-purple-400/50" role="contentinfo" aria-label="Game developer and publisher information">
+                      <span class="font-semibold" title="Game Provider" itemprop="name">{{ slot.providers?.name || 'Pragmatic Play' }}</span>
+                    </address>
+                  </div>
+
+                  <div v-if="slot.slot_categories" class="flex items-center gap-1.5 xs:gap-2 px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium  backdrop-blur-sm self-start">
+                    <Icon v-if="slot.slot_categories.icon" :name="slot.slot_categories.icon" class="w-3.5 h-3.5 xs:w-4 xs:h-4 text-emerald-300" />
+                    <span>{{ slot.slot_categories.name }}</span>
+                  </div>
                 </section>
 
                 <!-- Main Title (mobile) -->
@@ -86,12 +93,17 @@
               <section class="flex-1 min-w-0 w-full flex flex-col order-3 lg:order-2">
                 <!-- Desktop Title & Provider -->
                 <header class="hidden lg:flex flex-col gap-4 mb-6" role="banner">
-                  <!-- Provider (desktop) -->
+                  <!-- Provider & Category (desktop) -->
                   <section class="flex items-center gap-3 flex-wrap" aria-labelledby="provider-label-desktop" role="region">
-                    <h2 id="provider-label-desktop" class="sr-only">Game Provider Information</h2>
-                    <address class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic">
+                    <h2 id="provider-label-desktop" class="sr-only">Game Provider and Category</h2>
+                    <address class="bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-bold border border-purple-400/30 not-italic cursor-default hover:from-purple-500/40 hover:to-pink-500/40 transition-colors">
                       {{ slot.providers?.name || 'Pragmatic Play' }}
                     </address>
+
+                    <div v-if="slot.slot_categories" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium backdrop-blur-sm shadow-sm self-start">
+                      <Icon v-if="slot.slot_categories.icon" :name="slot.slot_categories.icon" class="w-4 h-4 text-emerald-300" />
+                      <span>{{ slot.slot_categories.name }}</span>
+                    </div>
                   </section>
 
                   <!-- Главный заголовок (desktop) -->

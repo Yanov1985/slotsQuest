@@ -341,7 +341,9 @@ const loadSlots = async () => {
   try {
     loading.value = true
     const response = await getSlots({ admin: true })
-    slots.value = response || []
+    console.log('✅ loadSlots response:', response)
+    slots.value = Array.isArray(response) ? response : (response?.data || [])
+    console.log('✅ slots.value is now:', slots.value.length, 'items', slots.value)
   } catch (error) {
     console.error('Error loading slots:', error)
   } finally {

@@ -1,833 +1,363 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white">
+  <div class="min-h-screen bg-[#0B0E14] text-white font-sans">
     <!-- Header -->
-    <header class="relative bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <NuxtLink to="/admin" class="text-[#A0AABE] hover:text-[#FF6E48] transition-colors flex items-center space-x-2">
-              <Icon name="heroicons:arrow-left" />
-              <span>Назад к дашборду</span>
-            </NuxtLink>
-            <h1 class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
-              <Icon name="heroicons:cog-6-tooth" class="text-[#FF6E48]" />
-              <span>Управление механиками</span>
+    <header class="bg-[#161A21]/80 backdrop-blur-md border-b border-[#353A4A] sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4">
+            <h1 class="text-xl font-bold font-display text-white flex items-center gap-2">
+              <NuxtLink to="/admin" class="text-white/50 hover:text-white transition-colors">
+                <Icon name="solar:home-smile-angle-line-duotone" class="w-6 h-6" />
+              </NuxtLink>
+              <span class="text-white/30">/</span>
+              <Icon name="solar:tuning-square-2-bold-duotone" class="text-[#FF6E48]" />
+              <span>Механики слотов (Features)</span>
             </h1>
-            <div class="px-3 py-1 bg-[#63F3AB]/10 border border-[#63F3AB]/30 rounded-full text-[#63F3AB] text-sm font-medium">
-              {{ mechanics.length }} механик
-            </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <button @click="showAddModal = true" class="px-4 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
-              <Icon name="heroicons:plus-circle" />
-              <span>Добавить механику</span>
-            </button>
-            <button @click="loadMechanics" class="px-4 py-2 bg-[#1B1E26]/70 hover:bg-[#1B1E26] border border-[#353A4A] rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2">
-              <Icon name="heroicons:arrow-path" />
-              <span>Обновить</span>
-            </button>
-          </div>
+          <button
+            @click="openAddModal"
+            class="flex items-center gap-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            <Icon name="solar:add-circle-line-duotone" class="w-5 h-5" />
+            Добавить механику
+          </button>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-      <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 mt-5">
-        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[#A0AABE] text-sm font-medium">Всего механик</p>
-              <p class="text-2xl font-bold text-white">{{ mechanics.length }}</p>
-            </div>
-            <div class="text-[#FF6E48] text-2xl">
-              <Icon name="heroicons:cog-6-tooth" />
-            </div>
-          </div>
-        </div>
-        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[#A0AABE] text-sm font-medium">Активных</p>
-              <p class="text-2xl font-bold text-white">{{ activeMechanics }}</p>
-            </div>
-            <div class="text-[#63F3AB] text-2xl">
-              <Icon name="heroicons:check-circle" />
-            </div>
-          </div>
-        </div>
-        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[#A0AABE] text-sm font-medium">Со слотами</p>
-              <p class="text-2xl font-bold text-white">{{ mechanicsWithSlots }}</p>
-            </div>
-            <div class="text-[#FFD700] text-2xl">
-              <Icon name="heroicons:star" />
-            </div>
-          </div>
-        </div>
-        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 backdrop-blur-sm hover:bg-[#1B1E26]/70 transition-all">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-[#A0AABE] text-sm font-medium">Популярных</p>
-              <p class="text-2xl font-bold text-white">{{ popularMechanics }}</p>
-            </div>
-            <div class="text-[#FF6E48] text-2xl">
-              <Icon name="heroicons:chart-bar" />
-            </div>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      <!-- Loading State -->
+      <div v-if="loading" class="flex flex-col items-center justify-center py-20">
+        <Icon name="solar:spinner-broken" class="w-10 h-10 text-[#FF6E48] animate-spin mb-4" />
+        <p class="text-white/60">Загрузка механик...</p>
       </div>
 
-      <!-- Search and Filters -->
-      <div class="bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mb-8">
-        <div class="flex flex-col md:flex-row gap-4">
-          <div class="flex-1">
-            <div class="relative">
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="Поиск механик..."
-                class="w-full bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 pl-10 text-white placeholder-[#A0AABE] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
-              >
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Icon name="heroicons:magnifying-glass" class="text-[#A0AABE]" />
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex gap-3">
-            <select
-              v-model="selectedStatus"
-              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
-            >
-              <option value="">Все статусы</option>
-              <option value="true">Активные</option>
-              <option value="false">Неактивные</option>
-            </select>
-            
-            <select
-              v-model="selectedType"
-              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
-            >
-              <option value="">Все типы</option>
-              <option value="bonus">Бонусные</option>
-              <option value="special">Специальные</option>
-              <option value="multiplier">Множители</option>
-              <option value="free_spins">Фриспины</option>
-              <option value="wild">Вайлды</option>
-              <option value="scatter">Скаттеры</option>
-              <option value="progressive">Прогрессивные</option>
-            </select>
-            
-            <select
-              v-model="sortBy"
-              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
-            >
-              <option value="name">По названию</option>
-              <option value="created_at">По дате создания</option>
-              <option value="slots_count">По количеству слотов</option>
-              <option value="sort_order">По порядку</option>
-            </select>
-            
-            <button
-              @click="sortOrder = sortOrder === 'asc' ? 'desc' : 'asc'"
-              class="px-4 py-3 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white hover:bg-[#1B1E26] transition-all flex items-center"
-            >
-              <Icon :name="sortOrder === 'asc' ? 'heroicons:chevron-up' : 'heroicons:chevron-down'" />
-            </button>
-          </div>
+      <!-- Error State -->
+      <div v-else-if="error" class="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <Icon name="solar:danger-triangle-line-duotone" class="w-6 h-6" />
+          <span>{{ error }}</span>
         </div>
+        <button @click="loadMechanics" class="text-sm font-semibold hover:text-red-300">Повторить</button>
       </div>
 
-      <!-- Mechanics Grid -->
-      <div class="mt-5"></div>
-      <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <div v-for="n in 8" :key="n" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 animate-pulse">
-          <div class="flex items-center space-x-4 mb-4">
-            <div class="w-16 h-16 bg-[#353A4A] rounded-lg"></div>
-            <div class="flex-1">
-              <div class="h-4 bg-[#353A4A] rounded mb-2"></div>
-              <div class="h-3 bg-[#353A4A] rounded w-2/3"></div>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <div class="h-3 bg-[#353A4A] rounded"></div>
-            <div class="h-3 bg-[#353A4A] rounded w-3/4"></div>
-          </div>
-        </div>
-      </div>
-      
-      <div v-else-if="paginatedMechanics.length === 0" class="text-center py-12">
-         <div class="text-6xl mb-4 text-[#FF6E48]">
-           <Icon name="heroicons:cog-6-tooth" class="w-16 h-16 mx-auto" />
-         </div>
-         <h3 class="text-xl font-semibold text-[#A0AABE] mb-2">Механики не найдены</h3>
-         <p class="text-[#6B7280] mb-6">{{ searchQuery ? 'Попробуйте изменить поисковый запрос' : 'Добавьте первую механику' }}</p>
-         <button @click="openCreateModal" class="px-6 py-3 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#FF6E48]/90 hover:to-[#CD5A3C]/90 rounded-lg font-medium transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
-           <Icon name="heroicons:plus-circle" />
-           <span>Добавить механику</span>
-         </button>
-       </div>
-      
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="mechanic in paginatedMechanics" :key="mechanic.id" class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-xl p-6 hover:border-[#FF6E48]/30 transition-all group backdrop-blur-sm">
-          <div class="flex items-center space-x-4 mb-4">
-            <div
-              class="w-16 h-16 rounded-lg flex items-center justify-center text-white font-bold text-xl"
-              :style="{ backgroundColor: mechanic.color || '#6B7280' }"
-            >
-              {{ mechanic.icon || mechanic.name.charAt(0).toUpperCase() }}
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-semibold text-white group-hover:text-[#FF6E48] transition-colors">{{ mechanic.name }}</h3>
-              <p class="text-sm text-[#A0AABE]">{{ mechanic.slug }}</p>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span
-                :class="[
-                  'w-3 h-3 rounded-full',
-                  mechanic.is_active ? 'bg-[#63F3AB]' : 'bg-red-400'
-                ]"
-                :title="mechanic.is_active ? 'Активна' : 'Неактивна'"
-              ></span>
-            </div>
-          </div>
-          
-          <div class="space-y-3 mb-4">
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-[#A0AABE]">Тип:</span>
-              <span class="px-2 py-1 bg-[#FF6E48]/10 border border-[#FF6E48]/30 rounded-full text-[#FF6E48] text-xs font-medium">
-                {{ mechanic.type || 'Не указан' }}
-              </span>
-            </div>
-            <div class="text-sm">
-              <span class="text-[#A0AABE] block mb-1">Описание:</span>
-              <p class="text-white text-sm leading-relaxed line-clamp-2">{{ mechanic.description || 'Нет описания' }}</p>
-            </div>
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-[#A0AABE]">Слотов:</span>
-              <div class="flex items-center space-x-2">
-                <Icon name="heroicons:squares-2x2" class="w-4 h-4 text-[#A0AABE]" />
-                <span class="text-white font-medium">{{ mechanic.slots_count || 0 }}</span>
-              </div>
-            </div>
-            <div class="flex items-center justify-between text-sm">
-              <span class="text-[#A0AABE]">Цвет:</span>
-              <div class="flex items-center space-x-2">
-                <div
-                  class="w-4 h-4 rounded-full border border-[#353A4A]"
-                  :style="{ backgroundColor: mechanic.color || '#6B7280' }"
-                ></div>
-                <span class="text-[#A0AABE] text-xs font-mono">{{ mechanic.color || '#6B7280' }}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex items-center justify-between pt-4 border-t border-[#353A4A]">
-            <div class="flex items-center space-x-2">
-              <button
-                @click="editMechanic(mechanic)"
-                class="p-2 text-[#A0AABE] hover:text-[#FF6E48] hover:bg-[#FF6E48]/10 rounded-lg transition-all duration-200"
-                title="Редактировать"
-              >
-                <Icon name="heroicons:pencil" class="w-4 h-4" />
-              </button>
-              <button
-                @click="toggleMechanicStatus(mechanic)"
-                class="p-2 text-[#A0AABE] hover:text-[#63F3AB] hover:bg-[#63F3AB]/10 rounded-lg transition-all duration-200"
-                :title="mechanic.is_active ? 'Деактивировать' : 'Активировать'"
-              >
-                <Icon :name="mechanic.is_active ? 'heroicons:pause' : 'heroicons:play'" class="w-4 h-4" />
-              </button>
-              <button
-                @click="deleteMechanic(mechanic)"
-                class="p-2 text-[#A0AABE] hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all duration-200"
-                title="Удалить"
-              >
-                <Icon name="heroicons:trash" class="w-4 h-4" />
-              </button>
-              <NuxtLink
-                :to="`/admin/mechanics/${mechanic.id}/slots`"
-                class="p-2 text-[#A0AABE] hover:text-[#63F3AB] hover:bg-[#63F3AB]/10 rounded-lg transition-all duration-200"
-                title="Просмотреть слоты"
-              >
-                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-              </NuxtLink>
-            </div>
-            <div class="text-xs" :class="mechanic.is_active ? 'text-[#63F3AB]' : 'text-red-400'">
-              {{ mechanic.is_active ? 'Активна' : 'Неактивна' }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pagination -->
-      <div v-if="totalPages > 1" class="flex items-center justify-between bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mt-8">
-        <div class="text-sm text-[#A0AABE]">
-          Показано {{ (currentPage - 1) * itemsPerPage + 1 }}-{{ Math.min(currentPage * itemsPerPage, filteredMechanics.length) }} из {{ filteredMechanics.length }} механик
-        </div>
-        <div class="flex items-center space-x-2">
-          <button
-            @click="currentPage = Math.max(1, currentPage - 1)"
-            :disabled="currentPage === 1"
-            class="p-2 text-[#A0AABE] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      <!-- Empty State -->
+      <div v-else-if="mechanics.length === 0" class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-12 text-center">
+         <Icon name="solar:ghost-line-duotone" class="w-20 h-20 text-white/20 mx-auto mb-4" />
+         <h3 class="text-xl font-bold text-white mb-2">Нет добавленных механик</h3>
+         <p class="text-white/50 mb-6">Создайте первую механику для каталога слотов.</p>
+         <button
+            @click="openAddModal"
+            class="inline-flex items-center gap-2 bg-[#1B1E26] hover:bg-[#232731] border border-[#353A4A] text-white px-6 py-3 rounded-xl transition-colors font-medium"
           >
-            <Icon name="heroicons:chevron-left" class="w-5 h-5" />
+            <Icon name="solar:add-circle-bold-duotone" class="text-[#FF6E48] w-5 h-5" />
+            Создать механику
           </button>
-          
-          <template v-for="page in visiblePages" :key="page">
-            <button
-              v-if="page !== '...'"
-              @click="currentPage = page"
-              :class="[
-                'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
-                currentPage === page
-                  ? 'bg-gradient-to-r from-[#FF6E48] to-[#FF4757] text-white'
-                  : 'text-[#A0AABE] hover:text-white hover:bg-[#0F1117]'
-              ]"
-            >
-              {{ page }}
-            </button>
-            <span v-else class="px-2 text-[#A0AABE]/50">...</span>
-          </template>
-          
-          <button
-            @click="currentPage = Math.min(totalPages, currentPage + 1)"
-            :disabled="currentPage === totalPages"
-            class="p-2 text-[#A0AABE] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <Icon name="heroicons:chevron-right" class="w-5 h-5" />
-          </button>
+      </div>
+
+      <!-- Data Grid -->
+      <div v-else class="bg-[#161A21] border border-[#353A4A] rounded-2xl overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse min-w-[800px]">
+            <thead>
+              <tr class="bg-[#1B1E26] border-b border-[#353A4A] text-white/50 text-xs uppercase tracking-wider font-semibold">
+                <th class="p-4 w-12 text-center">ID</th>
+                <th class="p-4 w-20 text-center">Иконка</th>
+                <th class="p-4 w-24 text-center">Цвет</th>
+                <th class="p-4">Название</th>
+                <th class="p-4">Слаг / Тип</th>
+                <th class="p-4 w-16 text-center">Слотов</th>
+                <th class="p-4 w-24 text-center">Опции</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#353A4A]/50">
+              <tr
+                v-for="mechanic in sortedMechanics"
+                :key="mechanic.id"
+                class="hover:bg-white/[0.02] transition-colors group"
+              >
+                <td class="p-4 text-center text-white/40 text-sm font-mono">{{ mechanic.id }}</td>
+                <td class="p-4 text-center">
+                  <div class="w-10 h-10 rounded-xl bg-[#0B0E14] border border-[#353A4A] flex items-center justify-center mx-auto" :style="{ color: mechanic.color || '#FF6E48' }">
+                    <Icon v-if="mechanic.icon && mechanic.icon.startsWith('solar:')" :name="mechanic.icon" class="w-5 h-5" />
+                    <span v-else-if="mechanic.icon" class="text-xl leading-none">{{ mechanic.icon }}</span>
+                    <Icon v-else name="solar:star-line-duotone" class="w-5 h-5 opacity-50 text-[#FF6E48]" />
+                  </div>
+                </td>
+                <td class="p-4 text-center">
+                   <div v-if="mechanic.color" class="flex items-center justify-center gap-2">
+                     <span class="w-3 h-3 rounded-full" :style="{ backgroundColor: mechanic.color }"></span>
+                     <span class="text-xs font-mono text-white/50">{{ mechanic.color }}</span>
+                   </div>
+                   <span v-else class="text-white/20 text-xs">—</span>
+                </td>
+                <td class="p-4">
+                  <div class="font-bold text-white text-sm tracking-wide">{{ mechanic.name }}</div>
+                  <div class="text-xs text-white/40 mt-1 line-clamp-1 truncate max-w-sm">{{ mechanic.description || 'Нет описания' }}</div>
+                </td>
+                <td class="p-4 space-y-1">
+                  <div>
+                     <span class="inline-flex items-center px-2 py-1 rounded bg-black/40 border border-white/5 text-white/60 font-mono text-xs">
+                       {{ mechanic.slug }}
+                     </span>
+                  </div>
+                  <div>
+                     <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                           :class="mechanic.type === 'mechanic' ? 'bg-[#FF6E48]/10 text-[#FF6E48]' : 'bg-[#00EDFF]/10 text-[#00EDFF]'">
+                        {{ mechanic.type || 'mechanic' }}
+                     </span>
+                  </div>
+                </td>
+                <td class="p-4 text-center">
+                  <span class="text-white/50 text-sm font-bold bg-white/5 px-2.5 py-1 rounded-lg">
+                    {{ mechanic.slot_count || 0 }}
+                  </span>
+                </td>
+                <td class="p-4 text-center">
+                  <div class="flex items-center justify-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button @click="openEditModal(mechanic)" class="p-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-lg transition-colors" title="Редактировать">
+                      <Icon name="solar:pen-new-square-line-duotone" class="w-4 h-4" />
+                    </button>
+                    <button @click="confirmDelete(mechanic)" class="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition-colors" title="Удалить">
+                      <Icon name="solar:trash-bin-trash-line-duotone" class="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </main>
+    </div>
 
-    <!-- Add/Edit Modal -->
-    <div v-if="showAddModal || showEditModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div class="p-6">
-          <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-white">
-              {{ showAddModal ? '➕ Добавить механику' : '✏️ Редактировать механику' }}
+    <!-- Edit/Add Modal -->
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="opacity-0 scale-95"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-95"
+    >
+      <div v-if="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="closeModal"></div>
+
+        <div class="relative w-full max-w-xl bg-[#161A21] border border-[#353A4A] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between p-6 border-b border-[#353A4A] shrink-0 bg-[#121419]">
+            <h2 class="text-xl font-bold flex items-center gap-3">
+              <Icon :name="editingMechanic ? 'solar:pen-new-square-bold-duotone' : 'solar:add-circle-bold-duotone'" class="text-[#FF6E48]" />
+              {{ editingMechanic ? 'Редактировать механику' : 'Создать механику' }}
             </h2>
-            <button @click="closeModal" class="text-gray-400 hover:text-white transition-colors">
-              ✕
+            <button @click="closeModal" class="p-2 text-white/40 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
+              <Icon name="solar:close-circle-line-duotone" class="w-6 h-6" />
             </button>
           </div>
-          
-          <form @submit.prevent="saveMechanic" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Название *</label>
-                <input
-                  v-model="mechanicForm.name"
-                  type="text"
-                  required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="Введите название механики"
-                />
+
+          <!-- Modal Body -->
+          <div class="p-6 overflow-y-auto space-y-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1">Название *</label>
+                <input v-model="formData.name" type="text" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors" placeholder="Напр. Megaways" required>
               </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Slug *</label>
-                <input
-                  v-model="mechanicForm.slug"
-                  type="text"
-                  required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="mechanic-slug"
-                />
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1">Слаг *</label>
+                <input v-model="formData.slug" type="text" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors" placeholder="megaways" required>
               </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Тип *</label>
-                <select
-                  v-model="mechanicForm.type"
-                  required
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                >
-                  <option value="">Выберите тип</option>
-                  <option value="bonus">Бонусные</option>
-                  <option value="special">Специальные</option>
-                  <option value="multiplier">Множители</option>
-                  <option value="free_spins">Фриспины</option>
-                  <option value="wild">Вайлды</option>
-                  <option value="scatter">Скаттеры</option>
-                  <option value="progressive">Прогрессивные</option>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1 flex justify-between">
+                  Иконка/Эмодзи
+                  <a href="https://icon-sets.iconify.design/solar/" target="_blank" class="text-blue-400 hover:text-blue-300 font-normal underline">Iconify</a>
+                </label>
+                <input v-model="formData.icon" type="text" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors" placeholder="solar:star-fall-line-duotone">
+              </div>
+              <div class="space-y-1.5 flex flex-col justify-end">
+                  <div class="flex items-center gap-3 w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-3 py-2">
+                     <input type="color" v-model="formData.color" class="w-8 h-8 rounded shrink-0 bg-transparent border-none cursor-pointer p-0" />
+                     <input type="text" v-model="formData.color" class="w-full bg-transparent border-none text-white font-mono text-sm focus:outline-none uppercase" placeholder="#FFFFFF">
+                  </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1">Тип *</label>
+                <select v-model="formData.type" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors appearance-none cursor-pointer">
+                  <option value="mechanic">Механика (Mechanic)</option>
+                  <option value="bonus">Бонус (Bonus)</option>
+                  <option value="feature">Особенность (Feature)</option>
                 </select>
               </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Иконка</label>
-                <input
-                  v-model="mechanicForm.icon"
-                  type="text"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="⚙️ (эмодзи или символ)"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Порядок сортировки</label>
-                <input
-                  v-model.number="mechanicForm.sort_order"
-                  type="number"
-                  min="0"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="0"
-                />
+              <div class="space-y-1.5">
+                <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1">Порядок сортировки</label>
+                <input v-model.number="formData.sort_order" type="number" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors" placeholder="0">
               </div>
             </div>
-            
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Описание</label>
-              <textarea
-                v-model="mechanicForm.description"
-                rows="3"
-                class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                placeholder="Описание механики"
-              ></textarea>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">Цвет (HEX)</label>
-                <input
-                  v-model="mechanicForm.color"
-                  type="color"
-                  class="w-full h-10 px-2 py-1 bg-gray-800 border border-gray-600 rounded-lg focus:border-cyan-400 focus:outline-none transition-colors"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-300 mb-2">URL изображения</label>
-                <input
-                  v-model="mechanicForm.image_url"
-                  type="url"
-                  class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
-            </div>
-            
-            <div class="flex items-center space-x-4">
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input
-                  v-model="mechanicForm.is_active"
-                  type="checkbox"
-                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
-                />
-                <span class="text-gray-300">Активна</span>
-              </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input
-                  v-model="mechanicForm.is_popular"
-                  type="checkbox"
-                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
-                />
-                <span class="text-gray-300">Популярная</span>
-              </label>
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input
-                  v-model="mechanicForm.is_featured"
-                  type="checkbox"
-                  class="w-4 h-4 text-cyan-400 bg-gray-800 border-gray-600 rounded focus:ring-cyan-400 focus:ring-2"
-                />
-                <span class="text-gray-300">Рекомендуемая</span>
-              </label>
-            </div>
-            
-            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-700">
-              <button
-                type="button"
-                @click="closeModal"
-                class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 rounded-lg transition-colors"
-              >
-                Отмена
-              </button>
-              <button
-                type="submit"
-                :disabled="saving"
-                class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {{ saving ? 'Сохранение...' : (showAddModal ? 'Добавить' : 'Сохранить') }}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div v-if="showDeleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-900 border border-red-500/30 rounded-xl max-w-md w-full">
-        <div class="p-6">
-          <div class="text-center">
-            <div class="text-6xl mb-4">⚠️</div>
-            <h2 class="text-2xl font-bold text-white mb-4">Подтвердите удаление</h2>
-            <p class="text-gray-300 mb-6">
-              Вы уверены, что хотите удалить механику <strong>"{{ mechanicToDelete?.name }}"</strong>?
-              Это действие нельзя отменить.
-            </p>
-            <div class="flex items-center justify-center space-x-4">
-              <button
-                @click="showDeleteModal = false"
-                class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-500 rounded-lg transition-colors"
-              >
-                Отмена
-              </button>
-              <button
-                @click="confirmDelete"
-                :disabled="deleting"
-                class="px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {{ deleting ? 'Удаление...' : 'Удалить' }}
-              </button>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-white/50 uppercase tracking-wider pl-1">Описание (необязательно)</label>
+              <textarea v-model="formData.description" rows="3" class="w-full bg-[#0B0E14] border border-[#353A4A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#FF6E48]/50 focus:bg-[#1B1E26] transition-colors resize-none" placeholder="Краткое описание механики игры..."></textarea>
             </div>
+
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="p-6 border-t border-[#353A4A] flex justify-end gap-3 shrink-0 bg-[#121419]">
+            <button @click="closeModal" class="px-5 py-2.5 rounded-xl border border-[#353A4A] text-white/70 hover:text-white hover:bg-white/5 transition-colors font-medium text-sm">
+              Отмена
+            </button>
+            <button
+              @click="saveMechanic"
+              :disabled="saving || !formData.name || !formData.slug"
+              class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,110,72,0.3)]"
+            >
+              <Icon v-if="saving" name="solar:spinner-broken" class="w-5 h-5 animate-spin" />
+              <Icon v-else name="solar:disk-bold-duotone" class="w-5 h-5" />
+              {{ saving ? 'Сохранение...' : 'Сохранить механику' }}
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
+
   </div>
 </template>
 
 <script setup>
-// Composables
-const { getMechanics, createMechanic, updateMechanic, deleteMechanic: deleteMechanicApi } = useMechanics()
+import { ref, reactive, onMounted, computed, watch } from 'vue'
 
-// Reactive data
-const mechanics = ref([])
+const config = useRuntimeConfig()
+const API_URL = config.public.apiUrl || 'http://localhost:3001'
+
+definePageMeta({
+  layout: 'admin'
+})
+
+useHead({
+  title: 'SlotQuest Admin - Механики (Features)'
+})
+
 const loading = ref(true)
+const error = ref(null)
 const saving = ref(false)
-const deleting = ref(false)
+const mechanics = ref([])
 
-// Modals
-const showAddModal = ref(false)
-const showEditModal = ref(false)
-const showDeleteModal = ref(false)
-const mechanicToDelete = ref(null)
+const sortedMechanics = computed(() => {
+  return [...mechanics.value].sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+})
 
-// Search and filters
-const searchQuery = ref('')
-const selectedStatus = ref('')
-const selectedType = ref('')
-const sortBy = ref('sort_order')
-const sortOrder = ref('asc')
-
-// Pagination
-const currentPage = ref(1)
-const itemsPerPage = ref(20)
-
-// Form data
-const mechanicForm = ref({
+// Form & Modal State
+const isModalOpen = ref(false)
+const editingMechanic = ref(null)
+const formData = reactive({
   name: '',
   slug: '',
   description: '',
-  type: '',
-  icon: '',
-  color: '#8b5cf6',
-  image_url: '',
-  sort_order: 0,
-  is_active: true,
-  is_popular: false,
-  is_featured: false
+  icon: 'solar:gamepad-line-duotone',
+  color: '#FF6E48',
+  type: 'mechanic',
+  sort_order: 0
 })
 
-// Computed properties
-const filteredMechanics = computed(() => {
-  let filtered = mechanics.value
-  
-  if (searchQuery.value) {
-    filtered = filtered.filter(mechanic => 
-      mechanic.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      mechanic.slug.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      (mechanic.description && mechanic.description.toLowerCase().includes(searchQuery.value.toLowerCase()))
-    )
+// Auto-generate slug from name
+watch(() => formData.name, (newVal) => {
+  if (!editingMechanic.value && newVal) {
+    formData.slug = newVal.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
   }
-  
-  if (selectedStatus.value !== '') {
-    const isActive = selectedStatus.value === 'true'
-    filtered = filtered.filter(mechanic => mechanic.is_active === isActive)
-  }
-  
-  if (selectedType.value) {
-    filtered = filtered.filter(mechanic => mechanic.type === selectedType.value)
-  }
-  
-  // Sort
-  filtered.sort((a, b) => {
-    let aValue, bValue
-    
-    switch (sortBy.value) {
-      case 'name':
-        aValue = a.name.toLowerCase()
-        bValue = b.name.toLowerCase()
-        break
-      case 'created_at':
-        aValue = new Date(a.created_at)
-        bValue = new Date(b.created_at)
-        break
-      case 'slots_count':
-        aValue = a.slots_count || 0
-        bValue = b.slots_count || 0
-        break
-      case 'sort_order':
-        aValue = a.sort_order || 0
-        bValue = b.sort_order || 0
-        break
-      default:
-        return 0
-    }
-    
-    if (sortOrder.value === 'asc') {
-      return aValue > bValue ? 1 : -1
-    } else {
-      return aValue < bValue ? 1 : -1
-    }
-  })
-  
-  return filtered
 })
 
-const paginatedMechanics = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage.value
-  const end = start + itemsPerPage.value
-  return filteredMechanics.value.slice(start, end)
-})
-
-const totalPages = computed(() => {
-  return Math.ceil(filteredMechanics.value.length / itemsPerPage.value)
-})
-
-const visiblePages = computed(() => {
-  const pages = []
-  const total = totalPages.value
-  const current = currentPage.value
-  
-  if (total <= 7) {
-    for (let i = 1; i <= total; i++) {
-      pages.push(i)
-    }
-  } else {
-    if (current <= 4) {
-      for (let i = 1; i <= 5; i++) {
-        pages.push(i)
-      }
-      pages.push('...')
-      pages.push(total)
-    } else if (current >= total - 3) {
-      pages.push(1)
-      pages.push('...')
-      for (let i = total - 4; i <= total; i++) {
-        pages.push(i)
-      }
-    } else {
-      pages.push(1)
-      pages.push('...')
-      for (let i = current - 1; i <= current + 1; i++) {
-        pages.push(i)
-      }
-      pages.push('...')
-      pages.push(total)
-    }
-  }
-  
-  return pages
-})
-
-const activeMechanics = computed(() => mechanics.value.filter(mechanic => mechanic.is_active).length)
-const mechanicsWithSlots = computed(() => mechanics.value.filter(mechanic => (mechanic.slots_count || 0) > 0).length)
-const popularMechanics = computed(() => mechanics.value.filter(mechanic => mechanic.is_popular).length)
-
-// Methods
-const getTypeLabel = (type) => {
-  const typeLabels = {
-    bonus: 'Бонусные',
-    special: 'Специальные',
-    multiplier: 'Множители',
-    free_spins: 'Фриспины',
-    wild: 'Вайлды',
-    scatter: 'Скаттеры',
-    progressive: 'Прогрессивные'
-  }
-  return typeLabels[type] || type || 'Не указан'
-}
-
+// Load Mechanics
 const loadMechanics = async () => {
+  loading.value = true
+  error.value = null
   try {
-    loading.value = true
-    const response = await getMechanics()
-    mechanics.value = response?.data || []
-  } catch (error) {
-    console.error('Ошибка загрузки механик:', error)
-    mechanics.value = []
+    const response = await $fetch(`${API_URL}/api/mechanics`)
+    mechanics.value = response?.data || response || []
+  } catch (err) {
+    console.error('Ошибка загрузки:', err)
+    error.value = 'Не удалось загрузить список механик'
   } finally {
     loading.value = false
   }
 }
 
-const editMechanic = (mechanic) => {
-  mechanicForm.value = {
-    id: mechanic.id,
+// Modal Handlers
+const openAddModal = () => {
+  editingMechanic.value = null
+  Object.assign(formData, {
+    name: '',
+    slug: '',
+    description: '',
+    icon: 'solar:gamepad-line-duotone',
+    color: '#FF6E48',
+    type: 'mechanic',
+    sort_order: 0
+  })
+  isModalOpen.value = true
+}
+
+const openEditModal = (mechanic) => {
+  editingMechanic.value = mechanic
+  Object.assign(formData, {
     name: mechanic.name,
     slug: mechanic.slug,
     description: mechanic.description || '',
-    type: mechanic.type || '',
     icon: mechanic.icon || '',
-    color: mechanic.color || '#8b5cf6',
-    image_url: mechanic.image_url || '',
-    sort_order: mechanic.sort_order || 0,
-    is_active: mechanic.is_active,
-    is_popular: mechanic.is_popular || false,
-    is_featured: mechanic.is_featured || false
-  }
-  showEditModal.value = true
+    color: mechanic.color || '#FF6E48',
+    type: mechanic.type || 'mechanic',
+    sort_order: mechanic.sort_order || 0
+  })
+  isModalOpen.value = true
 }
 
-const deleteMechanic = (mechanic) => {
-  mechanicToDelete.value = mechanic
-  showDeleteModal.value = true
-}
-
-const confirmDelete = async () => {
-  if (!mechanicToDelete.value) return
-  
-  try {
-    deleting.value = true
-    await deleteMechanicApi(mechanicToDelete.value.id)
-    await loadMechanics()
-    showDeleteModal.value = false
-    mechanicToDelete.value = null
-  } catch (error) {
-    console.error('Ошибка удаления механики:', error)
-    alert('Ошибка при удалении механики')
-  } finally {
-    deleting.value = false
-  }
-}
-
-const toggleMechanicStatus = async (mechanic) => {
-  try {
-    const updatedMechanic = { ...mechanic, is_active: !mechanic.is_active }
-    await updateMechanic(mechanic.id, updatedMechanic)
-    await loadMechanics()
-  } catch (error) {
-    console.error('Ошибка изменения статуса механики:', error)
-    alert('Ошибка при изменении статуса механики')
-  }
+const closeModal = () => {
+  isModalOpen.value = false
+  editingMechanic.value = null
 }
 
 const saveMechanic = async () => {
+  if (!formData.name || !formData.slug) return
+
+  saving.value = true
   try {
-    saving.value = true
-    
-    if (showAddModal.value) {
-      await createMechanic(mechanicForm.value)
-    } else {
-      await updateMechanic(mechanicForm.value.id, mechanicForm.value)
-    }
-    
+    const method = editingMechanic.value ? 'PUT' : 'POST'
+    const endpoint = editingMechanic.value
+      ? `${API_URL}/api/mechanics/${editingMechanic.value.id}`
+      : `${API_URL}/api/mechanics`
+
+    await $fetch(endpoint, {
+      method,
+      body: formData
+    })
+
     await loadMechanics()
     closeModal()
-  } catch (error) {
-    console.error('Ошибка сохранения механики:', error)
-    alert('Ошибка при сохранении механики')
+  } catch (err) {
+    alert(err.message || 'Ошибка при сохранении')
   } finally {
     saving.value = false
   }
 }
 
-const openCreateModal = () => {
-  mechanicForm.value = {
-    name: '',
-    slug: '',
-    description: '',
-    type: '',
-    icon: '',
-    color: '#8b5cf6',
-    image_url: '',
-    sort_order: 0,
-    is_active: true,
-    is_popular: false,
-    is_featured: false
-  }
-  showAddModal.value = true
-}
+const confirmDelete = async (mechanic) => {
+  if (!confirm(`Точно удалить механику "${mechanic.name}"? Это удалит ее и из карточек слотов.`)) return
 
-const closeModal = () => {
-  showAddModal.value = false
-  showEditModal.value = false
-  mechanicForm.value = {
-    name: '',
-    slug: '',
-    description: '',
-    type: '',
-    icon: '',
-    color: '#8b5cf6',
-    image_url: '',
-    sort_order: 0,
-    is_active: true,
-    is_popular: false,
-    is_featured: false
+  try {
+    await $fetch(`${API_URL}/api/mechanics/${mechanic.id}`, {
+      method: 'DELETE'
+    })
+    mechanics.value = mechanics.value.filter(m => m.id !== mechanic.id)
+  } catch (err) {
+    alert('Ошибка при удалении')
   }
 }
 
-// Auto-generate slug from name
-watch(() => mechanicForm.value.name, (newName) => {
-  if (showAddModal.value && newName) {
-    mechanicForm.value.slug = newName
-      .toLowerCase()
-      .replace(/[^a-z0-9а-я]/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '')
-  }
-})
-
-// Load data on mount
 onMounted(() => {
   loadMechanics()
 })
-
-// Page meta
-useHead({
-  title: 'SlotQuest Admin - Управление механиками',
-  meta: [
-    { name: 'description', content: 'Административная панель для управления механиками SlotQuest' }
-  ]
-})
 </script>
-
-<style scoped>
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>

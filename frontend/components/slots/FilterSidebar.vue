@@ -102,6 +102,46 @@
           </div>
         </div>
 
+        <!-- Categories Accordion -->
+        <div class="space-y-3 border-t border-white/5 pt-6">
+           <button @click="accordions.categories = !accordions.categories" class="w-full flex items-center justify-between group pl-1">
+              <div class="flex items-center gap-2">
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Categories</label>
+                 <span v-if="filters.categoryIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.categoryIds.length }}</span>
+              </div>
+              <Icon :name="accordions.categories ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
+           </button>
+
+           <div v-show="accordions.categories" class="space-y-3 bg-black/20 p-2 sm:p-3 rounded-3xl border border-transparent flex flex-col transform origin-top transition-all">
+              <div class="relative w-full mb-1">
+                <Icon name="solar:magnifer-line-duotone" class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 w-4 h-4" />
+                <input
+                  v-model="categorySearch"
+                  type="text"
+                  placeholder="Search category..."
+                  class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
+                >
+              </div>
+
+              <div class="space-y-1.5 max-h-[180px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                 <button
+                    v-for="category in filteredCategories"
+                    :key="category.id"
+                    @click="toggleFilterItem('categoryIds', category.id)"
+                    class="w-full flex items-center gap-3 px-3 py-2 rounded-xl border transition-all duration-300 transform active:scale-[0.98] text-left"
+                    :class="filters.categoryIds.includes(category.id) ? 'bg-blue-600/20 border-blue-500/50 text-blue-400' : 'bg-transparent border-transparent text-white/70 hover:bg-white/5'"
+                 >
+                    <Icon v-if="category.icon" :name="category.icon" class="w-5 h-5 shrink-0" />
+                    <span class="text-sm font-medium flex-1 truncate">{{ category.name }}</span>
+                    <Icon v-if="filters.categoryIds.includes(category.id)" name="solar:check-circle-bold" class="w-4 h-4 shrink-0" />
+                 </button>
+                 <div v-if="filteredCategories.length === 0" class="text-center py-4 text-xs text-white/40">
+                   Category not found
+                 </div>
+              </div>
+           </div>
+        </div>
+
         <!-- Themes Accordion -->
         <div class="space-y-3 border-t border-white/5 pt-6">
            <button @click="accordions.themes = !accordions.themes" class="w-full flex items-center justify-between group pl-1">
@@ -190,6 +230,7 @@ import { ref, reactive, computed } from 'vue'
 
 const props = defineProps({
   providers: { type: Array, default: () => [] },
+  categories: { type: Array, default: () => [] },
   mechanics: { type: Array, default: () => [] },
   themes: { type: Array, default: () => [] }
 })
@@ -200,17 +241,20 @@ const isOpen = ref(false)
 
 // Accordion states
 const accordions = reactive({
+  categories: false,
   themes: false,
   mechanics: false
 })
 
 // Search strings for specific sections
 const providerSearch = ref('')
+const categorySearch = ref('')
 const themeSearch = ref('')
 
 const filters = reactive({
   search: '',
   providerIds: [],
+  categoryIds: [],
   mechanicIds: [],
   themeIds: []
 })
@@ -220,6 +264,12 @@ const filteredProviders = computed(() => {
   if (!providerSearch.value) return props.providers
   const term = providerSearch.value.toLowerCase()
   return props.providers.filter(p => p.name.toLowerCase().includes(term))
+})
+
+const filteredCategories = computed(() => {
+  if (!categorySearch.value) return props.categories
+  const term = categorySearch.value.toLowerCase()
+  return props.categories.filter(c => c.name.toLowerCase().includes(term))
 })
 
 const filteredThemes = computed(() => {
@@ -247,9 +297,11 @@ const emitFilters = () => {
 const resetFilters = () => {
   filters.search = ''
   filters.providerIds = []
+  filters.categoryIds = []
   filters.mechanicIds = []
   filters.themeIds = []
   providerSearch.value = ''
+  categorySearch.value = ''
   themeSearch.value = ''
   emitFilters()
 }

@@ -12,7 +12,7 @@ interface SlotFilters {
 
 @Injectable()
 export class SlotsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async getAllSlots(filters: SlotFilters = {}) {
     try {
@@ -245,6 +245,7 @@ export class SlotsService {
         hero_keyword,
         hero_keyword_2,
         hero_keyword_3,
+        category_id,
         ...restDto
       } = createSlotDto;
 
@@ -253,6 +254,10 @@ export class SlotsService {
         ...restDto,
         provider_id,
       };
+
+      if (category_id) {
+        createData.category_id = category_id;
+      }
 
       // Добавляем hero_keyword поля только если они предоставлены
       if (hero_keyword !== undefined) {
@@ -366,6 +371,7 @@ export class SlotsService {
       hero_keyword,
       hero_keyword_2,
       hero_keyword_3,
+      category_id,
       ...restDto
     } = updateSlotDto;
 
@@ -374,6 +380,10 @@ export class SlotsService {
       ...restDto,
       updated_at: new Date(),
     };
+
+    if (category_id !== undefined) {
+      updateData.category_id = category_id;
+    }
 
     // Добавляем hero_keyword поля только если они предоставлены
     if (hero_keyword !== undefined) {

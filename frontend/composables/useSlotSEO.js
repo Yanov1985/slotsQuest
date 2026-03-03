@@ -146,7 +146,7 @@ export const useSlotSEO = ({
                 slotData.hero_keyword, slotData.hero_keyword_2, slotData.hero_keyword_3,
                 slotData.name, slotData.providers?.name, 'slot', 'slot machine', 'online casino',
                 'demo game', 'free play', `RTP ${slotData.rtp || '96'}%`, `${slotData.volatility || 'medium'} volatility`,
-                slotData.category?.name || 'slots', 'real money', 'bonuses', 'free spins', 'SlotQuest'
+                slotData.slot_categories?.name || 'slots', 'real money', 'bonuses', 'free spins', 'SlotQuest'
             ].filter(Boolean)
             return autoKeywords.join(', ')
         }
@@ -410,7 +410,7 @@ export const useSlotSEO = ({
                     { name: 'slot:provider', content: slot.value.providers?.name || 'Game Provider' },
                     { name: 'slot:rtp', content: `${slot.value.rtp || '96'}%` }, { name: 'slot:volatility', content: slot.value.volatility || 'medium' },
                     { name: 'slot:max_win', content: slot.value.max_win || '5000x' }, { name: 'slot:min_bet', content: slot.value.min_bet || '0.20' },
-                    { name: 'slot:theme', content: slot.value.theme || slot.value.category?.name || 'casino' },
+                    { name: 'slot:theme', content: slot.value.theme || slot.value.slot_categories?.name || 'casino' },
                     { name: 'casino:demo_available', content: slot.value.demo_url ? 'yes' : 'no' },
                     { name: 'casino:real_money', content: slot.value.real_play_url ? 'yes' : 'no' },
                     { name: 'audience:requiredMinAge', content: '18' },

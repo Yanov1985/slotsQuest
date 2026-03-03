@@ -94,6 +94,7 @@
       <!-- Off-Canvas / Sidebar Filters -->
       <FilterSidebar
         :providers="providers"
+        :categories="categories"
         :mechanics="mechanics"
         :themes="themes"
         @update:filters="applyFilters"
@@ -108,7 +109,7 @@
           <!-- Chips (Scrollable) -->
           <div class="flex flex-1 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-none gap-2 min-w-0">
             <button
-              v-for="cat in quickCategories"
+              v-for="cat in displayCategories"
               :key="cat.id"
               @click="activeCategory = cat.id"
               class="whitespace-nowrap px-5 py-2.5 rounded-2xl text-sm font-semibold tracking-wide transition-all duration-300 transform active:scale-95 border shrink-0 flex items-center gap-2"
@@ -168,6 +169,7 @@ import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 // Data Fetching (SSR via useAsyncData)
 const { getSlots } = useSlotsApi()
 const { getProviders } = useProviders()
+const { getCategories } = useCategories()
 const { getMechanics } = useMechanics()
 const { getThemes } = useThemes()
 
@@ -180,21 +182,23 @@ const fetchSlotsCb = async () => {
 
 // Fetch all filter data in parallel
 const fetchFiltersCb = async () => {
-  const [provs, mechs, thms] = await Promise.all([
+  const [provs, cats, mechs, thms] = await Promise.all([
      getProviders(),
+     getCategories(),
      getMechanics(),
      getThemes()
   ])
   if (import.meta.client) await new Promise(r => setTimeout(r, 600))
-  return { providers: provs, mechanics: mechs, themes: thms }
+  return { providers: provs, categories: cats, mechanics: mechs, themes: thms }
 }
 
 const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', fetchSlotsCb, { lazy: import.meta.client })
 const { data: filterData, pending: filtersLoading, error: filtersError } = await useAsyncData('catalog-filters', fetchFiltersCb, { lazy: import.meta.client })
 
 const providers = computed(() => filterData.value?.providers || [])
-const mechanics = computed(() => filterData.value?.mechanics || [])
-const themes = computed(() => filterData.value?.themes || [])
+const categories = computed(() => filterData.value?.categories?.data || filterData.value?.categories || [])
+const mechanics = computed(() => filterData.value?.mechanics?.data || filterData.value?.mechanics || [])
+const themes = computed(() => filterData.value?.themes?.data || filterData.value?.themes || [])
 
 // SEO injection server-side
 const siteUrl = 'https://slotquest.com/slots'
@@ -214,16 +218,28 @@ const sortBy = ref('popular')
 const currentSideFilters = ref({
   search: '',
   providerIds: [],
+  categoryIds: [],
   mechanicIds: [],
   bonusIds: [],
   themeIds: []
 })
 
-const quickCategories = [
-  { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' },
-  { id: 'popular', name: 'Popular', icon: 'solar:fire-line-duotone' },
-  { id: 'new', name: 'New', icon: 'solar:star-fall-line-duotone' }
-]
+const displayCategories = computed(() => {
+  const base = [
+    { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' },
+    { id: 'popular', name: 'Popular', icon: 'solar:fire-line-duotone' },
+    { id: 'new', name: 'New', icon: 'solar:star-fall-line-duotone' }
+  ]
+
+  if (categories.value && categories.value.length > 0) {
+    // Only show active categories and specific requested ones
+    const allowedNames = ['1w Games', 'Crash Games', 'Best Year 2024']
+    const activeCats = categories.value.filter(c => c.is_active && allowedNames.includes(c.name))
+    return [...base, ...activeCats]
+  }
+
+  return base
+})
 
 const applyFilters = (filters) => {
   currentSideFilters.value = filters
@@ -245,6 +261,16 @@ const filteredSlots = computed(() => {
 
   if (f.providerIds && f.providerIds.length > 0) {
     result = result.filter(s => f.providerIds.includes(s.providers?.id))
+  }
+
+  // Category Array Filtering
+  if (f.categoryIds && f.categoryIds.length > 0) {
+    console.log('[DEBUG] Category Filter Active:', f.categoryIds.map(x=>String(x)))
+    result = result.filter(s => {
+      const isMatch = f.categoryIds.includes(s.category_id) || (s.slot_categories && f.categoryIds.includes(s.slot_categories.id))
+      console.log(`[DEBUG] Slot: ${s.name} | category_id: ${s.category_id} | slot_categories_id: ${s.slot_categories?.id} | match: ${isMatch}`)
+      return isMatch
+    })
   }
 
   // Feature Array Filtering Logic
@@ -271,6 +297,14 @@ const filteredSlots = computed(() => {
     result = result.filter(s => s.popularity_rank && s.popularity_rank <= 20)
   } else if (activeCategory.value === 'new') {
     result = result.sort((a,b) => b.id - a.id).slice(0, 50)
+  } else if (activeCategory.value !== 'all') {
+    // Exact category match
+    console.log('[DEBUG] Exact Category Match:', activeCategory.value)
+    result = result.filter(s => {
+      const isMatch = s.category_id === activeCategory.value || (s.slot_categories && s.slot_categories.id === activeCategory.value)
+      console.log(`[DEBUG] Slot: ${s.name} | exact match: ${isMatch}`)
+      return isMatch
+    })
   }
 
   // 3. Sorting

@@ -394,6 +394,42 @@
                           </select>
                         </div>
 
+                        <!-- Категория -->
+                        <div>
+                          <label
+                            class="flex items-center gap-2 text-sm font-medium text-[#E5E7EB] mb-2"
+                          >
+                            <svg
+                              class="w-4 h-4 text-[#FFD700]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                              ></path>
+                            </svg>
+                            Category *
+                          </label>
+                          <select
+                            v-model="form.category_id"
+                            required
+                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all duration-200"
+                          >
+                            <option value="">Select a category</option>
+                            <option
+                              v-for="category in availableCategories"
+                              :key="category.id"
+                              :value="category.id"
+                            >
+                              {{ category.name }}
+                            </option>
+                          </select>
+                        </div>
+
                         <!-- Description -->
                         <div>
                           <label
@@ -5344,6 +5380,7 @@ const navSearchInput = ref(null)
 const availableMechanics = ref([])
 const availableBonuses = ref([])
 const availableThemes = ref([])
+const availableCategories = ref([])
 
 // 🎯 JSON-LD форма для нового компонента
 const jsonLdForm = ref({
@@ -5493,6 +5530,7 @@ const form = ref({
   hero_keyword_2: '', // First variable in description
   hero_keyword_3: '', // Second variable in description
   provider_id: null,
+  category_id: null,
   rtp: 96.5,
   volatility: 'medium',
   min_bet: '€0.20',
@@ -6314,6 +6352,7 @@ onMounted(async () => {
     loadMechanics(),
     loadBonuses(),
     loadThemes(),
+    loadCategories(),
     slotId !== 'new' ? loadSlot() : null,
   ])
   loading.value = false
@@ -6362,6 +6401,19 @@ const loadThemes = async () => {
     availableThemes.value = allThemes.filter(theme => theme.is_active === true)
   } catch (error) {
     console.error('Error loading themes:', error)
+  }
+}
+
+// Load categories list (active only!)
+const loadCategories = async () => {
+  try {
+    const response = await $fetch('http://localhost:3001/api/categories')
+    const data = response.data || response
+    // Filter active categories for display in selection list
+    const allCategories = JSON.parse(JSON.stringify(data))
+    availableCategories.value = allCategories.filter(cat => cat.is_active === true)
+  } catch (error) {
+    console.error('Error loading categories:', error)
   }
 }
 
@@ -7289,12 +7341,19 @@ const saveSlot = async () => {
       console.log(`  ${fieldName}:`, form.value[fieldName])
     }
 
-    // Copy only allowed fields from the form
+    // Copy only allowed fields
     allowedFields.forEach((field) => {
       if (form.value[field] !== undefined) {
+        // Fix for Prisma 500 errors: Vue bound numeric inputs return empty strings when cleared.
+        // Prisma Decimal/Int fields will crash if they receive an empty string instead of null.
+        let value = form.value[field];
+        if (typeof value === 'string' && value.trim() === '') {
+          value = null;
+        }
+
         // Special handling for numeric fields
         if (field.startsWith('popularity_width_')) {
-          dataToSend[field] = parseInt(form.value[field]) || 0
+          dataToSend[field] = parseInt(value) || 0
         } else if (field.startsWith('popularity_trend_y')) {
           // For chart: null if empty, otherwise number
           dataToSend[field] =
@@ -7353,6 +7412,40 @@ const saveSlot = async () => {
       form.value.reels && form.value.rows
         ? `${form.value.reels}×${form.value.rows}`
         : form.value.game_field
+
+    // 🧹 Global Fix: Prisma 500 Error Prevention
+    // Ensure absolutely NO empty strings are sent for any numeric/decimal properties.
+    Object.keys(dataToSend).forEach((key) => {
+      if (typeof dataToSend[key] === 'string' && dataToSend[key].trim() === '') {
+        dataToSend[key] = null
+      }
+    })
+
+    // 🛡️ Remove frontend-only state fields that do not exist in Prisma schema
+    const ghostFields = [
+      'jsonld_enable_aggregate',
+      'jsonld_aggregate_rating',
+      'jsonld_aggregate_count',
+      'jsonld_aggregate_best',
+      'jsonld_aggregate_worst',
+      'article_author_name',
+      'article_author_role',
+      'article_author_photo',
+      'article_author_bio',
+      'article_author_social_linkedin',
+      'article_author_social_twitter',
+      'article_author_social_website',
+      'article_published_date',
+      'article_updated_date',
+      'article_updated_time',
+      'article_updated_by',
+      'article_reading_time',
+      'article_reading_time_label',
+      'article_show_author_block',
+      'article_show_reading_time',
+      'article_show_update_date'
+    ];
+    ghostFields.forEach(field => delete dataToSend[field]);
 
     // Debug output data before sending
     console.log('Sending data:', {
