@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30">
+  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30 overflow-x-hidden">
     <!-- Animated Background from Admin Template -->
     <div class="fixed inset-0 z-0 pointer-events-none">
       <BackgroundBeams :intensity="0.9" :speed="1.2" />

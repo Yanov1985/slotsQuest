@@ -56,7 +56,7 @@
           </nav>
 
           <!-- Mobile Nav (Dropdown style) -->
-          <div class="md:hidden w-full relative z-10 mb-4">
+          <div class="md:hidden w-full min-w-0 relative z-10 mb-4">
              <h3 class="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Jump to section</h3>
              <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-none">
                 <button
