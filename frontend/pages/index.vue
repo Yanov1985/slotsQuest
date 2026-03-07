@@ -137,6 +137,9 @@
           />
         </div>
 
+        <!-- SEO Text Component -->
+        <CatalogSeoText />
+
       </div>
     </div>
   </div>
@@ -147,6 +150,7 @@
 import { ref, computed } from 'vue'
 import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
+import CatalogSeoText from '~/components/slots/CatalogSeoText.vue'
 import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 import { onMounted, onUnmounted } from 'vue'
 
