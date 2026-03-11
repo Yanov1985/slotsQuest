@@ -10,17 +10,14 @@
     <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 relative z-40 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div class="flex items-center justify-between gap-2">
-           <h1 class="text-white font-bold text-lg hidden sm:block">SlotQuest Casino</h1>
-           <span class="text-white/50 text-sm hidden md:inline">Find your favorite slot game</span>
-           <div class="md:hidden text-xs text-white/70 font-bold uppercase tracking-wider">
-             SlotQuest
-           </div>
+           <h1 class="text-white font-bold text-base sm:text-lg">SlotQuest Casino</h1>
+           <span class="text-white/50 text-xs sm:text-sm hidden md:inline">Find your favorite slot game</span>
         </div>
       </div>
     </nav>
 
     <!-- Загрузка / Skeleton (в стиле [slug].vue) -->
-    <div v-if="loading" class="min-h-screen pt-8 pb-12 w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <div v-if="loading" class="min-h-screen pt-4 sm:pt-8 pb-12 w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
       <div class="w-full">
         <div class="flex flex-col lg:flex-row gap-8 animate-pulse">
           <!-- Фильтры skeleton -->
@@ -35,7 +32,7 @@
              <!-- Top bar skeleton -->
              <div class="h-14 bg-white/5 rounded-2xl w-full mb-8"></div>
              <!-- Grid -->
-             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
                 <!-- Slot Card Skeletons -->
                 <div v-for="i in 12" :key="'skel-' + i" class="aspect-[3/4] bg-white/5 rounded-3xl border border-white/5 overflow-hidden flex flex-col">
                    <div class="w-full h-[60%] bg-white/10"></div>
@@ -67,7 +64,7 @@
     </div>
 
     <!-- Main Content Area -->
-    <div v-else class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8 flex flex-col lg:flex-row gap-8 items-start relative">
+    <div v-else class="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-4 sm:py-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-start relative">
 
       <!-- Off-Canvas / Sidebar Filters -->
       <FilterSidebar
@@ -84,7 +81,7 @@
         <!-- Category Chips & Controls (Стеклянная панель) -->
         <div ref="chipsAnchor" class="absolute -top-[1px] w-full h-px pointer-events-none"></div>
         <div
-          class="sticky top-[10px] z-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-3 sm:p-4 rounded-3xl transition-all duration-300"
+          class="sticky top-[10px] z-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 p-3 sm:p-4 rounded-3xl transition-all duration-300"
           :class="isChipsSticky
             ? 'bg-black/95 border border-white/20 backdrop-blur-3xl shadow-2xl shadow-black/80'
             : 'bg-white/5 border border-white/5 backdrop-blur-md shadow-lg shadow-black/20'"
@@ -129,7 +126,7 @@
         </div>
 
         <!-- Slots Grid -->
-        <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
           <SlotCard
             v-for="slot in filteredSlots"
             :key="slot.id"

@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full mt-12 mb-8 origin-top transition-all duration-500">
+  <div class="w-full mt-8 sm:mt-12 mb-6 sm:mb-8 origin-top transition-all duration-500">
 
     <!-- Main Spoiler Toggle Button -->
     <div class="flex items-center justify-center mb-6">
       <button
         @click="isExpanded = !isExpanded"
-        class="group flex items-center justify-between w-full max-w-2xl bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl px-6 py-4 transition-all duration-300 backdrop-blur-md cursor-pointer"
+        class="group flex items-center justify-between w-full max-w-2xl bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300 backdrop-blur-md cursor-pointer"
       >
         <div class="flex items-center gap-4">
           <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 text-blue-400 group-hover:scale-110 transition-transform duration-300">
@@ -29,7 +29,7 @@
     >
       <div class="overflow-hidden">
 
-        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row gap-8 lg:gap-12 relative overflow-hidden">
+        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 sm:p-8 flex flex-col lg:flex-row gap-6 lg:gap-12 relative overflow-hidden">
 
           <!-- Background Glow -->
           <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-3xl">
@@ -77,11 +77,11 @@
 
             <!-- Section 1 -->
             <section :id="sections[0].id" class="scroll-mt-6 outline-none transition-opacity duration-300" tabindex="-1">
-              <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/10">
-                  <Icon :name="sections[0].icon" class="w-6 h-6 text-blue-400" />
+              <div class="flex items-center gap-4 mb-4 sm:mb-6">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/10 shrink-0">
+                  <Icon :name="sections[0].icon" class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ sections[0].title }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ sections[0].title }}</h2>
               </div>
               <div class="prose prose-invert max-w-none text-white/70 space-y-4">
                 <p>Welcome to <strong>SlotQuest</strong>, your ultimate destination for discovering the best online slots and trusted casino reviews in 2025. Navigating the massive ocean of online gaming shouldn't be a gamble. We provide you with the exact tools, filters, and insights needed to find the perfect slot machine without any hassle.</p>
@@ -94,11 +94,11 @@
 
             <!-- Section 2 -->
             <section :id="sections[1].id" class="scroll-mt-6 outline-none transition-opacity duration-300" tabindex="-1">
-              <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-white/10">
-                  <Icon :name="sections[1].icon" class="w-6 h-6 text-purple-400" />
+              <div class="flex items-center gap-4 mb-4 sm:mb-6">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-white/10 shrink-0">
+                  <Icon :name="sections[1].icon" class="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ sections[1].title }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ sections[1].title }}</h2>
               </div>
               <div class="prose prose-invert max-w-none text-white/70 space-y-4">
                 <p>A hassle-free environment is the bare minimum you should expect from a premium operator. The perfect casino lets you relax and focus entirely on the game without worrying about unfair treatment, stalled payments, or hidden terms.</p>
@@ -122,11 +122,11 @@
 
             <!-- Section 3 -->
             <section :id="sections[2].id" class="scroll-mt-6 outline-none transition-opacity duration-300" tabindex="-1">
-              <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center border border-white/10">
-                  <Icon :name="sections[2].icon" class="w-6 h-6 text-amber-400" />
+              <div class="flex items-center gap-4 mb-4 sm:mb-6">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center border border-white/10 shrink-0">
+                  <Icon :name="sections[2].icon" class="w-5 h-5 sm:w-6 sm:h-6 text-amber-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ sections[2].title }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ sections[2].title }}</h2>
               </div>
               <div class="prose prose-invert max-w-none text-white/70 space-y-4">
                 <p>The online casino vertical offers an insanely vast selection of titles. Content creation is continuously evolving, with studios rolling out new engines like <em>Slingo, Live Dealer Slots,</em> and <em>Infinite Reels</em>.</p>
@@ -153,11 +153,11 @@
 
             <!-- Section 4 -->
             <section :id="sections[3].id" class="scroll-mt-6 outline-none transition-opacity duration-300" tabindex="-1">
-              <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center border border-white/10">
-                  <Icon :name="sections[3].icon" class="w-6 h-6 text-green-400" />
+              <div class="flex items-center gap-4 mb-4 sm:mb-6">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center border border-white/10 shrink-0">
+                  <Icon :name="sections[3].icon" class="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ sections[3].title }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ sections[3].title }}</h2>
               </div>
               <div class="prose prose-invert max-w-none text-white/70 space-y-4">
                 <p>A good promotion enriches your experience by extending your playtime and giving you more shots at that massive payout. From widespread Deposit Matches to No-Wager Free Spins, the key is understanding the terms.</p>
@@ -168,11 +168,11 @@
 
             <!-- Section 5 -->
             <section :id="sections[4].id" class="scroll-mt-6 outline-none transition-opacity duration-300" tabindex="-1">
-              <div class="flex items-center gap-4 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center border border-white/10">
-                  <Icon :name="sections[4].icon" class="w-6 h-6 text-rose-400" />
+              <div class="flex items-center gap-4 mb-4 sm:mb-6">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center border border-white/10 shrink-0">
+                  <Icon :name="sections[4].icon" class="w-5 h-5 sm:w-6 sm:h-6 text-rose-400" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ sections[4].title }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ sections[4].title }}</h2>
               </div>
               <div class="prose prose-invert max-w-none text-white/70 space-y-4">
                 <p>Before ever making a deposit at a real money casino, we believe it's paramount to test the waters. That's why nearly every slot review on SlotQuest contains an embedded, free-to-play demo version. You don't have to leave our secure site to try out a game.</p>

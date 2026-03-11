@@ -4,9 +4,9 @@
     <div class="lg:hidden fixed bottom-6 right-6 z-40">
       <button
         @click="isOpen = true"
-        class="bg-blue-600 text-white p-4 rounded-full shadow-lg shadow-blue-600/30 flex items-center justify-center transform transition-transform active:scale-95 border border-white/10"
+        class="bg-blue-600 text-white p-3 sm:p-4 rounded-full shadow-lg shadow-blue-600/30 flex items-center justify-center transform transition-transform active:scale-95 border border-white/10"
       >
-        <Icon name="solar:filters-line-duotone" class="w-6 h-6" />
+        <Icon name="solar:filters-line-duotone" class="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
     </div>
 
@@ -29,26 +29,26 @@
     <!-- Sidebar Content -->
     <aside
       :class="[
-        'fixed inset-y-0 right-0 z-50 w-full max-w-[320px] bg-white/5 backdrop-blur-2xl border-l border-white/10 transform transition-transform duration-300 ease-out lg:relative lg:translate-x-0 lg:w-[320px] lg:border-r lg:border-l lg:rounded-3xl lg:z-10 flex flex-col shadow-2xl shadow-black/20',
+        'fixed inset-y-0 right-0 z-50 w-[85vw] max-w-[320px] bg-white/5 backdrop-blur-2xl border-l border-white/10 transform transition-transform duration-300 ease-out lg:relative lg:translate-x-0 lg:w-[320px] lg:border-r lg:border-l lg:rounded-3xl lg:z-10 flex flex-col shadow-2xl shadow-black/20',
         isOpen ? 'translate-x-0' : 'translate-x-full'
       ]"
     >
       <!-- Header -->
-      <div class="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
+      <div class="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 shrink-0">
         <h2 class="text-white font-bold text-lg flex items-center gap-2">
           <Icon name="solar:tuning-square-2-line-duotone" class="text-blue-400 w-6 h-6" />
           Filters
         </h2>
         <button
           @click="isOpen = false"
-          class="lg:hidden text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+          class="lg:hidden text-white/50 hover:text-white transition-colors w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 shrink-0"
         >
           <Icon name="solar:close-circle-line-duotone" class="w-6 h-6" />
         </button>
       </div>
 
       <!-- Filters Form -->
-      <div class="p-6 flex-1 overflow-y-auto space-y-8 scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-white/10 scrollbar-track-transparent transition-colors duration-300">
+      <div class="p-4 sm:p-6 flex-1 overflow-y-auto space-y-6 sm:space-y-8 scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-white/10 scrollbar-track-transparent transition-colors duration-300">
 
         <!-- Search -->
         <div class="space-y-3">

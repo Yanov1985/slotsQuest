@@ -6,9 +6,9 @@
     <!-- Background Glow on Hover -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
 
-    <div class="relative z-10 p-4 sm:p-5">
+    <div class="relative z-10 p-3 sm:p-5">
       <!-- Image Wrapper -->
-      <div class="relative aspect-[4/3] mb-4 sm:mb-5 rounded-2xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blue-500/30 transition-colors duration-300">
+      <div class="relative aspect-[4/3] mb-3 sm:mb-5 rounded-2xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blue-500/30 transition-colors duration-300">
 
         <!-- Placeholder -->
         <div v-if="!slot.image_url && !slot.thumbnail_url" class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
@@ -50,10 +50,10 @@
       </div>
 
       <!-- Info Area -->
-      <div class="flex flex-col gap-1">
+      <div class="flex flex-col gap-0.5 sm:gap-1">
         <h3 class="text-white/90 font-bold text-sm sm:text-base truncate">{{ slot.name }}</h3>
-        <p class="text-white/50 text-xs flex items-center gap-1.5 truncate font-medium">
-          <Icon name="solar:buildings-bold" class="w-3.5 h-3.5 text-white/30" />
+        <p class="text-white/50 text-[10px] sm:text-xs flex items-center gap-1.5 truncate font-medium">
+          <Icon name="solar:buildings-bold" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/30" />
           {{ slot.providers?.name || 'Провайдер' }}
         </p>
       </div>
