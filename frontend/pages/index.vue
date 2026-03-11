@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30 overflow-x-hidden">
+  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30 overflow-x-clip">
     <!-- Animated Background from Admin Template -->
     <div class="fixed inset-0 z-0 pointer-events-none">
       <BackgroundBeams :intensity="0.9" :speed="1.2" />
@@ -86,7 +86,7 @@
         <div
           class="sticky top-[10px] z-40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-3 sm:p-4 rounded-3xl transition-all duration-300"
           :class="isChipsSticky
-            ? 'bg-black/80 border border-white/10 backdrop-blur-2xl shadow-xl shadow-black/50'
+            ? 'bg-black/95 border border-white/20 backdrop-blur-3xl shadow-2xl shadow-black/80'
             : 'bg-white/5 border border-white/5 backdrop-blur-md shadow-lg shadow-black/20'"
         >
 
@@ -157,22 +157,26 @@ import { onMounted, onUnmounted } from 'vue'
 // Sticky header logic
 const chipsAnchor = ref(null)
 const isChipsSticky = ref(false)
-let observer = null
+
+const handleScroll = () => {
+  if (chipsAnchor.value) {
+    const rect = chipsAnchor.value.getBoundingClientRect()
+    // The sticky chips have 'top-[10px]'.
+    // If the anchor is above that threshold, it's sticky.
+    isChipsSticky.value = rect.top <= 10
+  }
+}
 
 onMounted(() => {
-  if (chipsAnchor.value && window.IntersectionObserver) {
-    observer = new IntersectionObserver(
-      ([e]) => e.intersectionRatio < 1 ? isChipsSticky.value = true : isChipsSticky.value = false,
-      { threshold: [1] }
-    )
-    observer.observe(chipsAnchor.value)
-  }
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  // Run on mount, and schedule a re-check after page transition finishes
+  handleScroll()
+  setTimeout(handleScroll, 50)
+  setTimeout(handleScroll, 300)
 })
 
 onUnmounted(() => {
-  if (observer && chipsAnchor.value) {
-    observer.unobserve(chipsAnchor.value)
-  }
+  window.removeEventListener('scroll', handleScroll)
 })
 
 // Data Fetching (SSR via useAsyncData)
