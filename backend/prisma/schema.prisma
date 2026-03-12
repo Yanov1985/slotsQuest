@@ -821,3 +821,32 @@ model slot_mechanics {
   @@index([slot_id], map: "idx_slot_mechanics_slot_id")
   @@index([mechanic_id], map: "idx_slot_mechanics_mechanic_id")
 }
+
+model pages {
+  slug                String   @id // e.g., "home"
+  title               String       // e.g., "Homepage"
+  hero_title          String?      // Hero H1
+  hero_desc           String?      // Hero subtitle
+
+  // Basic SEO
+  seo_title           String?      // Meta Title
+  seo_desc            String?      // Meta Description
+  seo_keywords        String?      // Meta Keywords
+
+  // Technical SEO
+  seo_canonical_url   String?      // Custom Canonical URL
+  seo_robots          String?      // Robots directives (e.g., index, follow)
+
+  // Open Graph / Social
+  og_title            String?      // Open Graph Title
+  og_desc             String?      // Open Graph Description
+  og_image            String?      // Open Graph Image URL
+  twitter_card        String?      // Twitter Card Type
+
+  // Advanced
+  json_schema         String?      // Custom JSON-LD Scripts
+
+  content             String?      // Dynamic JSON array of SEO Text blocks [{title, icon, text}]
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+}

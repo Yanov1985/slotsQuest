@@ -10,8 +10,8 @@
     <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 relative z-40 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div class="flex items-center justify-between gap-2">
-           <h1 class="text-white font-bold text-base sm:text-lg">SlotQuest Casino</h1>
-           <span class="text-white/50 text-xs sm:text-sm hidden md:inline">Find your favorite slot game</span>
+           <h1 class="text-white font-bold text-base sm:text-lg">{{ pageData?.hero_title || 'SlotQuest Casino' }}</h1>
+           <span class="text-white/50 text-xs sm:text-sm hidden md:inline">{{ pageData?.hero_desc || 'Find your favorite slot game' }}</span>
         </div>
       </div>
     </nav>
@@ -135,7 +135,7 @@
         </div>
 
         <!-- SEO Text Component -->
-        <CatalogSeoText />
+        <CatalogSeoText v-if="pageData?.content?.length > 0" :sections="pageData.content" />
 
       </div>
     </div>
@@ -149,6 +149,7 @@ import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
 import CatalogSeoText from '~/components/slots/CatalogSeoText.vue'
 import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
+import { usePagesApi } from '~/composables/usePagesApi'
 import { onMounted, onUnmounted } from 'vue'
 
 // Sticky header logic
@@ -182,12 +183,22 @@ const { getProviders } = useProviders()
 const { getCategories } = useCategories()
 const { getMechanics } = useMechanics()
 const { getThemes } = useThemes()
+const { getPage } = usePagesApi()
 
 // Load data. Await on Server (for SEO), but Lazy on Client (to show Skeleton during navigation).
 const fetchSlotsCb = async () => {
   const data = await getSlots()
   if (import.meta.client) await new Promise(r => setTimeout(r, 600)) // Artificial delay for premium skeleton feel
   return data
+}
+
+// Fetch homepage dynamic content
+const fetchPageDataCb = async () => {
+  try {
+    return await getPage('home')
+  } catch (e) {
+    return null
+  }
 }
 
 // Fetch all filter data in parallel
@@ -204,6 +215,7 @@ const fetchFiltersCb = async () => {
 
 const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', fetchSlotsCb, { lazy: import.meta.client })
 const { data: filterData, pending: filtersLoading, error: filtersError } = await useAsyncData('catalog-filters', fetchFiltersCb, { lazy: import.meta.client })
+const { data: pageData } = await useAsyncData('home-page-data', fetchPageDataCb)
 
 const providers = computed(() => filterData.value?.providers || [])
 const categories = computed(() => filterData.value?.categories?.data || filterData.value?.categories || [])
@@ -212,12 +224,48 @@ const themes = computed(() => filterData.value?.themes?.data || filterData.value
 
 // SEO injection server-side
 const siteUrl = 'https://slotquest.com'
-useCatalogSEO(
-  'Best Online Slots Catalog 2025 | SlotQuest Casino',
-  'Huge selection of online slots. Play for free in demo mode or for real money in top casinos. Filter by providers, mechanics, and themes.',
-  siteUrl,
-  slots.value?.length || 0
-)
+
+useServerSeoMeta({
+  title: () => pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
+  description: () => pageData.value?.seo_desc || 'Huge selection of online slots. Play for free in demo mode or for real money in top casinos. Filter by providers, mechanics, and themes.',
+  ogTitle: () => pageData.value?.og_title || pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
+  ogDescription: () => pageData.value?.og_desc || pageData.value?.seo_desc || 'Huge selection of online slots.',
+  ogImage: () => pageData.value?.og_image || `${siteUrl}/default-og-image.jpg`,
+  ogUrl: () => pageData.value?.seo_canonical_url || siteUrl,
+  ogType: 'website',
+  twitterCard: () => pageData.value?.twitter_card || 'summary_large_image',
+  twitterTitle: () => pageData.value?.og_title || pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
+  twitterDescription: () => pageData.value?.og_desc || pageData.value?.seo_desc || 'Huge selection of online slots.',
+  twitterImage: () => pageData.value?.og_image || `${siteUrl}/default-og-image.jpg`,
+  robots: () => pageData.value?.seo_robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+})
+
+useHead({
+  meta: () => [
+    ...(pageData.value?.seo_keywords ? [{ name: 'keywords', content: pageData.value.seo_keywords }] : [])
+  ],
+  link: () => [
+    { rel: 'canonical', href: pageData.value?.seo_canonical_url || siteUrl }
+  ],
+  script: () => [
+    ...(pageData.value?.json_schema ? [{
+      type: 'application/ld+json',
+      children: pageData.value.json_schema
+    }] : [{
+      // Fallback Catalog Schema if nothing is manually set
+      type: 'application/ld+json',
+      children: JSON.stringify({
+         '@context': 'https://schema.org',
+         '@type': 'CollectionPage',
+         name: pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
+         description: pageData.value?.seo_desc || 'Huge selection of online slots.',
+         url: pageData.value?.seo_canonical_url || siteUrl,
+         isPartOf: { '@type': 'WebSite', name: 'SlotQuest', url: siteUrl },
+         numberOfItems: slots.value?.length || 0
+      })
+    }])
+  ]
+})
 
 const loading = computed(() => slotsLoading.value || filtersLoading.value)
 const error = computed(() => slotsError.value?.message || filtersError.value?.message || null)

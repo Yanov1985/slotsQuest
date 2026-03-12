@@ -68,7 +68,7 @@ export default defineNuxtConfig({
     public: {
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
       supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
-      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:3001'
+      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://127.0.0.1:3001'
     }
   },
 
@@ -81,7 +81,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     // API proxy
-    '/api/**': { proxy: 'http://localhost:3001/api/**' },
+    '/api/**': { proxy: 'http://127.0.0.1:3001/api/**' },
     // Cache static assets for 1 year
     '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
@@ -95,7 +95,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     devProxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'http://127.0.0.1:3001',
         changeOrigin: true
       }
     },

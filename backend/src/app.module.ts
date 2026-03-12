@@ -12,6 +12,7 @@ import { MechanicsModule } from './mechanics/mechanics.module';
 import { BonusesModule } from './bonuses/bonuses.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { JsonLdModule } from './jsonld/jsonld.module'; // 🎯 Модуль JSON-LD для SEO
+import { PagesModule } from './pages/pages.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { JsonLdModule } from './jsonld/jsonld.module'; // 🎯 Модуль JSON
     ThemesModule,
     MechanicsModule,
     BonusesModule,
-    JsonLdModule, // 🎯 JSON-LD генерация и валидация
+    JsonLdModule,
+    PagesModule, // 🎯 JSON-LD генерация и валидация
   ],
   controllers: [AppController],
   providers: [AppService],
