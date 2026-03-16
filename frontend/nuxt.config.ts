@@ -86,9 +86,10 @@ export default defineNuxtConfig({
     '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     // 10-minute Stale-While-Revalidate cache for specific routes
-    '/slots': { swr: 600 },
-    '/slots/**': { swr: 600 },
-    '/': { swr: 600 }
+    // For a CMS-driven site where instant updates are expected, you might want these disabled.
+    // '/slots': { swr: 600 },
+    // '/slots/**': { swr: 600 },
+    // '/': { swr: 600 }
   },
 
   nitro: {

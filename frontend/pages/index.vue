@@ -287,8 +287,27 @@ const displayCategories = computed(() => {
     { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' }
   ]
 
+  // 1. Dynamic Fast Filters from Admin Panel
+  if (pageData.value?.fast_filters && pageData.value.fast_filters.length > 0 && categories.value && categories.value.length > 0) {
+    const activeCats = []
+
+    for (const filter of pageData.value.fast_filters) {
+      if (!filter.category_id) continue
+      const dbCat = categories.value.find(c => String(c.id) === String(filter.category_id) && c.is_active)
+      if (dbCat) {
+        activeCats.push({
+          ...dbCat,
+          name: filter.name || dbCat.name,
+          icon: filter.icon || dbCat.icon
+        })
+      }
+    }
+
+    return [...base, ...activeCats]
+  }
+
+  // 2. Fallback to default hardcoded filters if none configured in DB
   if (categories.value && categories.value.length > 0) {
-    // Only show active categories and specific requested ones
     const allowedNames = ['Popular', 'New', '1w Games', 'Crash Games', 'Best Year 2024']
     const activeCats = categories.value
       .filter(c => c.is_active && allowedNames.includes(c.name))

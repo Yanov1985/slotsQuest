@@ -14,7 +14,6 @@ export class PagesService {
             throw new NotFoundException(`Page with slug ${slug} not found`);
         }
 
-        // Try to parse the content JSON string if it exists
         let parsedContent: any = null;
         if (page.content) {
             try {
@@ -25,9 +24,20 @@ export class PagesService {
             }
         }
 
+        let parsedFastFilters: any = null;
+        if (page.fast_filters) {
+            try {
+                parsedFastFilters = JSON.parse(page.fast_filters);
+            } catch (e) {
+                console.error(`Failed to parse fast filters for page ${slug}:`, e);
+                parsedFastFilters = page.fast_filters;
+            }
+        }
+
         return {
             ...page,
             content: parsedContent,
+            fast_filters: parsedFastFilters,
         };
     }
 
@@ -36,6 +46,11 @@ export class PagesService {
         let contentString = updateData.content;
         if (updateData.content && typeof updateData.content === 'object') {
             contentString = JSON.stringify(updateData.content);
+        }
+
+        let fastFiltersString = updateData.fast_filters;
+        if (updateData.fast_filters && typeof updateData.fast_filters === 'object') {
+            fastFiltersString = JSON.stringify(updateData.fast_filters);
         }
 
         // Prepare exactly what we want to save, stripping unwanted / undefined fields
@@ -63,6 +78,7 @@ export class PagesService {
             json_schema: updateData.json_schema !== undefined ? updateData.json_schema : null,
 
             content: contentString !== undefined ? contentString : null,
+            fast_filters: fastFiltersString !== undefined ? fastFiltersString : null,
         };
 
         // Use upsert to create the page if it doesn't exist yet (e.g. first time saving the homepage)
@@ -83,9 +99,17 @@ export class PagesService {
             } catch (e) { }
         }
 
+        let parsedFastFilters = null;
+        if (page.fast_filters) {
+            try {
+                parsedFastFilters = JSON.parse(page.fast_filters);
+            } catch (e) { }
+        }
+
         return {
             ...page,
             content: parsedContent,
+            fast_filters: parsedFastFilters,
         };
     }
 }

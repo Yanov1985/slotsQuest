@@ -24,8 +24,9 @@
 
     <!-- Collapsible SEO Content Grid -->
     <div
-      class="grid transition-all duration-500 ease-in-out"
-      :class="isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+      v-show="isExpanded"
+      class="transition-opacity duration-500 ease-in-out"
+      :class="isExpanded ? 'opacity-100 mt-6' : 'opacity-0'"
     >
       <div class="overflow-hidden">
 
@@ -96,7 +97,7 @@
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-white">{{ section.title }}</h2>
               </div>
-              <div class="prose prose-invert max-w-none text-white/70 space-y-4 html-content-block" v-html="section.text"></div>
+              <div class="prose prose-invert max-w-none text-white/70 space-y-4 html-content-block" v-html="sanitizeHtml(section.text)"></div>
             </section>
 
           </div>
@@ -136,9 +137,15 @@ watch(() => props.sections, (newVal) => {
   }
 }, { deep: true })
 
-const isExpanded = ref(false)
+const isExpanded = ref(true) // Default to open for debugging initially, we can revert later if needed.
 const activeSection = ref(localSections.value[0]?.id || 'intro')
 const contentContainer = ref(null)
+
+// Cleanup literal \n representations from DB
+const sanitizeHtml = (htmlStr) => {
+  if (!htmlStr) return ''
+  return htmlStr.replace(/\\n/g, '')
+}
 
 // Smooth scroll logic
 const scrollToSection = (id) => {

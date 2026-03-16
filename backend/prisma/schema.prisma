@@ -846,6 +846,7 @@ model pages {
   // Advanced
   json_schema         String?      // Custom JSON-LD Scripts
 
+  fast_filters        String?      // Dynamic JSON array of top sticky filters [{category_id, name, icon}]
   content             String?      // Dynamic JSON array of SEO Text blocks [{title, icon, text}]
   created_at          DateTime @default(now())
   updated_at          DateTime @updatedAt

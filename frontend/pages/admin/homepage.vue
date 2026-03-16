@@ -210,6 +210,72 @@
           </div>
         </div>
 
+        <!-- ================= TOP FAST FILTERS ================= -->
+        <div class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-[#353A4A] relative overflow-hidden transition-all duration-300 mb-8">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
+
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-8">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-400 rounded-2xl flex items-center justify-center shadow-xl">
+                  <Icon name="solar:filters-bold" class="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h2 class="text-2xl font-semibold text-[#E5E7EB] font-display">Top Fast Filters</h2>
+                  <div class="h-1 w-28 bg-gradient-to-r from-blue-500 to-indigo-400 rounded-full mt-2"></div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" @click="addFastFilter" class="hidden sm:flex px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 font-bold rounded-lg border border-blue-500/30 transition-all items-center gap-2">
+                  <Icon name="solar:add-circle-bold" class="w-5 h-5" /> Add Filter
+                </button>
+                <button type="button" @click="showFilters = !showFilters" class="flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200">
+                  <Icon name="solar:alt-arrow-down-line-duotone" class="w-5 h-5 transform transition-transform duration-200" :class="{ 'rotate-180': showFilters }" />
+                </button>
+              </div>
+            </div>
+
+            <div v-show="showFilters" class="space-y-4">
+              <template v-if="fastFilters && fastFilters.length > 0">
+                <div v-for="(filter, index) in fastFilters" :key="index" class="group bg-[#161A21] border border-[#353A4A] hover:border-blue-500/30 rounded-xl p-4 transition-all duration-300 relative flex flex-col md:flex-row gap-4 items-start md:items-center">
+
+                  <div class="absolute top-2 right-2 flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity z-20">
+                    <button type="button" @click="moveFastFilterUp(index)" :disabled="index === 0" class="p-1.5 bg-[#1B1E26] border border-[#353A4A] text-[#A0AABE] hover:text-[#00EDFF] rounded-md disabled:opacity-30 disabled:cursor-not-allowed transition-colors"><Icon name="solar:alt-arrow-up-linear" class="w-4 h-4" /></button>
+                    <button type="button" @click="moveFastFilterDown(index)" :disabled="index === fastFilters.length - 1" class="p-1.5 bg-[#1B1E26] border border-[#353A4A] text-[#A0AABE] hover:text-[#00EDFF] rounded-md disabled:opacity-30 disabled:cursor-not-allowed transition-colors"><Icon name="solar:alt-arrow-down-linear" class="w-4 h-4" /></button>
+                    <div class="w-px h-5 bg-[#353A4A] mx-0.5 self-center"></div>
+                    <button type="button" @click="removeFastFilter(index)" class="p-1.5 bg-[#1B1E26] border border-[#353A4A] text-[#A0AABE] hover:text-[#EF4444] rounded-md transition-colors"><Icon name="solar:trash-bin-trash-bold" class="w-4 h-4" /></button>
+                  </div>
+
+                  <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-bold text-[#E5E7EB] mb-1 uppercase tracking-wider">Target Category</label>
+                    <select v-model="filter.category_id" class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-blue-500 transition-all font-semibold">
+                       <option value="" disabled>Select Category</option>
+                       <option v-for="cat in availableCategories" :key="cat.id" :value="cat.id">{{ cat.name }} ({{ cat.slug }})</option>
+                    </select>
+                  </div>
+
+                  <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-bold text-[#E5E7EB] mb-1 uppercase tracking-wider">Display Name</label>
+                    <input v-model="filter.name" type="text" placeholder="e.g. Popular" class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-blue-500 transition-all" />
+                  </div>
+
+                  <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-bold text-[#E5E7EB] mb-1 uppercase tracking-wider">
+                      Icon Name <Icon v-if="filter.icon" :name="filter.icon" class="w-3.5 h-3.5 text-blue-400 ml-1" />
+                    </label>
+                    <input v-model="filter.icon" type="text" placeholder="e.g. solar:fire-line-duotone" class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-[#00EDFF] text-sm focus:outline-none focus:border-blue-500 transition-all font-mono" />
+                  </div>
+
+                </div>
+              </template>
+              <div v-else class="flex flex-col items-center justify-center py-8 border border-dashed border-[#353A4A] rounded-xl bg-[#0B0E14]/50">
+                <span class="text-[#A0AABE] text-sm mb-3">No fast filters configured.</span>
+                <button type="button" @click="addFastFilter" class="px-4 py-1.5 bg-blue-500/10 text-blue-400 font-bold rounded-lg border border-blue-500/30 hover:bg-blue-500/20 transition-all text-sm">Add First Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- ================= SEO CONTENT BLOCKS ================= -->
         <div class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-[#353A4A] relative overflow-hidden transition-all duration-300">
           <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
@@ -221,7 +287,7 @@
                   <Icon name="solar:document-text-bold" class="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h2 class="text-2xl font-semibold text-[#E5E7EB] font-display">SEO Guide Blocks</h2>
+                  <h2 class="text-2xl font-semibold text-[#E5E7EB] font-display">Everything About Online Slots (SEO)</h2>
                   <div class="h-1 w-28 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full mt-2"></div>
                 </div>
               </div>
@@ -282,22 +348,25 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { usePagesApi } from '~/composables/usePagesApi'
+import { useCategories } from '~/composables/useCategories'
 
 definePageMeta({
   layout: 'admin'
 })
 
 const pagesApi = usePagesApi()
+const { getCategories } = useCategories()
 const isLoading = ref(true)
 const isSaving = ref(false)
 
 // Section visibility state
 const showHero = ref(true)
 const showSeo = ref(true)
+const showFilters = ref(true)
 const showBlocks = ref(true)
 
-const closeAllSections = () => { showHero.value = false; showSeo.value = false; showBlocks.value = false; }
-const openAllSections = () => { showHero.value = true; showSeo.value = true; showBlocks.value = true; }
+const closeAllSections = () => { showHero.value = false; showSeo.value = false; showFilters.value = false; showBlocks.value = false; }
+const openAllSections = () => { showHero.value = true; showSeo.value = true; showFilters.value = true; showBlocks.value = true; }
 
 const pageData = ref({
   title: 'Homepage',
@@ -313,16 +382,22 @@ const pageData = ref({
   og_image: '',
   twitter_card: '',
   json_schema: '',
+  fast_filters: null,
   content: null
 })
 
 const seoBlocks = ref([])
+const fastFilters = ref([])
+const availableCategories = ref([])
 
 const generateId = () => Math.random().toString(36).substring(2, 9)
 
 const loadData = async () => {
   isLoading.value = true
   try {
+    const catsRes = await getCategories()
+    availableCategories.value = catsRes?.data || catsRes || []
+
     const data = await pagesApi.getPage('home')
     if (data) {
       Object.keys(pageData.value).forEach(key => {
@@ -340,6 +415,12 @@ const loadData = async () => {
           icon: 'solar:target-outline',
           text: '<p>Welcome to <strong>SlotQuest</strong>, your ultimate destination for discovering the best online slots in 2025.</p>'
         }]
+      }
+
+      if (data.fast_filters && Array.isArray(data.fast_filters)) {
+        fastFilters.value = data.fast_filters
+      } else {
+        fastFilters.value = []
       }
     }
   } catch (error) {
@@ -359,7 +440,8 @@ const saveData = async () => {
 
     const payload = {
       ...pageData.value,
-      content: blocksToSave
+      content: blocksToSave,
+      fast_filters: fastFilters.value
     }
 
     await pagesApi.updatePage('home', payload)
@@ -418,6 +500,31 @@ const moveBlockDown = (index) => {
     const temp = seoBlocks.value[index]
     seoBlocks.value[index] = seoBlocks.value[index + 1]
     seoBlocks.value[index + 1] = temp
+  }
+}
+
+// Fast Filters Array Operations
+const addFastFilter = () => {
+  fastFilters.value.push({ category_id: '', name: 'New Filter', icon: 'solar:star-fall-line-duotone' })
+}
+
+const removeFastFilter = (index) => {
+  fastFilters.value.splice(index, 1)
+}
+
+const moveFastFilterUp = (index) => {
+  if (index > 0) {
+    const temp = fastFilters.value[index]
+    fastFilters.value[index] = fastFilters.value[index - 1]
+    fastFilters.value[index - 1] = temp
+  }
+}
+
+const moveFastFilterDown = (index) => {
+  if (index < fastFilters.value.length - 1) {
+    const temp = fastFilters.value[index]
+    fastFilters.value[index] = fastFilters.value[index + 1]
+    fastFilters.value[index + 1] = temp
   }
 }
 

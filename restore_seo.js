@@ -1,0 +1,59 @@
+ ular
+New
+1w Games
+Crash Games
+Best Year 2024// restore_seo.js
+const fs = require('fs');
+
+async function restore() {
+    const content = [
+        {
+            id: 'intro',
+            title: 'Why Trust SlotQuest?',
+            icon: 'solar:shield-star-bold-duotone',
+            text: '<p>Welcome to <strong>SlotQuest</strong>, your ultimate destination for discovering the best online slots and trusted casino reviews in 2025. Navigating the massive ocean of online gaming shouldn\'t be a gamble. We provide you with the exact tools, filters, and insights needed to find the perfect slot machine without any hassle.</p>\n<p>Whether you\'re looking for high-RTP slots, progressive jackpots, or the latest Megaways releases, our constantly updated catalog is designed to give you an edge before you even spin the reels.</p>'
+        },
+        {
+            id: 'fairness',
+            title: 'Fair Play & Withdrawals',
+            icon: 'solar:wallet-money-bold-duotone',
+            text: '<p>A hassle-free environment is the bare minimum you should expect from a premium operator. The perfect casino lets you relax and focus entirely on the game without worrying about unfair treatment, stalled payments, or hidden terms.</p>\n<p>We rigorously vet and rank casinos based on:</p>\n<ul class="space-y-2 mt-4">\n  <li class="flex items-start gap-3">\n    <Icon name="solar:check-circle-bold-duotone" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />\n    <span><strong>Provably Fair Games:</strong> Verified RNG (Random Number Generator) certification by independent auditors like eCOGRA or iTech Labs.</span>\n  </li>\n  <li class="flex items-start gap-3">\n    <Icon name="solar:card-send-bold-duotone" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />\n    <span><strong>Rapid Payouts:</strong> Same-day or instant withdrawals to e-wallets and cryptocurrency. We don\'t recommend casinos that drag out verifications for weeks.</span>\n  </li>\n  <li class="flex items-start gap-3">\n    <Icon name="solar:money-bag-bold-duotone" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />\n    <span><strong>High Withdrawal Limits:</strong> We check the fine print so you don\'t discover a restrictive $10k/month cap only *after* hitting a jackpot.</span>\n  </li>\n  <li class="flex items-start gap-3">\n    <Icon name="solar:global-bold-duotone" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />\n    <span><strong>Multi-Currency Support:</strong> True freedom of choice, including top-tier crypto and localized fiat options depending on your geolocation.</span>\n  </li>\n</ul>'
+        },
+        {
+            id: 'games',
+            title: 'Universe of Slots',
+            icon: 'solar:gamepad-bold-duotone',
+            text: '<p>The online casino vertical offers an insanely vast selection of titles. Content creation is continuously evolving, with studios rolling out new engines like <em>Slingo, Live Dealer Slots,</em> and <em>Infinite Reels</em>.</p>\n<p>However, traditional and modern video slots remain the undisputed kings. Navigating thousands of choices is daunting. That\'s why the <strong>SlotQuest Catalog</strong> features deep filtering options to narrow your search to exactly what you want to play today.</p>\n<p>Instead of thousands of overwhelming covers, you can filter down to specific mechanics like:</p>\n<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">\n  <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex gap-3 items-center">\n     <Icon name="solar:crown-star-bold-duotone" class="w-8 h-8 text-yellow-400" />\n     <div>\n       <strong class="text-white block">Bonus Buy</strong>\n       <span class="text-xs text-white/50">Skip the grind, buy the feature.</span>\n     </div>\n  </div>\n  <div class="bg-black/30 border border-white/5 rounded-2xl p-4 flex gap-3 items-center">\n     <Icon name="solar:bolt-bold-duotone" class="w-8 h-8 text-blue-400" />\n     <div>\n       <strong class="text-white block">Megaways™</strong>\n       <span class="text-xs text-white/50">Up to 117,649 ways to win.</span>\n     </div>\n  </div>\n</div>'
+        },
+        {
+            id: 'bonuses',
+            title: 'Hunting the Best Bonuses',
+            icon: 'solar:gift-bold-duotone',
+            text: '<p>A good promotion enriches your experience by extending your playtime and giving you more shots at that massive payout. From widespread Deposit Matches to No-Wager Free Spins, the key is understanding the terms.</p>\n<p>The best casinos release solid rewards without trapping you in impossible wagering requirements. We consider an industry-average wager to be around 30-40x. We also heavily emphasize casinos that offer straightforward VIP programs with weekly cashbacks.</p>\n<p><strong>Heads Up:</strong> Always check the restricted game list. High-volatility slots or those with progressive jackpots are frequently prohibited while clearing a bonus. Stick to the classic or low-volatility titles to clear your wagering faster.</p>'
+        },
+        {
+            id: 'mobile',
+            title: 'Free Demos & Mobile Play',
+            icon: 'solar:smartphone-bold-duotone',
+            text: '<p>Before ever making a deposit at a real money casino, we believe it\'s paramount to test the waters. That\'s why nearly every slot review on SlotQuest contains an embedded, free-to-play demo version. You don\'t have to leave our secure site to try out a game.</p>\n<p>Simply load the slot page, hit "Play Demo", and spin. Whether you are on your powerful desktop setup or via your Android or iPhone browser, the HTML5 games scale perfectly to your screen.</p>\n<p>Once you\'ve found a game whose math and mechanics you love, SlotQuest points you directly to the top-rated, certified safe casinos where you can play it for real money.</p>'
+        }
+    ];
+
+    try {
+        const res = await fetch('http://127.0.0.1:3000/api/pages/home', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: content
+            })
+        });
+        const data = await res.json();
+        console.log("Successfully restored content to DB:", data.slug);
+    } catch (e) {
+        console.error("Failed to fetch:", e);
+    }
+}
+
+restore();
