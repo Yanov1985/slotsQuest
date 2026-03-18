@@ -135,7 +135,7 @@
         </div>
 
         <!-- SEO Text Component -->
-        <CatalogSeoText v-if="pageData?.content?.length > 0" :sections="pageData.content" />
+        <CatalogSeoText v-if="pageData?.content?.length > 0" :sections="pageData.content" :pageData="pageData" />
 
       </div>
     </div>
@@ -222,50 +222,9 @@ const categories = computed(() => filterData.value?.categories?.data || filterDa
 const mechanics = computed(() => filterData.value?.mechanics?.data || filterData.value?.mechanics || [])
 const themes = computed(() => filterData.value?.themes?.data || filterData.value?.themes || [])
 
-// SEO injection server-side
-const siteUrl = 'https://slotquest.com'
+// SEO injection via unified engine
+usePageSEO(pageData, slots)
 
-useServerSeoMeta({
-  title: () => pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
-  description: () => pageData.value?.seo_desc || 'Huge selection of online slots. Play for free in demo mode or for real money in top casinos. Filter by providers, mechanics, and themes.',
-  ogTitle: () => pageData.value?.og_title || pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
-  ogDescription: () => pageData.value?.og_desc || pageData.value?.seo_desc || 'Huge selection of online slots.',
-  ogImage: () => pageData.value?.og_image || `${siteUrl}/default-og-image.jpg`,
-  ogUrl: () => pageData.value?.seo_canonical_url || siteUrl,
-  ogType: 'website',
-  twitterCard: () => pageData.value?.twitter_card || 'summary_large_image',
-  twitterTitle: () => pageData.value?.og_title || pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
-  twitterDescription: () => pageData.value?.og_desc || pageData.value?.seo_desc || 'Huge selection of online slots.',
-  twitterImage: () => pageData.value?.og_image || `${siteUrl}/default-og-image.jpg`,
-  robots: () => pageData.value?.seo_robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
-})
-
-useHead({
-  meta: () => [
-    ...(pageData.value?.seo_keywords ? [{ name: 'keywords', content: pageData.value.seo_keywords }] : [])
-  ],
-  link: () => [
-    { rel: 'canonical', href: pageData.value?.seo_canonical_url || siteUrl }
-  ],
-  script: () => [
-    ...(pageData.value?.json_schema ? [{
-      type: 'application/ld+json',
-      children: pageData.value.json_schema
-    }] : [{
-      // Fallback Catalog Schema if nothing is manually set
-      type: 'application/ld+json',
-      children: JSON.stringify({
-         '@context': 'https://schema.org',
-         '@type': 'CollectionPage',
-         name: pageData.value?.seo_title || 'Best Online Slots Catalog 2025 | SlotQuest Casino',
-         description: pageData.value?.seo_desc || 'Huge selection of online slots.',
-         url: pageData.value?.seo_canonical_url || siteUrl,
-         isPartOf: { '@type': 'WebSite', name: 'SlotQuest', url: siteUrl },
-         numberOfItems: slots.value?.length || 0
-      })
-    }])
-  ]
-})
 
 const loading = computed(() => slotsLoading.value || filtersLoading.value)
 const error = computed(() => slotsError.value?.message || filtersError.value?.message || null)

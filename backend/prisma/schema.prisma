@@ -835,7 +835,49 @@ model pages {
 
   // Technical SEO
   seo_canonical_url   String?      // Custom Canonical URL
-  seo_robots          String?      // Robots directives (e.g., index, follow)
+  seo_robots          String?      // Robots directives (legacy, for backward compatibility)
+
+  // Advanced Keywords System (Mirroring slots)
+  hero_keyword_1      String?
+  hero_keyword_2      String?
+  hero_keyword_3      String?
+  seo_keywords_primary  String?
+  seo_keywords_lsi      String?
+  seo_keywords_longtail String?
+  seo_keywords_geo      String?
+  seo_keywords_list     String?      // JSON array of strings [ "kw1", "kw2", ... ]
+
+  // Granular Robots (Mirroring slots)
+  robots_index             Boolean?  @default(true)
+  robots_follow            Boolean?  @default(true)
+  robots_max_snippet       Int?      @default(-1)
+  robots_max_image_preview String?   @default("large")
+  robots_max_video_preview Int?      @default(-1)
+  robots_notranslate       Boolean?  @default(false)
+  robots_noimageindex      Boolean?  @default(false)
+
+  // Localization & Geo (Mirroring slots)
+  hreflang_enabled         Boolean?  @default(false)
+  hreflang_config          String?   // JSON string
+  geo_target_enabled       Boolean?  @default(false)
+  geo_target_regions       String?   // Comma separated or JSON
+
+  // Structured Data / JSON-LD (Mirroring slots)
+  jsonld_enabled           Boolean?  @default(true)
+  jsonld_type              String?   @default("CollectionPage")
+  jsonld_enable_faq        Boolean?  @default(false)
+  jsonld_faq_json          String?   // JSON string [ { question, answer } ]
+  jsonld_enable_review     Boolean?  @default(false)
+  jsonld_review_author     String?
+  jsonld_review_rating     Decimal?
+  jsonld_review_text       String?
+  jsonld_enable_how_to     Boolean?  @default(false)
+  jsonld_how_to_json       String?   // JSON string [ { name, text, image } ]
+  jsonld_enable_breadcrumb Boolean?  @default(true)
+
+  // SEO Info Pros/Cons (Mirroring slots)
+  info_pros           String?      // JSON string of pros
+  info_cons           String?      // JSON string of cons
 
   // Open Graph / Social
   og_title            String?      // Open Graph Title
@@ -844,10 +886,15 @@ model pages {
   twitter_card        String?      // Twitter Card Type
 
   // Advanced
-  json_schema         String?      // Custom JSON-LD Scripts
+  json_schema         String?      // Custom manual JSON-LD Overrides
 
   fast_filters        String?      // Dynamic JSON array of top sticky filters [{category_id, name, icon}]
   content             String?      // Dynamic JSON array of SEO Text blocks [{title, icon, text}]
+  
+  // Custom Content Sections
+  show_awards         Boolean?     @default(false)
+  awards              String?      // JSON string of awards entries
+
   created_at          DateTime @default(now())
   updated_at          DateTime @updatedAt
 }

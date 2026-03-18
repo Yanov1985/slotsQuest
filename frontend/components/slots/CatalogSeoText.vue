@@ -115,8 +115,37 @@ const props = defineProps({
     type: Array,
     required: false,
     default: () => null
+  },
+  pageData: {
+    type: Object,
+    required: false,
+    default: () => null
   }
 })
+
+// Keywords replacement helper
+const replaceKeywords = (text) => {
+  if (!text || !props.pageData) return text
+  let result = text
+  
+  // 1. Dynamic list from seo_keywords_list
+  const kwList = props.pageData.seo_keywords_list
+  if (kwList && Array.isArray(kwList)) {
+    kwList.forEach((kw, index) => {
+      const placeholder = `[keyword_${index + 1}]`
+      // Escape for regex and replace all occurrences
+      result = result.replace(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), kw || '')
+    })
+  }
+  
+  // 2. Legacy fallback hero_keyword_1..3
+  for (let i = 1; i <= 3; i++) {
+    const kw = props.pageData[`hero_keyword_${i}`] || ''
+    result = result.replace(new RegExp(`\\[keyword_${i}\\]`, 'g'), kw)
+  }
+  
+  return result
+}
 
 // Fallback to these if no sections are passed
 const defaultSections = [
@@ -141,10 +170,11 @@ const isExpanded = ref(true) // Default to open for debugging initially, we can 
 const activeSection = ref(localSections.value[0]?.id || 'intro')
 const contentContainer = ref(null)
 
-// Cleanup literal \n representations from DB
+// Cleanup literal \n representations from DB and replace keywords
 const sanitizeHtml = (htmlStr) => {
   if (!htmlStr) return ''
-  return htmlStr.replace(/\\n/g, '')
+  let cleaned = htmlStr.replace(/\\n/g, '')
+  return replaceKeywords(cleaned)
 }
 
 // Smooth scroll logic
