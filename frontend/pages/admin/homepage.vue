@@ -8,7 +8,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
 
-          <div class="flex items-center gap-4">
+          <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
             <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex flex-shrink-0 items-center justify-center border border-blue-500/20">
               <Icon name="solar:home-angle-bold-duotone" class="w-6 h-6 text-blue-400" />
             </div>
@@ -19,7 +19,7 @@
           </div>
 
           <!-- Tab Switcher -->
-          <div class="flex p-1 bg-[#0F1117] rounded-xl border border-[#353A4A]">
+          <div class="flex p-1 bg-[#0F1117] rounded-xl border border-[#353A4A] overflow-x-auto whitespace-nowrap max-w-[90vw] sm:max-w-full scrollbar-hide">
              <button v-for="tab in ['content', 'filters', 'seo', 'localization', 'structured']" :key="tab" 
                @click="activeTab = tab"
                class="px-4 py-2 text-xs font-bold rounded-lg transition-all capitalize"
@@ -53,7 +53,7 @@
           <!-- TAB: CONTENT (SEO Blocks & Hero) -->
           <div v-if="activeTab === 'content'" class="space-y-8">
              <!-- Hero Settings -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-blue-400"><Icon name="solar:text-field-bold" /> Hero & Headers</h3>
                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div class="space-y-4">
@@ -88,7 +88,7 @@
              </section>
 
              <!-- SEO Text Blocks -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                <div class="flex items-center justify-between mb-8">
                  <h3 class="text-xl font-bold flex items-center gap-2 text-green-400"><Icon name="solar:document-text-bold" /> SEO Text Content</h3>
                  <button @click="addItem(seoBlocks, {title: 'New Section', icon: 'solar:star-bold', text: '<p>Edit content...</p>'})" class="px-4 py-2 bg-green-500/10 text-green-400 border border-green-500/20 rounded-lg text-xs font-bold hover:bg-green-500/20">Add Section</button>
@@ -97,11 +97,11 @@
                <div class="space-y-6">
                  <div v-for="(block, idx) in seoBlocks" :key="idx" class="bg-[#0F1117] border border-[#353A4A] rounded-xl p-6 relative group">
                     <div class="absolute top-4 right-4 flex gap-2">
-                       <button @click="moveItem(seoBlocks, idx, -1)" class="p-1 hover:text-blue-400"><Icon name="solar:arrow-up-linear" /></button>
-                       <button @click="moveItem(seoBlocks, idx, 1)" class="p-1 hover:text-blue-400"><Icon name="solar:arrow-down-linear" /></button>
-                       <button @click="removeItem(seoBlocks, idx)" class="p-1 hover:text-red-400"><Icon name="solar:trash-bin-trash-bold" /></button>
+                       <button @click="moveItem(seoBlocks, idx, -1)" class="p-1 hover:text-blue-400 bg-[#1B1E26] rounded shadow-sm"><Icon name="solar:arrow-up-linear" /></button>
+                       <button @click="moveItem(seoBlocks, idx, 1)" class="p-1 hover:text-blue-400 bg-[#1B1E26] rounded shadow-sm"><Icon name="solar:arrow-down-linear" /></button>
+                       <button @click="removeItem(seoBlocks, idx)" class="p-1 hover:text-red-400 bg-[#1B1E26] rounded shadow-sm"><Icon name="solar:trash-bin-trash-bold" /></button>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 mb-4 pr-24">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 mt-8 sm:mt-0 sm:pr-24">
                        <input v-model="block.title" placeholder="Section Title" class="bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-sm font-bold w-full" />
                        <input v-model="block.icon" placeholder="Icon (e.g. solar:fire-bold)" class="bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-sm font-mono w-full" />
                     </div>
@@ -113,22 +113,25 @@
 
           <!-- TAB: FILTERS -->
           <div v-if="activeTab === 'filters'">
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                 <div class="flex items-center justify-between mb-8">
                    <h3 class="text-xl font-bold flex items-center gap-2 text-blue-400"><Icon name="solar:filters-bold" /> Top Fast Filters</h3>
                    <button @click="addItem(fastFilters, {category_id: '', name: 'Popular', icon: 'solar:bolt-bold'})" class="px-4 py-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-xs font-bold hover:bg-blue-500/20">Add Filter</button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                   <div v-for="(f, idx) in fastFilters" :key="idx" class="bg-[#0F1117] border border-[#353A4A] p-4 rounded-xl flex gap-3 items-center">
-                     <div class="flex flex-col gap-1">
-                        <button @click="moveItem(fastFilters, idx, -1)" class="text-[10px] hover:text-blue-400"><Icon name="solar:alt-arrow-up-linear" /></button>
-                        <button @click="moveItem(fastFilters, idx, 1)" class="text-[10px] hover:text-blue-400"><Icon name="solar:alt-arrow-down-linear" /></button>
+                   <div v-for="(f, idx) in fastFilters" :key="idx" class="bg-[#0F1117] border border-[#353A4A] p-4 rounded-xl flex flex-col sm:flex-row gap-3 sm:items-center">
+                     <div class="flex flex-row sm:flex-col gap-2 sm:gap-1 justify-between sm:justify-start w-full sm:w-auto">
+                        <div class="flex gap-2 sm:flex-col sm:gap-1">
+                          <button @click="moveItem(fastFilters, idx, -1)" class="text-sm sm:text-[10px] hover:text-blue-400 bg-[#161A21] sm:bg-transparent p-1 sm:p-0 rounded"><Icon name="solar:alt-arrow-up-linear" /></button>
+                          <button @click="moveItem(fastFilters, idx, 1)" class="text-sm sm:text-[10px] hover:text-blue-400 bg-[#161A21] sm:bg-transparent p-1 sm:p-0 rounded"><Icon name="solar:alt-arrow-down-linear" /></button>
+                        </div>
+                        <button @click="removeItem(fastFilters, idx)" class="text-red-500 hover:text-red-400 sm:hidden block"><Icon name="solar:trash-bin-trash-bold" class="w-5 h-5" /></button>
                      </div>
-                     <select v-model="f.category_id" class="flex-1 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-2 py-1 text-xs">
+                     <select v-model="f.category_id" class="flex-1 w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-2 py-2 sm:py-1 text-sm sm:text-xs">
                         <option v-for="c in availableCategories" :key="c.id" :value="c.id">{{ c.name }}</option>
                      </select>
-                     <input v-model="f.name" class="w-24 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-2 py-1 text-xs" />
-                     <button @click="removeItem(fastFilters, idx)" class="text-red-500 hover:text-red-400"><Icon name="solar:trash-bin-trash-bold" class="w-4 h-4" /></button>
+                     <input v-model="f.name" placeholder="Name" class="w-full sm:w-24 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-2 py-2 sm:py-1 text-sm sm:text-xs" />
+                     <button @click="removeItem(fastFilters, idx)" class="text-red-500 hover:text-red-400 hidden sm:block"><Icon name="solar:trash-bin-trash-bold" class="w-4 h-4" /></button>
                    </div>
                 </div>
              </section>
@@ -136,7 +139,7 @@
 
           <!-- TAB: SEO (Metadata & Keywords) -->
           <div v-if="activeTab === 'seo'" class="space-y-8">
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-purple-400"><Icon name="solar:magnifer-bold" /> Metadata & Technical SEO</h3>
                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <div class="space-y-4">
@@ -177,7 +180,7 @@
              </section>
 
              <!-- Open Graph -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-pink-400"><Icon name="solar:share-bold" /> Social Sharing (OG)</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                    <div class="space-y-4">
@@ -197,8 +200,15 @@
 
           <!-- TAB: LOCALIZATION -->
           <div v-if="activeTab === 'localization'" class="space-y-8">
+             <!-- Canonical URL -->
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-400"><Icon name="solar:link-bold" /> Canonical URL Override</h3>
+                <p class="text-xs text-[#9CA3AF] mb-4">By default, the system automatically generates a strict Canonical URL stripped of 'www' and trailing slashes. Only fill this field if you need to point search engines to a completely different external page.</p>
+                <input v-model="pageData.seo_canonical_url" placeholder="https://slotquest.com/custom-path" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 text-sm focus:border-blue-500" />
+             </section>
+
              <!-- Hreflang Tags -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                <div class="flex items-center justify-between mb-8">
                  <h3 class="text-xl font-bold flex items-center gap-2 text-orange-400"><Icon name="solar:globus-bold" /> Hreflang Localization</h3>
                  <div class="flex items-center gap-4">
@@ -210,21 +220,23 @@
                  </div>
                </div>
                <div class="space-y-3">
-                 <div v-for="(item, idx) in hreflangItems" :key="idx" class="flex gap-3 bg-[#0F1117] p-3 rounded-xl border border-[#353A4A]">
-                    <input v-model="item.lang" placeholder="Lang (ru)" class="w-16 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-xs" />
-                    <input v-model="item.region" placeholder="Region (RU)" class="w-16 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-xs" />
-                    <input v-model="item.url" placeholder="Full URL override (optional)" class="flex-1 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-xs" />
-                    <button @click="removeItem(hreflangItems, idx)" class="text-red-500"><Icon name="solar:trash-bin-trash-bold" /></button>
+                 <div v-for="(item, idx) in hreflangItems" :key="idx" class="flex flex-col sm:flex-row gap-3 bg-[#0F1117] p-3 rounded-xl border border-[#353A4A]">
+                    <div class="flex gap-3">
+                      <input v-model="item.lang" placeholder="Lang" class="w-full sm:w-16 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-sm sm:text-xs" />
+                      <input v-model="item.region" placeholder="Region" class="w-full sm:w-16 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-sm sm:text-xs" />
+                    </div>
+                    <input v-model="item.url" placeholder="Full URL override (optional)" class="flex-1 w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-sm sm:text-xs" />
+                    <button @click="removeItem(hreflangItems, idx)" class="text-red-500 sm:self-auto self-end mt-2 sm:mt-0 bg-red-500/10 sm:bg-transparent p-2 sm:p-0 rounded-lg"><Icon name="solar:trash-bin-trash-bold" class="w-5 h-5 sm:w-4 sm:h-4" /></button>
                  </div>
                  <p v-if="!hreflangItems.length" class="text-center py-6 text-[#9CA3AF] text-xs">No localized versions defined.</p>
                </div>
              </section>
 
              <!-- Geo Targeting -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-red-400"><Icon name="solar:map-point-bold" /> Geo Targeting</h3>
-                <div class="flex items-center gap-6 bg-red-500/5 p-6 rounded-2xl border border-red-500/10">
-                   <div class="flex-1">
+                <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-red-500/5 p-4 md:p-6 rounded-2xl border border-red-500/10">
+                   <div class="flex-1 w-full">
                       <label class="block text-xs font-bold text-red-300 mb-2 uppercase">Target Regions (Codes, comma-separated)</label>
                       <input v-model="pageData.geo_target_regions" placeholder="IN, BR, RU, UZ, AZ" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3" />
                    </div>
@@ -241,79 +253,50 @@
 
           <!-- TAB: STRUCTURED DATA -->
           <div v-if="activeTab === 'structured'" class="space-y-8">
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
+             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                  <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-xl font-bold flex items-center gap-2 text-emerald-400"><Icon name="solar:code-bold" /> Structured Data (JSON-LD)</h3>
+                    <h3 class="text-xl font-bold flex items-center gap-2 text-emerald-400"><Icon name="solar:code-bold" /> Automated Structured Data (JSON-LD)</h3>
                     <div class="flex items-center gap-4">
                        <input type="checkbox" v-model="pageData.jsonld_enabled" /> <span class="text-xs">Active</span>
                        <select v-model="pageData.jsonld_type" class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-3 py-1 text-xs">
                           <option value="CollectionPage">CollectionPage (Catalog)</option>
-                          <option value="WebSite">WebSite (Brand Home)</option>
-                          <option value="FAQPage">FAQPage</option>
+                          <option value="WebSite">WebSite (General)</option>
                        </select>
                     </div>
                  </div>
-                 
-                 <!-- Pros / Cons Editor -->
-                 <div class="grid grid-cols-2 gap-6 mb-8">
-                    <div class="space-y-4">
-                       <label class="flex justify-between text-xs font-bold text-green-400 uppercase">Pros <button @click="addItem(prosItems, {val: ''})" class="text-[10px] bg-green-500/10 px-2 rounded">+</button></label>
-                       <div v-for="(p, i) in prosItems" :key="i" class="flex gap-2">
-                          <input v-model="p.val" class="flex-1 bg-[#0F1117] border border-[#353A4A] rounded-lg px-2 py-1 text-xs" />
-                          <button @click="removeItem(prosItems, i)" class="text-red-500 text-[10px]">x</button>
+
+                 <!-- OVERRIDE TOGGLE & EDITOR -->
+                 <div v-if="pageData.jsonld_enabled" class="space-y-4">
+                    <div class="flex items-center justify-between bg-[#0F1117] p-4 rounded-xl border border-[#353A4A]">
+                        <div>
+                            <p class="text-sm font-bold text-white">Manual Override</p>
+                            <p class="text-xs text-white/50">Turn off auto-generation and write your own JSON-LD schema.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" v-model="pageData.jsonld_override_auto" class="sr-only peer">
+                            <div class="w-11 h-6 bg-[#161A21] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500 border border-[#353A4A]"></div>
+                        </label>
+                    </div>
+
+                    <!-- AUTO PREVIEW -->
+                    <div v-if="!pageData.jsonld_override_auto" class="relative group mt-4">
+                       <p class="text-sm font-bold text-emerald-400 mb-2 flex items-center gap-2"><Icon name="solar:eye-bold" /> Live Preview (Авто-генерация)</p>
+                       <div class="absolute top-9 right-3 z-10 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button @click.prevent="copyAutoToManual" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1"><Icon name="solar:copy-bold" /> Edit Copy</button>
+                       </div>
+                       <div class="bg-[#0B0C10] border border-[#353A4A] rounded-xl p-4 max-h-[500px] overflow-y-auto">
+                          <pre class="text-xs text-emerald-400 font-mono whitespace-pre-wrap">{{ autoJsonPreview }}</pre>
                        </div>
                     </div>
-                    <div class="space-y-4">
-                       <label class="flex justify-between text-xs font-bold text-red-400 uppercase">Cons <button @click="addItem(consItems, {val: ''})" class="text-[10px] bg-red-500/10 px-2 rounded">+</button></label>
-                       <div v-for="(c, i) in consItems" :key="i" class="flex gap-2">
-                          <input v-model="c.val" class="flex-1 bg-[#0F1117] border border-[#353A4A] rounded-lg px-2 py-1 text-xs" />
-                          <button @click="removeItem(consItems, i)" class="text-red-500 text-[10px]">x</button>
-                       </div>
+
+                    <!-- MANUAL EDITOR -->
+                    <div v-else>
+                       <p class="text-xs text-white/50 mb-2">Write valid JSON or JSON array. Auto variables like [keyword_1] will still be replaced.</p>
+                       <textarea v-model="pageData.json_schema" rows="20" class="w-full bg-[#0B0C10] border border-[#353A4A] rounded-xl p-4 text-xs text-emerald-400 font-mono focus:border-emerald-500/50 outline-none hover:bg-[#12151C]" placeholder="[ { &quot;@context&quot;: &quot;https://schema.org&quot;, &quot;@type&quot;: &quot;Article&quot; ... } ]"></textarea>
                     </div>
                  </div>
-
-                 <!-- FAQ Editor -->
-                 <div class="space-y-4 border-t border-[#353A4A] pt-8">
-                   <div class="flex items-center justify-between mb-4">
-                      <h4 class="text-sm font-bold uppercase text-[#9CA3AF]">Common FAQ</h4>
-                      <div class="flex items-center gap-4">
-                         <span class="text-xs">Include in JSON-LD</span>
-                         <input type="checkbox" v-model="pageData.jsonld_enable_faq" />
-                         <button @click="addItem(faqItems, {question: '', answer: ''})" class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-[10px] font-bold">Add FAQ</button>
-                      </div>
-                   </div>
-                   <div v-for="(faq, i) in faqItems" :key="i" class="bg-[#0F1117] p-4 rounded-xl border border-[#353A4A] space-y-2">
-                      <div class="flex gap-2 items-center">
-                         <input v-model="faq.question" placeholder="Question" class="flex-1 bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-xs font-bold" />
-                         <button @click="removeItem(faqItems, i)" class="text-red-500"><Icon name="solar:trash-bin-trash-bold" class="w-4 h-4" /></button>
-                      </div>
-                      <textarea v-model="faq.answer" rows="2" placeholder="Answer" class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg px-3 py-2 text-xs"></textarea>
-                   </div>
-                 </div>
-             </section>
-
-             <!-- Awards Editor -->
-             <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-8">
-               <div class="flex items-center justify-between mb-8">
-                  <h3 class="text-xl font-bold flex items-center gap-2 text-yellow-400"><Icon name="solar:medal-star-bold" /> Awards & Achievements</h3>
-                  <div class="flex items-center gap-4">
-                     <span class="text-xs text-[#9CA3AF]">Show on Page</span>
-                     <input type="checkbox" v-model="pageData.show_awards" />
-                     <button @click="addItem(awardsItems, {icon: 'solar:star-bold', text: 'Best Slots 2025', date: 'March 2025'})" class="px-3 py-1 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded-lg text-[10px] font-bold">Add Award</button>
-                  </div>
-               </div>
-               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                 <div v-for="(aw, i) in awardsItems" :key="i" class="flex gap-3 bg-[#0F1117] p-4 rounded-xl border border-[#353A4A] items-center">
-                    <Icon :name="aw.icon" class="w-8 h-8 text-yellow-500" />
-                    <div class="flex-1 space-y-1">
-                       <input v-model="aw.text" class="w-full bg-[#1B1E26] border-none rounded px-2 py-0.5 text-xs font-bold" />
-                       <input v-model="aw.date" class="w-full bg-[#1B1E26] border-none rounded px-2 py-0.5 text-[10px] text-[#9CA3AF]" />
-                    </div>
-                    <button @click="removeItem(awardsItems, i)" class="text-red-500"><Icon name="solar:trash-bin-trash-bold" /></button>
-                 </div>
-               </div>
-             </section>
-          </div>
+              </section>
+           </div>
 
        </div>
     </main>
@@ -322,9 +305,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { usePagesApi } from '~/composables/usePagesApi'
 import { useCategories } from '~/composables/useCategories'
+import { usePageJsonLd } from '~/composables/usePageJsonLd'
 
 definePageMeta({
   layout: 'admin'
@@ -332,6 +316,7 @@ definePageMeta({
 
 const pagesApi = usePagesApi()
 const { getCategories } = useCategories()
+const { getPageSchemas } = usePageJsonLd()
 const isLoading = ref(true)
 const isSaving = ref(false)
 
@@ -387,6 +372,7 @@ const pageData = ref({
   // Structured Data / JSON-LD
   jsonld_enabled: true,
   jsonld_type: 'CollectionPage',
+  jsonld_override_auto: false,
   jsonld_enable_faq: false,
   jsonld_faq_json: null,
   jsonld_enable_review: false,
@@ -427,6 +413,23 @@ const awardsItems = ref([])
 const howToSteps = ref([])
 const seoKeywords = ref([])
 
+// JSON-LD Live Preview State
+const previewSlots = ref([])
+const previewProviders = ref([])
+
+const copyAutoToManual = () => {
+    pageData.value.json_schema = autoJsonPreview.value || ''
+    pageData.value.jsonld_override_auto = true
+}
+
+const autoJsonPreview = computed(() => {
+    // Clone pageData to isolate modifications
+    const tempPage = { ...pageData.value, jsonld_override_auto: false, json_schema: '' }
+    const schemas = getPageSchemas(tempPage, previewSlots.value, previewProviders.value, availableCategories.value, [], [])
+    if (!schemas || schemas.length === 0) return ''
+    return JSON.stringify(schemas, null, 2)
+})
+
 const generateId = () => Math.random().toString(36).substring(2, 9)
 
 const initializeArray = (data, field, fallback = []) => {
@@ -439,16 +442,34 @@ const initializeArray = (data, field, fallback = []) => {
 const loadData = async () => {
   isLoading.value = true
   try {
-    const catsRes = await getCategories()
-    availableCategories.value = catsRes?.data || catsRes || []
+    const config = useRuntimeConfig()
+    
+    // 1. Fetch data in parallel
+    const [catsRes, sRes, pRes, pageRes] = await Promise.all([
+      getCategories().catch(() => null),
+      $fetch(`${config.public.apiUrl}/api/slots`, { params: { limit: 20 } }).catch(() => null),
+      $fetch(`${config.public.apiUrl}/api/providers`).catch(() => null),
+      pagesApi.getPage('home').catch(() => null)
+    ])
 
-    const data = await pagesApi.getPage('home')
+    // 2. Assign catalog preview data
+    availableCategories.value = catsRes?.data || catsRes || []
+    previewSlots.value = sRes?.data || sRes || []
+    previewProviders.value = pRes?.data || pRes || []
+
+    // 3. Assign page layout data
+    const data = pageRes
     if (data) {
       Object.keys(pageData.value).forEach(key => {
         if (data[key] !== undefined && data[key] !== null) {
           pageData.value[key] = data[key]
         }
       })
+
+      // Normalize jsonld_type for homepage. Fallback to CollectionPage if invalid.
+      if (!['CollectionPage', 'WebSite'].includes(pageData.value.jsonld_type)) {
+        pageData.value.jsonld_type = 'CollectionPage'
+      }
 
       // Sync arrays to editors
       seoBlocks.value = initializeArray(pageData.value, 'content', [{
@@ -499,14 +520,14 @@ const saveData = async () => {
 }
 
 // Editor Operations Helpers
-const addItem = (refArr, defaultObj) => refArr.value.push({ ...defaultObj })
-const removeItem = (refArr, index) => confirm('Are you sure?') && refArr.value.splice(index, 1)
-const moveItem = (refArr, index, dir) => {
+const addItem = (arr, defaultObj) => arr.push({ ...defaultObj })
+const removeItem = (arr, index) => confirm('Are вы уверены?') && arr.splice(index, 1)
+const moveItem = (arr, index, dir) => {
   const newIdx = index + dir
-  if (newIdx >= 0 && newIdx < refArr.value.length) {
-    const temp = refArr.value[index]
-    refArr.value[index] = refArr.value[newIdx]
-    refArr.value[newIdx] = temp
+  if (newIdx >= 0 && newIdx < arr.length) {
+    const temp = arr[index]
+    arr[index] = arr[newIdx]
+    arr[newIdx] = temp
   }
 }
 

@@ -110,6 +110,7 @@ export class PagesService {
             jsonld_enable_how_to: updateData.jsonld_enable_how_to !== undefined ? updateData.jsonld_enable_how_to : false,
             jsonld_how_to_json: stringifiedData.jsonld_how_to_json !== undefined ? stringifiedData.jsonld_how_to_json : null,
             jsonld_enable_breadcrumb: updateData.jsonld_enable_breadcrumb !== undefined ? updateData.jsonld_enable_breadcrumb : true,
+            jsonld_override_auto: updateData.jsonld_override_auto !== undefined ? updateData.jsonld_override_auto : false,
 
             // Open Graph / Social
             og_title: updateData.og_title !== undefined ? updateData.og_title : null,

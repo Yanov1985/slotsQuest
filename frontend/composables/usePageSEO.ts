@@ -1,11 +1,15 @@
 import { usePageJsonLd } from './usePageJsonLd'
 import { unref, computed } from 'vue'
 
-export const usePageSEO = (pageRef: any, slotsRef: any = []) => {
+export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any = [], categoriesRef: any = [], mechanicsRef: any = [], themesRef: any = []) => {
     const { getPageSchemas } = usePageJsonLd()
 
     const page = computed(() => unref(pageRef))
     const slots = computed(() => unref(slotsRef) || [])
+    const providers = computed(() => unref(providersRef) || [])
+    const categories = computed(() => unref(categoriesRef) || [])
+    const mechanics = computed(() => unref(mechanicsRef) || [])
+    const themes = computed(() => unref(themesRef) || [])
 
     // 1. Process Keywords (Dynamic Replacements)
     const replaceKeywords = (text: any) => {
@@ -70,11 +74,19 @@ export const usePageSEO = (pageRef: any, slotsRef: any = []) => {
             
             // Hreflang
             if (p.hreflang_enabled && p.hreflang_config?.length) {
+                const currentUrl = useRequestURL()
+                const currentPath = currentUrl ? currentUrl.pathname : '/'
+
                 p.hreflang_config.forEach((item: any) => {
+                    if (!item.lang) return
+                    
+                    const hreflangCode = item.region ? `${item.lang}-${item.region}` : item.lang
+                    const fallbackUrl = `https://slotquest.com${currentPath}`
+
                     links.push({
                         rel: 'alternate',
-                        hreflang: `${item.lang}-${item.region}`,
-                        href: item.url || `https://slotquest.com/${item.lang}/`
+                        hreflang: hreflangCode,
+                        href: item.url || fallbackUrl
                     })
                 })
             }
@@ -82,6 +94,17 @@ export const usePageSEO = (pageRef: any, slotsRef: any = []) => {
             // Canonical
             if (p.seo_canonical_url) {
                 links.push({ rel: 'canonical', href: p.seo_canonical_url })
+            } else {
+                // Generate a strict Canonical matching the redirects (No WWW, No Trailing Slash)
+                const currentUrl = useRequestURL()
+                if (currentUrl) {
+                    let path = currentUrl.pathname
+                    // Strip trailing slash unless it's exactly root
+                    if (path !== '/' && path.endsWith('/')) {
+                        path = path.slice(0, -1)
+                    }
+                    links.push({ rel: 'canonical', href: `https://slotquest.com${path}` })
+                }
             }
             
             return links
@@ -89,7 +112,7 @@ export const usePageSEO = (pageRef: any, slotsRef: any = []) => {
         script: () => {
             const p = page.value
             if (!p) return []
-            const schemas = getPageSchemas(p, slots.value, replaceKeywords)
+            const schemas = getPageSchemas(p, slots.value, providers.value, categories.value, mechanics.value, themes.value, replaceKeywords)
             return schemas.map((schema: any) => ({
                 type: 'application/ld+json',
                 children: JSON.stringify(schema)

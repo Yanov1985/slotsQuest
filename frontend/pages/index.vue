@@ -223,7 +223,7 @@ const mechanics = computed(() => filterData.value?.mechanics?.data || filterData
 const themes = computed(() => filterData.value?.themes?.data || filterData.value?.themes || [])
 
 // SEO injection via unified engine
-usePageSEO(pageData, slots)
+usePageSEO(pageData, slots, providers, categories, mechanics, themes)
 
 
 const loading = computed(() => slotsLoading.value || filtersLoading.value)

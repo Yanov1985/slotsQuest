@@ -874,6 +874,7 @@ model pages {
   jsonld_enable_how_to     Boolean?  @default(false)
   jsonld_how_to_json       String?   // JSON string [ { name, text, image } ]
   jsonld_enable_breadcrumb Boolean?  @default(true)
+  jsonld_override_auto     Boolean?  @default(false) // Custom override toggle
 
   // SEO Info Pros/Cons (Mirroring slots)
   info_pros           String?      // JSON string of pros
