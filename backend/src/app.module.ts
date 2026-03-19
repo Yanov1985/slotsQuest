@@ -13,6 +13,7 @@ import { BonusesModule } from './bonuses/bonuses.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { JsonLdModule } from './jsonld/jsonld.module'; // 🎯 Модуль JSON-LD для SEO
 import { PagesModule } from './pages/pages.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { PagesModule } from './pages/pages.module';
     BonusesModule,
     JsonLdModule,
     PagesModule, // 🎯 JSON-LD генерация и валидация
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

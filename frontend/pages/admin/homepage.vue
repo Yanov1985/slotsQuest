@@ -9,6 +9,13 @@
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
 
           <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <NuxtLink
+              to="/admin"
+              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center"
+              title="Вернуться в админ-панель"
+            >
+              <Icon name="solar:arrow-left-bold" class="w-5 h-5" />
+            </NuxtLink>
             <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex flex-shrink-0 items-center justify-center border border-blue-500/20">
               <Icon name="solar:home-angle-bold-duotone" class="w-6 h-6 text-blue-400" />
             </div>

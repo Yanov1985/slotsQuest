@@ -3,24 +3,41 @@
     <!-- Header -->
     <header class="bg-[#161A21]/80 backdrop-blur-md border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center gap-4">
-            <h1 class="text-xl font-bold font-display text-white flex items-center gap-2">
-              <NuxtLink to="/admin" class="text-white/50 hover:text-white transition-colors">
-                <Icon name="solar:home-smile-angle-line-duotone" class="w-6 h-6" />
-              </NuxtLink>
-              <span class="text-white/30">/</span>
-              <Icon name="solar:tuning-square-2-bold-duotone" class="text-[#FF6E48]" />
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center gap-6">
+            <NuxtLink
+              to="/admin"
+              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center"
+              title="Вернуться в админ-панель"
+            >
+              <Icon name="solar:arrow-left-bold" class="w-5 h-5" />
+            </NuxtLink>
+            <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-3">
+              <Icon name="solar:tuning-square-2-bold-duotone" class="text-[#FF6E48] w-8 h-8" />
               <span>Механики слотов (Features)</span>
             </h1>
+            <div class="h-8 w-px bg-[#353A4A] hidden sm:block"></div>
+            <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg text-[#63F3AB] text-sm font-bold shadow-[0_0_15px_rgba(99,243,171,0.1)]">
+              <Icon name="solar:database-bold" class="w-4 h-4" />
+              Всего: {{ mechanics.length }}
+            </div>
           </div>
-          <button
-            @click="openAddModal"
-            class="flex items-center gap-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            <Icon name="solar:add-circle-line-duotone" class="w-5 h-5" />
-            Добавить механику
-          </button>
+          <div class="flex items-center gap-4">
+            <button
+              @click="loadMechanics"
+              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#00EDFF]/50 text-[#A0AABE] hover:text-[#00EDFF] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(0,237,255,0.15)] flex items-center justify-center"
+              title="Обновить список"
+            >
+              <Icon name="solar:refresh-circle-bold" class="w-5 h-5" />
+            </button>
+            <button
+              @click="openAddModal"
+              class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#DF0078] to-[#CD0F8B] hover:from-[#CD0F8B] hover:to-[#9D0B6B] text-white rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(205,15,139,0.3)]"
+            >
+              <Icon name="solar:add-square-bold" class="w-5 h-5" />
+              <span class="hidden sm:inline">Добавить механику</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>

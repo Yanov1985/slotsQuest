@@ -5,6 +5,13 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <div class="flex items-center gap-6">
+            <NuxtLink
+              to="/admin"
+              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center"
+              title="Вернуться в админ-панель"
+            >
+              <Icon name="solar:arrow-left-bold" class="w-5 h-5" />
+            </NuxtLink>
             <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-3">
               <Icon name="solar:gamepad-bold" class="text-[#00EDFF] w-8 h-8" />
               Каталог Слотов
