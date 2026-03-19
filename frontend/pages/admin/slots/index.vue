@@ -2,7 +2,7 @@
   <div class="min-h-[calc(100vh-4rem)] bg-[#0B0E14] font-sans selection:bg-[#00EDFF]/30">
     <!-- Header -->
     <header class="bg-[#161A21]/80 backdrop-blur-md border-b border-[#353A4A] sticky top-0 z-40">
-      <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           <div class="flex items-center gap-6">
             <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-3">
@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       <!-- Stats Overview -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -151,14 +151,16 @@
             </thead>
             <tbody class="divide-y divide-[#353A4A]">
 
-              <tr v-if="loading" v-for="i in 5" :key="i" class="animate-pulse">
-                <td class="py-4 px-6"><div class="w-12 h-12 bg-[#0B0E14] rounded-lg"></div></td>
-                <td class="py-4 px-6"><div class="w-48 h-5 bg-[#0B0E14] rounded mb-2"></div><div class="w-24 h-4 bg-[#0B0E14] rounded"></div></td>
-                <td class="py-4 px-6 hidden md:table-cell"><div class="w-24 h-5 bg-[#0B0E14] rounded"></div></td>
-                <td class="py-4 px-6 hidden sm:table-cell"><div class="w-20 h-8 mx-auto bg-[#0B0E14] rounded-full"></div></td>
-                <td class="py-4 px-6"><div class="w-20 h-6 mx-auto bg-[#0B0E14] rounded-full"></div></td>
-                <td class="py-4 px-6"><div class="w-24 h-10 ml-auto bg-[#0B0E14] rounded-lg"></div></td>
-              </tr>
+              <template v-if="loading">
+                <tr v-for="i in 5" :key="i" class="animate-pulse">
+                  <td class="py-4 px-6"><div class="w-12 h-12 bg-[#0B0E14] rounded-lg"></div></td>
+                  <td class="py-4 px-6"><div class="w-48 h-5 bg-[#0B0E14] rounded mb-2"></div><div class="w-24 h-4 bg-[#0B0E14] rounded"></div></td>
+                  <td class="py-4 px-6 hidden md:table-cell"><div class="w-24 h-5 bg-[#0B0E14] rounded"></div></td>
+                  <td class="py-4 px-6 hidden sm:table-cell"><div class="w-20 h-8 mx-auto bg-[#0B0E14] rounded-full"></div></td>
+                  <td class="py-4 px-6"><div class="w-20 h-6 mx-auto bg-[#0B0E14] rounded-full"></div></td>
+                  <td class="py-4 px-6"><div class="w-24 h-10 ml-auto bg-[#0B0E14] rounded-lg"></div></td>
+                </tr>
+              </template>
 
               <tr v-else-if="filteredSlots.length === 0">
                 <td colspan="6" class="py-16 text-center">

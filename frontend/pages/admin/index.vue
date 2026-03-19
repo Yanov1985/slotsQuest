@@ -130,6 +130,14 @@
               <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
             </NuxtLink>
 
+            <NuxtLink to="/admin/homepage" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
+              <div class="flex items-center space-x-3">
+                <Icon name="heroicons:home" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Главная страница</span>
+              </div>
+              <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
+            </NuxtLink>
+
             <NuxtLink to="/admin/providers" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
                 <Icon name="heroicons:building-office" class="text-[#FF6E48] text-xl" />

@@ -2,10 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans relative"
   >
-    <!-- Background Beams эффект для админ панели (увеличенная интенсивность) -->
-    <TheBackgroundBeams :intensity="0.9" :speed="1.2" />
-
-    <!-- Основной контент поверх Background Beams -->
+    <!-- Основной контент -->
     <div class="relative z-10">
       <!-- Навигация -->
       <nav
@@ -47,7 +44,7 @@
             <!-- Action buttons -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
               <!-- Управление секциями -->
-              <div class="flex flex-wrap items-center gap-2 hidden sm:flex">
+              <div class="hidden sm:flex sm:flex-wrap sm:items-center sm:gap-2">
                 <button
                   @click="closeAllSections"
                   class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
@@ -87,6 +84,18 @@
                     />
                   </svg>
                   Open all
+                </button>
+                <button
+                  @click="turboMode = !turboMode"
+                  :class="[
+                    'px-3 py-2 text-xs border rounded-lg font-medium transition-all duration-200',
+                    turboMode
+                      ? 'border-[#00EDFF]/40 bg-[#00EDFF]/10 text-[#00EDFF] hover:bg-[#00EDFF]/20'
+                      : 'border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:bg-[#353A4A] hover:text-[#E5E7EB]'
+                  ]"
+                  title="Turbo mode: cache opened sections for faster repeated opening"
+                >
+                  ⚡ Turbo {{ turboMode ? 'ON' : 'OFF' }}
                 </button>
               </div>
 
@@ -236,7 +245,7 @@
 
                 <div class="space-y-8">
                   <!-- Все Hero секции (управляемые через v-show) -->
-                  <div v-show="showHeroSection" class="space-y-8">
+                  <div v-if="isTurboSectionVisible('heroSection', showHeroSection)" class="space-y-8">
                     <!-- Основная информация -->
                     <div
                       class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
@@ -294,7 +303,7 @@
                           <span>{{ showBasicSection ? 'Hide' : 'Show' }}</span>
                         </button>
                       </div>
-                      <div v-show="showBasicSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('basicSection', showBasicSection)" class="space-y-4">
                         <!-- Name слота -->
                         <div>
                           <label
@@ -653,7 +662,7 @@
                           }}</span>
                         </button>
                       </div>
-                      <div v-show="showHeroLinksSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('heroLinksSection', showHeroLinksSection)" class="space-y-4">
                         <div class="grid grid-cols-1 gap-4">
                           <!-- Ссылка для кнопки "Играть бесплатно" -->
                           <div>
@@ -789,7 +798,7 @@
                         </button>
                       </div>
                       <div
-                        v-show="showGameCharacteristicsSection"
+                        v-if="isTurboSectionVisible('gameCharacteristicsSection', showGameCharacteristicsSection)"
                         class="space-y-4"
                       >
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1065,7 +1074,7 @@
                         </div>
                       </div>
 
-                      <div v-show="showInfoPopupSection" class="space-y-6 animate-fade-in">
+                      <div v-if="isTurboSectionVisible('infoPopupSection', showInfoPopupSection)" class="space-y-6 animate-fade-in">
 
                         <!-- 🏆 Expert Verdict -->
                         <div class="bg-[#1B1E26] rounded-lg p-4 border border-[#353A4A]">
@@ -1418,7 +1427,7 @@
                         </button>
                       </div>
 
-                      <div v-show="showRatingSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('ratingSection', showRatingSection)" class="space-y-4">
                         <!-- Позиция в рейтинге -->
                         <div>
                           <label
@@ -1869,7 +1878,7 @@
                           {{ showMechanicsSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
-                      <div v-show="showMechanicsSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('mechanicsSection', showMechanicsSection)" class="space-y-4">
                         <p class="text-sm text-gray-400">
                           Select the game mechanics to be displayed in the slot's Hero section
                         </p>
@@ -1985,7 +1994,7 @@
                           {{ showBonusesSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
-                      <div v-show="showBonusesSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('bonusesSection', showBonusesSection)" class="space-y-4">
                         <div
                           class="bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg p-4"
                         >
@@ -2173,7 +2182,7 @@
                           {{ showThemesSection ? 'Hide' : 'Show' }}
                         </button>
                       </div>
-                      <div v-show="showThemesSection" class="space-y-4">
+                      <div v-if="isTurboSectionVisible('themesSection', showThemesSection)" class="space-y-4">
                         <div
                           class="bg-[#00EDFF]/10 border border-[#00EDFF]/20 rounded-lg p-4"
                         >
@@ -2412,7 +2421,7 @@
 
                 <div class="space-y-8">
                   <!-- All SEO sections (managed via v-show) -->
-                  <div v-show="showSeoSection" class="space-y-8">
+                  <div v-if="isTurboSectionVisible('seoSection', showSeoSection)" class="space-y-8">
                     <!-- Meta tags -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
@@ -2471,7 +2480,7 @@
                         </button>
                       </div>
 
-                      <div v-show="showMetaSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('metaSection', showMetaSection)" class="space-y-6">
                         <!-- SEO Title -->
                         <div class="space-y-2">
                           <div class="flex items-center justify-between">
@@ -2805,15 +2814,18 @@
                         <!-- 🎯 Title Templates - Title Template System (Phase 2) -->
                         <div class="bg-[#1B1E26]/50 border border-[#F59E0B]/20 rounded-lg p-4">
                           <TitleTemplates
-                            v-model:template="form.seo_title_template"
-                            v-model:use-template="form.seo_title_use_template"
-                            v-model:power-words="form.seo_title_power_words"
+                            :template="form.seo_title_template"
+                            :use-template="form.seo_title_use_template"
+                            :power-words="form.seo_title_power_words"
                             :slot-name="form.name"
                             :provider-name="slot?.providers?.name || ''"
                             :rtp="form.rtp"
                             :volatility="form.volatility"
                             :max-win="form.max_win"
                             :rating="form.rating"
+                            @update:template="form.seo_title_template = $event"
+                            @update:use-template="form.seo_title_use_template = $event"
+                            @update:power-words="form.seo_title_power_words = $event"
                             @update:generated-title="generatedTitleFromTemplate = $event"
                           />
                         </div>
@@ -3056,7 +3068,7 @@
                         </button>
                       </div>
 
-                      <div v-show="showOpenGraphSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('openGraphSection', showOpenGraphSection)" class="space-y-6">
                         <!-- 📊 OG Score Indicator -->
                         <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
                           <div class="flex items-center justify-between mb-3">
@@ -3432,8 +3444,10 @@
                             :twitter-description="form.twitter_description"
                             :twitter-image="form.twitter_image"
                             :page-url="`/slots/${form.slug}`"
-                            v-model:hashtags="form.social_custom_hashtags"
-                            v-model:cta-text="form.social_cta_text"
+                            :hashtags="form.social_custom_hashtags"
+                            :cta-text="form.social_cta_text"
+                            @update:hashtags="form.social_custom_hashtags = $event"
+                            @update:cta-text="form.social_cta_text = $event"
                           />
                         </div>
                       </div>
@@ -3493,7 +3507,7 @@
                         </button>
                       </div>
 
-                      <div v-show="showTwitterSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('twitterSection', showTwitterSection)" class="space-y-6">
                         <!-- 📊 Twitter Score Indicator -->
                         <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
                           <div class="flex items-center justify-between mb-3">
@@ -3916,7 +3930,7 @@
                         </button>
                       </div>
 
-                      <div v-show="showTechnicalSeoSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('technicalSeoSection', showTechnicalSeoSection)" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <!-- Robots Meta -->
                           <div
@@ -4193,7 +4207,7 @@
                         </div>
                       </div>
 
-                      <div v-show="showJsonLdSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('jsonLdSection', showJsonLdSection)" class="space-y-6">
                         <!-- 🎯 NEW JSON-LD Editor Component -->
                         <JsonLdEditor
                           :slot-id="slot?.id || ''"
@@ -4240,7 +4254,7 @@
                           <span>{{ showSEOHealthSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
-                      <div v-show="showSEOHealthSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('seoHealthSection', showSEOHealthSection)" class="space-y-6">
                         <SEOHealthScore
                           v-model="seoHealthForm"
                           :seo-title="form.seo_title"
@@ -4287,7 +4301,7 @@
                           <span>{{ showKeywordDensitySection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
-                      <div v-show="showKeywordDensitySection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('keywordDensitySection', showKeywordDensitySection)" class="space-y-6">
                         <KeywordDensityChecker
                           :slot-name="form.name"
                           :description="form.description"
@@ -4341,7 +4355,7 @@
                           <span>{{ showIndexingStatusSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
-                      <div v-show="showIndexingStatusSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('indexingStatusSection', showIndexingStatusSection)" class="space-y-6">
                         <IndexingStatus
                           v-model="indexingForm"
                           :page-url="getSlotPageUrl()"
@@ -4385,7 +4399,7 @@
                           <span>{{ showPageSpeedSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
-                      <div v-show="showPageSpeedSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('pageSpeedSection', showPageSpeedSection)" class="space-y-6">
                         <PageSpeedMetrics
                           v-model="pageSpeedForm"
                           :page-url="getSlotPageUrl()"
@@ -4428,7 +4442,7 @@
                           <span>{{ showSitemapSection ? 'Collapse' : 'Expand' }}</span>
                         </button>
                       </div>
-                      <div v-show="showSitemapSection" class="space-y-6">
+                      <div v-if="isTurboSectionVisible('sitemapSection', showSitemapSection)" class="space-y-6">
                         <SitemapConfig
                           v-model="sitemapForm"
                           :page-url="getSlotPageUrl()"
@@ -4897,7 +4911,7 @@
 
                     <!-- Hero section subsections (shown only if Hero is open) -->
                     <div
-                      v-show="showHeroSection"
+                      v-if="isTurboSectionVisible('heroSection', showHeroSection)"
                       class="ml-4 space-y-1 border-l-2 border-purple-400/20 pl-3"
                     >
                       <button
@@ -5017,7 +5031,7 @@
 
                       <!-- Subsections of the "Full Slot Review 2025" section (shown only if section is open) -->
                       <div
-                        v-show="showFullOverviewSection"
+                        v-if="isTurboSectionVisible('fullOverviewSection', showFullOverviewSection)"
                         class="ml-4 space-y-1 border-l-2 border-[#4F46E5]/20 pl-3"
                       >
                         <button
@@ -5181,9 +5195,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import HeroPreview from '~/components/admin/HeroPreview.vue'
-import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 import SerpPreview from '~/components/admin/SerpPreview.vue'
 import HreflangConfig from '~/components/admin/HreflangConfig.vue'
 import RobotsConfig from '~/components/admin/RobotsConfig.vue'
@@ -5310,6 +5323,74 @@ const showPageSpeedSection = ref(false)
 const showSitemapSection = ref(false)
 const showSEOHealthSection = ref(false)
 const showInfoPopupSection = ref(false)
+
+// ⚡ Turbo mode: once a section is opened, keep it mounted
+// This makes repeated open/close much faster on heavy admin pages.
+const turboMode = ref(true)
+const turboMountedSections = reactive({
+  heroSection: false,
+  basicSection: false,
+  heroLinksSection: false,
+  gameCharacteristicsSection: false,
+  infoPopupSection: false,
+  ratingSection: false,
+  mechanicsSection: false,
+  bonusesSection: false,
+  themesSection: false,
+  seoSection: false,
+  metaSection: false,
+  openGraphSection: false,
+  twitterSection: false,
+  technicalSeoSection: false,
+  jsonLdSection: false,
+  seoHealthSection: false,
+  keywordDensitySection: false,
+  indexingStatusSection: false,
+  pageSpeedSection: false,
+  sitemapSection: false,
+  fullOverviewSection: false
+})
+
+const turboTrackedSections = [
+  ['heroSection', showHeroSection],
+  ['basicSection', showBasicSection],
+  ['heroLinksSection', showHeroLinksSection],
+  ['gameCharacteristicsSection', showGameCharacteristicsSection],
+  ['infoPopupSection', showInfoPopupSection],
+  ['ratingSection', showRatingSection],
+  ['mechanicsSection', showMechanicsSection],
+  ['bonusesSection', showBonusesSection],
+  ['themesSection', showThemesSection],
+  ['seoSection', showSeoSection],
+  ['metaSection', showMetaSection],
+  ['openGraphSection', showOpenGraphSection],
+  ['twitterSection', showTwitterSection],
+  ['technicalSeoSection', showTechnicalSeoSection],
+  ['jsonLdSection', showJsonLdSection],
+  ['seoHealthSection', showSEOHealthSection],
+  ['keywordDensitySection', showKeywordDensitySection],
+  ['indexingStatusSection', showIndexingStatusSection],
+  ['pageSpeedSection', showPageSpeedSection],
+  ['sitemapSection', showSitemapSection],
+  ['fullOverviewSection', showFullOverviewSection]
+]
+
+const isTurboSectionVisible = (key, isOpen) =>
+  isOpen || (turboMode.value && !!turboMountedSections[key])
+
+watch(
+  turboTrackedSections.map(([, sectionRef]) => sectionRef),
+  (sectionValues) => {
+    if (!turboMode.value) return
+    sectionValues.forEach((isOpen, idx) => {
+      if (isOpen) {
+        const key = turboTrackedSections[idx][0]
+        turboMountedSections[key] = true
+      }
+    })
+  },
+  { immediate: true }
+)
 
 // ===== Info Popup Content: reactive arrays for easy editing =====
 const infoProsItems = reactive([])

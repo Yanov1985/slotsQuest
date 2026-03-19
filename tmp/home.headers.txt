@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+referrer-policy: no-referrer
+strict-transport-security: max-age=15552000; includeSubDomains
+x-content-type-options: nosniff
+x-download-options: noopen
+x-frame-options: SAMEORIGIN
+x-permitted-cross-domain-policies: none
+x-xss-protection: 0
+x-robots-tag: noindex, nofollow
+x-robots-production: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+access-control-allow-origin: *
+cross-origin-resource-policy: same-origin
+cross-origin-opener-policy: same-origin
+origin-agent-cluster: ?1
+x-dns-prefetch-control: off
+permissions-policy: camera=(), display-capture=(), fullscreen=(), geolocation=(), microphone=()
+content-type: text/html;charset=utf-8
+date: Thu, 19 Mar 2026 18:26:31 GMT
+connection: close
+content-length: 373550
+
