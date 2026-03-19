@@ -313,7 +313,7 @@
           <input
             v-model="canonicalUrl"
             type="url"
-            placeholder="https://slotquest.com/slots/your-slot"
+            placeholder="https://Brand.com/slots/your-slot"
             class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#059669]"
           />
         </div>
@@ -356,7 +356,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 // Props
 const props = defineProps({
   slug: { type: String, default: 'slot-name' },
-  baseUrl: { type: String, default: 'https://slotquest.com' },
+  baseUrl: { type: String, default: 'https://Brand.com' },
   modelValue: { type: Object, default: () => ({}) }
 })
 
@@ -630,7 +630,7 @@ function clearAll() {
 }
 
 function generateCanonical() {
-  let url = props.baseUrl || 'https://slotquest.com'
+  let url = props.baseUrl || 'https://Brand.com'
 
   // 1. Force remove www (standard for modern SPAs)
   url = url.replace('://www.', '://')

@@ -1,8 +1,5 @@
-
 <template>
-  <div
-    class="min-h-screen bg-zinc-950"
-  >
+  <div class="flex-1 flex flex-col">
     <!-- 📱 Навигация - адаптивная для всех устройств с эффектом стекла -->
     <nav
       class="bg-white/5 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg shadow-black/20"
@@ -303,10 +300,6 @@ import {
   formatNumber
 } from '~/utils/slotFormatters'
 
-import AuroraBackground from '~/components/ui/AuroraBackground.vue'
-import BackgroundGradient from '~/components/ui/BackgroundGradient.vue'
-import CometCard from '~/components/ui/CometCard.vue'
-import CanvasRevealEffect from '~/components/ui/CanvasRevealEffect.vue'
 import SlotHero from '~/components/slots/SlotHero.vue'
 import SlotCharacteristics from '~/components/slots/SlotCharacteristics.vue'
 import SlotInfoModal from '~/components/slots/SlotInfoModal.vue'
@@ -328,11 +321,11 @@ const error = ref(null)
 
 // Dynamic OG Image Generation (Must be declared before any await)
 defineOgImageComponent('NuxtSeo', {
-  title: computed(() => gameSlot.value?.name || 'SlotQuest Game'),
+  title: computed(() => gameSlot.value?.name || (gameSlot.value?.footer_company_name ? `${gameSlot.value.footer_company_name} Game` : 'Brand Game')),
   description: computed(() => `RTP: ${gameSlot.value?.rtp || '96'}% | Volatility: ${gameSlot.value?.volatility || 'Medium'} | Max Win: ${gameSlot.value?.max_win || '5000'}x`),
   theme: '#8B5CF6',
   colorMode: 'dark',
-  siteName: 'SlotQuest',
+  siteName: computed(() => gameSlot.value?.footer_company_name || 'Brand'),
 })
 
 // --- SSR Data Fetching (Phase 4 SEO Optimization) ---
@@ -438,7 +431,7 @@ const computedFaq = computed(() => {
   return [
     { question: `Is ${name} safe to play online?`, answer: `Yes, ${name} is developed by ${provider}, a licensed and regulated game provider. All games are tested by independent auditing agencies to ensure fair play and random outcomes.` },
     { question: `What is the RTP of ${name}?`, answer: `The Return to Player (RTP) of ${name} is ${s.rtp || '96.0'}%. This means that, on average, for every $100 wagered, the game returns $${s.rtp || '96.0'} to players over time.` },
-    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on SlotQuest. No registration or deposit required — just click "${s.info_demo_btn_text || 'Play Demo Now'}" to start spinning.` },
+    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on our site. No registration or deposit required — just click "${s.info_demo_btn_text || 'Play Demo Now'}" to start spinning.` },
     { question: `What is the maximum win in ${name}?`, answer: `The maximum win in ${name} is ${formatMaxWin(s.max_win)}x your bet. ${s.max_win >= 5000 ? 'This is a very high max win potential!' : 'This offers solid winning potential for players.'}` },
     { question: `What is the volatility of ${name}?`, answer: `${name} has ${getVolatilityText(s.volatility).toLowerCase()} volatility. ${s.volatility?.toLowerCase() === 'high' ? 'This means wins are less frequent but can be much larger when they hit.' : s.volatility?.toLowerCase() === 'low' ? 'This means you can expect frequent, smaller wins.' : 'This provides a balanced mix of win frequency and size.'}` }
   ]
@@ -452,7 +445,7 @@ const computedReviews = computed(() => {
   const name = s.name || 'this slot'
   return [
     { author: 'Alex R.', rating: 5, text: `${name} is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back. Highly recommended for anyone who enjoys ${s.volatility?.toLowerCase() === 'high' ? 'high-risk, high-reward' : 'engaging'} gameplay.`, date: '2024-12-15' },
-    { author: 'Maria K.', rating: 4, text: `Great slot with solid RTP of ${s.rtp || '96.0'}%. The free spins feature is especially exciting. I play it regularly on SlotQuest in demo mode before wagering real money.`, date: '2024-11-28' },
+    { author: 'Maria K.', rating: 4, text: `Great slot with solid RTP of ${s.rtp || '96.0'}%. The free spins feature is especially exciting. I play it regularly on our site in demo mode before wagering real money.`, date: '2024-11-28' },
     { author: 'James T.', rating: 4, text: `Decent slot from ${s.providers?.name || 'the developer'}. The ${formatMaxWin(s.max_win)}x max win potential is attractive. Love the theme and sound design. Would recommend trying the demo first.`, date: '2024-10-10' }
   ]
 })

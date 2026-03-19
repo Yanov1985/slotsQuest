@@ -229,8 +229,8 @@ const props = defineProps({
   twitterTitle: { type: String, default: '' },
   twitterDescription: { type: String, default: '' },
   twitterImage: { type: String, default: '' },
-  siteUrl: { type: String, default: 'slotquest.com' },
-  siteName: { type: String, default: 'SlotQuest' },
+  siteUrl: { type: String, default: 'Brand.com' },
+  siteName: { type: String, default: 'Brand' },
   pageUrl: { type: String, default: '' },
   hashtags: { type: String, default: '' },
   ctaText: { type: String, default: '' }

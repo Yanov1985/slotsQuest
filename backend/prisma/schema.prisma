@@ -896,6 +896,14 @@ model pages {
   show_awards         Boolean?     @default(false)
   awards              String?      // JSON string of awards entries
 
+  // Dynamic Footer Settings
+  footer_company_name String?      @default("SlotQuest Inc.")
+  footer_description  String?      @default("The ultimate catalog for slot enthusiasts. Explore thousands of games, analyze mechanics, and find your next favorite slot with our advanced data-driven platform.")
+  footer_facebook     String?      @default("https://facebook.com/slotquest")
+  footer_twitter      String?      @default("https://twitter.com/slotquest")
+  footer_instagram    String?      @default("https://instagram.com/slotquest")
+  footer_telegram     String?      @default("https://t.me/slotquest")
+
   created_at          DateTime @default(now())
   updated_at          DateTime @updatedAt
 }

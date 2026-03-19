@@ -11,12 +11,18 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
     const mechanics = computed(() => unref(mechanicsRef) || [])
     const themes = computed(() => unref(themesRef) || [])
 
-    // 1. Process Keywords (Dynamic Replacements)
+    // 1. Process Keywords (Dynamic Replacements and Global Branding)
     const replaceKeywords = (text: any) => {
         const p = page.value
         if (!p || !text || typeof text !== 'string') return text
         let result = text
         
+        // 0. Global Branding Replacement (Brand -> Company Name)
+        const brandName = p.footer_company_name || 'Brand'
+        if (brandName !== 'Brand') {
+            result = result.replace(/Brand/g, brandName)
+        }
+
         // 1. Support new dynamic list [keyword_1], [keyword_2], etc.
         if (p.seo_keywords_list && Array.isArray(p.seo_keywords_list)) {
             p.seo_keywords_list.forEach((kw: string, index: number) => {
@@ -38,7 +44,7 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
 
     // 2. Set Meta Tags (using functions for reactivity)
     useServerSeoMeta({
-        title: () => replaceKeywords(page.value?.seo_title || page.value?.title) || 'SlotQuest',
+        title: () => replaceKeywords(page.value?.seo_title || page.value?.title) || (page.value?.footer_company_name || 'Brand'),
         description: () => replaceKeywords(page.value?.seo_desc) || undefined,
         ogTitle: () => page.value?.og_title || replaceKeywords(page.value?.seo_title || page.value?.title) || undefined,
         ogDescription: () => page.value?.og_desc || replaceKeywords(page.value?.seo_desc) || undefined,
@@ -65,7 +71,14 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
         }
     })
 
-    // 3. Set Structured Data & Hreflang
+    // 3. Pre-fetch Request URL for context-safe usage in deferred functions
+    const runtimeConfig = useRuntimeConfig()
+    const configSiteUrl = ((runtimeConfig.public as any).siteUrl || 'https://Brand.com').replace(/\/$/, '')
+    const siteUrl = (page.value?.footer_site_url || configSiteUrl).replace(/\/$/, '')
+    const url = useRequestURL()
+    const path = url ? url.pathname : '/'
+
+    // 4. Set Structured Data & Hreflang
     useHead({
         link: () => {
             const p = page.value
@@ -74,14 +87,11 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
             
             // Hreflang
             if (p.hreflang_enabled && p.hreflang_config?.length) {
-                const currentUrl = useRequestURL()
-                const currentPath = currentUrl ? currentUrl.pathname : '/'
-
                 p.hreflang_config.forEach((item: any) => {
                     if (!item.lang) return
                     
                     const hreflangCode = item.region ? `${item.lang}-${item.region}` : item.lang
-                    const fallbackUrl = `https://slotquest.com${currentPath}`
+                    const fallbackUrl = `${siteUrl}${path}`
 
                     links.push({
                         rel: 'alternate',
@@ -95,15 +105,14 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
             if (p.seo_canonical_url) {
                 links.push({ rel: 'canonical', href: p.seo_canonical_url })
             } else {
-                // Generate a strict Canonical matching the redirects (No WWW, No Trailing Slash)
-                const currentUrl = useRequestURL()
-                if (currentUrl) {
-                    let path = currentUrl.pathname
+                // Generate a strict Canonical matching the redirects
+                if (url) {
+                    let canonicalPath = path
                     // Strip trailing slash unless it's exactly root
-                    if (path !== '/' && path.endsWith('/')) {
-                        path = path.slice(0, -1)
+                    if (canonicalPath !== '/' && canonicalPath.endsWith('/')) {
+                        canonicalPath = canonicalPath.slice(0, -1)
                     }
-                    links.push({ rel: 'canonical', href: `https://slotquest.com${path}` })
+                    links.push({ rel: 'canonical', href: `${siteUrl}${canonicalPath}` })
                 }
             }
             

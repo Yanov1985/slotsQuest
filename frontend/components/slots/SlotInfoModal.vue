@@ -184,7 +184,7 @@
           <section class="bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 p-4 rounded-xl border border-[#8B5CF6]/20">
             <h2 class="text-lg font-bold text-white mb-2">Free Play or Demo</h2>
             <p class="text-gray-300 mb-4 text-sm">
-              {{ slotData.info_demo_cta || `You can easily try out ${slotData.name} online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!` }}
+              {{ slotData.info_demo_cta || `You can easily try out ${slotData.name} online slot at our catalog without paying real money. Take advantage of our free demo mode and dive right in!` }}
             </p>
             <button
               @click="playSlot"

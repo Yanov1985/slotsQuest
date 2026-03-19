@@ -27,8 +27,8 @@ export const useCatalogSEO = (catalogTitle, catalogDesc, canonicalUrl, slotsCoun
             url: canonicalUrl,
             isPartOf: {
                 '@type': 'WebSite',
-                name: 'SlotQuest',
-                url: 'https://slotquest.com'
+                name: 'Brand',
+                url: 'https://Brand.com'
             },
             about: {
                 '@type': 'Thing',

@@ -7,7 +7,7 @@
           <div class="flex items-center space-x-4">
             <div class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
               <Icon name="heroicons:squares-2x2" class="text-[#FF6E48]" />
-              <span>SlotQuest Admin</span>
+              <span>Admin Dashboard</span>
             </div>
           </div>
           <div class="flex items-center space-x-4">
@@ -372,9 +372,9 @@ onMounted(() => {
 
 // Page meta
 useHead({
-  title: 'SlotQuest Admin - Главная панель',
+  title: 'Admin - Dashboard',
   meta: [
-    { name: 'description', content: 'Административная панель SlotQuest - управление контентом, пользователями и аналитикой' }
+    { name: 'description', content: 'Administrative panel for content, users, and analytics management' }
   ]
 })
 </script>

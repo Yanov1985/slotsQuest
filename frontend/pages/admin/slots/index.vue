@@ -454,7 +454,7 @@ watch([searchQuery, selectedProvider, selectedVolatility, selectedStatus], () =>
 })
 
 useHead({
-  title: 'Управление Каталогом Слотов | SlotQuest Admin'
+  title: 'Slot Catalog Management | Admin'
 })
 </script>
 

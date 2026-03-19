@@ -624,6 +624,6 @@ watch([searchQuery, statusFilter, roleFilter], () => {
 // Page meta
 definePageMeta({
   title: 'Управление пользователями - Админ панель',
-  description: 'Управление пользователями в админ панели SlotQuest'
+  description: 'User management in the admin panel'
 })
 </script>

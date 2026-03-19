@@ -128,6 +128,14 @@ export class PagesService {
             awards: stringifiedData.awards !== undefined ? stringifiedData.awards : null,
             info_pros: stringifiedData.info_pros !== undefined ? stringifiedData.info_pros : null,
             info_cons: stringifiedData.info_cons !== undefined ? stringifiedData.info_cons : null,
+
+            // Dynamic Footer Settings
+            footer_company_name: updateData.footer_company_name !== undefined ? updateData.footer_company_name : 'SlotQuest Inc.',
+            footer_description: updateData.footer_description !== undefined ? updateData.footer_description : null,
+            footer_facebook: updateData.footer_facebook !== undefined ? updateData.footer_facebook : null,
+            footer_twitter: updateData.footer_twitter !== undefined ? updateData.footer_twitter : null,
+            footer_instagram: updateData.footer_instagram !== undefined ? updateData.footer_instagram : null,
+            footer_telegram: updateData.footer_telegram !== undefined ? updateData.footer_telegram : null,
         };
 
         // Use upsert to create the page if it doesn't exist yet

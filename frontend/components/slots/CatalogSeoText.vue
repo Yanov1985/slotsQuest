@@ -108,7 +108,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   sections: {
@@ -144,25 +144,28 @@ const replaceKeywords = (text) => {
     result = result.replace(new RegExp(`\\[keyword_${i}\\]`, 'g'), kw)
   }
   
-  return result
+  return props.pageData?.footer_company_name ? result.replace(/Brand/g, props.pageData.footer_company_name) : result
 }
 
 // Fallback to these if no sections are passed
-const defaultSections = [
-  { id: 'intro', title: 'Why Trust SlotQuest?', icon: 'solar:shield-star-bold-duotone' },
-  { id: 'fairness', title: 'Fair Play & Withdrawals', icon: 'solar:wallet-money-bold-duotone' },
-  { id: 'games', title: 'Universe of Slots', icon: 'solar:gamepad-bold-duotone' },
-  { id: 'bonuses', title: 'Hunting the Best Bonuses', icon: 'solar:gift-bold-duotone' },
-  { id: 'mobile', title: 'Free Demos & Mobile Play', icon: 'solar:smartphone-bold-duotone' },
-]
+const defaultSections = computed(() => {
+  const name = props.pageData?.footer_company_name || 'Brand'
+  return [
+    { id: 'intro', title: `Why Trust ${name}?`, icon: 'solar:shield-star-bold-duotone' },
+    { id: 'fairness', title: 'Fair Play & Withdrawals', icon: 'solar:wallet-money-bold-duotone' },
+    { id: 'games', title: 'Universe of Slots', icon: 'solar:gamepad-bold-duotone' },
+    { id: 'bonuses', title: 'Hunting the Best Bonuses', icon: 'solar:gift-bold-duotone' },
+    { id: 'mobile', title: 'Free Demos & Mobile Play', icon: 'solar:smartphone-bold-duotone' },
+  ]
+})
 
-const localSections = ref(props.sections && props.sections.length > 0 ? props.sections : defaultSections)
+const localSections = ref(props.sections && props.sections.length > 0 ? props.sections : defaultSections.value)
 
 watch(() => props.sections, (newVal) => {
   if (newVal && newVal.length > 0) {
     localSections.value = newVal
   } else {
-    localSections.value = defaultSections
+    localSections.value = defaultSections.value
   }
 }, { deep: true })
 

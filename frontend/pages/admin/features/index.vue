@@ -239,7 +239,7 @@ definePageMeta({
 })
 
 useHead({
-  title: 'SlotQuest Admin - Механики (Features)'
+  title: 'Admin - Game Mechanics (Features)'
 })
 
 const loading = ref(true)

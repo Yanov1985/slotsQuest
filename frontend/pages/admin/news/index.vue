@@ -416,7 +416,7 @@
 const news = ref([
   {
     id: '1',
-    title: 'Новые слоты уже в SlotQuest!',
+    title: 'New slots are now available!',
     excerpt: 'Добавлены 15 новых захватывающих слотов от ведущих провайдеров',
     content: 'Мы рады сообщить о добавлении 15 новых слотов...',
     category: 'updates',
@@ -688,7 +688,7 @@ watch([searchQuery, statusFilter, categoryFilter], () => {
 // Page meta
 definePageMeta({
   title: 'Управление новостями - Админ панель',
-  description: 'Управление новостями в админ панели SlotQuest'
+  description: 'News management in the admin panel'
 })
 </script>
 

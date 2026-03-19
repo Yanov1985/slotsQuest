@@ -227,7 +227,7 @@
           <label class="block text-xs text-[#9CA3AF] mb-1">Автор обзора</label>
           <input
             v-model="localForm.jsonld_review_author"
-            placeholder="SlotQuest Editorial Team"
+            placeholder="Brand Editorial Team"
             class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-[#E5E7EB] text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B]"
           />
         </div>
@@ -571,6 +571,7 @@ import { ref, watch, computed, onMounted } from 'vue'
 const props = defineProps({
   slotId: { type: String, default: '' },
   slotName: { type: String, default: '' },
+  siteName: { type: String, default: 'Brand' },
   modelValue: { type: Object, required: true }
 })
 
@@ -704,7 +705,7 @@ function addFaqTemplate() {
   const slotName = props.slotName || 'этот слот'
   const templates = [
     { question: `Какой RTP у ${slotName}?`, answer: `RTP (Return to Player) составляет около 96%, что является стандартным показателем для современных слотов.` },
-    { question: `Можно ли играть в ${slotName} бесплатно?`, answer: `Да, вы можете играть в демо-версию бесплатно без регистрации прямо на нашем сайте.` },
+    { question: `Можно ли играть в ${slotName} бесплатно?`, answer: `Да, вы можете играть в демо-версию бесплатно без регистрации прямо на нашем сайте ${props.siteName}.` },
     { question: `Какие бонусные функции есть в ${slotName}?`, answer: `Слот включает фриспины, множители и специальные символы Wild и Scatter.` },
   ]
   faqItems.value.push(...templates.slice(0, 10 - faqItems.value.length))
@@ -731,7 +732,10 @@ function addHowToTemplate() {
 }
 
 async function loadJsonLdPreview() {
-  if (!props.slotId) return
+  if (!props.slotId) {
+    console.log('No slotId provided, cannot load JSON-LD preview.')
+    return
+  }
   loadingPreview.value = true
   try {
     const response = await $fetch(`http://localhost:3001/api/jsonld/${props.slotId}`)
@@ -771,7 +775,7 @@ async function autoGenerateAll() {
   localForm.value.jsonld_enable_breadcrumb = true
 
   // Generate Review
-  localForm.value.jsonld_review_author = 'SlotQuest Editorial Team'
+  localForm.value.jsonld_review_author = 'Editorial Team'
   localForm.value.jsonld_review_rating = 4.5 + Math.random() * 0.4 // 4.5-4.9
   localForm.value.jsonld_review_rating = Math.round(localForm.value.jsonld_review_rating * 10) / 10
   localForm.value.jsonld_review_date = new Date().toISOString().split('T')[0]
@@ -792,7 +796,7 @@ async function autoGenerateAll() {
     },
     {
       question: `Можно ли играть в ${slotName} бесплатно?`,
-      answer: `Да, вы можете играть в демо-версию ${slotName} абсолютно бесплатно без регистрации и депозита прямо на нашем сайте SlotQuest.`
+      answer: `Да, вы можете играть в демо-версию ${slotName} абсолютно бесплатно без регистрации и депозита прямо на нашем сайте ${props.siteName}.`
     },
     {
       question: `Какие бонусные функции есть в ${slotName}?`,

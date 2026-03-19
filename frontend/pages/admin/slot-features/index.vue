@@ -607,9 +607,9 @@ onMounted(() => {
 
 // Page meta
 useHead({
-  title: 'SlotQuest Admin - Управление фитчами слотов',
+  title: 'Admin - Slot Features Management',
   meta: [
-    { name: 'description', content: 'Административная панель для управления фитчами слотов SlotQuest' }
+    { name: 'description', content: 'Administrative panel for managing slot features' }
   ]
 })
 </script>

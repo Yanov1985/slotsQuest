@@ -1,16 +1,11 @@
+```
 <template>
-  <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30 overflow-x-clip">
-    <!-- Animated Background from Admin Template -->
-    <div class="fixed inset-0 z-0 pointer-events-none">
-      <BackgroundBeams :intensity="0.9" :speed="1.2" />
-    </div>
-
-    <div class="relative z-10 flex flex-col min-h-screen">
+<div class="relative z-10 flex flex-col min-h-screen">
     <!-- 📱 Навигация - стеклянный эффект (бывшие хлебные крошки) -->
     <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 relative z-40 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div class="flex items-center justify-between gap-2">
-           <h1 class="text-white font-bold text-base sm:text-lg">{{ pageData?.hero_title || 'SlotQuest Casino' }}</h1>
+           <h1 class="text-white font-bold text-base sm:text-lg">{{ pageData?.hero_title || pageData?.footer_company_name || 'Catalog' }}</h1>
            <span class="text-white/50 text-xs sm:text-sm hidden md:inline">{{ pageData?.hero_desc || 'Find your favorite slot game' }}</span>
         </div>
       </div>
@@ -138,7 +133,6 @@
         <CatalogSeoText v-if="pageData?.content?.length > 0" :sections="pageData.content" :pageData="pageData" />
 
       </div>
-    </div>
   </div>
 </div>
 </template>
@@ -148,7 +142,6 @@ import { ref, computed } from 'vue'
 import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
 import CatalogSeoText from '~/components/slots/CatalogSeoText.vue'
-import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
 import { usePagesApi } from '~/composables/usePagesApi'
 import { onMounted, onUnmounted } from 'vue'
 

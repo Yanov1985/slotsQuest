@@ -781,7 +781,7 @@
                   <meta itemprop="@type" content="DefinedTerm">
                   <meta itemprop="name" :content="theme.name">
                   <meta itemprop="identifier" :content="theme.slug || theme.id">
-                  <link v-if="theme.slug" itemprop="url" :href="`https://slotquest.com/themes/${theme.slug}`">
+                  <link v-if="theme.slug" itemprop="url" :href="`https://Brand.com/themes/${theme.slug}`">
                   <span aria-hidden="true">{{ theme.icon }}</span>
                   <span itemprop="alternateName">{{ theme.name }}</span>
                 </span>

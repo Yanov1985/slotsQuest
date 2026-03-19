@@ -313,7 +313,7 @@ const props = defineProps({
   // Настройки сайта
   siteUrl: {
     type: String,
-    default: 'slotquest.com'
+    default: 'Brand.com'
   }
 })
 
@@ -498,7 +498,7 @@ const seoTips = computed(() => {
 
 // Helper functions
 function generateDefaultTitle() {
-  if (!props.slotName) return 'Slot Name | Play Free Demo | SlotQuest'
+  if (!props.slotName) return 'Slot Name | Play Free Demo | Brand'
   return `${props.slotName} Slot by ${props.providerName || 'Provider'} | Play Free Demo 2025`
 }
 

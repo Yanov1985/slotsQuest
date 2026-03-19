@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans relative">
-    <BackgroundBeams :intensity="0.9" :speed="1.2" />
+    <TheBackgroundBeams class="opacity-40" />
 
     <div class="relative z-10 w-full">
     <!-- Навигация -->
@@ -20,7 +20,7 @@
 
           <!-- Tab Switcher -->
           <div class="flex p-1 bg-[#0F1117] rounded-xl border border-[#353A4A] overflow-x-auto whitespace-nowrap max-w-[90vw] sm:max-w-full scrollbar-hide">
-             <button v-for="tab in ['content', 'filters', 'seo', 'localization', 'structured']" :key="tab" 
+             <button v-for="tab in ['content', 'filters', 'seo', 'localization', 'structured', 'branding']" :key="tab" 
                @click="activeTab = tab"
                class="px-4 py-2 text-xs font-bold rounded-lg transition-all capitalize"
                :class="activeTab === tab ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-[#9CA3AF] hover:text-white hover:bg-[#1B1E26]'"
@@ -109,6 +109,7 @@
                  </div>
                </div>
              </section>
+
           </div>
 
           <!-- TAB: FILTERS -->
@@ -204,7 +205,7 @@
              <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
                 <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-blue-400"><Icon name="solar:link-bold" /> Canonical URL Override</h3>
                 <p class="text-xs text-[#9CA3AF] mb-4">By default, the system automatically generates a strict Canonical URL stripped of 'www' and trailing slashes. Only fill this field if you need to point search engines to a completely different external page.</p>
-                <input v-model="pageData.seo_canonical_url" placeholder="https://slotquest.com/custom-path" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 text-sm focus:border-blue-500" />
+                <input v-model="pageData.seo_canonical_url" placeholder="https://Brand.com/custom-path" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 text-sm focus:border-blue-500" />
              </section>
 
              <!-- Hreflang Tags -->
@@ -297,6 +298,58 @@
                  </div>
               </section>
            </div>
+           
+           <!-- TAB: BRANDING & FOOTER -->
+           <div v-if="activeTab === 'branding'" class="space-y-8">
+              <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
+                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-indigo-400"><Icon name="solar:crown-bold" /> Global Branding</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                       <div>
+                          <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Company Name</label>
+                          <input v-model="pageData.footer_company_name" type="text" placeholder="e.g. MyBrand Inc." class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-indigo-500" />
+                       </div>
+                       <div>
+                          <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Base Site URL</label>
+                          <input v-model="pageData.footer_site_url" type="text" placeholder="https://mybrand.com" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-indigo-500" />
+                          <p class="text-[10px] text-[#9CA3AF] mt-1 italic">* Основной URL сайта. Используется для формирования канонических ссылок и JSON-LD.</p>
+                       </div>
+                    </div>
+                    <div class="space-y-4 text-sm text-[#9CA3AF] leading-relaxed">
+                       <p>Эти настройки управляют тем, как ваш бренд отображается по всему сайту. Изменение <strong>Company Name</strong> обновит футер, авторские права и SEO-метаданные.</p>
+                       <p><strong>Base Site URL</strong> позволяет переопределить настройки из конфига без необходимости менять переменные окружения.</p>
+                    </div>
+                 </div>
+              </section>
+
+              <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
+                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-pink-400"><Icon name="solar:share-circle-bold" /> Social Media Links</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                       <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Facebook URL</label>
+                       <input v-model="pageData.footer_facebook" type="text" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-pink-500" />
+                    </div>
+                    <div>
+                       <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Instagram URL</label>
+                       <input v-model="pageData.footer_instagram" type="text" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-pink-500" />
+                    </div>
+                    <div>
+                       <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Twitter / X URL</label>
+                       <input v-model="pageData.footer_twitter" type="text" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-pink-500" />
+                    </div>
+                    <div>
+                       <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Telegram URL</label>
+                       <input v-model="pageData.footer_telegram" type="text" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-pink-500" />
+                    </div>
+                 </div>
+              </section>
+
+              <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
+                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-blue-400"><Icon name="solar:letter-bold" /> Footer Description</h3>
+                 <textarea v-model="pageData.footer_description" rows="5" class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-blue-500"></textarea>
+                 <p class="text-xs text-[#9CA3AF] mt-2 italic">Краткое описание вашей компании для футера.</p>
+              </section>
+           </div>
 
        </div>
     </main>
@@ -309,6 +362,7 @@ import { ref, onMounted, computed } from 'vue'
 import { usePagesApi } from '~/composables/usePagesApi'
 import { useCategories } from '~/composables/useCategories'
 import { usePageJsonLd } from '~/composables/usePageJsonLd'
+import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 
 definePageMeta({
   layout: 'admin'
@@ -398,7 +452,16 @@ const pageData = ref({
   show_awards: false,
   awards: null,
   info_pros: null,
-  info_cons: null
+  info_cons: null,
+
+  // Dynamic Footer Settings
+  footer_company_name: 'BrandName',
+  footer_site_url: '',
+  footer_description: '',
+  footer_facebook: '',
+  footer_twitter: '',
+  footer_instagram: '',
+  footer_telegram: ''
 })
 
 // UI-Specific Editor States
@@ -474,7 +537,7 @@ const loadData = async () => {
       // Sync arrays to editors
       seoBlocks.value = initializeArray(pageData.value, 'content', [{
         id: 'introduction',
-        title: 'Welcome to SlotQuest',
+        title: 'Welcome to Our Catalog',
         icon: 'solar:target-outline',
         text: '<p>Welcome ...</p>'
       }])
@@ -533,14 +596,18 @@ const moveItem = (arr, index, dir) => {
 
 // Special Helpers for specific editors
 const generateOrganizationJsonLd = () => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SlotQuest",
-    "url": "https://slotquest.com/",
-    "logo": "https://slotquest.com/logo.png"
-  }
-  pageData.value.json_schema = JSON.stringify(schema, null, 2)
+    const config = useRuntimeConfig()
+    const name = pageData.value.footer_company_name || 'Current Brand'
+    const siteUrl = config.public.siteUrl || 'https://Brand.com/'
+    
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": name,
+        "url": siteUrl,
+        "logo": `${siteUrl}logo.png`
+    }
+    pageData.value.json_schema = JSON.stringify(schema, null, 2)
 }
 
 onMounted(loadData)

@@ -206,7 +206,7 @@ const presetTemplates = [
   {
     id: 'branded',
     name: 'Branded',
-    template: '{name} 🎰 by {provider} | SlotQuest Review {year}'
+    template: '{name} 🎰 by {provider} | Brand Review {year}'
   },
   {
     id: 'review',
@@ -216,7 +216,7 @@ const presetTemplates = [
   {
     id: 'minimal',
     name: 'Minimal',
-    template: '{name} | Free Slot Demo | SlotQuest'
+    template: '{name} | Free Slot Demo | Brand'
   }
 ]
 

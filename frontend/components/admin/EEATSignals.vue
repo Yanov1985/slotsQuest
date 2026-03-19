@@ -378,7 +378,7 @@ const props = defineProps({
   experienceHours: { type: Number, default: 0 },
   experienceSessions: { type: Number, default: 0 },
   // Expertise
-  authorName: { type: String, default: 'SlotQuest Editorial Team' },
+  authorName: { type: String, default: 'Brand Editorial Team' },
   authorPosition: { type: String, default: '' },
   authorBio: { type: String, default: '' },
   expertiseYears: { type: Number, default: 5 },

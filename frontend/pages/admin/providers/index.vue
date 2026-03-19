@@ -583,9 +583,9 @@ onMounted(() => {
 
 // Page meta
 useHead({
-  title: 'SlotQuest Admin - Управление провайдерами',
+  title: 'Admin - Providers Management',
   meta: [
-    { name: 'description', content: 'Административная панель для управления провайдерами SlotQuest' }
+    { name: 'description', content: 'Administrative panel for managing game providers' }
   ]
 })
 </script>

@@ -557,7 +557,7 @@ onMounted(async () => {
 
 // Page meta
 useHead({
-  title: computed(() => `SlotQuest Admin - Слоты темы "${theme.value?.name || 'Загрузка...'}"`),
+  title: computed(() => `Admin - Slots for Theme "${theme.value?.name || 'Loading...'}"`),
   meta: [
     { name: 'description', content: computed(() => `Управление слотами темы "${theme.value?.name || ''}"`) }
   ]

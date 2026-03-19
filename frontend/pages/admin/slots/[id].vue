@@ -3,7 +3,7 @@
     class="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black text-white font-sans relative"
   >
     <!-- Background Beams эффект для админ панели (увеличенная интенсивность) -->
-    <BackgroundBeams :intensity="0.9" :speed="1.2" />
+    <TheBackgroundBeams :intensity="0.9" :speed="1.2" />
 
     <!-- Основной контент поверх Background Beams -->
     <div class="relative z-10">
@@ -2496,7 +2496,7 @@
                           <input
                             v-model="form.seo_title"
                             type="text"
-                            placeholder="Play [Slot Name] online for free | SlotQuest"
+                            placeholder="Play [Slot Name] online for free | Brand Name"
                             class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.seo_title || '').length > 60,
@@ -4050,7 +4050,7 @@
                               <input
                                 v-model="form.author_meta"
                                 type="text"
-                                placeholder="SlotQuest Team"
+                                placeholder="Editorial Team"
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
                               />
                             </div>
@@ -4065,7 +4065,7 @@
                               <input
                                 v-model="form.copyright_meta"
                                 type="text"
-                                placeholder="© 2025 SlotQuest. All rights reserved."
+                                placeholder="© 2025 Brand. All rights reserved."
                                 class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
                               />
                             </div>
@@ -5183,7 +5183,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import HeroPreview from '~/components/admin/HeroPreview.vue'
-import BackgroundBeams from '~/components/ui/BackgroundBeams.vue'
+import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 import SerpPreview from '~/components/admin/SerpPreview.vue'
 import HreflangConfig from '~/components/admin/HreflangConfig.vue'
 import RobotsConfig from '~/components/admin/RobotsConfig.vue'
@@ -5401,7 +5401,7 @@ const jsonLdForm = ref({
   jsonld_enable_video: false,
 
   // Review Schema
-  jsonld_review_author: 'SlotQuest Editorial Team',
+  jsonld_review_author: 'Editorial Team',
   jsonld_review_rating: null,
   jsonld_review_text: '',
 
@@ -6001,7 +6001,7 @@ const form = ref({
   prof_rating_cons_5_desc: 'Inconsistent results',
   // Final recommendation
   prof_rating_recommendation_title: 'Final Recommendation',
-  prof_rating_recommendation_subtitle: 'From SlotQuest experts',
+  prof_rating_recommendation_subtitle: 'From Editorial experts',
   prof_rating_recommendation_text:
     '[prof_recommendation_keyword] is an outstanding slot for experienced players who appreciate innovative mechanics and are prepared for high volatility in exchange for the potential of big wins. We recommend beginners start with less volatile slots. This slot is the perfect choice for those seeking adrenaline and ready for serious play! 🚀',
   prof_rating_recommendation_keyword: '', // Keyword for final recommendation
@@ -6107,7 +6107,7 @@ const form = ref({
   og_image: '',
   og_type: 'article',
   og_url: '',
-  og_site_name: 'SlotQuest',
+  og_site_name: '',
   og_locale: 'en_US',
   og_locale_alternate: 'ru_RU,pt_BR,hi_IN,tr_TR,es_CL',
   og_video: '',
@@ -6120,8 +6120,8 @@ const form = ref({
 
   // Twitter Card fields (advanced)
   twitter_card: 'summary_large_image',
-  twitter_site: '@SlotQuest',
-  twitter_creator: '@SlotQuest',
+  twitter_site: '',
+  twitter_creator: '',
   twitter_title: '',
   twitter_description: '',
   twitter_image: '',
@@ -6159,7 +6159,7 @@ const form = ref({
   eeat_experience_sessions: 25,
 
   // E-E-A-T - Expertise
-  eeat_author_name: 'SlotQuest Editorial Team',
+  eeat_author_name: 'Editorial Team',
   eeat_author_position: 'Senior Slot Analyst',
   eeat_author_bio: '',
   eeat_expertise_years: 5,
@@ -6195,8 +6195,8 @@ const form = ref({
   viewport_meta: 'width=device-width, initial-scale=1',
   charset_meta: 'UTF-8',
   language_meta: 'en',
-  author_meta: 'SlotQuest Team',
-  copyright_meta: '© 2025 SlotQuest. All rights reserved.',
+  author_meta: 'Editor Team',
+  copyright_meta: `© ${new Date().getFullYear()} Brand. All rights reserved.`,
   generator_meta: 'Nuxt.js',
   theme_color_meta: '#1F2937',
   target_locations:
@@ -6210,7 +6210,7 @@ const form = ref({
   schema_rating_value: '',
   schema_review_count: '',
   schema_best_rating: '5',
-  schema_org_name: 'SlotQuest',
+  schema_org_name: '',
   schema_org_url: 'https://slotquest.com',
   schema_org_logo: 'https://slotquest.com/logo.png',
   schema_org_type: 'Organization',
@@ -6342,7 +6342,7 @@ watch(
 
 // Page Title
 useHead({
-  title: 'Edit Slot - SlotQuest Admin',
+  title: 'Edit Slot - Admin',
 })
 
 // Load data on mount
@@ -7647,7 +7647,7 @@ const generateAutoTitle = () => {
   const provider = slot.value?.providers?.name || ''
   const rtp = form.value.rtp || ''
 
-  // Format: "Name Slot by Provider | RTP% | Play Free | SlotQuest"
+  // Format: "Name Slot by Provider | RTP% | Play Free | Brand"
   let title = `${name}`
   if (provider) title += ` by ${provider}`
   if (rtp) title += ` | RTP ${rtp}%`
@@ -8208,7 +8208,7 @@ const generateInfoContent = () => {
     form.value.info_faq = JSON.stringify([
       { question: 'Is ' + name + ' safe to play online?', answer: 'Yes, ' + name + ' is developed by ' + providerName + ', a licensed and regulated game provider. All games are tested by independent auditing agencies.' },
       { question: 'What is the RTP of ' + name + '?', answer: 'The Return to Player (RTP) of ' + name + ' is ' + rtp + '%. This means that, on average, for every $100 wagered, the game returns $' + rtp + ' to players over time.' },
-      { question: 'Can I play ' + name + ' for free?', answer: 'Yes! You can play ' + name + ' in free demo mode right here on SlotQuest. No registration or deposit required.' },
+      { question: 'Can I play ' + name + ' for free?', answer: 'Yes! You can play ' + name + ' in free demo mode right here on our site. No registration or deposit required.' },
       { question: 'What is the maximum win in ' + name + '?', answer: 'The maximum win in ' + name + ' is ' + maxWin + 'x your bet.' },
       { question: 'What is the volatility of ' + name + '?', answer: name + ' has ' + vol.toLowerCase() + ' volatility. ' + (vol.toLowerCase() === 'high' ? 'Wins are less frequent but can be much larger.' : 'You can expect a balanced mix of win frequency and size.') }
     ])
@@ -8236,7 +8236,7 @@ const generateInfoContent = () => {
 
   // 7. Demo CTA
   if (!form.value.info_demo_cta) {
-    form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!'
+    form.value.info_demo_cta = 'You can easily try out ' + name + ' online slot at our catalog without paying real money. Take advantage of our free demo mode and dive right in!'
   }
   if (!form.value.info_demo_btn_text) {
     form.value.info_demo_btn_text = 'Play Demo Now'

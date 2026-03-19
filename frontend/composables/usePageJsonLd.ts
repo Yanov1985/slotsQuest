@@ -1,7 +1,8 @@
 export const usePageJsonLd = () => {
-    /**
-     * Combines all enabled schemas for a general page, dynamically injecting catalog data.
-     */
+    const runtimeConfig = useRuntimeConfig()
+    const siteUrl = (runtimeConfig.public as any).siteUrl || "https://Brand.com"
+    const cleanUrl = siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`
+
     const getPageSchemas = (
         page: any, 
         slots: any[] = [], 
@@ -15,25 +16,77 @@ export const usePageJsonLd = () => {
 
         const schemas: any[] = []
 
+        const configSiteUrl = (runtimeConfig.public as any).siteUrl || "https://Brand.com"
+        const siteUrl = (page.footer_site_url || configSiteUrl).replace(/\/$/, '')
+        const cleanUrl = siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`
+
         // 1. Always establish base WebSite and Organization for trust
         schemas.push({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "SlotQuest",
-            "url": "https://slotquest.com/",
+            "@id": `${cleanUrl}#website`,
+            "name": page.footer_company_name || "Brand",
+            "url": cleanUrl,
             "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://slotquest.com/?search={search_term_string}",
+                "target": `${cleanUrl}?search={search_term_string}`,
                 "query-input": "required name=search_term_string"
             }
         })
 
+        const socialLinks = [
+            page.footer_twitter,
+            page.footer_facebook,
+            page.footer_instagram,
+            page.footer_telegram
+        ].filter(link => link && link !== '#' && link.startsWith('http'))
+
+        // Trust signals: Legal pages
+        const legalLinks = [
+            `${cleanUrl}legal/privacy-policy`,
+            `${cleanUrl}legal/terms-and-conditions`,
+            `${cleanUrl}legal/cookie-policy`,
+            `${cleanUrl}legal/responsible-gaming`
+        ]
+
         schemas.push({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "SlotQuest",
-            "url": "https://slotquest.com/",
-            "logo": "https://slotquest.com/logo.png"
+            "@id": `${cleanUrl}#organization`,
+            "name": page.footer_company_name || "Brand",
+            "description": page.footer_description || undefined,
+            "url": cleanUrl,
+            "logo": `${cleanUrl}logo.png`,
+            "sameAs": [...socialLinks, ...legalLinks],
+            "privacyPolicy": `${cleanUrl}legal/privacy-policy`,
+            "termsOfService": `${cleanUrl}legal/terms-and-conditions`,
+            "publishingPrinciples": `${cleanUrl}legal/responsible-gaming`,
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "url": cleanUrl,
+                "availableLanguage": "English"
+            }
+        })
+
+        // 1.5 BreadcrumbList for Rich Results
+        schemas.push({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": cleanUrl
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": page.title || "Slots",
+                    "item": cleanUrl // Current page
+                }
+            ]
         })
 
         // 2. CollectionPage Schema (The core catalog representation)
@@ -47,7 +100,7 @@ export const usePageJsonLd = () => {
             const items = validSlots.slice(0, 20).map((slot, index) => ({
                 "@type": "ListItem",
                 "position": index + 1,
-                "url": `https://slotquest.com/slots/${slot.slug}`,
+                "url": `${cleanUrl}slots/${slot.slug}`,
                 "name": slot.title,
                 "image": slot.og_image || slot.icon_url
             }))
@@ -88,7 +141,7 @@ export const usePageJsonLd = () => {
                 "@type": "CollectionPage",
                 "name": replaceKeywords(page.seo_title || page.title),
                 "description": replaceKeywords(page.seo_desc),
-                "url": "https://slotquest.com/",
+                "url": cleanUrl,
                 "about": aboutArr.length > 0 ? aboutArr : undefined,
                 "keywords": allKeywords.length > 0 ? allKeywords.join(', ') : undefined,
                 "text": combinedText ? replaceKeywords(combinedText) : undefined,
@@ -102,8 +155,8 @@ export const usePageJsonLd = () => {
              schemas.push({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "SlotQuest",
-                "url": "https://slotquest.com/",
+                "name": page.footer_company_name || "Brand",
+                "url": cleanUrl,
                 "description": replaceKeywords(page.seo_desc)
             })
         }

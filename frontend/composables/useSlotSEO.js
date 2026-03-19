@@ -19,6 +19,9 @@ export const useSlotSEO = ({
 }) => {
     const route = useRoute()
     const slug = route.params.slug
+    const runtimeConfig = useRuntimeConfig()
+    const siteUrl = (runtimeConfig.public.siteUrl || 'https://Brand.com').replace(/\/$/, '')
+    const baseUrl = siteUrl
 
     // 🎯 JSON-LD Schemas for Enhanced Info Modal (FAQPage, HowTo, Review)
     const generateSeoSchemas = computed(() => {
@@ -146,7 +149,7 @@ export const useSlotSEO = ({
                 slotData.hero_keyword, slotData.hero_keyword_2, slotData.hero_keyword_3,
                 slotData.name, slotData.providers?.name, 'slot', 'slot machine', 'online casino',
                 'demo game', 'free play', `RTP ${slotData.rtp || '96'}%`, `${slotData.volatility || 'medium'} volatility`,
-                slotData.slot_categories?.name || 'slots', 'real money', 'bonuses', 'free spins', 'SlotQuest'
+                slotData.slot_categories?.name || 'slots', 'real money', 'bonuses', 'free spins', slotData.footer_company_name || 'Brand'
             ].filter(Boolean)
             return autoKeywords.join(', ')
         }
@@ -172,7 +175,6 @@ export const useSlotSEO = ({
 
     const generateHreflangLinks = (slotData) => {
         if (!slotData || slotData.hreflang_enabled === false) return []
-        const baseUrl = 'https://slotquest.com'
         const slotUrl = `/slots/${slotData.slug || slug}`
         const links = []
         links.push({ rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}${slotUrl}` })
@@ -207,19 +209,18 @@ export const useSlotSEO = ({
 
     const getStructuredData = (slotData) => {
         if (!slotData || !slotData.name) return '{}'
-        const baseUrl = 'https://slotquest.com'
         const slotUrl = `${baseUrl}/slots/${slotData.slug || slug}`
         const imageUrl = slotData.image_url || `${baseUrl}/images/slots/${slotData.slug || slug}.jpg`
 
-        const organizationSlotQuest = {
-            '@type': 'Organization', '@id': `${baseUrl}/#organization`, name: 'SlotQuest', url: baseUrl,
+        const organizationBrand = {
+            '@type': 'Organization', '@id': `${baseUrl}/#organization`, name: slotData.footer_company_name || 'Brand', url: baseUrl,
             logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png`, width: 200, height: 60 },
-            sameAs: ['https://vk.com/slotquest', 'https://t.me/slotquest', 'https://twitter.com/slotquest']
+            sameAs: ['https://vk.com/Brand', 'https://t.me/Brand', 'https://twitter.com/Brand']
         }
 
         const providerOrganization = {
             '@type': 'Organization', '@id': `${baseUrl}/provider/${slotData.providers?.slug || 'provider'}`,
-            name: slotData.providers?.name || 'Game Provider', url: slotData.providers?.website || 'https://slotquest.com',
+            name: slotData.providers?.name || 'Game Provider', url: slotData.providers?.website || 'https://Brand.com',
             description: slotData.providers?.description || `${slotData.providers?.name || 'Game Provider'} - online casino game developer`,
             logo: slotData.providers?.logo ? { '@type': 'ImageObject', url: slotData.providers.logo, width: 200, height: 100 } : undefined
         }
@@ -244,7 +245,7 @@ export const useSlotSEO = ({
                 { '@type': 'Thing', name: 'Max Win', value: `${slotData.max_win || '5,000'}x`, description: `Max win ${slotData.max_win || '5,000'}x bet` }
             ],
             gameFeature: ['Free Spins', 'Multipliers', 'Wild Symbols', 'Scatter Pays', 'Bonus Buy', 'Mobile Compatible', slotData.theme, ...(slotData.mechanics?.map(m => m.name) || []), ...(slotData.bonus_types?.map(b => b.name) || [])].filter(Boolean),
-            publisher: organizationSlotQuest, provider: providerOrganization,
+            publisher: organizationBrand, provider: providerOrganization,
             aggregateRating: { '@type': 'AggregateRating', ratingValue: slotData.rating || '4.8', bestRating: '5', ratingCount: slotData.reviews_count || '1247' },
             potentialAction: [
                 { '@type': 'PlayAction', name: 'Play Demo', target: { '@type': 'EntryPoint', urlTemplate: slotData.demo_url || `${baseUrl}/slots/${slotData.slug || slug}/demo`, actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'] } },
@@ -264,7 +265,7 @@ export const useSlotSEO = ({
                 uploadDate: slotData.release_date || '2021-02-13', datePublished: slotData.release_date || '2021-02-13', inLanguage: slotData.content_language || 'en',
                 duration: slotData.video_duration || 'PT3M', videoQuality: 'HD', encodingFormat: 'video/mp4', width: 1920, height: 1080, genre: 'Gaming',
                 keywords: `${slotData.name}, slot machine, gameplay, ${slotData.providers?.name || 'provider'}, online casino, demo`,
-                creator: providerOrganization, publisher: organizationSlotQuest, copyrightHolder: providerOrganization, license: 'https://creativecommons.org/licenses/by-nc/4.0/', isAccessibleForFree: true, isFamilyFriendly: false, contentRating: '18+'
+                creator: providerOrganization, publisher: organizationBrand, copyrightHolder: providerOrganization, license: 'https://creativecommons.org/licenses/by-nc/4.0/', isAccessibleForFree: true, isFamilyFriendly: false, contentRating: '18+'
             }
         }
 
@@ -279,7 +280,7 @@ export const useSlotSEO = ({
         }
 
         const websiteSchema = {
-            '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${baseUrl}/#website`, name: 'SlotQuest', url: baseUrl,
+            '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${baseUrl}/#website`, name: slotData.footer_company_name || 'Brand', url: baseUrl,
             isFamilyFriendly: false,
             potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${baseUrl}/search?q={search_term_string}` }, 'query-input': 'required name=search_term_string' }
         }
@@ -295,7 +296,7 @@ export const useSlotSEO = ({
             headline: slotData.overview_title || `${getSlotNameWithKeyword(slotData)} 2025`,
             description: slotData.overview_description_1 || `Complete review of ${slotData.name} slot from ${slotData.providers?.name || 'provider'}. RTP, volatility, bonus features analysis.`,
             articleBody: [slotData.overview_description_1, slotData.overview_description_2].filter(Boolean).join(' ') || `${slotData.name} is an innovative slot game with high win potential.`,
-            url: slotUrl, image: imageUrl, author: organizationSlotQuest, publisher: organizationSlotQuest,
+            url: slotUrl, image: imageUrl, author: organizationBrand, publisher: organizationBrand,
             datePublished: slotData.release_date || '2021-02-13', dateModified: slotData.updated_at || new Date().toISOString().split('T')[0], inLanguage: slotData.content_language || 'en',
             keywords: [slotData.hero_keyword, slotData.hero_keyword_2, slotData.hero_keyword_3, slotData.name, `${slotData.name} Review`, 'Slot Review', 'Casino Game Review'].filter(Boolean).join(', '),
             about: slotData.hero_keyword_2 ? { '@type': 'Thing', name: slotData.hero_keyword_2, description: `Detailed review and analysis of ${slotData.hero_keyword_2}` } : undefined,
@@ -340,7 +341,7 @@ export const useSlotSEO = ({
         if (slot.value && !loading.value && !error.value) {
             let structuredData
             if (slot.value.jsonld_enabled !== false && slot.value.id && getJsonLdScriptSync) {
-                const jsonLdScript = getJsonLdScriptSync(slot.value, 'https://slotquest.com')
+                const jsonLdScript = getJsonLdScriptSync(slot.value, siteUrl)
                 if (jsonLdScript) {
                     structuredData = jsonLdScript.innerHTML
                 }
@@ -350,26 +351,26 @@ export const useSlotSEO = ({
             }
 
             useHead({
-                title: slot.value.seo_title || `${slot.value.name}${slot.value.hero_keyword && slot.value.hero_keyword !== slot.value.name ? ' - ' + slot.value.hero_keyword : ''} 🎰 Play Free Demo & Real Money | SlotQuest`,
+                title: slot.value.seo_title || `${slot.value.name}${slot.value.hero_keyword && slot.value.hero_keyword !== slot.value.name ? ' - ' + slot.value.hero_keyword : ''} 🎰 Play Free Demo & Real Money | ${slot.value?.footer_company_name || 'Brand'}`,
                 meta: [
                     { name: 'description', content: slot.value.seo_description || generateSEODescription(slot.value) },
                     { name: 'keywords', content: generateOptimizedKeywords(slot.value) },
-                    { name: 'author', content: 'SlotQuest Editorial Team' },
+                    { name: 'author', content: 'Editorial Team' },
                     { name: 'robots', content: generateRobotsContent(slot.value) },
                     { name: 'theme-color', content: '#1a1a2e' },
                     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
                     { property: 'og:title', content: slot.value.og_title || `${slot.value.name} 🎰 Play Free Demo & Real Money` },
                     { property: 'og:description', content: slot.value.og_description || slot.value.seo_description || generateSEODescription(slot.value) },
                     { property: 'og:type', content: slot.value.og_type || 'article' },
-                    { property: 'og:site_name', content: slot.value.og_site_name || 'SlotQuest' },
+                    { property: 'og:site_name', content: slot.value.og_site_name || slot.value?.footer_company_name || 'Brand' },
                     { property: 'og:locale', content: slot.value.og_locale || 'en_US' },
-                    { property: 'og:url', content: slot.value.og_url || `https://slotquest.com/slots/${slot.value.slug || slug}` },
-                    { property: 'og:image', content: slot.value.og_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg` },
+                    { property: 'og:url', content: slot.value.og_url || `${siteUrl}/slots/${slot.value.slug || slug}` },
+                    { property: 'og:image', content: slot.value.og_image || slot.value.image_url || `${siteUrl}/images/slots/${slot.value.slug || slug}.jpg` },
                     { property: 'og:image:alt', content: slot.value.og_image_alt || `${slot.value.name || 'Slot'} - screenshot of slot machine from ${slot.value.providers?.name || 'provider'}` },
                     { property: 'og:image:width', content: String(slot.value.og_image_width || 1200) },
                     { property: 'og:image:height', content: String(slot.value.og_image_height || 630) },
                     { property: 'og:image:type', content: 'image/jpeg' },
-                    { property: 'og:image:secure_url', content: slot.value.og_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg` },
+                    { property: 'og:image:secure_url', content: slot.value.og_image || slot.value.image_url || `${siteUrl}/images/slots/${slot.value.slug || slug}.jpg` },
                     { property: 'og:updated_time', content: slot.value.updated_at || new Date().toISOString().split('T')[0] },
                     ...(slot.value.og_video ? [
                         { property: 'og:video', content: slot.value.og_video },
@@ -380,16 +381,16 @@ export const useSlotSEO = ({
                     ...(slot.value.og_locale_alternate ? slot.value.og_locale_alternate.split(',').map(locale => ({ property: 'og:locale:alternate', content: locale.trim() })) : []),
                     { property: 'article:published_time', content: slot.value.release_date || '2021-02-13' },
                     { property: 'article:modified_time', content: slot.value.updated_at || new Date().toISOString().split('T')[0] },
-                    { property: 'article:author', content: slot.value.author_meta || 'SlotQuest Editorial Team' },
+                    { property: 'article:author', content: slot.value.author_meta || 'Editorial Team' },
                     { property: 'article:section', content: 'Slot Machines' },
                     { property: 'article:tag', content: `${slot.value.name}, ${slot.value.providers?.name || 'provider'}, slot, slot machine` },
                     { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
-                    { name: 'twitter:site', content: slot.value.twitter_site || '@SlotQuest' },
+                    { name: 'twitter:site', content: slot.value.twitter_site || '' },
                     { name: 'twitter:title', content: slot.value.twitter_title || `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money` },
                     { name: 'twitter:description', content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐` },
-                    { name: 'twitter:image', content: slot.value.twitter_image || slot.value.image_url || `https://slotquest.com/images/slots/${slot.value.slug || slug}.jpg` },
+                    { name: 'twitter:image', content: slot.value.twitter_image || slot.value.image_url || `${siteUrl}/images/slots/${slot.value.slug || slug}.jpg` },
                     { name: 'twitter:image:alt', content: slot.value.twitter_image_alt || `${slot.value.name} slot gameplay screenshot` },
-                    { name: 'twitter:creator', content: slot.value.twitter_creator || '@SlotQuest' },
+                    { name: 'twitter:creator', content: slot.value.twitter_creator || '' },
                     ...(slot.value.twitter_player ? [
                         { name: 'twitter:player', content: slot.value.twitter_player },
                         { name: 'twitter:player:width', content: String(slot.value.twitter_player_width || 1280) },
@@ -421,7 +422,7 @@ export const useSlotSEO = ({
                 ],
                 htmlAttrs: { lang: slot.value.content_language || 'en' },
                 link: [
-                    { rel: 'canonical', href: slot.value.canonical_url || `https://slotquest.com/slots/${slot.value.slug || slug}` },
+                    { rel: 'canonical', href: slot.value.canonical_url || `${siteUrl}/slots/${slot.value.slug || slug}` },
                     ...generateHreflangLinks(slot.value),
                     { rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: 'anonymous' },
                     { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
@@ -438,20 +439,20 @@ export const useSlotSEO = ({
             })
         } else {
             useHead({
-                title: 'Slot - SlotQuest',
+                title: 'Slot - Preview',
                 meta: [
                     { name: 'description', content: 'Play slot from leading provider. Great opportunities to win!' },
-                    { property: 'og:title', content: 'Slot - SlotQuest' },
-                    { property: 'og:description', content: 'Play slot from leading provider. Great opportunities to win!' },
+                    { property: 'og:title', content: 'Slot - Preview' },
+                    { property: 'og:description', content: 'Slot review and demo.' },
                     { property: 'og:type', content: 'website' },
-                    { property: 'og:url', content: 'https://slotquest.com/slots' },
-                    { property: 'og:image', content: 'https://slotquest.com/og-default.jpg' },
+                    { property: 'og:url', content: `${siteUrl}/slots` },
+                    { property: 'og:image', content: `${siteUrl}/og-default.jpg` },
                     { name: 'twitter:card', content: 'summary_large_image' },
-                    { name: 'twitter:title', content: 'Slot - SlotQuest' },
+                    { name: 'twitter:title', content: 'Slot - Preview' },
                     { name: 'twitter:description', content: 'Play slot from leading provider. Great opportunities to win!' },
-                    { name: 'twitter:image', content: 'https://slotquest.com/og-default.jpg' }
+                    { name: 'twitter:image', content: `${siteUrl}/og-default.jpg` }
                 ],
-                link: [{ rel: 'canonical', href: 'https://slotquest.com/slots' }]
+                link: [{ rel: 'canonical', href: `${siteUrl}/slots` }]
             })
         }
     })

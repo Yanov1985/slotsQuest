@@ -259,9 +259,9 @@
 <script setup>
 // Page meta
 useHead({
-  title: 'Тестирование компонентов - SlotQuest',
+  title: 'Component Testing - Brand',
   meta: [
-    { name: 'description', content: 'Страница для тестирования UI-компонентов SlotQuest' }
+    { name: 'description', content: 'Page for testing UI components' }
   ]
 })
 

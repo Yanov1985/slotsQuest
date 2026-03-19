@@ -162,7 +162,7 @@ export const useJsonLd = () => {
    * Используется как fallback если сервер недоступен
    * или JSON-LD не настроен в админке
    */
-  const generateGameSchema = (slot: SlotData, siteUrl: string = 'https://slotquest.com'): object => {
+  const generateGameSchema = (slot: SlotData, siteUrl: string = 'https://Brand.com'): object => {
     const schema: any = {
       '@context': 'https://schema.org',
       '@type': slot.jsonld_type || 'Game',
@@ -272,7 +272,7 @@ export const useJsonLd = () => {
         'real money',
         'bonuses',
         'free spins',
-        'SlotQuest',
+        'Brand',
       ].filter(Boolean)
       schema.keywords = autoKeywords.join(', ')
     } else {
@@ -301,7 +301,7 @@ export const useJsonLd = () => {
       },
       author: {
         '@type': 'Organization',
-        name: slot.jsonld_review_author || 'SlotQuest Editorial Team',
+        name: slot.jsonld_review_author || 'Brand Editorial Team',
       },
       datePublished: new Date().toISOString().split('T')[0],
       reviewBody: slot.jsonld_review_text || slot.description,
@@ -367,7 +367,7 @@ export const useJsonLd = () => {
   /**
    * 🍞 Генерация BreadcrumbList Schema на клиенте
    */
-  const generateBreadcrumbSchema = (slot: SlotData, siteUrl: string = 'https://slotquest.com'): object => {
+  const generateBreadcrumbSchema = (slot: SlotData, siteUrl: string = 'https://Brand.com'): object => {
     const items: any[] = [
       {
         '@type': 'ListItem',
@@ -435,7 +435,7 @@ export const useJsonLd = () => {
    *
    * Используется как fallback когда сервер недоступен
    */
-  const generateAllSchemas = (slot: SlotData, siteUrl: string = 'https://slotquest.com'): object[] => {
+  const generateAllSchemas = (slot: SlotData, siteUrl: string = 'https://Brand.com'): object[] => {
     // Если JSON-LD выключен - возвращаем пустой массив
     if (slot.jsonld_enabled === false) {
       return []
@@ -492,7 +492,7 @@ export const useJsonLd = () => {
    */
   const getJsonLdScript = async (
     slot: SlotData,
-    siteUrl: string = 'https://slotquest.com'
+    siteUrl: string = 'https://Brand.com'
   ): Promise<{ type: string; innerHTML: string } | null> => {
     if (!slot || !slot.id) {
       console.warn('⚠️ useJsonLd: slot или slot.id не указан')
@@ -542,7 +542,7 @@ export const useJsonLd = () => {
    */
   const getJsonLdScriptSync = (
     slot: SlotData,
-    siteUrl: string = 'https://slotquest.com'
+    siteUrl: string = 'https://Brand.com'
   ): { type: string; innerHTML: string } | null => {
     if (!slot || slot.jsonld_enabled === false) {
       return null

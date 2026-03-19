@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    name: 'SlotQuest'
+    name: 'Brand'
   },
 
   app: {
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
 
   icon: {
     serverBundle: {
-      collections: ['heroicons', 'solar', 'lucide']
+      collections: ['heroicons', 'solar', 'lucide', 'pajamas', 'logos', 'svg-spinners', 'simple-icons', 'skill-icons']
     },
     clientBundle: {
       scan: true,
@@ -68,7 +68,8 @@ export default defineNuxtConfig({
     public: {
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
       supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
-      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://127.0.0.1:3001'
+      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://127.0.0.1:3001',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
     }
   },
 
@@ -119,8 +120,8 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'SlotQuest',
-      short_name: 'SlotQuest',
+      name: 'Brand',
+      short_name: 'Brand',
       theme_color: '#1a1a2e',
       background_color: '#1a1a2e',
       display: 'standalone',

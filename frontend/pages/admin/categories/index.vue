@@ -808,11 +808,11 @@ onMounted(() => {
 
 // Page meta
 useHead({
-  title: 'SlotQuest Admin - Управление категориями',
+  title: 'Admin - Categories Management',
   meta: [
     {
       name: 'description',
-      content: 'Административная панель для управления категориями SlotQuest',
+      content: 'Administrative panel for managing slot categories',
     },
   ],
 })

@@ -146,7 +146,7 @@ const props = defineProps({
   },
   baseUrl: {
     type: String,
-    default: 'https://slotquest.com'
+    default: 'https://Brand.com'
   }
 })
 

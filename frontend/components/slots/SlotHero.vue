@@ -39,7 +39,7 @@
             <meta itemprop="datePublished" :content="slot.release_date || '2024-01-01'" />
             <meta itemprop="inLanguage" :content="slot.content_language || 'en'" />
             <meta itemprop="isAccessibleForFree" :content="slot.demo_url ? 'true' : 'false'" />
-            <link itemprop="url" :href="`https://slotquest.com/slots/${slot.slug}`" />
+            <link itemprop="url" :href="`https://Brand.com/slots/${slot.slug}`" />
 
             <!-- Unified Hero Content -->
             <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start mb-8 w-full">

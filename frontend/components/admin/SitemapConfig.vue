@@ -360,7 +360,7 @@
             <input
               v-model="modelValue.news_publication_name"
               @input="updateField('news_publication_name', $event.target.value)"
-              placeholder="SlotQuest"
+              placeholder="Brand"
               class="w-full px-3 py-2 bg-[#161A21] border border-[#353A4A] rounded-lg text-sm text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#10B981]"
             />
           </div>
