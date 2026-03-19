@@ -8,46 +8,46 @@
       <nav
         class="bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-50"
       >
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
             <!-- Навигация назад -->
-            <NuxtLink
-              to="/admin/slots"
-              class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:text-[#FF6E48] hover:border-[#FF6E48]/40 hover:bg-[#353A4A] transition-all duration-200"
-              title="Back to slots management"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <div class="flex items-center gap-3 min-w-0">
+              <NuxtLink
+                to="/admin/slots"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:text-[#FF6E48] hover:border-[#FF6E48]/40 hover:bg-[#2A2F3D] transition-colors duration-200 shrink-0"
+                title="Back to slots management"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </NuxtLink>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </NuxtLink>
 
-            <!-- Title слота -->
-            <div class="flex items-center">
-              <div class="text-center">
-                <h1 class="text-xl font-semibold text-[#E5E7EB] font-display">
+              <!-- Title слота -->
+              <div class="min-w-0">
+                <h1 class="text-lg sm:text-xl font-semibold text-[#E5E7EB] font-display truncate">
                   {{ form.name || 'New Slot' }}
                 </h1>
-                <p class="text-sm text-[#9CA3AF]">Edit slot</p>
+                <p class="text-xs sm:text-sm text-[#9CA3AF]">Edit slot</p>
               </div>
             </div>
 
             <!-- Action buttons -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+            <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto lg:justify-end">
               <!-- Управление секциями -->
               <div class="hidden sm:flex sm:flex-wrap sm:items-center sm:gap-2">
                 <button
                   @click="closeAllSections"
-                  class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                  class="h-9 px-3 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#2A2F3D] hover:border-[#EF4444]/40 hover:text-[#E5E7EB] font-medium transition-colors duration-200"
                   title="Close all sections"
                 >
                   <svg
@@ -67,7 +67,7 @@
                 </button>
                 <button
                   @click="openAllSections"
-                  class="px-3 py-2 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#10B981]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                  class="h-9 px-3 text-xs border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#2A2F3D] hover:border-[#10B981]/40 hover:text-[#E5E7EB] font-medium transition-colors duration-200"
                   title="Open all sections"
                 >
                   <svg
@@ -88,10 +88,10 @@
                 <button
                   @click="turboMode = !turboMode"
                   :class="[
-                    'px-3 py-2 text-xs border rounded-lg font-medium transition-all duration-200',
+                    'h-9 px-3 text-xs border rounded-lg font-medium transition-colors duration-200',
                     turboMode
                       ? 'border-[#00EDFF]/40 bg-[#00EDFF]/10 text-[#00EDFF] hover:bg-[#00EDFF]/20'
-                      : 'border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:bg-[#353A4A] hover:text-[#E5E7EB]'
+                      : 'border-[#353A4A] bg-[#1B1E26] text-[#9CA3AF] hover:bg-[#2A2F3D] hover:text-[#E5E7EB]'
                   ]"
                   title="Turbo mode: cache opened sections for faster repeated opening"
                 >
@@ -101,7 +101,7 @@
 
               <button
                 @click="resetForm"
-                class="px-4 py-2 border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#353A4A] hover:border-[#63F3AB]/40 hover:text-[#E5E7EB] font-medium transition-all duration-200"
+                class="h-9 px-3 sm:px-4 border border-[#353A4A] text-[#9CA3AF] bg-[#1B1E26] rounded-lg hover:bg-[#2A2F3D] hover:border-[#63F3AB]/40 hover:text-[#E5E7EB] text-xs sm:text-sm font-medium transition-colors duration-200"
                 title="Reset all changes"
               >
                 <svg
@@ -122,7 +122,7 @@
               <button
                 @click="saveSlot"
                 :disabled="saving"
-                class="px-6 py-2 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] disabled:from-[#353A4A] disabled:to-[#353A4A] text-white rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 disabled:scale-100"
+                class="h-9 px-4 sm:px-5 bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] hover:from-[#CD5A3C] hover:to-[#FF6E48] disabled:from-[#353A4A] disabled:to-[#353A4A] text-white rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200"
                 title="Save changes (Ctrl+S)"
               >
                 <svg
@@ -143,7 +143,7 @@
               <NuxtLink
                 :to="`/slots/${form.slug || 'preview'}`"
                 target="_blank"
-                class="px-4 py-2 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg font-semibold transition-all duration-200 transform sm:hover:scale-105 flex items-center justify-center"
+                class="h-9 px-3 sm:px-4 bg-gradient-to-r from-[#63F3AB] to-[#51C58B] hover:from-[#51C58B] hover:to-[#63F3AB] text-black rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200 flex items-center justify-center"
                 title="Open preview in new tab"
               >
                 <svg

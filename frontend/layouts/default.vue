@@ -10,15 +10,19 @@
       <slot />
     </div>
 
-    <!-- Global Footer -->
-    <TheFooter :data="pageData" />
+    <!-- Global Footer (hidden in admin area) -->
+    <TheFooter v-if="!isAdminRoute" :data="pageData" />
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { usePagesApi } from '~/composables/usePagesApi'
 import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
+
+const route = useRoute()
+const isAdminRoute = computed(() => route.path.startsWith('/admin'))
 
 const { getPage } = usePagesApi()
 const { data: pageData } = await useAsyncData('global-footer-data', () => getPage('home'))
