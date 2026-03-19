@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     }
   },
 
+  // Конфигурация иконок: управляет тем, какие наборы грузятся на сервере и клиенте.
   icon: {
     serverBundle: {
       collections: ['heroicons', 'solar', 'lucide', 'pajamas', 'logos', 'svg-spinners', 'simple-icons', 'skill-icons']
