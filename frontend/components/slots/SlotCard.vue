@@ -38,13 +38,15 @@
         </div>
 
         <!-- Hover Action Overlay -->
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-3 p-4 z-10 hidden lg:flex">
-          <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform active:scale-95 text-sm uppercase tracking-wide">
-            <Icon name="solar:play-bold" class="w-4 h-4" />
-            Играть
-          </button>
-          <div class="w-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 text-white font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm text-center backdrop-blur-md">
-            Обзор
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 z-10 hidden lg:block">
+          <div class="h-full flex flex-col items-center justify-center gap-3">
+            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform active:scale-95 text-sm uppercase tracking-wide">
+              <Icon name="solar:play-bold" class="w-4 h-4" />
+              Play
+            </button>
+            <div class="w-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 text-white font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm text-center backdrop-blur-md">
+              Review
+            </div>
           </div>
         </div>
       </div>

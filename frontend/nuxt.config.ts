@@ -65,6 +65,32 @@ export default defineNuxtConfig({
     domains: ['localhost']
   },
 
+  // Enterprise sitemap: индекс + раздельные карты (pages, slots, images) для лучшего crawl в Google.
+  sitemap: {
+    // Админ-раздел не должен индексироваться поисковиками.
+    exclude: ['/admin/**'],
+    // Отключаем автогенерацию из nuxt:pages, чтобы не тащить служебные/админ-маршруты.
+    excludeAppSources: ['nuxt:pages'],
+    // Multi-sitemap конфигурация для больших каталогов.
+    sitemaps: {
+      pages: {
+        includeAppSources: false,
+        // Источник нужен и для child-sitemap, иначе карта получится пустой.
+        sources: ['/__sitemap__/urls']
+      },
+      slots: {
+        includeAppSources: false,
+        sources: ['/__sitemap__/urls'],
+        chunks: 1000
+      },
+      images: {
+        includeAppSources: false,
+        sources: ['/__sitemap__/urls'],
+        chunks: 1000
+      }
+    }
+  },
+
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
@@ -82,6 +108,13 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    // Полностью закрываем админку от индексации (включая страницу авторизации).
+    '/admin/**': {
+      robots: false,
+      headers: {
+        'X-Robots-Tag': 'noindex, nofollow, noarchive, nosnippet'
+      }
+    },
     // API proxy
     '/api/**': { proxy: 'http://127.0.0.1:3001/api/**' },
     // Cache static assets for 1 year

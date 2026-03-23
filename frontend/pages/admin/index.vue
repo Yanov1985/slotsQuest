@@ -8,15 +8,15 @@
     <!-- Header -->
     <header class="bg-[#161A21]/80 backdrop-blur-sm border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex items-center space-x-4">
-            <div class="text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center space-x-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-3 sm:h-16 sm:py-0">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-[#FF6E48] to-[#CD5A3C] bg-clip-text text-transparent flex items-center gap-2 min-w-0">
               <Icon name="heroicons:squares-2x2" class="text-[#FF6E48]" />
-              <span>Admin Dashboard</span>
+              <span class="truncate">Admin Dashboard</span>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <span class="text-[#E5E7EB] font-medium">Добро пожаловать, Администратор</span>
+          <div class="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            <span class="hidden md:inline text-[#E5E7EB] font-medium">Добро пожаловать, Администратор</span>
             <button @click="handleLogout" class="p-2 text-[#A0AABE] hover:text-[#FF6E48] transition-colors">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -95,7 +95,7 @@
             SEO и настройки
           </h2>
           <div class="space-y-3">
-            <NuxtLink to="/admin/seo/sitemap" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
+            <NuxtLink to="/sitemap_index.xml" target="_blank" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
               <div class="flex items-center space-x-3">
                 <Icon name="heroicons:map" class="text-[#FF6E48] text-xl" />
                 <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Sitemap</span>

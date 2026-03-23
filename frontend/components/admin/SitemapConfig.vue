@@ -563,7 +563,7 @@ const scoreItems = computed(() => [
 
 const sitemapUrl = computed(() => {
   const base = props.siteUrl || 'https://example.com'
-  return `${base}/sitemap.xml`
+  return `${base}/sitemap_index.xml`
 })
 
 const highlightedXml = computed(() => {

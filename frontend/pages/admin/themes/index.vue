@@ -5,18 +5,18 @@
     <!-- Header -->
     <header class="bg-[#161A21]/80 backdrop-blur-md border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <div class="flex items-center gap-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 py-3 lg:h-20 lg:py-0">
+          <div class="flex items-center gap-3 sm:gap-4 min-w-0">
             <NuxtLink
               to="/admin"
-              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center"
+              class="p-2.5 sm:p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center shrink-0"
               title="Вернуться в админ-панель"
             >
               <Icon name="solar:arrow-left-bold" class="w-5 h-5" />
             </NuxtLink>
-            <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-3">
-              <Icon name="heroicons:paint-brush" class="text-[#FF6E48] w-8 h-8" />
-              Управление темами
+            <h1 class="text-lg sm:text-2xl font-black text-white tracking-tight flex items-center gap-2 sm:gap-3 min-w-0">
+              <Icon name="heroicons:paint-brush" class="text-[#FF6E48] w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
+              <span class="truncate">Управление темами</span>
             </h1>
             <div class="h-8 w-px bg-[#353A4A] hidden sm:block"></div>
             <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg text-[#63F3AB] text-sm font-bold shadow-[0_0_15px_rgba(99,243,171,0.1)]">
@@ -24,20 +24,20 @@
               Всего: {{ themes.length }}
             </div>
           </div>
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto">
             <button
               @click="loadThemes"
-              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#00EDFF]/50 text-[#A0AABE] hover:text-[#00EDFF] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(0,237,255,0.15)] flex items-center justify-center"
+              class="p-2.5 sm:p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#00EDFF]/50 text-[#A0AABE] hover:text-[#00EDFF] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(0,237,255,0.15)] flex items-center justify-center shrink-0"
               title="Обновить список"
             >
               <Icon name="solar:refresh-circle-bold" class="w-5 h-5" />
             </button>
             <button
               @click="showAddModal = true"
-              class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#DF0078] to-[#CD0F8B] hover:from-[#CD0F8B] hover:to-[#9D0B6B] text-white rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(205,15,139,0.3)]"
+              class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-[#DF0078] to-[#CD0F8B] hover:from-[#CD0F8B] hover:to-[#9D0B6B] text-white rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(205,15,139,0.3)]"
             >
               <Icon name="solar:add-square-bold" class="w-5 h-5" />
-              <span class="hidden sm:inline">Добавить тему</span>
+              <span class="truncate">Добавить тему</span>
             </button>
           </div>
         </div>
@@ -45,7 +45,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 mt-5">
         <div

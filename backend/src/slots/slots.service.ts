@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateSlotDto } from './dto/create-slot.dto';
 import { UpdateSlotDto } from './dto/update-slot.dto';
@@ -13,6 +14,65 @@ interface SlotFilters {
 @Injectable()
 export class SlotsService {
   constructor(private readonly prisma: PrismaService) { }
+
+  // ========================================
+  // SEO: Уведомление поисковиков об обновлении sitemap
+  // ========================================
+
+  /**
+   * Возвращает абсолютный URL sitemap, который отправляем поисковикам.
+   * Логика как в интернет-магазине: есть "главная витрина" (site URL), и к ней
+   * всегда приклеиваем один и тот же каталог URL-ов (sitemap_index.xml).
+   */
+  private getSitemapUrl(): string {
+    const rawSiteUrl =
+      process.env.SITE_URL ||
+      process.env.NUXT_PUBLIC_SITE_URL ||
+      'http://localhost:3000';
+
+    const normalizedSiteUrl = rawSiteUrl.replace(/\/+$/, '');
+    return `${normalizedSiteUrl}/sitemap_index.xml`;
+  }
+
+  /**
+   * Мягкий (best-effort) HTTP ping без падения бизнес-логики.
+   * Даже если поисковик недоступен, сохранение/удаление слота не ломается.
+   */
+  private async pingSearchEndpoint(endpoint: string): Promise<void> {
+    try {
+      const response = await axios.get(endpoint, {
+        timeout: 7000,
+        validateStatus: () => true,
+      });
+
+      if (response.status >= 200 && response.status < 400) {
+        console.log(`✅ SEO ping success: ${endpoint} [${response.status}]`);
+      } else {
+        console.warn(`⚠️ SEO ping non-success: ${endpoint} [${response.status}]`);
+      }
+    } catch (error: any) {
+      console.warn(`⚠️ SEO ping failed: ${endpoint}`, error?.message || error);
+    }
+  }
+
+  /**
+   * Уведомляем поисковые системы, что sitemap обновился.
+   * Важно: запускаем после CRUD-операций со слотами (create/update/delete).
+   */
+  private async notifySearchEnginesAboutSitemapUpdate(): Promise<void> {
+    const sitemapUrl = encodeURIComponent(this.getSitemapUrl());
+
+    const pingEndpoints = [
+      // Исторический Google ping endpoint (best-effort).
+      `https://www.google.com/ping?sitemap=${sitemapUrl}`,
+      // Bing endpoint.
+      `https://www.bing.com/ping?sitemap=${sitemapUrl}`,
+    ];
+
+    await Promise.allSettled(
+      pingEndpoints.map((endpoint) => this.pingSearchEndpoint(endpoint)),
+    );
+  }
 
   async getAllSlots(filters: SlotFilters = {}) {
     try {
@@ -351,6 +411,9 @@ export class SlotsService {
         themes_count: createdSlot.slotThemes?.length || 0,
       });
 
+      // После создания нового слота сигнализируем поисковикам о новом sitemap.
+      void this.notifySearchEnginesAboutSitemapUpdate();
+
       return createdSlot;
     } catch (error) {
       console.error('❌ Ошибка при создании слота:', error);
@@ -509,6 +572,9 @@ export class SlotsService {
         themes_count: updatedSlot.slotThemes?.length || 0,
       });
 
+      // После обновления слота сигнализируем поисковикам об изменённом sitemap.
+      void this.notifySearchEnginesAboutSitemapUpdate();
+
       return updatedSlot;
 
     } catch (error) {
@@ -533,6 +599,10 @@ export class SlotsService {
           },
         },
       });
+
+      // После удаления слота сигнализируем поисковикам об изменённом sitemap.
+      void this.notifySearchEnginesAboutSitemapUpdate();
+
       return { success: true, data: result };
     } catch (error) {
       console.error('❌ Ошибка при удалении слота:', error);

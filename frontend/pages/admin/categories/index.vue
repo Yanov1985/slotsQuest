@@ -5,18 +5,18 @@
     <!-- Header -->
     <header class="bg-[#161A21]/80 backdrop-blur-md border-b border-[#353A4A] sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
-          <div class="flex items-center gap-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 py-3 lg:h-20 lg:py-0">
+          <div class="flex items-center gap-3 sm:gap-4 min-w-0">
             <NuxtLink
               to="/admin"
-              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center"
+              class="p-2.5 sm:p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#FF6E48]/50 text-[#A0AABE] hover:text-[#FF6E48] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(255,110,72,0.15)] flex items-center justify-center shrink-0"
               title="Вернуться в админ-панель"
             >
               <Icon name="solar:arrow-left-bold" class="w-5 h-5" />
             </NuxtLink>
-            <h1 class="text-2xl font-black text-white tracking-tight flex items-center gap-3">
-              <Icon name="heroicons:folder" class="text-[#FF6E48] w-8 h-8" />
-              Управление категориями
+            <h1 class="text-lg sm:text-2xl font-black text-white tracking-tight flex items-center gap-2 sm:gap-3 min-w-0">
+              <Icon name="heroicons:folder" class="text-[#FF6E48] w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
+              <span class="truncate">Управление категориями</span>
             </h1>
             <div class="h-8 w-px bg-[#353A4A] hidden sm:block"></div>
             <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#63F3AB]/10 border border-[#63F3AB]/20 rounded-lg text-[#63F3AB] text-sm font-bold shadow-[0_0_15px_rgba(99,243,171,0.1)]">
@@ -24,20 +24,20 @@
               Всего: {{ categories.length }}
             </div>
           </div>
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 sm:gap-3 w-full lg:w-auto">
             <button
               @click="loadCategories"
-              class="p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#00EDFF]/50 text-[#A0AABE] hover:text-[#00EDFF] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(0,237,255,0.15)] flex items-center justify-center"
+              class="p-2.5 sm:p-3 bg-[#0B0E14] border border-[#353A4A] hover:border-[#00EDFF]/50 text-[#A0AABE] hover:text-[#00EDFF] rounded-xl transition-all duration-300 transform active:scale-95 hover:shadow-[0_0_15px_rgba(0,237,255,0.15)] flex items-center justify-center shrink-0"
               title="Обновить список"
             >
               <Icon name="solar:refresh-circle-bold" class="w-5 h-5" />
             </button>
             <button
               @click="showAddModal = true"
-              class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#DF0078] to-[#CD0F8B] hover:from-[#CD0F8B] hover:to-[#9D0B6B] text-white rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(205,15,139,0.3)]"
+              class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-[#DF0078] to-[#CD0F8B] hover:from-[#CD0F8B] hover:to-[#9D0B6B] text-white rounded-xl font-bold transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(205,15,139,0.3)]"
             >
               <Icon name="solar:add-square-bold" class="w-5 h-5" />
-              <span class="hidden sm:inline">Добавить категорию</span>
+              <span class="truncate">Добавить категорию</span>
             </button>
           </div>
         </div>
@@ -45,7 +45,7 @@
     </header>
 
     <!-- Main Content -->
-     <main class="container mx-auto px-4 py-8">
+     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
        <!-- Header with Add Button -->
        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
          <div>
@@ -110,7 +110,7 @@
       </div>
 
       <!-- Search and Filters -->
-      <div class="bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-6 mb-8">
+      <div class="bg-[#1B1E26]/50 backdrop-blur-sm border border-[#353A4A] rounded-xl p-4 sm:p-6 mb-8">
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex-1">
             <div class="relative">
@@ -126,10 +126,10 @@
             </div>
           </div>
           
-          <div class="flex gap-3">
+          <div class="flex flex-col sm:flex-row gap-3">
             <select
               v-model="selectedStatus"
-              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
+              class="w-full sm:w-auto bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="">Все статусы</option>
               <option value="true">Активные</option>
@@ -138,7 +138,7 @@
             
             <select
               v-model="sortBy"
-              class="bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
+              class="w-full sm:w-auto bg-[#0F1117] border border-[#353A4A] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all"
             >
               <option value="name">По названию</option>
               <option value="created_at">По дате создания</option>
@@ -148,7 +148,7 @@
             
             <button
               @click="sortOrder = sortOrder === 'asc' ? 'desc' : 'asc'"
-              class="px-4 py-3 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white hover:bg-[#1B1E26] transition-all flex items-center"
+              class="w-full sm:w-auto px-4 py-3 bg-[#0F1117] border border-[#353A4A] rounded-lg text-white hover:bg-[#1B1E26] transition-all flex items-center justify-center"
             >
               <Icon :name="sortOrder === 'asc' ? 'heroicons:chevron-up' : 'heroicons:chevron-down'" />
             </button>

@@ -119,17 +119,14 @@ const errorMessage = ref('')
 
 // Работаем с auth-композаблом, который хранит токен и пользователя.
 const { login } = useAdminAuth()
-const route = useRoute()
-
 const onSubmit = async () => {
   try {
     loading.value = true
     errorMessage.value = ''
 
     await login(form.login, form.password)
-
-    const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/admin'
-    await navigateTo(redirect)
+    // После входа всегда отправляем на главный дашборд админки.
+    await navigateTo('/admin')
   } catch (error) {
     const status =
       error?.statusCode ||
