@@ -415,6 +415,7 @@ model slots {
 
   // ========== 🌍 GEO TARGETING ==========
   geo_regions          String? // JSON массив кодов стран для hreflang (например ["RU","IN","BR"])
+  localizations        Json?   // JSON object для хранения переводов и локализованного SEO ({"pt-BR": { seo_title: "...", ... }})
 
   // ========== 🎯 JSON-LD СТРУКТУРИРОВАННЫЕ ДАННЫЕ (SEO) ==========
   // Управление JSON-LD схемами для Google Rich Snippets и поисковой оптимизации

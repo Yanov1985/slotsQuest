@@ -174,7 +174,103 @@
 
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <!-- Основной контент: Редактирование -->
-        <form @submit.prevent="saveSlot" class="w-full space-y-6 sm:space-y-8">
+        
+        <!-- GEO Localization Panel (Minimal & Native) -->
+        <div class="mb-8 bg-[#161A21]/50 backdrop-blur-sm border border-[#353A4A] rounded-2xl p-4 sm:p-6 relative overflow-hidden">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              </div>
+              <div>
+                <h2 class="text-base sm:text-lg font-semibold text-[#E5E7EB]">Target Markets</h2>
+                <p class="text-xs sm:text-sm text-[#9CA3AF]">Manage and translate slot content</p>
+              </div>
+            </div>
+            <button @click="showGeoModal = true" type="button" class="h-9 px-4 bg-[#1B1E26] hover:bg-[#2A2F3D] border border-[#353A4A] hover:border-indigo-500/40 text-[#9CA3AF] hover:text-[#E5E7EB] rounded-lg transition-colors text-sm font-medium flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+              Manage GEOs
+            </button>
+          </div>
+          
+          <div class="mt-5">
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#353A4A] scrollbar-track-transparent">
+               <button v-for="code in activeLocaleCodes" :key="code" type="button"
+                   @click="switchLocale(code)" 
+                   class="flex-shrink-0 group px-3 sm:px-4 py-2 rounded-lg border transition-all duration-200 flex items-center gap-2 min-w-max relative"
+                   :class="currentLocale === code ? 'bg-indigo-600/10 border-indigo-500/50 text-[#E5E7EB]' : 'bg-[#1B1E26] border-[#353A4A] text-[#9CA3AF] hover:text-[#E5E7EB] hover:bg-[#2A2F3D]'"
+               >
+                  <span class="text-base">{{ getLocale(code).flag }}</span>
+                  <span class="font-medium text-xs sm:text-sm">{{ getLocale(code).name }}</span>
+                  
+                  <span v-if="code !== 'en'" @click.stop="removeLocale(code)" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#1B1E26] border border-[#353A4A] text-red-400 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-red-500/20 hover:border-red-500/40 transition-all z-10 hidden sm:flex">
+                     <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </span>
+               </button>
+            </div>
+          </div>
+          
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-medium">
+            <div v-if="currentLocale !== 'en'" class="px-2.5 py-1 bg-amber-500/10 text-amber-400/90 border border-amber-500/20 rounded-md">
+              <span class="mr-1">⚠️</span> Auto-translate mode: Editing localized <strong>{{ getLocale(currentLocale).name }}</strong> data.
+            </div>
+            <div v-else class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400/90 border border-emerald-500/20 rounded-md">
+              <span class="mr-1">✅</span> Base Content: Editing default English data.
+            </div>
+          </div>
+        </div>
+
+        <Teleport to="body">
+          <div v-if="showGeoModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
+            <div class="bg-[#161A21] border border-[#353A4A] rounded-2xl w-full max-w-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+              <div class="px-6 py-4 border-b border-[#353A4A] flex items-center justify-between bg-[#1B1E26]">
+                 <h3 class="text-lg sm:text-xl font-bold text-[#E5E7EB] flex items-center gap-2">
+                   <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+                   Select Target Markets
+                 </h3>
+                 <button type="button" @click="showGeoModal = false" class="text-[#9CA3AF] hover:text-white transition-colors">
+                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                 </button>
+              </div>
+              
+              <div class="flex-1 overflow-y-auto p-4 sm:p-6">
+                 <div class="mb-5 relative">
+                    <svg class="w-5 h-5 text-[#9CA3AF] absolute left-3 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <input v-model="geoSearch" type="text" placeholder="Search countries..." class="w-full bg-[#1B1E26] border border-[#353A4A] rounded-lg pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500/50 transition-colors placeholder-[#6B7280]" />
+                 </div>
+                 
+                 <div v-for="(locales, region) in filteredGroupedLocales" :key="region" class="mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                       <h4 class="text-xs font-semibold text-[#E5E7EB] uppercase tracking-wider">{{ region }}</h4>
+                       <div class="h-px flex-1 bg-gradient-to-r from-[#353A4A] to-transparent"></div>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                        <button type="button" v-for="locale in locales" :key="locale.code" 
+                                @click="toggleLocale(locale.code)"
+                                class="flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-200 gap-2 relative"
+                                :class="activeLocaleCodes.includes(locale.code) ? 'bg-indigo-600/10 border-indigo-500/40 text-white shadow-[0_0_10px_rgba(99,102,241,0.05)]' : 'bg-[#1B1E26] border-[#353A4A] text-[#9CA3AF] hover:border-[#4B5563] hover:bg-[#2A2F3D]'"
+                        >
+                           <span class="text-3xl">{{ locale.flag }}</span>
+                           <span class="text-xs sm:text-sm font-medium text-center line-clamp-1">{{ locale.name }}</span>
+                           
+                           <div v-if="activeLocaleCodes.includes(locale.code)" class="absolute top-2 right-2 w-4 h-4 bg-indigo-500 rounded-full flex items-center justify-center">
+                              <svg class="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                           </div>
+                        </button>
+                    </div>
+                 </div>
+              </div>
+              
+              <div class="px-6 py-4 border-t border-[#353A4A] bg-[#1B1E26] flex justify-end">
+                 <button type="button" @click="showGeoModal = false" class="h-10 px-6 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-medium transition-colors">
+                   Done
+                 </button>
+              </div>
+            </div>
+          </div>
+        </Teleport>
+
+<form @submit.prevent="saveSlot" class="w-full space-y-6 sm:space-y-8">
           <div
             id="hero"
             data-section="hero"
@@ -2395,7 +2491,9 @@
                       ></div>
                     </div>
                   </div>
-                  <!-- Collapse/expand SEO section button -->
+                  
+
+<!-- Collapse/expand SEO section button -->
                   <button
                     type="button"
                     @click="showSeoSection = !showSeoSection"
@@ -5227,6 +5325,141 @@ const showHeroSection = ref(false)
 const showBasicSection = ref(false)
 const showHeroLinksSection = ref(false)
 const showGameCharacteristicsSection = ref(false)
+
+// ======== Multi-GEO Localization ========
+const showGeoModal = ref(false)
+const geoSearch = ref('')
+
+const ALL_LOCALES = [
+  // Global / Default
+  { code: 'en', name: 'English (Default)', flag: '🇬🇧', region: 'Global & Default' },
+  
+  // CIS & Eastern Europe
+  { code: 'ru', name: 'Россия', flag: '🇷🇺', region: 'CIS & Eastern Europe' },
+  { code: 'uz', name: 'Узбекистан', flag: '🇺🇿', region: 'CIS & Eastern Europe' },
+  { code: 'az', name: 'Азербайджан', flag: '🇦🇿', region: 'CIS & Eastern Europe' },
+  { code: 'kk', name: 'Казахстан', flag: '🇰🇿', region: 'CIS & Eastern Europe' },
+  { code: 'uk', name: 'Украина', flag: '🇺🇦', region: 'CIS & Eastern Europe' },
+  { code: 'pl', name: 'Польша', flag: '🇵🇱', region: 'CIS & Eastern Europe' },
+  { code: 'bg', name: 'Болгария', flag: '🇧🇬', region: 'CIS & Eastern Europe' },
+  { code: 'ro', name: 'Румыния', flag: '🇷🇴', region: 'CIS & Eastern Europe' },
+  { code: 'cs', name: 'Чехия', flag: '🇨🇿', region: 'CIS & Eastern Europe' },
+  { code: 'hu', name: 'Венгрия', flag: '🇭🇺', region: 'CIS & Eastern Europe' },
+  
+  // Western Europe
+  { code: 'de', name: 'Германия', flag: '🇩🇪', region: 'Western Europe' },
+  { code: 'fr', name: 'Франция', flag: '🇫🇷', region: 'Western Europe' },
+  { code: 'es', name: 'Испания', flag: '🇪🇸', region: 'Western Europe' },
+  { code: 'it', name: 'Италия', flag: '🇮🇹', region: 'Western Europe' },
+  { code: 'pt', name: 'Португалия', flag: '🇵🇹', region: 'Western Europe' },
+  { code: 'nl', name: 'Нидерланды', flag: '🇳🇱', region: 'Western Europe' },
+  { code: 'sv', name: 'Швеция', flag: '🇸🇪', region: 'Western Europe' },
+  { code: 'el', name: 'Греция', flag: '🇬🇷', region: 'Western Europe' },
+  
+  // Americas
+  { code: 'pt-BR', name: 'Бразилия', flag: '🇧🇷', region: 'Americas' },
+  { code: 'es-AR', name: 'Аргентина', flag: '🇦🇷', region: 'Americas' },
+  { code: 'es-CL', name: 'Чили', flag: '🇨🇱', region: 'Americas' },
+  { code: 'es-CO', name: 'Колумбия', flag: '🇨🇴', region: 'Americas' },
+  { code: 'es-PE', name: 'Перу', flag: '🇵🇪', region: 'Americas' },
+  { code: 'es-MX', name: 'Мексика', flag: '🇲🇽', region: 'Americas' },
+  { code: 'en-US', name: 'США', flag: '🇺🇸', region: 'Americas' },
+  { code: 'en-CA', name: 'Канада', flag: '🇨🇦', region: 'Americas' },
+  
+  // Asia
+  { code: 'hi', name: 'Индия', flag: '🇮🇳', region: 'Asia' },
+  { code: 'id', name: 'Индонезия', flag: '🇮🇩', region: 'Asia' },
+  { code: 'bn', name: 'Бангладеш', flag: '🇧🇩', region: 'Asia' },
+  { code: 'ph', name: 'Филиппины', flag: '🇵🇭', region: 'Asia' },
+  { code: 'th', name: 'Таиланд', flag: '🇹🇭', region: 'Asia' },
+  { code: 'vi', name: 'Вьетнам', flag: '🇻🇳', region: 'Asia' },
+  { code: 'my', name: 'Малайзия', flag: '🇲🇾', region: 'Asia' },
+  { code: 'ja', name: 'Япония', flag: '🇯🇵', region: 'Asia' },
+  { code: 'ko', name: 'Южная Корея', flag: '🇰🇷', region: 'Asia' },
+  { code: 'zh', name: 'Китай', flag: '🇨🇳', region: 'Asia' },
+  
+  // Middle East & North Africa
+  { code: 'tr', name: 'Турция', flag: '🇹🇷', region: 'Middle East & MENA' },
+  { code: 'ar', name: 'ОАЭ', flag: '🇦🇪', region: 'Middle East & MENA' },
+  { code: 'fa', name: 'Иран', flag: '🇮🇷', region: 'Middle East & MENA' },
+  { code: 'ar-EG', name: 'Египет', flag: '🇪🇬', region: 'Middle East & MENA' },
+  { code: 'ar-MA', name: 'Марокко', flag: '🇲🇦', region: 'Middle East & MENA' },
+  
+  // Sub-Saharan Africa
+  { code: 'fr-SN', name: 'Сенегал', flag: '🇸🇳', region: 'Sub-Saharan Africa' },
+  { code: 'en-UG', name: 'Уганда', flag: '🇺🇬', region: 'Sub-Saharan Africa' },
+  { code: 'en-NG', name: 'Нигерия', flag: '🇳🇬', region: 'Sub-Saharan Africa' },
+  { code: 'en-ZA', name: 'ЮАР', flag: '🇿🇦', region: 'Sub-Saharan Africa' },
+  { code: 'en-KE', name: 'Кения', flag: '🇰🇪', region: 'Sub-Saharan Africa' },
+  { code: 'fr-CI', name: 'Кот-д’Ивуар', flag: '🇨🇮', region: 'Sub-Saharan Africa' },
+  { code: 'fr-CM', name: 'Камерун', flag: '🇨🇲', region: 'Sub-Saharan Africa' },
+  
+  // Oceania
+  { code: 'en-AU', name: 'Австралия', flag: '🇦🇺', region: 'Oceania' },
+  { code: 'en-NZ', name: 'Новая Зеландия', flag: '🇳🇿', region: 'Oceania' }
+]
+
+const currentLocale = ref('en')
+const activeLocaleCodes = ref(['en'])
+const localizations = ref({})
+
+const getLocale = (code) => ALL_LOCALES.find(l => l.code === code) || { code, name: code, flag: '🌍', region: 'Other' }
+
+const filteredGroupedLocales = computed(() => {
+  const filtered = geoSearch.value 
+    ? ALL_LOCALES.filter(l => l.name.toLowerCase().includes(geoSearch.value.toLowerCase()) || l.code.toLowerCase().includes(geoSearch.value.toLowerCase()))
+    : ALL_LOCALES;
+    
+  return filtered.reduce((groups, locale) => {
+    if (!groups[locale.region]) {
+      groups[locale.region] = [];
+    }
+    groups[locale.region].push(locale);
+    return groups;
+  }, {});
+})
+
+const toggleLocale = (code) => {
+  if (code === 'en') return
+  if (activeLocaleCodes.value.includes(code)) {
+    removeLocale(code)
+  } else {
+    activeLocaleCodes.value.push(code)
+    if (!localizations.value[code]) {
+      localizations.value[code] = {}
+    }
+  }
+}
+
+const removeLocale = (code) => {
+  if (code === 'en') return
+  if (currentLocale.value === code) {
+    switchLocale('en')
+  }
+  activeLocaleCodes.value = activeLocaleCodes.value.filter(c => c !== code)
+}
+
+const switchLocale = (newLocale) => {
+  if (currentLocale.value === newLocale) return
+  
+  if (!localizations.value[currentLocale.value]) localizations.value[currentLocale.value] = {}
+  Object.keys(form.value).forEach(key => {
+    if (typeof form.value[key] === 'string' && !key.includes('url') && !key.includes('_id') && key !== 'slug') {
+      localizations.value[currentLocale.value][key] = form.value[key]
+    }
+  })
+  
+  currentLocale.value = newLocale
+  const newData = localizations.value[newLocale] || {}
+  
+  Object.keys(form.value).forEach(key => {
+    if (typeof form.value[key] === 'string' && !key.includes('url') && !key.includes('_id') && key !== 'slug') {
+      // If locale is missing the field, fallback to English to prevent empty strings for `name`, `slug` etc.
+        form.value[key] = newData[key] !== undefined && newData[key] !== '' ? newData[key] : (localizations.value['en']?.[key] || '')
+    }
+  })
+}
+// ========================================
 const showRatingSection = ref(false)
 const showMechanicsSection = ref(false)
 const showBonusesSection = ref(false)
@@ -6707,6 +6940,28 @@ const loadSlot = async () => {
     // Auto-fill empty Info Popup fields with default content (like on client)
     // generateInfoContent fills only empty fields and calls initInfoArrays() at the end
     generateInfoContent()
+
+    // ======== Multi-GEO Localization Data Hydration ========
+    localizations.value = slot.value.localizations ? (typeof slot.value.localizations === 'string' ? JSON.parse(slot.value.localizations) : slot.value.localizations) : {}
+    if (!localizations.value['en']) {
+      localizations.value['en'] = {}
+      Object.keys(form.value).forEach(key => {
+        if (typeof form.value[key] === 'string' && !key.includes('url') && !key.includes('_id') && key !== 'slug') {
+          localizations.value['en'][key] = form.value[key]
+        }
+      })
+    }
+    
+    const keys = Object.keys(localizations.value)
+    keys.forEach(k => {
+      if (!activeLocaleCodes.value.includes(k) && k !== '_metadata') {
+        activeLocaleCodes.value.push(k)
+      }
+    })
+    
+    // Switch to EN by default to make sure all is in sync
+    currentLocale.value = 'en'
+    // ======================================================
   } catch (error) {
     console.error('Error loading slot:', error)
     await router.push('/admin/slots')
@@ -6831,6 +7086,28 @@ const saveSlot = async () => {
         : `http://localhost:3001/api/slots/${slotId}`
 
     const method = slotId === 'new' ? 'POST' : 'PUT'
+
+    // ======== Multi-GEO Localization Commit ========
+    if (!localizations.value[currentLocale.value]) localizations.value[currentLocale.value] = {}
+    Object.keys(form.value).forEach(key => {
+      if (typeof form.value[key] === 'string' && !key.includes('url') && !key.includes('_id') && key !== 'slug') {
+        localizations.value[currentLocale.value][key] = form.value[key]
+      }
+    })
+    
+    // Clean up localizations (only send active ones)
+    const allowedLocalesObject = {}
+    activeLocaleCodes.value.forEach(code => {
+      if (localizations.value[code]) allowedLocalesObject[code] = localizations.value[code]
+    })
+    localizations.value = allowedLocalesObject
+    
+    // If saving in non-english, we also must ensure the English base fields are maintained 
+    // inside dataToSend, but if the user hasn't touched them currently we'll just send the current form 
+    // which contains the localized version. Wait, this will override the base English slot! 
+    // We MUST replace the dataToSend base fields with localizations.value['en']!
+    
+    // ===============================================
 
     // List of fields allowed in UpdateSlotDto
     const allowedFields = [
@@ -7192,6 +7469,7 @@ const saveSlot = async () => {
       'jsonld_video_thumbnail',
       'jsonld_video_duration',
       'jsonld_video_description',
+      'localizations',
       // ========== SEO META TAGS ==========
       'seo_title',
       'seo_description',
@@ -7440,7 +7718,13 @@ const saveSlot = async () => {
           dataToSend[field] =
             form.value[field] === null ? null : parseInt(form.value[field])
         } else {
-          dataToSend[field] = form.value[field]
+          // ======== Multi-GEO Restoration ========
+          // If we are saving, the root fields of the Slot should ideally be the English base!
+          if (localizations.value['en'] && typeof form.value[field] === 'string' && !field.includes('url') && !field.includes('_id') && field !== 'slug') {
+             dataToSend[field] = localizations.value['en'][field] !== undefined ? localizations.value['en'][field] : form.value[field]
+          } else {
+             dataToSend[field] = form.value[field]
+          }
         }
         console.log(`✅ Copying field ${field}:`, form.value[field])
       } else {
@@ -7487,6 +7771,7 @@ const saveSlot = async () => {
 
     // 🌍 Geo Targeting — save selected regions from TechnicalSEO
     dataToSend.geo_regions = JSON.stringify(technicalSeoForm.value.regions || [])
+    dataToSend.localizations = localizations.value // Multi-GEO injected
 
     // Automatically form game_field from reels and rows
     dataToSend.game_field =
@@ -7722,11 +8007,28 @@ const resetForm = () => {
 
 // ========== SEO AUTO-GENERATION FUNCTIONS ==========
 
-// Auto-title generation (for preview)
+// Auto-title generation (for preview and generation)
 const generateAutoTitle = () => {
   const name = form.value.name || 'Slot'
   const provider = slot.value?.providers?.name || ''
   const rtp = form.value.rtp || ''
+  const loc = currentLocale.value
+
+  if (loc === 'pt-BR') {
+    let title = `${name} Demo Grátis`
+    if (provider) title += ` por ${provider}`
+    if (rtp) title += ` | RTP ${rtp}%`
+    title += ' | Brasil'
+    return title.length > 60 ? title.substring(0, 57) + '...' : title
+  }
+  
+  if (loc === 'ru') {
+    let title = `${name} Демо`
+    if (provider) title += ` от ${provider}`
+    if (rtp) title += ` | RTP ${rtp}%`
+    title += ' | Играть Бесплатно'
+    return title.length > 60 ? title.substring(0, 57) + '...' : title
+  }
 
   // Format: "Name Slot by Provider | RTP% | Play Free | Brand"
   let title = `${name}`
@@ -7742,16 +8044,25 @@ const generateAutoTitle = () => {
   return title
 }
 
-// Auto-description generation (for preview)
+// Auto-description generation (for preview and generation)
 const generateAutoDescription = () => {
   const name = form.value.name || 'this exciting slot'
   const provider = slot.value?.providers?.name || 'top provider'
-  const rtp = form.value.rtp || '96'
-  const volatility = form.value.volatility || 'medium'
-  const maxWin = form.value.max_win || '5000'
+  const rtp = form.value.rtp ? ` RTP ${form.value.rtp}%,` : ''
+  const maxWin = form.value.max_win ? ` Max win ${form.value.max_win}x!` : ''
+  const loc = currentLocale.value
 
-  // Format: "Play Name slot by Provider. RTP%, Volatility volatility, Max Win x. Free demo & real money!"
-  let desc = `Play ${name} slot by ${provider}. RTP ${rtp}%, ${volatility} volatility, max win ${maxWin}x. Free demo available!`
+  if (loc === 'pt-BR') {
+    let desc = `🎰 Jogue ${name} grátis por ${provider}. Aproveite${rtp}. Demo grátis e a dinheiro real.${maxWin} ⭐`
+    return desc.length > 160 ? desc.substring(0, 157) + '...' : desc
+  }
+  
+  if (loc === 'ru') {
+    let desc = `🎰 Играть ${name} бесплатно от ${provider}. Высокий${rtp} Доступно демо и на деньги.${maxWin} ⭐`
+    return desc.length > 160 ? desc.substring(0, 157) + '...' : desc
+  }
+
+  let desc = `🎰 Play ${name} by ${provider} -${rtp} ${form.value.volatility || 'high'} volatility. Free demo & real money.${maxWin} ⭐`
 
   // Trim to 160 characters
   if (desc.length > 160) {
