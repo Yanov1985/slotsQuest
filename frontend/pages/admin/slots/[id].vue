@@ -8010,16 +8010,21 @@ const resetForm = () => {
 // Auto-title generation (for preview and generation)
 const generateAutoTitle = () => {
   const name = form.value.name || 'Slot'
+  const isOlympus = name.toLowerCase().includes('olympus')
   const provider = slot.value?.providers?.name || ''
   const rtp = form.value.rtp || ''
   const loc = currentLocale.value
 
   if (loc === 'pt-BR') {
+    if (isOlympus) {
+      return "Gates of Olympus Demo: Jogue o Velho do Raio Grátis"
+    }
+
     let title = `${name} Demo Grátis`
     if (provider) title += ` por ${provider}`
     if (rtp) title += ` | RTP ${rtp}%`
     title += ' | Brasil'
-    return title.length > 60 ? title.substring(0, 57) + '...' : title
+    return title
   }
   
   if (loc === 'ru') {
@@ -8027,7 +8032,7 @@ const generateAutoTitle = () => {
     if (provider) title += ` от ${provider}`
     if (rtp) title += ` | RTP ${rtp}%`
     title += ' | Играть Бесплатно'
-    return title.length > 60 ? title.substring(0, 57) + '...' : title
+    return title
   }
 
   // Format: "Name Slot by Provider | RTP% | Play Free | Brand"
@@ -8036,40 +8041,32 @@ const generateAutoTitle = () => {
   if (rtp) title += ` | RTP ${rtp}%`
   title += ' | Play Free'
 
-  // Trim to 60 characters
-  if (title.length > 60) {
-    title = title.substring(0, 57) + '...'
-  }
-
   return title
 }
 
 // Auto-description generation (for preview and generation)
 const generateAutoDescription = () => {
   const name = form.value.name || 'this exciting slot'
+  const isOlympus = name.toLowerCase().includes('olympus')
   const provider = slot.value?.providers?.name || 'top provider'
-  const rtp = form.value.rtp ? ` RTP ${form.value.rtp}%,` : ''
+  const rtp = form.value.rtp ? ` RTP ${form.value.rtp}%, ` : ''
   const maxWin = form.value.max_win ? ` Max win ${form.value.max_win}x!` : ''
   const loc = currentLocale.value
 
   if (loc === 'pt-BR') {
-    let desc = `🎰 Jogue ${name} grátis por ${provider}. Aproveite${rtp}. Demo grátis e a dinheiro real.${maxWin} ⭐`
-    return desc.length > 160 ? desc.substring(0, 157) + '...' : desc
+    if (isOlympus) {
+      // 149 characters: Perfect for Mobile & Desktop SERP limits
+      // Targets: "demo grátis", "Gates of Olympus", "velho do raio", "estratégia", "max win"
+      return "Jogue a demo grátis do Gates of Olympus (O Velho do Raio)! Teste a estratégia do super scatter, alcance o max win de 5000x e divirta-se sem risco."
+    }
+    return `🎰 Jogue ${name} (Demo Grátis) por ${provider}. Aproveite${rtp}alta volatilidade. Demo grátis e a dinheiro real.${maxWin} ⭐`
   }
   
   if (loc === 'ru') {
-    let desc = `🎰 Играть ${name} бесплатно от ${provider}. Высокий${rtp} Доступно демо и на деньги.${maxWin} ⭐`
-    return desc.length > 160 ? desc.substring(0, 157) + '...' : desc
+    return `🎰 Играть ${name} бесплатно от ${provider}. Высокий${rtp}доступно демо и на деньги.${maxWin} ⭐`
   }
 
-  let desc = `🎰 Play ${name} by ${provider} -${rtp} ${form.value.volatility || 'high'} volatility. Free demo & real money.${maxWin} ⭐`
-
-  // Trim to 160 characters
-  if (desc.length > 160) {
-    desc = desc.substring(0, 157) + '...'
-  }
-
-  return desc
+  return `🎰 Play ${name} by ${provider} -${rtp}${form.value.volatility || 'high'} volatility. Free demo & real money.${maxWin} ⭐`
 }
 
 // Function for Title auto-generation button
