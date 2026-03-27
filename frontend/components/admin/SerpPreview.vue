@@ -194,46 +194,7 @@
       </div>
     </div>
 
-    <!-- SEO Score & Tips -->
-    <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
-      <div class="flex items-center justify-between mb-3">
-        <span class="text-sm font-medium text-[#E5E7EB]">SEO Score</span>
-        <div class="flex items-center gap-2">
-          <span
-            class="text-2xl font-bold"
-            :class="seoScoreClass"
-          >
-            {{ seoScore }}
-          </span>
-          <span class="text-xs text-[#9CA3AF]">/ 100</span>
-        </div>
-      </div>
-
-      <!-- Score Bar -->
-      <div class="w-full bg-[#353A4A] rounded-full h-2 mb-4">
-        <div
-          class="h-2 rounded-full transition-all duration-500"
-          :class="seoScoreBarClass"
-          :style="{ width: `${seoScore}%` }"
-        ></div>
-      </div>
-
-      <!-- Tips -->
-      <div v-if="seoTips.length > 0" class="space-y-2">
-        <p class="text-xs font-medium text-[#9CA3AF]">Recommendations:</p>
-        <ul class="space-y-1">
-          <li
-            v-for="(tip, index) in seoTips"
-            :key="index"
-            class="text-xs flex items-start gap-2"
-            :class="tip.type === 'error' ? 'text-[#EF4444]' : tip.type === 'warning' ? 'text-[#F59E0B]' : 'text-[#10B981]'"
-          >
-            <span>{{ tip.type === 'error' ? '❌' : tip.type === 'warning' ? '⚠️' : '✅' }}</span>
-            <span>{{ tip.message }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+    
   </div>
 </template>
 

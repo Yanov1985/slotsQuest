@@ -346,7 +346,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
@@ -424,7 +424,7 @@
                             v-model="form.name"
                             type="text"
                             required
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200"
                             placeholder="Example: Gates of Olympus"
                           />
                         </div>
@@ -453,7 +453,7 @@
                             v-model="form.slug"
                             type="text"
                             required
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
                             placeholder="gates-of-olympus"
                           />
                           <p class="mt-1 text-xs text-[#9CA3AF]">
@@ -486,7 +486,7 @@
                           <select
                             v-model="form.provider_id"
                             required
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
                           >
                             <option value="">Select a provider</option>
                             <option
@@ -522,7 +522,7 @@
                           <select
                             v-model="form.category_id"
                             required
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] transition-all duration-200"
                           >
                             <option value="">Select a category</option>
                             <option
@@ -549,7 +549,7 @@
                             v-model="form.description"
                             rows="4"
                             maxlength="400"
-                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                             placeholder="Short description of the slot, which will be displayed in the Hero section"
                           ></textarea>
                         </div>
@@ -615,7 +615,7 @@
                               v-model="form.hero_keyword"
                               type="text"
                               maxlength="100"
-                              class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
                               placeholder='Example: "Premium Casino Experience"'
                             />
                           </div>
@@ -643,7 +643,7 @@
                               v-model="form.hero_keyword_2"
                               type="text"
                               maxlength="200"
-                              class="w-full px-4 py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-emerald-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
                               placeholder='Example: "Gates of Olympus"'
                             />
                           </div>
@@ -671,7 +671,7 @@
                               v-model="form.hero_keyword_3"
                               type="text"
                               maxlength="200"
-                              class="w-full px-4 py-3 bg-gray-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                               placeholder='Example: "Gates of Olympus 1,000"'
                             />
                           </div>
@@ -703,7 +703,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
@@ -783,7 +783,7 @@
                             <input
                               v-model="form.demo_url"
                               type="url"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
                               placeholder="https://demo.provider.com/gates-of-olympus"
                             />
                             <p class="mt-1 text-xs text-[#9CA3AF]">
@@ -815,7 +815,7 @@
                             <input
                               v-model="form.real_play_url"
                               type="url"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#00EDFF] focus:border-[#00EDFF] transition-all duration-200"
                               placeholder="https://casino.com/games/gates-of-olympus"
                             />
                             <p class="mt-1 text-xs text-[#9CA3AF]">
@@ -831,7 +831,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
@@ -924,7 +924,7 @@
                               step="0.01"
                               min="50"
                               max="99"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                               placeholder="96.50"
                             />
                           </div>
@@ -951,7 +951,7 @@
                             </label>
                             <select
                               v-model="form.volatility"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                             >
                             <option value="low">Low</option>
                               <option value="medium">Medium</option>
@@ -982,7 +982,7 @@
                             <input
                               v-model="form.min_bet"
                               type="text"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                               placeholder="€0.20"
                             />
                           </div>
@@ -1010,7 +1010,7 @@
                             <input
                               v-model="form.max_bet"
                               type="text"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                               placeholder="€100"
                             />
                           </div>
@@ -1039,7 +1039,7 @@
                               v-model.number="form.max_win"
                               type="number"
                               min="1"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#63F3AB] focus:border-[#63F3AB] transition-all duration-200"
                               placeholder="5000"
                             />
                           </div>
@@ -1054,7 +1054,7 @@
                             <input
                               v-model="form.release_date"
                               type="date"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                             />
                           </div>
 
@@ -1070,7 +1070,7 @@
                               type="number"
                               min="1"
                               step="1"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                               placeholder="5"
                             />
                           </div>
@@ -1087,7 +1087,7 @@
                               type="number"
                               min="1"
                               step="1"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                               placeholder="3"
                             />
                           </div>
@@ -1113,14 +1113,14 @@
                                 type="number"
                                 min="1"
                                 max="1024"
-                                class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                class="w-full px-3 sm:px-4 py-2 sm:py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                 placeholder="25"
                               />
                               <input
                                 v-else
                                 v-model="form.paylines"
                                 type="text"
-                                class="w-full px-4 py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                class="w-full px-3 sm:px-4 py-2 sm:py-3 pr-20 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                 placeholder="Scatter Pays"
                               />
                             </div>
@@ -1134,7 +1134,7 @@
                     <div
                       class="group bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-2xl"
@@ -1180,7 +1180,7 @@
                           <textarea
                             v-model="form.info_expert_verdict"
                             rows="3"
-                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
                             placeholder="Expert review and overall verdict for this slot..."
                           ></textarea>
                         </div>
@@ -1430,7 +1430,7 @@
                                   @input="syncInfoHowToPlay"
                                 ></textarea>
                               </div>
-                              <button
+                        <button
                                 type="button"
                                 @click="removeInfoHowToPlayItem(i)"
                                 class="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors shrink-0 self-start mt-1"
@@ -1451,7 +1451,7 @@
                           <textarea
                             v-model="form.info_demo_cta"
                             rows="2"
-                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
                             placeholder="Call to action text for demo play button..."
                           ></textarea>
 
@@ -1461,7 +1461,7 @@
                           <input
                             v-model="form.info_demo_btn_text"
                             type="text"
-                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
                             placeholder="Play Demo Now"
                           />
 
@@ -1471,7 +1471,7 @@
                           <input
                             v-model="form.demo_url"
                             type="text"
-                            class="w-full px-4 py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#0D1117] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all text-sm"
                             placeholder="https://provider.com/demo/slot-name"
                           />
                         </div>
@@ -1483,7 +1483,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#CD0F8B]/10 to-[#CD0F8B]/10 border border-[#CD0F8B]/20 rounded-xl p-6 hover:border-[#CD0F8B]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#CD0F8B] to-[#CD0F8B] rounded-xl flex items-center justify-center"
@@ -1548,7 +1548,7 @@
                             v-model.number="form.popularity_rank"
                             type="number"
                             min="1"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
                             placeholder="12"
                           />
                         </div>
@@ -1580,7 +1580,7 @@
                               step="0.01"
                               min="50"
                               max="99"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#CD0F8B] focus:border-[#CD0F8B] transition-all duration-200"
                               placeholder="97.45"
                             />
                           </div>
@@ -1595,7 +1595,7 @@
                             <input
                               v-model="form.bonus_frequency"
                               type="text"
-                              class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                               placeholder="1:448"
                             />
                           </div>
@@ -1677,7 +1677,7 @@
                         </label>
                         <select
                           v-model="form.media_type"
-                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                         >
                           <option value="image">Image</option>
                           <option value="video">Video</option>
@@ -1697,7 +1697,7 @@
                         <input
                           v-model="form.image_url"
                           type="url"
-                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                           placeholder="https://example.com/slot-image.jpg"
                         />
                         <p class="mt-1 text-xs text-gray-400">
@@ -1715,7 +1715,7 @@
                         </label>
                         <select
                           v-model="form.image_focus_point"
-                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                         >
                           <option value="center 20%">🎯 Top (default)</option>
                           <option value="center center">⚪ Center</option>
@@ -1743,7 +1743,7 @@
                         <input
                           v-model="form.video_url"
                           type="url"
-                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
+                          class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all"
                           placeholder="https://example.com/slot-video.mp4"
                         />
                         <p class="mt-1 text-xs text-gray-400">
@@ -1929,7 +1929,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#FF6E48]/10 to-[#CD5A3C]/10 border border-[#FF6E48]/20 rounded-xl p-6 hover:border-[#FF6E48]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#FF6E48] to-[#CD5A3C] rounded-xl flex items-center justify-center"
@@ -2046,7 +2046,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#63F3AB]/10 to-[#51C58B]/10 border border-[#63F3AB]/20 rounded-xl p-6 hover:border-[#63F3AB]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#63F3AB] to-[#51C58B] rounded-xl flex items-center justify-center"
@@ -2234,7 +2234,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#00EDFF]/10 to-[#01BFCF]/10 border border-[#00EDFF]/20 rounded-xl p-6 hover:border-[#00EDFF]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#00EDFF] to-[#01BFCF] rounded-xl flex items-center justify-center"
@@ -2524,7 +2524,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#059669]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-xl flex items-center justify-center"
@@ -2581,7 +2581,7 @@
                       <div v-if="isTurboSectionVisible('metaSection', showMetaSection)" class="space-y-6">
                         <!-- SEO Title -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
@@ -2604,7 +2604,7 @@
                             v-model="form.seo_title"
                             type="text"
                             placeholder="Play [Slot Name] online for free | Brand Name"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.seo_title || '').length > 60,
                               'border-[#F59E0B]/50': (form.seo_title || '').length > 0 && (form.seo_title || '').length < 30,
@@ -2614,7 +2614,7 @@
                           />
                           <!-- Индикатор длины с прогресс-баром -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 50-60 characters</span>
                                 <span
@@ -2664,7 +2664,7 @@
 
                         <!-- SEO Description -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label
                               class="block text-sm font-medium text-[#E5E7EB]"
                             >
@@ -2687,7 +2687,7 @@
                             v-model="form.seo_description"
                             rows="3"
                             placeholder="Play [Slot Name] by [Provider] for free and real money. RTP [%], volatility [level]. Bonuses, free spins and jackpots."
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.seo_description || '').length > 160,
                               'border-[#F59E0B]/50': (form.seo_description || '').length > 0 && (form.seo_description || '').length < 100,
@@ -2697,7 +2697,7 @@
                           ></textarea>
                           <!-- Индикатор длины с прогресс-баром -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 150-160 characters</span>
                                 <span
@@ -2747,7 +2747,7 @@
 
                         <!-- 📊 SEO Score Indicator -->
                         <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
-                          <div class="flex items-center justify-between mb-3">
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-3">
                             <div class="flex items-center gap-2">
                               <div class="w-8 h-8 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-lg flex items-center justify-center">
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2778,11 +2778,11 @@
                                   }"
                                 >{{ calculateMetaScore() }}%</span>
                               </div>
-                            </div>
+                          </div>
                           </div>
 
                           <!-- Score Details Grid -->
-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-2 text-xs">
                             <!-- Title Length -->
                             <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
                               <div class="flex items-center justify-between mb-1">
@@ -2921,24 +2921,24 @@
 
                           <!-- 1. Primary Keywords -->
                           <div class="space-y-2">
-                            <div class="flex items-center justify-between">
-                              <label class="block text-sm font-medium text-[#E5E7EB]">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                            <label class="block text-sm font-medium text-[#E5E7EB]">
                                 1️⃣ Primary Keywords
                                 <span class="text-[#10B981] ml-1">3-5 words</span>
                               </label>
-                              <button
+                            <button
                                 @click="generateAllSeoKeywords"
                                 type="button"
                                 class="text-xs bg-[#10B981]/10 text-[#10B981] hover:bg-[#10B981]/20 px-2.5 py-1 rounded-md border border-[#10B981]/30 transition-colors flex items-center gap-1.5"
                               >
                                 <span>✨</span> Auto-generate All
                               </button>
-                            </div>
+                          </div>
                             <input
                               v-model="form.seo_keywords_primary"
                               type="text"
                               placeholder="Gates of Olympus, Pragmatic Play slot, Greek mythology slots"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
                               🔑 Main terms people use to search for your slot
@@ -2960,7 +2960,7 @@
                               v-model="form.seo_keywords_lsi"
                               rows="3"
                               placeholder="Zeus symbols, free spins multipliers, cascade wins, volatility high, RTP 96.5%, scatter pays mechanism, tumble feature, bonus buy option, greek gods theme, ancient greece slots"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
                             ></textarea>
                             <p class="text-xs text-[#9CA3AF]">
                               🔗 Related terms Google associates with your slot
@@ -2981,7 +2981,7 @@
                               v-model="form.seo_keywords_geo"
                               rows="4"
                               placeholder="🇷🇺: slot machine Gates of Olympus, free spins, real money slot&#10;🇮🇳: Gates of Olympus online, free play demo, real money casino&#10;🇧🇷: Gates of Olympus grátis, jogo de cassino online&#10;🇹🇷: Gates of Olympus ücretsiz, çevrimiçi slot oyunu"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none font-mono text-sm"
                             ></textarea>
                             <p class="text-xs text-[#9CA3AF]">
                               🌍 Keywords in target country languages (format: flag+country code: terms)
@@ -3004,7 +3004,7 @@
                             v-model="form.canonical_url"
                             type="url"
                             placeholder="https://slotquest.com/slots/slot-name"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
                             Leave empty for automatic generation
@@ -3023,7 +3023,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#1D4ED8]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] rounded-xl flex items-center justify-center"
@@ -3080,7 +3080,7 @@
                       <div v-if="isTurboSectionVisible('openGraphSection', showOpenGraphSection)" class="space-y-6">
                         <!-- 📊 OG Score Indicator -->
                         <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
-                          <div class="flex items-center justify-between mb-3">
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-3">
                             <div class="flex items-center gap-2">
                               <div class="w-8 h-8 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] rounded-lg flex items-center justify-center">
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3110,11 +3110,11 @@
                                   }"
                                 >{{ calculateOgScore() }}%</span>
                               </div>
-                            </div>
+                          </div>
                           </div>
 
                           <!-- Score Details Grid -->
-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-2 text-xs">
                             <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
                               <div class="flex items-center justify-between mb-1">
                                 <span class="text-[#9CA3AF]">Title</span>
@@ -3183,7 +3183,7 @@
 
                         <!-- OG Title -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               OG Title
                               <span class="text-[#3B82F6] ml-1 text-xs">(60-90 characters)</span>
@@ -3204,7 +3204,7 @@
                             v-model="form.og_title"
                             type="text"
                             placeholder="Automatically from SEO title"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.og_title || '').length > 90,
                               'border-[#F59E0B]/50': (form.og_title || '').length > 0 && (form.og_title || '').length < 40,
@@ -3214,7 +3214,7 @@
                           />
                           <!-- Length indicator -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 60-90 characters</span>
                                 <span v-if="(form.og_title || '').length > 0 && (form.og_title || '').length < 40" class="text-[#F59E0B]">
@@ -3260,7 +3260,7 @@
 
                         <!-- OG Description -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               OG Description
                               <span class="text-[#3B82F6] ml-1 text-xs">(150-250 characters)</span>
@@ -3281,7 +3281,7 @@
                             v-model="form.og_description"
                             rows="3"
                             placeholder="Automatically from SEO description"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200 resize-none"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.og_description || '').length > 250,
                               'border-[#F59E0B]/50': (form.og_description || '').length > 0 && (form.og_description || '').length < 100,
@@ -3291,7 +3291,7 @@
                           ></textarea>
                           <!-- Length indicator -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 150-250 characters</span>
                                 <span v-if="(form.og_description || '').length > 0 && (form.og_description || '').length < 100" class="text-[#F59E0B]">
@@ -3337,7 +3337,7 @@
 
                         <!-- OG Image with preview -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               OG Image
                               <span class="text-[#3B82F6] ml-1 text-xs">(1200×630 px)</span>
@@ -3358,7 +3358,7 @@
                             v-model="form.og_image"
                             type="url"
                             placeholder="Automatically from main slot image"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                           />
                           <!-- Image Preview -->
                           <div
@@ -3389,7 +3389,7 @@
                             </label>
                             <select
                               v-model="form.og_type"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             >
                               <option value="">Automatically (article)</option>
                               <option value="article">Article</option>
@@ -3409,7 +3409,7 @@
                             </label>
                             <select
                               v-model="form.og_locale"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                             >
                               <option value="">Automatically (en_US)</option>
                               <option value="en_US">English (US)</option>
@@ -3436,7 +3436,7 @@
                             v-model="form.og_video"
                             type="url"
                             placeholder="https://youtube.com/embed/... or direct link to video"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-all duration-200"
                           />
                           <p class="text-xs text-[#9CA3AF]">
                             Video link for autoplay on social networks (Facebook, LinkedIn)
@@ -3466,7 +3466,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#1DA1F2]/10 to-[#0D8BD9]/10 border border-[#1DA1F2]/20 rounded-xl p-6 hover:border-[#1DA1F2]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-xl flex items-center justify-center"
@@ -3519,7 +3519,7 @@
                       <div v-if="isTurboSectionVisible('twitterSection', showTwitterSection)" class="space-y-6">
                         <!-- 📊 Twitter Score Indicator -->
                         <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
-                          <div class="flex items-center justify-between mb-3">
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-3">
                             <div class="flex items-center gap-2">
                               <div class="w-8 h-8 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-lg flex items-center justify-center">
                                 <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -3549,11 +3549,11 @@
                                   }"
                                 >{{ calculateTwitterScore() }}%</span>
                               </div>
-                            </div>
+                          </div>
                           </div>
 
                           <!-- Score Details Grid -->
-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-2 text-xs">
                             <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
                               <div class="flex items-center justify-between mb-1">
                                 <span class="text-[#9CA3AF]">Title</span>
@@ -3627,7 +3627,7 @@
                           </label>
                           <select
                             v-model="form.twitter_card"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#10B981]/50': form.twitter_card === 'summary_large_image',
                               'border-[#F59E0B]/50': form.twitter_card === 'summary',
@@ -3645,7 +3645,7 @@
 
                         <!-- Twitter Title -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               Twitter Title
                               <span class="text-[#1DA1F2] ml-1 text-xs">(40-70 characters)</span>
@@ -3666,7 +3666,7 @@
                             v-model="form.twitter_title"
                             type="text"
                             placeholder="Automatically from OG/SEO title"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             :class="{
                               'border-[#EF4444]/50': (form.twitter_title || '').length > 70,
                               'border-[#F59E0B]/50': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
@@ -3676,7 +3676,7 @@
                           />
                           <!-- Length indicator -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 40-70 characters</span>
                                 <span v-if="(form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30" class="text-[#F59E0B]">
@@ -3722,7 +3722,7 @@
 
                         <!-- Twitter Description -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               Twitter Description
                               <span class="text-[#1DA1F2] ml-1 text-xs">(100-200 characters)</span>
@@ -3743,7 +3743,7 @@
                             v-model="form.twitter_description"
                             rows="3"
                             placeholder="Automatically from OG/SEO description"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
                             :class="{
                               'border-[#EF4444]/50': (form.twitter_description || '').length > 200,
                               'border-[#F59E0B]/50': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
@@ -3753,7 +3753,7 @@
                           ></textarea>
                           <!-- Length indicator -->
                           <div class="space-y-1.5">
-                            <div class="flex justify-between text-xs">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 text-xs">
                               <div class="flex items-center gap-2">
                                 <span class="text-[#9CA3AF]">Recommended: 100-200 characters</span>
                                 <span v-if="(form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80" class="text-[#F59E0B]">
@@ -3799,7 +3799,7 @@
 
                         <!-- Twitter Image with preview -->
                         <div class="space-y-2">
-                          <div class="flex items-center justify-between">
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                             <label class="block text-sm font-medium text-[#E5E7EB]">
                               Twitter Image
                               <span class="text-[#1DA1F2] ml-1 text-xs">(1200×628 px)</span>
@@ -3820,7 +3820,7 @@
                             v-model="form.twitter_image"
                             type="url"
                             placeholder="Automatically from Open Graph image"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                           />
                           <!-- Image Preview -->
                           <div
@@ -3853,7 +3853,7 @@
                               v-model="form.twitter_site"
                               type="text"
                               placeholder="@slotquest"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
                               Twitter username of the website (with @)
@@ -3869,7 +3869,7 @@
                               v-model="form.twitter_creator"
                               type="text"
                               placeholder="@author"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF]">
                               Twitter username of the author (with @)
@@ -3883,7 +3883,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#059669]/10 to-[#047857]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div
                             class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#047857] rounded-xl flex items-center justify-center"
@@ -3952,7 +3952,7 @@
                             </label>
                             <select
                               v-model="form.robots_meta"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
                               <option value="index, follow">
                                 index, follow (default)
@@ -3985,7 +3985,7 @@
                               v-model="form.viewport_meta"
                               type="text"
                               placeholder="width=device-width, initial-scale=1"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             />
                             <p class="text-xs text-[#9CA3AF] mt-2">
                               Mobile display settings
@@ -4003,7 +4003,7 @@
                             </label>
                             <select
                               v-model="form.charset_meta"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
                               <option value="UTF-8">
                                 UTF-8 (recommended)
@@ -4027,7 +4027,7 @@
                             </label>
                             <select
                               v-model="form.language_meta"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
                             >
                               <option value="ru">Russian (ru)</option>
                               <option value="en">English (en)</option>
@@ -4232,7 +4232,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center">
                             <span class="text-2xl">🏥</span>
@@ -4279,7 +4279,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#EC4899]/10 to-[#DB2777]/10 border border-[#EC4899]/20 rounded-xl p-6 hover:border-[#EC4899]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
                             <span class="text-2xl">🔍</span>
@@ -4333,7 +4333,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 border border-[#6366F1]/20 rounded-xl p-6 hover:border-[#6366F1]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div class="w-12 h-12 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl flex items-center justify-center">
                             <span class="text-2xl">📊</span>
@@ -4377,7 +4377,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center">
                             <span class="text-2xl">⚡</span>
@@ -4420,7 +4420,7 @@
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#34D399]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
                     >
-                      <div class="flex items-center justify-between mb-4">
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
                         <div class="flex items-center gap-3">
                           <div class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#34D399] rounded-xl flex items-center justify-center">
                             <span class="text-2xl">🗺️</span>
