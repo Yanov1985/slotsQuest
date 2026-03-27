@@ -2892,7 +2892,7 @@
                         <!-- 🔍 SERP Preview - How the page looks in Google -->
                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
                           <SerpPreview
-                            :title="form.seo_title_use_template ? generatedTitleFromTemplate : (form.seo_title || generateAutoTitle())"
+                            :title="form.seo_title || generateAutoTitle()"
                             :description="form.seo_description || generateAutoDescription()"
                             :slug="form.slug"
                             :slot-name="form.name"
@@ -2909,24 +2909,7 @@
                           />
                         </div>
 
-                        <!-- 🎯 Title Templates - Title Template System (Phase 2) -->
-                        <div class="bg-[#1B1E26]/50 border border-[#F59E0B]/20 rounded-lg p-4">
-                          <TitleTemplates
-                            :template="form.seo_title_template"
-                            :use-template="form.seo_title_use_template"
-                            :power-words="form.seo_title_power_words"
-                            :slot-name="form.name"
-                            :provider-name="slot?.providers?.name || ''"
-                            :rtp="form.rtp"
-                            :volatility="form.volatility"
-                            :max-win="form.max_win"
-                            :rating="form.rating"
-                            @update:template="form.seo_title_template = $event"
-                            @update:use-template="form.seo_title_use_template = $event"
-                            @update:power-words="form.seo_title_power_words = $event"
-                            @update:generated-title="generatedTitleFromTemplate = $event"
-                          />
-                        </div>
+                        
 
                         <!-- SEO Keywords - EXTENDED SYSTEM -->
                         <div class="space-y-4">
@@ -5228,7 +5211,6 @@ import HreflangConfig from '~/components/admin/HreflangConfig.vue'
 import RobotsConfig from '~/components/admin/RobotsConfig.vue'
 import JsonLdEditor from '~/components/admin/JsonLdEditor.vue'
 // Фаза 2 компоненты
-import TitleTemplates from '~/components/admin/TitleTemplates.vue'
 import EEATSignals from '~/components/admin/EEATSignals.vue'
 import ContentFreshness from '~/components/admin/ContentFreshness.vue'
 import SocialPreviewCards from '~/components/admin/SocialPreviewCards.vue'
@@ -5601,7 +5583,6 @@ const initInfoArrays = () => {
 }
 
 // Фаза 2: переменные для Title Templates
-const generatedTitleFromTemplate = ref('')
 const showVideoObjectSection = ref(false)
 
 const paylineType = ref('text') // 'number' или 'text'
@@ -6387,10 +6368,7 @@ const form = ref({
   // ============ PHASE 2: ADVANCED SEO ============
 
   // Title Templates
-  seo_title_template: '{name} Slot by {provider} | Play Free Demo {year}',
-  seo_title_power_words: '',
-  seo_title_use_template: false,
-
+      
   // E-E-A-T - Experience
   eeat_experience_date: '',
   eeat_experience_hours: 10,
@@ -7432,10 +7410,7 @@ const saveSlot = async () => {
       'content_language',
       'geo_target_regions',
       // Title Templates
-      'seo_title_template',
-      'seo_title_power_words',
-      'seo_title_use_template',
-      'search_intent',
+                        'search_intent',
       'canonical_url',
       // ========== OPEN GRAPH TAGS ==========
       'og_title',
