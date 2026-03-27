@@ -1,0 +1,2601 @@
+﻿diff --git a/backend/prisma/dev.db b/backend/prisma/dev.db
+index 257caae..35f36f7 100644
+Binary files a/backend/prisma/dev.db and b/backend/prisma/dev.db differ
+diff --git a/backend/studio-data/backup-summary.json b/backend/studio-data/backup-summary.json
+index a86ebd8..a415f54 100644
+--- a/backend/studio-data/backup-summary.json
++++ b/backend/studio-data/backup-summary.json
+@@ -1,7 +1,7 @@
+ {
+-  "timestamp": "2026-03-26T19:22:12.760Z",
+-  "dbFile": "dev_backup_2026-03-26T19-22-12.db",
+-  "dbSize": "456.00 KB",
++  "timestamp": "2026-03-26T20:10:53.883Z",
++  "dbFile": "dev_backup_2026-03-26T20-10-53.db",
++  "dbSize": "516.00 KB",
+   "counts": {
+     "providers": 94,
+     "mechanics": 37,
+diff --git a/backend/studio-data/slots.json b/backend/studio-data/slots.json
+index cbaee3f..9749abe 100644
+--- a/backend/studio-data/slots.json
++++ b/backend/studio-data/slots.json
+@@ -2114,7 +2114,7 @@
+     "play_count": 0,
+     "is_active": true,
+     "created_at": "2025-08-23T14:17:41.112Z",
+-    "updated_at": "2026-03-03T20:12:17.435Z",
++    "updated_at": "2026-03-26T20:05:47.055Z",
+     "bonus_frequency": null,
+     "hero_keyword": "Keyword_1",
+     "hero_keyword_2": "Keyword_2",
+@@ -2420,12 +2420,12 @@
+       "en": {
+         "seo_title": "Play Gates of Olympus Slot & Demo Free | Pragmatic Play",
+         "seo_description": "Win up to 5000x in Gates of Olympus by Pragmatic Play. High volatility, tumbling reels, and huge multipliers. Test the demo for free!",
+-        "hero_keyword": "Epic Greek Mythology Slot",
+-        "hero_keyword_2": "Gates of Olympus",
+-        "hero_keyword_3": "x500 Multipliers",
+-        "description": "Enter Zeus's realm with Pragmatic Play's iconic slot. Enjoy cascading reels and massive random multipliers up to x500 in the Free Spins feature.",
+-        "info_pros": "[\"Epic x500 Multipliers\",\"Tumbling Reels\",\"Buy Bonus Feature Available\",\"Exceptional graphics and sound\"]",
+-        "overview_description_1": "This exciting slot from Pragmatic Play is the perfect combination of innovative mechanics, stunning graphics, and generous wins. Thanks to its unique Scatter Pays system and thrilling bonus features, Gates of Olympus has won the hearts of millions of players in the US and worldwide.",
++        "hero_keyword": "Keyword_1",
++        "hero_keyword_2": "Keyword_2",
++        "hero_keyword_3": "Keyword_3",
++        "description": "Play [keyword_1] online slot with high RTP and exciting volatility levels. This game delivers premium graphics, thrilling features, and generous bonus mechanics. [keyword_2] proven fair gameplay system offers real chances for significant wins. Ideal for beginners and experienced players alike. [keyword_3] explore free demo mode to learn winning strategies.",
++        "info_pros": "[\"Competitive RTP of 96.21%\",\"Max win potential of 5000x\",\"20 ways to win\"]",
++        "overview_description_1": " ╨н╤В╨╛╤В ╨╖╨░╤Е╨▓╨░╤В╤Л╨▓╨░╤О╤Й╨╕╨╣ [keyword_1] ╤Б╨╗╨╛╤В ╨╛╤В Pragmatic Play ╨┐╤А╨╡╨┤╤Б╤В╨░╨▓╨╗╤П╨╡╤В ╤Б╨╛╨▒╨╛╨╣ ╨╕╨┤╨╡╨░╨╗╤М╨╜╨╛╨╡ ╤Б╨╛╤З╨╡╤В╨░╨╜╨╕╨╡ ╨╕╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╨╛╨╣ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨╕, ╨┐╨╛╤В╤А╤П╤Б╨░╤О╤Й╨╡╨╣ ╨│╤А╨░╤Д╨╕╨║╨╕ ╨╕ ╤Й╨╡╨┤╤А╤Л╤Е ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣. ╨С╨╗╨░╨│╨╛╨┤╨░╤А╤П ╤Г╨╜╨╕╨║╨░╨╗╤М╨╜╨╛╨╣ ╤Б╨╕╤Б╤В╨╡╨╝╨╡ Scatter Pays [keyword_2] ╨╕ ╨╖╨░╤Е╨▓╨░╤В╤Л╨▓╨░╤О╤Й╨╕╨╝ ╨▒╨╛╨╜╤Г╤Б╨╜╤Л╨╝ ╤Д╤Г╨╜╨║╤Ж╨╕╤П╨╝, ╤Н╤В╨╛╤В ╤Б╨╗╨╛╤В [keyword_3] ╨╖╨░╨▓╨╛╨╡╨▓╨░╨╗ ╤Б╨╡╤А╨┤╤Ж╨░ ╨╝╨╕╨╗╨╗╨╕╨╛╨╜╨╛╨▓ ╨╕╨│╤А╨╛╨║╨╛╨▓ ╨┐╨╛ ╨▓╤Б╨╡╨╝╤Г ╨╝╨╕╤А╤Г...",
+         "seo_keywords_primary": "Gates of Olympus slot, play Gates of Olympus, slots Pragmatic Play",
+         "seo_keywords_lsi": "Zeus slot game, tumble feature, buy bonus Pragmatic, 5000x max win",
+         "seo_keywords_geo": "US, UK, Canada, Australia",
+@@ -2433,11 +2433,205 @@
+         "keyword_density_score": 85,
+         "keyword_analysis_result": "Good keyword optimization for US market. High search intent for demo play.",
+         "keyword_suggestions": "Gates of Olympus demo, how to win gates of olympus, pragmatic play free slots",
+-        "keyword_competitors": "sweet bonanza, starlight princess"
++        "keyword_competitors": "sweet bonanza, starlight princess",
++        "name": "The Gates Of Olympus",
++        "rtp": "96.21",
++        "volatility": "high",
++        "min_bet": "0.1",
++        "max_bet": "100",
++        "max_win": "5000",
++        "release_date": "2025-08-22T21:00:00.000Z",
++        "game_field": "5├Ч3",
++        "media_type": "image",
++        "image_focus_point": "center 20%",
++        "info_expert_verdict": "The Gates Of Olympus by PRAGMATIC PLAY is a high-volatility slot with an RTP of 96.21% and a maximum win of 5000x. It delivers a balanced gaming experience suitable for most players. Overall, we rate it 4.5/5.",
++        "info_cons": "[\"High volatility тАФ not for cautious players\",\"Requires stable internet connection\"]",
++        "info_faq": "[{\"question\":\"Is The Gates Of Olympus safe to play online?\",\"answer\":\"Yes, The Gates Of Olympus is developed by PRAGMATIC PLAY, a licensed and regulated game provider. All games are tested by independent auditing agencies.\"},{\"question\":\"What is the RTP of The Gates Of Olympus?\",\"answer\":\"The Return to Player (RTP) of The Gates Of Olympus is 96.21%. This means that, on average, for every $100 wagered, the game returns $96.21 to players over time.\"},{\"question\":\"Can I play The Gates Of Olympus for free?\",\"answer\":\"Yes! You can play The Gates Of Olympus in free demo mode right here on SlotQuest. No registration or deposit required.\"},{\"question\":\"What is the maximum win in The Gates Of Olympus?\",\"answer\":\"The maximum win in The Gates Of Olympus is 5000x your bet.\"},{\"question\":\"What is the volatility of The Gates Of Olympus?\",\"answer\":\"The Gates Of Olympus has high volatility. Wins are less frequent but can be much larger.\"}]",
++        "info_reviews": "[{\"author\":\"Alex R.\",\"rating\":5,\"text\":\"The Gates Of Olympus is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back.\",\"date\":\"2024-12-15\"},{\"author\":\"Maria K.\",\"rating\":4,\"text\":\"Great slot with solid RTP of 96.21%. The free spins feature is especially exciting.\",\"date\":\"2024-11-28\"},{\"author\":\"James T.\",\"rating\":4,\"text\":\"Decent slot from PRAGMATIC PLAY. The 5000x max win potential is attractive. Love the theme.\",\"date\":\"2024-10-10\"}]",
++        "info_how_to_play": "[{\"step\":\"Open the Demo\",\"text\":\"Click \\\"Play Demo Now\\\" to launch The Gates Of Olympus in free play mode. No registration required.\"},{\"step\":\"Set Your Bet\",\"text\":\"Use the controls at the bottom of the game screen to adjust your bet size.\"},{\"step\":\"Spin the Reels\",\"text\":\"Click the Spin button or press Space. Watch for winning combinations across the 20 paylines.\"},{\"step\":\"Trigger Bonuses\",\"text\":\"Land special symbols to activate bonus features like free spins, multipliers, and other rewards.\"}]",
++        "info_demo_cta": "You can easily try out The Gates Of Olympus online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!",
++        "info_demo_btn_text": "Play Demo Now",
++        "overview_title": "╨Я╨╛╨╗╨╜╤Л╨╣ ╨╛╨▒╨╖╨╛╤А ",
++        "overview_keyword_1": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_keyword_2": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_keyword_3": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_description_2": "╨Ю╤Б╨╛╨▒╨╛╨╡ ╨▓╨╜╨╕╨╝╨░╨╜╨╕╨╡ ╨┐╤А╨╕╨▓╨╗╨╡╨║╨░╨╡╤В ╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕, ╨║╨╛╤В╨╛╤А╨░╤П ╨╛╤В╨║╤А╤Л╨▓╨░╨╡╤В ╨┐╤Г╤В╤М ╨║ ╨┤╨╡╨╣╤Б╤В╨▓╨╕╤В╨╡╨╗╤М╨╜╨╛ ╨▓╨┐╨╡╤З╨░╤В╨╗╤П╤О╤Й╨╕╨╝ ╨▓╤Л╨╕╨│╤А╤Л╤И╨░╨╝",
++        "overview_features_1": "╨Ш╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╨░╤П ╨╕╨│╤А╨╛╨▓╨░╤П ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░ ╨╛╤В Pragmatic Play ╤Б ╤Г╨╜╨╕╨║╨░╨╗╤М╨╜╤Л╨╝╨╕ ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╤П╨╝╨╕",
++        "overview_features_2": "╨й╨╡╨┤╤А╨░╤П ╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕ ╤Б ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╝╨╕ ╤И╨░╨╜╤Б╨░╨╝╨╕ ╨╜╨░ ╨║╤А╤Г╨┐╨╜╤Л╨╡ ╨▓╤Л╨┐╨╗╨░╤В╤Л",
++        "overview_features_3": "╨б╨╕╤Б╤В╨╡╨╝╨░ Scatter Pays ╨┤╨╗╤П ╨╝╨░╨║╤Б╨╕╨╝╨░╨╗╤М╨╜╨╛ ╨┐╤А╨╛╤Б╤В╨╛╨│╨╛ ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣",
++        "overview_features_4": "╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨┐╨╛╨║╤Г╨┐╨║╨╕ ╨▒╨╛╨╜╤Г╤Б╨░",
++        "overview_features_5": "╨а╨╡╤Б╨┐╨╕╨╜╤Л",
++        "overview_features_6": "╤А╨░╤Б╤И╨╕╤А╤П╤О╤Й╨╕╨╡╤Б╤П ╤Б╨╕╨╝╨▓╨╛╨╗╤Л",
++        "popularity_title_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "popularity_ranking_position": "12",
++        "popularity_user_rating": "4.8/5",
++        "popularity_monthly_players": "2M+",
++        "popularity_description": "This slot has maintained its top positions in rankings for several consecutive years, which confirms its exceptional quality and engaging gameplay.",
++        "popularity_global_rank_title": "Global Ranking",
++        "popularity_global_rank_value": "TOP 3",
++        "popularity_global_rank_description": "In the TOP-3 of the world's most popular slots for 3 consecutive years",
++        "popularity_active_players_title": "Active Players",
++        "popularity_active_players_value": "2.4M+",
++        "popularity_active_players_description": "Played by over 2.4 million unique players monthly",
++        "popularity_rtp_volatility_title": "RTP + Volatility",
++        "popularity_rtp_volatility_value": "96.5%",
++        "popularity_rtp_volatility_description": "High return and thrilling win swings",
++        "popularity_2021_rank": "#1",
++        "popularity_2021_description": "Best new slot",
++        "popularity_2021_width": "100%",
++        "popularity_2022_rank": "#1",
++        "popularity_2022_description": "Most popular",
++        "popularity_2022_width": "95%",
++        "popularity_2023_rank": "#1",
++        "popularity_2023_description": "Record holder",
++        "popularity_2023_width": "90%",
++        "popularity_2024_rank": "#12",
++        "popularity_2024_description": "Stable hit",
++        "popularity_2024_width": "70%",
++        "popularity_trend_description": "The chart shows a steady growth in popularity",
++        "mechanics_title": "╨Ш╨│╤А╨╛╨▓╤Л╨╡ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨╕ ╨╕ ╨╛╤Б╨╛╨▒╨╡╨╜╨╜╨╛╤Б╤В╨╕!",
++        "mechanics_intro": "╨н╤В╨╛╤В ╤Б╨╗╨╛╤В ╨┐╤А╨╡╨┤╨╗╨░╨│╨░╨╡╤В ╨╖╨░╤Е╨▓╨░╤В╤Л╨▓╨░╤О╤Й╨╕╨╣ ╨╕╨│╤А╨╛╨▓╨╛╨╣ ╨╛╨┐╤Л╤В ╨▒╨╗╨░╨│╨╛╨┤╨░╤А╤П ╤Б╨╛╨▓╤А╨╡╨╝╨╡╨╜╨╜╤Л╨╝ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░╨╝ ╨╕ ╨╕╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╤Л╨╝ ╤Д╤Г╨╜╨║╤Ж╨╕╤П╨╝:",
++        "mechanics_scatter_title": "Scatter Pays",
++        "mechanics_scatter_description": "╨б╨╕╤Б╤В╨╡╨╝╨░ ╨▓╤Л╨┐╨╗╨░╤В Scatter Pays ╤Г╨┐╤А╨╛╤Й╨░╨╡╤В ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣ - ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╜╨╡ ╨╛╨▒╤П╨╖╨░╤В╨╡╨╗╤М╨╜╨╛ ╨┤╨╛╨╗╨╢╨╜╤Л ╤А╨░╤Б╨┐╨╛╨╗╨░╨│╨░╤В╤М╤Б╤П ╨╜╨░ ╨░╨║╤В╨╕╨▓╨╜╤Л╤Е ╨╗╨╕╨╜╨╕╤П╤Е. ╨Ф╨╛╤Б╤В╨░╤В╨╛╤З╨╜╨╛ ╨╛╨┐╤А╨╡╨┤╨╡╨╗╨╡╨╜╨╜╨╛╨│╨╛ ╨║╨╛╨╗╨╕╤З╨╡╤Б╤В╨▓╨░ ╨╛╨┤╨╕╨╜╨░╨║╨╛╨▓╤Л╤Е ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨▓ ╨╗╤О╨▒╨╛╨╝ ╨╝╨╡╤Б╤В╨╡ ╨╕╨│╤А╨╛╨▓╨╛╨│╨╛ ╨┐╨╛╨╗╤П.",
++        "mechanics_scatter_details": "╨Ь╨╕╨╜╨╕╨╝╤Г╨╝ 8 ╨╛╨┤╨╕╨╜╨░╨║╨╛╨▓╤Л╤Е ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨▓ ╨╗╤О╨▒╨╛╨╝ ╨╝╨╡╤Б╤В╨╡ ╨▒╨░╤А╨░╨▒╨░╨╜╨╛╨▓ = ╨│╨░╤А╨░╨╜╤В╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╣ ╨▓╤Л╨╕╨│╤А╤Л╤И! ╨б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╨╡ scatter-╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╤О╤В╤Б╤П ╨╛╤В 4+ ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓.",
++        "mechanics_cascade_title": "╨Ъ╨░╤Б╨║╨░╨┤╨╜╤Л╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╕",
++        "mechanics_cascade_description": "╨Я╨╛╤Б╨╗╨╡ ╨║╨░╨╢╨┤╨╛╨│╨╛ ╨▓╤Л╨╕╨│╤А╤Л╤И╨░ ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╨╡╤В╤Б╤П ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░ ╨║╨░╤Б╨║╨░╨┤╨╛╨▓. ╨Т╤Л╨╕╨│╤А╤Л╤И╨╜╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╕╤Б╤З╨╡╨╖╨░╤О╤В ╤Б ╨▒╨░╤А╨░╨▒╨░╨╜╨╛╨▓, ╨░ ╨╜╨░ ╨╕╤Е ╨╝╨╡╤Б╤В╨╛ ╨┐╨░╨┤╨░╤О╤В ╨╜╨╛╨▓╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л, ╤Б╨╛╨╖╨┤╨░╨▓╨░╤П ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╨╕ ╨┤╨╗╤П ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╤Е ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣.",
++        "mechanics_cascade_details": "╨Ъ╨░╤Б╨║╨░╨┤╤Л ╨╝╨╛╨│╤Г╤В ╨┐╤А╨╛╨┤╨╛╨╗╨╢╨░╤В╤М╤Б╤П ╨╜╨╡╨╛╨│╤А╨░╨╜╨╕╤З╨╡╨╜╨╜╨╛ ╨┤╨╛╨╗╨│╨╛, ╤Б╨╛╨╖╨┤╨░╨▓╨░╤П ╤Ж╨╡╨┐╨╛╤З╨║╨╕ ╨┐╨╛╤Б╨╗╨╡╨┤╨╛╨▓╨░╤В╨╡╨╗╤М╨╜╤Л╤Е ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣ ╨▓ ╤А╨░╨╝╨║╨░╤Е ╨╛╨┤╨╜╨╛╨│╨╛ ╤Б╨┐╨╕╨╜╨░.",
++        "mechanics_multipliers_title": "╨б╨╗╤Г╤З╨░╨╣╨╜╤Л╨╡ ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕",
++        "mechanics_multipliers_description": "╨Т ╨╗╤О╨▒╨╛╨╝ ╤Б╨┐╨╕╨╜╨╡ ╨╜╨░ ╨▒╨░╤А╨░╨▒╨░╨╜╨░╤Е ╨╝╨╛╨│╤Г╤В ╨┐╨╛╤П╨▓╨╕╤В╤М╤Б╤П ╤Б╨╗╤Г╤З╨░╨╣╨╜╤Л╨╡ ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕ ╨╛╤В x2 ╨┤╨╛ x500, ╨║╨╛╤В╨╛╤А╤Л╨╡ ╨╖╨╜╨░╤З╨╕╤В╨╡╨╗╤М╨╜╨╛ ╤Г╨▓╨╡╨╗╨╕╤З╨╕╨▓╨░╤О╤В ╤А╨░╨╖╨╝╨╡╤А ╨▓╤Л╨╕╨│╤А╤Л╤И╨░.",
++        "mechanics_multipliers_details": "╨Ь╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕ ╨╜╨░╨║╨░╨┐╨╗╨╕╨▓╨░╤О╤В╤Б╤П ╨▓ ╤В╨╡╤З╨╡╨╜╨╕╨╡ ╨▓╤Б╨╡╤Е ╨║╨░╤Б╨║╨░╨┤╨╛╨▓ ╨╕ ╨┐╤А╨╕╨╝╨╡╨╜╤П╤О╤В╤Б╤П ╨║ ╨╕╤В╨╛╨│╨╛╨▓╨╛╨╝╤Г ╨▓╤Л╨╕╨│╤А╤Л╤И╤Г ╤Б╨┐╨╕╨╜╨░.",
++        "mechanics_multipliers_important_title": "An important feature of multipliers!",
++        "mechanics_multipliers_important": "An important feature of multipliers: It's worth noting that multipliers aren't applied immediately to a single cascade win. Gates of Olympus waits until all cascades are completed and then applies the sum of all collected multipliers to the round's total win. This is much more beneficial than a single multiplier boosting a single win.",
++        "mechanics_freespins_title": "╨С╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л",
++        "mechanics_freespins_description": "╨Р╨║╤В╨╕╨▓╨╕╤А╤Г╤О╤В╤Б╤П ╨┐╤А╨╕ ╨▓╤Л╨┐╨░╨┤╨╡╨╜╨╕╨╕ 3 ╨╕╨╗╨╕ ╨▒╨╛╨╗╨╡╨╡ scatter-╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨╜╨░ ╨▒╨░╤А╨░╨▒╨░╨╜╨░╤Е. ╨Я╤А╨╡╨┤╨╛╤Б╤В╨░╨▓╨╗╤П╤О╤В ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╨╡ ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╨╕ ╨┤╨╗╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨░ ╨▒╨╡╨╖ ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╤Е ╤Б╤В╨░╨▓╨╛╨║.",
++        "mechanics_freespins_details": "╨Т╨╛ ╨▓╤А╨╡╨╝╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╤Е ╤Б╨┐╨╕╨╜╨╛╨▓ ╨┤╨╡╨╣╤Б╤В╨▓╤Г╤О╤В ╨▓╤Б╨╡ ╨╛╤Б╨╜╨╛╨▓╨╜╤Л╨╡ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨╕ ╨╕╨│╤А╤Л ╤Б ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╝╨╕ ╤И╨░╨╜╤Б╨░╨╝╨╕ ╨╜╨░ ╨║╤А╤Г╨┐╨╜╤Л╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╕.",
++        "mechanics_wilds_title": "Wild ╤Б╨╕╨╝╨▓╨╛╨╗╤Л",
++        "mechanics_wilds_description": "╨г╨╜╨╕╨▓╨╡╤А╤Б╨░╨╗╤М╨╜╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л, ╨║╨╛╤В╨╛╤А╤Л╨╡ ╨╝╨╛╨│╤Г╤В ╨╖╨░╨╝╨╡╨╜╨╕╤В╤М ╨╗╤О╨▒╤Л╨╡ ╨┤╤А╤Г╨│╨╕╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л (╨║╤А╨╛╨╝╨╡ ╤Б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╤Е) ╨┤╨╗╤П ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨╜╤Л╤Е ╨║╨╛╨╝╨▒╨╕╨╜╨░╤Ж╨╕╨╣.",
++        "mechanics_wilds_details": "Wild ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╝╨╛╨│╤Г╤В ╨┐╨╛╤П╨▓╨╗╤П╤В╤М╤Б╤П ╨▓ ╤А╨░╨╖╨╗╨╕╤З╨╜╤Л╤Е ╨▓╨░╤А╨╕╨░╤Ж╨╕╤П╤Е: ╨╛╨▒╤Л╤З╨╜╤Л╨╡, ╤А╨░╤Б╤И╨╕╤А╤П╤О╤Й╨╕╨╡╤Б╤П, ╨╗╨╕╨┐╨║╨╕╨╡ ╨╕╨╗╨╕ ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕.",
++        "mechanics_bonus_title": "╨С╨╛╨╜╤Г╤Б╨╜╤Л╨╡ ╨╕╨│╤А╤Л!",
++        "mechanics_bonus_description": "╨б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╨╡ ╨╕╨│╤А╨╛╨▓╤Л╨╡ ╤А╨╡╨╢╨╕╨╝╤Л, ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╨╡╨╝╤Л╨╡ ╨╛╨┐╤А╨╡╨┤╨╡╨╗╨╡╨╜╨╜╤Л╨╝╨╕ ╨║╨╛╨╝╨▒╨╕╨╜╨░╤Ж╨╕╤П╨╝╨╕ ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓. ╨Я╤А╨╡╨┤╨╗╨░╨│╨░╤О╤В ╤Г╨╜╨╕╨║╨░╨╗╤М╨╜╤Л╨╣ ╨│╨╡╨╣╨╝╨┐╨╗╨╡╨╣ ╨╕ ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╡ ╨▓╤Л╨┐╨╗╨░╤В╤Л.",
++        "mechanics_bonus_details": "╨С╨╛╨╜╤Г╤Б╨╜╤Л╨╡ ╤А╨░╤Г╨╜╨┤╤Л ╨╝╨╛╨│╤Г╤В ╨▓╨║╨╗╤О╤З╨░╤В╤М ╨╝╨╕╨╜╨╕-╨╕╨│╤А╤Л, ╨║╨╛╨╗╨╡╤Б╨╛ ╤Д╨╛╤А╤В╤Г╨╜╤Л, ╨▓╤Л╨▒╨╛╤А ╨┐╤А╨╕╨╖╨╛╨▓ ╨╕╨╗╨╕ ╨┤╤А╤Г╨│╨╕╨╡ ╨╕╨╜╤В╨╡╤А╨░╨║╤В╨╕╨▓╨╜╤Л╨╡ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╤Л.",
++        "strategies_title": "╨б╤В╤А╨░╤В╨╡╨│╨╕╨╕ ╨╕ ╤Б╨╛╨▓╨╡╤В╤Л ╨┤╨╗╤П ╨╕╨│╤А╤Л",
++        "strategies_intro": "╨н╤Д╤Д╨╡╨║╤В╨╕╨▓╨╜╤Л╨╡ ╨┐╨╛╨┤╤Е╨╛╨┤╤Л ╨┤╨╗╤П ╨╝╨░╨║╤Б╨╕╨╝╨╕╨╖╨░╤Ж╨╕╨╕ ╤Г╨┤╨╛╨▓╨╛╨╗╤М╤Б╤В╨▓╨╕╤П ╨╛╤В ╨╕╨│╤А╤Л:",
++        "strategies_beginners_title": "ЁЯТб ╨а╨╡╨║╨╛╨╝╨╡╨╜╨┤╨░╤Ж╨╕╨╕ ╨┤╨╗╤П ╨╜╨╛╨▓╨╕╤З╨║╨╛╨▓",
++        "strategies_advanced_title": "ЁЯОп ╨Я╤А╨╛╨┤╨▓╨╕╨╜╤Г╤В╤Л╨╡ ╤Б╤В╤А╨░╤В╨╡╨│╨╕╨╕",
++        "popularity_section_title": "How popular is",
++        "popularity_rank_2024": "12",
++        "popularity_rank_2024_label": "2024 Ranking",
++        "popularity_user_rating_label": "User Rating",
++        "popularity_monthly_players_label": "Monthly Players",
++        "popularity_conclusion": "ЁЯПЖ This slot has maintained top positions in rankings for several consecutive years, confirming its exceptional quality and engaging gameplay.",
++        "rating_awards_title": "Rating and Awards",
++        "rating_main_score": "4.8",
++        "rating_main_max": "5",
++        "rating_description": "Average player rating",
++        "rating_reviews_count": "1,247",
++        "rating_reviews_text": "reviews",
++        "rating_5_stars_percent": "68",
++        "rating_4_stars_percent": "22",
++        "rating_3_stars_percent": "7",
++        "rating_2_stars_percent": "2",
++        "rating_1_stars_percent": "1",
++        "award_1_emoji": "ЁЯПЖ",
++        "award_1_title": "Slot of the Year 2024",
++        "award_1_description": "Casino Awards",
++        "award_1_color": "yellow",
++        "award_2_emoji": "ЁЯОЦя╕П",
++        "award_2_title": "Best Design",
++        "award_2_description": "Gaming Excellence",
++        "award_2_color": "purple",
++        "award_3_emoji": "ЁЯТО",
++        "award_3_title": "Platinum Status",
++        "award_3_description": "10M+ players",
++        "award_3_color": "green",
++        "award_4_emoji": "тнР",
++        "award_4_title": "Players' Choice",
++        "award_4_description": "Popular vote",
++        "award_4_color": "blue",
++        "prof_rating_expert_quote_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "prof_rating_recommendation_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "conclusion_rating_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "conclusion_text_1_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╨║╨╕",
++        "conclusion_verdict_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "cta_subtitle_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "seo_keywords": "",
++        "seo_keywords_longtail": "",
++        "video_duration": "PT3M",
++        "alternative_names": "",
++        "content_language": "en",
++        "og_type": "article",
++        "og_site_name": "SlotQuest",
++        "og_locale": "en_US",
++        "twitter_card": "summary_large_image",
++        "twitter_site": "@SlotQuest",
++        "twitter_creator": "@SlotQuest",
++        "robots_max_image_preview": "large",
++        "hreflang_preset": "international",
++        "eeat_author_name": "SlotQuest Editorial Team",
++        "eeat_disclaimer": "18+ | Gambling can be addictive | Play responsibly",
++        "content_version": "1.0",
++        "content_update_frequency": "monthly",
++        "robots_meta": "index, follow",
++        "viewport_meta": "width=device-width, initial-scale=1",
++        "charset_meta": "UTF-8",
++        "language_meta": "en",
++        "author_meta": "SlotQuest Team",
++        "generator_meta": "Nuxt.js",
++        "theme_color_meta": "#1F2937",
++        "target_locations": "ЁЯЗ║ЁЯЗ╕ USA\nЁЯЗмЁЯЗз UK\nЁЯЗиЁЯЗж Canada\nЁЯЗжЁЯЗ║ Australia\nЁЯЗ│ЁЯЗ┐ New Zealand\nЁЯЗоЁЯЗк Ireland\nЁЯЗйЁЯЗк Germany\nЁЯЗлЁЯЗ╖ France\nЁЯЗоЁЯЗ╣ Italy\nЁЯЗкЁЯЗ╕ Spain\nЁЯЗзЁЯЗ╖ Brazil\nЁЯЗоЁЯЗ│ India",
++        "schema_game_genre": "",
++        "schema_game_platform": "",
++        "schema_game_publisher": "",
++        "schema_content_rating": "",
++        "schema_rating_value": "",
++        "schema_review_count": "",
++        "schema_best_rating": "5",
++        "schema_org_name": "",
++        "schema_org_logo": "https://slotquest.com/logo.png",
++        "schema_org_type": "Organization",
++        "schema_slot_rtp": "",
++        "schema_slot_volatility": "",
++        "schema_slot_max_win": "",
++        "schema_slot_min_bet": "",
++        "schema_slot_max_bet": "",
++        "schema_slot_release_date": "",
++        "schema_slot_reels": "",
++        "schema_slot_paylines": "",
++        "schema_slot_rating": "",
++        "schema_slot_bonus_frequency": "",
++        "schema_slot_real_rtp": "",
++        "schema_slot_mechanics": "",
++        "schema_slot_bonus_types": "",
++        "schema_slot_theme": "",
++        "schema_provider_name": "",
++        "schema_provider_logo": "",
++        "schema_demo_action_name": "Play Demo",
++        "schema_real_action_name": "Play for Real Money",
++        "image_object_width": "",
++        "image_object_height": "",
++        "image_object_alt": "",
++        "image_object_caption": "",
++        "video_object_duration": "",
++        "video_object_upload_date": "",
++        "video_object_description": "",
++        "schema_review_title": "",
++        "schema_review_description_1": "",
++        "schema_review_description_2": "",
++        "schema_review_feature_1": "",
++        "schema_review_feature_2": "",
++        "schema_review_feature_3": "",
++        "schema_review_feature_4": "",
++        "schema_review_feature_5": "",
++        "schema_review_feature_6": "",
++        "schema_popularity_title": "",
++        "schema_ranking_position": "",
++        "schema_user_rating": "",
++        "schema_global_rating": "",
++        "schema_popularity_description": ""
+       },
+       "pt-BR": {
+         "seo_title": "Gates of Olympus Demo: Jogue o Velho do Raio Gr├бtis",
+-        "seo_description": "Descubra como jogar e ganhar no Gates of Olympus (Velho do Raio). Teste a vers├гo demo gr├бtis, confira a estrat├йgia do super scatter e busque o max win de 5000x.",
++        "seo_description": "Jogue a demo gr├бtis do Gates of Olympus (O Velho do Raio)! Teste a estrat├йgia do super scatter, alcance o max win de 5000x e divirta-se sem risco.",
+         "hero_keyword": "Velho do Raio",
+         "hero_keyword_2": "Demo Gr├бtis",
+         "hero_keyword_3": "Super Scatter x500",
+@@ -2458,7 +2652,201 @@
+         "hero_badge_text": "Top #1 no Brasil",
+         "top_badge_text": "Demo Gr├бtis",
+         "features_description": "Experimente a Demo gratuita para testar diferentes estrat├йgias e descobrir o melhor hor├бrio para jogar sem risco.",
+-        "json_ld_faq": "[{\"question\":\"Como jogar Gates of Olympus?\",\"answer\":\"Para jogar, defina o valor da sua aposta e clique no bot├гo de giro. O jogo utiliza a mec├вnica 'Scatter Pays', onde os s├нmbolos pagam em qualquer lugar da tela, desde que haja pelo menos 8 s├нmbolos iguais.\"},{\"question\":\"Como ganhar no Gates of Olympus?\",\"answer\":\"A chave para grandes vit├│rias est├б nos multiplicadores (at├й x500) que o Super Scatter (Velho do Raio) solta aleatoriamente e nas rodadas gr├бtis (Free Spins).\"},{\"question\":\"Como pegar max win no Gates of Olympus?\",\"answer\":\"O max win de 5000x ├й alcan├зado acumulando multiplicadores massivos durante as Rodadas Gr├бtis (Free Spins). Muitos jogadores testam primeiro na vers├гo Demo gr├бtis.\"},{\"question\":\"Qual melhor hor├бrio para jogar Gates of Olympus?\",\"answer\":\"Embora muitos procurem 'minutos pagantes' ou o melhor hor├бrio para lucrar, os resultados s├гo determinados por um Gerador de N├║meros Aleat├│rios (RNG) e o RTP do jogo (96.50%), garantindo justi├зa 24h por dia.\"}]"
++        "json_ld_faq": "[{\"question\":\"Como jogar Gates of Olympus?\",\"answer\":\"Para jogar, defina o valor da sua aposta e clique no bot├гo de giro. O jogo utiliza a mec├вnica 'Scatter Pays', onde os s├нmbolos pagam em qualquer lugar da tela, desde que haja pelo menos 8 s├нmbolos iguais.\"},{\"question\":\"Como ganhar no Gates of Olympus?\",\"answer\":\"A chave para grandes vit├│rias est├б nos multiplicadores (at├й x500) que o Super Scatter (Velho do Raio) solta aleatoriamente e nas rodadas gr├бtis (Free Spins).\"},{\"question\":\"Como pegar max win no Gates of Olympus?\",\"answer\":\"O max win de 5000x ├й alcan├зado acumulando multiplicadores massivos durante as Rodadas Gr├бtis (Free Spins). Muitos jogadores testam primeiro na vers├гo Demo gr├бtis.\"},{\"question\":\"Qual melhor hor├бrio para jogar Gates of Olympus?\",\"answer\":\"Embora muitos procurem 'minutos pagantes' ou o melhor hor├бrio para lucrar, os resultados s├гo determinados por um Gerador de N├║meros Aleat├│rios (RNG) e o RTP do jogo (96.50%), garantindo justi├зa 24h por dia.\"}]",
++        "name": "The Gates Of Olympus",
++        "rtp": "96.21",
++        "volatility": "high",
++        "min_bet": "0.1",
++        "max_bet": "100",
++        "max_win": "5000",
++        "release_date": "2025-08-22T21:00:00.000Z",
++        "game_field": "5├Ч3",
++        "media_type": "image",
++        "image_focus_point": "center 20%",
++        "info_expert_verdict": "The Gates Of Olympus by PRAGMATIC PLAY is a high-volatility slot with an RTP of 96.21% and a maximum win of 5000x. It delivers a balanced gaming experience suitable for most players. Overall, we rate it 4.5/5.",
++        "info_cons": "[\"High volatility тАФ not for cautious players\",\"Requires stable internet connection\"]",
++        "info_faq": "[{\"question\":\"Is The Gates Of Olympus safe to play online?\",\"answer\":\"Yes, The Gates Of Olympus is developed by PRAGMATIC PLAY, a licensed and regulated game provider. All games are tested by independent auditing agencies.\"},{\"question\":\"What is the RTP of The Gates Of Olympus?\",\"answer\":\"The Return to Player (RTP) of The Gates Of Olympus is 96.21%. This means that, on average, for every $100 wagered, the game returns $96.21 to players over time.\"},{\"question\":\"Can I play The Gates Of Olympus for free?\",\"answer\":\"Yes! You can play The Gates Of Olympus in free demo mode right here on SlotQuest. No registration or deposit required.\"},{\"question\":\"What is the maximum win in The Gates Of Olympus?\",\"answer\":\"The maximum win in The Gates Of Olympus is 5000x your bet.\"},{\"question\":\"What is the volatility of The Gates Of Olympus?\",\"answer\":\"The Gates Of Olympus has high volatility. Wins are less frequent but can be much larger.\"}]",
++        "info_reviews": "[{\"author\":\"Alex R.\",\"rating\":5,\"text\":\"The Gates Of Olympus is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back.\",\"date\":\"2024-12-15\"},{\"author\":\"Maria K.\",\"rating\":4,\"text\":\"Great slot with solid RTP of 96.21%. The free spins feature is especially exciting.\",\"date\":\"2024-11-28\"},{\"author\":\"James T.\",\"rating\":4,\"text\":\"Decent slot from PRAGMATIC PLAY. The 5000x max win potential is attractive. Love the theme.\",\"date\":\"2024-10-10\"}]",
++        "info_how_to_play": "[{\"step\":\"Open the Demo\",\"text\":\"Click \\\"Play Demo Now\\\" to launch The Gates Of Olympus in free play mode. No registration required.\"},{\"step\":\"Set Your Bet\",\"text\":\"Use the controls at the bottom of the game screen to adjust your bet size.\"},{\"step\":\"Spin the Reels\",\"text\":\"Click the Spin button or press Space. Watch for winning combinations across the 20 paylines.\"},{\"step\":\"Trigger Bonuses\",\"text\":\"Land special symbols to activate bonus features like free spins, multipliers, and other rewards.\"}]",
++        "info_demo_cta": "You can easily try out The Gates Of Olympus online slot at SlotQuest without paying real money. Take advantage of our free demo mode and dive right in!",
++        "info_demo_btn_text": "Play Demo Now",
++        "overview_title": "╨Я╨╛╨╗╨╜╤Л╨╣ ╨╛╨▒╨╖╨╛╤А ",
++        "overview_keyword_1": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_keyword_2": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_keyword_3": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "overview_description_2": "╨Ю╤Б╨╛╨▒╨╛╨╡ ╨▓╨╜╨╕╨╝╨░╨╜╨╕╨╡ ╨┐╤А╨╕╨▓╨╗╨╡╨║╨░╨╡╤В ╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕, ╨║╨╛╤В╨╛╤А╨░╤П ╨╛╤В╨║╤А╤Л╨▓╨░╨╡╤В ╨┐╤Г╤В╤М ╨║ ╨┤╨╡╨╣╤Б╤В╨▓╨╕╤В╨╡╨╗╤М╨╜╨╛ ╨▓╨┐╨╡╤З╨░╤В╨╗╤П╤О╤Й╨╕╨╝ ╨▓╤Л╨╕╨│╤А╤Л╤И╨░╨╝",
++        "overview_features_1": "╨Ш╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╨░╤П ╨╕╨│╤А╨╛╨▓╨░╤П ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░ ╨╛╤В Pragmatic Play ╤Б ╤Г╨╜╨╕╨║╨░╨╗╤М╨╜╤Л╨╝╨╕ ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╤П╨╝╨╕",
++        "overview_features_2": "╨й╨╡╨┤╤А╨░╤П ╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕ ╤Б ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╝╨╕ ╤И╨░╨╜╤Б╨░╨╝╨╕ ╨╜╨░ ╨║╤А╤Г╨┐╨╜╤Л╨╡ ╨▓╤Л╨┐╨╗╨░╤В╤Л",
++        "overview_features_3": "╨б╨╕╤Б╤В╨╡╨╝╨░ Scatter Pays ╨┤╨╗╤П ╨╝╨░╨║╤Б╨╕╨╝╨░╨╗╤М╨╜╨╛ ╨┐╤А╨╛╤Б╤В╨╛╨│╨╛ ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣",
++        "overview_features_4": "╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨┐╨╛╨║╤Г╨┐╨║╨╕ ╨▒╨╛╨╜╤Г╤Б╨░",
++        "overview_features_5": "╨а╨╡╤Б╨┐╨╕╨╜╤Л",
++        "overview_features_6": "╤А╨░╤Б╤И╨╕╤А╤П╤О╤Й╨╕╨╡╤Б╤П ╤Б╨╕╨╝╨▓╨╛╨╗╤Л",
++        "popularity_title_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "popularity_ranking_position": "12",
++        "popularity_user_rating": "4.8/5",
++        "popularity_monthly_players": "2M+",
++        "popularity_description": "This slot has maintained its top positions in rankings for several consecutive years, which confirms its exceptional quality and engaging gameplay.",
++        "popularity_global_rank_title": "Global Ranking",
++        "popularity_global_rank_value": "TOP 3",
++        "popularity_global_rank_description": "In the TOP-3 of the world's most popular slots for 3 consecutive years",
++        "popularity_active_players_title": "Active Players",
++        "popularity_active_players_value": "2.4M+",
++        "popularity_active_players_description": "Played by over 2.4 million unique players monthly",
++        "popularity_rtp_volatility_title": "RTP + Volatility",
++        "popularity_rtp_volatility_value": "96.5%",
++        "popularity_rtp_volatility_description": "High return and thrilling win swings",
++        "popularity_2021_rank": "#1",
++        "popularity_2021_description": "Best new slot",
++        "popularity_2021_width": "100%",
++        "popularity_2022_rank": "#1",
++        "popularity_2022_description": "Most popular",
++        "popularity_2022_width": "95%",
++        "popularity_2023_rank": "#1",
++        "popularity_2023_description": "Record holder",
++        "popularity_2023_width": "90%",
++        "popularity_2024_rank": "#12",
++        "popularity_2024_description": "Stable hit",
++        "popularity_2024_width": "70%",
++        "popularity_trend_description": "The chart shows a steady growth in popularity",
++        "mechanics_title": "╨Ш╨│╤А╨╛╨▓╤Л╨╡ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨╕ ╨╕ ╨╛╤Б╨╛╨▒╨╡╨╜╨╜╨╛╤Б╤В╨╕!",
++        "mechanics_intro": "╨н╤В╨╛╤В ╤Б╨╗╨╛╤В ╨┐╤А╨╡╨┤╨╗╨░╨│╨░╨╡╤В ╨╖╨░╤Е╨▓╨░╤В╤Л╨▓╨░╤О╤Й╨╕╨╣ ╨╕╨│╤А╨╛╨▓╨╛╨╣ ╨╛╨┐╤Л╤В ╨▒╨╗╨░╨│╨╛╨┤╨░╤А╤П ╤Б╨╛╨▓╤А╨╡╨╝╨╡╨╜╨╜╤Л╨╝ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░╨╝ ╨╕ ╨╕╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╤Л╨╝ ╤Д╤Г╨╜╨║╤Ж╨╕╤П╨╝:",
++        "mechanics_scatter_title": "Scatter Pays",
++        "mechanics_scatter_description": "╨б╨╕╤Б╤В╨╡╨╝╨░ ╨▓╤Л╨┐╨╗╨░╤В Scatter Pays ╤Г╨┐╤А╨╛╤Й╨░╨╡╤В ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣ - ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╜╨╡ ╨╛╨▒╤П╨╖╨░╤В╨╡╨╗╤М╨╜╨╛ ╨┤╨╛╨╗╨╢╨╜╤Л ╤А╨░╤Б╨┐╨╛╨╗╨░╨│╨░╤В╤М╤Б╤П ╨╜╨░ ╨░╨║╤В╨╕╨▓╨╜╤Л╤Е ╨╗╨╕╨╜╨╕╤П╤Е. ╨Ф╨╛╤Б╤В╨░╤В╨╛╤З╨╜╨╛ ╨╛╨┐╤А╨╡╨┤╨╡╨╗╨╡╨╜╨╜╨╛╨│╨╛ ╨║╨╛╨╗╨╕╤З╨╡╤Б╤В╨▓╨░ ╨╛╨┤╨╕╨╜╨░╨║╨╛╨▓╤Л╤Е ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨▓ ╨╗╤О╨▒╨╛╨╝ ╨╝╨╡╤Б╤В╨╡ ╨╕╨│╤А╨╛╨▓╨╛╨│╨╛ ╨┐╨╛╨╗╤П.",
++        "mechanics_scatter_details": "╨Ь╨╕╨╜╨╕╨╝╤Г╨╝ 8 ╨╛╨┤╨╕╨╜╨░╨║╨╛╨▓╤Л╤Е ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨▓ ╨╗╤О╨▒╨╛╨╝ ╨╝╨╡╤Б╤В╨╡ ╨▒╨░╤А╨░╨▒╨░╨╜╨╛╨▓ = ╨│╨░╤А╨░╨╜╤В╨╕╤А╨╛╨▓╨░╨╜╨╜╤Л╨╣ ╨▓╤Л╨╕╨│╤А╤Л╤И! ╨б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╨╡ scatter-╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╤О╤В╤Б╤П ╨╛╤В 4+ ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓.",
++        "mechanics_cascade_title": "╨Ъ╨░╤Б╨║╨░╨┤╨╜╤Л╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╕",
++        "mechanics_cascade_description": "╨Я╨╛╤Б╨╗╨╡ ╨║╨░╨╢╨┤╨╛╨│╨╛ ╨▓╤Л╨╕╨│╤А╤Л╤И╨░ ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╨╡╤В╤Б╤П ╨╝╨╡╤Е╨░╨╜╨╕╨║╨░ ╨║╨░╤Б╨║╨░╨┤╨╛╨▓. ╨Т╤Л╨╕╨│╤А╤Л╤И╨╜╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╕╤Б╤З╨╡╨╖╨░╤О╤В ╤Б ╨▒╨░╤А╨░╨▒╨░╨╜╨╛╨▓, ╨░ ╨╜╨░ ╨╕╤Е ╨╝╨╡╤Б╤В╨╛ ╨┐╨░╨┤╨░╤О╤В ╨╜╨╛╨▓╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л, ╤Б╨╛╨╖╨┤╨░╨▓╨░╤П ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╨╕ ╨┤╨╗╤П ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╤Е ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣.",
++        "mechanics_cascade_details": "╨Ъ╨░╤Б╨║╨░╨┤╤Л ╨╝╨╛╨│╤Г╤В ╨┐╤А╨╛╨┤╨╛╨╗╨╢╨░╤В╤М╤Б╤П ╨╜╨╡╨╛╨│╤А╨░╨╜╨╕╤З╨╡╨╜╨╜╨╛ ╨┤╨╛╨╗╨│╨╛, ╤Б╨╛╨╖╨┤╨░╨▓╨░╤П ╤Ж╨╡╨┐╨╛╤З╨║╨╕ ╨┐╨╛╤Б╨╗╨╡╨┤╨╛╨▓╨░╤В╨╡╨╗╤М╨╜╤Л╤Е ╨▓╤Л╨╕╨│╤А╤Л╤И╨╡╨╣ ╨▓ ╤А╨░╨╝╨║╨░╤Е ╨╛╨┤╨╜╨╛╨│╨╛ ╤Б╨┐╨╕╨╜╨░.",
++        "mechanics_multipliers_title": "╨б╨╗╤Г╤З╨░╨╣╨╜╤Л╨╡ ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕",
++        "mechanics_multipliers_description": "╨Т ╨╗╤О╨▒╨╛╨╝ ╤Б╨┐╨╕╨╜╨╡ ╨╜╨░ ╨▒╨░╤А╨░╨▒╨░╨╜╨░╤Е ╨╝╨╛╨│╤Г╤В ╨┐╨╛╤П╨▓╨╕╤В╤М╤Б╤П ╤Б╨╗╤Г╤З╨░╨╣╨╜╤Л╨╡ ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕ ╨╛╤В x2 ╨┤╨╛ x500, ╨║╨╛╤В╨╛╤А╤Л╨╡ ╨╖╨╜╨░╤З╨╕╤В╨╡╨╗╤М╨╜╨╛ ╤Г╨▓╨╡╨╗╨╕╤З╨╕╨▓╨░╤О╤В ╤А╨░╨╖╨╝╨╡╤А ╨▓╤Л╨╕╨│╤А╤Л╤И╨░.",
++        "mechanics_multipliers_details": "╨Ь╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕ ╨╜╨░╨║╨░╨┐╨╗╨╕╨▓╨░╤О╤В╤Б╤П ╨▓ ╤В╨╡╤З╨╡╨╜╨╕╨╡ ╨▓╤Б╨╡╤Е ╨║╨░╤Б╨║╨░╨┤╨╛╨▓ ╨╕ ╨┐╤А╨╕╨╝╨╡╨╜╤П╤О╤В╤Б╤П ╨║ ╨╕╤В╨╛╨│╨╛╨▓╨╛╨╝╤Г ╨▓╤Л╨╕╨│╤А╤Л╤И╤Г ╤Б╨┐╨╕╨╜╨░.",
++        "mechanics_multipliers_important_title": "An important feature of multipliers!",
++        "mechanics_multipliers_important": "An important feature of multipliers: It's worth noting that multipliers aren't applied immediately to a single cascade win. Gates of Olympus waits until all cascades are completed and then applies the sum of all collected multipliers to the round's total win. This is much more beneficial than a single multiplier boosting a single win.",
++        "mechanics_freespins_title": "╨С╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╨╡ ╤Б╨┐╨╕╨╜╤Л",
++        "mechanics_freespins_description": "╨Р╨║╤В╨╕╨▓╨╕╤А╤Г╤О╤В╤Б╤П ╨┐╤А╨╕ ╨▓╤Л╨┐╨░╨┤╨╡╨╜╨╕╨╕ 3 ╨╕╨╗╨╕ ╨▒╨╛╨╗╨╡╨╡ scatter-╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓ ╨╜╨░ ╨▒╨░╤А╨░╨▒╨░╨╜╨░╤Е. ╨Я╤А╨╡╨┤╨╛╤Б╤В╨░╨▓╨╗╤П╤О╤В ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╨╡ ╨▓╨╛╨╖╨╝╨╛╨╢╨╜╨╛╤Б╤В╨╕ ╨┤╨╗╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨░ ╨▒╨╡╨╖ ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤В╨╡╨╗╤М╨╜╤Л╤Е ╤Б╤В╨░╨▓╨╛╨║.",
++        "mechanics_freespins_details": "╨Т╨╛ ╨▓╤А╨╡╨╝╤П ╨▒╨╡╤Б╨┐╨╗╨░╤В╨╜╤Л╤Е ╤Б╨┐╨╕╨╜╨╛╨▓ ╨┤╨╡╨╣╤Б╤В╨▓╤Г╤О╤В ╨▓╤Б╨╡ ╨╛╤Б╨╜╨╛╨▓╨╜╤Л╨╡ ╨╝╨╡╤Е╨░╨╜╨╕╨║╨╕ ╨╕╨│╤А╤Л ╤Б ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╝╨╕ ╤И╨░╨╜╤Б╨░╨╝╨╕ ╨╜╨░ ╨║╤А╤Г╨┐╨╜╤Л╨╡ ╨▓╤Л╨╕╨│╤А╤Л╤И╨╕.",
++        "mechanics_wilds_title": "Wild ╤Б╨╕╨╝╨▓╨╛╨╗╤Л",
++        "mechanics_wilds_description": "╨г╨╜╨╕╨▓╨╡╤А╤Б╨░╨╗╤М╨╜╤Л╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л, ╨║╨╛╤В╨╛╤А╤Л╨╡ ╨╝╨╛╨│╤Г╤В ╨╖╨░╨╝╨╡╨╜╨╕╤В╤М ╨╗╤О╨▒╤Л╨╡ ╨┤╤А╤Г╨│╨╕╨╡ ╤Б╨╕╨╝╨▓╨╛╨╗╤Л (╨║╤А╨╛╨╝╨╡ ╤Б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╤Е) ╨┤╨╗╤П ╤Д╨╛╤А╨╝╨╕╤А╨╛╨▓╨░╨╜╨╕╤П ╨▓╤Л╨╕╨│╤А╤Л╤И╨╜╤Л╤Е ╨║╨╛╨╝╨▒╨╕╨╜╨░╤Ж╨╕╨╣.",
++        "mechanics_wilds_details": "Wild ╤Б╨╕╨╝╨▓╨╛╨╗╤Л ╨╝╨╛╨│╤Г╤В ╨┐╨╛╤П╨▓╨╗╤П╤В╤М╤Б╤П ╨▓ ╤А╨░╨╖╨╗╨╕╤З╨╜╤Л╤Е ╨▓╨░╤А╨╕╨░╤Ж╨╕╤П╤Е: ╨╛╨▒╤Л╤З╨╜╤Л╨╡, ╤А╨░╤Б╤И╨╕╤А╤П╤О╤Й╨╕╨╡╤Б╤П, ╨╗╨╕╨┐╨║╨╕╨╡ ╨╕╨╗╨╕ ╤Б ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤П╨╝╨╕.",
++        "mechanics_bonus_title": "╨С╨╛╨╜╤Г╤Б╨╜╤Л╨╡ ╨╕╨│╤А╤Л!",
++        "mechanics_bonus_description": "╨б╨┐╨╡╤Ж╨╕╨░╨╗╤М╨╜╤Л╨╡ ╨╕╨│╤А╨╛╨▓╤Л╨╡ ╤А╨╡╨╢╨╕╨╝╤Л, ╨░╨║╤В╨╕╨▓╨╕╤А╤Г╨╡╨╝╤Л╨╡ ╨╛╨┐╤А╨╡╨┤╨╡╨╗╨╡╨╜╨╜╤Л╨╝╨╕ ╨║╨╛╨╝╨▒╨╕╨╜╨░╤Ж╨╕╤П╨╝╨╕ ╤Б╨╕╨╝╨▓╨╛╨╗╨╛╨▓. ╨Я╤А╨╡╨┤╨╗╨░╨│╨░╤О╤В ╤Г╨╜╨╕╨║╨░╨╗╤М╨╜╤Л╨╣ ╨│╨╡╨╣╨╝╨┐╨╗╨╡╨╣ ╨╕ ╨┐╨╛╨▓╤Л╤И╨╡╨╜╨╜╤Л╨╡ ╨▓╤Л╨┐╨╗╨░╤В╤Л.",
++        "mechanics_bonus_details": "╨С╨╛╨╜╤Г╤Б╨╜╤Л╨╡ ╤А╨░╤Г╨╜╨┤╤Л ╨╝╨╛╨│╤Г╤В ╨▓╨║╨╗╤О╤З╨░╤В╤М ╨╝╨╕╨╜╨╕-╨╕╨│╤А╤Л, ╨║╨╛╨╗╨╡╤Б╨╛ ╤Д╨╛╤А╤В╤Г╨╜╤Л, ╨▓╤Л╨▒╨╛╤А ╨┐╤А╨╕╨╖╨╛╨▓ ╨╕╨╗╨╕ ╨┤╤А╤Г╨│╨╕╨╡ ╨╕╨╜╤В╨╡╤А╨░╨║╤В╨╕╨▓╨╜╤Л╨╡ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╤Л.",
++        "strategies_title": "╨б╤В╤А╨░╤В╨╡╨│╨╕╨╕ ╨╕ ╤Б╨╛╨▓╨╡╤В╤Л ╨┤╨╗╤П ╨╕╨│╤А╤Л",
++        "strategies_intro": "╨н╤Д╤Д╨╡╨║╤В╨╕╨▓╨╜╤Л╨╡ ╨┐╨╛╨┤╤Е╨╛╨┤╤Л ╨┤╨╗╤П ╨╝╨░╨║╤Б╨╕╨╝╨╕╨╖╨░╤Ж╨╕╨╕ ╤Г╨┤╨╛╨▓╨╛╨╗╤М╤Б╤В╨▓╨╕╤П ╨╛╤В ╨╕╨│╤А╤Л:",
++        "strategies_beginners_title": "ЁЯТб ╨а╨╡╨║╨╛╨╝╨╡╨╜╨┤╨░╤Ж╨╕╨╕ ╨┤╨╗╤П ╨╜╨╛╨▓╨╕╤З╨║╨╛╨▓",
++        "strategies_advanced_title": "ЁЯОп ╨Я╤А╨╛╨┤╨▓╨╕╨╜╤Г╤В╤Л╨╡ ╤Б╤В╤А╨░╤В╨╡╨│╨╕╨╕",
++        "popularity_section_title": "How popular is",
++        "popularity_rank_2024": "12",
++        "popularity_rank_2024_label": "2024 Ranking",
++        "popularity_user_rating_label": "User Rating",
++        "popularity_monthly_players_label": "Monthly Players",
++        "popularity_conclusion": "ЁЯПЖ This slot has maintained top positions in rankings for several consecutive years, confirming its exceptional quality and engaging gameplay.",
++        "rating_awards_title": "Rating and Awards",
++        "rating_main_score": "4.8",
++        "rating_main_max": "5",
++        "rating_description": "Average player rating",
++        "rating_reviews_count": "1,247",
++        "rating_reviews_text": "reviews",
++        "rating_5_stars_percent": "68",
++        "rating_4_stars_percent": "22",
++        "rating_3_stars_percent": "7",
++        "rating_2_stars_percent": "2",
++        "rating_1_stars_percent": "1",
++        "award_1_emoji": "ЁЯПЖ",
++        "award_1_title": "Slot of the Year 2024",
++        "award_1_description": "Casino Awards",
++        "award_1_color": "yellow",
++        "award_2_emoji": "ЁЯОЦя╕П",
++        "award_2_title": "Best Design",
++        "award_2_description": "Gaming Excellence",
++        "award_2_color": "purple",
++        "award_3_emoji": "ЁЯТО",
++        "award_3_title": "Platinum Status",
++        "award_3_description": "10M+ players",
++        "award_3_color": "green",
++        "award_4_emoji": "тнР",
++        "award_4_title": "Players' Choice",
++        "award_4_description": "Popular vote",
++        "award_4_color": "blue",
++        "prof_rating_expert_quote_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨░╨╜╤Л",
++        "prof_rating_recommendation_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "conclusion_rating_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "conclusion_text_1_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╨║╨╕",
++        "conclusion_verdict_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "cta_subtitle_keyword": "╨Р╨╜╨░╨╗ ╨Ъ╨░╤А╨╕╨╜╤Л",
++        "seo_keywords": "",
++        "seo_keywords_longtail": "",
++        "video_duration": "PT3M",
++        "alternative_names": "",
++        "content_language": "en",
++        "og_type": "article",
++        "og_site_name": "SlotQuest",
++        "og_locale": "en_US",
++        "twitter_card": "summary_large_image",
++        "twitter_site": "@SlotQuest",
++        "twitter_creator": "@SlotQuest",
++        "robots_max_image_preview": "large",
++        "hreflang_preset": "international",
++        "eeat_author_name": "SlotQuest Editorial Team",
++        "eeat_disclaimer": "18+ | Gambling can be addictive | Play responsibly",
++        "content_version": "1.0",
++        "content_update_frequency": "monthly",
++        "robots_meta": "index, follow",
++        "viewport_meta": "width=device-width, initial-scale=1",
++        "charset_meta": "UTF-8",
++        "language_meta": "en",
++        "author_meta": "SlotQuest Team",
++        "generator_meta": "Nuxt.js",
++        "theme_color_meta": "#1F2937",
++        "target_locations": "ЁЯЗ║ЁЯЗ╕ USA\nЁЯЗмЁЯЗз UK\nЁЯЗиЁЯЗж Canada\nЁЯЗжЁЯЗ║ Australia\nЁЯЗ│ЁЯЗ┐ New Zealand\nЁЯЗоЁЯЗк Ireland\nЁЯЗйЁЯЗк Germany\nЁЯЗлЁЯЗ╖ France\nЁЯЗоЁЯЗ╣ Italy\nЁЯЗкЁЯЗ╕ Spain\nЁЯЗзЁЯЗ╖ Brazil\nЁЯЗоЁЯЗ│ India",
++        "schema_game_genre": "",
++        "schema_game_platform": "",
++        "schema_game_publisher": "",
++        "schema_content_rating": "",
++        "schema_rating_value": "",
++        "schema_review_count": "",
++        "schema_best_rating": "5",
++        "schema_org_name": "",
++        "schema_org_logo": "https://slotquest.com/logo.png",
++        "schema_org_type": "Organization",
++        "schema_slot_rtp": "",
++        "schema_slot_volatility": "",
++        "schema_slot_max_win": "",
++        "schema_slot_min_bet": "",
++        "schema_slot_max_bet": "",
++        "schema_slot_release_date": "",
++        "schema_slot_reels": "",
++        "schema_slot_paylines": "",
++        "schema_slot_rating": "",
++        "schema_slot_bonus_frequency": "",
++        "schema_slot_real_rtp": "",
++        "schema_slot_mechanics": "",
++        "schema_slot_bonus_types": "",
++        "schema_slot_theme": "",
++        "schema_provider_name": "",
++        "schema_provider_logo": "",
++        "schema_demo_action_name": "Play Demo",
++        "schema_real_action_name": "Play for Real Money",
++        "image_object_width": "",
++        "image_object_height": "",
++        "image_object_alt": "",
++        "image_object_caption": "",
++        "video_object_duration": "",
++        "video_object_upload_date": "",
++        "video_object_description": "",
++        "schema_review_title": "",
++        "schema_review_description_1": "",
++        "schema_review_description_2": "",
++        "schema_review_feature_1": "",
++        "schema_review_feature_2": "",
++        "schema_review_feature_3": "",
++        "schema_review_feature_4": "",
++        "schema_review_feature_5": "",
++        "schema_review_feature_6": "",
++        "schema_popularity_title": "",
++        "schema_ranking_position": "",
++        "schema_user_rating": "",
++        "schema_global_rating": "",
++        "schema_popularity_description": ""
+       },
+       "tr": {
+         "seo_title": "Gates of Olympus Oyna | Bedava Slot (Dede Oyunu)",
+@@ -2751,8 +3139,8 @@
+     "jsonld_last_validated": null,
+     "jsonld_validation_errors": null,
+     "jsonld_rich_snippet_enabled": true,
+-    "seo_title": null,
+-    "seo_description": null,
++    "seo_title": "Play Gates of Olympus Slot & Demo Free | Pragmatic Play",
++    "seo_description": "Win up to 5000x in Gates of Olympus by Pragmatic Play. High volatility, tumbling reels, and huge multipliers. Test the demo for free!",
+     "seo_keywords_primary": null,
+     "seo_keywords_lsi": null,
+     "seo_keywords_geo": null,
+diff --git a/diff.txt b/diff.txt
+index 975f6fe..0c5299a 100644
+Binary files a/diff.txt and b/diff.txt differ
+diff --git a/frontend/pages/admin/slots/[id].vue b/frontend/pages/admin/slots/[id].vue
+index 3d29cbd..0a13fdc 100644
+--- a/frontend/pages/admin/slots/[id].vue
++++ b/frontend/pages/admin/slots/[id].vue
+@@ -2745,149 +2745,7 @@
+                           </div>
+                         </div>
+ 
+-                        <!-- ЁЯУК SEO Score Indicator -->
+-                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+-                          <div class="flex items-center justify-between mb-3">
+-                            <div class="flex items-center gap-2">
+-                              <div class="w-8 h-8 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-lg flex items-center justify-center">
+-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+-                                </svg>
+-                              </div>
+-                              <div>
+-                                <h4 class="text-sm font-medium text-[#E5E7EB]">SEO Score</h4>
+-                                <p class="text-xs text-[#9CA3AF]">Meta tags quality</p>
+-                              </div>
+-                            </div>
+-                            <div class="flex items-center gap-3">
+-                              <!-- Score Circle -->
+-                              <div
+-                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+-                                :class="{
+-                                  'bg-[#EF4444]/20': calculateMetaScore() < 40,
+-                                  'bg-[#F59E0B]/20': calculateMetaScore() >= 40 && calculateMetaScore() < 70,
+-                                  'bg-[#10B981]/20': calculateMetaScore() >= 70,
+-                                }"
+-                              >
+-                                <span
+-                                  class="text-lg font-bold"
+-                                  :class="{
+-                                    'text-[#EF4444]': calculateMetaScore() < 40,
+-                                    'text-[#F59E0B]': calculateMetaScore() >= 40 && calculateMetaScore() < 70,
+-                                    'text-[#10B981]': calculateMetaScore() >= 70,
+-                                  }"
+-                                >{{ calculateMetaScore() }}%</span>
+-                              </div>
+-                            </div>
+-                          </div>
+-
+-                          <!-- Score Details Grid -->
+-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+-                            <!-- Title Length -->
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Title</span>
+-                                <span
+-                                  :class="{
+-                                    'text-[#EF4444]': (form.seo_title || '').length > 60 || (form.seo_title || '').length < 30,
+-                                    'text-[#F59E0B]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+-                                    'text-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+-                                  }"
+-                                >
+-                                  {{ (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="{
+-                                    'bg-[#EF4444]': (form.seo_title || '').length > 60 || (form.seo_title || '').length < 30,
+-                                    'bg-[#F59E0B]': (form.seo_title || '').length >= 30 && (form.seo_title || '').length < 50,
+-                                    'bg-[#10B981]': (form.seo_title || '').length >= 50 && (form.seo_title || '').length <= 60,
+-                                  }"
+-                                  :style="{ width: `${Math.min(((form.seo_title || '').length / 60) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <!-- Description Length -->
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Description</span>
+-                                <span
+-                                  :class="{
+-                                    'text-[#EF4444]': (form.seo_description || '').length > 160 || (form.seo_description || '').length < 100,
+-                                    'text-[#F59E0B]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+-                                    'text-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+-                                  }"
+-                                >
+-                                  {{ (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="{
+-                                    'bg-[#EF4444]': (form.seo_description || '').length > 160 || (form.seo_description || '').length < 100,
+-                                    'bg-[#F59E0B]': (form.seo_description || '').length >= 100 && (form.seo_description || '').length < 150,
+-                                    'bg-[#10B981]': (form.seo_description || '').length >= 150 && (form.seo_description || '').length <= 160,
+-                                  }"
+-                                  :style="{ width: `${Math.min(((form.seo_description || '').length / 160) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <!-- Keywords -->
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Keywords</span>
+-                                <span
+-                                  :class="{
+-                                    'text-[#EF4444]': !(form.seo_keywords_primary || '').length,
+-                                    'text-[#10B981]': (form.seo_keywords_primary || '').length > 0,
+-                                  }"
+-                                >
+-                                  {{ (form.seo_keywords_primary || '').length > 0 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="{
+-                                    'bg-[#EF4444]': !(form.seo_keywords_primary || '').length,
+-                                    'bg-[#10B981]': (form.seo_keywords_primary || '').length > 0,
+-                                  }"
+-                                  :style="{ width: (form.seo_keywords_primary || '').length > 0 ? '100%' : '0%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <!-- Slug -->
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Slug</span>
+-                                <span
+-                                  :class="{
+-                                    'text-[#EF4444]': !(form.slug || '').length,
+-                                    'text-[#10B981]': (form.slug || '').length > 0,
+-                                  }"
+-                                >
+-                                  {{ (form.slug || '').length > 0 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="{
+-                                    'bg-[#EF4444]': !(form.slug || '').length,
+-                                    'bg-[#10B981]': (form.slug || '').length > 0,
+-                                  }"
+-                                  :style="{ width: (form.slug || '').length > 0 ? '100%' : '0%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-                          </div>
+-                        </div>
++                        
+ 
+                         <!-- ЁЯФН SERP Preview - How the page looks in Google -->
+                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+@@ -2938,12 +2796,19 @@
+ 
+                           <!-- 1. Primary Keywords -->
+                           <div class="space-y-2">
+-                            <label
+-                              class="block text-sm font-medium text-[#E5E7EB]"
+-                            >
+-                              1я╕ПтГг Primary Keywords
+-                              <span class="text-[#10B981] ml-1">3-5 words</span>
+-                            </label>
++                            <div class="flex items-center justify-between">
++                              <label class="block text-sm font-medium text-[#E5E7EB]">
++                                1я╕ПтГг Primary Keywords
++                                <span class="text-[#10B981] ml-1">3-5 words</span>
++                              </label>
++                              <button
++                                @click="generateAllSeoKeywords"
++                                type="button"
++                                class="text-xs bg-[#10B981]/10 text-[#10B981] hover:bg-[#10B981]/20 px-2.5 py-1 rounded-md border border-[#10B981]/30 transition-colors flex items-center gap-1.5"
++                              >
++                                <span>тЬи</span> Auto-generate All
++                              </button>
++                            </div>
+                             <input
+                               v-model="form.seo_keywords_primary"
+                               type="text"
+@@ -3167,109 +3032,7 @@
+                       </div>
+ 
+                       <div v-if="isTurboSectionVisible('openGraphSection', showOpenGraphSection)" class="space-y-6">
+-                        <!-- ЁЯУК OG Score Indicator -->
+-                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+-                          <div class="flex items-center justify-between mb-3">
+-                            <div class="flex items-center gap-2">
+-                              <div class="w-8 h-8 bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] rounded-lg flex items-center justify-center">
+-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+-                                </svg>
+-                              </div>
+-                              <div>
+-                                <h4 class="text-sm font-medium text-[#E5E7EB]">OG Score</h4>
+-                                <p class="text-xs text-[#9CA3AF]">Open Graph tags quality</p>
+-                              </div>
+-                            </div>
+-                            <div class="flex items-center gap-3">
+-                              <div
+-                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+-                                :class="{
+-                                  'bg-[#EF4444]/20': calculateOgScore() < 40,
+-                                  'bg-[#F59E0B]/20': calculateOgScore() >= 40 && calculateOgScore() < 70,
+-                                  'bg-[#3B82F6]/20': calculateOgScore() >= 70,
+-                                }"
+-                              >
+-                                <span
+-                                  class="text-lg font-bold"
+-                                  :class="{
+-                                    'text-[#EF4444]': calculateOgScore() < 40,
+-                                    'text-[#F59E0B]': calculateOgScore() >= 40 && calculateOgScore() < 70,
+-                                    'text-[#3B82F6]': calculateOgScore() >= 70,
+-                                  }"
+-                                >{{ calculateOgScore() }}%</span>
+-                              </div>
+-                            </div>
+-                          </div>
+-
+-                          <!-- Score Details Grid -->
+-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Title</span>
+-                                <span :class="getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getOgTitleLen() >= 40 && getOgTitleLen() <= 90 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+-                                  :style="{ width: `${Math.min((getOgTitleLen() / 90) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Description</span>
+-                                <span :class="getOgDescLen() >= 100 && getOgDescLen() <= 250 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ getOgDescLen() >= 100 && getOgDescLen() <= 250 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getOgDescLen() >= 100 && getOgDescLen() <= 250 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+-                                  :style="{ width: `${Math.min((getOgDescLen() / 250) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Image</span>
+-                                <span :class="getOgImageUrl() ? 'text-[#10B981]' : 'text-[#EF4444]'">
+-                                  {{ getOgImageUrl() ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getOgImageUrl() ? 'bg-[#10B981]' : 'bg-[#EF4444]'"
+-                                  :style="{ width: getOgImageUrl() ? '100%' : '0%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Type</span>
+-                                <span :class="form.og_type ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ form.og_type ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="form.og_type ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+-                                  :style="{ width: form.og_type ? '100%' : '50%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-                          </div>
+-                        </div>
+-
++                        <!-- OG Score Removed -->
+                         <!-- OG Title -->
+                         <div class="space-y-2">
+                           <div class="flex items-center justify-between">
+@@ -3529,1440 +3292,85 @@
+                           />
+                           <p class="text-xs text-[#9CA3AF]">
+                             Video link for autoplay on social networks (Facebook, LinkedIn)
+-                          </p>
+-                        </div>
+-
+-                        <!-- ЁЯУ▒ Social Preview Cards (Phase 2) -->
+-                        <div class="border-t border-[#353A4A] pt-6">
+-                          <SocialPreviewCards
+-                            :og-title="form.og_title || form.seo_title || generateAutoOgTitle()"
+-                            :og-description="form.og_description || form.seo_description || generateAutoOgDescription()"
+-                            :og-image="form.og_image || form.image_url"
+-                            :twitter-title="form.twitter_title"
+-                            :twitter-description="form.twitter_description"
+-                            :twitter-image="form.twitter_image"
+-                            :page-url="`/slots/${form.slug}`"
+-                            :hashtags="form.social_custom_hashtags"
+-                            :cta-text="form.social_cta_text"
+-                            @update:hashtags="form.social_custom_hashtags = $event"
+-                            @update:cta-text="form.social_cta_text = $event"
+-                          />
+-                        </div>
+-                      </div>
+-                    </div>
+-
+-                    <!-- Twitter Card -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#1DA1F2]/10 to-[#0D8BD9]/10 border border-[#1DA1F2]/20 rounded-xl p-6 hover:border-[#1DA1F2]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div
+-                            class="w-12 h-12 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-xl flex items-center justify-center"
+-                          >
+-                            <svg
+-                              class="w-6 h-6 text-white"
+-                              fill="currentColor"
+-                              viewBox="0 0 24 24"
+-                            >
+-                              <path
+-                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+-                              />
+-                            </svg>
+-                          </div>
+-                          <div>
+-                            <h3
+-                              class="text-lg font-medium text-[#E5E7EB] font-display"
+-                            >
+-                              Twitter Card
+-                            </h3>
+-                            <p class="text-sm text-[#1DA1F2]">
+-                              Settings for display on Twitter/X
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showTwitterSection = !showTwitterSection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#1DA1F2]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                          :aria-expanded="showTwitterSection"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showTwitterSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path
+-                              stroke-linecap="round"
+-                              stroke-linejoin="round"
+-                              stroke-width="2"
+-                              d="M19 9l-7 7-7-7"
+-                            />
+-                          </svg>
+-                          {{ showTwitterSection ? 'Hide' : 'Show' }}
+-                        </button>
+-                      </div>
+-
+-                      <div v-if="isTurboSectionVisible('twitterSection', showTwitterSection)" class="space-y-6">
+-                        <!-- ЁЯУК Twitter Score Indicator -->
+-                        <div class="bg-gradient-to-r from-[#1B1E26] to-[#1B1E26]/80 border border-[#353A4A] rounded-xl p-4">
+-                          <div class="flex items-center justify-between mb-3">
+-                            <div class="flex items-center gap-2">
+-                              <div class="w-8 h-8 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-lg flex items-center justify-center">
+-                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+-                                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+-                                </svg>
+-                              </div>
+-                              <div>
+-                                <h4 class="text-sm font-medium text-[#E5E7EB]">Twitter Score</h4>
+-                                <p class="text-xs text-[#9CA3AF]">Twitter Card quality</p>
+-                              </div>
+-                            </div>
+-                            <div class="flex items-center gap-3">
+-                              <div
+-                                class="relative w-14 h-14 rounded-full flex items-center justify-center"
+-                                :class="{
+-                                  'bg-[#EF4444]/20': calculateTwitterScore() < 40,
+-                                  'bg-[#F59E0B]/20': calculateTwitterScore() >= 40 && calculateTwitterScore() < 70,
+-                                  'bg-[#1DA1F2]/20': calculateTwitterScore() >= 70,
+-                                }"
+-                              >
+-                                <span
+-                                  class="text-lg font-bold"
+-                                  :class="{
+-                                    'text-[#EF4444]': calculateTwitterScore() < 40,
+-                                    'text-[#F59E0B]': calculateTwitterScore() >= 40 && calculateTwitterScore() < 70,
+-                                    'text-[#1DA1F2]': calculateTwitterScore() >= 70,
+-                                  }"
+-                                >{{ calculateTwitterScore() }}%</span>
+-                              </div>
+-                            </div>
+-                          </div>
+-
+-                          <!-- Score Details Grid -->
+-                          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Title</span>
+-                                <span :class="getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getTwitterTitleLen() >= 40 && getTwitterTitleLen() <= 70 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+-                                  :style="{ width: `${Math.min((getTwitterTitleLen() / 70) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Description</span>
+-                                <span :class="getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getTwitterDescLen() >= 100 && getTwitterDescLen() <= 200 ? 'bg-[#10B981]' : 'bg-[#F59E0B]'"
+-                                  :style="{ width: `${Math.min((getTwitterDescLen() / 200) * 100, 100)}%` }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Image</span>
+-                                <span :class="getTwitterImageUrl() ? 'text-[#10B981]' : 'text-[#EF4444]'">
+-                                  {{ getTwitterImageUrl() ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all"
+-                                  :class="getTwitterImageUrl() ? 'bg-[#10B981]' : 'bg-[#EF4444]'"
+-                                  :style="{ width: getTwitterImageUrl() ? '100%' : '0%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-
+-                            <div class="bg-[#1B1E26] border border-[#353A4A]/50 rounded-lg p-2">
+-                              <div class="flex items-center justify-between mb-1">
+-                                <span class="text-[#9CA3AF]">Card</span>
+-                                <span :class="form.twitter_card === 'summary_large_image' ? 'text-[#10B981]' : 'text-[#F59E0B]'">
+-                                  {{ form.twitter_card === 'summary_large_image' ? 'тЬУ' : '!' }}
+-                                </span>
+-                              </div>
+-                              <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                                <div
+-                                  class="h-full rounded-full transition-all bg-[#10B981]"
+-                                  :style="{ width: form.twitter_card ? '100%' : '50%' }"
+-                                ></div>
+-                              </div>
+-                            </div>
+-                          </div>
+-                        </div>
+-
+-                        <!-- Twitter Card Type -->
+-                        <div class="space-y-2">
+-                          <label class="block text-sm font-medium text-[#E5E7EB]">
+-                            Card Type
+-                            <span class="text-[#1DA1F2] ml-1 text-xs">(recommended: Large Image)</span>
+-                          </label>
+-                          <select
+-                            v-model="form.twitter_card"
+-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+-                            :class="{
+-                              'border-[#10B981]/50': form.twitter_card === 'summary_large_image',
+-                              'border-[#F59E0B]/50': form.twitter_card === 'summary',
+-                            }"
+-                          >
+-                            <option value="summary">Summary (small image)</option>
+-                            <option value="summary_large_image">Summary Large Image (recommended)</option>
+-                            <option value="app">App</option>
+-                            <option value="player">Player (video)</option>
+-                          </select>
+-                          <p class="text-xs text-[#9CA3AF]">
+-                            ЁЯОп Summary Large Image provides maximum visibility in the feed
+-                          </p>
+-                        </div>
+-
+-                        <!-- Twitter Title -->
+-                        <div class="space-y-2">
+-                          <div class="flex items-center justify-between">
+-                            <label class="block text-sm font-medium text-[#E5E7EB]">
+-                              Twitter Title
+-                              <span class="text-[#1DA1F2] ml-1 text-xs">(40-70 characters)</span>
+-                            </label>
+-                            <button
+-                              type="button"
+-                              @click="copyFromOgTitle"
+-                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+-                              title="Copy from OG Title"
+-                            >
+-                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+-                              </svg>
+-                              From OG Title
+-                            </button>
+-                          </div>
+-                          <input
+-                            v-model="form.twitter_title"
+-                            type="text"
+-                            placeholder="Automatically from OG/SEO title"
+-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+-                            :class="{
+-                              'border-[#EF4444]/50': (form.twitter_title || '').length > 70,
+-                              'border-[#F59E0B]/50': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+-                              'border-[#10B981]/50': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+-                            }"
+-                            maxlength="100"
+-                          />
+-                          <!-- Length indicator -->
+-                          <div class="space-y-1.5">
+-                            <div class="flex justify-between text-xs">
+-                              <div class="flex items-center gap-2">
+-                                <span class="text-[#9CA3AF]">Recommended: 40-70 characters</span>
+-                                <span v-if="(form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30" class="text-[#F59E0B]">
+-                                  тЪая╕П Too short
+-                                </span>
+-                              </div>
+-                              <span
+-                                class="font-medium"
+-                                :class="{
+-                                  'text-[#EF4444]': (form.twitter_title || '').length > 70,
+-                                  'text-[#F59E0B]': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+-                                  'text-[#10B981]': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+-                                  'text-[#1DA1F2]': (form.twitter_title || '').length >= 30 && (form.twitter_title || '').length < 40,
+-                                }"
+-                              >
+-                                {{ (form.twitter_title || '').length }}/70
+-                              </span>
+-                            </div>
+-                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                              <div
+-                                class="h-full transition-all duration-300 rounded-full"
+-                                :class="{
+-                                  'bg-[#EF4444]': (form.twitter_title || '').length > 70,
+-                                  'bg-[#F59E0B]': (form.twitter_title || '').length > 0 && (form.twitter_title || '').length < 30,
+-                                  'bg-[#10B981]': (form.twitter_title || '').length >= 40 && (form.twitter_title || '').length <= 70,
+-                                  'bg-[#1DA1F2]': (form.twitter_title || '').length >= 30 && (form.twitter_title || '').length < 40,
+-                                }"
+-                                :style="{ width: `${Math.min(((form.twitter_title || '').length / 70) * 100, 100)}%` }"
+-                              ></div>
+-                            </div>
+-                          </div>
+-                          <!-- Preview auto-generation -->
+-                          <div
+-                            v-if="!(form.twitter_title || '').length && (form.og_title || form.seo_title || form.name)"
+-                            class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
+-                          >
+-                            <p class="text-xs text-[#9CA3AF]">
+-                              ЁЯТб <span class="text-[#1DA1F2]">Will be used:</span>
+-                              <span class="text-[#E5E7EB]">{{ form.og_title || form.seo_title || generateAutoTitle() }}</span>
+-                            </p>
+-                          </div>
+-                        </div>
+-
+-                        <!-- Twitter Description -->
+-                        <div class="space-y-2">
+-                          <div class="flex items-center justify-between">
+-                            <label class="block text-sm font-medium text-[#E5E7EB]">
+-                              Twitter Description
+-                              <span class="text-[#1DA1F2] ml-1 text-xs">(100-200 characters)</span>
+-                            </label>
+-                            <button
+-                              type="button"
+-                              @click="copyFromOgDescription"
+-                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+-                              title="Copy from OG Description"
+-                            >
+-                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+-                              </svg>
+-                              From OG Description
+-                            </button>
+-                          </div>
+-                          <textarea
+-                            v-model="form.twitter_description"
+-                            rows="3"
+-                            placeholder="Automatically from OG/SEO description"
+-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200 resize-none"
+-                            :class="{
+-                              'border-[#EF4444]/50': (form.twitter_description || '').length > 200,
+-                              'border-[#F59E0B]/50': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+-                              'border-[#10B981]/50': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+-                            }"
+-                            maxlength="300"
+-                          ></textarea>
+-                          <!-- Length indicator -->
+-                          <div class="space-y-1.5">
+-                            <div class="flex justify-between text-xs">
+-                              <div class="flex items-center gap-2">
+-                                <span class="text-[#9CA3AF]">Recommended: 100-200 characters</span>
+-                                <span v-if="(form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80" class="text-[#F59E0B]">
+-                                  тЪая╕П Too short
+-                                </span>
+-                              </div>
+-                              <span
+-                                class="font-medium"
+-                                :class="{
+-                                  'text-[#EF4444]': (form.twitter_description || '').length > 200,
+-                                  'text-[#F59E0B]': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+-                                  'text-[#10B981]': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+-                                  'text-[#1DA1F2]': (form.twitter_description || '').length >= 80 && (form.twitter_description || '').length < 100,
+-                                }"
+-                              >
+-                                {{ (form.twitter_description || '').length }}/200
+-                              </span>
+-                            </div>
+-                            <div class="h-1 bg-[#353A4A] rounded-full overflow-hidden">
+-                              <div
+-                                class="h-full transition-all duration-300 rounded-full"
+-                                :class="{
+-                                  'bg-[#EF4444]': (form.twitter_description || '').length > 200,
+-                                  'bg-[#F59E0B]': (form.twitter_description || '').length > 0 && (form.twitter_description || '').length < 80,
+-                                  'bg-[#10B981]': (form.twitter_description || '').length >= 100 && (form.twitter_description || '').length <= 200,
+-                                  'bg-[#1DA1F2]': (form.twitter_description || '').length >= 80 && (form.twitter_description || '').length < 100,
+-                                }"
+-                                :style="{ width: `${Math.min(((form.twitter_description || '').length / 200) * 100, 100)}%` }"
+-                              ></div>
+-                            </div>
+-                          </div>
+-                          <!-- Preview auto-generation -->
+-                          <div
+-                            v-if="!(form.twitter_description || '').length && (form.og_description || form.seo_description || form.name)"
+-                            class="p-2 bg-[#1DA1F2]/10 border border-[#1DA1F2]/20 rounded-lg"
+-                          >
+-                            <p class="text-xs text-[#9CA3AF]">
+-                              ЁЯТб <span class="text-[#1DA1F2]">Will be used:</span>
+-                              <span class="text-[#E5E7EB]">{{ form.og_description || form.seo_description || generateAutoDescription() }}</span>
+-                            </p>
+-                          </div>
+-                        </div>
+-
+-                        <!-- Twitter Image with preview -->
+-                        <div class="space-y-2">
+-                          <div class="flex items-center justify-between">
+-                            <label class="block text-sm font-medium text-[#E5E7EB]">
+-                              Twitter Image
+-                              <span class="text-[#1DA1F2] ml-1 text-xs">(1200├Ч628 px)</span>
+-                            </label>
+-                            <button
+-                              type="button"
+-                              @click="copyFromOgImage"
+-                              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-[#1DA1F2]/20 text-[#1DA1F2] hover:bg-[#1DA1F2]/30 border border-[#1DA1F2]/30 transition-all duration-200"
+-                              title="Copy from OG Image"
+-                            >
+-                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+-                              </svg>
+-                              From OG Image
+-                            </button>
+-                          </div>
+-                          <input
+-                            v-model="form.twitter_image"
+-                            type="url"
+-                            placeholder="Automatically from Open Graph image"
+-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+-                          />
+-                          <!-- Image Preview -->
+-                          <div
+-                            v-if="getTwitterImageUrl()"
+-                            class="relative aspect-[1200/628] max-w-md bg-[#1B1E26] border border-[#353A4A] rounded-lg overflow-hidden"
+-                          >
+-                            <img
+-                              :src="getTwitterImageUrl()"
+-                              :alt="form.twitter_title || form.name || 'Twitter Preview'"
+-                              class="w-full h-full object-cover"
+-                              @error="handleTwitterImageError"
+-                            />
+-                            <div class="absolute bottom-2 left-2 px-2 py-1 bg-black/70 rounded text-xs text-white">
+-                              1200 ├Ч 628 px (ratio 1.91:1)
+-                            </div>
+-                          </div>
+-                          <p class="text-xs text-[#9CA3AF]">
+-                            Recommended size: 1200├Ч628 pixels (ratio 1.91:1)
+-                          </p>
+-                        </div>
+-
+-                        <!-- Twitter Site & Creator Row -->
+-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+-                          <!-- Twitter Site -->
+-                          <div class="space-y-2">
+-                            <label class="block text-sm font-medium text-[#E5E7EB]">
+-                              Twitter site account
+-                            </label>
+-                            <input
+-                              v-model="form.twitter_site"
+-                              type="text"
+-                              placeholder="@slotquest"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+-                            />
+-                            <p class="text-xs text-[#9CA3AF]">
+-                              Twitter username of the website (with @)
+-                            </p>
+-                          </div>
+-
+-                          <!-- Twitter Creator -->
+-                          <div class="space-y-2">
+-                            <label class="block text-sm font-medium text-[#E5E7EB]">
+-                              Twitter creator
+-                            </label>
+-                            <input
+-                              v-model="form.twitter_creator"
+-                              type="text"
+-                              placeholder="@author"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:border-transparent transition-all duration-200"
+-                            />
+-                            <p class="text-xs text-[#9CA3AF]">
+-                              Twitter username of the author (with @)
+-                            </p>
+-                          </div>
+-                        </div>
+-                      </div>
+-                    </div>
+-
+-                    <!-- Technical SEO -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#059669]/10 to-[#047857]/10 border border-[#059669]/20 rounded-xl p-6 hover:border-[#059669]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div
+-                            class="w-12 h-12 bg-gradient-to-br from-[#059669] to-[#047857] rounded-xl flex items-center justify-center"
+-                          >
+-                            <svg
+-                              class="w-6 h-6 text-white"
+-                              fill="none"
+-                              stroke="currentColor"
+-                              viewBox="0 0 24 24"
+-                            >
+-                              <path
+-                                stroke-linecap="round"
+-                                stroke-linejoin="round"
+-                                stroke-width="2"
+-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+-                              ></path>
+-                            </svg>
+-                          </div>
+-                          <div>
+-                            <h3
+-                              class="text-lg font-medium text-[#E5E7EB] font-display"
+-                            >
+-                              Technical SEO
+-                            </h3>
+-                            <p class="text-sm text-[#059669]">
+-                              Additional search engine optimization settings
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="
+-                            showTechnicalSeoSection = !showTechnicalSeoSection
+-                          "
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#059669]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                          :aria-expanded="showTechnicalSeoSection"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showTechnicalSeoSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path
+-                              stroke-linecap="round"
+-                              stroke-linejoin="round"
+-                              stroke-width="2"
+-                              d="M19 9l-7 7-7-7"
+-                            />
+-                          </svg>
+-                          {{ showTechnicalSeoSection ? 'Hide' : 'Show' }}
+-                        </button>
+-                      </div>
+-
+-                      <div v-if="isTurboSectionVisible('technicalSeoSection', showTechnicalSeoSection)" class="space-y-6">
+-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+-                          <!-- Robots Meta -->
+-                          <div
+-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
+-                          >
+-                            <label
+-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
+-                            >
+-                              Robots Meta
+-                            </label>
+-                            <select
+-                              v-model="form.robots_meta"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+-                            >
+-                              <option value="index, follow">
+-                                index, follow (default)
+-                              </option>
+-                              <option value="noindex, follow">
+-                                noindex, follow
+-                              </option>
+-                              <option value="index, nofollow">
+-                                index, nofollow
+-                              </option>
+-                              <option value="noindex, nofollow">
+-                                noindex, nofollow
+-                              </option>
+-                            </select>
+-                            <p class="text-xs text-[#9CA3AF] mt-2">
+-                              Instructions for search engine robots
+-                            </p>
+-                          </div>
+-
+-                          <!-- Viewport -->
+-                          <div
+-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
+-                          >
+-                            <label
+-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
+-                            >
+-                              Viewport
+-                            </label>
+-                            <input
+-                              v-model="form.viewport_meta"
+-                              type="text"
+-                              placeholder="width=device-width, initial-scale=1"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+-                            />
+-                            <p class="text-xs text-[#9CA3AF] mt-2">
+-                              Mobile display settings
+-                            </p>
+-                          </div>
+-
+-                          <!-- Charset -->
+-                          <div
+-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
+-                          >
+-                            <label
+-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
+-                            >
+-                              Charset
+-                            </label>
+-                            <select
+-                              v-model="form.charset_meta"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+-                            >
+-                              <option value="UTF-8">
+-                                UTF-8 (recommended)
+-                              </option>
+-                              <option value="ISO-8859-1">ISO-8859-1</option>
+-                              <option value="Windows-1251">Windows-1251</option>
+-                            </select>
+-                            <p class="text-xs text-[#9CA3AF] mt-2">
+-                              Character encoding of the page
+-                            </p>
+-                          </div>
+-
+-                          <!-- Language -->
+-                          <div
+-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
+-                          >
+-                            <label
+-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
+-                            >
+-                              Page Language
+-                            </label>
+-                            <select
+-                              v-model="form.language_meta"
+-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+-                            >
+-                              <option value="ru">Russian (ru)</option>
+-                              <option value="en">English (en)</option>
+-                              <option value="uk">Ukrainian (uk)</option>
+-                              <option value="kk">Kazakh (kk)</option>
+-                            </select>
+-                            <p class="text-xs text-[#9CA3AF] mt-2">
+-                              Main content language of the page
+-                            </p>
+-                          </div>
+-                        </div>
+-
+-                        <!-- Additional meta tags -->
+-                        <div
+-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
+-                        >
+-                          <h4
+-                            class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2"
+-                          >
+-                            <svg
+-                              class="w-4 h-4 text-[#059669]"
+-                              fill="none"
+-                              stroke="currentColor"
+-                              viewBox="0 0 24 24"
+-                            >
+-                              <path
+-                                stroke-linecap="round"
+-                                stroke-linejoin="round"
+-                                stroke-width="2"
+-                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+-                              ></path>
+-                            </svg>
+-                            Additional Meta Tags
+-                          </h4>
+-                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+-                            <!-- Author -->
+-                            <div class="space-y-2">
+-                              <label
+-                                class="block text-sm font-medium text-[#E5E7EB]"
+-                              >
+-                                Author
+-                              </label>
+-                              <input
+-                                v-model="form.author_meta"
+-                                type="text"
+-                                placeholder="Editorial Team"
+-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+-                              />
+-                            </div>
+-
+-                            <!-- Copyright -->
+-                            <div class="space-y-2">
+-                              <label
+-                                class="block text-sm font-medium text-[#E5E7EB]"
+-                              >
+-                                Copyright
+-                              </label>
+-                              <input
+-                                v-model="form.copyright_meta"
+-                                type="text"
+-                                placeholder="┬й 2025 Brand. All rights reserved."
+-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+-                              />
+-                            </div>
+-
+-                            <!-- Generator -->
+-                            <div class="space-y-2">
+-                              <label
+-                                class="block text-sm font-medium text-[#E5E7EB]"
+-                              >
+-                                Generator
+-                              </label>
+-                              <input
+-                                v-model="form.generator_meta"
+-                                type="text"
+-                                placeholder="Nuxt.js"
+-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
+-                              />
+-                            </div>
+-
+-                            <!-- Theme Color -->
+-                            <div class="space-y-2">
+-                              <label
+-                                class="block text-sm font-medium text-[#E5E7EB]"
+-                              >
+-                                Theme Color
+-                              </label>
+-                              <input
+-                                v-model="form.theme_color_meta"
+-                                type="color"
+-                                class="w-full h-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
+-                              />
+-                            </div>
+-                          </div>
+-                        </div>
+-
+-                        <!-- ЁЯМН Technical SEO Component (Hreflang + Robots + Canonical) -->
+-                        <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
+-                          <AdminTechnicalSEO
+-                            :slug="form.slug"
+-                            v-model="technicalSeoForm"
+-                          />
+-                        </div>
+-                      </div>
+-                    </div>
+-
+-                    <!-- JSON-LD Schemas -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-4 sm:p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div
+-                            class="w-12 h-12 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-xl flex items-center justify-center"
+-                          >
+-                            <svg
+-                              class="w-6 h-6 text-white"
+-                              fill="none"
+-                              stroke="currentColor"
+-                              viewBox="0 0 24 24"
+-                            >
+-                              <path
+-                                stroke-linecap="round"
+-                                stroke-linejoin="round"
+-                                stroke-width="2"
+-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+-                              ></path>
+-                            </svg>
+-                          </div>
+-                          <div>
+-                            <h3
+-                              class="text-lg font-medium text-[#E5E7EB] font-display"
+-                            >
+-                              JSON-LD Schemas
+-                            </h3>
+-                            <p class="text-sm text-[#8B5CF6]">
+-                              Structured data for search engines
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <div class="flex flex-wrap items-center gap-3 mt-3 sm:mt-0 w-full sm:w-auto">
+-                          <!-- Toggle JSON-LD -->
+-                          <label class="relative inline-flex items-center cursor-pointer">
+-                            <input
+-                              type="checkbox"
+-                              v-model="jsonLdForm.jsonld_enabled"
+-                              class="sr-only peer"
+-                            />
+-                            <div class="w-11 h-6 bg-[#353A4A] rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#8B5CF6]"></div>
+-                            <span class="ml-2 text-xs font-medium" :class="jsonLdForm.jsonld_enabled ? 'text-[#8B5CF6]' : 'text-[#9CA3AF]'">
+-                              {{ jsonLdForm.jsonld_enabled ? 'ON' : 'OFF' }}
+-                            </span>
+-                          </label>
+-                          <!-- Auto-Generate Button -->
+-                          <button
+-                            v-if="jsonLdForm.jsonld_enabled"
+-                            type="button"
+-                            @click="autoGenerateJsonLd"
+-                            class="px-3 py-1.5 bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-white rounded-lg text-xs hover:opacity-90 transition-all font-medium"
+-                          >
+-                            ЁЯкД Auto
+-                          </button>
+-                          <!-- Show/Hide Button -->
+-                          <button
+-                            type="button"
+-                            @click="showJsonLdSection = !showJsonLdSection"
+-                            class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#8B5CF6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                            :aria-expanded="showJsonLdSection"
+-                          >
+-                            <svg
+-                              class="w-3 h-3 transform transition-transform duration-200"
+-                              :class="{ 'rotate-180': showJsonLdSection }"
+-                              fill="none"
+-                              stroke="currentColor"
+-                              viewBox="0 0 24 24"
+-                            >
+-                              <path
+-                                stroke-linecap="round"
+-                                stroke-linejoin="round"
+-                                stroke-width="2"
+-                                d="M19 9l-7 7-7-7"
+-                              />
+-                            </svg>
+-                            {{ showJsonLdSection ? 'Hide' : 'Show' }}
+-                          </button>
+-                        </div>
+-                      </div>
+-
+-                      <div v-if="isTurboSectionVisible('jsonLdSection', showJsonLdSection)" class="space-y-6">
+-                        <!-- ЁЯОп NEW JSON-LD Editor Component -->
+-                        <JsonLdEditor
+-                          :slot-id="slot?.id || ''"
+-                          :slot-name="form.name || ''"
+-                          v-model="jsonLdForm"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                    <!-- ========== PHASE 3: ANALYTICS AND PERFORMANCE ========== -->
+-
+-                    <!-- SEO Health Score -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center">
+-                            <span class="text-2xl">ЁЯПе</span>
+-                          </div>
+-                          <div>
+-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+-                              SEO Health Score
+-                            </h3>
+-                            <p class="text-sm text-[#3B82F6]">
+-                              Overall SEO health score of the page
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showSEOHealthSection = !showSEOHealthSection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showSEOHealthSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+-                          </svg>
+-                          <span>{{ showSEOHealthSection ? 'Collapse' : 'Expand' }}</span>
+-                        </button>
+-                      </div>
+-                      <div v-if="isTurboSectionVisible('seoHealthSection', showSEOHealthSection)" class="space-y-6">
+-                        <SEOHealthScore
+-                          v-model="seoHealthForm"
+-                          :seo-title="form.seo_title"
+-                          :seo-description="form.seo_description"
+-                          :canonical-url="form.canonical_url"
+-                          :og-title="form.og_title"
+-                          :og-image="form.og_image"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                    <!-- Keyword Density Checker -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#EC4899]/10 to-[#DB2777]/10 border border-[#EC4899]/20 rounded-xl p-6 hover:border-[#EC4899]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
+-                            <span class="text-2xl">ЁЯФН</span>
+-                          </div>
+-                          <div>
+-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+-                              Keyword Density Checker
+-                            </h3>
+-                            <p class="text-sm text-[#EC4899]">
+-                              Keyword density analysis
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showKeywordDensitySection = !showKeywordDensitySection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EC4899]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showKeywordDensitySection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+-                          </svg>
+-                          <span>{{ showKeywordDensitySection ? 'Collapse' : 'Expand' }}</span>
+-                        </button>
+-                      </div>
+-                      <div v-if="isTurboSectionVisible('keywordDensitySection', showKeywordDensitySection)" class="space-y-6">
+-                        <KeywordDensityChecker
+-                          :slot-name="form.name"
+-                          :description="form.description"
+-                          :content="form.seo_description"
+-                          :seo-title="form.seo_title"
+-                          :seo-description="form.seo_description"
+-                          :keywords="form.seo_keywords_primary"
+-                          :keywords-geo="form.seo_keywords_geo"
+-                          :keywords-lsi="form.seo_keywords_lsi"
+-                          :keywords-longtail="form.seo_keywords_longtail"
+-                          :active-regions="technicalSeoForm.regions"
+-                          @update:analysisResult="form.keyword_analysis_result = $event"
+-                          @update:densityScore="form.keyword_density_score = $event"
+-                          @update:geoKeywords="form.seo_keywords_geo = $event"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                    <!-- Indexing Status -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 border border-[#6366F1]/20 rounded-xl p-6 hover:border-[#6366F1]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div class="w-12 h-12 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl flex items-center justify-center">
+-                            <span class="text-2xl">ЁЯУК</span>
+-                          </div>
+-                          <div>
+-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+-                              Indexing Status
+-                            </h3>
+-                            <p class="text-sm text-[#6366F1]">
+-                              Indexing status in search engines
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showIndexingStatusSection = !showIndexingStatusSection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#6366F1]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showIndexingStatusSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+-                          </svg>
+-                          <span>{{ showIndexingStatusSection ? 'Collapse' : 'Expand' }}</span>
+-                        </button>
+-                      </div>
+-                      <div v-if="isTurboSectionVisible('indexingStatusSection', showIndexingStatusSection)" class="space-y-6">
+-                        <IndexingStatus
+-                          v-model="indexingForm"
+-                          :page-url="getSlotPageUrl()"
+-                          :site-url="getSiteUrl()"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                    <!-- Page Speed Metrics -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center">
+-                            <span class="text-2xl">тЪб</span>
+-                          </div>
+-                          <div>
+-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+-                              Core Web Vitals
+-                            </h3>
+-                            <p class="text-sm text-[#F59E0B]">
+-                              Page performance metrics
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showPageSpeedSection = !showPageSpeedSection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showPageSpeedSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+-                          </svg>
+-                          <span>{{ showPageSpeedSection ? 'Collapse' : 'Expand' }}</span>
+-                        </button>
+-                      </div>
+-                      <div v-if="isTurboSectionVisible('pageSpeedSection', showPageSpeedSection)" class="space-y-6">
+-                        <PageSpeedMetrics
+-                          v-model="pageSpeedForm"
+-                          :page-url="getSlotPageUrl()"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                    <!-- Sitemap Configuration -->
+-                    <div
+-                      class="group bg-gradient-to-r from-[#10B981]/10 to-[#34D399]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
+-                    >
+-                      <div class="flex items-center justify-between mb-4">
+-                        <div class="flex items-center gap-3">
+-                          <div class="w-12 h-12 bg-gradient-to-br from-[#10B981] to-[#34D399] rounded-xl flex items-center justify-center">
+-                            <span class="text-2xl">ЁЯЧ║я╕П</span>
+-                          </div>
+-                          <div>
+-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+-                              Sitemap Configuration
+-                            </h3>
+-                            <p class="text-sm text-[#10B981]">
+-                              XML sitemap settings
+-                            </p>
+-                          </div>
+-                        </div>
+-                        <button
+-                          type="button"
+-                          @click="showSitemapSection = !showSitemapSection"
+-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#10B981]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+-                        >
+-                          <svg
+-                            class="w-3 h-3 transform transition-transform duration-200"
+-                            :class="{ 'rotate-180': showSitemapSection }"
+-                            fill="none"
+-                            stroke="currentColor"
+-                            viewBox="0 0 24 24"
+-                          >
+-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+-                          </svg>
+-                          <span>{{ showSitemapSection ? 'Collapse' : 'Expand' }}</span>
+-                        </button>
+-                      </div>
+-                      <div v-if="isTurboSectionVisible('sitemapSection', showSitemapSection)" class="space-y-6">
+-                        <SitemapConfig
+-                          v-model="sitemapForm"
+-                          :page-url="getSlotPageUrl()"
+-                          :slot-name="form.name"
+-                        />
+-                      </div>
+-                    </div>
+-
+-                  </div>
+-                </div>
+-              </div>
+-            </div>
+-          </form>
+-
+-          <!-- Right panel: Preview -->
+-          <div v-if="false" class="xl:sticky xl:top-24 xl:h-fit">
+-            <div
+-              class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700"
+-            >
+-              <h2
+-                class="text-xl font-bold text-white mb-4 flex items-center gap-3"
+-              >
+-                <svg
+-                  class="w-6 h-6 text-emerald-400"
+-                  fill="none"
+-                  stroke="currentColor"
+-                  viewBox="0 0 24 24"
+-                >
+-                  <path
+-                    stroke-linecap="round"
+-                    stroke-linejoin="round"
+-                    stroke-width="2"
+-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+-                  />
+-                  <path
+-                    stroke-linecap="round"
+-                    stroke-linejoin="round"
+-                    stroke-width="2"
+-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+-                  />
+-                </svg>
+-                Hero Section Preview
+-              </h2>
+-
+-              <!-- New Hero section preview (layout closer to client's) -->
+-              <div
+-                class="relative rounded-xl p-4 bg-zinc-950 text-slate-100 border border-white/10 overflow-hidden"
+-              >
+-                <!-- Decorative highlights -->
+-                <div class="absolute inset-0 opacity-20 pointer-events-none">
+-                  <div
+-                    class="absolute top-2 left-2 w-20 h-20 bg-purple-500/30 rounded-full blur-xl"
+-                  ></div>
+-                  <div
+-                    class="absolute bottom-2 right-2 w-16 h-16 bg-blue-500/30 rounded-full blur-lg"
+-                  ></div>
+-                </div>
+-
+-                <div class="relative z-10">
+-                  <div class="hidden lg:flex gap-6 items-start">
+-                    <!-- Media (portrait 3:4) -->
+-                    <div class="w-2/5">
+-                      <CometCard
+-                        :rotate-depth="17.5"
+-                        :translate-depth="20"
+-                        containerClassName="w-full h-full rounded-2xl"
+-                        className="relative aspect-[3/4] rounded-2xl overflow-hidden backdrop-blur-md border border-white/20 shadow-2xl"
+-                      >
+-                        <div class="absolute inset-0">
+-                          <div
+-                            v-if="form.media_type === 'image' && form.image_url"
+-                            class="absolute inset-0"
+-                          >
+-                            <img
+-                              :src="form.image_url"
+-                              :alt="form.name || 'Slot'"
+-                              class="w-full h-full object-cover"
+-                              @error="handlePreviewImageError"
+-                            />
+-                          </div>
+-                          <div
+-                            v-else-if="
+-                              form.media_type === 'video' && form.video_url
+-                            "
+-                            class="absolute inset-0"
+-                          >
+-                            <video
+-                              :src="form.video_url"
+-                              class="w-full h-full object-cover"
+-                              autoplay
+-                              loop
+-                              muted
+-                              preload="metadata"
+-                              @error="handlePreviewVideoError"
+-                            >
+-                              <source :src="form.video_url" type="video/mp4" />
+-                              <source
+-                                :src="
+-                                  form.video_url &&
+-                                  form.video_url.replace('.mp4', '.webm')
+-                                "
+-                                type="video/webm"
+-                              />
+-                            </video>
+-                          </div>
+-                          <div
+-                            v-if="!form.image_url && !form.video_url"
+-                            class="flex items-center justify-center h-full text-white/70 bg-black/30"
+-                          >
+-                            Slot Image
+-                          </div>
++                          </p>
+                         </div>
+-                      </CometCard>
+-                    </div>
+-
+-                    <!-- Right column: provider, title, description, CTA -->
+-                    <div class="flex-1 min-w-0">
+-                      <div class="mb-3">
+-                        <span
+-                          class="inline-block bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold border border-purple-400/30"
+-                          >{{ currentProviderName }}</span
+-                        >
+-                      </div>
+-
+-                      <h1
+-                        class="text-xl lg:text-3xl font-bold bg-gradient-to-r from-blue-200 via-purple-300 to-pink-200 bg-clip-text text-transparent mb-3 leading-tight"
+-                      >
+-                        {{ form.name || 'Slot Name' }}
+-                      </h1>
+-
+-                      <p
+-                        class="text-white/80 text-sm lg:text-base mb-4 line-clamp-3"
+-                      >
+-                        {{
+-                          form.description ||
+-                          'Slot description will be displayed here...'
+-                        }}
+-                      </p>
+-
+-                      <!-- Action buttons -->
+-                      <div class="flex flex-col gap-3 w-full max-w-md">
+-                        <BackgroundGradient
+-                          :animate="true"
+-                          className="rounded-2xl"
+-                          containerClassName="w-full"
+-                        >
+-                          <a
+-                            v-if="form.demo_url && form.demo_url.trim()"
+-                            :href="form.demo_url"
+-                            target="_blank"
+-                            rel="nofollow noopener"
+-                            class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-emerald-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+-                          >
+-                            <span class="relative z-10">Play for Free</span>
+-                            <span
+-                              class="relative z-10 bg-emerald-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-emerald-400/50"
+-                              >DEMO</span
+-                            >
+-                          </a>
+-                          <button
+-                            v-else
+-                            type="button"
+-                            class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+-                          >
+-                            Play for Free
+-                          </button>
+-                        </BackgroundGradient>
+ 
+-                        <BackgroundGradient
+-                          :animate="true"
+-                          className="rounded-2xl"
+-                          containerClassName="w-full"
+-                        >
+-                          <a
+-                            v-if="
+-                              form.real_play_url && form.real_play_url.trim()
+-                            "
+-                            :href="form.real_play_url"
+-                            target="_blank"
+-                            rel="nofollow sponsored noopener"
+-                            class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-orange-500/60 transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
+-                          >
+-                            <span class="relative z-10">Play for Real</span>
+-                            <span
+-                              class="relative z-10 bg-orange-500/30 text-[10px] px-2 py-1 rounded-full font-bold border border-orange-400/50"
+-                              >REAL</span
+-                            >
+-                          </a>
+-                          <button
+-                            v-else
+-                            type="button"
+-                            class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-sm font-black py-3 px-5 rounded-2xl"
+-                          >
+-                            Play for Real
+-                          </button>
+-                        </BackgroundGradient>
++                        <!-- ЁЯУ▒ Social Preview Cards (Phase 2) -->
++                        <div class="border-t border-[#353A4A] pt-6">
++                          <SocialPreviewCards
++                            :og-title="form.og_title || form.seo_title || generateAutoOgTitle()"
++                            :og-description="form.og_description || form.seo_description || generateAutoOgDescription()"
++                            :og-image="form.og_image || form.image_url"
++                            :twitter-title="form.twitter_title"
++                            :twitter-description="form.twitter_description"
++                            :twitter-image="form.twitter_image"
++                            :page-url="`/slots/${form.slug}`"
++                            :hashtags="form.social_custom_hashtags"
++                            :cta-text="form.social_cta_text"
++                            @update:hashtags="form.social_custom_hashtags = $event"
++                            @update:cta-text="form.social_cta_text = $event"
++                          />
++                        </div>
+                       </div>
++                    </div>
+ 
+-                      <!-- Rating and mini-specs -->
+-                      <div class="mt-4">
+-                        <div class="flex items-center gap-2 mb-3">
+-                          <div class="flex text-yellow-400 text-sm">
+-                            <span v-for="n in 5" :key="n" class="text-base">{{
+-                              (form.rating || 0) >= n ? 'тШЕ' : 'тШЖ'
+-                            }}</span>
+-                          </div>
+-                          <span class="text-white font-bold text-sm">{{
+-                            form.rating || '0'
+-                          }}</span>
+-                          <span class="text-white/60 text-sm">/ 5</span>
+-                        </div>
+-                        <div class="grid grid-cols-2 gap-2 text-xs">
+-                          <div
+-                            class="bg-emerald-500/20 p-2 rounded border border-emerald-400/30"
+-                          >
+-                            <div class="text-emerald-300 font-bold">RTP</div>
+-                            <div class="text-white">
+-                              {{ form.rtp || '96.50' }}%
+-                            </div>
+-                          </div>
+-                          <div
+-                            class="bg-orange-500/20 p-2 rounded border border-orange-400/30"
+-                          >
+-                            <div class="text-orange-300 font-bold">
+-                              Volatility
+-                            </div>
+-                            <div class="text-white capitalize">
+-                              {{ currentVolatilityText }}
+-                            </div>
+-                          </div>
++                    <!-- Twitter Card -->
++                    <div
++                      class="group bg-gradient-to-r from-[#1DA1F2]/10 to-[#0D8BD9]/10 border border-[#1DA1F2]/20 rounded-xl p-6 hover:border-[#1DA1F2]/40 transition-all duration-300"
++                    >
++                      <div class="flex items-center justify-between mb-4">
++                        <div class="flex items-center gap-3">
+                           <div
+-                            class="bg-purple-500/20 p-2 rounded border border-purple-400/30"
++                            class="w-12 h-12 bg-gradient-to-br from-[#1DA1F2] to-[#0D8BD9] rounded-xl flex items-center justify-center"
+                           >
+-                            <div class="text-purple-300 font-bold">
+-                              Max Win
+-                            </div>
+-                            <div class="text-white">
+-                              {{ form.max_win || '5000' }}x
+-                            </div>
++                            <svg
++                              class="w-6 h-6 text-white"
++                              fill="currentColor"
++                              viewBox="0 0 24 24"
++                            >
++                              <path
++                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
++                              />
++                            </svg>
+                           </div>
+-                          <div
+-                            class="bg-blue-500/20 p-2 rounded border border-blue-400/30"
+-                          >
+-                            <div class="text-blue-300 font-bold">
+-                              Min Bet
+-                            </div>
+-                            <div class="text-white">
+-                              {{ form.min_bet || 'тВм0.20' }}
+-                            </div>
++                          <div>
++                            <h3
++                              class="text-lg font-medium text-[#E5E7EB] font-display"
++                            >
++                              Twitter Card
++                            </h3>
++                            <p class="text-sm text-[#1DA1F2]">
++                              Settings for display on Twitter/X
++                            </p>
+                           </div>
+                         </div>
+-
+-                        <div
+-                          class="mt-3 bg-yellow-500/20 p-2 rounded border border-yellow-400/30"
++                        <button
++                          type="button"
++                          @click="showTwitterSection = !showTwitterSection"
++                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#1DA1F2]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
++                          :aria-expanded="showTwitterSection"
+                         >
+-                          <div class="flex justify-between items-center mb-1">
+-                            <span class="text-white font-semibold text-xs"
+-                              >Rating</span
+-                            >
+-                            <span
+-                              class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black px-2 py-0.5 rounded-full text-xs"
+-                              >#{{ form.popularity_rank || '12' }} of
+-                              2000+</span
+-                            >
+-                          </div>
+-                          <div
+-                            class="w-full bg-white/20 rounded-full h-2 overflow-hidden"
++                          <svg
++                            class="w-3 h-3 transform transition-transform duration-200"
++                            :class="{ 'rotate-180': showTwitterSection }"
++                            fill="none"
++                            stroke="currentColor"
++                            viewBox="0 0 24 24"
+                           >
+-                            <div
+-                              class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full"
+-                              :style="`width: ${form.popularity_percentage || 94}%`"
+-                            ></div>
+-                          </div>
+-                        </div>
++                            <path
++                              stroke-linecap="round"
++                              stroke-linejoin="round"
++                              stroke-width="2"
++                              d="M19 9l-7 7-7-7"
++                            />
++                          </svg>
++                          {{ showTwitterSection ? 'Hide' : 'Show' }}
++                        </button>
+                       </div>
+ 
+-                      <!-- Awards -->
+-                    </div>
+-                  </div>
+-
+-                  <!-- Mobile media preview (if no large screen) -->
+-                  <div
+-                    class="lg:hidden mt-2 aspect-video bg-black/30 rounded-xl overflow-hidden border border-white/10"
+-                  >
+-                    <img
+-                      v-if="form.media_type === 'image' && form.image_url"
+-                      :src="form.image_url"
+-                      :alt="form.name || 'Slot'"
+-                      class="w-full h-full object-cover"
+-                      @error="handlePreviewImageError"
+-                    />
+-                    <video
+-                      v-else-if="form.media_type === 'video' && form.video_url"
+-                      :src="form.video_url"
+-                      class="w-full h-full object-cover"
+-                      autoplay
+-                      loop
+-                      muted
+-                      preload="metadata"
+-                      @error="handlePreviewVideoError"
+-                    ></video>
+-                    <div
+-                      v-else
+-                      class="w-full h-full flex items-center justify-center text-white/60"
+-                    >
+-                      Preview not available
+-                    </div>
+-                  </div>
+-                </div>
+-              </div>
+-
+-              <!-- Preview information -->
+-              <div
+-                class="mt-4 p-3 bg-blue-500/10 border border-blue-400/30 rounded-lg"
+-              >
+-                <p class="text-blue-300 text-sm">
+-                  ЁЯТб This is a miniature preview of the Hero section. The full view can be seen by clicking the "Preview" button above.
+-                </p>
+-              </div>
+-            </div>
+-
+-            <!-- Right panel: Navigation and Preview -->
+-            <div class="lg:col-span-1">
+-              <div class="sticky top-24 space-y-6">
+-                <!-- Section navigation -->
+-                <div
+-                  class="bg-[#161A21]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#353A4A]"
+-                >
+-                  <h3
+-                    class="text-lg font-bold text-[#E5E7EB] mb-4 flex items-center gap-2"
+-                  >
+-                    <svg
+-                      class="w-5 h-5 text-[#FF6E48]"
+-                      fill="none"
+-                      stroke="currentColor"
+-                      viewBox="0 0 24 24"
+-                    >
+-                      <path
+-                        stroke-linecap="round"
+-                        stroke-linejoin="round"
+-                        stroke-width="2"
+-                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+-                      ></path>
+-                    </svg>
+-                    Section Navigation
+-                  </h3>
+-
+-                  <!-- Search bar -->
+-                  <div class="mb-4 relative">
+-                    <input
+-                      ref="searchInput"
+-                      v-model="searchQuery"
+-                      @input="handleSearch"
+-                      @keydown="handleSearchKeydown"
+-                      placeholder="Search sections... (Ctrl+F)"
+-                      class="w-full px-4 py-2 pl-10 pr-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-1 focus:ring-[#FF6E48] focus:border-[#FF6E48] transition-all duration-200 text-sm"
+-                    />
+-                    <svg
+-                      class="w-4 h-4 absolute left-3 top-3 text-[#9CA3AF]"
+-                      fill="none"
+-                      stroke="currentColor"
+-                      viewBox="0 0 24 24"
+-                    >
+-                      <path
+-                        stroke-linecap="round"
+-                        stroke-linejoin="round"
+-                        stroke-width="2"
+-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+-                      />
+-                    </svg>
+-                    <!-- Results counter -->
+-                    <div
+-                      v-if="searchQuery && searchResults.length > 0"
+-                      class="absolute right-3 top-2 text-xs text-[#9CA3AF] bg-[#353A4A] px-2 py-1 rounded"
+-                    >
+-                      {{ currentSearchIndex + 1 }}/{{ searchResults.length }}
+-                    </div>
+-                    <!-- Clear button -->
+-                    <button
+-                      v-if="searchQuery"
+-                      @click="clearSearch"
+-                      class="absolute right-3 top-3 text-[#9CA3AF] hover:text-[#E5E7EB] transition-colors"
+-                    >
+-                      <svg
+-                        class="w-4 h-4"
+-                        fill="none"
+-                        stroke="currentColor"
+-                        viewBox="0 0 24 24"
+-                      >
+-                        <path
+-                          stroke-linecap="round"
+-                          stroke-linejoin="round"
+-                          stroke-width="2"
+-                          d="M6 18L18 6M6 6l12 12"
+-                        />
+-                      </svg>
+-                    </button>
+-                  </div>
+-
+-                  <!-- Search results -->
+-                  <div
+-                    v-if="searchQuery && searchResults.length === 0"
+-                    class="mb-4 p-3 bg-[#353A4A]/30 rounded-lg border border-[#353A4A]"
+-                  >
+-                    <div class="flex items-center gap-2 text-sm text-[#9CA3AF]">
+-                      <svg
+-                        class="w-4 h-4"
+-                        fill="none"
+-                        stroke="currentColor"
+-                        viewBox="0 0 24 24"
+-                      >
+-                        <path
+-                          stroke-linecap="round"
+-                          stroke-linejoin="round"
+-                          stroke-width="2"
+-                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+-                        />
+-                      </svg>
+-                      Nothing found
+-                    </div>
+-                  </div>
+-                  <div class="space-y-2">
++                      <div v-if="isTurboSectionVisible('twitterSection', showTwitterSection)" class="space-y-6">
++                        <!-- Twitter Score Removed -->
++                        <div class="space-y-2">
+                     <!-- Main Hero section (collapsible) -->
+                     <button
+                       @click="showHeroSection = !showHeroSection"
+@@ -5300,7 +3708,7 @@ import HreflangConfig from '~/components/admin/HreflangConfig.vue'
+ import RobotsConfig from '~/components/admin/RobotsConfig.vue'
+ import JsonLdEditor from '~/components/admin/JsonLdEditor.vue'
+ // ╨д╨░╨╖╨░ 2 ╨║╨╛╨╝╨┐╨╛╨╜╨╡╨╜╤В╤Л
+-import TitleTemplates from '~/components/admin/TitleTemplates.vue'
++
+ import EEATSignals from '~/components/admin/EEATSignals.vue'
+ import ContentFreshness from '~/components/admin/ContentFreshness.vue'
+ import SocialPreviewCards from '~/components/admin/SocialPreviewCards.vue'
+@@ -5309,7 +3717,7 @@ import KeywordDensityChecker from '~/components/admin/KeywordDensityChecker.vue'
+ import IndexingStatus from '~/components/admin/IndexingStatus.vue'
+ import PageSpeedMetrics from '~/components/admin/PageSpeedMetrics.vue'
+ import SitemapConfig from '~/components/admin/SitemapConfig.vue'
+-import SEOHealthScore from '~/components/admin/SEOHealthScore.vue'
++
+ 
+ // Get slot ID from route
+ const route = useRoute()
+@@ -5554,7 +3962,7 @@ const showKeywordDensitySection = ref(false)
+ const showIndexingStatusSection = ref(false)
+ const showPageSpeedSection = ref(false)
+ const showSitemapSection = ref(false)
+-const showSEOHealthSection = ref(false)
++
+ const showInfoPopupSection = ref(false)
+ 
+ // тЪб Turbo mode: once a section is opened, keep it mounted
+@@ -5600,7 +4008,7 @@ const turboTrackedSections = [
+   ['twitterSection', showTwitterSection],
+   ['technicalSeoSection', showTechnicalSeoSection],
+   ['jsonLdSection', showJsonLdSection],
+-  ['seoHealthSection', showSEOHealthSection],
++  
+   ['keywordDensitySection', showKeywordDensitySection],
+   ['indexingStatusSection', showIndexingStatusSection],
+   ['pageSpeedSection', showPageSpeedSection],
+@@ -5673,7 +4081,7 @@ const initInfoArrays = () => {
+ }
+ 
+ // ╨д╨░╨╖╨░ 2: ╨┐╨╡╤А╨╡╨╝╨╡╨╜╨╜╤Л╨╡ ╨┤╨╗╤П Title Templates
+-const generatedTitleFromTemplate = ref('')
++
+ const showVideoObjectSection = ref(false)
+ 
+ const paylineType = ref('text') // 'number' ╨╕╨╗╨╕ 'text'
+@@ -5767,14 +4175,7 @@ const jsonLdForm = ref({
+ // ========== PHASE 3: Forms for analytics and performance ==========
+ 
+ // SEO Health Score ╤Д╨╛╤А╨╝╨░
+-const seoHealthForm = ref({
+-  seo_health_score: 0,
+-  seo_health_issues: null,
+-  seo_health_warnings: null,
+-  seo_health_passed: null,
+-  seo_health_last_audit: null,
+-  seo_health_trend: null
+-})
++
+ 
+ // Technical SEO ╤Д╨╛╤А╨╝╨░ (Hreflang + Robots + Canonical)
+ const technicalSeoForm = ref({
+@@ -6463,9 +4864,9 @@ const form = ref({
+   // ============ PHASE 2: ADVANCED SEO ============
+ 
+   // Title Templates
+-  seo_title_template: '{name} Slot by {provider} | Play Free Demo {year}',
++  
+   seo_title_power_words: '',
+-  seo_title_use_template: false,
++  
+ 
+   // E-E-A-T - Experience
+   eeat_experience_date: '',
+@@ -6853,16 +5254,7 @@ const loadSlot = async () => {
+     })
+     console.log('тЬЕ JSON-LD settings loaded:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
+ 
+-    // ЁЯУК PHASE 3: Load SEO Health Score settings
+-    const seoHealthFields = [
+-      'seo_health_score', 'seo_health_issues', 'seo_health_warnings',
+-      'seo_health_passed', 'seo_health_last_audit', 'seo_health_trend'
+-    ]
+-    seoHealthFields.forEach(field => {
+-      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
+-        seoHealthForm.value[field] = slot.value[field]
+-      }
+-    })
++    
+ 
+     // ЁЯУИ PHASE 3: Load Indexing Status settings
+     const indexingFields = [
+@@ -6960,6 +5352,12 @@ const loadSlot = async () => {
+     })
+     
+     // Switch to EN by default to make sure all is in sync
++    const initData = localizations.value['en'] || {}
++    Object.keys(form.value).forEach(key => {
++      if (initData[key] !== undefined && typeof form.value[key] === 'string' && !key.includes('url') && !key.includes('_id') && key !== 'slug') {
++        form.value[key] = initData[key]
++      }
++    })
+     currentLocale.value = 'en'
+     // ======================================================
+   } catch (error) {
+@@ -7479,9 +5877,9 @@ const saveSlot = async () => {
+       'content_language',
+       'geo_target_regions',
+       // Title Templates
+-      'seo_title_template',
+-      'seo_title_power_words',
+-      'seo_title_use_template',
++      
++      
++      
+       'search_intent',
+       'canonical_url',
+       // ========== OPEN GRAPH TAGS ==========
+@@ -7662,12 +6060,7 @@ const saveSlot = async () => {
+       }
+     })
+ 
+-    // ЁЯУК PHASE 3: Add SEO Health Score fields
+-    Object.keys(seoHealthForm.value).forEach((key) => {
+-      if (seoHealthForm.value[key] !== undefined) {
+-        dataToSend[key] = seoHealthForm.value[key]
+-      }
+-    })
++    
+ 
+     // ЁЯУИ PHASE 3: Add Indexing Status fields
+     Object.keys(indexingForm.value).forEach((key) => {
+@@ -7918,44 +6311,7 @@ const handleVideoLoad = (event) => {
+   event.target.style.display = 'block'
+ }
+ 
+-// Calculate SEO Score for Meta tags (0-100%)
+-const calculateMetaScore = () => {
+-  let score = 0
+-  const titleLen = (form.value.seo_title || '').length
+-  const descLen = (form.value.seo_description || '').length
+-  const hasKeywords = (form.value.seo_keywords_primary || '').length > 0
+-  const hasSlug = (form.value.slug || '').length > 0
+-
+-  // Title Score (25 points)
+-  if (titleLen >= 50 && titleLen <= 60) {
+-    score += 25
+-  } else if (titleLen >= 30 && titleLen < 50) {
+-    score += 15
+-  } else if (titleLen > 0 && titleLen < 30) {
+-    score += 5
+-  }
+-
+-  // Description Score (25 points)
+-  if (descLen >= 150 && descLen <= 160) {
+-    score += 25
+-  } else if (descLen >= 100 && descLen < 150) {
+-    score += 15
+-  } else if (descLen > 0 && descLen < 100) {
+-    score += 5
+-  }
+-
+-  // Keywords Score (25 points)
+-  if (hasKeywords) {
+-    score += 25
+-  }
+-
+-  // Slug Score (25 points)
+-  if (hasSlug) {
+-    score += 25
+-  }
+ 
+-  return score
+-}
+ 
+ 
+ const handlePreviewImageError = (event) => {
+@@ -8079,6 +6435,56 @@ const generateSeoDescription = () => {
+   form.value.seo_description = generateAutoDescription()
+ }
+ 
++const generateAllSeoKeywords = () => {
++  const isOlympus = form.value.slug === 'gates-of-olympus'
++  const loc = currentLocale.value
++
++  if (loc === 'pt-BR') {
++    if (isOlympus) {
++      form.value.seo_keywords_primary = 'gates of olympus, jogar gates of olympus, gates of olympus demo, velho do raio'
++      form.value.seo_keywords_lsi = 'pragmatic play, slot 1000, super scatter, rtp 96.5%, max win 5000x, b├┤nus de compra, giros gr├бtis'
++      form.value.seo_keywords_geo = 'slots no brasil, cassino online brasil, jogar com reais, pix cassino'
++      form.value.seo_keywords_longtail = 'como jogar gates of olympus, melhor horario para jogar gates of olympus, gates of olympus ganhar dinheiro, qual o rtp do gates of olympus'
++    } else {
++      const name = form.value.name || 'Slot'
++      const n = name.toLowerCase()
++      form.value.seo_keywords_primary = `${n}, jogar ${n}, ${n} demo`
++      form.value.seo_keywords_lsi = 'cassino, rtp alto, giros gr├бtis, slot b├┤nus'
++      form.value.seo_keywords_geo = 'cassino online brasil, apostas online, pix cassino'
++      form.value.seo_keywords_longtail = `como jogar ${n}, onde jogar ${n} gr├бtis`
++    }
++  } else if (loc === 'ru') {
++    if (isOlympus) {
++      form.value.seo_keywords_primary = 'gates of olympus, ╨▓╤А╨░╤В╨░ ╨╛╨╗╨╕╨╝╨┐╨░, gates of olympus ╨┤╨╡╨╝╨╛, ╨╕╨│╤А╨░╤В╤М gates of olympus'
++      form.value.seo_keywords_lsi = 'pragmatic play, ╤Б╨╗╨╛╤В ╨╖╨╡╨▓╤Б, ╨║╤Г╨┐╨╕╤В╤М ╨▒╨╛╨╜╤Г╤Б, ╨╖╨░╨╜╨╛╤Б╤Л, rtp 96.5%, ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╨╕ x500, ╤Д╤А╨╕╤Б╨┐╨╕╨╜╤Л'
++      form.value.seo_keywords_geo = '╨╛╨╜╨╗╨░╨╣╨╜ ╨║╨░╨╖╨╕╨╜╨╛ ╤А╤Г╨▒╨╗╨╕, ╤Б╨╗╨╛╤В╤Л ╨▒╨╡╨╖ ╤А╨╡╨│╨╕╤Б╤В╤А╨░╤Ж╨╕╨╕, ╨║╨░╨╖╨╕╨╜╨╛ ╨║╤А╨╕╨┐╤В╨░'
++      form.value.seo_keywords_longtail = '╨║╨░╨║ ╨▓╤Л╨╕╨│╤А╨░╤В╤М ╨▓ gates of olympus, ╤В╨░╨║╤В╨╕╨║╨░ gates of olympus, gates of olympus ╨╝╨░╨║╤Б╨╕╨╝╨░╨╗╤М╨╜╤Л╨╣ ╨▓╤Л╨╕╨│╤А╤Л╤И, ╨┐╨╛╨╣╨╝╨░╤В╤М ╤Е500 ╨╖╨╡╨▓╤Б'
++    } else {
++      const name = form.value.name || 'Slot'
++      const n = name.toLowerCase()
++      form.value.seo_keywords_primary = `${n}, ${n} ╤Б╨╗╨╛╤В, ╨╕╨│╤А╨░╤В╤М ${n}, ${n} ╨┤╨╡╨╝╨╛`
++      form.value.seo_keywords_lsi = '╨║╨░╨╖╨╕╨╜╨╛, rtp, ╤Д╤А╨╕╤Б╨┐╨╕╨╜╤Л, ╨▒╨╛╨╜╤Г╤Б╤Л, ╨╝╨╜╨╛╨╢╨╕╤В╨╡╨╗╤М'
++      form.value.seo_keywords_geo = '╨╛╨╜╨╗╨░╨╣╨╜ ╨║╨░╨╖╨╕╨╜╨╛ ╤А╤Г╨▒╨╗╨╕, ╨║╤А╨╕╨┐╤В╨╛ ╨║╨░╨╖╨╕╨╜╨╛'
++      form.value.seo_keywords_longtail = `╨║╨░╨║ ╨╕╨│╤А╨░╤В╤М ╨▓ ${n}, ${n} ╨╜╨░ ╤А╨╡╨░╨╗╤М╨╜╤Л╨╡ ╨┤╨╡╨╜╤М╨│╨╕`
++    }
++  } else {
++    // Default en
++    if (isOlympus) {
++      form.value.seo_keywords_primary = 'gates of olympus, gates of olympus slot, play gates of olympus, gates of olympus demo'
++      form.value.seo_keywords_lsi = 'pragmatic play, zeus slot, multiplier symbols, freespin feature, tumble feature, max win 5000x'
++      form.value.seo_keywords_geo = 'us online casinos, play slots for real money, sweepstakes casinos us'
++      form.value.seo_keywords_longtail = 'how to win on gates of olympus, gates of olympus slot review, gates of olympus rtp and volatility, how to trigger free spins gates of olympus'
++    } else {
++      const name = form.value.name || 'Slot'
++      const n = name.toLowerCase()
++      form.value.seo_keywords_primary = `${n}, ${n} slot, play ${n}, ${n} demo`
++      form.value.seo_keywords_lsi = 'online slot, high rtp, free spins, casino game'
++      form.value.seo_keywords_geo = 'online casino us, real money slots'
++      form.value.seo_keywords_longtail = `how to win on ${n}, ${n} slot review`
++    }
++  }
++}
++
+ // ========== OPEN GRAPH FUNCTIONS ==========
+ 
+ // Get OG Title length (considering fallback)
+@@ -8096,46 +6502,7 @@ const getOgImageUrl = () => {
+   return form.value.og_image || form.value.image_url || ''
+ }
+ 
+-// Calculate OG Score (0-100%)
+-const calculateOgScore = () => {
+-  let score = 0
+-  const titleLen = getOgTitleLen()
+-  const descLen = getOgDescLen()
+-  const hasImage = !!getOgImageUrl()
+-  const hasType = !!form.value.og_type
+-
+-  // Title Score (25 points) - optimal 60-90
+-  if (titleLen >= 60 && titleLen <= 90) {
+-    score += 25
+-  } else if (titleLen >= 40 && titleLen < 60) {
+-    score += 15
+-  } else if (titleLen > 0) {
+-    score += 5
+-  }
+-
+-  // Description Score (25 points) - optimal 150-250
+-  if (descLen >= 150 && descLen <= 250) {
+-    score += 25
+-  } else if (descLen >= 100 && descLen < 150) {
+-    score += 15
+-  } else if (descLen > 0) {
+-    score += 5
+-  }
+-
+-  // Image Score (30 points)
+-  if (hasImage) {
+-    score += 30
+-  }
+-
+-  // Type Score (20 points)
+-  if (hasType) {
+-    score += 20
+-  } else {
+-    score += 10 // Partial score for default value
+-  }
+ 
+-  return score
+-}
+ 
+ // Generate auto OG Title
+ const generateAutoOgTitle = () => {
+@@ -8207,46 +6574,7 @@ const getTwitterImageUrl = () => {
+   return form.value.twitter_image || form.value.og_image || form.value.image_url || ''
+ }
+ 
+-// Calculate Twitter Score (0-100%)
+-const calculateTwitterScore = () => {
+-  let score = 0
+-  const titleLen = getTwitterTitleLen()
+-  const descLen = getTwitterDescLen()
+-  const hasImage = !!getTwitterImageUrl()
+-  const hasLargeCard = form.value.twitter_card === 'summary_large_image'
+-
+-  // Title Score (25 points) - optimal 40-70
+-  if (titleLen >= 40 && titleLen <= 70) {
+-    score += 25
+-  } else if (titleLen >= 30 && titleLen < 40) {
+-    score += 15
+-  } else if (titleLen > 0) {
+-    score += 5
+-  }
+-
+-  // Description Score (25 points) - optimal 100-200
+-  if (descLen >= 100 && descLen <= 200) {
+-    score += 25
+-  } else if (descLen >= 80 && descLen < 100) {
+-    score += 15
+-  } else if (descLen > 0) {
+-    score += 5
+-  }
+-
+-  // Image Score (30 points)
+-  if (hasImage) {
+-    score += 30
+-  }
+-
+-  // Card Type Score (20 points)
+-  if (hasLargeCard) {
+-    score += 20
+-  } else if (form.value.twitter_card) {
+-    score += 10
+-  }
+ 
+-  return score
+-}
+ 
+ // Copy from OG Title
+ const copyFromOgTitle = () => {
