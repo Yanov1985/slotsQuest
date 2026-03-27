@@ -3005,40 +3005,9 @@
                             </p>
                           </div>
 
-                          <!-- 4. Long-tail phrases (specific queries) -->
-                          <div class="space-y-2">
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB]"
-                            >
-                              4️⃣ Long-tail phrases (specific queries)
-                              <span class="text-[#EC4899] ml-1">5-10 phrases</span>
-                            </label>
-                            <textarea
-                              v-model="form.seo_keywords_longtail"
-                              rows="3"
-                              placeholder="how to win Gates of Olympus, best strategy for high volatility slots, Gates of Olympus bonus buy worth it, maximum win Gates of Olympus, Gates of Olympus free spins trigger"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200 resize-none"
-                            ></textarea>
-                            <p class="text-xs text-[#9CA3AF]">
-                              🎯 Long target phrases used to search for specific information
-                            </p>
-                          </div>
+                          
 
-                          <!-- Old field for backward compatibility -->
-                          <div class="space-y-2 opacity-50">
-                            <label
-                              class="block text-sm font-medium text-[#9CA3AF]"
-                            >
-                              Old field (for compatibility)
-                            </label>
-                            <input
-                              v-model="form.seo_keywords"
-                              type="text"
-                              placeholder="Automatically generated from new fields above"
-                              class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#9CA3AF] placeholder-[#6B7280] focus:outline-none transition-all duration-200"
-                              readonly
-                            />
-                          </div>
+                          
                         </div>
 
                         <!-- Canonical URL -->
@@ -3059,59 +3028,11 @@
                           </p>
                         </div>
 
-                        <!-- 🎬 Gameplay Video (for VideoObject Schema) -->
-                        <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            🎬 Gameplay Video (Video URL)
-                          </label>
-                          <input
-                            v-model="form.video_url"
-                            type="url"
-                            placeholder="https://youtube.com/watch?v=..."
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF]">
-                            🎥 Link to video review/gameplay (improves SEO with VideoObject Schema)
-                          </p>
-                        </div>
+                        
 
-                        <!-- ⏱️ Video Duration -->
-                        <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            ⏱️ Video Duration (ISO 8601)
-                          </label>
-                          <input
-                            v-model="form.video_duration"
-                            type="text"
-                            placeholder="PT3M (3 minutes)"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF]">
-                            Format: PT3M (3 min), PT5M30S (5 min 30 sec)
-                          </p>
-                        </div>
+                        
 
-                        <!-- 🌐 Alternative Slot Names -->
-                        <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            🌐 Alternative Names (for different markets)
-                          </label>
-                          <input
-                            v-model="form.alternative_names"
-                            type="text"
-                            placeholder="Gates of Olympus, Врата Олимпа, Portões do Olimpo"
-                            class="w-full px-4 py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF]">
-                            📝 Slot names in different languages (comma-separated)
-                          </p>
-                        </div>
+                        
                       </div>
                     </div>
 
@@ -5740,10 +5661,8 @@ const jsonLdForm = ref({
   jsonld_howto_json: '',
 
   // Video Schema
-  jsonld_video_url: '',
-  jsonld_video_thumbnail: '',
-  jsonld_video_duration: '',
-  jsonld_video_description: '',
+  jsonld_jsonld_video_thumbnail: '',
+  jsonld_jsonld_video_description: '',
 
   // ========== 👤 AUTHOR INFORMATION AND UPDATE DATE ==========
   // Article author data
@@ -5879,7 +5798,6 @@ const form = ref({
   info_how_to_play: '',
   info_demo_cta: '',
   info_demo_btn_text: 'Play Demo Now',
-  video_url: '',
   // Button links
   demo_url: '', // Link for "Play for Free" button
   real_play_url: '', // Link for "Play for Real" button
@@ -6401,14 +6319,12 @@ const form = ref({
   // SEO fields
   seo_title: '',
   seo_description: '',
-  seo_keywords: '', // Old field (for compatibility)
-
+  
   // New keyword system (4 types)
   seo_keywords_primary: '', // Primary keywords (3-5)
   seo_keywords_lsi: '', // LSI semantic keywords (10-15)
   seo_keywords_geo: '', // Local keywords for geo-targeting
-  seo_keywords_longtail: '', // Long-tail phrases (5-10)
-
+  
   canonical_url: '',
 
   // Video and multimedia (for VideoObject Schema)
@@ -7088,27 +7004,23 @@ const generateAllSeoKeywords = () => {
       form.value.seo_keywords_primary = "gates of olympus, jogar gates of olympus, gates of olympus demo, velho do raio";
       form.value.seo_keywords_lsi = "pragmatic play, slot 1000, super scatter, rtp 96.5%, max win 5000x, bônus de compra, giros grátis";
       form.value.seo_keywords_geo = "slots no brasil, cassino online brasil, jogar com reais, pix cassino";
-      form.value.seo_keywords_longtail = "melhor horario para jogar gates of olympus, estrategia velho do raio, como ganhar no gates of olympus, paga mesmo";
-    } else if (currentLocale.value === 'ru') {
+          } else if (currentLocale.value === 'ru') {
       form.value.seo_keywords_primary = "gates of olympus, gates of olympus демо, дед слот, врата олимпа";
       form.value.seo_keywords_lsi = "pragmatic play, купить бонус, умножение x500, занос х5000, занос в слоте, бесплатные вращения";
       form.value.seo_keywords_geo = "слоты россия, онлайн казино рубли, играть без регистрации";
-      form.value.seo_keywords_longtail = "как выиграть в gates of olympus, тактика игры дед, лучшее время для игры, занос";
-    } else {
+          } else {
       // Default (English)
       form.value.seo_keywords_primary = "Gates of Olympus slot, play Gates of Olympus, slots Pragmatic Play";
       form.value.seo_keywords_lsi = "Zeus slot game, tumble feature, buy bonus Pragmatic, 5000x max win";
       form.value.seo_keywords_geo = "US, UK, Canada, Australia";
-      form.value.seo_keywords_longtail = "how to win gates of olympus, pragmatic play free slots, gates of olympus demo";
-    }
+          }
   } else {
     // Generic logic for other slots
     const baseName = form.value.name || 'this slot';
     form.value.seo_keywords_primary = `${baseName} slot, play ${baseName}, ${baseName} demo`;
     form.value.seo_keywords_lsi = `free spins, bonus buy, online casino games, max win`;
     form.value.seo_keywords_geo = "Global";
-    form.value.seo_keywords_longtail = `how to win ${baseName}, ${baseName} strategy`;
-  }
+      }
   
   // Also calculate stats if functions exist
   if (typeof calculateMetaScore === 'function') calculateMetaScore();
@@ -8037,7 +7949,6 @@ const resetForm = () => {
       // Media fields
       media_type: 'image',
       image_url: '',
-      video_url: '',
       // Button links
       demo_url: '',
       real_play_url: '',
