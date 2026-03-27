@@ -5659,11 +5659,12 @@ const jsonLdForm = ref({
 
   // HowTo Schema (JSON string)
   jsonld_howto_json: '',
+  jsonld_video_url: '',
+  jsonld_video_thumbnail: '',
+  jsonld_video_duration: '',
+  jsonld_video_description: '',
 
   // Video Schema
-  jsonld_jsonld_video_thumbnail: '',
-  jsonld_jsonld_video_description: '',
-
   // ========== 👤 AUTHOR INFORMATION AND UPDATE DATE ==========
   // Article author data
   article_author_name: 'Yanov Kyryl', // Author name
@@ -7789,7 +7790,7 @@ const saveSlot = async () => {
     }
   } catch (error) {
     console.error('Save error:', error)
-    alert(`Save error: ${error.message || error}`)
+    prompt('Ошибка сохранения! Нажмите Ctrl+C / Cmd+C чтобы скопировать этот текст и отправьте мне:', error.response?._data?.message || error.message)
   } finally {
     saving.value = false
   }
