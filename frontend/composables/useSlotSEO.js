@@ -180,30 +180,29 @@ export const useSlotSEO = ({
         links.push({ rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}${slotUrl}` })
         links.push({ rel: 'alternate', hreflang: 'en', href: `${baseUrl}${slotUrl}` })
 
-        if (slotData.hreflang_config) {
+        if (slotData.localizations) {
             try {
-                const config = JSON.parse(slotData.hreflang_config)
-                if (Array.isArray(config)) {
-                    config.forEach(item => {
-                        links.push({ rel: 'alternate', hreflang: `${item.lang}-${item.region}`, href: `${baseUrl}${item.url || slotUrl}` })
-                    })
-                    return links
+                const localizations = typeof slotData.localizations === 'string' 
+                    ? JSON.parse(slotData.localizations) 
+                    : slotData.localizations;
+                
+                if (Array.isArray(localizations)) {
+                    localizations.forEach(loc => {
+                        const code = loc.code || loc.region;
+                        if (!code || code === 'en') return;
+                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code}${slotUrl}` });
+                    });
+                } else if (localizations && typeof localizations === 'object') {
+                    Object.entries(localizations).forEach(([code, locData]) => {
+                        if (!code || code === 'en') return;
+                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code}${slotUrl}` });
+                    });
                 }
-            } catch (e) { }
-        }
-
-        const targetRegions = [
-            { lang: 'ru', region: 'RU' }, { lang: 'en', region: 'IN' }, { lang: 'pt', region: 'BR' },
-            { lang: 'uz', region: 'UZ' }, { lang: 'az', region: 'AZ' }, { lang: 'tr', region: 'TR' },
-            { lang: 'es', region: 'CL' }, { lang: 'es', region: 'AR' }, { lang: 'en', region: 'CA' },
-            { lang: 'es', region: 'CO' }, { lang: 'id', region: 'ID' }, { lang: 'bn', region: 'BD' }
-        ]
-        const geoTargets = slotData.geo_target_regions?.split(',').map(r => r.trim()) || []
-        targetRegions.forEach(({ lang, region }) => {
-            if (geoTargets.length === 0 || geoTargets.includes(region)) {
-                links.push({ rel: 'alternate', hreflang: `${lang}-${region}`, href: `${baseUrl}${slotUrl}` })
+            } catch (e) {
+                console.error("Error generating hreflang from localizations", e);
             }
-        })
+        }
+        
         return links
     }
 
@@ -359,7 +358,7 @@ export const useSlotSEO = ({
                     { name: 'robots', content: generateRobotsContent(slot.value) },
                     { name: 'theme-color', content: '#1a1a2e' },
                     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-                    { property: 'og:title', content: slot.value.og_title || `${slot.value.name} 🎰 Play Free Demo & Real Money` },
+                    { property: 'og:title', content: slot.value.og_title || slot.value.seo_title || `${slot.value.name} 🎰 Play Free Demo & Real Money` },
                     { property: 'og:description', content: slot.value.og_description || slot.value.seo_description || generateSEODescription(slot.value) },
                     { property: 'og:type', content: slot.value.og_type || 'article' },
                     { property: 'og:site_name', content: slot.value.og_site_name || slot.value?.footer_company_name || 'Brand' },
@@ -386,8 +385,8 @@ export const useSlotSEO = ({
                     { property: 'article:tag', content: `${slot.value.name}, ${slot.value.providers?.name || 'provider'}, slot, slot machine` },
                     { name: 'twitter:card', content: slot.value.twitter_card || 'summary_large_image' },
                     { name: 'twitter:site', content: slot.value.twitter_site || '' },
-                    { name: 'twitter:title', content: slot.value.twitter_title || `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money` },
-                    { name: 'twitter:description', content: slot.value.twitter_description || `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐` },
+                    { name: 'twitter:title', content: slot.value.twitter_title || slot.value.seo_title || `${slot.value.name || 'Slot'} 🎰 Play Free Demo & Real Money` },
+                    { name: 'twitter:description', content: slot.value.twitter_description || slot.value.seo_description || `🎰 ${slot.value.name || 'Slot'} from ${slot.value.providers?.name || 'provider'} - play free demo or real money. RTP: ${slot.value.rtp || '96'}%, rating: ${slot.value.rating || '4.8'}/5 ⭐` },
                     { name: 'twitter:image', content: slot.value.twitter_image || slot.value.image_url || `${siteUrl}/images/slots/${slot.value.slug || slug}.jpg` },
                     { name: 'twitter:image:alt', content: slot.value.twitter_image_alt || `${slot.value.name} slot gameplay screenshot` },
                     { name: 'twitter:creator', content: slot.value.twitter_creator || '' },

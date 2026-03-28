@@ -297,7 +297,8 @@ import {
   getSlotThemesFromDB,
   formatMaxWin,
   formatPaylines,
-  formatNumber
+  formatNumber,
+  mergeLocalizedSlotData
 } from '~/utils/slotFormatters'
 
 import SlotHero from '~/components/slots/SlotHero.vue'
@@ -310,6 +311,9 @@ const { getJsonLdScriptSync, fetchRawJsonLd } = useJsonLd()
 // Получаем slug из роута
 const route = useRoute()
 const slug = route.params.slug
+
+// 🌍 i18n Localization
+const { locale } = useI18n()
 
 // Инициализация реактивных состояний ДО await для сохранения контекста
 const gameSlot = ref({})
@@ -333,12 +337,12 @@ const { data: pageData, pending, error: fetchError, refresh } = await useAsyncDa
   'slot-page-data',
   async () => {
     const currentSlug = route.params.slug
-    const slotRes = await $fetch(`http://localhost:3001/api/slots/${currentSlug}`)
+    const slotRes = await $fetch(`http://127.0.0.1:3001/api/slots/${currentSlug}`)
     if (!slotRes) throw new Error(`Слот с адресом "${currentSlug}" не найден`)
 
     const [mechanicsRes, slotsRes, jsonLdRes] = await Promise.all([
-      $fetch(`http://localhost:3001/api/mechanics/slot/${slotRes.id}`).catch(() => []),
-      $fetch('http://localhost:3001/api/slots').catch(() => []),
+      $fetch(`http://127.0.0.1:3001/api/mechanics/slot/${slotRes.id}`).catch(() => []),
+      $fetch('http://127.0.0.1:3001/api/slots').catch(() => []),
       fetchRawJsonLd ? fetchRawJsonLd(slotRes.id).catch(() => null) : Promise.resolve(null)
     ])
 
@@ -353,9 +357,9 @@ const { data: pageData, pending, error: fetchError, refresh } = await useAsyncDa
 )
 
 // Синхронизация данных при клиентских переходах или обновлении
-watch(pageData, (newData) => {
+watch([pageData, locale], ([newData, newLocale]) => {
   if (newData && newData.slot) {
-    gameSlot.value = newData.slot
+    gameSlot.value = mergeLocalizedSlotData(newData.slot, newLocale)
     slotMechanics.value = newData.mechanics
     allSlots.value = newData.allSlots
     jsonLdSchemas.value = newData.jsonLd
@@ -367,7 +371,7 @@ watch(fetchError, (v) => error.value = v?.message || null)
 
 // Первичная инициализация после первого рендера
 if (pageData.value) {
-  gameSlot.value = pageData.value.slot || {}
+  gameSlot.value = mergeLocalizedSlotData(pageData.value.slot || {}, locale.value)
   allSlots.value = pageData.value.allSlots || []
   slotMechanics.value = pageData.value.mechanics || []
   jsonLdSchemas.value = pageData.value.jsonLd || null

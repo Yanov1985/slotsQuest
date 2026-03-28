@@ -300,3 +300,50 @@ export const formatNumber = (num) => {
     if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
     return n.toLocaleString('en-US')
 }
+
+export const mergeLocalizedSlotData = (slot, localeCode) => {
+    if (!slot || !localeCode || localeCode === 'en') return slot;
+    if (!slot.localizations) return slot;
+
+    try {
+        const localizations = typeof slot.localizations === 'string'
+            ? JSON.parse(slot.localizations)
+            : slot.localizations;
+
+        let targetLocalization = null;
+        if (Array.isArray(localizations)) {
+            targetLocalization = localizations.find(loc => loc.code === localeCode) || 
+                                 localizations.find(loc => loc.region === localeCode);
+        } else if (localizations && typeof localizations === 'object') {
+            targetLocalization = localizations[localeCode];
+            if (!targetLocalization) {
+                targetLocalization = Object.values(localizations).find(loc => loc.region === localeCode);
+            }
+        }
+                                   
+        if (!targetLocalization) return slot;
+
+        const mergedSlot = { ...slot };
+
+        const fieldsToMerge = [
+            'seo_title', 'seo_description', 'seo_keywords_primary', 'seo_keywords_lsi',
+            'seo_keywords_longtail', 'seo_keywords_geo', 'seo_keywords', 
+            'hero_keyword', 'hero_keyword_2', 'hero_keyword_3',
+            'overview_keyword_1', 'overview_keyword_2', 'overview_keyword_3',
+            'overview_description_1', 'overview_description_2',
+            'info_pros', 'info_cons', 'info_faq', 'info_reviews', 'info_how_to_play',
+            'info_demo_btn_text', 'info_real_btn_text', 'name', 'description'
+        ];
+
+        fieldsToMerge.forEach(field => {
+            if (targetLocalization[field] !== undefined && targetLocalization[field] !== '') {
+                mergedSlot[field] = targetLocalization[field];
+            }
+        });
+
+        return mergedSlot;
+    } catch (e) {
+        console.error('Error merging localizations:', e);
+        return slot;
+    }
+}

@@ -13,8 +13,33 @@ export default defineNuxtConfig({
     'nuxt-security',
     '@vite-pwa/nuxt',
     '@nuxtjs/partytown',
-    'nuxt-og-image'
+    'nuxt-og-image',
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'Global / English' },
+      { code: 'ru', iso: 'ru-RU', name: 'Россия (Russian)' },
+      { code: 'pt-BR', iso: 'pt-BR', name: 'Brasil (Portuguese)' },
+      { code: 'es-CL', iso: 'es-CL', name: 'Chile (Spanish)' },
+      { code: 'hi-IN', iso: 'hi-IN', name: 'India (Hindi)' },
+      { code: 'tr', iso: 'tr-TR', name: 'Turkey (Turkish)' },
+      { code: 'uz', iso: 'uz-UZ', name: 'Uzbekistan (Uzbek)' },
+      { code: 'az', iso: 'az-AZ', name: 'Azerbaijan (Azerbaijani)' },
+      { code: 'es-AR', iso: 'es-AR', name: 'Argentina (Spanish)' },
+      { code: 'ca', iso: 'en-CA', name: 'Canada (English)' },
+      { code: 'es-CO', iso: 'es-CO', name: 'Colombia (Spanish)' },
+      { code: 'id', iso: 'id-ID', name: 'Indonesia (Indonesian)' },
+      { code: 'bn', iso: 'bn-BD', name: 'Bangladesh (Bengali)' },
+    ],
+    // Включаем i18n только для публичных страниц, админке переводы URL не нужны
+    pages: {
+      'admin/**': false
+    }
+  },
 
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
