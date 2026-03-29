@@ -2993,29 +2993,6 @@
                           
                         </div>
 
-                        <!-- Canonical URL -->
-                        <div class="space-y-2">
-                          <label
-                            class="block text-sm font-medium text-[#E5E7EB]"
-                          >
-                            Canonical URL
-                          </label>
-                          <input
-                            v-model="form.canonical_url"
-                            type="url"
-                            placeholder="https://slotquest.com/slots/slot-name"
-                            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#10B981] focus:border-transparent transition-all duration-200"
-                          />
-                          <p class="text-xs text-[#9CA3AF]">
-                            Leave empty for automatic generation
-                          </p>
-                        </div>
-
-                        
-
-                        
-
-                        
                       </div>
                     </div>
 
@@ -3049,7 +3026,7 @@
                               Technical SEO
                             </h3>
                             <p class="text-sm text-[#059669]">
-                              Additional search engine optimization settings
+                              Advanced ranking settings
                             </p>
                           </div>
                         </div>
@@ -3080,190 +3057,6 @@
                       </div>
 
                       <div v-if="isTurboSectionVisible('technicalSeoSection', showTechnicalSeoSection)" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <!-- Robots Meta -->
-                          <div
-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                          >
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                            >
-                              Robots Meta
-                            </label>
-                            <select
-                              v-model="form.robots_meta"
-                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                            >
-                              <option value="index, follow">
-                                index, follow (default)
-                              </option>
-                              <option value="noindex, follow">
-                                noindex, follow
-                              </option>
-                              <option value="index, nofollow">
-                                index, nofollow
-                              </option>
-                              <option value="noindex, nofollow">
-                                noindex, nofollow
-                              </option>
-                            </select>
-                            <p class="text-xs text-[#9CA3AF] mt-2">
-                              Instructions for search engine robots
-                            </p>
-                          </div>
-
-                          <!-- Viewport -->
-                          <div
-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                          >
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                            >
-                              Viewport
-                            </label>
-                            <input
-                              v-model="form.viewport_meta"
-                              type="text"
-                              placeholder="width=device-width, initial-scale=1"
-                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                            />
-                            <p class="text-xs text-[#9CA3AF] mt-2">
-                              Mobile display settings
-                            </p>
-                          </div>
-
-                          <!-- Charset -->
-                          <div
-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                          >
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                            >
-                              Charset
-                            </label>
-                            <select
-                              v-model="form.charset_meta"
-                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                            >
-                              <option value="UTF-8">
-                                UTF-8 (recommended)
-                              </option>
-                              <option value="ISO-8859-1">ISO-8859-1</option>
-                              <option value="Windows-1251">Windows-1251</option>
-                            </select>
-                            <p class="text-xs text-[#9CA3AF] mt-2">
-                              Character encoding of the page
-                            </p>
-                          </div>
-
-                          <!-- Language -->
-                          <div
-                            class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                          >
-                            <label
-                              class="block text-sm font-medium text-[#E5E7EB] mb-3"
-                            >
-                              Page Language
-                            </label>
-                            <select
-                              v-model="form.language_meta"
-                              class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                            >
-                              <option value="ru">Russian (ru)</option>
-                              <option value="en">English (en)</option>
-                              <option value="uk">Ukrainian (uk)</option>
-                              <option value="kk">Kazakh (kk)</option>
-                            </select>
-                            <p class="text-xs text-[#9CA3AF] mt-2">
-                              Main content language of the page
-                            </p>
-                          </div>
-                        </div>
-
-                        <!-- Additional meta tags -->
-                        <div
-                          class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4"
-                        >
-                          <h4
-                            class="text-md font-medium text-[#E5E7EB] mb-4 flex items-center gap-2"
-                          >
-                            <svg
-                              class="w-4 h-4 text-[#059669]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                              ></path>
-                            </svg>
-                            Additional Meta Tags
-                          </h4>
-                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Author -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                Author
-                              </label>
-                              <input
-                                v-model="form.author_meta"
-                                type="text"
-                                placeholder="Editorial Team"
-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
-                              />
-                            </div>
-
-                            <!-- Copyright -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                Copyright
-                              </label>
-                              <input
-                                v-model="form.copyright_meta"
-                                type="text"
-                                placeholder="© 2025 Brand. All rights reserved."
-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
-                              />
-                            </div>
-
-                            <!-- Generator -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                Generator
-                              </label>
-                              <input
-                                v-model="form.generator_meta"
-                                type="text"
-                                placeholder="Nuxt.js"
-                                class="w-full px-3 py-2 bg-[#1B1E26] border border-[#353A4A] rounded-lg text-[#E5E7EB] placeholder-[#9CA3AF] focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200 text-sm"
-                              />
-                            </div>
-
-                            <!-- Theme Color -->
-                            <div class="space-y-2">
-                              <label
-                                class="block text-sm font-medium text-[#E5E7EB]"
-                              >
-                                Theme Color
-                              </label>
-                              <input
-                                v-model="form.theme_color_meta"
-                                type="color"
-                                class="w-full h-10 bg-[#1B1E26] border border-[#353A4A] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#059669] focus:border-transparent transition-all duration-200"
-                              />
-                            </div>
-                          </div>
-                        </div>
-
                         <!-- 🌍 Technical SEO Component (Hreflang + Robots + Canonical) -->
                         <div class="bg-[#1B1E26]/50 border border-[#353A4A] rounded-lg p-4">
                           <AdminTechnicalSEO
@@ -3362,8 +3155,10 @@
                           :slot-id="slot?.id || ''"
                           :slot-name="form.name || ''"
                           v-model="jsonLdForm"
-                        />
-                      </div>
+                          :localized-data="localizations[currentLocale] || {}"
+                          :current-locale="currentLocale"
+                          @update:localized-data="(data) => localizations[currentLocale] = data"
+                        />                      </div>
                     </div>
 
                     <!-- ========== PHASE 3: ANALYTICS AND PERFORMANCE ========== -->
@@ -4823,13 +4618,24 @@ const seoHealthForm = ref({
   seo_health_trend: null
 })
 
-// Technical SEO форма (Hreflang + Robots + Canonical)
+// Technical SEO форма (Robots, Canonical, Sitemap)
 const technicalSeoForm = ref({
-  regions: ['RU', 'IN', 'BR', 'UZ', 'AZ', 'TR', 'CL', 'AR', 'CA', 'CO', 'ID', 'BD'],
-  robots: { index: true, follow: true, maxSnippet: '-1', maxImagePreview: 'large' },
+  robots: { 
+    index: true, 
+    follow: true, 
+    notranslate: false,
+    noimageindex: false,
+    maxSnippet: '-1', 
+    maxImagePreview: 'large',
+    maxVideoPreview: -1
+  },
+  sitemap: {
+    include: true,
+    priority: 0.8,
+    frequency: 'weekly'
+  },
   canonical: ''
 })
-
 // Indexing Status форма
 const indexingForm = ref({
   indexing_status: 'unknown',
@@ -4860,16 +4666,7 @@ const pageSpeedForm = ref({
   cwv_opportunities: null
 })
 
-// Sitemap Configuration форма
-const sitemapForm = ref({
-  sitemap_include: true,
-  sitemap_priority: 0.8,
-  sitemap_frequency: 'weekly',
-  sitemap_last_mod: null,
-  sitemap_images: null,
-  sitemap_videos: null,
-  sitemap_news: false
-})
+// Removed standalone sitemapForm (now inside technicalSeoForm)
 
 // Вспомогательные функции для URL
 function getSlotPageUrl() {
@@ -5919,33 +5716,25 @@ const loadSlot = async () => {
       }
     })
 
-    // 🗺️ PHASE 3: Load Sitemap settings
-    const sitemapFields = [
-      'sitemap_include', 'sitemap_priority', 'sitemap_frequency',
-      'sitemap_last_mod', 'sitemap_images', 'sitemap_videos', 'sitemap_news'
-    ]
-    sitemapFields.forEach(field => {
-      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
-        sitemapForm.value[field] = slot.value[field]
-      }
-    })
-    console.log('✅ PHASE 3: SEO analytics loaded')
-
-    // 🌍 Load Geo Targeting from DB into technicalSeoForm
-    if (slot.value?.geo_regions) {
-      try {
-        const regions = JSON.parse(slot.value.geo_regions)
-        if (Array.isArray(regions) && regions.length > 0) {
-          technicalSeoForm.value = {
-            ...technicalSeoForm.value,
-            regions: regions
-          }
-          console.log('✅ Geo Targeting loaded:', regions.length, 'regions')
-        }
-      } catch (e) {
-        console.warn('⚠️ Error parsing geo_regions:', e)
-      }
+    // 🛡️ Load Advanced Technical SEO Settings (Robots, Canonical, Sitemap)
+    technicalSeoForm.value = {
+      robots: {
+        index: slot.value.robots_index !== false,
+        follow: slot.value.robots_follow !== false,
+        notranslate: slot.value.robots_notranslate === true,
+        noimageindex: slot.value.robots_noimageindex === true,
+        maxSnippet: slot.value.robots_max_snippet?.toString() || '-1',
+        maxImagePreview: slot.value.robots_max_image_preview || 'large',
+        maxVideoPreview: typeof slot.value.robots_max_video_preview === 'number' ? slot.value.robots_max_video_preview : -1
+      },
+      sitemap: {
+        include: slot.value.sitemap_include !== false,
+        priority: typeof slot.value.sitemap_priority === 'number' ? slot.value.sitemap_priority : 0.8,
+        frequency: slot.value.sitemap_frequency || 'weekly'
+      },
+      canonical: slot.value.canonical_url || ''
     }
+    console.log('✅ Technical SEO (Robots/Sitemap/Canonical) loaded')
 
     // If reels and rows are not set, but game_field is, try to extract them
     if (slot.value?.game_field && (!slot.value?.reels || !slot.value?.rows)) {
@@ -6741,12 +6530,21 @@ const saveSlot = async () => {
       }
     })
 
-    // 🗺️ PHASE 3: Add Sitemap fields
-    Object.keys(sitemapForm.value).forEach((key) => {
-      if (sitemapForm.value[key] !== undefined) {
-        dataToSend[key] = sitemapForm.value[key]
-      }
-    })
+    // 🛡️ Save Advanced Technical SEO Settings
+    if (technicalSeoForm.value) {
+      dataToSend.robots_index = technicalSeoForm.value.robots.index
+      dataToSend.robots_follow = technicalSeoForm.value.robots.follow
+      dataToSend.robots_notranslate = technicalSeoForm.value.robots.notranslate
+      dataToSend.robots_noimageindex = technicalSeoForm.value.robots.noimageindex
+      dataToSend.robots_max_snippet = parseInt(technicalSeoForm.value.robots.maxSnippet) || -1
+      dataToSend.robots_max_image_preview = technicalSeoForm.value.robots.maxImagePreview
+      dataToSend.robots_max_video_preview = parseInt(technicalSeoForm.value.robots.maxVideoPreview) || -1
+      dataToSend.canonical_url = technicalSeoForm.value.canonical
+      
+      dataToSend.sitemap_include = technicalSeoForm.value.sitemap.include
+      dataToSend.sitemap_priority = parseFloat(technicalSeoForm.value.sitemap.priority) || 0.8
+      dataToSend.sitemap_frequency = technicalSeoForm.value.sitemap.frequency
+    }
 
     console.log('🔍 Form before save:', form.value)
     console.log('📋 Allowed fields:', allowedFields)
@@ -6827,8 +6625,8 @@ const saveSlot = async () => {
     dataToSend.selected_bonuses = selectedBonuses.value
     dataToSend.selected_themes = selectedThemes.value
 
-    // 🌍 Geo Targeting — save selected regions from TechnicalSEO
-    dataToSend.geo_regions = JSON.stringify(technicalSeoForm.value.regions || [])
+    // Note: geo_regions mapping is deprecated; hreflang is managed via i18n
+
     dataToSend.localizations = localizations.value // Multi-GEO injected
 
     // Automatically form game_field from reels and rows
