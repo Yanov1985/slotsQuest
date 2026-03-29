@@ -3105,7 +3105,7 @@
                         <AdminKeywordDensityChecker
                           :slot-name="form.name"
                           :description="form.description"
-                          :content="form.seo_description"
+                          :content="[form.seo_description, form.overview_description_1, form.overview_description_2, form.info_pros, form.info_cons, form.info_expert_verdict, form.info_how_to_play, form.info_faq, form.info_reviews].filter(Boolean).join(' ')"
                           :seo-title="form.seo_title"
                           :seo-description="form.seo_description"
                           :keywords="form.seo_keywords_primary"
@@ -3215,107 +3215,6 @@
                     </div>
 
                     <!-- ========== PHASE 3: ANALYTICS AND PERFORMANCE ========== -->
-
-                    <!-- SEO Health Score -->
-                    <div
-                      class="group bg-gradient-to-r from-[#3B82F6]/10 to-[#8B5CF6]/10 border border-[#3B82F6]/20 rounded-xl p-6 hover:border-[#3B82F6]/40 transition-all duration-300"
-                    >
-                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
-                        <div class="flex items-center gap-3">
-                          <div class="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center">
-                            <span class="text-2xl">🏥</span>
-                          </div>
-                          <div>
-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
-                              SEO Health Score
-                            </h3>
-                            <p class="text-sm text-[#3B82F6]">
-                              Overall SEO health score of the page
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          @click="showSEOHealthSection = !showSEOHealthSection"
-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#3B82F6]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        >
-                          <svg
-                            class="w-3 h-3 transform transition-transform duration-200"
-                            :class="{ 'rotate-180': showSEOHealthSection }"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
-                          <span>{{ showSEOHealthSection ? 'Collapse' : 'Expand' }}</span>
-                        </button>
-                      </div>
-                      <div v-if="isTurboSectionVisible('seoHealthSection', showSEOHealthSection)" class="space-y-6">
-                        <SEOHealthScore
-                          v-model="seoHealthForm"
-                          :seo-title="form.seo_title"
-                          :seo-description="form.seo_description"
-                          :canonical-url="form.canonical_url"
-                          :og-title="form.og_title"
-                          :og-image="form.og_image"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Keyword Density Checker -->
-                    <div
-                      class="group bg-gradient-to-r from-[#EC4899]/10 to-[#DB2777]/10 border border-[#EC4899]/20 rounded-xl p-6 hover:border-[#EC4899]/40 transition-all duration-300"
-                    >
-                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
-                        <div class="flex items-center gap-3">
-                          <div class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center">
-                            <span class="text-2xl">🔍</span>
-                          </div>
-                          <div>
-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
-                              Keyword Density Checker
-                            </h3>
-                            <p class="text-sm text-[#EC4899]">
-                              Keyword density analysis
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          @click="showKeywordDensitySection = !showKeywordDensitySection"
-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EC4899]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        >
-                          <svg
-                            class="w-3 h-3 transform transition-transform duration-200"
-                            :class="{ 'rotate-180': showKeywordDensitySection }"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
-                          <span>{{ showKeywordDensitySection ? 'Collapse' : 'Expand' }}</span>
-                        </button>
-                      </div>
-                      <div v-if="isTurboSectionVisible('keywordDensitySection', showKeywordDensitySection)" class="space-y-6">
-                        <KeywordDensityChecker
-                          :slot-name="form.name"
-                          :description="form.description"
-                          :content="form.seo_description"
-                          :seo-title="form.seo_title"
-                          :seo-description="form.seo_description"
-                          :keywords="form.seo_keywords_primary"
-                          :keywords-geo="form.seo_keywords_geo"
-                          :keywords-lsi="form.seo_keywords_lsi"
-                          :keywords-longtail="form.seo_keywords_longtail"
-                          :active-regions="technicalSeoForm.regions"
-                          @update:analysisResult="form.keyword_analysis_result = $event"
-                          @update:densityScore="form.keyword_density_score = $event"
-                          @update:geoKeywords="form.seo_keywords_geo = $event"
-                        />
-                      </div>
-                    </div>
 
                     <!-- Indexing Status -->
                     <div
@@ -4206,7 +4105,6 @@ import KeywordDensityChecker from '~/components/admin/KeywordDensityChecker.vue'
 import IndexingStatus from '~/components/admin/IndexingStatus.vue'
 import PageSpeedMetrics from '~/components/admin/PageSpeedMetrics.vue'
 import SitemapConfig from '~/components/admin/SitemapConfig.vue'
-import SEOHealthScore from '~/components/admin/SEOHealthScore.vue'
 
 // Get slot ID from route
 const route = useRoute()
@@ -4451,7 +4349,6 @@ const showKeywordDensitySection = ref(false)
 const showIndexingStatusSection = ref(false)
 const showPageSpeedSection = ref(false)
 const showSitemapSection = ref(false)
-const showSEOHealthSection = ref(false)
 const showInfoPopupSection = ref(false)
 
 // ⚡ Turbo mode: once a section is opened, keep it mounted
@@ -4497,7 +4394,6 @@ const turboTrackedSections = [
   ['twitterSection', showTwitterSection],
   ['technicalSeoSection', showTechnicalSeoSection],
   ['jsonLdSection', showJsonLdSection],
-  ['seoHealthSection', showSEOHealthSection],
   ['keywordDensitySection', showKeywordDensitySection],
   ['indexingStatusSection', showIndexingStatusSection],
   ['pageSpeedSection', showPageSpeedSection],
@@ -4662,14 +4558,6 @@ const jsonLdForm = ref({
 // ========== PHASE 3: Forms for analytics and performance ==========
 
 // SEO Health Score форма
-const seoHealthForm = ref({
-  seo_health_score: 0,
-  seo_health_issues: null,
-  seo_health_warnings: null,
-  seo_health_passed: null,
-  seo_health_last_audit: null,
-  seo_health_trend: null
-})
 
 // Technical SEO форма (Robots, Canonical, Sitemap)
 const technicalSeoForm = ref({
@@ -5735,17 +5623,7 @@ const loadSlot = async () => {
     })
     console.log('✅ JSON-LD settings loaded:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
 
-    // 📊 PHASE 3: Load SEO Health Score settings
-    const seoHealthFields = [
-      'seo_health_score', 'seo_health_issues', 'seo_health_warnings',
-      'seo_health_passed', 'seo_health_last_audit', 'seo_health_trend'
-    ]
-    seoHealthFields.forEach(field => {
-      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
-        seoHealthForm.value[field] = slot.value[field]
-      }
-    })
-
+    // Removed SEO Health Score settings load
     // 📈 PHASE 3: Load Indexing Status settings
     const indexingFields = [
       'indexing_status', 'indexing_first_date', 'indexing_last_crawl', 'indexing_crawl_frequency',
@@ -5951,20 +5829,39 @@ const scrollToSection = (sectionId) => {
 const generateAllSeoKeywords = () => {
   // Only apply custom logic for Gates of Olympus
   if (form.value.slug === 'gates-of-olympus') {
-    if (currentLocale.value === 'pt-BR') {
-      form.value.seo_keywords_primary = "gates of olympus, jogar gates of olympus, gates of olympus demo, velho do raio";
-      form.value.seo_keywords_lsi = "pragmatic play, slot 1000, super scatter, rtp 96.5%, max win 5000x, bônus de compra, giros grátis";
-      form.value.seo_keywords_geo = "slots no brasil, cassino online brasil, jogar com reais, pix cassino";
-          } else if (currentLocale.value === 'ru') {
-      form.value.seo_keywords_primary = "gates of olympus, gates of olympus демо, дед слот, врата олимпа";
-      form.value.seo_keywords_lsi = "pragmatic play, купить бонус, умножение x500, занос х5000, занос в слоте, бесплатные вращения";
-      form.value.seo_keywords_geo = "слоты россия, онлайн казино рубли, играть без регистрации";
-          } else {
-      // Default (English)
-      form.value.seo_keywords_primary = "Gates of Olympus slot, play Gates of Olympus, slots Pragmatic Play";
-      form.value.seo_keywords_lsi = "Zeus slot game, tumble feature, buy bonus Pragmatic, 5000x max win";
-      form.value.seo_keywords_geo = "US, UK, Canada, Australia";
-          }
+    switch (currentLocale.value) {
+      case 'pt-BR':
+        form.value.seo_keywords_primary = "gates of olympus, gates of olympus demo, gates of olympus jogar";
+        form.value.seo_keywords_lsi = "gates of olympus 1000 demo, super scatter demo, gate of olympus, cassino pragmatic play";
+        form.value.seo_keywords_geo = "cassino online brasil, slots pagando no pix, roleta brasileira cassino";
+        break;
+      case 'ru':
+        form.value.seo_keywords_primary = "gates of olympus, врата олимпа, gates of olympus демо";
+        form.value.seo_keywords_lsi = "pragmatic play, прагматик плей слоты, купить бонус, занос х5000, бесплатные вращения";
+        form.value.seo_keywords_geo = "слоты россия, онлайн казино рубли, играть без регистрации";
+        break;
+      case 'tr':
+        form.value.seo_keywords_primary = "gates of olympus, gates of olympus oyna, gates of olympus demo";
+        form.value.seo_keywords_lsi = "gates of olympus 1000, slot taktikleri, bedava dönüş, gate of olympus";
+        form.value.seo_keywords_geo = "türkiye online casino, güvenilir slot siteleri, en iyi casino siteleri turkey";
+        break;
+      case 'de':
+        form.value.seo_keywords_primary = "gates of olympus, gates of olympus kostenlos, gates of olympus demo";
+        form.value.seo_keywords_lsi = "gates of olympus 1000 demo, super scatter demo, spielautomaten online, casino slot spiele";
+        form.value.seo_keywords_geo = "online casino deutschland, echtgeld slots de, deutsche online spielotheken";
+        break;
+      case 'en-IN':
+        form.value.seo_keywords_primary = "gates of olympus, play gates of olympus india, olimpis slot";
+        form.value.seo_keywords_lsi = "gates of olympus 1000, pragmatic play india, guts casino slots, free play slots";
+        form.value.seo_keywords_geo = "online casino rupees, play casino india, inr slots, best indian casinos online";
+        break;
+      default:
+        // Default (en-US / Global English)
+        form.value.seo_keywords_primary = "gates of olympus, gates of olympus demo, gates of olympus slot";
+        form.value.seo_keywords_lsi = "gates of olympus 1000 demo, gates of olympus free play, pragmatic play casino, super scatter";
+        form.value.seo_keywords_geo = "usa online casino, play real money slots us, top slot machines online";
+        break;
+    }
   } else {
     // Generic logic for other slots
     const baseName = form.value.name || 'this slot';

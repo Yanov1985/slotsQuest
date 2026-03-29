@@ -332,7 +332,7 @@ export const mergeLocalizedSlotData = (slot, localeCode) => {
             'overview_keyword_1', 'overview_keyword_2', 'overview_keyword_3',
             'overview_description_1', 'overview_description_2',
             'info_pros', 'info_cons', 'info_faq', 'info_reviews', 'info_how_to_play',
-            'info_demo_btn_text', 'info_real_btn_text', 'name', 'description'
+            'info_expert_verdict', 'info_custom_html', 'info_demo_btn_text', 'info_real_btn_text', 'name', 'description'
         ];
 
         fieldsToMerge.forEach(field => {

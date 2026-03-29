@@ -27,7 +27,7 @@
           <!-- 🏆 1. Expert Verdict -->
           <section>
             <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:cup-star-bold" class="text-yellow-400 w-6 h-6" /> Expert Verdict
+              <Icon name="solar:cup-star-bold" class="text-yellow-400 w-6 h-6" /> {{ t('expertVerdict') }}
             </h3>
             <div class="text-gray-300 leading-relaxed text-sm sm:text-base bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
               <p v-if="slotData.info_expert_verdict" v-html="slotData.info_expert_verdict"></p>
@@ -42,13 +42,13 @@
           <!-- ✅❌ 2. Pros & Cons -->
           <section>
             <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:checklist-bold" class="text-blue-400 w-6 h-6" /> Pros & Cons
+              <Icon name="solar:checklist-bold" class="text-blue-400 w-6 h-6" /> {{ t('prosCons') }}
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <!-- Pros -->
               <div class="bg-emerald-500/5 p-3 sm:p-4 rounded-xl border border-emerald-500/20">
                 <h3 class="font-semibold text-emerald-400 text-sm mb-2 flex items-center gap-1.5">
-                  <Icon name="solar:check-circle-bold" class="w-4 h-4" /> Pros
+                  <Icon name="solar:check-circle-bold" class="w-4 h-4" /> {{ t('pros') }}
                 </h3>
                 <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
                   <li v-for="(pro, i) in pros" :key="'pro-'+i" class="flex items-start gap-2">
@@ -60,7 +60,7 @@
               <!-- Cons -->
               <div class="bg-red-500/5 p-3 sm:p-4 rounded-xl border border-red-500/20">
                 <h3 class="font-semibold text-red-400 text-sm mb-2 flex items-center gap-1.5">
-                  <Icon name="solar:forbidden-circle-bold" class="w-4 h-4" /> Cons
+                  <Icon name="solar:forbidden-circle-bold" class="w-4 h-4" /> {{ t('cons') }}
                 </h3>
                 <ul class="space-y-1.5 text-gray-300 text-xs sm:text-sm">
                   <li v-for="(con, i) in cons" :key="'con-'+i" class="flex items-start gap-2">
@@ -75,7 +75,7 @@
           <!-- ❓ 3. FAQ (Accordion Animated) -->
           <section>
             <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:question-square-bold" class="text-blue-400 w-6 h-6" /> Frequently Asked Questions
+              <Icon name="solar:question-square-bold" class="text-blue-400 w-6 h-6" /> {{ t('faq') }}
             </h2>
             <div class="space-y-2">
               <div
@@ -112,7 +112,7 @@
           <!-- 📝 4. Player Reviews -->
           <section>
             <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:chart-square-bold" class="text-purple-400 w-6 h-6" /> {{ slotData.name }} Review & Analysis
+              <Icon name="solar:chart-square-bold" class="text-purple-400 w-6 h-6" /> {{ slotData.name }} {{ t('reviewAnalysis') }}
             </h2>
             <div class="space-y-3">
               <div
@@ -142,7 +142,7 @@
           <!-- 🎮 5. How to Play -->
           <section>
             <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:gamepad-bold" class="text-green-400 w-6 h-6" /> How to Play {{ slotData.name }}
+              <Icon name="solar:gamepad-bold" class="text-green-400 w-6 h-6" /> {{ t('howToPlay') }} {{ slotData.name }}
             </h2>
             <div class="space-y-3">
               <div
@@ -164,7 +164,7 @@
           <!-- 🔗 6. Similar Slots -->
           <section v-if="similar?.length > 0">
             <h2 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Icon name="solar:link-bold" class="text-orange-400 w-6 h-6" /> Similar Slots You May Like
+              <Icon name="solar:link-bold" class="text-orange-400 w-6 h-6" /> {{ t('similarSlots') }}
             </h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
               <NuxtLink
@@ -182,16 +182,17 @@
 
           <!-- CTA -->
           <section class="bg-gradient-to-r from-[#8B5CF6]/10 to-[#EC4899]/10 p-4 rounded-xl border border-[#8B5CF6]/20">
-            <h2 class="text-lg font-bold text-white mb-2">Free Play or Demo</h2>
+            <h2 class="text-lg font-bold text-white mb-2">{{ t('freePlayDemo') }}
+            </h2>
             <p class="text-gray-300 mb-4 text-sm">
-              {{ slotData.info_demo_cta || `You can easily try out ${slotData.name} online slot at our catalog without paying real money. Take advantage of our free demo mode and dive right in!` }}
+              {{ slotData.info_demo_cta || t('demoDesc').replace('{name}', slotData.name) }}
             </p>
             <button
               @click="playSlot"
               class="w-full py-3 flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-white outline-none"
             >
               <Icon name="solar:play-bold" class="w-5 h-5" />
-              {{ slotData.info_demo_btn_text || 'Play Demo Now' }}
+              {{ slotData.info_demo_btn_text || t('playDemoNow') }}
             </button>
           </section>
         </div>
@@ -203,6 +204,84 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { getVolatilityText, formatMaxWin } from '~/utils/slotFormatters'
+
+const { locale } = useI18n()
+
+// Local Translations for Modal Headers
+const translations = {
+  en: {
+    expertVerdict: 'Expert Verdict',
+    prosCons: 'Pros & Cons',
+    pros: 'Pros',
+    cons: 'Cons',
+    faq: 'Frequently Asked Questions',
+    reviewAnalysis: 'Review & Analysis',
+    howToPlay: 'How to Play',
+    similarSlots: 'Similar Slots You May Like',
+    freePlayDemo: 'Free Play or Demo',
+    demoDesc: 'You can easily try out {name} online slot at our catalog without paying real money. Take advantage of our free demo mode and dive right in!',
+    playDemoNow: 'Play Demo Now'
+  },
+  'pt-BR': {
+    expertVerdict: 'Veredito do Especialista',
+    prosCons: 'Prós e Contras',
+    pros: 'Prós',
+    cons: 'Contras',
+    faq: 'Perguntas Frequentes',
+    reviewAnalysis: 'Análise e Avaliação',
+    howToPlay: 'Como Jogar',
+    similarSlots: 'Slots Semelhantes',
+    freePlayDemo: 'Jogo Grátis ou Demo',
+    demoDesc: 'Você pode testar facilmente o slot {name} em nosso catálogo sem pagar dinheiro real. Aproveite nosso modo demo gratuito e mergulhe de cabeça!',
+    playDemoNow: 'Jogar Demo Agora'
+  },
+  ru: {
+    expertVerdict: 'Вердикт эксперта',
+    prosCons: 'Плюсы и минусы',
+    pros: 'Плюсы',
+    cons: 'Минусы',
+    faq: 'Часто задаваемые вопросы',
+    reviewAnalysis: 'Обзор и аналитика',
+    howToPlay: 'Как играть в',
+    similarSlots: 'Похожие слоты',
+    freePlayDemo: 'Бесплатная игра (Демо)',
+    demoDesc: 'Вы можете легко попробовать онлайн-слот {name} в нашем каталоге без риска реальными деньгами. Воспользуйтесь бесплатным демо-режимом прямо сейчас!',
+    playDemoNow: 'Играть Демо'
+  },
+  tr: {
+    expertVerdict: 'Uzman Görüşü',
+    prosCons: 'Artılar ve Eksiler',
+    pros: 'Artılar',
+    cons: 'Eksiler',
+    faq: 'Sıkça Sorulan Sorular',
+    reviewAnalysis: 'İnceleme ve Analiz',
+    howToPlay: 'Nasıl Oynanır:',
+    similarSlots: 'Beğenebileceğiniz Benzer Slotlar',
+    freePlayDemo: 'Ücretsiz Oyna veya Demo',
+    demoDesc: 'Kataloğumuzdaki {name} slotunu gerçek para ödemeden kolayca deneyebilirsiniz. Ücretsiz demo modumuzdan yararlanın ve hemen oynamaya başlayın!',
+    playDemoNow: 'Şimdi Demo Oyna'
+  },
+  de: {
+    expertVerdict: 'Expertenurteil',
+    prosCons: 'Vor- und Nachteile',
+    pros: 'Vorteile',
+    cons: 'Nachteile',
+    faq: 'Häufig gestellte Fragen',
+    reviewAnalysis: 'Überprüfung & Analyse',
+    howToPlay: 'Spielanleitung',
+    similarSlots: 'Ähnliche Slots, die Ihnen gefallen könnten',
+    freePlayDemo: 'Kostenloses Spiel oder Demo',
+    demoDesc: 'Sie können den Online-Slot {name} in unserem Katalog ganz einfach und ohne echtes Geld ausprobieren. Nutzen Sie unseren kostenlosen Demo-Modus!',
+    playDemoNow: 'Jetzt Demo Spielen'
+  }
+}
+translations['en-IN'] = translations.en
+
+const t = (key) => {
+  const lang = translations[locale?.value] || translations.en
+  return lang[key] || translations.en[key] || key
+}
+
 
 const props = defineProps({
   slotData: { type: Object, required: true },
