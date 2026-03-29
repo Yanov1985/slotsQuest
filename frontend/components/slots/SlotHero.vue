@@ -76,8 +76,11 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-blue-500/10 pointer-events-none" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
-                    <div v-if="slot.media_type === 'image' && slot.image_url" class="absolute inset-0">
-                      <NuxtImg :src="slot.image_url" :alt="slot.name" class="w-full h-full object-cover" :style="`object-position: ${slot.image_focus_point || 'center 20%'}`" preload format="webp" sizes="sm:100vw md:50vw lg:800px" @error="$emit('image-error', $event)" />
+                    <div v-if="slot.media_type === 'image' && slot.image_url" class="absolute inset-0 cursor-pointer group" @click="$emit('open-fullscreen')">
+                      <NuxtImg :src="slot.image_url" :alt="slot.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" :style="`object-position: ${slot.image_focus_point || 'center 20%'}`" preload format="webp" sizes="sm:100vw md:50vw lg:800px" @error="$emit('image-error', $event)" />
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Icon name="solar:maximize-square-bold" class="w-10 h-10 text-white/90 drop-shadow-lg" />
+                      </div>
                     </div>
                     <div v-else-if="slot.media_type === 'video' && slot.video_url" class="absolute inset-0">
                       <video :src="slot.video_url" class="w-full h-full object-cover" controls autoplay loop muted :poster="slot.image_url || ''" @error="$emit('video-error', $event)"></video>
@@ -301,7 +304,8 @@ const emit = defineEmits([
   'play-real',
   'image-error',
   'video-error',
-  'hover-star'
+  'hover-star',
+  'open-fullscreen'
 ])
 
 // Refs & Computed

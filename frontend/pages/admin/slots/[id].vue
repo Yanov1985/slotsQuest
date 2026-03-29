@@ -3216,93 +3216,6 @@
 
                     <!-- ========== PHASE 3: ANALYTICS AND PERFORMANCE ========== -->
 
-                    <!-- Indexing Status -->
-                    <div
-                      class="group bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 border border-[#6366F1]/20 rounded-xl p-6 hover:border-[#6366F1]/40 transition-all duration-300"
-                    >
-                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
-                        <div class="flex items-center gap-3">
-                          <div class="w-12 h-12 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl flex items-center justify-center">
-                            <span class="text-2xl">📊</span>
-                          </div>
-                          <div>
-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
-                              Indexing Status
-                            </h3>
-                            <p class="text-sm text-[#6366F1]">
-                              Indexing status in search engines
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          @click="showIndexingStatusSection = !showIndexingStatusSection"
-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#6366F1]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        >
-                          <svg
-                            class="w-3 h-3 transform transition-transform duration-200"
-                            :class="{ 'rotate-180': showIndexingStatusSection }"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
-                          <span>{{ showIndexingStatusSection ? 'Collapse' : 'Expand' }}</span>
-                        </button>
-                      </div>
-                      <div v-if="isTurboSectionVisible('indexingStatusSection', showIndexingStatusSection)" class="space-y-6">
-                        <IndexingStatus
-                          v-model="indexingForm"
-                          :page-url="getSlotPageUrl()"
-                          :site-url="getSiteUrl()"
-                        />
-                      </div>
-                    </div>
-
-                    <!-- Page Speed Metrics -->
-                    <div
-                      class="group bg-gradient-to-r from-[#F59E0B]/10 to-[#EF4444]/10 border border-[#F59E0B]/20 rounded-xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300"
-                    >
-                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
-                        <div class="flex items-center gap-3">
-                          <div class="w-12 h-12 bg-gradient-to-br from-[#F59E0B] to-[#EF4444] rounded-xl flex items-center justify-center">
-                            <span class="text-2xl">⚡</span>
-                          </div>
-                          <div>
-                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
-                              Core Web Vitals
-                            </h3>
-                            <p class="text-sm text-[#F59E0B]">
-                              Page performance metrics
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          @click="showPageSpeedSection = !showPageSpeedSection"
-                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#F59E0B]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
-                        >
-                          <svg
-                            class="w-3 h-3 transform transition-transform duration-200"
-                            :class="{ 'rotate-180': showPageSpeedSection }"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
-                          <span>{{ showPageSpeedSection ? 'Collapse' : 'Expand' }}</span>
-                        </button>
-                      </div>
-                      <div v-if="isTurboSectionVisible('pageSpeedSection', showPageSpeedSection)" class="space-y-6">
-                        <PageSpeedMetrics
-                          v-model="pageSpeedForm"
-                          :page-url="getSlotPageUrl()"
-                        />
-                      </div>
-                    </div>
-
                     <!-- Sitemap Configuration -->
                     <div
                       class="group bg-gradient-to-r from-[#10B981]/10 to-[#34D399]/10 border border-[#10B981]/20 rounded-xl p-6 hover:border-[#10B981]/40 transition-all duration-300"
@@ -4102,8 +4015,6 @@ import EEATSignals from '~/components/admin/EEATSignals.vue'
 import ContentFreshness from '~/components/admin/ContentFreshness.vue'
 // Фаза 3 компоненты
 import KeywordDensityChecker from '~/components/admin/KeywordDensityChecker.vue'
-import IndexingStatus from '~/components/admin/IndexingStatus.vue'
-import PageSpeedMetrics from '~/components/admin/PageSpeedMetrics.vue'
 import SitemapConfig from '~/components/admin/SitemapConfig.vue'
 
 // Get slot ID from route
@@ -4346,8 +4257,6 @@ const showContentFreshnessSection = ref(false)
 
 // Phase 3: new sections
 const showKeywordDensitySection = ref(false)
-const showIndexingStatusSection = ref(false)
-const showPageSpeedSection = ref(false)
 const showSitemapSection = ref(false)
 const showInfoPopupSection = ref(false)
 
@@ -4372,8 +4281,6 @@ const turboMountedSections = reactive({
   jsonLdSection: false,
   seoHealthSection: false,
   keywordDensitySection: false,
-  indexingStatusSection: false,
-  pageSpeedSection: false,
   sitemapSection: false,
   fullOverviewSection: false
 })
@@ -4395,8 +4302,6 @@ const turboTrackedSections = [
   ['technicalSeoSection', showTechnicalSeoSection],
   ['jsonLdSection', showJsonLdSection],
   ['keywordDensitySection', showKeywordDensitySection],
-  ['indexingStatusSection', showIndexingStatusSection],
-  ['pageSpeedSection', showPageSpeedSection],
   ['sitemapSection', showSitemapSection],
   ['fullOverviewSection', showFullOverviewSection]
 ]
@@ -4577,35 +4482,7 @@ const technicalSeoForm = ref({
   },
   canonical: ''
 })
-// Indexing Status форма
-const indexingForm = ref({
-  indexing_status: 'unknown',
-  indexing_first_date: null,
-  indexing_last_crawl: null,
-  indexing_crawl_frequency: 'weekly',
-  indexing_impressions: 0,
-  indexing_clicks: 0,
-  indexing_position: null,
-  indexing_internal_links: 0,
-  indexing_external_links: 0,
-  indexing_last_check: null,
-  indexing_errors: null
-})
 
-// Page Speed / Core Web Vitals форма
-const pageSpeedForm = ref({
-  cwv_lcp: null,
-  cwv_fid: null,
-  cwv_cls: null,
-  cwv_ttfb: null,
-  cwv_fcp: null,
-  cwv_inp: null,
-  cwv_score_mobile: 0,
-  cwv_score_desktop: 0,
-  cwv_last_check: null,
-  cwv_issues: null,
-  cwv_opportunities: null
-})
 
 // Removed standalone sitemapForm (now inside technicalSeoForm)
 
@@ -5624,28 +5501,7 @@ const loadSlot = async () => {
     console.log('✅ JSON-LD settings loaded:', Object.keys(jsonLdForm.value).filter(k => jsonLdForm.value[k]))
 
     // Removed SEO Health Score settings load
-    // 📈 PHASE 3: Load Indexing Status settings
-    const indexingFields = [
-      'indexing_status', 'indexing_first_date', 'indexing_last_crawl', 'indexing_crawl_frequency',
-      'indexing_impressions', 'indexing_clicks', 'indexing_position', 'indexing_internal_links',
-      'indexing_external_links', 'indexing_last_check', 'indexing_errors'
-    ]
-    indexingFields.forEach(field => {
-      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
-        indexingForm.value[field] = slot.value[field]
-      }
-    })
 
-    // ⚡ PHASE 3: Load Page Speed / Core Web Vitals settings
-    const pageSpeedFields = [
-      'cwv_lcp', 'cwv_fid', 'cwv_cls', 'cwv_ttfb', 'cwv_fcp', 'cwv_inp',
-      'cwv_score_mobile', 'cwv_score_desktop', 'cwv_last_check', 'cwv_issues', 'cwv_opportunities'
-    ]
-    pageSpeedFields.forEach(field => {
-      if (slot.value?.[field] !== undefined && slot.value[field] !== null) {
-        pageSpeedForm.value[field] = slot.value[field]
-      }
-    })
 
     // 🛡️ Load Advanced Technical SEO Settings (Robots, Canonical, Sitemap)
     technicalSeoForm.value = {

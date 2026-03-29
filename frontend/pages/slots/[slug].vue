@@ -163,6 +163,7 @@
       @image-error="handleSlotImageError"
       @video-error="handleSlotVideoError"
       @hover-star="setHover"
+      @open-fullscreen="showFullscreenImage = true"
     >
       <template #after-hero>
         <!-- Награды и достижения (мобильные и десктоп) -->
@@ -260,6 +261,37 @@
       @close="showInfoModal = false"
       @play="playSlot(); showInfoModal = false"
     />
+
+    <!-- 🖼️ Fullscreen Image Modal (Teleport to Body) -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="opacity-0 scale-95"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-95"
+      >
+        <div
+          v-if="showFullscreenImage && gameSlot?.image_url"
+          class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8 bg-black/90 backdrop-blur-md"
+          @click="showFullscreenImage = false"
+        >
+          <button
+            class="absolute top-4 right-4 sm:top-8 sm:right-8 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all"
+            @click="showFullscreenImage = false"
+          >
+            <Icon name="solar:close-circle-bold" class="w-8 h-8" />
+          </button>
+          <img
+            :src="gameSlot.image_url"
+            :alt="gameSlot.name"
+            class="max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-white/20"
+            @click.stop
+          />
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -303,7 +335,9 @@ import {
 
 import SlotHero from '~/components/slots/SlotHero.vue'
 import SlotCharacteristics from '~/components/slots/SlotCharacteristics.vue'
-import SlotInfoModal from '~/components/slots/SlotInfoModal.vue'
+import { defineAsyncComponent } from 'vue'
+
+const SlotInfoModal = defineAsyncComponent(() => import('~/components/slots/SlotInfoModal.vue'))
 
 // 🎯 Импорт composable для JSON-LD
 const { getJsonLdScriptSync, fetchRawJsonLd } = useJsonLd()
@@ -631,36 +665,11 @@ const handleSlotVideoError = (event) => {
     '<div class="flex items-center justify-center h-full text-white/60"><svg class="w-12 h-12 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span>Видео не найдено</span></div>'
 }
 
-// Функция для открытия изображения в полноэкранном режиме
-const openImageFullscreen = () => {
-  if (!gameSlot.value?.image_url) return
-
-  // Создаем модальное окно для полноэкранного изображения
-  const modal = document.createElement('div')
-  modal.className =
-    'fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4'
-  modal.onclick = () => modal.remove()
-
-  const img = document.createElement('img')
-  img.src = gameSlot.value.image_url
-  img.alt = `Изображение slotа ${gameSlot.value.name}`
-  img.className = 'max-w-full max-h-full object-contain rounded-xl shadow-2xl'
-  img.onclick = (e) => e.stopPropagation()
-
-  const closeBtn = document.createElement('button')
-  closeBtn.innerHTML = '✕'
-  closeBtn.className =
-    'absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white text-xl font-bold rounded-full transition-colors'
-  closeBtn.onclick = () => modal.remove()
-
-  modal.appendChild(img)
-  modal.appendChild(closeBtn)
-  document.body.appendChild(modal)
-}
 
 
-// 📱 Info Popup & Like State
+// 📱 Info Popup, Fullscreen & Like State
 const showInfoModal = ref(false)
+const showFullscreenImage = ref(false)
 const isLiked = ref(false)
 
 // Инициализация лайка из localStorage
