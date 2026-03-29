@@ -3067,6 +3067,59 @@
                       </div>
                     </div>
 
+                    <!-- Phase 3: Keyword Density Checker -->
+                    <div
+                      class="group bg-gradient-to-r from-[#EC4899]/10 to-[#DB2777]/10 border border-[#EC4899]/20 rounded-xl p-6 hover:border-[#EC4899]/40 transition-all duration-300"
+                    >
+                      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-4">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-[#DB2777] rounded-xl flex items-center justify-center"
+                          >
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h3 class="text-lg font-medium text-[#E5E7EB] font-display">
+                              Keyword Density Checker
+                            </h3>
+                            <p class="text-sm text-[#EC4899]">
+                              SEO keyword analysis and coverage
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          @click="showKeywordDensitySection = !showKeywordDensitySection"
+                          class="flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-[#353A4A] bg-[#1B1E26] hover:bg-[#353A4A] hover:border-[#EC4899]/40 text-[#9CA3AF] hover:text-[#E5E7EB] transition-all duration-200 font-medium"
+                        >
+                          <svg class="w-3 h-3 transform transition-transform duration-200" :class="{ 'rotate-180': showKeywordDensitySection }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7-7-7-7" />
+                          </svg>
+                          {{ showKeywordDensitySection ? 'Hide' : 'Show' }}
+                        </button>
+                      </div>
+
+                      <div v-if="isTurboSectionVisible('keywordDensitySection', showKeywordDensitySection)" class="mt-6">
+                        <AdminKeywordDensityChecker
+                          :slot-name="form.name"
+                          :description="form.description"
+                          :content="form.seo_description"
+                          :seo-title="form.seo_title"
+                          :seo-description="form.seo_description"
+                          :keywords="form.seo_keywords_primary"
+                          :keywords-geo="form.seo_keywords_geo"
+                          :keywords-lsi="form.seo_keywords_lsi"
+                          :keywords-longtail="form.seo_keywords_longtail"
+                          :active-regions="form.geo_target_regions ? form.geo_target_regions.split(',').map(r => r.trim()) : []"
+                          @update:analysisResult="form.keyword_analysis_result = $event"
+                          @update:densityScore="form.keyword_density_score = $event"
+                          @update:geoKeywords="form.seo_keywords_geo = $event"
+                        />
+                      </div>
+                    </div>
+
                     <!-- JSON-LD Schemas -->
                     <div
                       class="group bg-gradient-to-r from-[#8B5CF6]/10 to-[#7C3AED]/10 border border-[#8B5CF6]/20 rounded-xl p-4 sm:p-6 hover:border-[#8B5CF6]/40 transition-all duration-300"
