@@ -1,5 +1,6 @@
 <template>
   <div class="flex-1 flex flex-col">
+    <JackpotConfetti />
     <!-- 📱 Навигация - адаптивная для всех устройств с эффектом стекла -->
     <nav
       class="bg-white/5 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50 shadow-lg shadow-black/20"

@@ -1,4 +1,4 @@
-import {
+import { UseInterceptors, 
   Controller,
   Get,
   Post,
@@ -9,6 +9,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { ProvidersService } from './providers.service';
 
 @Controller('api/providers')
@@ -16,6 +17,7 @@ export class ProvidersController {
   constructor(private readonly providersService: ProvidersService) {}
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async getAllProviders() {
     try {
       return await this.providersService.getAllProviders();
@@ -29,11 +31,13 @@ export class ProvidersController {
   }
 
   @Get('admin/all')
+  @UseInterceptors(CacheInterceptor)
   async getAllProvidersForAdmin() {
     return this.providersService.getAllProvidersForAdmin();
   }
 
   @Get(':slug')
+  @UseInterceptors(CacheInterceptor)
   async getProviderBySlug(@Param('slug') slug: string) {
     try {
       const provider = await this.providersService.getProviderBySlug(slug);
@@ -53,6 +57,7 @@ export class ProvidersController {
   }
 
   @Get(':slug/slots')
+  @UseInterceptors(CacheInterceptor)
   async getProviderSlots(@Param('slug') slug: string) {
     try {
       return await this.providersService.getProviderSlots(slug);

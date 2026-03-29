@@ -12,6 +12,11 @@
 
     <!-- Global Footer (hidden in admin area) -->
     <TheFooter v-if="!isAdminRoute" :data="pageData" />
+
+    <!-- VueUse Floating Button -->
+    <ClientOnly>
+      <BackToTop v-if="!isAdminRoute" />
+    </ClientOnly>
   </div>
 </template>
 
@@ -20,6 +25,7 @@ import { computed } from 'vue'
 import { usePagesApi } from '~/composables/usePagesApi'
 import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
+import BackToTop from '~/components/BackToTop.vue'
 
 const route = useRoute()
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))

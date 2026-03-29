@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 import axios from 'axios';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateSlotDto } from './dto/create-slot.dto';
@@ -13,7 +15,10 @@ interface SlotFilters {
 
 @Injectable()
 export class SlotsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(
+    private readonly prisma: PrismaService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) { }
 
   // ========================================
   // SEO: Уведомление поисковиков об обновлении sitemap
@@ -413,6 +418,13 @@ export class SlotsService {
 
       // После создания нового слота сигнализируем поисковикам о новом sitemap.
       void this.notifySearchEnginesAboutSitemapUpdate();
+      
+      // Инвалидируем кэш каталога слотов (чтобы на фронте слот появился моментально)
+      if (typeof this.cacheManager.clear === 'function') {
+        await this.cacheManager.clear();
+      } else if (typeof (this.cacheManager as any).store?.reset === 'function') {
+        await (this.cacheManager as any).store.reset();
+      }
 
       return createdSlot;
     } catch (error) {
@@ -575,6 +587,13 @@ export class SlotsService {
       // После обновления слота сигнализируем поисковикам об изменённом sitemap.
       void this.notifySearchEnginesAboutSitemapUpdate();
 
+      // Инвалидируем кэш каталога слотов (чтобы на фронте данные обновились моментально)
+      if (typeof this.cacheManager.clear === 'function') {
+        await this.cacheManager.clear();
+      } else if (typeof (this.cacheManager as any).store?.reset === 'function') {
+        await (this.cacheManager as any).store.reset();
+      }
+
       return updatedSlot;
 
     } catch (error) {
@@ -602,6 +621,13 @@ export class SlotsService {
 
       // После удаления слота сигнализируем поисковикам об изменённом sitemap.
       void this.notifySearchEnginesAboutSitemapUpdate();
+
+      // Инвалидируем кэш каталога слотов (чтобы на фронте слот пропал моментально)
+      if (typeof this.cacheManager.clear === 'function') {
+        await this.cacheManager.clear();
+      } else if (typeof (this.cacheManager as any).store?.reset === 'function') {
+        await (this.cacheManager as any).store.reset();
+      }
 
       return { success: true, data: result };
     } catch (error) {

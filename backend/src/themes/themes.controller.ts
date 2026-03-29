@@ -1,4 +1,4 @@
-import {
+import { UseInterceptors, 
   Controller,
   Get,
   Post,
@@ -10,6 +10,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { ThemesService } from './themes.service';
 import { CreateThemeDto, UpdateThemeDto, ThemeQueryDto } from './dto/theme.dto';
 
@@ -18,6 +19,7 @@ export class ThemesController {
   constructor(private readonly themesService: ThemesService) {}
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async findAll(@Query() query: ThemeQueryDto) {
     try {
       const data = await this.themesService.findAll(query);
@@ -31,6 +33,7 @@ export class ThemesController {
   }
 
   @Get('popular')
+  @UseInterceptors(CacheInterceptor)
   async findPopular() {
     try {
       const data = await this.themesService.findPopular();
@@ -44,6 +47,7 @@ export class ThemesController {
   }
 
   @Get('featured')
+  @UseInterceptors(CacheInterceptor)
   async findFeatured() {
     try {
       const data = await this.themesService.findFeatured();
@@ -57,6 +61,7 @@ export class ThemesController {
   }
 
   @Get(':id')
+  @UseInterceptors(CacheInterceptor)
   async findOne(@Param('id') id: string) {
     try {
       const theme = await this.themesService.findOne(id);
@@ -76,6 +81,7 @@ export class ThemesController {
   }
 
   @Get(':id/slots')
+  @UseInterceptors(CacheInterceptor)
   async findSlotsByTheme(@Param('id') id: string) {
     try {
       const slots = await this.themesService.findSlotsByTheme(id);

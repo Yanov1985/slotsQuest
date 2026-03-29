@@ -14,7 +14,7 @@
  * - GET  /api/jsonld/summary          - Сводка по всем слотам
  */
 
-import {
+import { UseInterceptors, 
   Controller,
   Get,
   Post,
@@ -24,6 +24,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { JsonLdService } from './jsonld.service';
 import { ValidateJsonLdDto, UpdateJsonLdSettingsDto } from './dto/jsonld.dto';
 
@@ -62,6 +63,7 @@ export class JsonLdController {
    * }
    */
   @Get(':slotId')
+  @UseInterceptors(CacheInterceptor)
   async getJsonLd(@Param('slotId') slotId: string) {
     try {
       console.log(`📖 Запрос JSON-LD для слота: ${slotId}`);
@@ -89,6 +91,7 @@ export class JsonLdController {
    * Используется на фронтенде для вставки в <script type="application/ld+json">
    */
   @Get(':slotId/raw')
+  @UseInterceptors(CacheInterceptor)
   async getRawJsonLd(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -179,6 +182,7 @@ export class JsonLdController {
    * }
    */
   @Get(':slotId/test')
+  @UseInterceptors(CacheInterceptor)
   async testRichSnippets(@Param('slotId') slotId: string) {
     try {
       console.log(`🧪 Тест Rich Snippets для слота: ${slotId}`);
@@ -255,6 +259,7 @@ export class JsonLdController {
    * Показывает какие схемы включены, дату последней валидации и т.д.
    */
   @Get(':slotId/stats')
+  @UseInterceptors(CacheInterceptor)
   async getStats(@Param('slotId') slotId: string) {
     try {
       console.log(`📊 Запрос статистики JSON-LD для слота: ${slotId}`);
@@ -282,6 +287,7 @@ export class JsonLdController {
    * Полезно для обзора состояния SEO всего сайта.
    */
   @Get('summary')
+  @UseInterceptors(CacheInterceptor)
   async getSummary() {
     try {
       console.log('📋 Запрос сводки JSON-LD по всем слотам');
@@ -316,6 +322,7 @@ export class JsonLdController {
    * Включает статистику, распределение схем, ошибки.
    */
   @Get('analytics')
+  @UseInterceptors(CacheInterceptor)
   async getAnalytics() {
     try {
       console.log('📊 Запрос аналитики JSON-LD');
@@ -343,6 +350,7 @@ export class JsonLdController {
    * Получить список слотов с ошибками валидации JSON-LD.
    */
   @Get('errors')
+  @UseInterceptors(CacheInterceptor)
   async getSlotsWithErrors() {
     try {
       console.log('❌ Запрос слотов с ошибками JSON-LD');
@@ -371,6 +379,7 @@ export class JsonLdController {
    * Получить список слотов требующих валидации.
    */
   @Get('needs-validation')
+  @UseInterceptors(CacheInterceptor)
   async getSlotsNeedingValidation() {
     try {
       console.log('🔍 Запрос слотов требующих валидации');
@@ -431,6 +440,7 @@ export class JsonLdController {
    * Доступные типы: game, product, review, faq, howto, breadcrumb, video
    */
   @Get('schema-stats/:schemaType')
+  @UseInterceptors(CacheInterceptor)
   async getSchemaStats(@Param('schemaType') schemaType: string) {
     try {
       console.log(`📊 Запрос статистики схемы: ${schemaType}`);
@@ -462,6 +472,7 @@ export class JsonLdController {
    * Получить только Game Schema для слота.
    */
   @Get(':slotId/game')
+  @UseInterceptors(CacheInterceptor)
   async getGameSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -483,6 +494,7 @@ export class JsonLdController {
    * Получить только Review Schema для слота.
    */
   @Get(':slotId/review')
+  @UseInterceptors(CacheInterceptor)
   async getReviewSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -504,6 +516,7 @@ export class JsonLdController {
    * Получить только FAQ Schema для слота.
    */
   @Get(':slotId/faq')
+  @UseInterceptors(CacheInterceptor)
   async getFaqSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -525,6 +538,7 @@ export class JsonLdController {
    * Получить только HowTo Schema для слота.
    */
   @Get(':slotId/howto')
+  @UseInterceptors(CacheInterceptor)
   async getHowToSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -546,6 +560,7 @@ export class JsonLdController {
    * Получить только Breadcrumb Schema для слота.
    */
   @Get(':slotId/breadcrumb')
+  @UseInterceptors(CacheInterceptor)
   async getBreadcrumbSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);
@@ -567,6 +582,7 @@ export class JsonLdController {
    * Получить только Video Schema для слота.
    */
   @Get(':slotId/video')
+  @UseInterceptors(CacheInterceptor)
   async getVideoSchema(@Param('slotId') slotId: string) {
     try {
       const result = await this.jsonLdService.generateJsonLd(slotId);

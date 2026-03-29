@@ -9,7 +9,9 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  UseInterceptors,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { SlotsService } from './slots.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { CreateRatingDto } from './dto/create-rating.dto';
@@ -21,6 +23,7 @@ export class SlotsController {
   constructor(private readonly slotsService: SlotsService) {}
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async getAllSlots(
     @Query('provider') provider?: string,
     @Query('category') category?: string,
@@ -51,6 +54,7 @@ export class SlotsController {
   }
 
   @Get('featured')
+  @UseInterceptors(CacheInterceptor)
   async getFeaturedSlots() {
     try {
       const data = await this.slotsService.getFeaturedSlots();
@@ -64,6 +68,7 @@ export class SlotsController {
   }
 
   @Get('popular')
+  @UseInterceptors(CacheInterceptor)
   async getPopularSlots() {
     try {
       const data = await this.slotsService.getPopularSlots();
@@ -99,6 +104,7 @@ export class SlotsController {
   }
 
   @Get(':slug')
+  @UseInterceptors(CacheInterceptor)
   async getSlotBySlug(@Param('slug') slug: string) {
     try {
       const slot = await this.slotsService.getSlotBySlug(slug);

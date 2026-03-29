@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Put, Delete, Param, Query, Body, ParseIntPipe } from '@nestjs/common';
+import { UseInterceptors,  Controller, Get, Post, Put, Delete, Param, Query, Body, ParseIntPipe } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { BonusesService } from './bonuses.service';
 import { CreateBonusDto, UpdateBonusDto, BonusQueryDto } from './dto/bonus.dto';
 

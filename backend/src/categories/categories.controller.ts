@@ -1,4 +1,4 @@
-import {
+import { UseInterceptors, 
   Controller,
   Get,
   Post,
@@ -7,6 +7,7 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Controller('api/categories')
@@ -14,6 +15,7 @@ export class CategoriesController {
   constructor(private readonly prismaService: PrismaService) {}
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   async getAllCategories() {
     try {
       return await this.prismaService.slot_categories.findMany({
@@ -26,6 +28,7 @@ export class CategoriesController {
   }
 
   @Get(':id')
+  @UseInterceptors(CacheInterceptor)
   async getCategoryById(@Param('id') id: string) {
     try {
       return await this.prismaService.slot_categories.findUnique({

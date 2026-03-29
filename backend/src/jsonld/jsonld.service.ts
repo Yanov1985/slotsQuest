@@ -809,7 +809,7 @@ export class JsonLdService {
           });
         }
       } catch (e) {
-        console.warn('⚠️ Ошибка при парсинге seo_keywords_geo:', e);
+        // Fallback to treat the value as a raw string without logging an error.
         if (typeof slot.seo_keywords_geo === 'string' && slot.seo_keywords_geo.trim()) {
           keywords.push(slot.seo_keywords_geo.trim());
         }

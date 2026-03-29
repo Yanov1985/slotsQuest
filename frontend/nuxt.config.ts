@@ -14,7 +14,9 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxtjs/partytown',
     'nuxt-og-image',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@vueuse/nuxt',
+    'nuxt-delay-hydration'
   ],
 
   i18n: {
@@ -39,6 +41,11 @@ export default defineNuxtConfig({
     pages: {
       'admin/**': false
     }
+  },
+
+  delayHydration: {
+    mode: 'init', // Замораживает JS до первого взаимодействия (скролл/клик), взрывая баллы Google PageSpeed
+    debug: false
   },
 
   site: {
@@ -135,7 +142,6 @@ export default defineNuxtConfig({
   routeRules: {
     // Полностью закрываем админку от индексации (включая страницу авторизации).
     '/admin/**': {
-      robots: false,
       headers: {
         'X-Robots-Tag': 'noindex, nofollow, noarchive, nosnippet'
       }

@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     console.error('Error fetching slot by slug:', error)
     
     // Если это 404 от бэкенда, передаем его дальше
-    if (error.statusCode === 404) {
+    if (error && typeof error === 'object' && 'statusCode' in error && error.statusCode === 404) {
       throw createError({
         statusCode: 404,
         statusMessage: 'Slot not found'

@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.error('Error searching slots:', error)
     
-    if (error.statusCode === 400) {
+    if (error && typeof error === 'object' && 'statusCode' in error && error.statusCode === 400) {
       throw error
     }
     
