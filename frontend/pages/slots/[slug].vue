@@ -219,6 +219,27 @@
       </template>
     </SlotHero>
 
+    <!-- 📖 AI Deep SEO Text Rendering -->
+    <article
+      v-if="gameSlot && (gameSlot.overview_description_1 || gameSlot.overview || gameSlot.mechanics)"
+      class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+    >
+      <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
+        <h2 class="text-2xl sm:text-3xl font-black text-white mb-6">{{ t && typeof t === 'function' ? t('reviewAnalysis') : 'Overview' }}: {{ gameSlot.name }}</h2>
+        <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed space-y-4" v-html="gameSlot.overview_description_1 || gameSlot.overview"></div>
+        
+        <div v-if="gameSlot.mechanics" class="mt-10 pt-8 border-t border-white/10">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+             <Icon name="solar:bolt-bold-duotone" class="text-yellow-400 w-8 h-8" />
+             {{ (t && typeof t === 'function') ? t('coreMechanics') : 'Core Mechanics' }}
+          </h3>
+          <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed bg-black/20 p-6 rounded-2xl border border-white/5" v-html="gameSlot.mechanics"></div>
+        </div>
+      </div>
+    </article>
+
+
+
     <!-- 📱 Info Popup & Like Button Control Panel -->
     <div
       class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-[100] flex flex-col gap-3 print:hidden safe-area-pb"
@@ -350,6 +371,176 @@ const slug = route.params.slug
 // 🌍 i18n Localization
 const { locale } = useI18n()
 
+// We will use existing t() function if available
+// Define dynamic multi-language fallbacks
+const fallbackLangObj = {
+  en: {
+    pro1: 'High quality graphics', pro2: 'Exciting bonus rounds', pro3: 'Mobile friendly interface',
+    con1: 'High volatility might not suit everyone', con2: 'Bonus game is hard to trigger',
+    howTo1: 'Select your bet size', howTo2: 'Use the plus and minus buttons to adjust your total bet amount',
+    howTo3: 'Spin the reels', howTo4: 'Click the prominent spin button to start the game',
+    howTo5: 'Understand the payouts', howTo6: 'Check the paytable for symbol values and feature rules',
+    
+    faq1q: 'Is this slot safe to play online?', faq1a: 'Yes, it is developed by a licensed and regulated game provider. All games are tested by independent auditing agencies to ensure fair play.',
+    faq2q: 'What is the RTP?', faq2a: 'The Return to Player (RTP) provides a solid theoretical return over time.',
+    faq3q: 'Can I play for free?', faq3a: 'Yes! You can play in free demo mode right here on our site. No registration or deposit required.',
+    faq4q: 'What is the maximum win?', faq4a: 'The maximum win offers solid winning potential for players.',
+    faq5q: 'What is the volatility?', faq5a: 'The volatility rules dictate how often and how much the slot pays out on average.',
+    
+    rev1: 'is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back.',
+    rev2: 'Great slot with solid RTP. The free spins feature is especially exciting. I play it regularly on our site in demo mode before wagering real money.',
+    rev3: 'Decent slot from the developer. The max win potential is attractive. Love the theme and sound design. Would recommend trying the demo first.',
+    
+    htp1: 'Open the Demo', htp1a: 'Click the play button on this page to launch the game in free play mode. No registration or deposit required.',
+    htp2: 'Set Your Bet', htp2a: 'Use the controls at the bottom of the game screen to adjust your bet size. Start with the minimum bet to learn the mechanics.',
+    htp3: 'Spin the Reels', htp3a: 'Click the Spin button or press Space. Watch for winning combinations across the paylines.',
+    htp4: 'Trigger Bonuses', htp4a: 'Land special symbols to activate bonus features like free spins, multipliers, and other rewards. Check the paytable for details.'
+  },
+  'pt-BR': {
+    pro1: 'Gráficos de alta qualidade', pro2: 'Rodadas de bônus emocionantes', pro3: 'Interface amigável para celular',
+    con1: 'A alta volatilidade pode não agradar a todos', con2: 'O jogo de bônus é difícil de ativar',
+    howTo1: 'Selecione o tamanho da sua aposta', howTo2: 'Use os botões mais e menos para ajustar o valor da aposta',
+    howTo3: 'Gire os cilindros', howTo4: 'Clique no botão de giro para iniciar o jogo',
+    howTo5: 'Entenda os pagamentos', howTo6: 'Verifique a tabela de pagamentos e regras',
+    
+    faq1q: 'Este slot é seguro para jogar online?', faq1a: 'Sim, é desenvolvido por um provedor de jogos licenciado. Todos os jogos são testados para garantir jogo justo.',
+    faq2q: 'Qual é o RTP?', faq2a: 'O Retorno ao Jogador (RTP) oferece um retorno teórico sólido ao longo do tempo.',
+    faq3q: 'Posso jogar de graça?', faq3a: 'Sim! Você pode jogar no modo de demonstração gratuito aqui no nosso site. Sem registro.',
+    faq4q: 'Qual é a vitória máxima?', faq4a: 'A vitória máxima oferece um sólido potencial de vitória.',
+    faq5q: 'O que é a volatilidade?', faq5a: 'As regras de volatilidade ditam a frequência e a quantidade de pagamentos em média.',
+    
+    rev1: 'é um dos meus slots favoritos! Os gráficos são impressionantes.',
+    rev2: 'Ótimo slot com RTP sólido. O recurso de rodadas grátis é muito emocionante.',
+    rev3: 'Slot decente do desenvolvedor. O potencial de ganho máximo é atraente.',
+    
+    htp1: 'Abra o Demo', htp1a: 'Clique no botão de jogar para abrir o modo grátis. Não requer registro.',
+    htp2: 'Defina a Aposta', htp2a: 'Use os controles na parte inferior para ajustar sua aposta.',
+    htp3: 'Gire os Cilindros', htp3a: 'Clique em Girar ou pressione Espaço para jogar.',
+    htp4: 'Ative Bônus', htp4a: 'Junte símbolos especiais para ativar recursos de bônus.'
+  },
+  ru: {
+    pro1: 'Высококачественная графика', pro2: 'Захватывающие бонусные раунды', pro3: 'Удобный мобильный интерфейс',
+    con1: 'Высокая волатильность подходит не всем', con2: 'Бонусную игру сложно активировать',
+    howTo1: 'Выберите размер ставки', howTo2: 'Используйте кнопки для управления ставкой',
+    howTo3: 'Вращайте барабаны', howTo4: 'Нажмите кнопку спина, чтобы начать',
+    howTo5: 'Изучите выплаты', howTo6: 'Проверьте таблицу выплат',
+    
+    faq1q: 'Безопасно ли играть в этот слот онлайн?', faq1a: 'Да, он разработан лицензированным провайдером. Все игры тестируются на честность.',
+    faq2q: 'Какой здесь RTP?', faq2a: 'Отдача игроку (RTP) обеспечивает солидный теоретический возврат.',
+    faq3q: 'Можно играть бесплатно?', faq3a: 'Да! Вы можете играть в бесплатном демо-режиме прямо на нашем сайте. Без регистрации.',
+    faq4q: 'Какой максимальный выигрыш?', faq4a: 'Максимальный множитель дает отличный потенциал выигрыша.',
+    faq5q: 'Что такое волатильность?', faq5a: 'Волатильность определяет частоту и размер выплат.',
+    
+    rev1: 'один из моих любимых слотов! Графика потрясающая, а бонусы просто супер.',
+    rev2: 'Отличный слот с высоким RTP. Часто играю в демо перед игрой на деньги.',
+    rev3: 'Достойный релиз от провайдера. Потенциал макс. выигрыша привлекает. Советую попробовать!',
+    
+    htp1: 'Откройте Демо', htp1a: 'Нажмите кнопку играть на этой странице, чтобы запустить бесплатный режим. Регистрация не нужна.',
+    htp2: 'Сделайте Ставку', htp2a: 'Используйте кнопки внизу экрана, чтобы выбрать размер ставки.',
+    htp3: 'Вращайте Барабаны', htp3a: 'Нажмите Спин или Пробел для запуска раунда.',
+    htp4: 'Ловите Бонусы', htp4a: 'Соберите специальные символы, чтобы запустить фриспины и множители.'
+  },
+  tr: {
+    pro1: 'Yüksek kaliteli grafikler', pro2: 'Heyecan verici bonus turları', pro3: 'Mobil uyumlu arayüz',
+    con1: 'Yüksek oynaklık herkese uygun olmayabilir', con2: 'Bonus oyununu tetiklemek zordur',
+    howTo1: 'Bahis boyutunuzu seçin', howTo2: 'Toplam bahis miktarınızı ayarlamak için kullanın',
+    howTo3: 'Makaraları döndürün', howTo4: 'Oyunu başlatmak için tıklayın',
+    howTo5: 'Ödemeleri anlayın', howTo6: 'Ödeme tablosunu kontrol edin',
+    
+    faq1q: 'Bu slotu oynamak güvenli mi?', faq1a: 'Evet, lisanslı ve düzenlenmiş bir sağlayıcı tarafından geliştirilmiştir.',
+    faq2q: 'RTP nedir?', faq2a: 'Oyuncuya Dönüş (RTP), zaman içinde sağlam bir teorik getiri sağlar.',
+    faq3q: 'Ücretsiz oynayabilir miyim?', faq3a: 'Evet! Sitemizde ücretsiz demo modunda oynayabilirsiniz. Kayıt gerekmez.',
+    faq4q: 'Maksimum kazanç nedir?', faq4a: 'Maksimum kazanç, oyuncular için sağlam kazanma potansiyeli sunar.',
+    faq5q: 'Oynaklık nedir?', faq5a: 'Oynaklık kuralları, slotun ne sıklıkla ödeme yaptığını yönetir.',
+    
+    rev1: 'en sevdiğim slotlardan biri! Grafikler çarpıcı.',
+    rev2: 'Sağlam RTP değeri. Bedava döndürme özelliği çok heyecan verici.',
+    rev3: 'Sağlayıcıdan iyi bir slot. Temayı ve tasarımı seviyorum.',
+    
+    htp1: 'Demoyu Aç', htp1a: 'Oyunu ücretsiz oynamak için düğmeye tıklayın. Kayıt gerekmez.',
+    htp2: 'Bahis Ayarla', htp2a: 'Bahis boyutunuzu ayarlamak için alt kısımdaki kontrolleri kullanın.',
+    htp3: 'Döndür', htp3a: 'Başlamak için Döndür düğmesine tıklayın veya Boşluk tuşuna basın.',
+    htp4: 'Bonus Tetikle', htp4a: 'Tetiklemek için özel sembolleri bulun.'
+  },
+  de: {
+    pro1: 'Hochwertige Grafik', pro2: 'Spannende Bonusrunden', pro3: 'Mobilfreundliche Schnittstelle',
+    con1: 'Hohe Volatilität ist möglicherweise nicht für jeden geeignet', con2: 'Bonusspiel ist schwer auszulösen',
+    howTo1: 'Wählen Sie Ihren Einsatz', howTo2: 'Verwenden Sie die Tasten',
+    howTo3: 'Drehen Sie die Walzen', howTo4: 'Klicken Sie auf den Button',
+    howTo5: 'Auszahlungen verstehen', howTo6: 'Überprüfen Sie die Auszahlungstabelle',
+    faq1q: 'Ist dieser Slot sicher?', faq1a: 'Ja, es wurde von einem lizenzierten Anbieter entwickelt.',
+    faq2q: 'Was ist der RTP?', faq2a: 'Der Return to Player (RTP) bietet eine gute theoretische Rendite.',
+    faq3q: 'Kann ich kostenlos spielen?', faq3a: 'Ja! Sie können bei uns im Demo-Modus spielen. Ohne Anmeldung.',
+    faq4q: 'Was ist der Höchstgewinn?', faq4a: 'Der Höchstgewinn bietet großartiges Gewinnpotenzial.',
+    faq5q: 'Was ist die Volatilität?', faq5a: 'Die Volatilität bestimmt, wie oft der Slot durchschnittlich auszahlt.',
+    rev1: 'ist einer meiner Lieblingsslots! Die Grafik ist atemberaubend.',
+    rev2: 'Toller Slot mit solidem RTP. Bevor ich um echtes Geld spiele.',
+    rev3: 'Guter Slot, das Design ist großartig. Unbedingt die Demo ausprobieren!',
+    htp1: 'Demo öffnen', htp1a: 'Klicken Sie auf den Play-Button.',
+    htp2: 'Einsatz festlegen', htp2a: 'Passen Sie Ihren Einsatz an.',
+    htp3: 'Walzen drehen', htp3a: 'Klicken Sie auf Drehen.',
+    htp4: 'Bonus aktivieren', htp4a: 'Sammeln Sie Spezialsymbole.'
+  },
+  es: {
+    pro1: 'Gráficos de alta calidad', pro2: 'Emocionantes rondas de bonificación', pro3: 'Interfaz amigable para móviles',
+    con1: 'La alta volatilidad puede no ser para todos', con2: 'El juego de bonificación es difícil de activar',
+    howTo1: 'Elige tu apuesta', howTo2: 'Usa los botones para ajustar tu apuesta total',
+    howTo3: 'Gira los rodillos', howTo4: 'Haz clic en el botón de girar para iniciar',
+    howTo5: 'Entiende los pagos', howTo6: 'Revisa la tabla de pagos para ver las reglas',
+    faq1q: '¿Es seguro?', faq1a: 'Sí, está desarrollado por un proveedor con licencia.',
+    faq2q: '¿Cuál es el RTP?', faq2a: 'El RTP ofrece un retorno teórico sólido.',
+    faq3q: '¿Puedo jugar gratis?', faq3a: '¡Sí! Puedes jugar en modo demo en nuestro sitio. Sin registro.',
+    faq4q: '¿Cuál es la ganancia máxima?', faq4a: 'La ganancia máxima ofrece un gran potencial.',
+    faq5q: '¿Qué es la volatilidad?', faq5a: 'La volatilidad indica la frecuencia de los pagos.',
+    rev1: '¡es uno de mis slots favoritos! Los gráficos son impresionantes.',
+    rev2: 'Gran tragamonedas con buen RTP. Muy recomendable jugar el demo primero.',
+    rev3: 'Un lanzamiento decente del proveedor. Todo se ve muy bien.',
+    htp1: 'Abre el Demo', htp1a: 'Haz clic en el botón de jugar en esta página. No requiere registro.',
+    htp2: 'Ajusta la Apuesta', htp2a: 'Utiliza los controles inferiores para establecer tu límite.',
+    htp3: 'Gira', htp3a: 'Presiona Iniciar o Espacio.',
+    htp4: 'Activa Bonos', htp4a: 'Obtén símbolos especiales para ganar premios mayores.'
+  },
+  fr: {
+    pro1: 'Graphismes de haute qualité', pro2: 'Tours de bonus passionnants', pro3: 'Interface adaptée aux mobiles',
+    con1: 'La forte volatilité peut ne pas convenir à tous', con2: 'Le jeu bonus est difficile à déclencher',
+    howTo1: 'Choisissez la mise', howTo2: 'Ajustez votre mise', howTo3: 'Tournez les rouleaux', howTo4: 'Cliquez sur Jouer', howTo5: 'Comprenez les paiements', howTo6: 'Vérifiez la table des gains',
+    faq1q: 'Est-ce sûr de jouer ?', faq1a: 'Oui, c\'est développé par un fournisseur licencié.', faq2q: 'Quel est le RTP ?', faq2a: 'Le RTP offre un bon retour théorique.', faq3q: 'Puis-je jouer gratuitement ?', faq3a: 'Oui, en mode démo sur notre site.', faq4q: 'Gain maximum ?', faq4a: 'Le potentiel de gain est très attractif.', faq5q: 'Volatilité ?', faq5a: 'La volatilité indique la fréquence des gains.',
+    rev1: 'est un de mes favoris ! Graphismes superbes.', rev2: 'Très bonne machine, je joue souvent en démo.', rev3: 'Belle réalisation du développeur.',
+    htp1: 'Ouvrir la Démo', htp1a: 'Cliquez sur jouer.', htp2: 'Régler la mise', htp2a: 'Utilisez les contrôles.', htp3: 'Tourner', htp3a: 'Cliquez sur Tourner.', htp4: 'Bonus', htp4a: 'Attendez les symboles spéciaux.'
+  },
+  it: {
+    pro1: 'Grafica di alta qualità', pro2: 'Giri bonus emozionanti', pro3: 'Interfaccia compatibile per smartphone',
+    con1: 'L\'alta volatilità non è per tutti', con2: 'Il gioco bonus è difficile da attivare',
+    howTo1: 'Scegli la puntata', howTo2: 'Regola la tua scommessa', howTo3: 'Gira i rulli', howTo4: 'Clicca su Gioca', howTo5: 'Capisci i pagamenti', howTo6: 'Controlla la tabella dei pagamenti',
+    faq1q: 'È sicuro giocare?', faq1a: 'Sì, è sviluppato da fornitori con licenza.', faq2q: 'Qual è l\'RTP?', faq2a: 'L\'RTP offre rendimenti teorici solidi.', faq3q: 'Posso giocare gratis?', faq3a: 'Sì, usa la nostra modalità demo.', faq4q: 'Vincita massima?', faq4a: 'Ottimo potenziale di vincita.', faq5q: 'Volatilità?', faq5a: 'La volatilità indica la frequenza dei pagamenti.',
+    rev1: 'è la mia slot preferita! Grafica fantastica.', rev2: 'Buona slot, ci gioco sempre in demo.', rev3: 'Slot molto divertente e potenziale alto.',
+    htp1: 'Apri la Demo', htp1a: 'Clicca su gioca.', htp2: 'Punta', htp2a: 'Imposta i coin.', htp3: 'Gira', htp3a: 'Clicca sul tasto per girare.', htp4: 'Bonus', htp4a: 'Trova i simboli giusti.'
+  },
+  pl: {
+    pro1: 'Wysoka jakość grafiki', pro2: 'Ekscytujące rundy bonusowe', pro3: 'Interfejs dla urządzeń mobilnych',
+    con1: 'Wysoka zmienność może nie odpowiadać każdememu', con2: 'Trudno trafić w bonus',
+    howTo1: 'Wybierz zakład', howTo2: 'Użyj przycisków, aby dostosować zakład', howTo3: 'Zakręć', howTo4: 'Kliknij przycisk, aby rozpocząć grę', howTo5: 'Zrozum wypłaty', howTo6: 'Sprawdź zasady gry',
+    faq1q: 'Czy to bezpieczne?', faq1a: 'Tak, dostawca jest w pełni licencjonowany.', faq2q: 'Jaki jest RTP?', faq2a: 'RTP oferuje niezły teoretyczny zwrot.', faq3q: 'Zagram za darmo?', faq3a: 'Tak, zagraj w demo bez rejestracji.', faq4q: 'Maksymalna wygrana?', faq4a: 'Masz wielkie szanse na duże pomnożenie.', faq5q: 'Co to jest zmienność?', faq5a: 'Oznacza, jak rzadko padają wielkie wygrane.',
+    rev1: 'jest jedną z moich ulubionych! Piękna grafika.', rev2: 'Super świetne demo do przetestowania.', rev3: 'Dostawca zrobił genialną maszynę. Oceniam wysoko.',
+    htp1: 'Otwórz Demo', htp1a: 'Kliknij graj na tej stronie.', htp2: 'Ustaw Zakład', htp2a: 'Dostosuj wartość na dole.', htp3: 'Zakręć', htp3a: 'Naciśnij spację.', htp4: 'Uruchom Bonus', htp4a: 'Złap symbole Scatter.'
+  },
+  hi: {
+    pro1: 'उच्च गुणवत्ता वाले ग्राफिक्स', pro2: 'शानदार बोनस', pro3: 'मोबाइल के अनुकूल इंटरफ़ेस',
+    con1: 'उच्च अस्थिरता सभी के लिए नहीं हो सकती है', con2: 'बोनस गेम मुश्किल है',
+    howTo1: 'अपना दांव चुनें', howTo2: 'दांव सेट करने के लिए बटन का उपयोग करें', howTo3: 'रीलों को स्पिन करें', howTo4: 'खेलने के लिए स्पिन पर क्लिक करें', howTo5: 'भुगतान को समझें', howTo6: 'पे-टेबल देखें',
+    faq1q: 'क्या यह सुरक्षित है?', faq1a: 'हां, यह एक लाइसेंस प्राप्त प्रदाता से है।', faq2q: 'RTP क्या है?', faq2a: 'RTP एक ठोस सैद्धांतिक वापसी प्रदान करता है।', faq3q: 'क्या मैं मुफ्त में खेल सकता हूँ?', faq3a: 'हाँ, बिना पंजीकरण के डेमो खेलें।', faq4q: 'अधिकतम जीत क्या है?', faq4a: 'अधिकतम जीत शानदार है।', faq5q: 'अस्थिरता क्या है?', faq5a: 'अस्थिरता लाभ की आवृत्ति को परिभाषित करती है।',
+    rev1: 'मेरे पसंदीदा स्लॉट्स में से एक है! एनिमेशन बहुत बढ़िया है।', rev2: 'बहुत अच्छा खेल, पैसे लगाने से पहले डेमो खेलें।', rev3: 'बहुत रोमांचक स्लॉट और अच्छा ग्राफिक्स।',
+    htp1: 'डेमो खोलें', htp1a: 'खेलने के लिए क्लिक करें।', htp2: 'शर्त तय करें', htp2a: 'अपनी शर्त सेट करें।', htp3: 'स्पिन', htp3a: 'घुमाएं।', htp4: 'बोनस', htp4a: 'विशेष प्रतीकों को पकड़ें।'
+  }
+}
+const tf = (key) => {
+  const loc = locale?.value || 'en';
+  const baseLoc = loc.split('-')[0];
+  const lang = fallbackLangObj[loc] || fallbackLangObj[baseLoc] || fallbackLangObj.en;
+  return lang[key] || fallbackLangObj.en[key] || key;
+}
+
+
 // Инициализация реактивных состояний ДО await для сохранения контекста
 const gameSlot = ref({})
 const allSlots = ref([])
@@ -369,7 +560,7 @@ defineOgImageComponent('NuxtSeo', {
 
 // --- SSR Data Fetching (Phase 4 SEO Optimization) ---
 const { data: pageData, pending, error: fetchError, refresh } = await useAsyncData(
-  'slot-page-data',
+  `slot-page-data-${route.params.slug}`,
   async () => {
     const currentSlug = route.params.slug
     const slotRes = await $fetch(`http://127.0.0.1:3001/api/slots/${currentSlug}`)
@@ -434,14 +625,10 @@ const computedPros = computed(() => {
   }
   const s = gameSlot.value
   const pros = []
-  if (s.rtp >= 96.5) pros.push(`Above-average RTP of ${s.rtp}%`)
-  else if (s.rtp) pros.push(`Competitive RTP of ${s.rtp}%`)
-  if (s.max_win >= 5000) pros.push(`Massive max win of ${formatMaxWin(s.max_win)}x`)
-  else if (s.max_win) pros.push(`Max win potential of ${formatMaxWin(s.max_win)}x`)
-  if (s.demo_url) pros.push('Free demo mode available')
-  if (s.slot_bonuses?.length > 0) pros.push(`${s.slot_bonuses.length} bonus features`)
-  else pros.push('Engaging gameplay mechanics')
-  if (s.paylines) pros.push(`${formatPaylines(s.paylines)} ways to win`)
+  if (s.rtp >= 96.5) pros.push(tf('pro1'))
+  else if (s.rtp) pros.push(tf('pro1'))
+  if (s.max_win >= 2000) pros.push(tf('pro2'))
+  pros.push(tf('pro3'))
   return pros.slice(0, 4)
 })
 
@@ -451,55 +638,46 @@ const computedCons = computed(() => {
   }
   const s = gameSlot.value
   const cons = []
-  if (s.volatility?.toLowerCase() === 'high') cons.push('High volatility — not for cautious players')
-  else if (s.volatility?.toLowerCase() === 'low') cons.push('Low volatility — smaller win potential')
-  if (s.rtp && s.rtp < 96.0) cons.push(`Below-average RTP of ${s.rtp}%`)
-  if (!s.slot_bonuses?.length) cons.push('Limited bonus features')
-  if (cons.length === 0) cons.push('May not appeal to all play styles')
-  cons.push('Requires stable internet connection')
+  if (s.volatility?.toLowerCase() === 'high') cons.push(tf('con1'))
+  if (s.rtp && s.rtp < 96.0) cons.push(tf('con1'))
+  cons.push(tf('con2'))
   return cons.slice(0, 3)
 })
 
 const computedFaq = computed(() => {
   if (gameSlot.value.info_faq) {
-    try { return JSON.parse(gameSlot.value.info_faq) } catch(e) { /* fallback */ }
+    try { return JSON.parse(gameSlot.value.info_faq) } catch(e) { }
   }
-  const s = gameSlot.value
-  const name = s.name || 'this slot'
-  const provider = s.providers?.name || 'the developer'
   return [
-    { question: `Is ${name} safe to play online?`, answer: `Yes, ${name} is developed by ${provider}, a licensed and regulated game provider. All games are tested by independent auditing agencies to ensure fair play and random outcomes.` },
-    { question: `What is the RTP of ${name}?`, answer: `The Return to Player (RTP) of ${name} is ${s.rtp || '96.0'}%. This means that, on average, for every $100 wagered, the game returns $${s.rtp || '96.0'} to players over time.` },
-    { question: `Can I play ${name} for free?`, answer: `Yes! You can play ${name} in free demo mode right here on our site. No registration or deposit required — just click "${s.info_demo_btn_text || 'Play Demo Now'}" to start spinning.` },
-    { question: `What is the maximum win in ${name}?`, answer: `The maximum win in ${name} is ${formatMaxWin(s.max_win)}x your bet. ${s.max_win >= 5000 ? 'This is a very high max win potential!' : 'This offers solid winning potential for players.'}` },
-    { question: `What is the volatility of ${name}?`, answer: `${name} has ${getVolatilityText(s.volatility).toLowerCase()} volatility. ${s.volatility?.toLowerCase() === 'high' ? 'This means wins are less frequent but can be much larger when they hit.' : s.volatility?.toLowerCase() === 'low' ? 'This means you can expect frequent, smaller wins.' : 'This provides a balanced mix of win frequency and size.'}` }
+    { question: tf('faq1q'), answer: tf('faq1a') },
+    { question: tf('faq2q'), answer: tf('faq2a') },
+    { question: tf('faq3q'), answer: tf('faq3a') },
+    { question: tf('faq4q'), answer: tf('faq4a') },
+    { question: tf('faq5q'), answer: tf('faq5a') }
   ]
 })
 
 const computedReviews = computed(() => {
   if (gameSlot.value.info_reviews) {
-    try { return JSON.parse(gameSlot.value.info_reviews) } catch(e) { /* fallback */ }
+    try { return JSON.parse(gameSlot.value.info_reviews) } catch(e) { }
   }
-  const s = gameSlot.value
-  const name = s.name || 'this slot'
+  const name = gameSlot.value.name || 'Slot'
   return [
-    { author: 'Alex R.', rating: 5, text: `${name} is one of my favorite slots! The graphics are stunning and the bonus features keep me coming back. Highly recommended for anyone who enjoys ${s.volatility?.toLowerCase() === 'high' ? 'high-risk, high-reward' : 'engaging'} gameplay.`, date: '2024-12-15' },
-    { author: 'Maria K.', rating: 4, text: `Great slot with solid RTP of ${s.rtp || '96.0'}%. The free spins feature is especially exciting. I play it regularly on our site in demo mode before wagering real money.`, date: '2024-11-28' },
-    { author: 'James T.', rating: 4, text: `Decent slot from ${s.providers?.name || 'the developer'}. The ${formatMaxWin(s.max_win)}x max win potential is attractive. Love the theme and sound design. Would recommend trying the demo first.`, date: '2024-10-10' }
+    { author: 'Alex R.', rating: 5, text: name + ' ' + tf('rev1'), date: '2024-12-15' },
+    { author: 'Maria K.', rating: 4, text: tf('rev2'), date: '2024-11-28' },
+    { author: 'James T.', rating: 4, text: tf('rev3'), date: '2024-10-10' }
   ]
 })
 
 const computedHowToPlay = computed(() => {
   if (gameSlot.value.info_how_to_play) {
-    try { return JSON.parse(gameSlot.value.info_how_to_play) } catch(e) { /* fallback */ }
+    try { return JSON.parse(gameSlot.value.info_how_to_play) } catch(e) { }
   }
-  const name = gameSlot.value.name || 'the slot'
-  const btnText = gameSlot.value.info_demo_btn_text || 'Play Demo Now'
   return [
-    { step: 'Open the Demo', text: `Click "${btnText}" on this page to launch ${name} in free play mode. No registration or deposit required.` },
-    { step: 'Set Your Bet', text: `Use the controls at the bottom of the game screen to adjust your bet size. Start with the minimum bet to learn the mechanics.` },
-    { step: 'Spin the Reels', text: `Click the Spin button or press Space. Watch for winning combinations across the ${formatPaylines(gameSlot.value.paylines)} paylines.` },
-    { step: 'Trigger Bonuses', text: `Land special symbols to activate bonus features like free spins, multipliers, and other rewards. Check the paytable (ℹ) for details.` }
+    { step: tf('htp1'), text: tf('htp1a') },
+    { step: tf('htp2'), text: tf('htp2a') },
+    { step: tf('htp3'), text: tf('htp3a') },
+    { step: tf('htp4'), text: tf('htp4a') }
   ]
 })
 

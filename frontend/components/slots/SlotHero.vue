@@ -135,12 +135,12 @@
                     </div>
                     <span class="text-white font-bold text-lg lg:text-lg">{{ slot.rating || 4.5 }}</span>
                     <span class="hidden lg:inline text-white/60">/ 5</span>
-                    <span class="text-white/50 lg:text-white/40 text-sm lg:ml-2">({{ formatNumber(slot.reviews_count || 100) }} reviews)</span>
+                    <span class="text-white/50 lg:text-white/40 text-sm lg:ml-2">({{ formatNumber(slot.reviews_count || 100) }} {{ t('reviews') }})</span>
                   </div>
 
                   <div v-if="slot.play_count && slot.play_count > 0" class="hidden xs:flex items-center gap-1.5 px-2.5 py-1 lg:px-3 lg:py-1.5 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full border border-orange-400/30">
                     <Icon name="solar:fire-bold" class="w-4 h-4 lg:w-4 lg:h-4 text-orange-400" />
-                    <span class="text-xs lg:text-sm font-bold text-orange-300">{{ formatNumber(slot.play_count) }} plays</span>
+                    <span class="text-xs lg:text-sm font-bold text-orange-300">{{ formatNumber(slot.play_count) }} {{ t('plays') }}</span>
                   </div>
 
                   <button
@@ -149,7 +149,7 @@
                     :aria-expanded="showRatingPicker"
                     type="button"
                   >
-                    <Icon name="solar:star-fall-bold" class="w-4 h-4 text-yellow-400" /> Rate
+                    <Icon name="solar:star-fall-bold" class="w-4 h-4 text-yellow-400" /> {{ t('rate') }}
                   </button>
                 </section>
 
@@ -180,11 +180,11 @@
                         :disabled="selectedStars === null || ratingSubmitting"
                         @click="$emit('submit-rating')"
                       >
-                        {{ ratingSubmitting ? '...' : 'Submit' }}
+                        {{ ratingSubmitting ? '...' : t('submit') }}
                       </button>
-                      <button class="px-4 py-2 rounded-xl text-sm font-bold bg-white/10 text-white" @click="$emit('toggle-rating')">Cancel</button>
-                      <div v-if="ratingSubmitted" class="block lg:hidden w-full text-center mt-2 text-emerald-300 font-semibold text-sm">✔ Vote counted!</div>
-                      <div v-if="ratingSubmitted" class="hidden lg:flex items-center gap-2 text-emerald-300 font-semibold">✔ Vote counted!</div>
+                      <button class="px-4 py-2 rounded-xl text-sm font-bold bg-white/10 text-white" @click="$emit('toggle-rating')">{{ t('cancel') }}</button>
+                      <div v-if="ratingSubmitted" class="block lg:hidden w-full text-center mt-2 text-emerald-300 font-semibold text-sm">✔ {{ t('voteCounted') }}</div>
+                      <div v-if="ratingSubmitted" class="hidden lg:flex items-center gap-2 text-emerald-300 font-semibold">✔ {{ t('voteCounted') }}</div>
                     </div>
                   </div>
                 </div>
@@ -201,8 +201,8 @@
                       @click="!slot.demo_url ? $emit('play-demo') : null"
                     >
                       <Icon name="solar:gamepad-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-emerald-300 drop-shadow-md z-10" />
-                      <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Play Free Demo</span>
-                      <span class="relative z-10 bg-emerald-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg">DEMO</span>
+                      <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">{{ t('playFreeDemo') }}</span>
+                      <span class="relative z-10 bg-emerald-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-emerald-400/50 shadow-lg">{{ t('demo') }}</span>
                     </component>
                   </BackgroundGradient>
 
@@ -216,8 +216,8 @@
                       @click="!slot.real_play_url ? $emit('play-real') : null"
                     >
                       <Icon name="solar:play-circle-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-orange-300 drop-shadow-md z-10" />
-                      <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">Play for Real Money</span>
-                      <span class="relative z-10 bg-orange-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-orange-400/50 shadow-lg">REAL</span>
+                      <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">{{ t('playForReal') }}</span>
+                      <span class="relative z-10 bg-orange-500/30 text-[10px] lg:text-xs px-2 py-0.5 lg:px-3 lg:py-1 rounded-full font-bold border border-orange-400/50 shadow-lg">{{ t('real') }}</span>
                     </component>
                   </BackgroundGradient>
                 </nav>
@@ -251,6 +251,65 @@
 </template>
 
 <script setup>
+const { locale } = useI18n()
+const translations = {
+  "en": {
+    "plays": "plays",
+    "rate": "Rate",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "voteCounted": "Vote counted!",
+    "playFreeDemo": "Play Free Demo",
+    "playForReal": "Play for Real Money",
+    "demo": "DEMO",
+    "real": "REAL",
+    "reviews": "reviews"
+  },
+  "pt-BR": {
+    "plays": "jogadas",
+    "rate": "Avaliar",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "voteCounted": "Voto computado!",
+    "playFreeDemo": "Jogar Grátis",
+    "playForReal": "Jogar com Dinheiro Real",
+    "demo": "DEMO",
+    "real": "REAL",
+    "reviews": "avaliações"
+  },
+  "ru": {
+    "plays": "игр",
+    "rate": "Оценить",
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "voteCounted": "Голос учтен!",
+    "playFreeDemo": "Играть Бесплатно",
+    "playForReal": "Играть на Деньги",
+    "demo": "ДЕМО",
+    "real": "ДЕНЬГИ",
+    "reviews": "отзывов"
+  },
+  "tr": {
+    "plays": "oynama",
+    "rate": "Değerlendir",
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "voteCounted": "Oy kaydedildi!",
+    "playFreeDemo": "Ücretsiz Oyna",
+    "playForReal": "Gerçek Parayla Oyna",
+    "demo": "DEMO",
+    "real": "GERÇEK",
+    "reviews": "inceleme"
+  }
+};
+translations['en-IN'] = translations.en;
+const t = (key) => {
+  const loc = locale?.value || 'en';
+  const baseLoc = loc.split('-')[0];
+  const lang = translations[loc] || translations[baseLoc] || translations.en;
+  return lang[key] || translations.en[key] || key;
+}
+
 import { computed, ref } from 'vue'
 
 import AuroraBackground from '~/components/ui/AuroraBackground.vue'
@@ -322,7 +381,7 @@ const slotThemes = computed(() => {
     }))
 })
 
-const shortDescriptionHtml = computed(() => getShortDescription(props.slot, true))
+const shortDescriptionHtml = computed(() => props.slot.seo_description || props.slot.description || getShortDescription(props.slot, true))
 const shortDescriptionRaw = computed(() => getShortDescription(props.slot, false))
 
 const hasStats = computed(() => {

@@ -52,7 +52,7 @@
                     aria-hidden="true"
                   />
                 </div>
-                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">RTP</dt>
+                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{{ 'RTP' }}</dt>
               </div>
               <dd class="text-emerald-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
                 Return
@@ -64,7 +64,7 @@
                 {{ slot.rtp || '96.50' }}%
               </dd>
             </div>
-            <dd class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">High rate</dd>
+            <dd class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ t('highRate') }}</dd>
           </div>
         </div>
 
@@ -99,9 +99,9 @@
                     aria-hidden="true"
                   />
                 </div>
-                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Volatility</dt>
+                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{{ t('volatility') }}</dt>
               </div>
-              <dd class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">Risk</dd>
+              <dd class="text-orange-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">{{ t('risk') }}</dd>
             </div>
             <!-- Значение с подложкой для контрастности -->
             <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
@@ -109,7 +109,7 @@
                 {{ getVolatilityText(slot.volatility) }}
               </dd>
             </div>
-            <dd class="text-orange-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Medium risk</dd>
+            <dd class="text-orange-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ t('medRisk') }}</dd>
           </div>
         </div>
 
@@ -144,7 +144,7 @@
                     aria-hidden="true"
                   />
                 </div>
-                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Max win</dt>
+                <dt class="text-white font-bold text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">{{ t('maxWin') }}</dt>
               </div>
               <dd class="text-purple-300 text-xs sm:text-sm font-medium hidden xs:block px-2 py-0.5 bg-black/30 rounded-md backdrop-blur-sm">
                 Potential
@@ -822,6 +822,93 @@
 </template>
 
 <script setup>
+const { locale } = useI18n()
+const translations = {
+  "en": {
+    "char": "Characteristics",
+    "return": "Return",
+    "highRate": "High rate",
+    "risk": "Risk",
+    "medRisk": "Medium risk",
+    "volatility": "Volatility",
+    "maxWin": "Max win",
+    "potential": "Potential",
+    "reelsLines": "Reels / Lines",
+    "grid": "Grid",
+    "mechanics": "Mechanics",
+    "features": "Features",
+    "bonus": "Bonus",
+    "themes": "Themes",
+    "genres": "Genres",
+    "release": "Release Date",
+    "newTitle": "New Title"
+  },
+  "pt-BR": {
+    "char": "Características",
+    "return": "Retorno",
+    "highRate": "Taxa alta",
+    "risk": "Risco",
+    "medRisk": "Risco médio",
+    "volatility": "Volatilidade",
+    "maxWin": "Ganho Máx.",
+    "potential": "Potencial",
+    "reelsLines": "Cilindros / Linhas",
+    "grid": "Grade",
+    "mechanics": "Mecânicas",
+    "features": "Recursos",
+    "bonus": "Bônus",
+    "themes": "Temas",
+    "genres": "Gêneros",
+    "release": "Data de Lançamento",
+    "newTitle": "Novo"
+  },
+  "ru": {
+    "char": "Характеристики",
+    "return": "Отдача",
+    "highRate": "Высокая",
+    "risk": "Риск",
+    "medRisk": "Средний риск",
+    "volatility": "Волатильность",
+    "maxWin": "Макс. выигрыш",
+    "potential": "Потенциал",
+    "reelsLines": "Барабаны / Линии",
+    "grid": "Сетка",
+    "mechanics": "Механики",
+    "features": "Функции",
+    "bonus": "Бонус",
+    "themes": "Темы",
+    "genres": "Жанры",
+    "release": "Релиз",
+    "newTitle": "Новинка"
+  },
+  "tr": {
+    "char": "Özellikler",
+    "return": "Getiri",
+    "highRate": "Yüksek Oran",
+    "risk": "Risk",
+    "medRisk": "Orta risk",
+    "volatility": "Oynaklık",
+    "maxWin": "Maks. Kazanç",
+    "potential": "Potansiyel",
+    "reelsLines": "Makaralar / Çizgiler",
+    "grid": "Izgara",
+    "mechanics": "Mekanikler",
+    "features": "Özellikler",
+    "bonus": "Bonus",
+    "themes": "Temalar",
+    "genres": "Türler",
+    "release": "Yayın Tarihi",
+    "newTitle": "Yeni"
+  }
+};
+translations['en-IN'] = translations.en;
+const t = (key) => {
+  const loc = locale?.value || 'en';
+  const baseLoc = loc.split('-')[0];
+  const lang = translations[loc] || translations[baseLoc] || translations.en;
+  return lang[key] || translations.en[key] || key;
+}
+
 import { computed } from 'vue'
 import CanvasRevealEffect from '~/components/ui/CanvasRevealEffect.vue'
 import {

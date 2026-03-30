@@ -32,9 +32,9 @@
             <div class="text-gray-300 leading-relaxed text-sm sm:text-base bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
               <p v-if="slotData.info_expert_verdict" v-html="slotData.info_expert_verdict"></p>
               <p v-else>
-                {{ slotData.name }} by {{ slotData.providers?.name || 'the developer' }} is a {{ getVolatilityText(slotData.volatility).toLowerCase() }}-volatility slot with an RTP of {{ slotData.rtp || '96.0' }}% and a maximum win of {{ formatMaxWin(slotData.max_win) }}x.
-                {{ slotData.rtp >= 96.5 ? 'The above-average RTP makes it a solid choice for long sessions.' : 'It delivers a balanced gaming experience suitable for most players.' }}
-                Overall, we rate it {{ slotData.rating || 4.5 }}/5 for its {{ slotData.volatility?.toLowerCase() === 'high' ? 'thrilling high-reward potential' : 'balanced gameplay and consistent payouts' }}.
+                {{ slotData.name }} ({{ slotData.providers?.name || t('devFallback') }}) {{ t('isA') }} {{ getVolatilityText(slotData.volatility).toLowerCase() }} {{ t('volSlot') }} {{ slotData.rtp || '96.0' }}% {{ t('andMaxWin') }} {{ formatMaxWin(slotData.max_win) }}x.
+                {{ slotData.rtp >= 96.5 ? t('aboveRTP') : t('belowRTP') }}
+                {{ t('overallRate') }} {{ slotData.rating || 4.5 }} {{ t('forIts') }} {{ slotData.volatility?.toLowerCase() === 'high' ? t('highPot') : t('balPot') }}
               </p>
             </div>
           </section>
@@ -211,6 +211,16 @@ const { locale } = useI18n()
 const translations = {
   en: {
     expertVerdict: 'Expert Verdict',
+    devFallback: 'the developer',
+    isA: 'is a',
+    volSlot: '-volatility slot with an RTP of',
+    andMaxWin: 'and a maximum win of',
+    aboveRTP: 'The above-average RTP makes it a solid choice for long sessions.',
+    belowRTP: 'It delivers a balanced gaming experience suitable for most players.',
+    overallRate: 'Overall, we rate it',
+    forIts: '/5 for its',
+    highPot: 'thrilling high-reward potential.',
+    balPot: 'balanced gameplay and consistent payouts.',
     prosCons: 'Pros & Cons',
     pros: 'Pros',
     cons: 'Cons',
@@ -224,6 +234,16 @@ const translations = {
   },
   'pt-BR': {
     expertVerdict: 'Veredito do Especialista',
+    devFallback: 'o desenvolvedor',
+    isA: 'é um slot de',
+    volSlot: 'volatilidade com um RTP de',
+    andMaxWin: 'e um ganho máximo de',
+    aboveRTP: 'O RTP acima da média o torna uma escolha sólida para sessões longas.',
+    belowRTP: 'Oferece uma experiência de jogo equilibrada, adequada para a maioria dos jogadores.',
+    overallRate: 'No geral, avaliamos',
+    forIts: '/5 por seu',
+    highPot: 'alto potencial de recompensa emocionante.',
+    balPot: 'jogabilidade equilibrada e pagamentos consistentes.',
     prosCons: 'Prós e Contras',
     pros: 'Prós',
     cons: 'Contras',
@@ -237,6 +257,16 @@ const translations = {
   },
   ru: {
     expertVerdict: 'Вердикт эксперта',
+    devFallback: 'разработчиком',
+    isA: 'это слот с',
+    volSlot: 'волатильностью и RTP',
+    andMaxWin: 'а также максимальным выигрышем',
+    aboveRTP: 'РТП выше среднего делает его отличным выбором для долгих сессий.',
+    belowRTP: 'Он обеспечивает сбалансированный игровой процесс, подходящий для большинства игроков.',
+    overallRate: 'В целом мы оцениваем его на',
+    forIts: '/5 за его',
+    highPot: 'захватывающий потенциал высоких выплат.',
+    balPot: 'сбалансированный геймплей и стабильные выплаты.',
     prosCons: 'Плюсы и минусы',
     pros: 'Плюсы',
     cons: 'Минусы',
@@ -248,8 +278,53 @@ const translations = {
     demoDesc: 'Вы можете легко попробовать онлайн-слот {name} в нашем каталоге без риска реальными деньгами. Воспользуйтесь бесплатным демо-режимом прямо сейчас!',
     playDemoNow: 'Играть Демо'
   },
+  es: {
+    expertVerdict: 'Veredicto del Experto',
+    devFallback: 'el desarrollador',
+    isA: 'es una tragamonedas de',
+    volSlot: 'volatilidad con un RTP de',
+    andMaxWin: 'y una ganancia máxima de',
+    aboveRTP: 'El RTP por encima de la media lo convierte en una opción sólida.',
+    belowRTP: 'Ofrece una experiencia de juego equilibrada.',
+    overallRate: 'En general, lo calificamos con',
+    forIts: '/5 por su',
+    highPot: 'emocionante potencial de altas recompensas.',
+    balPot: 'jugabilidad equilibrada y pagos consistentes.',
+    prosCons: 'Pros y Contras',
+    pros: 'Pros',
+    cons: 'Contras',
+    faq: 'Preguntas Frecuentes',
+    reviewAnalysis: 'Análisis y Reseña',
+    howToPlay: 'Cómo Jugar',
+    similarSlots: 'Tragamonedas Similares',
+    freePlayDemo: 'Juego Gratis (Demo)',
+    demoDesc: 'Puedes probar fácilmente este slot en línea en nuestro catálogo sin pagar dinero real.',
+    playDemoNow: 'Jugar Demo Ahora'
+  },
+  fr: {
+    expertVerdict: 'Verdict de l\'Expert', devFallback: 'le développeur', isA: 'est une machine à sous à', volSlot: 'volatilité avec un RTP de', andMaxWin: 'et un gain max de', aboveRTP: 'Le RTP le rend excellent pour les longues sessions.', belowRTP: 'Il offre une expérience équilibrée.', overallRate: 'Nous le notons', forIts: '/5 pour son', highPot: 'potentiel de gains élevés.', balPot: 'gameplay équilibré.', prosCons: 'Avantages et Inconvénients', pros: 'Avantages', cons: 'Inconvénients', faq: 'Questions Fréquentes', reviewAnalysis: 'Avis et Analyse', howToPlay: 'Comment Jouer', similarSlots: 'Slots Similaires', freePlayDemo: 'Démo Gratuite', demoDesc: 'Essayez ce jeu gratuitement sans argent réel.', playDemoNow: 'Jouer la Démo'
+  },
+  it: {
+    expertVerdict: 'Verdetto dell\'Esperto', devFallback: 'lo sviluppatore', isA: 'è una slot ad', volSlot: 'volatilità con un RTP del', andMaxWin: 'e una vincita massima di', aboveRTP: 'L\'RTP la rende un\'ottima scelta per lunghe sessioni.', belowRTP: 'Offre un\'esperienza equilibrata.', overallRate: 'Valutiamo', forIts: '/5 per il suo', highPot: 'emozionante potenziale.', balPot: 'gameplay equilibrato.', prosCons: 'Pro e Contro', pros: 'Pro', cons: 'Contro', faq: 'Domande Frequenti', reviewAnalysis: 'Recensione', howToPlay: 'Come Giocare', similarSlots: 'Slot Simili', freePlayDemo: 'Prova Gratuita', demoDesc: 'Prova questa slot facilmente e gratis.', playDemoNow: 'Gioca la Demo'
+  },
+  pl: {
+    expertVerdict: 'Werdykt Eksperta', devFallback: 'deweloper', isA: 'to automat o', volSlot: 'zmienności z RTP w wysokości', andMaxWin: 'i maksymalną wygraną', aboveRTP: 'RTP czyni to solidnym wyborem na długie gry.', belowRTP: 'Dostarcza zrównoważone doświadczenie.', overallRate: 'Oceniamy go na', forIts: '/5 za jego', highPot: 'ekscytujący potencjał.', balPot: 'zrównoważoną rozgrywkę.', prosCons: 'Plusy i Minusy', pros: 'Zalety', cons: 'Wady', faq: 'Częste Pytania', reviewAnalysis: 'Recenzje i Analiza', howToPlay: 'Jak Grać', similarSlots: 'Podobne Gry', freePlayDemo: 'Darmowe Demo', demoDesc: 'Możesz wypróbować tę grę za darmo.', playDemoNow: 'Zagraj w Demo'
+  },
+  hi: {
+    expertVerdict: 'विशेषज्ञ का निर्णय', devFallback: 'डेवलपर', isA: 'एक', volSlot: 'अस्थिरता वाला स्लॉट है जिसका RTP', andMaxWin: 'और अधिकतम जीत', aboveRTP: 'औसत से अधिक RTP इसे एक ठोस विकल्प बनाता है।', belowRTP: 'यह एक संतुलित अनुभव प्रदान करता है।', overallRate: 'हम इसे', forIts: '/5 रेट करते हैं इसके', highPot: 'रोमांचक जीत की क्षमता के लिए।', balPot: 'संतुलित गेमप्ले के लिए।', prosCons: 'पक्ष और विपक्ष', pros: 'फायदे', cons: 'नुकसान', faq: 'अक्सर पूछे जाने वाले प्रश्न', reviewAnalysis: 'समीक्षा', howToPlay: 'कैसे खेलें', similarSlots: 'समान स्लॉट', freePlayDemo: 'मुफ्त डेमो', demoDesc: 'आप इस स्लॉट को बिना पैसे के आज़मा सकते हैं।', playDemoNow: 'डेमो खेलें'
+  },
   tr: {
     expertVerdict: 'Uzman Görüşü',
+    devFallback: 'geliştirici',
+    isA: 'bir',
+    volSlot: 'oynaklık slotudur; RTP oranı',
+    andMaxWin: 've maksimum kazancı',
+    aboveRTP: 'Ortalamanın üzerindeki RTP, onu uzun seanslar için sağlam bir seçim haline getirir.',
+    belowRTP: 'Çoğu oyuncu için uygun dengeli bir oyun deneyimi sunar.',
+    overallRate: 'Genel olarak, ona',
+    forIts: '/5 veriyoruz; nedeni',
+    highPot: 'heyecan verici yüksek ödül potansiyeli.',
+    balPot: 'dengeli oynanış ve tutarlı ödemeler.',
     prosCons: 'Artılar ve Eksiler',
     pros: 'Artılar',
     cons: 'Eksiler',
@@ -263,6 +338,16 @@ const translations = {
   },
   de: {
     expertVerdict: 'Expertenurteil',
+    devFallback: 'der Entwickler',
+    isA: 'ist ein',
+    volSlot: '-Volatilitäts-Slot mit einem RTP von',
+    andMaxWin: 'und einem maximalen Gewinn von',
+    aboveRTP: 'Der überdurchschnittliche RTP macht es zu einer soliden Wahl für lange Sitzungen.',
+    belowRTP: 'Es bietet ein ausgewogenes Spielerlebnis, das für die meisten Spieler geeignet ist.',
+    overallRate: 'Insgesamt bewerten wir es mit',
+    forIts: '/5 für sein',
+    highPot: 'aufregendes Potenzial für hohe Belohnungen.',
+    balPot: 'ausgewogenes Gameplay und beständige Auszahlungen.',
     prosCons: 'Vor- und Nachteile',
     pros: 'Vorteile',
     cons: 'Nachteile',
@@ -278,8 +363,10 @@ const translations = {
 translations['en-IN'] = translations.en
 
 const t = (key) => {
-  const lang = translations[locale?.value] || translations.en
-  return lang[key] || translations.en[key] || key
+  const loc = locale?.value || 'en';
+  const baseLoc = loc.split('-')[0];
+  const lang = translations[loc] || translations[baseLoc] || translations.en;
+  return lang[key] || translations.en[key] || key;
 }
 
 

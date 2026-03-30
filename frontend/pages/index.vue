@@ -123,14 +123,22 @@
         <!-- Slots Grid -->
         <div v-else class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
           <SlotCard
-            v-for="slot in filteredSlots"
+            v-for="slot in paginatedSlots"
             :key="slot.id"
             :slot="slot"
           />
         </div>
 
+        <!-- Pagination -->
+        <StylishPagination
+          v-if="filteredSlots.length > slotsPerPage"
+          :currentPage="currentPage"
+          :totalPages="Math.ceil(filteredSlots.length / slotsPerPage)"
+          @update:page="handlePageChange"
+        />
+
         <!-- SEO Text Component -->
-        <CatalogSeoText v-if="pageData?.content?.length > 0" :sections="pageData.content" :pageData="pageData" />
+        <CatalogSeoText v-if="localizedPageData?.content?.length > 0" :sections="localizedPageData.content" :pageData="localizedPageData" />
 
       </div>
   </div>
@@ -142,8 +150,9 @@ import { ref, computed } from 'vue'
 import FilterSidebar from '~/components/slots/FilterSidebar.vue'
 import SlotCard from '~/components/slots/SlotCard.vue'
 import CatalogSeoText from '~/components/slots/CatalogSeoText.vue'
+import StylishPagination from '~/components/ui/StylishPagination.vue'
 import { usePagesApi } from '~/composables/usePagesApi'
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, watch } from 'vue'
 
 // Sticky header logic
 const chipsAnchor = ref(null)
@@ -210,6 +219,14 @@ const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshS
 const { data: filterData, pending: filtersLoading, error: filtersError } = await useAsyncData('catalog-filters', fetchFiltersCb, { lazy: import.meta.client })
 const { data: pageData } = await useAsyncData('home-page-data', fetchPageDataCb)
 
+const { locale } = useI18n()
+const localizedPageData = computed(() => {
+  if (!pageData.value) return null
+  const locs = pageData.value.localizations || {}
+  const currentLocData = locs[locale.value] || {}
+  return { ...pageData.value, ...currentLocData }
+})
+
 const providers = computed(() => filterData.value?.providers || [])
 const categories = computed(() => filterData.value?.categories?.data || filterData.value?.categories || [])
 const mechanics = computed(() => filterData.value?.mechanics?.data || filterData.value?.mechanics || [])
@@ -233,6 +250,26 @@ const currentSideFilters = ref({
   bonusIds: [],
   themeIds: []
 })
+
+// Pagination State
+const currentPage = ref(1)
+const slotsPerPage = 28
+
+// Reset pagination when filters change
+watch([activeCategory, sortBy, currentSideFilters], () => {
+  currentPage.value = 1
+}, { deep: true })
+
+const handlePageChange = (page) => {
+  currentPage.value = page
+  // Smooth scroll to top of list
+  if (import.meta.client) {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+}
 
 const displayCategories = computed(() => {
   const base = [
@@ -360,6 +397,12 @@ const filteredSlots = computed(() => {
   }
 
   return result
+})
+
+// Paginated Computed List
+const paginatedSlots = computed(() => {
+  const start = (currentPage.value - 1) * slotsPerPage
+  return filteredSlots.value.slice(start, start + slotsPerPage)
 })
 </script>
 
