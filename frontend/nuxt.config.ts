@@ -6,17 +6,22 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    '@nuxtjs/google-fonts',
+    '@nuxt/fonts',
     '@nuxt/image',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     'nuxt-security',
     '@vite-pwa/nuxt',
-    '@nuxtjs/partytown',
     'nuxt-og-image',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
-    'nuxt-delay-hydration'
+    '@vueuse/motion/nuxt',
+    '@pinia/nuxt',
+    'nuxt-delay-hydration',
+    'nuxt-schema-org',
+    'nuxt-link-checker',
+    '@nuxt/scripts',
+    'nuxt-swiper'
   ],
 
   i18n: {
@@ -75,26 +80,12 @@ export default defineNuxtConfig({
     mode: 'svg'
   },
 
-  googleFonts: {
-    families: {
-      'Inter': [300, 400, 500, 600, 700, 800, 900],
-      'JetBrains Mono': [300, 400, 500, 600, 700],
-      'Roboto': [300, 400, 500, 700, 900],
-      'Montserrat': [300, 400, 500, 600, 700, 800, 900]
-    },
-    subsets: ['latin', 'cyrillic'],
-    display: 'swap',
-    prefetch: true,
-    preconnect: true,
-    preload: true,
-    download: true,
-    base64: false
-  },
+  // @nuxt/fonts обрабатывает шрифты автоматически на основе тайлвинда без конфигов
 
   image: {
     quality: 80,
     format: ['webp', 'avif'],
-    domains: ['localhost']
+    domains: ['localhost', 'hxwyfdjfugcogpkjpjot.supabase.co']
   },
 
   // Enterprise sitemap: индекс + раздельные карты (pages, slots, images) для лучшего crawl в Google.
@@ -151,11 +142,10 @@ export default defineNuxtConfig({
     // Cache static assets for 1 year
     '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-    // 10-minute Stale-While-Revalidate cache for specific routes
-    // For a CMS-driven site where instant updates are expected, you might want these disabled.
-    // '/slots': { swr: 600 },
-    // '/slots/**': { swr: 600 },
-    // '/': { swr: 600 }
+    // 1-minute Stale-While-Revalidate cache full HTML for instantly blazing fast TTFB
+    '/slots': { swr: 60 },
+    '/slots/**': { swr: 60 },
+    '/': { swr: 60 }
   },
 
   nitro: {
@@ -178,8 +168,19 @@ export default defineNuxtConfig({
     }
   },
 
-  partytown: {
-    forward: ['dataLayer.push'],
+  schemaOrg: {
+    identity: {
+      type: 'Organization',
+      name: 'SlotQuest',
+      url: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+      logo: '/favicon.ico'
+    }
+  },
+
+  linkChecker: {
+    enabled: true,
+    showLiveInspections: true,
+    runOnBuild: false
   },
 
   pwa: {

@@ -16,6 +16,7 @@
     <!-- VueUse Floating Button -->
     <ClientOnly>
       <BackToTop v-if="!isAdminRoute" />
+      <Toaster position="bottom-center" richColors theme="dark" />
     </ClientOnly>
   </div>
 </template>
@@ -26,6 +27,7 @@ import { usePagesApi } from '~/composables/usePagesApi'
 import TheBackgroundBeams from '~/components/TheBackgroundBeams.vue'
 import TheFooter from '~/components/layout/TheFooter.vue'
 import BackToTop from '~/components/BackToTop.vue'
+import { Toaster } from 'vue-sonner'
 
 const route = useRoute()
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))

@@ -1,9 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class ProvidersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
+
+  private async clearCache() {
+    if (typeof this.cacheManager.clear === 'function') {
+      await this.cacheManager.clear();
+    } else if (typeof (this.cacheManager as any).store?.reset === 'function') {
+      await (this.cacheManager as any).store.reset();
+    }
+  }
 
   async getAllProviders() {
     const data = await this.prisma.providers.findMany({
@@ -81,6 +94,7 @@ export class ProvidersService {
         slug,
       },
     });
+    await this.clearCache();
     return { data };
   }
 
@@ -98,6 +112,7 @@ export class ProvidersService {
       where: { id },
       data: providerData,
     });
+    await this.clearCache();
     return { data };
   }
 
@@ -105,6 +120,7 @@ export class ProvidersService {
     const data = await this.prisma.providers.delete({
       where: { id },
     });
+    await this.clearCache();
     return { data };
   }
 

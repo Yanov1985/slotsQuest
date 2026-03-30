@@ -671,39 +671,14 @@ const handleSlotVideoError = (event) => {
 // 📱 Info Popup, Fullscreen & Like State
 const showInfoModal = ref(false)
 const showFullscreenImage = ref(false)
-const isLiked = ref(false)
 
-// Инициализация лайка из localStorage
-onMounted(() => {
-  if (process.client && gameSlot.value?.id) {
-    const key = `slot_like_${gameSlot.value.id}`
-    isLiked.value = localStorage.getItem(key) === 'true'
-  }
-})
-
-// Отслеживание изменения слота для обновления статуса лайка
-watch(
-  () => gameSlot.value?.id,
-  (newId) => {
-    if (process.client && newId) {
-      const key = `slot_like_${newId}`
-      isLiked.value = localStorage.getItem(key) === 'true'
-    }
-  }
-)
+// Глобальное состояние Pinia для Лайков
+import { useUserStore } from '~/stores/userStore'
+const userStore = useUserStore()
+const isLiked = computed(() => userStore.isLiked(gameSlot.value?.id))
 
 const toggleLike = () => {
-  if (!process.client || !gameSlot.value?.id) return
-
-  isLiked.value = !isLiked.value
-  const key = `slot_like_${gameSlot.value.id}`
-
-  if (isLiked.value) {
-    localStorage.setItem(key, 'true')
-    // Можно добавить аналитику или отправку на сервер в будущем
-  } else {
-    localStorage.removeItem(key)
-  }
+  userStore.toggleLike(gameSlot.value?.id)
 }
 
 

@@ -8,26 +8,31 @@ export class BonusesController {
   constructor(private readonly bonusesService: BonusesService) {}
 
   @Get()
+  @UseInterceptors(CacheInterceptor)
   findAll(@Query() query: BonusQueryDto) {
     return this.bonusesService.findAll(query);
   }
 
   @Get('popular')
+  @UseInterceptors(CacheInterceptor)
   findPopular(@Query('limit') limit?: number) {
     return this.bonusesService.findPopular(Number(limit) || 10);
   }
 
   @Get('featured')
+  @UseInterceptors(CacheInterceptor)
   findFeatured(@Query('limit') limit?: number) {
     return this.bonusesService.findFeatured(Number(limit) || 10);
   }
 
   @Get(':id')
+  @UseInterceptors(CacheInterceptor)
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.bonusesService.findOne(id);
   }
 
   @Get(':id/slots')
+  @UseInterceptors(CacheInterceptor)
   findSlots(@Param('id', ParseIntPipe) id: number) {
     return this.bonusesService.findSlotsByBonus(id);
   }

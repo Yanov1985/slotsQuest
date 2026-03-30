@@ -94,7 +94,7 @@
         <NuxtLink :to="`/slots/${slot.slug}`" class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 text-center">
           <Icon name="solar:document-text-bold" class="w-4 h-4" /> Подробнее
         </NuxtLink>
-        <button class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
+        <button @click.prevent="playDemo" class="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white text-sm font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/30">
           <Icon name="solar:wad-of-money-bold" class="w-4 h-4" /> Демо
         </button>
       </div>
@@ -108,6 +108,14 @@
 
 <script setup>
 import { computed } from 'vue'
+import { toast } from 'vue-sonner'
+
+const playDemo = () => {
+  toast.success('Скоро: Бесплатное демо загружено!', {
+    description: props.slot.name,
+    duration: 3000
+  })
+}
 
 const props = defineProps({
   slot: {

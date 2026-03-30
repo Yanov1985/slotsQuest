@@ -1,7 +1,8 @@
 <template>
   <NuxtLink
     :to="`/slots/${slot.slug}`"
-    class="group relative bg-white/5 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-all duration-300 ease-out transform-gpu will-change-transform shadow-lg shadow-black/10 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] lg:hover:-translate-y-1 lg:hover:scale-[1.02] overflow-hidden"
+    v-motion="{ initial: { opacity: 0, y: 30 }, enter: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 250, damping: 25, mass: 0.5 } } }"
+    class="group relative bg-white/5 rounded-3xl border border-white/10 hover:border-blue-500/30 transition-all duration-300 ease-out transform-gpu will-change-transform shadow-lg shadow-black/10 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] overflow-hidden"
   >
     <!-- Background Glow on Hover -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
