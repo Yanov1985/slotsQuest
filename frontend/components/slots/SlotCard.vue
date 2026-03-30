@@ -9,7 +9,7 @@
 
     <div class="relative z-10 p-3 sm:p-5">
       <!-- Image Wrapper -->
-      <div class="relative aspect-[4/3] mb-3 sm:mb-5 rounded-2xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blue-500/30 transition-colors duration-300">
+      <div class="relative aspect-[3/4] sm:aspect-[4/5] mb-3 sm:mb-5 rounded-2xl overflow-hidden bg-white/5 border border-white/10 group-hover:border-blue-500/30 transition-colors duration-300">
 
         <!-- Placeholder -->
         <div v-if="!slot.image_url && !slot.thumbnail_url" class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
@@ -24,7 +24,7 @@
           format="webp"
           sizes="sm:100vw md:50vw lg:300px"
           loading="lazy"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out will-change-transform"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out will-change-transform"
           @error="$event.target.style.display = 'none'"
         />
 

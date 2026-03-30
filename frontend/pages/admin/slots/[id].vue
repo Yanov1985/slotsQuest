@@ -6315,26 +6315,6 @@ const saveSlot = async () => {
       }
     })
 
-    // 📊 PHASE 3: Add SEO Health Score fields
-    Object.keys(seoHealthForm.value).forEach((key) => {
-      if (seoHealthForm.value[key] !== undefined) {
-        dataToSend[key] = seoHealthForm.value[key]
-      }
-    })
-
-    // 📈 PHASE 3: Add Indexing Status fields
-    Object.keys(indexingForm.value).forEach((key) => {
-      if (indexingForm.value[key] !== undefined) {
-        dataToSend[key] = indexingForm.value[key]
-      }
-    })
-
-    // ⚡ PHASE 3: Add Page Speed / Core Web Vitals fields
-    Object.keys(pageSpeedForm.value).forEach((key) => {
-      if (pageSpeedForm.value[key] !== undefined) {
-        dataToSend[key] = pageSpeedForm.value[key]
-      }
-    })
 
     // 🛡️ Save Advanced Technical SEO Settings
     if (technicalSeoForm.value) {
