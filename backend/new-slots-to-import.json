@@ -1,0 +1,176 @@
+[
+  {
+    "title": "Aviator",
+    "slug": "aviator",
+    "provider": "Spribe",
+    "image_url": "https://cdn.hrzn.cloud/game/ed862cce-cf44-45b9-87e5-183dc1955eae.webp"
+  },
+  {
+    "title": "ChickNRoll",
+    "slug": "chicknroll",
+    "provider": "Veliplay",
+    "image_url": "https://cdn.hrzn.cloud/game/1661c8fb-c964-497e-8a31-d2661a5a55e0.jpeg"
+  },
+  {
+    "title": "Astronaut",
+    "slug": "astronaut",
+    "provider": "100HP Gaming",
+    "image_url": "https://cdn.hrzn.cloud/game/b7ef1346-e00b-4611-8af3-edbd69433fe1.jpeg"
+  },
+  {
+    "title": "Vortex",
+    "slug": "vortex",
+    "provider": "Turbo Games",
+    "image_url": "https://cdn.hrzn.cloud/game/593e4ec7-4a9e-40b1-802d-4b3f97c84aca.jpeg"
+  },
+  {
+    "title": "Burning Chilli X",
+    "slug": "burning-chilli-x",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/4a164760-65c8-45ba-a2b3-5d8300764205.webp"
+  },
+  {
+    "title": "3 Royal Bags",
+    "slug": "3-royal-bags",
+    "provider": "Platipus",
+    "image_url": "https://cdn.hrzn.cloud/game/d91a2ea6-803e-4c1e-b762-874eda57d551.jpeg"
+  },
+  {
+    "title": "Fortune Smash",
+    "slug": "fortune-smash",
+    "provider": "Platipus",
+    "image_url": "https://cdn.hrzn.cloud/game/0ba871f1-47d8-402c-94bd-9cd1eea98429.jpeg"
+  },
+  {
+    "title": "Aztec Magic Deluxe",
+    "slug": "aztec-magic-deluxe",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/aaee7576-fa80-4295-add1-d512f3058f39.jpeg"
+  },
+  {
+    "title": "3 Numbers",
+    "slug": "3-numbers",
+    "provider": "Platipus",
+    "image_url": "https://cdn.hrzn.cloud/game/2392b9c1-bdb3-4373-aa43-19b26bf2665b.jpeg"
+  },
+  {
+    "title": "Wild! Wild! WILD!",
+    "slug": "wild-wild-wild",
+    "provider": "Riddec Games",
+    "image_url": "https://cdn.hrzn.cloud/game/6da286af-8f16-4d44-8e5e-aef89c2f11f5.jpeg"
+  },
+  {
+    "title": "Chicken Road 2",
+    "slug": "chicken-road-2",
+    "provider": "InOut",
+    "image_url": "https://cdn.hrzn.cloud/game/7b30cf86-46be-4a16-b744-7ed1d0fa4451.jpeg"
+  },
+  {
+    "title": "Wild Spin Deluxe",
+    "slug": "wild-spin-deluxe",
+    "provider": "Platipus",
+    "image_url": "https://cdn.hrzn.cloud/game/7ba3e36d-8bea-496c-a505-f7efff416909.webp"
+  },
+  {
+    "title": "Wild Cash",
+    "slug": "wild-cash",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/b6d16744-bd08-41ef-948e-2804b9e3e107.webp"
+  },
+  {
+    "title": "Space XY",
+    "slug": "space-xy",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/0501585f-c5ec-490b-bfd7-48f509855efa.webp"
+  },
+  {
+    "title": "Coin Era 2: Hold to Win",
+    "slug": "coin-era-2-hold-to-win",
+    "provider": "Formula Spin",
+    "image_url": "https://cdn.hrzn.cloud/game/11d34a40-b1fd-47df-b859-252098134800.jpeg"
+  },
+  {
+    "title": "Aero",
+    "slug": "aero",
+    "provider": "Turbo Games",
+    "image_url": "https://cdn.hrzn.cloud/game/2a7aa78e-28ad-4f04-81f3-8f37db16de49.jpeg"
+  },
+  {
+    "title": "2021 Hit Slot",
+    "slug": "2021-hit-slot",
+    "provider": "Endorphina",
+    "image_url": "https://cdn.hrzn.cloud/game/d4c28781-7168-4b30-aad0-22bd192364bd.webp"
+  },
+  {
+    "title": "Home of Gold: Hold to Win",
+    "slug": "home-of-gold-hold-to-win",
+    "provider": "Formula Spin",
+    "image_url": "https://cdn.hrzn.cloud/game/951d3a33-f667-4345-90a4-0c138d7f2414.jpeg"
+  },
+  {
+    "title": "Wild Cash x9990",
+    "slug": "wild-cash-x9990",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/c08180d6-8f2a-42b8-93a0-ac3ff0f8ae1b.jpeg"
+  },
+  {
+    "title": "Elvis Frog Trueways",
+    "slug": "elvis-frog-trueways",
+    "provider": "BGaming",
+    "image_url": "https://cdn.hrzn.cloud/game/5a2115ed-d1d6-43c2-9b4e-bdb2505256e9.webp"
+  },
+  {
+    "title": "The Biggest Win X50",
+    "slug": "the-biggest-win-x50",
+    "provider": "Mascot",
+    "image_url": "https://cdn.hrzn.cloud/game/ddac9d49-ab37-4d04-af6b-04d06c78d8a7.jpeg"
+  },
+  {
+    "title": "Fruit Vegas Extreme x125",
+    "slug": "fruit-vegas-extreme-x125",
+    "provider": "Mascot",
+    "image_url": "https://cdn.hrzn.cloud/game/f349d3a4-2b0a-48e6-8fa6-a28be9ba4c3e.jpeg"
+  },
+  {
+    "title": "Crash X",
+    "slug": "crash-x",
+    "provider": "Turbo Games",
+    "image_url": "https://cdn.hrzn.cloud/game/68162bbb-6531-4193-8e75-61c3542eb460.jpeg"
+  },
+  {
+    "title": "Sweet Bonanza CandyLand",
+    "slug": "sweet-bonanza-candyland",
+    "provider": "Pragmatic Play Live",
+    "image_url": "https://cdn.hrzn.cloud/game/c12edd81-1fc9-4797-a4f1-050b753b9944.jpeg"
+  },
+  {
+    "title": "Wolf Gold",
+    "slug": "wolf-gold",
+    "provider": "Pragmatic Play",
+    "image_url": "https://cdn.hrzn.cloud/game/5183b5f8-89c9-4a59-9f9d-05cf7cb829d0.webp"
+  },
+  {
+    "title": "Majestic King",
+    "slug": "majestic-king",
+    "provider": "Spinomenal",
+    "image_url": "https://cdn.hrzn.cloud/game/23ad4000-f0f9-45ed-b37c-cf7a95d9660e.webp"
+  },
+  {
+    "title": "Demi Gods V",
+    "slug": "demi-gods-v",
+    "provider": "Spinomenal",
+    "image_url": "https://cdn.hrzn.cloud/game/52fe80e8-17be-47e0-a073-f827336855b7.jpeg"
+  },
+  {
+    "title": "Book of Demi Gods V",
+    "slug": "book-of-demi-gods-v",
+    "provider": "Spinomenal",
+    "image_url": "https://cdn.hrzn.cloud/game/ed1cbf3e-d004-46ff-a4cd-59c9334ec419.webp"
+  },
+  {
+    "title": "Vortex Powerplay",
+    "slug": "vortex-powerplay",
+    "provider": "Turbo Games",
+    "image_url": "https://cdn.hrzn.cloud/game/807ac786-3d49-4966-8ae4-b5bd01f52106.jpeg"
+  }
+]

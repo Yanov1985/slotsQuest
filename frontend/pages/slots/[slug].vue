@@ -25,17 +25,17 @@
                 d="M15 19l-7-7 7-7"
               ></path>
             </svg>
-            <span class="hidden xs:inline">Back to </span>Slots<span class="hidden sm:inline"> Catalog</span>
+            <span class="hidden xs:inline">{{ $t('slug.back_to') }} </span>Slots<span class="hidden sm:inline"> {{ $t('nav.catalog') }}</span>
           </NuxtLink>
 
           <!-- Хлебные крошки - показываем на планшетах и выше -->
           <div class="hidden md:flex items-center text-xs sm:text-sm text-white/50 truncate">
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors whitespace-nowrap"
-              >Home</NuxtLink
+              >{{ $t('nav.home') }}</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors whitespace-nowrap"
-              >Slots</NuxtLink
+              >{{ $t('nav.catalog') }}</NuxtLink
             >
             <span class="mx-1 sm:mx-2">/</span>
             <span class="text-white font-medium truncate max-w-[120px] lg:max-w-[200px]" v-if="gameSlot">{{
@@ -136,14 +136,14 @@
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
             ></path>
           </svg>
-          <h2 class="text-3xl font-bold mb-4 text-gray-800">Slot Not Found</h2>
+          <h2 class="text-3xl font-bold mb-4 text-gray-800">{{ $t('slug.slot_not_found') }}</h2>
           <p class="text-gray-600 mb-6">{{ error }}</p>
         </div>
         <NuxtLink
           to="/"
           class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl transition-colors font-semibold"
         >
-          Go to Catalog
+          {{ $t('slug.go_to_catalog') }}
         </NuxtLink>
       </div>
     </div>
@@ -171,14 +171,14 @@
         <aside
           v-if="gameSlot.show_awards && gameSlot.awards && gameSlot.awards.length > 0"
           class="mt-5 lg:mt-0"
-          aria-label="Награды и достижения"
+          :aria-label="$t('slug.awards_and_achievements')"
         >
-          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4">
+          <div class="bg-[#121722] border border-[#1D2535] rounded-2xl p-4">
             <header class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center ring-2 ring-white/20" aria-hidden="true">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-400 to-pink-500 shadow-lg flex items-center justify-center border border-white/10" aria-hidden="true">
                 <span class="text-white text-lg">🏆</span>
               </div>
-              <h2 class="text-white font-extrabold text-lg tracking-wide">Награды и достижения</h2>
+              <h2 class="text-white font-extrabold text-lg tracking-wide">{{ $t('slug.awards_and_achievements') }}</h2>
             </header>
 
             <div class="grid grid-cols-2 gap-3" role="list">
@@ -208,7 +208,7 @@
       <template #right-column>
         <!-- 📱 Правая часть: Характеристики и информация (прокручиваемая) -->
         <aside
-          class="w-full lg:w-[30%] bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-white/20 min-w-0 order-2"
+          class="w-full lg:w-[30%] bg-[#121722] p-4 sm:p-6 md:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-[#1D2535] min-w-0 order-2 z-10"
           style="min-height: auto"
           aria-label="Game characteristics and additional information"
         >
@@ -218,25 +218,6 @@
         </aside>
       </template>
     </SlotHero>
-
-    <!-- 📖 AI Deep SEO Text Rendering -->
-    <article
-      v-if="gameSlot && (gameSlot.overview_description_1 || gameSlot.overview || gameSlot.mechanics)"
-      class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
-    >
-      <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl">
-        <h2 class="text-2xl sm:text-3xl font-black text-white mb-6">{{ t && typeof t === 'function' ? t('reviewAnalysis') : 'Overview' }}: {{ gameSlot.name }}</h2>
-        <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed space-y-4" v-html="gameSlot.overview_description_1 || gameSlot.overview"></div>
-        
-        <div v-if="gameSlot.mechanics" class="mt-10 pt-8 border-t border-white/10">
-          <h3 class="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-3">
-             <Icon name="solar:bolt-bold-duotone" class="text-yellow-400 w-8 h-8" />
-             {{ (t && typeof t === 'function') ? t('coreMechanics') : 'Core Mechanics' }}
-          </h3>
-          <div class="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed bg-black/20 p-6 rounded-2xl border border-white/5" v-html="gameSlot.mechanics"></div>
-        </div>
-      </div>
-    </article>
 
 
 
@@ -270,9 +251,9 @@
       </button>
     </div>
 
-    <!-- 📋 Info Modal (Lazy Loaded for TTI Optimization) -->
+    <!-- 📋 Info Modal (Rendered natively for SEO, hidden visually via v-show managed inside component) -->
     <SlotInfoModal
-      v-if="showInfoModal"
+      :is-open="showInfoModal"
       :slot-data="gameSlot"
       :pros="computedPros"
       :cons="computedCons"
@@ -280,6 +261,7 @@
       :reviews="computedReviews"
       :how-to="computedHowToPlay"
       :similar="similarSlots"
+      :slot-mechanics="slotMechanics"
       @close="showInfoModal = false"
       @play="playSlot(); showInfoModal = false"
     />
@@ -357,9 +339,7 @@ import {
 
 import SlotHero from '~/components/slots/SlotHero.vue'
 import SlotCharacteristics from '~/components/slots/SlotCharacteristics.vue'
-import { defineAsyncComponent } from 'vue'
-
-const SlotInfoModal = defineAsyncComponent(() => import('~/components/slots/SlotInfoModal.vue'))
+import SlotInfoModal from '~/components/slots/SlotInfoModal.vue'
 
 // 🎯 Импорт composable для JSON-LD
 const { getJsonLdScriptSync, fetchRawJsonLd } = useJsonLd()
@@ -618,11 +598,29 @@ const toggleFaq = (index) => {
   openFaqIndex.value = openFaqIndex.value === index ? null : index
 }
 
+const parseField = (field1, field2) => {
+  const getArray = (v) => {
+    if (Array.isArray(v) && v.length > 0) return v;
+    if (typeof v === 'string' && v.trim().length > 0 && v.trim() !== '[]') {
+      try {
+        const parsed = JSON.parse(v);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      } catch(e) { }
+    }
+    return null;
+  };
+  return getArray(field1) || getArray(field2);
+};
+
 // 🆕 Computed properties for Enhanced Info Modal
 const computedPros = computed(() => {
-  if (gameSlot.value.info_pros) {
-    try { return JSON.parse(gameSlot.value.info_pros) } catch(e) { /* fallback */ }
-  }
+  const parsed = parseField(gameSlot.value.pros, gameSlot.value.info_pros);
+  if (parsed) return parsed;
+  
+  const locStr = locale?.value || 'en';
+  const baseLoc = locStr.split('-')[0];
+  if (!fallbackLangObj[locStr] && !fallbackLangObj[baseLoc] && baseLoc !== 'en') return [];
+
   const s = gameSlot.value
   const pros = []
   if (s.rtp >= 96.5) pros.push(tf('pro1'))
@@ -633,9 +631,13 @@ const computedPros = computed(() => {
 })
 
 const computedCons = computed(() => {
-  if (gameSlot.value.info_cons) {
-    try { return JSON.parse(gameSlot.value.info_cons) } catch(e) { /* fallback */ }
-  }
+  const parsed = parseField(gameSlot.value.cons, gameSlot.value.info_cons);
+  if (parsed) return parsed;
+
+  const locStr = locale?.value || 'en';
+  const baseLoc = locStr.split('-')[0];
+  if (!fallbackLangObj[locStr] && !fallbackLangObj[baseLoc] && baseLoc !== 'en') return [];
+
   const s = gameSlot.value
   const cons = []
   if (s.volatility?.toLowerCase() === 'high') cons.push(tf('con1'))
@@ -645,9 +647,13 @@ const computedCons = computed(() => {
 })
 
 const computedFaq = computed(() => {
-  if (gameSlot.value.info_faq) {
-    try { return JSON.parse(gameSlot.value.info_faq) } catch(e) { }
-  }
+  const parsed = parseField(gameSlot.value.faq, gameSlot.value.info_faq);
+  if (parsed) return parsed;
+
+  const locStr = locale?.value || 'en';
+  const baseLoc = locStr.split('-')[0];
+  if (!fallbackLangObj[locStr] && !fallbackLangObj[baseLoc] && baseLoc !== 'en') return [];
+
   return [
     { question: tf('faq1q'), answer: tf('faq1a') },
     { question: tf('faq2q'), answer: tf('faq2a') },
@@ -658,9 +664,13 @@ const computedFaq = computed(() => {
 })
 
 const computedReviews = computed(() => {
-  if (gameSlot.value.info_reviews) {
-    try { return JSON.parse(gameSlot.value.info_reviews) } catch(e) { }
-  }
+  const parsed = parseField(gameSlot.value.reviews, gameSlot.value.info_reviews);
+  if (parsed) return parsed;
+
+  const locStr = locale?.value || 'en';
+  const baseLoc = locStr.split('-')[0];
+  if (!fallbackLangObj[locStr] && !fallbackLangObj[baseLoc] && baseLoc !== 'en') return [];
+
   const name = gameSlot.value.name || 'Slot'
   return [
     { author: 'Alex R.', rating: 5, text: name + ' ' + tf('rev1'), date: '2024-12-15' },
@@ -670,9 +680,13 @@ const computedReviews = computed(() => {
 })
 
 const computedHowToPlay = computed(() => {
-  if (gameSlot.value.info_how_to_play) {
-    try { return JSON.parse(gameSlot.value.info_how_to_play) } catch(e) { }
-  }
+  const parsed = parseField(gameSlot.value.how_to_play, gameSlot.value.info_how_to_play);
+  if (parsed) return parsed;
+
+  const locStr = locale?.value || 'en';
+  const baseLoc = locStr.split('-')[0];
+  if (!fallbackLangObj[locStr] && !fallbackLangObj[baseLoc] && baseLoc !== 'en') return [];
+
   return [
     { step: tf('htp1'), text: tf('htp1a') },
     { step: tf('htp2'), text: tf('htp2a') },
@@ -797,33 +811,38 @@ const refreshSlot = async () => {
   await refresh()
 }
 
+const globalData = useNuxtData('global-footer-data')
+const globalAffiliateLink = computed(() => {
+  return globalData.data.value?.global_affiliate_link || null
+})
+
 const playSlot = () => {
   if (!gameSlot.value) return
 
+  const link = globalAffiliateLink.value || gameSlot.value.demo_url
+
   // Проверяем, есть ли ссылка для демо-версии
-  if (gameSlot.value.demo_url && gameSlot.value.demo_url.trim()) {
+  if (link && link.trim()) {
     // Открываем демо-версию в новой вкладке
-    window.open(gameSlot.value.demo_url, '_blank', 'noopener,noreferrer')
+    window.open(link, '_blank', 'noopener,noreferrer')
   } else {
     // Показываем уведомление, что демо-версия пока недоступна
-    alert(
-      `Демо-версия для игры "${gameSlot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта.`,
-    )
+    alert(`Демо-версия для игры "${gameSlot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта.`)
   }
 }
 
 const playForReal = () => {
   if (!gameSlot.value) return
 
+  const link = globalAffiliateLink.value || gameSlot.value.real_play_url
+
   // Проверяем, есть ли ссылка для игры for real money
-  if (gameSlot.value.real_play_url && gameSlot.value.real_play_url.trim()) {
+  if (link && link.trim()) {
     // Открываем страницу казино в новой вкладке
-    window.open(gameSlot.value.real_play_url, '_blank', 'noopener,noreferrer')
+    window.open(link, '_blank', 'noopener,noreferrer,sponsored')
   } else {
     // Показываем уведомление с предложением связаться с поддержкой
-    alert(
-      `Игра for real money для "${gameSlot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта для получения информации о доступных казино.`,
-    )
+    alert(`Игра for real money для "${gameSlot.value.name || 'slot'}" временно недоступна. Обратитесь к администратору сайта для получения информации о доступных казино.`)
   }
 }
 

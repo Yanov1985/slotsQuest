@@ -1,0 +1,3514 @@
+[
+  {
+    "name": "Gates of Olympus Super Scatter",
+    "slug": "gates-of-olympus-super-scatter",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "The Dog House",
+    "slug": "the-dog-house",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 6750
+  },
+  {
+    "name": "Sugar Rush 1000",
+    "slug": "sugar-rush-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Gates of Olympus 1000",
+    "slug": "gates-of-olympus-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Sweet Bonanza 1000",
+    "slug": "sweet-bonanza-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Le Bandit",
+    "slug": "le-bandit",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.34,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Zeus vs Hades – Gods of War",
+    "slug": "zeus-vs-hades-gods-of-war",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Big Bass Splash",
+    "slug": "big-bass-splash",
+    "providerName": "Reelkingdom",
+    "rtp": 96.71,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rich Wilde and the Book of Dead",
+    "slug": "rich-wilde-and-the-book-of-dead",
+    "providerName": "Playn Go",
+    "rtp": 96.21,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Sweet Rush Bonanza",
+    "slug": "sugar-rush-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Legacy of Dead",
+    "slug": "legacy-of-dead",
+    "providerName": "Playn Go",
+    "rtp": 96.58,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Big Bass Bonanza 1000",
+    "slug": "big-bass-bonanza-1000",
+    "providerName": "Reelkingdom",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Big Bass Splash 1000",
+    "slug": "big-bass-splash-1000",
+    "providerName": "Reelkingdom",
+    "rtp": 96.52,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Big Bass Christmas Frozen Lake",
+    "slug": "big-bass-christmas-frozen-lake",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Le Santa",
+    "slug": "le-santa",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.14,
+    "volatility": "average",
+    "maxWin": 20000
+  },
+  {
+    "name": "The Dog House Megaways",
+    "slug": "the-dog-house-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.55,
+    "volatility": "high",
+    "maxWin": 12305
+  },
+  {
+    "name": "Mummyland Treasures",
+    "slug": "mummyland-treasures",
+    "providerName": "Belatra Games",
+    "rtp": 96.36,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Le Cowboy",
+    "slug": "le-cowboy",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.28,
+    "volatility": "average",
+    "maxWin": 25000
+  },
+  {
+    "name": "Gates of Olympus",
+    "slug": "gates-of-olympus",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Starlight Princess Super Scatter",
+    "slug": "starlight-princess-super-scatter",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Tome of Madness",
+    "slug": "tome-of-madness",
+    "providerName": "Playn Go",
+    "rtp": 96.59,
+    "volatility": "high",
+    "maxWin": 2000
+  },
+  {
+    "name": "Wild West Gold",
+    "slug": "wild-west-gold",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Bass Vegas Double Down Deluxe",
+    "slug": "big-bass-vegas-double-down-deluxe",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "The Dog House – Royal Hunt",
+    "slug": "the-dog-house-royal-hunt",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 8000
+  },
+  {
+    "name": "Big Bass Bonanza",
+    "slug": "big-bass-bonanza",
+    "providerName": "Reelkingdom",
+    "rtp": 96.71,
+    "volatility": "high",
+    "maxWin": 2100
+  },
+  {
+    "name": "Wanted Dead or a Wild",
+    "slug": "wanted-dead-or-a-wild",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.15,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Le Pharaoh",
+    "slug": "le-pharaoh",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.18,
+    "volatility": "average",
+    "maxWin": 15000
+  },
+  {
+    "name": "Blast the Bass",
+    "slug": "blast-the-bass",
+    "providerName": "Belatra Games",
+    "rtp": 96.72,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Sweet Bonanza Super Scatter",
+    "slug": "sweet-bonanza-super-scatter",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Big Bass Halloween 3",
+    "slug": "big-bass-halloween-3",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Gates of Olympus Xmas 1000",
+    "slug": "gates-of-olympus-xmas-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Fortune of Olympus",
+    "slug": "fortune-of-olympus",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.55,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Sugar Rush",
+    "slug": "sugar-rush",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Sweet Bonanza",
+    "slug": "sweet-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "above average",
+    "maxWin": 21100
+  },
+  {
+    "name": "Ze Zeus",
+    "slug": "ze-zeus",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.34,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Snoop Dogg Dollars",
+    "slug": "snoop-dogg-dollars",
+    "providerName": "Bgaming",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Duel At Dawn",
+    "slug": "duel-at-dawn",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.3,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Le King",
+    "slug": "le-king",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.14,
+    "volatility": "average",
+    "maxWin": 20000
+  },
+  {
+    "name": "Fortune of Giza",
+    "slug": "fortune-of-giza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.48,
+    "volatility": "high",
+    "maxWin": 6750
+  },
+  {
+    "name": "Big Bass Secrets of the Golden Lake",
+    "slug": "big-bass-secrets-of-the-golden-lake",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Big Bass Floats My Boat",
+    "slug": "big-bass-floats-my-boat",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Wild Bandito",
+    "slug": "wild-bandito",
+    "providerName": "Pgsoft",
+    "rtp": 96.73,
+    "volatility": "average",
+    "maxWin": 25000
+  },
+  {
+    "name": "Joker’s Jewels",
+    "slug": "jokers-jewels",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "average",
+    "maxWin": 1040
+  },
+  {
+    "name": "Hot Chilli Bells",
+    "slug": "hot-chilli-bells",
+    "providerName": "Bgaming",
+    "rtp": 97,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Crown Coins",
+    "slug": "crown-coins",
+    "providerName": "Endorphina",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 2500
+  },
+  {
+    "name": "Wild Bounty Showdown",
+    "slug": "wild-bounty-showdown",
+    "providerName": "Pgsoft",
+    "rtp": 96.75,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Le Zeus",
+    "slug": "le-zeus",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.26,
+    "volatility": "average",
+    "maxWin": 20000
+  },
+  {
+    "name": "Duck Hunters",
+    "slug": "duck-hunters",
+    "providerName": "Nolimit City",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 30000
+  },
+  {
+    "name": "Big Bass Boxing Bonus Round",
+    "slug": "big-bass-boxing-bonus-round",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Fruit Party",
+    "slug": "fruit-party",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Santa Mummy",
+    "slug": "santa-mummy",
+    "providerName": "Belatra Games",
+    "rtp": 96.36,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Big Bass Reel Repeat",
+    "slug": "big-bass-reel-repeat",
+    "providerName": "Reelkingdom",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Book of Santa",
+    "slug": "book-of-santa",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Pirots 4",
+    "slug": "pirots-4",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Xmas Drop",
+    "slug": "xmas-drop",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.22,
+    "volatility": "average",
+    "maxWin": 12500
+  },
+  {
+    "name": "Moon Princess 100",
+    "slug": "moon-princess-100",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Zeus vs Typhon",
+    "slug": "zeus-vs-typhon",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.49,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Hot Fiesta",
+    "slug": "hot-fiesta",
+    "providerName": "Pragmatic Play",
+    "rtp": 95.5,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Le Viking",
+    "slug": "le-viking",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.32,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "IN JAZZ",
+    "slug": "in-jazz",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 2500
+  },
+  {
+    "name": "Big Bass Halloween",
+    "slug": "big-bass-halloween",
+    "providerName": "Reelkingdom",
+    "rtp": 96.04,
+    "volatility": "average",
+    "maxWin": 2100
+  },
+  {
+    "name": "Bad Santa",
+    "slug": "bad-santa-2",
+    "providerName": "Endorphina",
+    "rtp": 96.04,
+    "volatility": "high",
+    "maxWin": 1700
+  },
+  {
+    "name": "Shining Crown",
+    "slug": "shining-crown",
+    "providerName": "Egt",
+    "rtp": 96.37,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Hot Fruits 40",
+    "slug": "hot-fruits-40",
+    "providerName": "Amatic Industries",
+    "rtp": 97.34,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Big Bass Xmas Extreme",
+    "slug": "big-bass-xmas-extreme",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Book of Ganesha",
+    "slug": "book-of-ganesha",
+    "providerName": "Endorphina",
+    "rtp": 96.03,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Super Cash Boost Hold & Win",
+    "slug": "super-cash-boost-hold-win",
+    "providerName": "Octoplay",
+    "rtp": 95.74,
+    "volatility": "low",
+    "maxWin": 5500
+  },
+  {
+    "name": "Brick House Bonanza",
+    "slug": "brick-house-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Minotaurus",
+    "slug": "minotaurus",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Energy Coins: Hold and Win",
+    "slug": "energy-coins-hold-and-win",
+    "providerName": "Playson",
+    "rtp": 95.74,
+    "volatility": "high",
+    "maxWin": 10016
+  },
+  {
+    "name": "RIP City",
+    "slug": "rip-city",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.22,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Fruit Million",
+    "slug": "fruit-million",
+    "providerName": "Bgaming",
+    "rtp": 97.1,
+    "volatility": "above average",
+    "maxWin": 3000
+  },
+  {
+    "name": "Pirots 3",
+    "slug": "pirots-3",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Donny And Danny",
+    "slug": "donny-and-danny",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.29,
+    "volatility": "average",
+    "maxWin": 12500
+  },
+  {
+    "name": "Grand Casanova",
+    "slug": "grand-casanova",
+    "providerName": "Amatic Industries",
+    "rtp": 97.45,
+    "volatility": "average",
+    "maxWin": 1500
+  },
+  {
+    "name": "Seamen",
+    "slug": "seamen",
+    "providerName": "Nolimit City",
+    "rtp": 96.04,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Book of Fortune",
+    "slug": "book-of-fortune",
+    "providerName": "Amatic Industries",
+    "rtp": 97.63,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rise of Olympus Extreme",
+    "slug": "rise-of-olympus-extreme",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Bonanza Billion",
+    "slug": "bonanza-billion",
+    "providerName": "Bgaming",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Resurrecting Riches",
+    "slug": "resurrecting-riches",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 4000
+  },
+  {
+    "name": "Book of Aztec",
+    "slug": "book-of-aztec",
+    "providerName": "Amatic Industries",
+    "rtp": 97.63,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Wisdom of Athena 1000 Xmas",
+    "slug": "wisdom-of-athena-1000-xmas",
+    "providerName": "Pragmatic Play",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Starlight Princess 1000",
+    "slug": "starlight-princess-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Sweet Bonanza Xmas",
+    "slug": "sweet-bonanza-xmas",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "above average",
+    "maxWin": 21100
+  },
+  {
+    "name": "5 Lions Megaways",
+    "slug": "5-lions-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Dork Unit",
+    "slug": "dork-unit",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.28,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Luck of Tiger: Bonus Combo",
+    "slug": "luck-of-tiger-bonus-combo",
+    "providerName": "Netgame",
+    "rtp": 96.09,
+    "volatility": "below average",
+    "maxWin": 7000
+  },
+  {
+    "name": "The Dog House Multihold",
+    "slug": "the-dog-house-multihold",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 9000
+  },
+  {
+    "name": "Bigger Barn House Bonanza",
+    "slug": "bigger-barn-house-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Wild Shark",
+    "slug": "wild-shark",
+    "providerName": "Amatic Industries",
+    "rtp": 96.73,
+    "volatility": "average",
+    "maxWin": 2500
+  },
+  {
+    "name": "Hammerstorm",
+    "slug": "hammerstorm",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "3 Witch Pots",
+    "slug": "3-witch-pots",
+    "providerName": "Endorphina",
+    "rtp": 96.47,
+    "volatility": "high",
+    "maxWin": 1300
+  },
+  {
+    "name": "Lucky Streak 3",
+    "slug": "lucky-streak-3",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 7500
+  },
+  {
+    "name": "Doc Rock & the Riff Reactor",
+    "slug": "doc-rock-the-riff-reactor",
+    "providerName": "Truelab Games",
+    "rtp": 98,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Madame Destiny Megaways",
+    "slug": "madame-destiny-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.56,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Voodoo",
+    "slug": "voodoo",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Fist of Destruction",
+    "slug": "fist-of-destruction",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.3,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Aztec Clusters",
+    "slug": "aztec-clusters",
+    "providerName": "Bgaming",
+    "rtp": 97,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Hell Hot 20",
+    "slug": "hell-hot-20",
+    "providerName": "Endorphina",
+    "rtp": 96.01,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Supercharged Clovers: Hold and Win",
+    "slug": "supercharged-clovers-hold-and-win",
+    "providerName": "Playson",
+    "rtp": 95.78,
+    "volatility": "above average",
+    "maxWin": 14720
+  },
+  {
+    "name": "5 Lions Megaways 2",
+    "slug": "5-lions-megaways-2",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 8000
+  },
+  {
+    "name": "Diamond Cats",
+    "slug": "diamond-cats",
+    "providerName": "Amatic Industries",
+    "rtp": 97.38,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Mongol Treasures",
+    "slug": "mongol-treasures",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Hell Hot 100",
+    "slug": "hell-hot-100",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "above average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Six Six Six",
+    "slug": "six-six-six",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.15,
+    "volatility": "high",
+    "maxWin": 16666
+  },
+  {
+    "name": "Extra Juicy",
+    "slug": "extra-juicy",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "high",
+    "maxWin": 60000
+  },
+  {
+    "name": "Christmas Big Bass Bonanza",
+    "slug": "christmas-big-bass-bonanza",
+    "providerName": "Reelkingdom",
+    "rtp": 94.62,
+    "volatility": "above average",
+    "maxWin": 2100
+  },
+  {
+    "name": "Buffalo King Megaways",
+    "slug": "buffalo-king-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rise of Olympus 100",
+    "slug": "rise-of-olympus-100",
+    "providerName": "Playn Go",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Book Of Pharao",
+    "slug": "book-of-pharao",
+    "providerName": "Amatic Industries",
+    "rtp": 97.1,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rotten",
+    "slug": "rotten",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.27,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Treasures of Aztec",
+    "slug": "treasures-of-aztec",
+    "providerName": "Pgsoft",
+    "rtp": 96.71,
+    "volatility": "average",
+    "maxWin": 100000
+  },
+  {
+    "name": "Cleocatra",
+    "slug": "cleocatra",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Slayers Inc",
+    "slug": "slayers-inc",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.28,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Jaws of Justice",
+    "slug": "jaws-of-justice",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Hot fruits 100",
+    "slug": "hot-fruits-100",
+    "providerName": "Amatic Industries",
+    "rtp": 97.08,
+    "volatility": "low",
+    "maxWin": 2000
+  },
+  {
+    "name": "Gates of Hades",
+    "slug": "gates-of-hades-2025",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Chaos Crew 3",
+    "slug": "chaos-crew-3",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.18,
+    "volatility": "high",
+    "maxWin": 30000
+  },
+  {
+    "name": "Santa’s Xmas Rush",
+    "slug": "santas-xmas-rush",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Super Gummy Strike",
+    "slug": "super-gummy-bear-strike",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Sun of Egypt 5",
+    "slug": "sun-of-egypt-5",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Outsourced",
+    "slug": "outsourced",
+    "providerName": "Nolimit City",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Supreme Hot",
+    "slug": "supreme-hot-slot",
+    "providerName": "Egt",
+    "rtp": 96.24,
+    "volatility": "average",
+    "maxWin": 300
+  },
+  {
+    "name": "Angel vs Sinner",
+    "slug": "angel-vs-sinner",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.56,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "The Dog House Dice Show",
+    "slug": "the-dog-house-dice-show",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 6750
+  },
+  {
+    "name": "Burning Hot",
+    "slug": "burning-hot",
+    "providerName": "Egt",
+    "rtp": 95.97,
+    "volatility": "average",
+    "maxWin": 3000
+  },
+  {
+    "name": "Royal Xmass 2",
+    "slug": "royal-xmass-2",
+    "providerName": "Endorphina",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Divine Fortune",
+    "slug": "divine-fortune",
+    "providerName": "Netent",
+    "rtp": 96.59,
+    "volatility": "average",
+    "maxWin": 600
+  },
+  {
+    "name": "Royalty of Olympus",
+    "slug": "royalty-of-olympus",
+    "providerName": "Barbarabang",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Sugar Rush Xmas",
+    "slug": "sugar-rush-xmas",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Das xBoot 2wei",
+    "slug": "das-xboot-zwei",
+    "providerName": "Nolimit City",
+    "rtp": 95.94,
+    "volatility": "high",
+    "maxWin": 59999
+  },
+  {
+    "name": "Bee Keeper",
+    "slug": "bee-keeper",
+    "providerName": "Reelkingdom",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 2100
+  },
+  {
+    "name": "4 Pots of Egypt",
+    "slug": "4-pots-of-egypt",
+    "providerName": "Booongo",
+    "rtp": 96.12,
+    "volatility": "above average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rise of Merlin",
+    "slug": "rise-of-merlin",
+    "providerName": "Playn Go",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Fire in the Hole 3",
+    "slug": "fire-in-the-hole-3",
+    "providerName": "Nolimit City",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 70000
+  },
+  {
+    "name": "Lucky Streak 1000",
+    "slug": "lucky-streak-1000",
+    "providerName": "Endorphina",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Mental 2",
+    "slug": "mental-2",
+    "providerName": "Nolimit City",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 99999
+  },
+  {
+    "name": "Lucky Zodiac",
+    "slug": "lucky-zodiac",
+    "providerName": "Amatic Industries",
+    "rtp": 96.78,
+    "volatility": "high",
+    "maxWin": 1000
+  },
+  {
+    "name": "Club Tropicana Happy Hour",
+    "slug": "club-tropicana-happy-hour",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Bigger Bass Splash",
+    "slug": "bigger-bass-splash",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Hot Chilli Bells 100 Xmas",
+    "slug": "hot-chilli-bells-100-xmas",
+    "providerName": "Bgaming",
+    "rtp": 97,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Cash & Crab",
+    "slug": "cash-crab",
+    "providerName": "Amatic Industries",
+    "rtp": 97.11,
+    "volatility": "average",
+    "maxWin": 2200
+  },
+  {
+    "name": "Le Fisherman",
+    "slug": "le-fisherman",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.33,
+    "volatility": "below average",
+    "maxWin": 15000
+  },
+  {
+    "name": "Voodoo Coins",
+    "slug": "voodoo-coins",
+    "providerName": "Belatra Games",
+    "rtp": 96.31,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Catch Bonanza",
+    "slug": "big-catch-bonanza",
+    "providerName": "Netgame",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 12000
+  },
+  {
+    "name": "Frozen Barrel Tavern",
+    "slug": "frozen-barrel-tavern",
+    "providerName": "Belatra Games",
+    "rtp": 96.14,
+    "volatility": "high",
+    "maxWin": 12000
+  },
+  {
+    "name": "Best Xmas",
+    "slug": "best-xmas",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 1700
+  },
+  {
+    "name": "Zeus Ze Zecond",
+    "slug": "zeus-ze-zecond",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.26,
+    "volatility": "average",
+    "maxWin": 20000
+  },
+  {
+    "name": "Big Bass Christmas Bash",
+    "slug": "big-bass-christmas-bash",
+    "providerName": "Reelkingdom",
+    "rtp": 96.71,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Fruit Machine: Mega X",
+    "slug": "fruit-machine-mega-x",
+    "providerName": "Mascot Gaming",
+    "rtp": 94.88,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Sugar Rush Super Scatter",
+    "slug": "sugar-rush-super-scatter",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.58,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "3 Egypt Chests",
+    "slug": "3-egypt-chests",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Break The Piggy Bank",
+    "slug": "break-the-piggy-bank",
+    "providerName": "Octoplay",
+    "rtp": 95.72,
+    "volatility": "low",
+    "maxWin": 4500
+  },
+  {
+    "name": "Hand of Anubis",
+    "slug": "hand-of-anubis",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.24,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Bonanza Trillion",
+    "slug": "bonanza-trillion",
+    "providerName": "Bgaming",
+    "rtp": 97.17,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Pirots 2",
+    "slug": "pirots-2",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Bass Rock and Roll",
+    "slug": "big-bass-rock-and-roll",
+    "providerName": "Reelkingdom",
+    "rtp": 98,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Hell Hot 40",
+    "slug": "hell-hot-40",
+    "providerName": "Endorphina",
+    "rtp": 96.04,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Merge Up™ 2",
+    "slug": "merge-up-2",
+    "providerName": "Bgaming",
+    "rtp": 98,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Fire Stampede Ultimate",
+    "slug": "fire-stampede-ultimate",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.45,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "4 Fantastic Vikings Go Ice Fishing",
+    "slug": "4-fantastic-vikings-go-ice-fishing",
+    "providerName": "4theplayer",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10240
+  },
+  {
+    "name": "Super Tiki Strike",
+    "slug": "super-tiki-strike",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Midas Golden Touch 3",
+    "slug": "midas-golden-touch-3",
+    "providerName": "Thunderkick",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Pray for Six",
+    "slug": "pray-for-six",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.35,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Sizzling Hot Deluxe",
+    "slug": "sizzling-hot-deluxe",
+    "providerName": "Novomatic",
+    "rtp": 95.66,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Doomsday Saloon",
+    "slug": "doomsday-saloon",
+    "providerName": "Bgaming",
+    "rtp": 97,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Princess Suki",
+    "slug": "princess-suki",
+    "providerName": "Belatra Games",
+    "rtp": 96.16,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Supersized",
+    "slug": "supersized",
+    "providerName": "Nolimit City",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 12345
+  },
+  {
+    "name": "Anubis Wrath",
+    "slug": "anubis-wrath",
+    "providerName": "Pgsoft",
+    "rtp": 96.75,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Hot Money Slot",
+    "slug": "hot-money-slot",
+    "providerName": "Truelab Games",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 300
+  },
+  {
+    "name": "Bigger Bass Bonanza",
+    "slug": "bigger-bass-bonanza",
+    "providerName": "Reelkingdom",
+    "rtp": 96.71,
+    "volatility": "high",
+    "maxWin": 4000
+  },
+  {
+    "name": "Sun of Egypt 2",
+    "slug": "sun-of-egypt-2",
+    "providerName": "Booongo",
+    "rtp": 95.64,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Book of Aztec Select",
+    "slug": "book-of-aztec-select",
+    "providerName": "Amatic Industries",
+    "rtp": 97.63,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Release the Kraken Megaways",
+    "slug": "release-the-kraken-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.08,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Tahiti Gold",
+    "slug": "tahiti-gold",
+    "providerName": "Elk Studios",
+    "rtp": 96.1,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Barbarossa Revenge DoubleMax",
+    "slug": "barbarossa-revenge-doublemax",
+    "providerName": "Petersons",
+    "rtp": 96.3,
+    "volatility": "high",
+    "maxWin": 30000
+  },
+  {
+    "name": "Duck Hunters Happy Hour",
+    "slug": "duck-hunters-happy-hour",
+    "providerName": "Nolimit City",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 33333
+  },
+  {
+    "name": "Raptor Doublemax",
+    "slug": "raptor-doublemax",
+    "providerName": "Yggdrasil Gaming",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Spear of Athena",
+    "slug": "spear-of-athena",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.2,
+    "volatility": "average",
+    "maxWin": 15000
+  },
+  {
+    "name": "Money Train 4",
+    "slug": "money-train-4",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "high",
+    "maxWin": 150000
+  },
+  {
+    "name": "Skyborn",
+    "slug": "skyborn",
+    "providerName": "Truelab Games",
+    "rtp": 96,
+    "volatility": "above average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Miami Mayhem",
+    "slug": "miami-mayhem",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.35,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Joker Stoker",
+    "slug": "joker-stoker",
+    "providerName": "Endorphina",
+    "rtp": 96.07,
+    "volatility": "average",
+    "maxWin": 2000
+  },
+  {
+    "name": "Lady Wolf Moon Megaways",
+    "slug": "lady-wolf-moon-megaways",
+    "providerName": "Bgaming",
+    "rtp": 96.84,
+    "volatility": "high",
+    "maxWin": 6000
+  },
+  {
+    "name": "Gold Party",
+    "slug": "gold-party",
+    "providerName": "Wild Streak Gaming",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5163
+  },
+  {
+    "name": "Buffalo King",
+    "slug": "buffalo-king",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 93750
+  },
+  {
+    "name": "Santa’s Slay",
+    "slug": "santas-slay",
+    "providerName": "Reelkingdom",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 2000
+  },
+  {
+    "name": "Fate of Dead Blitzways",
+    "slug": "fate-of-dead-blitzways",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Blood Suckers",
+    "slug": "blood-suckers",
+    "providerName": "Netent",
+    "rtp": 98,
+    "volatility": "low",
+    "maxWin": 900
+  },
+  {
+    "name": "Aztec Fire 2",
+    "slug": "aztec-fire-2",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Book of Lady",
+    "slug": "book-of-lady",
+    "providerName": "Endorphina",
+    "rtp": 96.03,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Anaconda Gold",
+    "slug": "anaconda-gold",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.54,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Astro Rumble",
+    "slug": "astro-rumble",
+    "providerName": "Bullshark Games",
+    "rtp": 96.39,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Master Joker",
+    "slug": "master-joker",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.46,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Stormforged",
+    "slug": "stormforged",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.41,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Nitropolis 4",
+    "slug": "nitropolis-4",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "The Wildwood Curse",
+    "slug": "the-wildwood-curse",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.3,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Bloody Dawn",
+    "slug": "bloody-dawn",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Flight Mode",
+    "slug": "flight-mode",
+    "providerName": "Nolimit City",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5051
+  },
+  {
+    "name": "Rich Wilde and the Tome of Dead",
+    "slug": "rich-wilde-and-the-tome-of-dead",
+    "providerName": "Playn Go",
+    "rtp": 96.21,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Juicy Fruits",
+    "slug": "juicy-fruits",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Wild West Duels",
+    "slug": "wild-west-duels",
+    "providerName": "Pragmatic Play",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "3 Coins Hold and Win",
+    "slug": "3-coins-hold-and-win",
+    "providerName": "Booongo",
+    "rtp": 95.84,
+    "volatility": "average",
+    "maxWin": 669
+  },
+  {
+    "name": "Red Hot 100",
+    "slug": "red-hot-100",
+    "providerName": "Truelab Games",
+    "rtp": 96.04,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "Age Of Seth",
+    "slug": "age-of-seth",
+    "providerName": "Bullshark Games",
+    "rtp": 96.29,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Immortal Ways Magic Gems",
+    "slug": "immortal-ways-magic-gems",
+    "providerName": "Rubyplay",
+    "rtp": 96.3,
+    "volatility": "high",
+    "maxWin": 1000
+  },
+  {
+    "name": "Reactoonz",
+    "slug": "reactoonz",
+    "providerName": "Playn Go",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 4570
+  },
+  {
+    "name": "Bill & Coin 2: Mummy Mischief",
+    "slug": "bill-coin-2-mummy-mischief",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "above average",
+    "maxWin": 15000
+  },
+  {
+    "name": "Long Neck Fortune",
+    "slug": "long-neck-fortune",
+    "providerName": "Belatra Games",
+    "rtp": 96.4,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Wild Wild Riches Returns",
+    "slug": "wild-wild-riches-returns",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Deal With Death",
+    "slug": "deal-with-death",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.25,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "5 Wild Buffalo",
+    "slug": "5-wild-buffalo",
+    "providerName": "4theplayer",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 7500
+  },
+  {
+    "name": "Gonzo’s Quest 2",
+    "slug": "gonzos-quest-2",
+    "providerName": "Netent",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 15825
+  },
+  {
+    "name": "Crack More Piggy Banks",
+    "slug": "crack-more-piggy-banks",
+    "providerName": "Penguin King",
+    "rtp": 92.76,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Dogmasons GOAT",
+    "slug": "dogmasons-goat",
+    "providerName": "Popiplay",
+    "rtp": 95.98,
+    "volatility": "high",
+    "maxWin": 3525
+  },
+  {
+    "name": "Burning Coins 20",
+    "slug": "burning-coins-20",
+    "providerName": "Endorphina",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 1500
+  },
+  {
+    "name": "Crazy Ex-Girlfriend",
+    "slug": "crazy-ex-girlfriend",
+    "providerName": "Nolimit City",
+    "rtp": 96.09,
+    "volatility": "high",
+    "maxWin": 9999
+  },
+  {
+    "name": "3 China Pots",
+    "slug": "3-china-pots",
+    "providerName": "Booongo",
+    "rtp": 95.68,
+    "volatility": "above average",
+    "maxWin": 4280
+  },
+  {
+    "name": "Magic Idol",
+    "slug": "magic-idol",
+    "providerName": "Amatic Industries",
+    "rtp": 97.44,
+    "volatility": "average",
+    "maxWin": 2500
+  },
+  {
+    "name": "Mr. Bells 40",
+    "slug": "mr-bells-40",
+    "providerName": "Endorphina",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 2900
+  },
+  {
+    "name": "Gator Hunters",
+    "slug": "gator-hunters",
+    "providerName": "Nolimit City",
+    "rtp": 96.11,
+    "volatility": "high",
+    "maxWin": 25000
+  },
+  {
+    "name": "Junkyard Kings",
+    "slug": "junkyard-kings",
+    "providerName": "Bullshark Games",
+    "rtp": 96.23,
+    "volatility": "average",
+    "maxWin": 12000
+  },
+  {
+    "name": "Fire’n’Hot",
+    "slug": "firenhot",
+    "providerName": "Tom Horn Gaming",
+    "rtp": 95.74,
+    "volatility": "average",
+    "maxWin": 819
+  },
+  {
+    "name": "Fortune of Aztec",
+    "slug": "fortune-of-aztec",
+    "providerName": "Fat Panda",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Thunder Crown",
+    "slug": "thunder-crown",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "above average",
+    "maxWin": 2400
+  },
+  {
+    "name": "Army of Ares",
+    "slug": "army-of-ares",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.26,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Masked Mayhem",
+    "slug": "masked-mayhem",
+    "providerName": "Pushgaming",
+    "rtp": 96.29,
+    "volatility": "above average",
+    "maxWin": 10231
+  },
+  {
+    "name": "3 Big Barrels Elfin’ Rich",
+    "slug": "3-big-barrels-elfin-rich",
+    "providerName": "Rubyplay",
+    "rtp": 94.31,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Wacky Panda",
+    "slug": "wacky-panda",
+    "providerName": "Games Global",
+    "rtp": 95.94,
+    "volatility": "average",
+    "maxWin": 222
+  },
+  {
+    "name": "Jungle Spirit: Call of the Wild",
+    "slug": "jungle-spirit-call-of-the-wild",
+    "providerName": "Netent",
+    "rtp": 96.47,
+    "volatility": "high",
+    "maxWin": 7678
+  },
+  {
+    "name": "Old Gun",
+    "slug": "old-gun",
+    "providerName": "Backseat Gaming",
+    "rtp": 96.29,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Crypto Bro",
+    "slug": "crypto-bro",
+    "providerName": "Avatarux",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Chests of Cai Shen 2",
+    "slug": "chests-of-cai-chen-2",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Donny Dough",
+    "slug": "donny-dough",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.23,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Bullride Loot",
+    "slug": "bullride-loot",
+    "providerName": "Bullshark Games",
+    "rtp": 96.29,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Billyonaire",
+    "slug": "billyonaire",
+    "providerName": "Amatic Industries",
+    "rtp": 96.33,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Geisha",
+    "slug": "geisha",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Fortune Bells",
+    "slug": "fortune-bells",
+    "providerName": "Bgaming",
+    "rtp": 97.09,
+    "volatility": "high",
+    "maxWin": 4684
+  },
+  {
+    "name": "Magic Piggy",
+    "slug": "magic-piggy",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.19,
+    "volatility": "average",
+    "maxWin": 7500
+  },
+  {
+    "name": "Cocktail Nights",
+    "slug": "cocktail-nights",
+    "providerName": "Pgsoft",
+    "rtp": 96.75,
+    "volatility": "average",
+    "maxWin": 100000
+  },
+  {
+    "name": "San Quentin 2: Death Row",
+    "slug": "san-quentin-2-death-row",
+    "providerName": "Nolimit City",
+    "rtp": 96.13,
+    "volatility": "high",
+    "maxWin": 200000
+  },
+  {
+    "name": "Sun of Egypt 4",
+    "slug": "sun-of-egypt-4",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Suck",
+    "slug": "suck",
+    "providerName": "Shady Lady",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Pirate Bonanza",
+    "slug": "pirate-bonanza",
+    "providerName": "Backseat Gaming",
+    "rtp": 96.31,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Vampy Party",
+    "slug": "vampy-party",
+    "providerName": "Pragmatic Play",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "The Count",
+    "slug": "the-count",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.36,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Jewel Bonanza",
+    "slug": "jewel-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 98,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Hot Choice Deluxe",
+    "slug": "hot-choice-deluxe",
+    "providerName": "Amatic Industries",
+    "rtp": 97.12,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Fire Joker",
+    "slug": "fire-joker",
+    "providerName": "Playn Go",
+    "rtp": 96.15,
+    "volatility": "average",
+    "maxWin": 800
+  },
+  {
+    "name": "Fruit Shop",
+    "slug": "fruit-shop",
+    "providerName": "Netent",
+    "rtp": 96.71,
+    "volatility": "below average",
+    "maxWin": 533
+  },
+  {
+    "name": "Cyber Gypsies",
+    "slug": "cyber-gypsies",
+    "providerName": "Belatra Games",
+    "rtp": 96.02,
+    "volatility": "high",
+    "maxWin": 8888
+  },
+  {
+    "name": "Fortune Mummy",
+    "slug": "fortune-mummy",
+    "providerName": "Belatra Games",
+    "rtp": 96.68,
+    "volatility": "below average",
+    "maxWin": 5000
+  },
+  {
+    "name": "La Dolce Vita 2",
+    "slug": "la-dolce-vita-2",
+    "providerName": "Gamomat",
+    "rtp": 96.13,
+    "volatility": "average",
+    "maxWin": 2100
+  },
+  {
+    "name": "Starlight Princess",
+    "slug": "starlight-princess",
+    "providerName": "Pragmatic Play",
+    "rtp": 95.51,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Paper Biker",
+    "slug": "paper-biker",
+    "providerName": "Bullshark Games",
+    "rtp": 96.24,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "3 Buzzing Wilds",
+    "slug": "3-buzzing-wilds",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.03,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Chicken Chase",
+    "slug": "chicken-chase",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.48,
+    "volatility": "high",
+    "maxWin": 2100
+  },
+  {
+    "name": "Hottest Fruits 40",
+    "slug": "hottest-fruits-40",
+    "providerName": "Amatic Industries",
+    "rtp": 97.34,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Godly Gains",
+    "slug": "godly-gains",
+    "providerName": "Bullshark Games",
+    "rtp": 96.26,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Pink Elephants Trinity",
+    "slug": "pink-elephants-trinity",
+    "providerName": "Thunderkick",
+    "rtp": 96.18,
+    "volatility": "high",
+    "maxWin": 14400
+  },
+  {
+    "name": "Sizzling Hot",
+    "slug": "sizzling-hot",
+    "providerName": "Novomatic",
+    "rtp": 95.66,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rush Fever 7s Deluxe",
+    "slug": "rush-fever-7s-deluxe",
+    "providerName": "Rubyplay",
+    "rtp": 96.9,
+    "volatility": "below average",
+    "maxWin": 8600
+  },
+  {
+    "name": "Bad Santa",
+    "slug": "bad-santa",
+    "providerName": "Petersons",
+    "rtp": 96.18,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Brute Force Alien Onslaught",
+    "slug": "brute-force-alien-onslaught",
+    "providerName": "Nolimit City",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 80000
+  },
+  {
+    "name": "Fortune Five",
+    "slug": "fortune-five",
+    "providerName": "Gamebeat",
+    "rtp": 96.02,
+    "volatility": "high",
+    "maxWin": 1000
+  },
+  {
+    "name": "Shining Crown Cash Heat",
+    "slug": "shining-crown-cash-heat",
+    "providerName": "Igt",
+    "rtp": 96.5,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Sun Princess",
+    "slug": "sun-princess",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.29,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Gift Rush",
+    "slug": "gift-rush",
+    "providerName": "Bgaming",
+    "rtp": 96.07,
+    "volatility": "average",
+    "maxWin": 499
+  },
+  {
+    "name": "The Tipsy Tourist: Beach Bonanza – Hold & Win",
+    "slug": "the-tipsy-tourist-beach-bonanza-hold-win",
+    "providerName": "Betsoft",
+    "rtp": 96.06,
+    "volatility": "above average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Santa’s Wonderland",
+    "slug": "santas-wonderland",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.23,
+    "volatility": "high",
+    "maxWin": 7500
+  },
+  {
+    "name": "Book of Oil",
+    "slug": "book-of-oil",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Duel of Night & Day",
+    "slug": "duel-of-night-day",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.47,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Undead Fortune",
+    "slug": "undead-fortune",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.29,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Royal Xmass",
+    "slug": "royal-xmass",
+    "providerName": "Endorphina",
+    "rtp": 96.01,
+    "volatility": "average",
+    "maxWin": 93750
+  },
+  {
+    "name": "Toshi Ways Club",
+    "slug": "toshi-ways-club",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.09,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Santa’s Great Gifts",
+    "slug": "santas-great-gift",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.25,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Big Bass Halloween 2",
+    "slug": "big-bass-halloween-2",
+    "providerName": "Reelkingdom",
+    "rtp": 96.71,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Super Flip",
+    "slug": "super-flip",
+    "providerName": "Playn Go",
+    "rtp": 96.53,
+    "volatility": "average",
+    "maxWin": 100
+  },
+  {
+    "name": "888 Dragons",
+    "slug": "888-dragons",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.84,
+    "volatility": "low",
+    "maxWin": 100
+  },
+  {
+    "name": "Great 27",
+    "slug": "great-27",
+    "providerName": "Egt",
+    "rtp": 95.98,
+    "volatility": "average",
+    "maxWin": 3000
+  },
+  {
+    "name": "Rise of Ymir",
+    "slug": "rise-of-ymir",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.31,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Dead or Alive 2 Feature Buy",
+    "slug": "dead-or-alive-2-feature-buy",
+    "providerName": "Netent",
+    "rtp": 96.8,
+    "volatility": "high",
+    "maxWin": 11111
+  },
+  {
+    "name": "Fortune Snake",
+    "slug": "fortune-snake",
+    "providerName": "Endorphina",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Pompeii Megareels Megaways",
+    "slug": "pompeii-megareels-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Wild Ape #3258",
+    "slug": "wild-ape-3258",
+    "providerName": "Pgsoft",
+    "rtp": 96.74,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Reactoonz 100",
+    "slug": "reactoonz-100",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Wild Tiger",
+    "slug": "wild-tiger",
+    "providerName": "Bgaming",
+    "rtp": 97.11,
+    "volatility": "below average",
+    "maxWin": 3000
+  },
+  {
+    "name": "Fire Portals",
+    "slug": "fire-portals",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Marching Legions",
+    "slug": "marching-legions",
+    "providerName": "Relax Gaming",
+    "rtp": 98.12,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Rich Wilde and the Tome of Insanity",
+    "slug": "rich-wilde-and-the-tome-of-insanity",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Dragon Wealth",
+    "slug": "dragon-wealth",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Pandemic Rising",
+    "slug": "pandemic-rising",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 14000
+  },
+  {
+    "name": "Big Boat Big Catch",
+    "slug": "big-boat-big-catch",
+    "providerName": "Bgaming",
+    "rtp": 97.2,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Wild Million",
+    "slug": "wild-million",
+    "providerName": "Bgaming",
+    "rtp": 97.2,
+    "volatility": "below average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Brute Force",
+    "slug": "brute-force",
+    "providerName": "Nolimit City",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 40000
+  },
+  {
+    "name": "Cash Goddess",
+    "slug": "cash-goddess",
+    "providerName": "Red Tiger Gaming",
+    "rtp": 95.84,
+    "volatility": "high",
+    "maxWin": 10621
+  },
+  {
+    "name": "Gonzo’s Quest",
+    "slug": "gonzos-quest",
+    "providerName": "Netent",
+    "rtp": 95.97,
+    "volatility": "above average",
+    "maxWin": 3750
+  },
+  {
+    "name": "Vituss Britva God of Random",
+    "slug": "vituss-britva-god-of-random",
+    "providerName": "Truelab Games",
+    "rtp": 96.13,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "The Dog House – Muttley Crew",
+    "slug": "the-dog-house-muttley-crew",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 7500
+  },
+  {
+    "name": "Cyber Wolf",
+    "slug": "cyber-wolf",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Cash’n Spins 243 Plus",
+    "slug": "cashn-spins-243-plus",
+    "providerName": "1spin4win",
+    "rtp": 97.2,
+    "volatility": "high",
+    "maxWin": 1800
+  },
+  {
+    "name": "Battle Rage",
+    "slug": "battle-rage",
+    "providerName": "Truelab Games",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 100000
+  },
+  {
+    "name": "Blue Dolphin",
+    "slug": "blue-dolphin",
+    "providerName": "Amatic Industries",
+    "rtp": 97.48,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "Big Bass Bonanza – Hold & Spinner",
+    "slug": "big-bass-bonanza-hold-spinner",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Valley of the Gods 2",
+    "slug": "valley-of-the-gods-2",
+    "providerName": "Yggdrasil Gaming",
+    "rtp": 96.3,
+    "volatility": "above average",
+    "maxWin": 5481
+  },
+  {
+    "name": "2023 Hit Slot",
+    "slug": "2023-hit-slot",
+    "providerName": "Endorphina",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 93750
+  },
+  {
+    "name": "DJ Cat",
+    "slug": "dj-cat",
+    "providerName": "Pushgaming",
+    "rtp": 96.32,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Dragon Queen MEGAWAYS",
+    "slug": "dragon-queen-megaways",
+    "providerName": "Bgaming",
+    "rtp": 96.75,
+    "volatility": "high",
+    "maxWin": 6000
+  },
+  {
+    "name": "Book of Fallen",
+    "slug": "book-of-fallen",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "9k Yeti",
+    "slug": "9k-yeti",
+    "providerName": "4theplayer",
+    "rtp": 97,
+    "volatility": "high",
+    "maxWin": 9012
+  },
+  {
+    "name": "King’s Crown",
+    "slug": "kings-crown",
+    "providerName": "Amatic Industries",
+    "rtp": 95.86,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rise of Zeus",
+    "slug": "rize-of-zeus",
+    "providerName": "Belatra Games",
+    "rtp": 96.02,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "X-Mas Buffalo",
+    "slug": "x-mas-buffalo",
+    "providerName": "Belatra Games",
+    "rtp": 94.25,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Tropicool 4",
+    "slug": "tropicool-4",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "above average",
+    "maxWin": 25000
+  },
+  {
+    "name": "FRKN Bananas",
+    "slug": "frkn-bananas",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.31,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Midas Golden Touch",
+    "slug": "midas-golden-touch",
+    "providerName": "Thunderkick",
+    "rtp": 96.1,
+    "volatility": "high",
+    "maxWin": 10100
+  },
+  {
+    "name": "Starburst",
+    "slug": "starburst",
+    "providerName": "Netent",
+    "rtp": 96.09,
+    "volatility": "low",
+    "maxWin": 500
+  },
+  {
+    "name": "Hot Fruits 20",
+    "slug": "hot-fruits-20",
+    "providerName": "Amatic Industries",
+    "rtp": 97.56,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "Dreadworks",
+    "slug": "dreadworks",
+    "providerName": "Print Studios",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Beauty Warrior",
+    "slug": "beauty-warrior",
+    "providerName": "Amatic Industries",
+    "rtp": 97.99,
+    "volatility": "average",
+    "maxWin": 7200
+  },
+  {
+    "name": "Fruit Shop MegaWays",
+    "slug": "fruit-shop-megaways",
+    "providerName": "Netent",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "The Great Pigsby Megaways",
+    "slug": "the-great-pigsby-megaways",
+    "providerName": "Relax Gaming",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "4 Fantastic Vikings Go Fishing",
+    "slug": "4-fantastic-vikings-go-fishing",
+    "providerName": "4theplayer",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Fortune Stars",
+    "slug": "fortune-stars",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 1500
+  },
+  {
+    "name": "Legion Gold Victory!",
+    "slug": "legion-gold-victory",
+    "providerName": "Playn Go",
+    "rtp": 96.3,
+    "volatility": "average",
+    "maxWin": 4000
+  },
+  {
+    "name": "Life and Death",
+    "slug": "life-and-death",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.36,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Witch Heart Megaways",
+    "slug": "witch-heart-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.49,
+    "volatility": "high",
+    "maxWin": 9000
+  },
+  {
+    "name": "Rush for Gold",
+    "slug": "rush-for-gold",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Book of Riches Deluxe: Chapter 2 SE",
+    "slug": "book-of-riches-deluxe-chapter-2-se",
+    "providerName": "Rubyplay",
+    "rtp": 96.33,
+    "volatility": "high",
+    "maxWin": 7000
+  },
+  {
+    "name": "Sweet Craze",
+    "slug": "sweet-craze",
+    "providerName": "Pragmatic Play",
+    "rtp": 97.54,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Forgotten",
+    "slug": "forgotten",
+    "providerName": "Bgaming",
+    "rtp": 96.89,
+    "volatility": "high",
+    "maxWin": 7500
+  },
+  {
+    "name": "Densho",
+    "slug": "densho",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.33,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "20 Super Hot",
+    "slug": "20-super-hot",
+    "providerName": "Egt",
+    "rtp": 95.79,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "Holy Hand Grenade 2",
+    "slug": "holy-hand-grenade-2",
+    "providerName": "Print Studios",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 30000
+  },
+  {
+    "name": "Fiesta Fortune",
+    "slug": "fiesta-fortune",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Rainbow Princess",
+    "slug": "rainbow-princess",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.36,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Disorder",
+    "slug": "disorder",
+    "providerName": "Nolimit City",
+    "rtp": 96.11,
+    "volatility": "high",
+    "maxWin": 23500
+  },
+  {
+    "name": "John Hunter and the Tomb of the Scarab Queen",
+    "slug": "john-hunter-and-the-tomb-of-the-scarab-queen",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "average",
+    "maxWin": 10500
+  },
+  {
+    "name": "Burning Coin 40",
+    "slug": "burning-coin-40",
+    "providerName": "Endorphina",
+    "rtp": 96.12,
+    "volatility": "high",
+    "maxWin": 3100
+  },
+  {
+    "name": "Wisdom of Athena 1000",
+    "slug": "wisdom-of-athena-1000",
+    "providerName": "Pragmatic Play",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Catch Bonanza: Bonus Buy",
+    "slug": "big-catch-bonanza-bonus-buy",
+    "providerName": "Netgame",
+    "rtp": 96.05,
+    "volatility": "high",
+    "maxWin": 12000
+  },
+  {
+    "name": "Crazy Monkey",
+    "slug": "crazy-monkey",
+    "providerName": "Igrosoft",
+    "rtp": 96,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Big Bass Amazon Xtreme",
+    "slug": "big-bass-amazon-extreme",
+    "providerName": "Reelkingdom",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Wild Buffalo 2",
+    "slug": "big-wild-buffalo-2",
+    "providerName": "Belatra Games",
+    "rtp": 96.07,
+    "volatility": "above average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Hot Devil Slot",
+    "slug": "hot-devil-slot",
+    "providerName": "Truelab Games",
+    "rtp": 95.25,
+    "volatility": "above average",
+    "maxWin": 12000
+  },
+  {
+    "name": "Olympus Wins",
+    "slug": "olympus-wins",
+    "providerName": "Fat Panda",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 100000
+  },
+  {
+    "name": "Golden Ticket",
+    "slug": "golden-ticket",
+    "providerName": "Playn Go",
+    "rtp": 96.73,
+    "volatility": "average",
+    "maxWin": 10289
+  },
+  {
+    "name": "Sakura Fortune",
+    "slug": "sakura-fortune",
+    "providerName": "Quickspin",
+    "rtp": 96.58,
+    "volatility": "high",
+    "maxWin": 941
+  },
+  {
+    "name": "Get The Cheese",
+    "slug": "get-the-cheese",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.31,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Stack Nutcrack",
+    "slug": "big-stack-nutcrack",
+    "providerName": "Print Studios",
+    "rtp": 96.22,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Magic Apple 2",
+    "slug": "magic-apple-2",
+    "providerName": "Booongo",
+    "rtp": 95.53,
+    "volatility": "high",
+    "maxWin": 5133
+  },
+  {
+    "name": "Joker’s Jewels Wild",
+    "slug": "jokers-jewels-wild",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.58,
+    "volatility": "average",
+    "maxWin": 1420
+  },
+  {
+    "name": "Sunlight Princess",
+    "slug": "sunlight-princess",
+    "providerName": "Booongo",
+    "rtp": 95.52,
+    "volatility": "high",
+    "maxWin": 10345
+  },
+  {
+    "name": "Bigger Cash & Crab",
+    "slug": "bigger-cash-crab",
+    "providerName": "Amatic Industries",
+    "rtp": 96.15,
+    "volatility": "high",
+    "maxWin": 1000
+  },
+  {
+    "name": "Ancient Egypt Classic",
+    "slug": "ancient-egypt-classic",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Flock Me",
+    "slug": "flock-me",
+    "providerName": "Netent",
+    "rtp": 96,
+    "volatility": "above average",
+    "maxWin": 8594
+  },
+  {
+    "name": "Dragon’s Bonanza",
+    "slug": "dragons-bonanza",
+    "providerName": "Belatra Games",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Frank’s Diner",
+    "slug": "franks-diner",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Book of Ra",
+    "slug": "book-of-ra",
+    "providerName": "Novomatic",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "27 Wins",
+    "slug": "27-wins",
+    "providerName": "Egt",
+    "rtp": 95.96,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "10 Flaming Bisons",
+    "slug": "10-flaming-bisons",
+    "providerName": "Pushgaming",
+    "rtp": 96.26,
+    "volatility": "average",
+    "maxWin": 5602
+  },
+  {
+    "name": "Lovely Lady",
+    "slug": "lovely-lady",
+    "providerName": "Amatic Industries",
+    "rtp": 95.73,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Lady Wolf Moon",
+    "slug": "lady-wolf-moon",
+    "providerName": "Bgaming",
+    "rtp": 97,
+    "volatility": "average",
+    "maxWin": 27000
+  },
+  {
+    "name": "Big Bass Bonanza Megaways",
+    "slug": "big-bass-bonanza-megaways",
+    "providerName": "Reelkingdom",
+    "rtp": 96.7,
+    "volatility": "high",
+    "maxWin": 4000
+  },
+  {
+    "name": "Ice Princess",
+    "slug": "ice-princess",
+    "providerName": "Belatra Games",
+    "rtp": 96.16,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Reign of Rome",
+    "slug": "reign-of-rome",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.27,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Mining Rush",
+    "slug": "mining-rush",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.56,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Wild West Gold Megaways",
+    "slug": "wild-west-gold-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.44,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Steamrunners",
+    "slug": "steamrunners",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.32,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Book of Aztec Bonus Buy",
+    "slug": "book-of-aztec-bonus-buy",
+    "providerName": "Amatic Industries",
+    "rtp": 97.63,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Bingo Mania",
+    "slug": "bingo-mania",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Snake Arena 2",
+    "slug": "snake-arena-2",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Breakout",
+    "slug": "breakout",
+    "providerName": "Nolimit City",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Fortune Coins 2",
+    "slug": "fortune-coins-2",
+    "providerName": "Tada Gaming",
+    "rtp": 96.46,
+    "volatility": "below average",
+    "maxWin": 10000
+  },
+  {
+    "name": "The Dog House – Dog or Alive",
+    "slug": "the-dog-house-dog-or-alive",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Big Bass Day at Races",
+    "slug": "big-bass-day-at-races",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Secrets of Alchemy",
+    "slug": "secrets-of-alchemy",
+    "providerName": "Egt",
+    "rtp": 96.1,
+    "volatility": "average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Wild Water",
+    "slug": "wild-water",
+    "providerName": "Netent",
+    "rtp": 96.36,
+    "volatility": "high",
+    "maxWin": 2000
+  },
+  {
+    "name": "Sloteus Gold",
+    "slug": "sloteus-gold",
+    "providerName": "Endorphina",
+    "rtp": 96.01,
+    "volatility": "high",
+    "maxWin": 2500
+  },
+  {
+    "name": "Pirates Pub",
+    "slug": "pirates-pub",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.03,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Columbus Deluxe",
+    "slug": "columbus-deluxe",
+    "providerName": "Novomatic",
+    "rtp": 95.02,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Winter Champions",
+    "slug": "winter-champions",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "average",
+    "maxWin": 6000
+  },
+  {
+    "name": "5 Burning Heart",
+    "slug": "5-burning-heart",
+    "providerName": "Egt",
+    "rtp": 95.94,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Christmas Santa",
+    "slug": "christmas-santa",
+    "providerName": "Relax Gaming",
+    "rtp": 96.22,
+    "volatility": "high",
+    "maxWin": 30000
+  },
+  {
+    "name": "Lovely Lady X-Mas",
+    "slug": "lovely-lady-x-mas",
+    "providerName": "Amatic Industries",
+    "rtp": 95.73,
+    "volatility": "average",
+    "maxWin": 2700
+  },
+  {
+    "name": "Miss Candy’s Sweet Escape",
+    "slug": "miss-candys-sweet-escape",
+    "providerName": "Kitsune Gaming",
+    "rtp": 96.33,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Coin Up: Lightning",
+    "slug": "coin-up-lightning",
+    "providerName": "Booongo",
+    "rtp": 95.67,
+    "volatility": "above average",
+    "maxWin": 1974
+  },
+  {
+    "name": "Tarot Treasures",
+    "slug": "tarot-treasures",
+    "providerName": "Pushgaming",
+    "rtp": 96.39,
+    "volatility": "average",
+    "maxWin": 5400
+  },
+  {
+    "name": "Big Bass Fishing Mission",
+    "slug": "big-bass-fishing-mission",
+    "providerName": "Reelkingdom",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "5 Lions Reborn",
+    "slug": "5-lions-reborn",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Toshi Video Club",
+    "slug": "toshi-video-club",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.17,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "40 Burning Hot Bell Link",
+    "slug": "40-burning-hot-bell-link",
+    "providerName": "Egt",
+    "rtp": 96.5,
+    "volatility": "above average",
+    "maxWin": 800
+  },
+  {
+    "name": "Skibblings",
+    "slug": "skibblings",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Super Joker",
+    "slug": "super-joker",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Slattors Battle – Orcs vs Elves",
+    "slug": "slattors-battle-orcs-vs-elves",
+    "providerName": "Belatra Games",
+    "rtp": 96.07,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Let It Snow",
+    "slug": "let-it-snow",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.42,
+    "volatility": "above average",
+    "maxWin": 7400
+  },
+  {
+    "name": "Ra’s Reckoning",
+    "slug": "ras-reckoning",
+    "providerName": "Playn Go",
+    "rtp": 96.2,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Eye of the Panda",
+    "slug": "eye-of-the-panda",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.26,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "All Ways Luck",
+    "slug": "all-ways-luck",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Ultimate Slot of America",
+    "slug": "ultimate-slot-of-america",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.35,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Spinman",
+    "slug": "spinman",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.23,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Iron Bank 2",
+    "slug": "iron-bank-2",
+    "providerName": "Relax Gaming",
+    "rtp": 96.1,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Hot Choice",
+    "slug": "hot-choice",
+    "providerName": "Amatic Industries",
+    "rtp": 97.44,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Jackpot Pagoda",
+    "slug": "jackpot-pagoda",
+    "providerName": "Belatra Games",
+    "rtp": 96.11,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Dr Rock & Creepy Monster",
+    "slug": "dr-rock-creepy-monster",
+    "providerName": "Truelab Games",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Red Cap",
+    "slug": "red-cap",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "low",
+    "maxWin": 1000
+  },
+  {
+    "name": "Pray For Three",
+    "slug": "pray-for-three",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.33,
+    "volatility": "above average",
+    "maxWin": 13333
+  },
+  {
+    "name": "20 Golden Coins",
+    "slug": "20-golden-coins",
+    "providerName": "Egt",
+    "rtp": 95.5,
+    "volatility": "below average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Bullets and Bounty",
+    "slug": "bullets-and-bounty",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.27,
+    "volatility": "below average",
+    "maxWin": 20000
+  },
+  {
+    "name": "Dia de Los Muertos 2",
+    "slug": "dia-de-los-muertos-2",
+    "providerName": "Endorphina",
+    "rtp": 96.05,
+    "volatility": "low",
+    "maxWin": 5000
+  },
+  {
+    "name": "Black Friday",
+    "slug": "black-friday",
+    "providerName": "Shady Lady",
+    "rtp": 96.35,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Gems Bonanza",
+    "slug": "gems-bonanza",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.51,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Ultimate Hot",
+    "slug": "ultimate-hot",
+    "providerName": "Egt",
+    "rtp": 95.51,
+    "volatility": "low",
+    "maxWin": 300
+  },
+  {
+    "name": "Super Sticky Piggy",
+    "slug": "super-sticky-piggy",
+    "providerName": "Booongo",
+    "rtp": 96.5,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Slotomoji",
+    "slug": "slotomoji",
+    "providerName": "Endorphina",
+    "rtp": 96.03,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Danny Dollar",
+    "slug": "danny-dollar",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.21,
+    "volatility": "high",
+    "maxWin": 12500
+  },
+  {
+    "name": "Hounds of Hell",
+    "slug": "hounds-of-hell",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.27,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Lucky Barrel Tavern",
+    "slug": "lucky-barrel-tavern",
+    "providerName": "Belatra Games",
+    "rtp": 96.14,
+    "volatility": "high",
+    "maxWin": 12000
+  },
+  {
+    "name": "Wings of Horus",
+    "slug": "wings-of-horus",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.33,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Mental",
+    "slug": "mental",
+    "providerName": "Nolimit City",
+    "rtp": 96.09,
+    "volatility": "high",
+    "maxWin": 66666
+  },
+  {
+    "name": "Sevens Pay",
+    "slug": "sevens-pay",
+    "providerName": "Fazi Interactive",
+    "rtp": 96,
+    "volatility": "high",
+    "maxWin": 1000
+  },
+  {
+    "name": "xWays Hoarder 2",
+    "slug": "xways-hoarder-2",
+    "providerName": "Nolimit City",
+    "rtp": 96.14,
+    "volatility": "high",
+    "maxWin": 25920
+  },
+  {
+    "name": "Aztec Gems",
+    "slug": "aztec-gems",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.52,
+    "volatility": "average",
+    "maxWin": 375
+  },
+  {
+    "name": "Pyrofox",
+    "slug": "pyrofox",
+    "providerName": "Backseat Gaming",
+    "rtp": 96.24,
+    "volatility": "high",
+    "maxWin": 15000
+  },
+  {
+    "name": "Zombie School Megaways",
+    "slug": "zombie-school-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.55,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "Bizarre",
+    "slug": "bizarre",
+    "providerName": "Nolimit City",
+    "rtp": 96.06,
+    "volatility": "high",
+    "maxWin": 20000
+  },
+  {
+    "name": "Wild West Gold Blazing Bounty",
+    "slug": "wild-west-gold-blazing-bounty",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.48,
+    "volatility": "high",
+    "maxWin": 7500
+  },
+  {
+    "name": "Evil Dozen",
+    "slug": "evil-dozen",
+    "providerName": "Kitsune Gaming",
+    "rtp": 96.33,
+    "volatility": "average",
+    "maxWin": 7500
+  },
+  {
+    "name": "Legend of Perseus",
+    "slug": "legend-of-perseus",
+    "providerName": "Pgsoft",
+    "rtp": 96.77,
+    "volatility": "average",
+    "maxWin": 50000
+  },
+  {
+    "name": "Nitropolis 5",
+    "slug": "nitropolis-5",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 50000
+  },
+  {
+    "name": "Cloud Princess",
+    "slug": "cloud-princess",
+    "providerName": "Hacksaw Gaming",
+    "rtp": 96.24,
+    "volatility": "average",
+    "maxWin": 10000
+  },
+  {
+    "name": "Pirots X",
+    "slug": "pirots-x",
+    "providerName": "Elk Studios",
+    "rtp": 94,
+    "volatility": "high",
+    "maxWin": 10000
+  },
+  {
+    "name": "The Invisible Man",
+    "slug": "the-invisible-man",
+    "providerName": "Netent",
+    "rtp": 96.3,
+    "volatility": "above average",
+    "maxWin": 1000
+  },
+  {
+    "name": "Frightening Frankie",
+    "slug": "frightening-frankie",
+    "providerName": "Reelkingdom",
+    "rtp": 96.53,
+    "volatility": "high",
+    "maxWin": 2800
+  },
+  {
+    "name": "Joker Catcher",
+    "slug": "joker-catcher",
+    "providerName": "Gamzix",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 5000
+  },
+  {
+    "name": "Chance Machine 20",
+    "slug": "chance-machine-20",
+    "providerName": "Endorphina",
+    "rtp": 96,
+    "volatility": "average",
+    "maxWin": 3000
+  },
+  {
+    "name": "Book of Admiral",
+    "slug": "book-of-admiral",
+    "providerName": "Amatic Industries",
+    "rtp": 97.05,
+    "volatility": "high",
+    "maxWin": 5000
+  },
+  {
+    "name": "Fortune Chests",
+    "slug": "fortune-chests",
+    "providerName": "Endorphina",
+    "rtp": 96.08,
+    "volatility": "high",
+    "maxWin": 1500
+  },
+  {
+    "name": "Muertos Multiplier Megaways",
+    "slug": "muertos-multiplier-megaways",
+    "providerName": "Pragmatic Play",
+    "rtp": 96.03,
+    "volatility": "high",
+    "maxWin": 10000
+  }
+]

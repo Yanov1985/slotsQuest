@@ -27,6 +27,7 @@ export class SlotsController {
   async getAllSlots(
     @Query('provider') provider?: string,
     @Query('category') category?: string,
+    @Query('mechanic') mechanic?: string,
     @Query('limit') limit?: string,
     @Query('offset') offset?: string,
     @Query('admin') admin?: string,
@@ -39,6 +40,7 @@ export class SlotsController {
         data = await this.slotsService.getAllSlots({
           provider,
           category,
+          mechanic,
           limit: limit ? parseInt(limit) : undefined,
           offset: offset ? parseInt(offset) : undefined,
         });

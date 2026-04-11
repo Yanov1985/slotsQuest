@@ -2,7 +2,7 @@ import { useRuntimeConfig } from '#app'
 
 export const usePagesApi = () => {
     const config = useRuntimeConfig()
-    const apiUrl = config.public.apiBase || 'http://localhost:3001'
+    const apiUrl = import.meta.client ? '' : (config.public.apiUrl || 'http://127.0.0.1:3001')
 
     const getPage = async (slug) => {
         try {
@@ -27,8 +27,9 @@ export const usePagesApi = () => {
             return response
         } catch (error) {
             console.error(`Error updating page ${slug}:`, error)
-            throw error
-        }
+            console.error('API Error in usePagesApi.js:', error);
+      return null; // fallback
+    }
     }
 
     return {

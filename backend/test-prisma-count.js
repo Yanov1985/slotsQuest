@@ -1,0 +1,1 @@
+const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { console.log('Connecting...'); const count = await prisma.slots.count(); console.log('Total slots:', count); } main().catch(console.error).finally(() => prisma.$disconnect());

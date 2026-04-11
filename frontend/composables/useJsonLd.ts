@@ -95,7 +95,7 @@ interface SlotData {
 
 export const useJsonLd = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl || 'http://localhost:3001'
+  const baseURL = import.meta.client ? '' : config.public.apiUrl || 'http://localhost:3001'
 
   // 📊 Состояния
   const loading = ref(false)

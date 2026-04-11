@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Katalog",
+    "hero_desc": "Temukan game slot favorit Anda",
+    "home": "Beranda"
+  },
+  "filters": {
+    "popular": "Populer",
+    "newest": "Terbaru",
+    "a_z": "A - Z",
+    "all_slots": "Semua Slot"
+  },
+  "empty_state": {
+    "title": "Tidak ada slot yang ditemukan",
+    "desc": "Coba ubah filter atau kata pencarian Anda"
+  },
+  "error_state": {
+    "title": "Kesalahan Memuat Katalog",
+    "btn": "Coba Lagi"
+  },
+  "buttons": {
+    "play_for_free": "Main gratis",
+    "play_for_money": "Main dengan uang",
+    "back_to_catalog": "Kembali ke Katalog",
+    "more_details": "Lebih Lanjut"
+  },
+  "footer": {
+    "description_default": "Katalog terlengkap untuk penggemar slot.",
+    "nav_title": "Navigasi",
+    "legal_title": "Hukum & Dukungan",
+    "compliance_title": "Kepatuhan",
+    "warning_18": "Hanya untuk usia 18 ke atas.",
+    "info_only": "adalah situs informasi. Kami tidak menawarkan perjudian uang sungguhan.",
+    "rights_reserved": "Hak cipta dilindungi undang-undang.",
+    "secure_platform": "Platform Aman",
+    "verified_data": "Data Terverifikasi"
+  },
+  "slug": {
+    "back_to": "Kembali ke",
+    "slot_not_found": "Slot Tidak Ditemukan",
+    "go_to_catalog": "Pergi ke Katalog",
+    "awards_and_achievements": "Penghargaan dan Prestasi",
+    "overview": "Gambaran Umum",
+    "core_mechanics": "Mekanika Utama"
+  }
+}

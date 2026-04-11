@@ -5,8 +5,8 @@
     <nav class="bg-white/5 backdrop-blur-xl border-b border-white/10 relative z-40 shadow-lg shadow-black/20">
       <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
         <div class="flex items-center justify-between gap-2">
-           <h1 class="text-white font-bold text-base sm:text-lg">{{ pageData?.hero_title || pageData?.footer_company_name || 'Catalog' }}</h1>
-           <span class="text-white/50 text-xs sm:text-sm hidden md:inline">{{ pageData?.hero_desc || 'Find your favorite slot game' }}</span>
+           <h1 class="text-white font-bold text-base sm:text-lg">{{ pageData?.hero_title || pageData?.footer_company_name || $t('nav.catalog') }}</h1>
+           <span class="text-white/50 text-xs sm:text-sm hidden md:inline">{{ pageData?.hero_desc || $t('nav.hero_desc') }}</span>
         </div>
       </div>
     </nav>
@@ -49,11 +49,11 @@
           <svg class="w-20 h-20 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
           </svg>
-          <h2 class="text-3xl font-bold mb-4 text-white">Error Loading Catalog</h2>
+          <h2 class="text-3xl font-bold mb-4 text-white">{{ $t('error_state.title') }}</h2>
           <p class="text-white/70 mb-6">{{ error }}</p>
         </div>
         <button @click="refreshSlots" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl transition-colors font-semibold">
-           Try Again
+           {{ $t('error_state.btn') }}
         </button>
       </div>
     </div>
@@ -105,9 +105,9 @@
               v-model="sortBy"
               class="appearance-none bg-white/5 border border-white/10 text-white/90 text-sm font-medium py-2.5 pl-9 pr-10 rounded-2xl focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-colors cursor-pointer w-full sm:w-[180px] hover:bg-white/10"
             >
-              <option value="popular" class="bg-zinc-900">Popular</option>
-              <option value="newest" class="bg-zinc-900">Newest</option>
-              <option value="a-z" class="bg-zinc-900">A - Z</option>
+              <option value="popular" class="bg-zinc-900">{{ $t('filters.popular') }}</option>
+              <option value="newest" class="bg-zinc-900">{{ $t('filters.newest') }}</option>
+              <option value="a-z" class="bg-zinc-900">{{ $t('filters.a_z') }}</option>
             </select>
             <Icon name="solar:alt-arrow-down-line-duotone" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 w-4 h-4 pointer-events-none" />
           </div>
@@ -116,8 +116,8 @@
         <!-- Empty State (No matches) -->
         <div v-if="filteredSlots.length === 0" class="flex flex-col items-center justify-center py-32 border border-white/10 border-dashed rounded-3xl bg-white/5 backdrop-blur-sm">
           <Icon name="solar:ghost-line-duotone" class="text-white/40 w-24 h-24 mb-6" />
-          <h2 class="text-2xl font-bold text-white mb-2">No slots found</h2>
-          <p class="text-white/60">Try changing your filters or search terms</p>
+          <h2 class="text-2xl font-bold text-white mb-2">{{ $t('empty_state.title') }}</h2>
+          <p class="text-white/60">{{ $t('empty_state.desc') }}</p>
         </div>
 
         <!-- Slots Grid -->
@@ -136,6 +136,10 @@
           :totalPages="Math.ceil(filteredSlots.length / slotsPerPage)"
           @update:page="handlePageChange"
         />
+
+        <div class="mt-8 border-t border-white/5 pt-8">
+           <WidgetsHomeNewsWidget />
+        </div>
 
         <!-- SEO Text Component -->
         <CatalogSeoText v-if="localizedPageData?.content?.length > 0" :sections="localizedPageData.content" :pageData="localizedPageData" />
@@ -187,32 +191,39 @@ const { getMechanics } = useMechanics()
 const { getThemes } = useThemes()
 const { getPage } = usePagesApi()
 
-// Load data. Await on Server (for SEO), but Lazy on Client (to show Skeleton during navigation).
-const fetchSlotsCb = async () => {
-  const data = await getSlots()
-  if (import.meta.client) await new Promise(r => setTimeout(r, 600)) // Artificial delay for premium skeleton feel
-  return data
-}
-
 // Fetch homepage dynamic content
 const fetchPageDataCb = async () => {
   try {
-    return await getPage('home')
+    console.log('[SSR DEBUG] Fetching page home...')
+    const data = await getPage('home')
+    console.log('[SSR DEBUG] Fetched page home!')
+    return data || {}
   } catch (e) {
-    return null
+    console.error('[SSR DEBUG] Fetching page home failed', e)
+    return {}
   }
 }
 
 // Fetch all filter data in parallel
 const fetchFiltersCb = async () => {
+  console.log('[SSR DEBUG] Fetching filters in parallel...')
   const [provs, cats, mechs, thms] = await Promise.all([
-     getProviders(),
-     getCategories(),
-     getMechanics(),
-     getThemes()
+     getProviders().catch(e => []),
+     getCategories().catch(e => []),
+     getMechanics().catch(e => []),
+     getThemes().catch(e => [])
   ])
+  console.log('[SSR DEBUG] Fetched filters!')
   if (import.meta.client) await new Promise(r => setTimeout(r, 600))
-  return { providers: provs, categories: cats, mechanics: mechs, themes: thms }
+  return { providers: provs || [], categories: cats || [], mechanics: mechs || [], themes: thms || [] }
+}
+
+const fetchSlotsCb = async () => {
+  console.log('[SSR DEBUG] Fetching slots...')
+  const data = await getSlots()
+  console.log('[SSR DEBUG] Fetched slots!')
+  if (import.meta.client) await new Promise(r => setTimeout(r, 600)) // Artificial delay for premium skeleton feel
+  return data || []
 }
 
 const { data: slots, pending: slotsLoading, error: slotsError, refresh: refreshSlots } = await useAsyncData('catalog-slots', fetchSlotsCb, { lazy: import.meta.client })
@@ -273,14 +284,14 @@ const handlePageChange = (page) => {
 
 const displayCategories = computed(() => {
   const base = [
-    { id: 'all', name: 'All Slots', icon: 'solar:gamepad-line-duotone' }
+    { id: 'all', name: $t('filters.all_slots'), icon: 'solar:gamepad-line-duotone' }
   ]
 
   // 1. Dynamic Fast Filters from Admin Panel
-  if (pageData.value?.fast_filters && pageData.value.fast_filters.length > 0 && categories.value && categories.value.length > 0) {
+  if (localizedPageData.value?.fast_filters && localizedPageData.value.fast_filters.length > 0 && categories.value && categories.value.length > 0) {
     const activeCats = []
 
-    for (const filter of pageData.value.fast_filters) {
+    for (const filter of localizedPageData.value.fast_filters) {
       if (!filter.category_id) continue
       const dbCat = categories.value.find(c => String(c.id) === String(filter.category_id) && c.is_active)
       if (dbCat) {
@@ -353,16 +364,16 @@ const filteredSlots = computed(() => {
 
   if (f.mechanicIds && f.mechanicIds.length > 0) {
      result = result.filter(slot => {
-        if (!slot.mechanics) return false
+        if (!slot.slot_mechanics) return false
         // Check if the slot has at least one of the selected mechanics
-        return slot.mechanics.some(m => f.mechanicIds.includes(m.id))
+        return slot.slot_mechanics.some(sm => sm.mechanics && f.mechanicIds.includes(sm.mechanics.id))
      })
   }
 
   if (f.themeIds && f.themeIds.length > 0) {
      result = result.filter(slot => {
-        if (!slot.themes) return false
-        return slot.themes.some(t => f.themeIds.includes(t.id))
+        if (!slot.slotThemes) return false
+        return slot.slotThemes.some(st => st.themes && f.themeIds.includes(st.themes.id))
      })
   }
 

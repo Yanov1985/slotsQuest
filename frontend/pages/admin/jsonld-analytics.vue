@@ -401,12 +401,12 @@ const analytics = ref({
 })
 
 // Списки слотов
-const slotsWithErrors = ref([])
-const slotsNeedingValidation = ref([])
-const allSlots = ref([])
+const slotsWithErrors = ref<any[]>([])
+const slotsNeedingValidation = ref<any[]>([])
+const allSlots = ref<any[]>([])
 
 // Результат валидации
-const validationResult = ref(null)
+const validationResult = ref<any>(null)
 
 // API URL
 const API_BASE = 'http://localhost:3001'
@@ -424,10 +424,10 @@ const loadAnalytics = async () => {
 
     // Загружаем все данные параллельно
     const [analyticsRes, errorsRes, needsValidationRes, summaryRes] = await Promise.all([
-      $fetch(`${API_BASE}/api/jsonld/analytics`),
-      $fetch(`${API_BASE}/api/jsonld/errors`),
-      $fetch(`${API_BASE}/api/jsonld/needs-validation`),
-      $fetch(`${API_BASE}/api/jsonld/summary`),
+      $fetch<any>(`${API_BASE}/api/jsonld/analytics`),
+      $fetch<any>(`${API_BASE}/api/jsonld/errors`),
+      $fetch<any>(`${API_BASE}/api/jsonld/needs-validation`),
+      $fetch<any>(`${API_BASE}/api/jsonld/summary`),
     ])
 
     // Обновляем данные
@@ -463,7 +463,7 @@ const validateAll = async () => {
   try {
     isValidating.value = true
 
-    const result = await $fetch(`${API_BASE}/api/jsonld/validate-all`, {
+    const result = await $fetch<any>(`${API_BASE}/api/jsonld/validate-all`, {
       method: 'POST',
     })
 
@@ -486,7 +486,7 @@ const validateAll = async () => {
  */
 const validateSingleSlot = async (slotId: string) => {
   try {
-    const result = await $fetch(`${API_BASE}/api/jsonld/${slotId}/validate`, {
+    const result = await $fetch<any>(`${API_BASE}/api/jsonld/${slotId}/validate`, {
       method: 'POST',
     })
 

@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+const { t } = useI18n();
 
 const props = defineProps({
   data: {
@@ -8,8 +9,8 @@ const props = defineProps({
   }
 })
 
-const companyName = computed(() => props.data?.footer_company_name || 'Brand Inc.')
-const description = computed(() => props.data?.footer_description || 'The ultimate catalog for slot enthusiasts. Explore thousands of games, analyze mechanics, and find your next favorite slot with our advanced data-driven platform.')
+const companyName = computed(() => props.data?.footer_company_name || 'SlotQuest')
+const description = computed(() => props.data?.footer_description || t('footer.description_default'))
 
 // Logo text splitting logic for styled display
 const brandFirstName = computed(() => {
@@ -69,27 +70,40 @@ const telegram = computed(() => props.data?.footer_telegram || '#')
         <div class="space-y-6">
           <h4 class="text-white font-bold uppercase tracking-widest text-xs flex items-center gap-2">
             <span class="w-4 h-px bg-blue-600"></span>
-            Navigation
+            {{ t('footer.nav_title') }}
           </h4>
           <ul class="space-y-3">
             <li>
               <NuxtLink to="/" class="text-white/60 hover:text-white hover:translate-x-1 transition-all flex items-center gap-2 group">
                 <Icon name="solar:home-2-linear" class="w-4 h-4 text-white/20 group-hover:text-blue-400" />
-                Home
+                {{ t('nav.home') }}
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="/" class="text-white/60 hover:text-white hover:translate-x-1 transition-all flex items-center gap-2 group">
                 <Icon name="solar:reorder-linear" class="w-4 h-4 text-white/20 group-hover:text-blue-400" />
-                Slots Catalog
+                {{ t('nav.catalog') }}
               </NuxtLink>
             </li>
-            <li v-for="cat in ['Popular', 'New', 'Crash']" :key="cat">
+            <li v-for="cat in ['popular', 'newest']" :key="cat">
               <NuxtLink to="/" class="text-white/60 hover:text-white hover:translate-x-1 transition-all flex items-center gap-2 group">
                 <Icon name="solar:star-linear" class="w-4 h-4 text-white/20 group-hover:text-blue-400" />
-                {{ cat }} Slots
+                {{ t(`filters.${cat}`) }} Slots
               </NuxtLink>
             </li>
+            <li>
+              <NuxtLink to="/news" class="text-white/60 hover:text-white hover:translate-x-1 transition-all flex items-center gap-2 group">
+                <Icon name="solar:letter-linear" class="w-4 h-4 text-white/20 group-hover:text-blue-400" />
+                News
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/blogs" class="text-white/60 hover:text-white hover:translate-x-1 transition-all flex items-center gap-2 group">
+                <Icon name="solar:document-text-linear" class="w-4 h-4 text-white/20 group-hover:text-blue-400" />
+                Blogs
+              </NuxtLink>
+            </li>
+
           </ul>
         </div>
 
@@ -97,7 +111,7 @@ const telegram = computed(() => props.data?.footer_telegram || '#')
         <div class="space-y-6">
           <h4 class="text-white font-bold uppercase tracking-widest text-xs flex items-center gap-2">
             <span class="w-4 h-px bg-emerald-600"></span>
-            Legal & Support
+            {{ t('footer.legal_title') }}
           </h4>
           <ul class="space-y-3">
             <li>
@@ -119,17 +133,17 @@ const telegram = computed(() => props.data?.footer_telegram || '#')
         <div class="space-y-6">
           <h4 class="text-white font-bold uppercase tracking-widest text-xs flex items-center gap-2">
             <span class="w-4 h-px bg-red-600"></span>
-            Compliance
+            {{ t('footer.compliance_title') }}
           </h4>
           <div class="space-y-4">
              <div class="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10 group hover:border-red-500/30 transition-colors">
                 <div class="w-12 h-12 rounded-full border-2 border-red-500/50 flex items-center justify-center text-red-500 font-black text-xl group-hover:scale-110 transition-transform">18+</div>
                 <div class="text-[10px] text-white/40 leading-tight uppercase font-bold tracking-tighter">
-                   Strictly for adults 18 and older. Gambling can be addictive.
+                   {{ t('footer.warning_18') }}
                 </div>
              </div>
              <p class="text-xs text-white/30 italic">
-                {{ companyName }} is an informational site. We do not offer real money gambling. Please check local laws before visiting external links.
+                <span class="font-bold">{{ companyName }}</span> {{ t('footer.info_only') }}
              </p>
           </div>
         </div>
@@ -138,11 +152,11 @@ const telegram = computed(() => props.data?.footer_telegram || '#')
       <!-- Footer Bottom -->
       <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <p class="text-white/30 text-[10px] sm:text-xs">
-          © {{ new Date().getFullYear() }} <span class="text-white/60 font-bold">{{ companyName }}</span> All rights reserved. Built for enthusiasts.
+          © {{ new Date().getFullYear() }} <span class="text-white/60 font-bold">{{ companyName }}</span> {{ t('footer.rights_reserved') }}
         </p>
         <div class="flex items-center gap-8 text-[10px] sm:text-xs uppercase tracking-widest font-black text-white/20">
-           <span class="flex items-center gap-1 hover:text-white transition-colors cursor-default"><Icon name="solar:shield-check-bold" class="text-emerald-500" /> Secure Platform</span>
-           <span class="flex items-center gap-1 hover:text-white transition-colors cursor-default"><Icon name="solar:verified-check-bold" class="text-blue-500" /> Verified Data</span>
+           <span class="flex items-center gap-1 hover:text-white transition-colors cursor-default"><Icon name="solar:shield-check-bold" class="text-emerald-500" /> {{ t('footer.secure_platform') }}</span>
+           <span class="flex items-center gap-1 hover:text-white transition-colors cursor-default"><Icon name="solar:verified-check-bold" class="text-blue-500" /> {{ t('footer.verified_data') }}</span>
         </div>
       </div>
     </div>

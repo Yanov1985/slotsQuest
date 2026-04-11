@@ -1,0 +1,836 @@
+[
+  {
+    "slug": "meta-crash-100hp",
+    "brandName": "100HP GAMING",
+    "name": "Meta Crash 100hp",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F73d85bb5-6314-48fe-b363-b7c793240184.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "volcanizer-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Volcanizer Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F92eac1cd-b085-4d45-864f-1e29723d1758.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "wild-tiger-bgaming",
+    "brandName": "BGAMING",
+    "name": "Wild Tiger Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fa9701df5-91b7-40a2-83d0-01e88cacd986.webp&q=75&w=256"
+  },
+  {
+    "slug": "penalty-100hp",
+    "brandName": "100HP GAMING",
+    "name": "Penalty 100hp",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F7be1f173-2de8-43e2-af22-4c4eecfc3d51.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "megablock-inout",
+    "brandName": "INOUT",
+    "name": "Megablock Inout",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fa9192dc2-75e7-4a14-8e0a-52ccb048aeb7.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "booming-fruits-243-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Booming Fruits 243 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F8b31b031-d47b-46c4-bf03-bb6f6a0ff9d2.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "the-big-game-famousgames",
+    "brandName": "FAMOUS GAMES",
+    "name": "The Big Game Famousgames",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F98cc21c6-d2fc-43f1-85dd-32ad2d3b4292.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "burning-chilli-x-bgaming",
+    "brandName": "BGAMING",
+    "name": "Burning Chilli X Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F4a164760-65c8-45ba-a2b3-5d8300764205.webp&q=75&w=256"
+  },
+  {
+    "slug": "lucky-hot-coins-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Lucky Hot Coins Platipus",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fbe482755-252d-41da-93c2-750e276c680a.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "coin-era-2-hold-to-win-formula",
+    "brandName": "FORMULA SPIN",
+    "name": "Coin Era 2 Hold To Win Formula",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F11d34a40-b1fd-47df-b859-252098134800.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "piggy-tap-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Piggy Tap Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fe8492a13-668d-49cc-bf82-39427a46ebf3.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "sky-of-olympus-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Sky Of Olympus Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fbe5290bb-4c10-49c5-9805-881d668f47db.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "multi-ruby-riddec",
+    "brandName": "RIDDEC GAMES",
+    "name": "Multi Ruby Riddec",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F6b71f1ef-eadd-447b-ace0-d3e3bfff7cb3.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "golden-joker-243-hold-and-win-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Golden Joker 243 Hold And Win 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fda3be584-d4c3-41b8-a898-7639c70ff045.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "prime-coins-hold-to-win-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Prime Coins Hold To Win Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Ff671963e-ff30-4c9a-b069-369efcaa2ad6.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "fruit-train-express-hold-n-win-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Fruit Train Express Hold N Win Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F1d32158f-4aa6-416d-b459-4bea7085555f.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "3numbers-platipus",
+    "brandName": "PLATIPUS",
+    "name": "3numbers Platipus",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F2392b9c1-bdb3-4373-aa43-19b26bf2665b.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "bonanza-billion-bgaming",
+    "brandName": "BGAMING",
+    "name": "Bonanza Billion Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fbf633da4-66d8-404e-89e6-6de859dd0580.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "fortune-smash-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Fortune Smash Platipus",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0ba871f1-47d8-402c-94bd-9cd1eea98429.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "great-hook-hold-and-win-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Great Hook Hold And Win 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F8dabcfbe-1c60-42e4-8d6b-491c9efff370.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "rollthepearlsholdandwin-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Rollthepearlsholdandwin 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fd94d155f-8b44-41cb-8baf-7b3c372c83d8.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "coin-blaze-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Coin Blaze Platipus",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F4e8b9d8f-89c2-462b-924a-cb7e9d5df2fd.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "cashn-fruits-243-x-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Cashn Fruits 243 X 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0bc659ad-54f5-419f-8890-f03331bb3118.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "chicken-route-turbogames",
+    "brandName": "TURBO GAMES",
+    "name": "Chicken Route Turbogames",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fe7618be4-1428-4f14-8799-6ceeea8dfbe8.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "plinko-2-bgaming",
+    "brandName": "BGAMING",
+    "name": "Plinko 2 Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F5a713adc-b63e-48e7-9d7f-7a8b5c3917d4.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "space-xy-bgaming",
+    "brandName": "BGAMING",
+    "name": "Space Xy Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0501585f-c5ec-490b-bfd7-48f509855efa.webp&q=75&w=256"
+  },
+  {
+    "slug": "space-plinko-veliplay",
+    "brandName": "VELIPLAY",
+    "name": "Space Plinko Veliplay",
+    "mobileImage": "https://cdn.hrzn.cloud/game/03b8e0b5-0802-4e1f-9468-00696d166e19.svg"
+  },
+  {
+    "slug": "anubis-obelisk-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Anubis Obelisk Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F62f96bb0-42ec-4c92-9a74-1135ecbbbfc0.webp&q=75&w=256"
+  },
+  {
+    "slug": "9-dragon-kings-platipus",
+    "brandName": "PLATIPUS",
+    "name": "9 Dragon Kings Platipus",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F73af7617-cf70-412c-968d-218142b2bdc6.webp&q=75&w=256"
+  },
+  {
+    "slug": "launch-x",
+    "brandName": "VELIPLAY",
+    "name": "Launch X",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F4b8b67d0-ded2-462e-b48a-38f681b45a9c.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "aztec-magic-megaways-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aztec Magic Megaways Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F8c67d5d1-ddf5-4348-94d7-03759d46ac53.webp&q=75&w=256"
+  },
+  {
+    "slug": "full-hot-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Full Hot Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F1943c002-0aed-4341-8b15-146f7513cfc5.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "elephants-gold-bonus-combo-netgame",
+    "brandName": "NETGAME",
+    "name": "Elephants Gold Bonus Combo Netgame",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0f474299-f713-4575-b032-fa6508a27b33.webp&q=75&w=256"
+  },
+  {
+    "slug": "aztec-magic-deluxe-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aztec Magic Deluxe Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Faaee7576-fa80-4295-add1-d512f3058f39.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "vortex-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Vortex Turbo",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F593e4ec7-4a9e-40b1-802d-4b3f97c84aca.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "tropicana-100hp",
+    "brandName": "100HP GAMING",
+    "name": "Tropicana 100hp",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fafbd8ef3-e994-4f05-8de5-07c7969446fc.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "trouble-jet-veliplay",
+    "brandName": "VELIPLAY",
+    "name": "Trouble Jet Veliplay",
+    "mobileImage": "https://cdn.hrzn.cloud/game/cb77a611-85ea-49a4-bc39-d17f6076c530.svg"
+  },
+  {
+    "slug": "cash-n-fruits-243-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Cash N Fruits 243 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F2cea7c12-6d27-4ba2-b613-ef0c7f584bf3.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "plinko-bgaming",
+    "brandName": "BGAMING",
+    "name": "Plinko Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F91a127c7-e656-44ab-a3d2-56bca5b76e4f.webp&q=75&w=256"
+  },
+  {
+    "slug": "tapinata-turbogames",
+    "brandName": "TURBO GAMES",
+    "name": "Tapinata Turbogames",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F42375e45-278b-4627-ad8e-97d38a9c5499.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "hot-and-spicy-jackpot-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Hot And Spicy Jackpot Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F07cf5555-da01-4c78-a9eb-94655ac03224.webp&q=75&w=256"
+  },
+  {
+    "slug": "mega-lucky-243-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Mega Lucky 243 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0779383d-76e8-4640-a145-bc0535badf23.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "rings-of-olympus-turbogames",
+    "brandName": "TURBO GAMES",
+    "name": "Rings Of Olympus Turbogames",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fb4d51c16-4077-4dc7-9288-ef5ef728125c.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "aviamasters-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aviamasters Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F88c839e0-49dc-4405-8533-6e3994410480.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "astronaut-100hp",
+    "brandName": "100HP GAMING",
+    "name": "Astronaut 100hp",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fb7ef1346-e00b-4611-8af3-edbd69433fe1.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "sizzling-chilli-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Sizzling Chilli Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fc1e1e249-d94b-4288-8614-907e455b1134.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "home-of-gold-hold-to-win-formulaspin",
+    "brandName": "FORMULA SPIN",
+    "name": "Home Of Gold Hold To Win Formulaspin",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F951d3a33-f667-4345-90a4-0c138d7f2414.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "cash-amplifier-243-1spin4win",
+    "brandName": "1SPIN4WIN",
+    "name": "Cash Amplifier 243 1spin4win",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F0ea86d81-89a4-41e3-8201-d329bb224b02.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "gatesofolympus-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Gatesofolympus Pragmatic",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F7ad6b5f3-9006-446a-9a97-4370625eacb5.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "snoop-dogg-dollars-bgaming",
+    "brandName": "BGAMING",
+    "name": "Snoop Dogg Dollars Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Ff1eb872d-e7a1-496c-b151-df2bc318a4de.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "coin-flynn-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Coin Flynn Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fb3aaba09-eb69-426c-aa4f-b5c703c75895.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "catanza",
+    "brandName": "TURBO GAMES",
+    "name": "Catanza",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fa2b6fd95-c872-410d-a11e-6b56f4d8d850.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "fruit-million-bgaming",
+    "brandName": "BGAMING",
+    "name": "Fruit Million Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F5f38e057-c1d6-4bef-b1b0-d132ad76062f.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "wildbountyshowdown-pgsoft",
+    "brandName": "PG SOFT",
+    "name": "Wildbountyshowdown Pgsoft",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fe0f3620a-612b-4fac-b8b0-65a0a606615e.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "wild-cash-x9990-bgaming",
+    "brandName": "BGAMING",
+    "name": "Wild Cash X9990 Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fc08180d6-8f2a-42b8-93a0-ac3ff0f8ae1b.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "luckystreak3-endorphina",
+    "brandName": "ENDORPHINA",
+    "name": "Luckystreak3 Endorphina",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F7e21ab2d-e74f-447d-8694-52962ce6b03a.webp&q=75&w=256"
+  },
+  {
+    "slug": "gold-of-minos-bgaming",
+    "brandName": "BGAMING",
+    "name": "Gold Of Minos Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F55c0264c-064f-4c12-a3b4-c5dee1eb1a2a.webp&q=75&w=256"
+  },
+  {
+    "slug": "lady-wolf-moon-bgaming",
+    "brandName": "BGAMING",
+    "name": "Lady Wolf Moon Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fffd9e05e-7679-4fd6-82df-22470b96e68e.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "spicy-bluechip-jackpot-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Spicy Bluechip Jackpot Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fd8ba5e4e-7074-479c-a537-f9209740e6eb.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "balloon-spribe",
+    "brandName": "SPRIBE",
+    "name": "Balloon Spribe",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F7decd744-4c40-4f53-97a4-709afd755466.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "retro-pedro-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Retro Pedro Onlyplay",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fe98c1826-c994-405d-8941-f4db3ed51b28.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "wild-west-trueways-bgaming",
+    "brandName": "BGAMING",
+    "name": "Wild West Trueways Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F7a99b111-8083-40f3-967e-ac1ed40381a7.jpeg&q=75&w=256"
+  },
+  {
+    "slug": "rollinmoney-dragoonsoft",
+    "brandName": "DRAGOON SOFT",
+    "name": "Rollinmoney Dragoonsoft",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2F8541f192-1388-4151-b5ab-1007b793e57f.webp&q=75&w=256"
+  },
+  {
+    "slug": "wild-cash-bgaming",
+    "brandName": "BGAMING",
+    "name": "Wild Cash Bgaming",
+    "mobileImage": "https://bluechip8.io/image-cdn?url=https%3A%2F%2Fcdn.hrzn.cloud%2Fgame%2Fb6d16744-bd08-41ef-948e-2804b9e3e107.webp&q=75&w=256"
+  },
+  {
+    "slug": "turbo-mines-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Turbo Mines Turbo",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7364253a-eef9-4eda-bb76-ad50f9daea4a.gif"
+  },
+  {
+    "slug": "juicy-crush-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Juicy Crush Onlyplay",
+    "mobileImage": "https://cdn.hrzn.cloud/game/585cf65b-3614-470c-9a8c-189120691dfb.webp"
+  },
+  {
+    "slug": "bet-on-teen-patti-ezugi",
+    "brandName": "EZUGI",
+    "name": "Bet On Teen Patti Ezugi",
+    "mobileImage": "https://cdn.hrzn.cloud/game/61c56514-a8b1-4575-a3cd-fe5ba138c103.jpeg"
+  },
+  {
+    "slug": "combo-seven-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Combo Seven Onlyplay",
+    "mobileImage": "https://cdn.hrzn.cloud/game/d09703a3-7a19-4304-9e18-abe42d21c753.webp"
+  },
+  {
+    "slug": "towers-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Towers Turbo",
+    "mobileImage": "https://cdn.hrzn.cloud/game/adcbff3d-f5ed-404c-9758-5d78445dd821.webp"
+  },
+  {
+    "slug": "alien-fruits-bgaming",
+    "brandName": "BGAMING",
+    "name": "Alien Fruits Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/23352ec0-ec36-4870-a66d-d0a23e3961ab.webp"
+  },
+  {
+    "slug": "lucky-lady-wolf-megaways-bgaming",
+    "brandName": "BGAMING",
+    "name": "Lucky Lady Wolf Megaways Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/60033455-291f-4b4d-b962-ee95be7f047f.webp"
+  },
+  {
+    "slug": "dragon-tiger-ezugi",
+    "brandName": "EZUGI",
+    "name": "Dragon Tiger Ezugi",
+    "mobileImage": "https://cdn.hrzn.cloud/game/d091292a-58aa-4b93-bd95-7ccc2056a809.jpeg"
+  },
+  {
+    "slug": "aztec-magic-bonanza-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aztec Magic Bonanza Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/fc4e290b-1f8e-461d-a219-b08e2e95f1d8.webp"
+  },
+  {
+    "slug": "aztec-clusters-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aztec Clusters Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/597bad27-bb80-4f01-8ec0-6c23a738e32a.jpeg"
+  },
+  {
+    "slug": "aloha-king-elvis-bgaming",
+    "brandName": "BGAMING",
+    "name": "Aloha King Elvis Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/280d5fc6-d8ef-4e92-b8fc-944a39241142.webp"
+  },
+  {
+    "slug": "wicket-blast-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Wicket Blast Turbo",
+    "mobileImage": "https://cdn.hrzn.cloud/game/75cd122e-97cd-413f-82fe-5db779a2c00a.jpeg"
+  },
+  {
+    "slug": "xmatch",
+    "brandName": "VELIPLAY",
+    "name": "Xmatch",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b57c4cfe-ecf8-47a4-a123-17d85bae6e8b.webp"
+  },
+  {
+    "slug": "mines-spribe",
+    "brandName": "SPRIBE",
+    "name": "Mines Spribe",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b25c871d-99c7-4caa-830f-78063fc24a95.jpeg"
+  },
+  {
+    "slug": "aviator-xp",
+    "brandName": "SPRIBE",
+    "name": "Aviator Xp",
+    "mobileImage": "https://cdn.hrzn.cloud/game/ed862cce-cf44-45b9-87e5-183dc1955eae.webp"
+  },
+  {
+    "slug": "gemza-bgaming",
+    "brandName": "BGAMING",
+    "name": "Gemza Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/ad2e296f-4200-4da7-bb22-0702e8585368.webp"
+  },
+  {
+    "slug": "sweetbonanza-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Sweetbonanza Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b0169efb-e4e9-4ef2-8838-c565fcd04596.jpeg"
+  },
+  {
+    "slug": "big-atlantis-frenzy-bgaming",
+    "brandName": "BGAMING",
+    "name": "Big Atlantis Frenzy Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/6d218f95-6897-4830-97d8-add5eabcd934.webp"
+  },
+  {
+    "slug": "speed-auto-roulette-evolution",
+    "brandName": "EVOLUTION",
+    "name": "Speed Auto Roulette Evolution",
+    "mobileImage": "https://cdn.hrzn.cloud/game/be5302bc-dc3d-4262-94d6-02a1d3b8a1a4.jpeg"
+  },
+  {
+    "slug": "troyan-gems-onlyplay",
+    "brandName": "ONLYPLAY",
+    "name": "Troyan Gems Onlyplay",
+    "mobileImage": "https://cdn.hrzn.cloud/game/819da025-54de-46e1-8304-a597bd6211b2.webp"
+  },
+  {
+    "slug": "lucky-dama-muerta-bgaming",
+    "brandName": "BGAMING",
+    "name": "Lucky Dama Muerta Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/413ad9b7-a14a-4c5e-bc64-5bf50f38505d.webp"
+  },
+  {
+    "slug": "merge-up-bgaming",
+    "brandName": "BGAMING",
+    "name": "Merge Up Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b2477aa4-bdf8-4169-a4b9-c892ec9f6c48.webp"
+  },
+  {
+    "slug": "avalon-bgaming",
+    "brandName": "BGAMING",
+    "name": "Avalon Bgaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/10b141bc-f9ae-4aea-aa75-c6e89b87a94d.webp"
+  },
+  {
+    "slug": "hellhot20-endorphina",
+    "brandName": "ENDORPHINA",
+    "name": "Hellhot20 Endorphina",
+    "mobileImage": "https://cdn.hrzn.cloud/game/39e4fd8a-ee68-424b-aa1d-479640047732.webp"
+  },
+  {
+    "slug": "wild-spin-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Wild Spin Platipus",
+    "mobileImage": "https://cdn.hrzn.cloud/game/131f0744-f1ba-465d-b292-4460f72493c0.webp"
+  },
+  {
+    "slug": "hellhot100-endorphina",
+    "brandName": "ENDORPHINA",
+    "name": "Hellhot100 Endorphina",
+    "mobileImage": "https://cdn.hrzn.cloud/game/c18fe00f-549a-4b01-b411-3c6959850fe9.webp"
+  },
+  {
+    "slug": "sweetbonanza1000-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Sweetbonanza1000 Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b57299f8-c8f5-4672-b006-40fff5c8b28e.webp"
+  },
+  {
+    "slug": "elephants-gold-buy-bonus-combo-netgame",
+    "brandName": "NETGAME",
+    "name": "Elephants Gold Buy Bonus Combo Netgame",
+    "mobileImage": "https://cdn.hrzn.cloud/game/3b469198-ae64-4ad0-8d1b-795cd0191160.jpeg"
+  },
+  {
+    "slug": "lucky-cat-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Lucky Cat Platipus",
+    "mobileImage": "https://cdn.hrzn.cloud/game/808f4e3b-f504-4d0b-be00-f60ae680895a.webp"
+  },
+  {
+    "slug": "rich-piggies-bonus-combo-netgame",
+    "brandName": "NETGAME",
+    "name": "Rich Piggies Bonus Combo Netgame",
+    "mobileImage": "https://cdn.hrzn.cloud/game/acbb1ea5-af11-4633-90d1-39594a807076.webp"
+  },
+  {
+    "slug": "sugar-rush-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Sugar Rush Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b5d6e716-9f3a-400d-a4ad-0e0e9a25c9ef.jpeg"
+  },
+  {
+    "slug": "gatesofolympus1000-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Gatesofolympus1000 Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7e9584ed-cbf8-4bbb-9c38-f6f8360a4b0c.jpeg"
+  },
+  {
+    "slug": "bookoframpage-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Bookoframpage Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7007e53a-8574-4133-ac55-782d5b0bf89b.jpeg"
+  },
+  {
+    "slug": "demigodsv-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Demigodsv Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/52fe80e8-17be-47e0-a073-f827336855b7.jpeg"
+  },
+  {
+    "slug": "immortalwarlords-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Immortalwarlords Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/6c887c15-a08a-4f2c-8ff7-04a000c4cf07.jpeg"
+  },
+  {
+    "slug": "luckyjackbookofrebirth-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Luckyjackbookofrebirth Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/6191bfa2-78df-476d-9d79-b623af241718.webp"
+  },
+  {
+    "slug": "bigbasssplash-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Bigbasssplash Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/069b0bb8-6e7f-4843-8f9f-b6bff0d9e202.webp"
+  },
+  {
+    "slug": "big-bass-bonanza-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Big Bass Bonanza Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/55622d85-75bf-4c36-9c28-1c6d1a56d0dc.webp"
+  },
+  {
+    "slug": "luck-of-panda-bonus-combo-netgame",
+    "brandName": "NETGAME",
+    "name": "Luck Of Panda Bonus Combo Netgame",
+    "mobileImage": "https://cdn.hrzn.cloud/game/1ac2399d-1a53-4992-8775-8ce3f8146036.jpeg"
+  },
+  {
+    "slug": "egyptianmarvel-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Egyptianmarvel Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7bcc8a8b-636a-443a-a1c7-23f53e757515.jpeg"
+  },
+  {
+    "slug": "bookofclovers-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Bookofclovers Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7b394b1c-3c50-412a-9403-36f9b397597d.webp"
+  },
+  {
+    "slug": "wild-crowns-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Wild Crowns Platipus",
+    "mobileImage": "https://cdn.hrzn.cloud/game/93c981a6-aa00-4658-bde9-dcb35845e344.webp"
+  },
+  {
+    "slug": "candyblitz-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Candyblitz Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/a7d645c4-8eb9-4c2a-9e4c-bc4fd6293900.webp"
+  },
+  {
+    "slug": "bigbassholdspinnermegaways-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Bigbassholdspinnermegaways Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/039a15dc-eca7-43a0-887e-5045a047e325.webp"
+  },
+  {
+    "slug": "big-bass-amazon-xtreme-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Big Bass Amazon Xtreme Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/e4af7a0c-4145-449e-a289-b30b5faf7baf.webp"
+  },
+  {
+    "slug": "bookofdemigodsv-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Bookofdemigodsv Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/ed1cbf3e-d004-46ff-a4cd-59c9334ec419.webp"
+  },
+  {
+    "slug": "babayagatales-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Babayagatales Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/1f639b30-210c-4d10-a910-8cc57ad42693.webp"
+  },
+  {
+    "slug": "juicyfruits-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Juicyfruits Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/026a501a-4cd7-43f4-b3ae-797274e4b865.webp"
+  },
+  {
+    "slug": "gods-of-troy-redtiger",
+    "brandName": "RED TIGER",
+    "name": "Gods Of Troy Redtiger",
+    "mobileImage": "https://cdn.hrzn.cloud/game/5ca322c1-3589-4389-ad63-e32104146fb5.jpeg"
+  },
+  {
+    "slug": "majesticwhiterhino-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Majesticwhiterhino Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/c1c33c27-bdc0-4f79-9fc0-08ad1e948b79.webp"
+  },
+  {
+    "slug": "thedoghouse-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Thedoghouse Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/1dff668b-f35a-4178-8546-d69b33a3a13a.jpeg"
+  },
+  {
+    "slug": "bookofbabayaga-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Bookofbabayaga Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/918a5196-d0f5-47f4-9ef9-b18ce96fa4a0.webp"
+  },
+  {
+    "slug": "biggerbassbonanza-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Biggerbassbonanza Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/021a5f69-1c07-4bf9-82a3-44ca4c719536.webp"
+  },
+  {
+    "slug": "juicy-wheel-platipus",
+    "brandName": "PLATIPUS",
+    "name": "Juicy Wheel Platipus",
+    "mobileImage": "https://cdn.hrzn.cloud/game/0ecc1f3f-0b89-4973-a8eb-2c2085d61cb1.webp"
+  },
+  {
+    "slug": "hutwithchickenlegs-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Hutwithchickenlegs Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/98cedc7a-0b18-4e63-9534-c3f1dfafe33b.webp"
+  },
+  {
+    "slug": "dynamite-riches-redtiger",
+    "brandName": "RED TIGER",
+    "name": "Dynamite Riches Redtiger",
+    "mobileImage": "https://cdn.hrzn.cloud/game/c846abf9-2908-4105-a018-a2a6292f0752.webp"
+  },
+  {
+    "slug": "starlightchristmas-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Starlightchristmas Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/7a1e99be-4bad-488b-a0c3-4451dd4a2597.webp"
+  },
+  {
+    "slug": "hot-fruit-x15-mascot",
+    "brandName": "MASCOT",
+    "name": "Hot Fruit X15 Mascot",
+    "mobileImage": "https://cdn.hrzn.cloud/game/b1a0ca7a-d8e5-41d8-90f7-f7e2a7a3fb9e.jpeg"
+  },
+  {
+    "slug": "bookofbabayaga-winterspell-slot-spinomenal",
+    "brandName": "SPINOMENAL",
+    "name": "Bookofbabayaga Winterspell Slot Spinomenal",
+    "mobileImage": "https://cdn.hrzn.cloud/game/683ec64c-1f1e-44a5-afe9-018780a11434.webp"
+  },
+  {
+    "slug": "eye-of-the-storm-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Eye Of The Storm Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/6e36c469-6630-497a-99e1-380ea5f30c2c.webp"
+  },
+  {
+    "slug": "crime-empire-100hp",
+    "brandName": "100HP GAMING",
+    "name": "Crime Empire 100hp",
+    "mobileImage": "https://cdn.hrzn.cloud/game/5fdb96f6-ce72-4dba-88cf-2d6e16e74570.jpeg"
+  },
+  {
+    "slug": "crash-x-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Crash X Turbo",
+    "mobileImage": "https://cdn.hrzn.cloud/game/68162bbb-6531-4193-8e75-61c3542eb460.jpeg"
+  },
+  {
+    "slug": "moontiger-endorphina",
+    "brandName": "ENDORPHINA",
+    "name": "Moontiger Endorphina",
+    "mobileImage": "https://cdn.hrzn.cloud/game/9a6c312b-84ba-4992-a00d-07c6ce390aa9.jpeg"
+  },
+  {
+    "slug": "mines-turbo",
+    "brandName": "TURBO GAMES",
+    "name": "Mines Turbo",
+    "mobileImage": "https://cdn.hrzn.cloud/game/2bff4629-aae3-48c0-a3e3-698e75fe85b1.webp"
+  },
+  {
+    "slug": "greenhats-jackpot-7777gaming",
+    "brandName": "FOUR7",
+    "name": "Greenhats Jackpot 7777gaming",
+    "mobileImage": "https://cdn.hrzn.cloud/game/ced81956-d295-4a4b-a7f9-f70d09709484.webp"
+  },
+  {
+    "slug": "metacrashbluechip-fy",
+    "brandName": "HUNDREDHP",
+    "name": "Metacrashbluechip Fy",
+    "mobileImage": "https://cdn.hrzn.cloud/game/2f6d4f37-265d-4f1b-b10f-63a9eaae5197.jpeg"
+  },
+  {
+    "slug": "vortex-powerplay-turbogames",
+    "brandName": "TURBO GAMES",
+    "name": "Vortex Powerplay Turbogames",
+    "mobileImage": "https://cdn.hrzn.cloud/game/807ac786-3d49-4966-8ae4-b5bd01f52106.jpeg"
+  },
+  {
+    "slug": "zeusvshades-godsofwar-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Zeusvshades Godsofwar Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/58572e7f-1e45-4cda-b4ea-be0215d67d29.jpeg"
+  },
+  {
+    "slug": "thedoghousemultihold-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Thedoghousemultihold Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/d71c2799-9506-4489-a529-0c7804b1898a.webp"
+  },
+  {
+    "slug": "releasethekraken2-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Releasethekraken2 Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/fabc37a3-dc3c-4d6f-89f0-2f1658190d01.webp"
+  },
+  {
+    "slug": "jasminedreams-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Jasminedreams Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/5ff70719-f229-4aaf-aeee-870063e2f7eb.webp"
+  },
+  {
+    "slug": "octobeerfortunes-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Octobeerfortunes Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/6128275f-6f57-42a6-95df-b42c78f5b5b5.webp"
+  },
+  {
+    "slug": "wildwestduels-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Wildwestduels Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/06fb2d50-efac-49f5-a600-dabd242e5632.webp"
+  },
+  {
+    "slug": "hellviswild-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Hellviswild Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/ad82c6dd-8633-4ba2-bfb1-e538f008457a.webp"
+  },
+  {
+    "slug": "thedoghousemegaways-pragmatic",
+    "brandName": "PRAGMATIC PLAY",
+    "name": "Thedoghousemegaways Pragmatic",
+    "mobileImage": "https://cdn.hrzn.cloud/game/868d4e3f-0a7d-4cc2-9c1b-3ba39918422d.webp"
+  }
+]

@@ -1,6 +1,6 @@
 export const useBonuses = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   const getBonuses = async (params = {}) => {
     try {
@@ -29,7 +29,8 @@ export const useBonuses = () => {
       return data?.data || data || []
     } catch (error) {
       console.error('Ошибка при получении бонусов:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -50,7 +51,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении бонуса:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -72,7 +74,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при создании бонуса:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -94,7 +97,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при обновлении бонуса:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -115,7 +119,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при удалении бонуса:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -136,7 +141,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при изменении статуса бонуса:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -157,7 +163,8 @@ export const useBonuses = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении статистики бонусов:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -171,7 +178,8 @@ export const useBonuses = () => {
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при поиске бонусов:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -187,7 +195,8 @@ export const useBonuses = () => {
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении популярных бонусов:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -203,7 +212,8 @@ export const useBonuses = () => {
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении рекомендуемых бонусов:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 
@@ -220,7 +230,8 @@ export const useBonuses = () => {
       return await getBonuses(params)
     } catch (error) {
       console.error('Ошибка при получении бонусов по типу:', error)
-      throw error
+      console.error('API Error in useBonuses.js:', error);
+      return null; // fallback
     }
   }
 

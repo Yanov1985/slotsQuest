@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "ক্যাটালগ",
+    "hero_desc": "আপনার প্রিয় স্লট গেম খুঁজুন",
+    "home": "হোম"
+  },
+  "filters": {
+    "popular": "জনপ্রিয়",
+    "newest": "নতুন",
+    "a_z": "A - Z",
+    "all_slots": "সব স্লট"
+  },
+  "empty_state": {
+    "title": "কোনো স্লট পাওয়া যায়নি",
+    "desc": "আপনার ফিল্টার বা সার্চ টার্ম পরিবর্তন করার চেষ্টা করুন"
+  },
+  "error_state": {
+    "title": "ক্যাটালগ লোড করতে ত্রুটি",
+    "btn": "আবার চেষ্টা করুন"
+  },
+  "buttons": {
+    "play_for_free": "বিনামূল্যে খেলুন",
+    "play_for_money": "টাকা দিয়ে খেলুন",
+    "back_to_catalog": "ক্যাটালগে ফিরে যান",
+    "more_details": "আরও বিস্তারিত"
+  },
+  "footer": {
+    "description_default": "স্লট উত্সাহীদের জন্য চূড়ান্ত ক্যাটালগ।",
+    "nav_title": "নেভিগেশন",
+    "legal_title": "আইনি সমর্থন",
+    "compliance_title": "সম্মতি",
+    "warning_18": "শুধুমাত্র 18 বছর বা তার বেশি বয়সের জন্য।",
+    "info_only": "একটি তথ্যমূলক সাইট।",
+    "rights_reserved": "সর্বস্বত্ব সংরক্ষিত।",
+    "secure_platform": "নিরাপদ প্ল্যাটফর্ম",
+    "verified_data": "যাচাইকৃত ডেটা"
+  },
+  "slug": {
+    "back_to": "ফিরে যান",
+    "slot_not_found": "স্লট পাওয়া যায়নি",
+    "go_to_catalog": "ক্যাটালগে যান",
+    "awards_and_achievements": "পুরষ্কার এবং অর্জন",
+    "overview": "ওভারভিউ",
+    "core_mechanics": "মূল মেকানিক্স"
+  }
+}

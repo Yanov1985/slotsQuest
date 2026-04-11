@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Catálogo",
+    "hero_desc": "Encontre o seu slot favorito",
+    "home": "Início"
+  },
+  "filters": {
+    "popular": "Populares",
+    "newest": "Mais novos",
+    "a_z": "A - Z",
+    "all_slots": "Todos os Slots"
+  },
+  "empty_state": {
+    "title": "Nenhum slot encontrado",
+    "desc": "Tente alterar seus filtros ou termos de pesquisa"
+  },
+  "error_state": {
+    "title": "Erro ao carregar o catálogo",
+    "btn": "Tentar novamente"
+  },
+  "buttons": {
+    "play_for_free": "Jogar grátis",
+    "play_for_money": "Jogar a dinheiro",
+    "back_to_catalog": "Voltar ao Catálogo",
+    "more_details": "Mais Detalhes"
+  },
+  "footer": {
+    "description_default": "O catálogo definitivo para entusiastas de slots. Explore milhares de jogos, analise mecânicas e encontre seu próximo slot favorito.",
+    "nav_title": "Navegação",
+    "legal_title": "Legal e Suporte",
+    "compliance_title": "Conformidade",
+    "warning_18": "Estritamente para maiores de 18 anos. O jogo pode viciar.",
+    "info_only": "é um site informativo. Não oferecemos apostas com dinheiro real.",
+    "rights_reserved": "Todos os direitos reservados.",
+    "secure_platform": "Plataforma Segura",
+    "verified_data": "Dados Verificados"
+  },
+  "slug": {
+    "back_to": "Voltar para",
+    "slot_not_found": "Slot não encontrado",
+    "go_to_catalog": "Ir para o Catálogo",
+    "awards_and_achievements": "Prêmios e Conquistas",
+    "overview": "Visão Geral",
+    "core_mechanics": "Mecânicas Principais"
+  }
+}

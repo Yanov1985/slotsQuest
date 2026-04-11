@@ -61,7 +61,7 @@
             <!-- Значение с подложкой для контрастности -->
             <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm mb-1">
               <dd class="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                {{ slot.rtp || '96.50' }}%
+                {{ formatRTP(slot.rtp) }}%
               </dd>
             </div>
             <dd class="text-emerald-300 text-xs sm:text-sm font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">{{ t('highRate') }}</dd>
@@ -465,7 +465,7 @@
             </div>
             <div class="inline-block px-3 py-1 bg-black/40 rounded-lg backdrop-blur-sm">
               <span class="text-white font-black text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                {{ slot.real_rtp || '97.45' }}%
+                {{ formatRTP(slot.real_rtp) }}%
               </span>
             </div>
           </div>
@@ -908,7 +908,6 @@ const t = (key) => {
   const lang = translations[loc] || translations[baseLoc] || translations.en;
   return lang[key] || translations.en[key] || key;
 }
-
 import { computed } from 'vue'
 import CanvasRevealEffect from '~/components/ui/CanvasRevealEffect.vue'
 import {
@@ -917,7 +916,8 @@ import {
   getMaxWin,
   formatReleaseDate,
   getSlotThemesFromDB,
-  getSlotBonuses
+  getSlotBonuses,
+  formatRTP
 } from '@/utils/slotFormatters'
 
 const props = defineProps({

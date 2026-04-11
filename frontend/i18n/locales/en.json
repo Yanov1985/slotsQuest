@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "catalog": "Catalog",
+    "hero_desc": "Find your favorite slot game",
+    "home": "Home"
+  },
+  "filters": {
+    "popular": "Popular",
+    "newest": "Newest",
+    "a_z": "A - Z",
+    "all_slots": "All Slots",
+    "title": "Filters",
+    "search_title": "Search",
+    "search_placeholder": "Slot name...",
+    "provider_title": "Provider",
+    "provider_search": "Search provider...",
+    "provider_not_found": "Provider not found",
+    "categories_title": "Categories",
+    "category_search": "Search category...",
+    "category_not_found": "Category not found",
+    "themes_title": "Themes",
+    "theme_search": "Search theme...",
+    "theme_not_found": "Theme not found",
+    "mechanics_title": "Mechanics",
+    "reset_all": "Reset all"
+  },
+  "empty_state": {
+    "title": "No slots found",
+    "desc": "Try changing your filters or search terms"
+  },
+  "error_state": {
+    "title": "Error Loading Catalog",
+    "btn": "Try Again"
+  },
+  "buttons": {
+    "play_for_free": "Play for free",
+    "play_for_money": "Play for money",
+    "back_to_catalog": "Back to Catalog",
+    "more_details": "More Details"
+  },
+  "footer": {
+    "description_default": "The ultimate catalog for slot enthusiasts. Explore thousands of games, analyze mechanics, and find your next favorite slot with our advanced data-driven platform.",
+    "nav_title": "Navigation",
+    "legal_title": "Legal & Support",
+    "compliance_title": "Compliance",
+    "warning_18": "Strictly for adults 18 and older. Gambling can be addictive.",
+    "info_only": "is an informational site. We do not offer real money gambling. Please check local laws before visiting external links.",
+    "rights_reserved": "All rights reserved. Built for enthusiasts.",
+    "secure_platform": "Secure Platform",
+    "verified_data": "Verified Data"
+  },
+  "slug": {
+    "back_to": "Back to",
+    "slot_not_found": "Slot Not Found",
+    "go_to_catalog": "Go to Catalog",
+    "awards_and_achievements": "Awards and Achievements",
+    "overview": "Overview",
+    "core_mechanics": "Core Mechanics"
+  },
+  "news": {
+    "latest_news": "Latest News"
+  },
+  "common": {
+    "view_all": "View All"
+  }
+}

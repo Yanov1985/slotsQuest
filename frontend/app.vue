@@ -1,5 +1,6 @@
 <template>
   <VitePwaManifest />
+  <DynamicIcons />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

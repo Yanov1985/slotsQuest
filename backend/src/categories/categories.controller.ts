@@ -40,6 +40,44 @@ export class CategoriesController {
     }
   }
 
+  @Get('slug/:slug')
+  @UseInterceptors(CacheInterceptor)
+  async getCategoryBySlug(@Param('slug') slug: string) {
+    try {
+      const data = await this.prismaService.slot_categories.findUnique({
+        where: { slug },
+      });
+      return { data };
+    } catch (error) {
+      console.error('Failed to fetch category by slug:', error.message);
+      throw error;
+    }
+  }
+
+  @Get(':slug/slots')
+  @UseInterceptors(CacheInterceptor)
+  async getCategorySlots(@Param('slug') slug: string) {
+    try {
+      const data = await this.prismaService.slots.findMany({
+        where: {
+          slot_categories: { slug },
+          is_active: true,
+        },
+        include: {
+          providers: true,
+          slot_categories: true,
+        },
+        orderBy: {
+          rating: 'desc',
+        },
+      });
+      return { data };
+    } catch (error) {
+      console.error('Failed to fetch category slots:', error.message);
+      throw error;
+    }
+  }
+
   @Post()
   async createCategory(@Body() categoryData: any) {
     try {

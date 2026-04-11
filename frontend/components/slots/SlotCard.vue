@@ -31,22 +31,18 @@
         <!-- Top Badges Overlay -->
         <div class="absolute top-2 left-2 flex flex-col gap-1 z-20">
           <div v-if="isNew" class="bg-gradient-to-r from-amber-400 to-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-lg uppercase tracking-wider backdrop-blur-sm">
-            Новинка
+            NEW
           </div>
           <div v-if="isHot" class="bg-gradient-to-r from-rose-500 to-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-lg uppercase tracking-wider backdrop-blur-sm shadow-red-500/20">
-            Хит
+            HOT
           </div>
         </div>
 
         <!-- Hover Action Overlay -->
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 z-10 hidden lg:block">
           <div class="h-full flex flex-col items-center justify-center gap-3">
-            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform active:scale-95 text-sm uppercase tracking-wide">
-              <Icon name="solar:play-bold" class="w-4 h-4" />
-              Play
-            </button>
-            <div class="w-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 text-white font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors text-sm text-center backdrop-blur-md">
-              Review
+            <div class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform transform active:scale-95 text-sm uppercase tracking-wide">
+              {{ $t('buttons.more_details') }}
             </div>
           </div>
         </div>
@@ -57,7 +53,7 @@
         <h3 class="text-white/90 font-bold text-sm sm:text-base truncate">{{ slot.name }}</h3>
         <p class="text-white/50 text-[10px] sm:text-xs flex items-center gap-1.5 truncate font-medium">
           <Icon name="solar:buildings-bold" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/30" />
-          {{ slot.providers?.name || 'Провайдер' }}
+          {{ slot.providers?.name || 'Provider' }}
         </p>
       </div>
     </div>

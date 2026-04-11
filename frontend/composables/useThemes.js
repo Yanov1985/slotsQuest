@@ -8,7 +8,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes`)
       themes.value = data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch themes'
@@ -20,7 +20,7 @@ export const useThemes = () => {
 
   const getThemes = async () => {
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes`)
       return data || []
     } catch (err) {
       console.error('Error getting themes:', err)
@@ -32,7 +32,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes`, {
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes`, {
         method: 'POST',
         body: themeData
       })
@@ -41,7 +41,8 @@ export const useThemes = () => {
     } catch (err) {
       error.value = err.message || 'Failed to create theme'
       console.error('Error creating theme:', err)
-      throw err
+      console.error('API Error in useThemes.js:', err);
+      return null; // fallback
     } finally {
       loading.value = false
     }
@@ -51,7 +52,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${id}`, {
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/${id}`, {
         method: 'PUT',
         body: themeData
       })
@@ -63,7 +64,8 @@ export const useThemes = () => {
     } catch (err) {
       error.value = err.message || 'Failed to update theme'
       console.error('Error updating theme:', err)
-      throw err
+      console.error('API Error in useThemes.js:', err);
+      return null; // fallback
     } finally {
       loading.value = false
     }
@@ -73,14 +75,15 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      await $fetch(`${config.public.apiUrl}/api/themes/${id}`, {
+      await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/${id}`, {
         method: 'DELETE'
       })
       themes.value = themes.value.filter(theme => theme.id !== id)
     } catch (err) {
       error.value = err.message || 'Failed to delete theme'
       console.error('Error deleting theme:', err)
-      throw err
+      console.error('API Error in useThemes.js:', err);
+      return null; // fallback
     } finally {
       loading.value = false
     }
@@ -90,12 +93,13 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${id}`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/${id}`)
       return data
     } catch (err) {
       error.value = err.message || 'Failed to fetch theme'
       console.error('Error fetching theme:', err)
-      throw err
+      console.error('API Error in useThemes.js:', err);
+      return null; // fallback
     } finally {
       loading.value = false
     }
@@ -105,7 +109,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/popular`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/popular`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch popular themes'
@@ -120,7 +124,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/featured`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/featured`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch featured themes'
@@ -135,7 +139,7 @@ export const useThemes = () => {
     loading.value = true
     error.value = null
     try {
-      const { data } = await $fetch(`${config.public.apiUrl}/api/themes/${themeId}/slots`)
+      const { data } = await $fetch(`${import.meta.client ? '' : config.public.apiUrl}/api/themes/${themeId}/slots`)
       return data || []
     } catch (err) {
       error.value = err.message || 'Failed to fetch slots by theme'

@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "catalog": "Katalog",
+    "hero_desc": "Favori slot oyununuzu bulun",
+    "home": "Ana Sayfa"
+  },
+  "filters": {
+    "popular": "Popüler",
+    "newest": "En Yeni",
+    "a_z": "A - Z",
+    "all_slots": "Tüm Slotlar",
+    "title": "Filtreler",
+    "search_title": "Ara",
+    "search_placeholder": "Slot adı...",
+    "provider_title": "Sağlayıcı",
+    "provider_search": "Sağlayıcı ara...",
+    "provider_not_found": "Sağlayıcı bulunamadı",
+    "categories_title": "Kategoriler",
+    "category_search": "Kategori ara...",
+    "category_not_found": "Kategori bulunamadı",
+    "themes_title": "Temalar",
+    "theme_search": "Tema ara...",
+    "theme_not_found": "Tema bulunamadı",
+    "mechanics_title": "Mekanikler",
+    "reset_all": "Tümünü sıfırla"
+  },
+  "empty_state": {
+    "title": "Slot bulunamadı",
+    "desc": "Filtrelerinizi veya arama kelimelerinizi değiştirmeyi deneyin"
+  },
+  "error_state": {
+    "title": "Katalog Yüklenirken Hata",
+    "btn": "Tekrar Dene"
+  },
+  "buttons": {
+    "play_for_free": "Ücretsiz Oyna",
+    "play_for_money": "Paralı Oyna",
+    "back_to_catalog": "Kataloğa Geri Dön",
+    "more_details": "Daha Fazla Bilgi"
+  },
+  "footer": {
+    "description_default": "Slot meraklıları için en iyi katalog. Binlerce oyunu keşfedin.",
+    "nav_title": "Navigasyon",
+    "legal_title": "Yasal ve Destek",
+    "compliance_title": "Uyumluluk",
+    "warning_18": "Sadece 18 yaş ve üzeri yetişkinler içindir.",
+    "info_only": "bilgilendirici bir sitedir. Gerçek parayla kumar oynamıyoruz.",
+    "rights_reserved": "Tüm hakları saklıdır.",
+    "secure_platform": "Güvenli Platform",
+    "verified_data": "Doğrulanmış Veriler"
+  },
+  "slug": {
+    "back_to": "Geri Dön",
+    "slot_not_found": "Slot Bulunamadı",
+    "go_to_catalog": "Kataloğa Git",
+    "awards_and_achievements": "Ödüller ve Başarılar",
+    "overview": "Genel Bakış",
+    "core_mechanics": "Temel Mekanikler"
+  }
+}

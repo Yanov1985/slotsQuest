@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Kataloq",
+    "hero_desc": "Sevmli slot oyununuzu tapın",
+    "home": "Ana səhifə"
+  },
+  "filters": {
+    "popular": "Populyar",
+    "newest": "Ən yeni",
+    "a_z": "A - Z",
+    "all_slots": "Bütün Slotlar"
+  },
+  "empty_state": {
+    "title": "Slot tapılmadı",
+    "desc": "Filtrləri və ya axtarış sözlərini dəyişdirməyə çalışın"
+  },
+  "error_state": {
+    "title": "Kataloq yüklənərkən xəta",
+    "btn": "Yenidən cəhd et"
+  },
+  "buttons": {
+    "play_for_free": "Pulsuz oyna",
+    "play_for_money": "Məbləğlə oyna",
+    "back_to_catalog": "Kataloqa qayıt",
+    "more_details": "Daha Ətraflı"
+  },
+  "footer": {
+    "description_default": "Slot həvəskarları üçün son kataloq.",
+    "nav_title": "Naviqasiya",
+    "legal_title": "Hüquqi",
+    "compliance_title": "Uyğunluq",
+    "warning_18": "Yalnız 18 yaşdan yuxarı böyüklər üçündür.",
+    "info_only": "məlumat saytıdır. Qumar təklif etmirik.",
+    "rights_reserved": "Bütün hüquqlar qorunur.",
+    "secure_platform": "Təhlükəsiz Platforma",
+    "verified_data": "Təsdiqlənmiş Məlumat"
+  },
+  "slug": {
+    "back_to": "Qayıt",
+    "slot_not_found": "Slot Tapılmadı",
+    "go_to_catalog": "Kataloqa get",
+    "awards_and_achievements": "Mükafatlar və Nailiyyətlər",
+    "overview": "Baxış",
+    "core_mechanics": "Əsas Mexanika"
+  }
+}

@@ -1,0 +1,10 @@
+const fs = require('fs');
+const d = JSON.parse(fs.readFileSync('node_modules/@iconify-json/solar/icons.json','utf8')).icons;
+const keys = Object.keys(d);
+const find = t => keys.filter(i => i.includes(t) && i.includes('duotone')).slice(0, 10).join(', ');
+['star', 'wallet', 'fire', 'flame'].forEach(t => console.log('Matches for ' + t + ':', find(t)));
+console.log('Matches for shield:', find('shield'));
+console.log('Matches for gamepad:', find('gamepad'));
+console.log('Matches for gift:', find('gift'));
+console.log('Matches for smartphone:', find('smartphone'));
+console.log('Matches for document:', find('document'));

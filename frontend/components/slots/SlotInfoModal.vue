@@ -1,6 +1,7 @@
 <template>
   <Transition name="fade-modal">
     <div
+      v-show="isOpen"
       class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
       @click.self="closeModal"
     >
@@ -13,6 +14,7 @@
             <span class="text-[#8B5CF6]">#{{ slotData.popularity_rank || '1' }}</span>
             {{ slotData.name }}
           </h2>
+
           <button
             @click="closeModal"
             class="text-gray-400 hover:text-white transition-colors p-2 -mr-2 flex items-center justify-center"
@@ -24,15 +26,41 @@
 
         <!-- Content -->
         <div class="p-4 sm:p-6 space-y-6 sm:space-y-8">
+          <!-- 📖 0. Overview & Mechanics -->
+          <section v-if="slotData.overview || slotData.mechanics">
+            <div v-if="slotData.overview" class="mb-6">
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <Icon name="solar:document-text-bold" class="text-[#8B5CF6] w-6 h-6" /> {{ slotData.overview_title || t('overview') }}
+              </h3>
+              <div class="prose prose-invert prose-sm sm:prose-base max-w-none text-gray-300 leading-relaxed bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]" v-html="slotData.overview"></div>
+            </div>
+            
+            <div v-if="slotData.mechanics || (slotMechanics && slotMechanics.length > 0)">
+              <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <Icon name="solar:bolt-bold-duotone" class="text-yellow-400 w-6 h-6" /> {{ slotData.mechanics_title || t('coreMechanics') }}
+              </h3>
+              <div v-if="slotData.mechanics" class="prose prose-invert prose-sm sm:prose-base max-w-none text-gray-300 leading-relaxed bg-[#1F2937]/50 p-4 mb-4 rounded-xl border border-[#374151]" v-html="slotData.mechanics"></div>
+              
+              <!-- Dynamic Mechanics from DB -->
+              <div v-if="slotMechanics && slotMechanics.length > 0" class="flex flex-wrap gap-2">
+                <div v-for="(mech, i) in slotMechanics" :key="'mech-' + i" class="bg-[#1F2937]/80 rounded-xl p-3 border border-[#374151] flex-1 min-w-[200px]">
+                  <h4 class="text-white font-bold text-sm mb-1">{{ mech.mechanics?.name || mech.name || mech.mechanic?.name }}</h4>
+                  <p class="text-gray-400 text-xs">{{ mech.mechanics?.description || mech.description || mech.mechanic?.description }}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!-- 🏆 1. Expert Verdict -->
           <section>
             <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
               <Icon name="solar:cup-star-bold" class="text-yellow-400 w-6 h-6" /> {{ t('expertVerdict') }}
             </h3>
             <div class="text-gray-300 leading-relaxed text-sm sm:text-base bg-[#1F2937]/50 p-4 rounded-xl border border-[#374151]">
-              <p v-if="slotData.info_expert_verdict" v-html="slotData.info_expert_verdict"></p>
+              <div v-if="slotData.expert_verdict" v-html="slotData.expert_verdict"></div>
+              <div v-else-if="slotData.info_expert_verdict" v-html="slotData.info_expert_verdict"></div>
               <p v-else>
-                {{ slotData.name }} ({{ slotData.providers?.name || t('devFallback') }}) {{ t('isA') }} {{ getVolatilityText(slotData.volatility).toLowerCase() }} {{ t('volSlot') }} {{ slotData.rtp || '96.0' }}% {{ t('andMaxWin') }} {{ formatMaxWin(slotData.max_win) }}x.
+                {{ slotData.name }} ({{ slotData.providers?.name || t('devFallback') }}) {{ t('isA') }} {{ getVolatilityText(slotData.volatility).toLowerCase() }} {{ t('volSlot') }} {{ slotData.rtp ? formatRTP(slotData.rtp) : '96.00' }}% {{ t('andMaxWin') }} {{ formatMaxWin(slotData.max_win) }}x.
                 {{ slotData.rtp >= 96.5 ? t('aboveRTP') : t('belowRTP') }}
                 {{ t('overallRate') }} {{ slotData.rating || 4.5 }} {{ t('forIts') }} {{ slotData.volatility?.toLowerCase() === 'high' ? t('highPot') : t('balPot') }}
               </p>
@@ -185,15 +213,20 @@
             <h2 class="text-lg font-bold text-white mb-2">{{ t('freePlayDemo') }}
             </h2>
             <p class="text-gray-300 mb-4 text-sm">
-              {{ slotData.info_demo_cta || t('demoDesc').replace('{name}', slotData.name) }}
+              {{ t('demoDesc').replace('{name}', slotData.name) }}
             </p>
-            <button
-              @click="playSlot"
+            <component
+              :is="(globalAffiliateLink || slotData.demo_url) ? 'a' : 'button'"
+              :href="globalAffiliateLink ? globalAffiliateLink : (slotData.demo_url ? slotData.demo_url : null)"
+              target="_blank"
+              rel="nofollow noopener"
+              @click="!(globalAffiliateLink || slotData.demo_url) ? playSlot() : null"
               class="w-full py-3 flex items-center justify-center gap-2 bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-white outline-none"
             >
               <Icon name="solar:play-bold" class="w-5 h-5" />
-              {{ slotData.info_demo_btn_text || t('playDemoNow') }}
-            </button>
+              <!-- Using playDemoNow specifically based on request context -->
+              {{ t('playDemoNow') }}
+            </component>
           </section>
         </div>
       </div>
@@ -202,8 +235,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { getVolatilityText, formatMaxWin } from '~/utils/slotFormatters'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { getVolatilityText, formatMaxWin, formatRTP } from '~/utils/slotFormatters'
 
 const { locale } = useI18n()
 
@@ -369,15 +402,16 @@ const t = (key) => {
   return lang[key] || translations.en[key] || key;
 }
 
-
 const props = defineProps({
+  isOpen: { type: Boolean, default: false },
   slotData: { type: Object, required: true },
   pros: { type: Array, default: () => [] },
   cons: { type: Array, default: () => [] },
   faq: { type: Array, default: () => [] },
   reviews: { type: Array, default: () => [] },
   howTo: { type: Array, default: () => [] },
-  similar: { type: Array, default: () => [] }
+  similar: { type: Array, default: () => [] },
+  slotMechanics: { type: Array, default: () => [] }
 })
 
 const emit = defineEmits(['close', 'play'])
@@ -387,22 +421,33 @@ const toggleFaq = (index) => {
   openFaqIndex.value = openFaqIndex.value === index ? null : index
 }
 
+const globalData = useNuxtData('global-footer-data')
+const globalAffiliateLink = computed(() => globalData.data.value?.global_affiliate_link || null)
+
 const closeModal = () => emit('close')
 const playSlot = () => emit('play')
 
-// A11y: Escape key to close modal (Focus trap & usability)
 const handleEsc = (e) => {
   if (e.key === 'Escape') closeModal()
 }
 
 onMounted(() => {
   document.addEventListener('keydown', handleEsc)
-  // Lock body scroll inside modal
-  document.body.style.overflow = 'hidden'
+})
+
+watch(() => props.isOpen, (newVal) => {
+  if (typeof window === 'undefined') return
+  if (newVal) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
 })
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleEsc)
-  document.body.style.overflow = ''
+  if (typeof window !== 'undefined') {
+    document.removeEventListener('keydown', handleEsc)
+    document.body.style.overflow = ''
+  }
 })
 </script>

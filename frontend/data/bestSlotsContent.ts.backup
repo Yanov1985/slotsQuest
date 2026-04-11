@@ -1,0 +1,215 @@
+export const getBestSlotsContent = (locale: string) => {
+  const baseLoc = locale?.split('-')[0] || 'en';
+  
+  const content: Record<string, any> = {
+    en: {
+      seoTitle: 'Best Online Slots 2026: Top Ranked Real Money Games',
+      seoDescription: 'Discover the best online slots of 2026. Explore high RTP, massive payouts, and top-rated games with comprehensive reviews and free demos.',
+      h1: 'Best Online Slots in 2026: Our Expert Picks',
+      intro: 'Finding the truly best online slots can be overwhelming with thousands of options available. Our team of casino experts has tested and ranked the top-performing games for 2026 based on RTP, volatility, bonus features, and visual design. Whether you are looking for massive Max Wins or just a visually stunning experience, this detailed guide highlights the cream of the crop.',
+      tocTitle: 'Table of Contents',
+      howWeRank: {
+        title: 'How We Rank the Best Online Slots',
+        content: '<p>With thousands of online slots released every year, finding the top games requires a rigorous testing methodology. Our casino experts evaluate every single game across multiple critical dimensions before featuring them on SlotQuest.</p><table class="w-full text-left border-collapse my-6 bg-white/5 rounded-xl overflow-hidden"><thead><tr class="bg-purple-600/20 text-white"><th class="p-4 border-b border-white/10">Criteria</th><th class="p-4 border-b border-white/10">What We Look For</th></tr></thead><tbody class="text-white/80"><tr><td class="p-4 border-b border-white/5 font-bold">RTP (Return to Player)</td><td class="p-4 border-b border-white/5">Games must offer fair math models, typically 96% RTP or higher, ensuring long-term value.</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Winning Potential</td><td class="p-4 border-b border-white/5">We prioritize slots with high Max Win limits (5,000x or more).</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Bonus Features</td><td class="p-4 border-b border-white/5">Innovative mechanics like cascading reels, progressive multipliers, and Bonus Buys.</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Mobile Optimization</td><td class="p-4 border-b border-white/5">The slot must perform flawlessly on iOS and Android devices without lag.</td></tr></tbody></table>'
+      },
+      keyFeatures: {
+         title: 'Key Slot Features Explained',
+         content: '<div class="space-y-6"><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">RTP (Return to Player)</h4><p class="text-white/80 leading-relaxed">This percentage shows how much money is theoretically returned to players over time. If you wager $100 on a 96.5% RTP slot, the expected return is $96.50. Always aim for slots with an RTP above 96%.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Volatility (Variance)</h4><p class="text-white/80 leading-relaxed">Volatility measures the risk. <strong class="text-white">Low Volatility:</strong> small, frequent wins. <strong class="text-white">High Volatility:</strong> rare, but potentially massive wins. Choose based on your bankroll and patience level.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Bonus Buy & Megaways</h4><p class="text-white/80 leading-relaxed">Modern slots often feature the <em class="text-white">Bonus Buy</em> option, letting players instantly purchase the Free Spins round for a set cost (e.g. 100x the bet). <em class="text-white">Megaways</em> slots dramatically increase the number of paylines up to 117,649 ways to win, making every spin highly unpredictable.</p></div></div>'
+      },
+      tipsForPlayers: {
+         title: 'Top Tips for Playing Slot Machines in 2026',
+         content: '<ul class="space-y-4 text-white/80"><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">1.</span><p><strong class="text-white">Manage your bankroll:</strong> Set a strict loss limit and never chase your losses. Determine your session budget before spinning.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">2.</span><p><strong class="text-white">Test in Demo Mode:</strong> Always play the free version first to understand the paytable, volatility, and bonus rules without risking real money.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">3.</span><p><strong class="text-white">Understand the Max Win cap:</strong> High volatility slots have extreme max payout potentials, but they also have long "dry spins". Adjust your bet size accordingly.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">4.</span><p><strong class="text-white">Check Casino Promotions:</strong> Look for casinos that offer Free Spins or Deposit Bonuses on the specific top games listed above to maximize your playtime.</p></li></ul>'
+      },
+      typesOfSlots: {
+        title: 'Main Types of Online Slots',
+        content: '<div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Classic Slots</h4><p class="text-white/80">Traditionally featuring 3 reels and iconic symbols like fruits, bells, and 7s, these slots offer straightforward gameplay with high nostalgia and generally lower volatility.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Video Slots</h4><p class="text-white/80">The most popular category today, packing 5+ reels, immersive HD graphics, engaging storylines, and complex bonus rounds to keep you entertained for hours.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Megaways™ Slots</h4><p class="text-white/80">Pioneered by Big Time Gaming, this random reel modifier mechanic changes the number of symbols on every spin, offering up to 117,649 ways to win.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Progressive Jackpots</h4><p class="text-white/80">A portion of every bet contributes to a collective, ever-growing pooled prize. These can turn lucky players into multi-millionaires in a single spin.</p></div></div>'
+      },
+      topProviders: {
+        title: 'Top Slot Software Providers',
+        content: '<p class="text-white/80 leading-relaxed mb-6">The quality of your gameplay heavily depends on the game developer. Here are the titans of the online slot industry:</p><ul class="space-y-4 text-white/80"><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Pragmatic Play:</strong> Known for extreme volatility, stunning aesthetics, and regular massive releases. Titles like Gates of Olympus and Sweet Bonanza dominate the charts.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Hacksaw Gaming:</strong> Masters of the "dark" aesthetic and insane max wins limit. They revolutionized mobile-first scratchcards and edgy slot formats like Wanted Dead or a Wild.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Nolimit City:</strong> Notorious for highly controversial themes and incredibly complex mechanics (xWays, xNudge) delivering brutal but highly rewarding volatility.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Play\'n GO:</strong> The undisputed king of grid slots and captivating storylines, best known for the legendary Book of Dead and Reactoonz franchises.</p></li></ul>'
+      },
+      howToPlayForRealMoney: {
+        title: 'How to Play Online Slots for Real Money',
+        content: '<div class="space-y-4"><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">1</div><p class="text-white/80"><strong class="text-white">Choose a reputable casino.</strong> Ensure it is fully licensed, offers secure payment methods, and has a strong reputation among players.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">2</div><p class="text-white/80"><strong class="text-white">Claim your welcome bonus.</strong> Boost your starting bankroll right away by opting into deposit matches and free spins promotions.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">3</div><p class="text-white/80"><strong class="text-white">Fund your account.</strong> Make a deposit using secure options like credit cards, e-wallets, or cryptocurrencies ensuring fast settlement.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">4</div><p class="text-white/80"><strong class="text-white">Select a top-ranked slot.</strong> Use our list above to locate a game with high RTP, manageable volatility, and themes you enjoy.</p></div></div>'
+      },
+      popularThemes: {
+        title: 'Popular Slot Themes',
+        content: '<p class="text-white/80 leading-relaxed">Whether you are an adventure seeker or a fan of mythology, developers cater to all tastes. <strong class="text-white">Ancient Egypt</strong> remains a staple, leading players to pharaohs\' tombs in search of gold. <strong class="text-white">Mythology & Gods</strong> (Norse, Greek) are incredibly popular for their epic soundtracks and massive payouts. <strong class="text-white">Fruit Machines</strong> maintain a classical appeal, perfect for quick, straightforward sessions. <strong class="text-white">Pop Culture</strong> slots seamlessly integrate blockbuster movies, bands, and TV shows directly into the spinning action.</p>'
+      },
+      slots: [
+        {
+          slug: 'gates-of-olympus',
+          name: 'Gates of Olympus',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'High',
+          maxWin: '5,000x',
+          description: '<p><strong>Gates of Olympus</strong> remains an absolute titan in the iGaming space. Featuring Pragmatic Play’s signature <em>Pay Anywhere</em> system and cascading blocks, players are transported to Mount Olympus to face Zeus himself.</p><p>What makes this slot a top contender in 2026 is its multiplier mechanic. During the free spins, multiplier orbs ranging from 2x to 500x accumulate, offering insane winning potential. The sheer excitement of watching the multipliers stack is unmatched.</p>',
+          pros: ['Incredible accumulating multipliers', 'Tumble feature keeps action going', 'Bonus Buy option available'],
+          cons: ['High volatility can dry the bankroll fast', 'Max win capped at 5000x (lower than some modern slots)']
+        },
+        {
+          slug: 'sweet-bonanza',
+          name: 'Sweet Bonanza',
+          provider: 'Pragmatic Play',
+          rtp: '96.48%',
+          volatility: 'Medium-High',
+          maxWin: '21,100x',
+          description: '<p><strong>Sweet Bonanza</strong> is the definitive candy-themed slot that changed the industry with its tumble mechanics and massive max win potential of over 21,000x your bet.</p><p>Its enduring popularity lies in the Free Spins round, where Candy Bomb multipliers drop randomly, applying up to a 100x multiplier to the total tumble win. It’s a perfect blend of engaging visuals and serious payout power.</p>',
+          pros: ['Massive 21,100x max win potential', 'Colorful, universally loved theme', 'Medium-High volatility is manageable'],
+          cons: ['No wild symbols in the base game', 'Visuals might be too "sweet" for some']
+        },
+        {
+          slug: 'starlight-princess',
+          name: 'Starlight Princess',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'High',
+          maxWin: '5,000x',
+          description: '<p>Borrowing the successful mathematical model of Gates of Olympus, <strong>Starlight Princess</strong> takes the action into an anime-inspired fantasy world. It uses the same tumbling reels and global multipliers but appeals to a completely different aesthetic demographic.</p><p>The thrill of the escalating multipliers during the Free Spins feature combined with high-quality animations makes this a must-play for anime fans.</p>',
+          pros: ['Gorgeous anime-themed art style', 'Proven, highly rewarding mechanics', 'Exciting multiplier stacking'],
+          cons: ['Essentially a reskin of Gates of Olympus', 'Can be very punishing on bad streaks']
+        },
+        {
+          slug: 'sugar-rush',
+          name: 'Sugar Rush',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'High',
+          maxWin: '5,000x',
+          description: '<p><strong>Sugar Rush</strong> takes cluster pays to the next level with its innovative Multiplier Spots feature. Whenever a winning symbol bursts, it leaves a wrapper. If another win happens in the same spot, a multiplier is added, doubling with each subsequent win up to 128x.</p><p>During the Free Spins, these multiplier spots do not reset, allowing for exponential scaling and massive hits towards the end of the feature.</p>',
+          pros: ['Innovative Multiplier Spots mechanic', 'Multipliers do not reset in free spins', 'Highly engaging base game'],
+          cons: ['Can take time to build big multipliers', 'Very high volatility']
+        },
+        {
+          slug: 'aviator',
+          name: 'Aviator',
+          provider: 'Spribe',
+          rtp: '97.00%',
+          volatility: 'Low-Medium',
+          maxWin: '10,000x',
+          description: '<p>While technically a "Crash Game" rather than a traditional slot, <strong>Aviator</strong> by Spribe demands inclusion in any top casino games list. It has revolutionized online gambling with its multiplayer social aspect and unique risk/reward gameplay.</p><p>Players watch a plane fly away, increasing the multiplier. The goal is to cash out before it flies off. The high 97% RTP and the ability to control your own volatility make it incredibly popular.</p>',
+          pros: ['Control your own risk and volatility', 'Very high 97% RTP', 'Social chat and live bets features'],
+          cons: ['Not a traditional slot experience', 'Requires quick reflexes and decision making']
+        }
+      ],
+      faqTitle: 'Frequently Asked Questions',
+      faqs: [
+        { q: 'What is RTP in slots?', a: 'Return to Player (RTP) is a percentage indicating how much wagered money a slot will pay back to players over a large number of spins. For example, a 96% RTP slot mathematically returns $96 for every $100 wagered over time.' },
+        { q: 'Are online slots rigged?', a: 'No, licensed online slots from reputable providers use certified Random Number Generators (RNG) to ensure every spin is completely random and fair.' },
+        { q: 'What is volatility?', a: 'Volatility (or variance) refers to the risk involved in playing a slot. High volatility slots pay out less frequently but have the potential for massive wins, while low volatility slots offer frequent, smaller wins.' }
+      ],
+      intro_fallback_desc: '<p>Dive into the thrilling action of <strong>{name}</strong>! This top-ranking slot delivers exceptional gameplay, exciting bonus features, and strong payout potential. Play the demo or try your luck for real money.</p>',
+      playDemo: 'Play Demo',
+      playReal: 'Play for Real'
+    },
+    ru: {
+      seoTitle: 'Лучшие онлайн слоты 2026: Топ игровых автоматов на деньги',
+      seoDescription: 'Откройте для себя лучшие онлайн-слоты 2026 года. Высокий RTP, огромные выплаты и обзоры самых популярных игр. Бесплатные демо и игра на деньги.',
+      h1: 'Лучшие онлайн-слоты 2026: Выбор наших экспертов',
+      intro: 'Найти действительно лучшие слоты среди тысяч игровых автоматов может быть непросто. Наша команда экспертов протестировала и составила рейтинг лучших игр 2026 года на основе RTP, волатильности, бонусных функций и дизайна. Ищете огромные выплаты или красивую графику? В этом руководстве собраны сливки индустрии.',
+      tocTitle: 'Содержание',
+      howWeRank: {
+        title: 'Как мы составляем рейтинг лучших онлайн-слотов',
+        content: '<p class="text-white/80 leading-relaxed">Каждый год выпускаются тысячи онлайн-слотов, поэтому поиск лучших игр требует строгой методологии тестирования. Наши эксперты казино оценивают каждую игру по нескольким важнейшим параметрам, прежде чем добавить её на SlotQuest.</p><table class="w-full text-left border-collapse my-6 bg-white/5 rounded-xl overflow-hidden"><thead><tr class="bg-purple-600/20 text-white"><th class="p-4 border-b border-white/10">Критерий</th><th class="p-4 border-b border-white/10">На что мы смотрим</th></tr></thead><tbody class="text-white/80"><tr><td class="p-4 border-b border-white/5 font-bold">RTP (Отдача)</td><td class="p-4 border-b border-white/5">Игры должны предлагать честную математику, обычно не ниже 96% RTP.</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Потенциал выигрыша</td><td class="p-4 border-b border-white/5">Приоритет отдается слотам с высоким лимитом максимального выигрыша (от 5,000x).</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Бонусные функции</td><td class="p-4 border-b border-white/5">Инновационные механики: каскадные барабаны, накопительные множители, покупка бонуса.</td></tr><tr><td class="p-4 border-b border-white/5 font-bold">Мобильная оптимизация</td><td class="p-4 border-b border-white/5">Игры обязаны безупречно работать на iPhone и Android без задержек.</td></tr></tbody></table>'
+      },
+      keyFeatures: {
+         title: 'Ключевые характеристики слотов: Что важно знать',
+         content: '<div class="space-y-6"><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">RTP (Return to Player)</h4><p class="text-white/80 leading-relaxed">Процент возврата показывает, какая часть ставок теоретически возвращается игрокам. Если вы ставите 100 долларов в слоте с RTP 96.5%, ожидаемый возврат составит $96.50. Выбирайте слоты с RTP выше 96%.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Волатильность (Дисперсия)</h4><p class="text-white/80 leading-relaxed">Определяет уровень риска. <strong class="text-white">Низкая:</strong> частые, но мелкие выигрыши. <strong class="text-white">Высокая:</strong> редкие, но огромные выигрыши. Выбирайте дисперсию под размер своего банкролла.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Bonus Buy & Megaways</h4><p class="text-white/80 leading-relaxed">Современные слоты часто предлагают функцию покупки бонуса, позволяющую немедленно запустить фриспины (обычно за 100x от ставки). Механика <em class="text-white">Megaways</em> увеличивает количество линий выплат до 117 649!</p></div></div>'
+      },
+      tipsForPlayers: {
+         title: 'Советы для игроков в казино на 2026 год',
+         content: '<ul class="space-y-4 text-white/80"><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">1.</span><p><strong class="text-white">Поймите математику:</strong> Дом всегда имеет преимущество (RTP < 100%). В слоты нужно играть ради развлечения, а не для заработка.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">2.</span><p><strong class="text-white">Управление банкроллом:</strong> Заранее определите бюджет и никогда не гонитесь за проигрышами. Используйте инструменты ответственной игры, чтобы установить лимиты.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">3.</span><p><strong class="text-white">Используйте демо-режимы:</strong> Всегда тестируйте слоты бесплатно (в демо-режиме) на SlotQuest перед тем, как играть на реальные деньги.</p></li></ul>'
+      },
+      typesOfSlots: {
+        title: 'Основные типы игровых автоматов онлайн',
+        content: '<div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Классические Слоты</h4><p class="text-white/80">Традиционные автоматы с 3 барабанами и символами вроде фруктов, колокольчиков и семерок. Они предлагают простой геймплей с ретро-атмосферой и, как правило, более низкую волатильность.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Видеослоты</h4><p class="text-white/80">Самая популярная категория на сегодняшний день: от 5 барабанов, крутая HD-графика, увлекательные сюжеты и сложные бонусные раунды, которые не дадут заскучать.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Слоты Megaways™</h4><p class="text-white/80">Механика, созданная Big Time Gaming, меняет количество символов на барабанах при каждом вращении, предлагая до 117 649 способов выиграть.</p></div><div class="bg-white/5 p-6 rounded-2xl border border-white/10"><h4 class="text-xl font-bold text-white mb-2">Прогрессивные Джекпоты</h4><p class="text-white/80">Часть каждой ставки идет в огромный, постоянно растущий призовой фонд. Эти игры могут сделать удачливого игрока мультимиллионером за один спин.</p></div></div>'
+      },
+      topProviders: {
+        title: 'Лучшие производители онлайн-слотов',
+        content: '<p class="text-white/80 leading-relaxed mb-6">Качество вашей игры во многом зависит от разработчика. Вот титаны индустрии онлайн-слотов:</p><ul class="space-y-4 text-white/80"><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Pragmatic Play:</strong> Известен экстремальной волатильностью, великолепной графикой и громкими релизами. Хиты вроде Gates of Olympus и Sweet Bonanza не покидают топы.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Hacksaw Gaming:</strong> Мастера "тёмной" эстетики и безумных лимитов максвина. Осуществили революцию в индустрии со слотами вроде Wanted Dead or a Wild.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Nolimit City:</strong> Знаменит крайне спорными табуированными темами и сложнейшими механиками (xWays, xNudge), обеспечивающими жесткую, но очень прибыльную волатильность.</p></li><li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">✓</span><p><strong class="text-white">Play\'n GO:</strong> Неоспоримый король "книжных" и сеточных слотов. Их самые узнаваемые франшизы — Book of Dead и Reactoonz.</p></li></ul>'
+      },
+      howToPlayForRealMoney: {
+        title: 'Как играть в онлайн-слоты на реальные деньги',
+        content: '<div class="space-y-4"><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">1</div><p class="text-white/80"><strong class="text-white">Выберите надежное казино.</strong> Убедитесь, что оно лицензировано, предлагает безопасные методы оплаты и имеет хорошую репутацию среди игроков.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">2</div><p class="text-white/80"><strong class="text-white">Заберите бонус.</strong> Увеличьте свой стартовый банкролл, активировав бонус на депозит и фриспины.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">3</div><p class="text-white/80"><strong class="text-white">Пополните счет.</strong> Сделайте депозит с помощью банковских карт, электронных кошельков или криптовалют.</p></div><div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10"><div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white shrink-0">4</div><p class="text-white/80"><strong class="text-white">Выберите топовый слот.</strong> Используйте наш список выше, чтобы найти игру с высоким RTP и той волатильностью, которая вам подходит.</p></div></div>'
+      },
+      popularThemes: {
+        title: 'Популярные тематики слотов',
+        content: '<p class="text-white/80 leading-relaxed">Будь вы искателем приключений или поклонником мифологии, разработчики удовлетворят любые вкусы. <strong class="text-white">Древний Египет</strong> остается классикой, отправляя игроков в гробницы фараонов на поиски золота. <strong class="text-white">Мифология (Скандинавская, Греческая)</strong> невероятно популярна благодаря эпичным саундтрекам и гигантским выплатам. <strong class="text-white">Фрукты</strong> сохраняют свой классический шарм для любителей простых и быстрых игровых сессий.</p>'
+      },
+      slots: [
+        {
+          slug: 'gates-of-olympus',
+          name: 'Gates of Olympus',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'Высокая',
+          maxWin: '5,000x',
+          description: '<p><strong>Gates of Olympus</strong> остается абсолютным титаном в сфере iGaming. Благодаря механике <em>Pay Anywhere</em> и каскадным падениям блоков, игроки переносятся на гору Олимп к самому Зевсу.</p><p>Главная фишка этого слота — механика множителей. Во время фриспинов сферы с множителями от 2x до 500x накапливаются, открывая невероятный потенциал для выигрыша.</p>',
+          pros: ['Накапливающиеся множители в бонусе', 'Каскады продолжают игру', 'Есть функция покупки бонуса'],
+          cons: ['Высокая волатильность может быстро сжечь баланс', 'Макс. выигрыш ограничен 5000x']
+        },
+        {
+          slug: 'sweet-bonanza',
+          name: 'Sweet Bonanza',
+          provider: 'Pragmatic Play',
+          rtp: '96.48%',
+          volatility: 'Средне-Высокая',
+          maxWin: '21,100x',
+          description: '<p><strong>Sweet Bonanza</strong> — это культовый слот конфетной тематики, который изменил индустрию своей механикой падения и гигантским потенциалом выигрыша свыше 21 000х.</p><p>Его неизменная популярность кроется в раунде фриспинов, где могут выпасть бомбы с множителями до 100x.</p>',
+          pros: ['Гигантский потенциал выигрыша 21,100x', 'Приятная и популярная визуальная тема', 'Умеренная волатильность'],
+          cons: ['В базовой игре нет Wild-символов', 'Некоторым кажется слишком "сладким"']
+        },
+        {
+          slug: 'starlight-princess',
+          name: 'Starlight Princess',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'Высокая',
+          maxWin: '5,000x',
+          description: '<p>Заимствуя успешную математическую модель Gates of Olympus, <strong>Starlight Princess</strong> переносит действие в фэнтезийный аниме-мир. Здесь используются те же падающие барабаны и глобальные множители, однако с другой эстетикой.</p><p>Азарт накапливающихся множителей во время фриспинов делает этот слот обязательным для фанатов аниме.</p>',
+          pros: ['Шикарный анимешный стиль', 'Проверенные, щедрые механики', 'Накопление множителей в бонусе'],
+          cons: ['По сути — клон Gates of Olympus', 'Бывает жестоким на плохой отдаче']
+        },
+        {
+          slug: 'sugar-rush',
+          name: 'Sugar Rush',
+          provider: 'Pragmatic Play',
+          rtp: '96.50%',
+          volatility: 'Высокая',
+          maxWin: '5,000x',
+          description: '<p><strong>Sugar Rush</strong> выводит кластерные слоты на новый уровень благодаря инновационной функции Multiplier Spots. Когда выигрышный символ лопается, он оставляет след. Если в этом же месте происходит еще один выигрыш, добавляется множитель, удваиваясь вплоть до 128x.</p><p>Во время фриспинов эти пятна множителей не сбрасываются!</p>',
+          pros: ['Инновационная механика Multiplier Spots', 'Множители не сбрасываются во фриспинах', 'Интересная базовая игра'],
+          cons: ['Требуется время для "накачки" поля', 'Очень высокая волатильность']
+        },
+        {
+          slug: 'aviator',
+          name: 'Aviator',
+          provider: 'Spribe',
+          rtp: '97.00%',
+          volatility: 'Регулируемая',
+          maxWin: '10,000x',
+          description: '<p>Хотя технически это краш-игра, <strong>Aviator</strong> от Spribe заслуживает место в топе. Слот революционизировал гемблинг мультиплеером и концепцией риска и награды.</p><p>Игроки следят за летящим самолетом и растущим множителем, и задача — успеть забрать деньги до того, как он улетит.</p>',
+          pros: ['Контроль риска и волатильности самим игроком', 'Высочайший RTP 97%', 'Социальный чат и живая статистика'],
+          cons: ['Это не классический барабанный слот', 'Требует быстрой реакции']
+        }
+      ],
+      faqTitle: 'Частые вопросы (FAQ)',
+      faqs: [
+        { q: 'Что такое RTP в слотах?', a: 'RTP (Return to Player) — это процент возврата, показывающий, сколько в среднем слот отдаст обратно денег на длинной дистанции. Например, 96% RTP означает возврат $96 на каждые поставленные $100.' },
+        { q: 'Безопасно ли играть в онлайн-слоты?', a: 'Да, если вы играете в сертифицированные игры от известных провайдеров. Они используют ГСЧ (генератор случайных чисел) и проверяются независимыми аудиторами.' },
+        { q: 'Что значит волатильность?', a: 'Волатильность — это уровень риска слота. Высокая волатильность означает редкие, но крупные выигрыши, а низкая — частые, но маленькие.' }
+      ],
+      intro_fallback_desc: '<p>Ощутите настоящий азарт в <strong>{name}</strong>! Этот топовый слот предлагает отличный геймплей, увлекательные бонусные функции и высокий потенциал выигрыша. Запускайте демо-режим или играйте на реальные деньги.</p>',
+      playDemo: 'Демо-режим',
+      playReal: 'Играть на Деньги'
+    }
+  }
+
+  // Fallback map specifically using PT-BR for Brazil
+  if (locale === 'pt-BR' && !content['pt-BR']) {
+    return content['en'] // For production, we should add proper pt-BR here, but using EN fallback for brevity now
+  }
+
+  return content[locale] || content[baseLoc] || content.en;
+};

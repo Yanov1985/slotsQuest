@@ -118,6 +118,13 @@ export const getMaxWin = (slot) => {
     return slot.max_win || 'x1,000'
 }
 
+export const formatRTP = (rtp) => {
+    if (!rtp) return '96.50'
+    const num = Number(rtp)
+    if (isNaN(num)) return '96.50'
+    return num.toFixed(2)
+}
+
 export const formatReleaseDate = (dateString) => {
     if (!dateString) return null
     try {
@@ -302,7 +309,7 @@ export const formatNumber = (num) => {
 }
 
 export const mergeLocalizedSlotData = (slot, localeCode) => {
-    if (!slot || !localeCode || localeCode === 'en') return slot;
+    if (!slot || !localeCode) return slot;
     if (!slot.localizations) return slot;
 
     try {
@@ -332,7 +339,9 @@ export const mergeLocalizedSlotData = (slot, localeCode) => {
             'overview_keyword_1', 'overview_keyword_2', 'overview_keyword_3',
             'overview_description_1', 'overview_description_2',
             'info_pros', 'info_cons', 'info_faq', 'info_reviews', 'info_how_to_play',
-            'info_expert_verdict', 'info_custom_html', 'info_demo_btn_text', 'info_real_btn_text', 'name', 'description'
+            'info_expert_verdict', 'info_custom_html', 'info_demo_btn_text', 'info_real_btn_text', 'name', 'description',
+            'overview_title', 'mechanics_title', 'free_spins_title', 'seo_h1', 'overview', 'mechanics', 'faq', 'cta_button', 'demo_button',
+            'expert_verdict', 'pros', 'cons', 'how_to_play', 'reviews'
         ];
 
         fieldsToMerge.forEach(field => {
@@ -341,9 +350,26 @@ export const mergeLocalizedSlotData = (slot, localeCode) => {
             }
         });
 
+        // 🚨 GEMINI-COMPATIBILITY MAPPING
+        if (targetLocalization['overview'] && !targetLocalization['overview_description_1']) {
+            mergedSlot['overview_description_1'] = targetLocalization['overview'];
+        }
+        if (targetLocalization['overview'] && !targetLocalization['description']) {
+            mergedSlot['description'] = targetLocalization['overview'];
+        }
+        if (targetLocalization['mechanics'] && !targetLocalization['info_expert_verdict']) {
+            mergedSlot['info_expert_verdict'] = targetLocalization['mechanics'];
+        }
+        
+        // Map new schema to the old info_* schema if the new schema fields exist
+        if (targetLocalization['expert_verdict']) mergedSlot['info_expert_verdict'] = targetLocalization['expert_verdict'];
+        if (targetLocalization['pros']) mergedSlot['info_pros'] = JSON.stringify(targetLocalization['pros']);
+        if (targetLocalization['cons']) mergedSlot['info_cons'] = JSON.stringify(targetLocalization['cons']);
+        if (targetLocalization['faq']) mergedSlot['info_faq'] = JSON.stringify(targetLocalization['faq']);
+        if (targetLocalization['how_to_play']) mergedSlot['info_how_to_play'] = JSON.stringify(targetLocalization['how_to_play']);
+        if (targetLocalization['reviews']) mergedSlot['info_reviews'] = JSON.stringify(targetLocalization['reviews']);
+
         // 🚨 PREVENT ENGLISH BLEEDING:
-        // If the AI didn't provide these deep fields, nullify the root English DB values 
-        // so that the frontend components cleanly fall back to our localized tf() arrays
         const strictFields = ['info_expert_verdict', 'info_pros', 'info_cons', 'info_faq', 'info_reviews', 'info_how_to_play'];
         strictFields.forEach(f => {
             if (!targetLocalization[f] && targetLocalization[f.replace('info_', '')] === undefined) {

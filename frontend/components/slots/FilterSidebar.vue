@@ -37,7 +37,7 @@
       <div class="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 shrink-0">
         <h2 class="text-white font-bold text-lg flex items-center gap-2">
           <Icon name="solar:tuning-square-2-line-duotone" class="text-blue-400 w-6 h-6" />
-          Filters
+          {{ $t('filters.title') }}
         </h2>
         <button
           @click="isOpen = false"
@@ -52,13 +52,13 @@
 
         <!-- Search -->
         <div class="space-y-3">
-          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">Search</label>
+          <label class="text-xs font-bold text-white/40 uppercase tracking-wider pl-1">{{ $t('filters.search_title') }}</label>
           <div class="relative">
             <Icon name="solar:magnifer-line-duotone" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 w-5 h-5" />
             <input
               v-model="filters.search"
               type="text"
-              placeholder="Slot name..."
+              :placeholder="$t('filters.search_placeholder')"
               class="w-full bg-black/20 border border-white/10 rounded-2xl py-3 pl-11 pr-4 text-white text-sm placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-colors shadow-inner"
               @input="emitFilters"
             >
@@ -68,7 +68,7 @@
         <!-- Provider Searchable List -->
         <div class="space-y-3">
           <div class="flex items-center justify-between pl-1">
-             <label class="text-xs font-bold text-white/40 uppercase tracking-wider">Provider</label>
+             <label class="text-xs font-bold text-white/40 uppercase tracking-wider">{{ $t('filters.provider_title') }}</label>
              <span v-if="filters.providerIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.providerIds.length }}</span>
           </div>
 
@@ -79,7 +79,7 @@
               <input
                 v-model="providerSearch"
                 type="text"
-                placeholder="Search provider..."
+                :placeholder="$t('filters.provider_search')"
                 class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
               >
             </div>
@@ -96,7 +96,7 @@
                 <Icon v-if="filters.providerIds.includes(provider.id)" name="solar:check-circle-bold" class="text-blue-400 w-4 h-4" />
               </button>
               <div v-if="filteredProviders.length === 0" class="text-center py-4 text-xs text-white/40">
-                Provider not found
+                {{ $t('filters.provider_not_found') }}
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
         <div class="space-y-3 border-t border-white/5 pt-6">
            <button @click="accordions.categories = !accordions.categories" class="w-full flex items-center justify-between group pl-1">
               <div class="flex items-center gap-2">
-                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Categories</label>
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">{{ $t('filters.categories_title') }}</label>
                  <span v-if="filters.categoryIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.categoryIds.length }}</span>
               </div>
               <Icon :name="accordions.categories ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
@@ -118,7 +118,7 @@
                 <input
                   v-model="categorySearch"
                   type="text"
-                  placeholder="Search category..."
+                  :placeholder="$t('filters.category_search')"
                   class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
                 >
               </div>
@@ -136,7 +136,7 @@
                     <Icon v-if="filters.categoryIds.includes(category.id)" name="solar:check-circle-bold" class="w-4 h-4 shrink-0" />
                  </button>
                  <div v-if="filteredCategories.length === 0" class="text-center py-4 text-xs text-white/40">
-                   Category not found
+                   {{ $t('filters.category_not_found') }}
                  </div>
               </div>
            </div>
@@ -146,7 +146,7 @@
         <div class="space-y-3 border-t border-white/5 pt-6">
            <button @click="accordions.themes = !accordions.themes" class="w-full flex items-center justify-between group pl-1">
               <div class="flex items-center gap-2">
-                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Themes</label>
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">{{ $t('filters.themes_title') }}</label>
                  <span v-if="filters.themeIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.themeIds.length }}</span>
               </div>
               <Icon :name="accordions.themes ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
@@ -158,7 +158,7 @@
                 <input
                   v-model="themeSearch"
                   type="text"
-                  placeholder="Search theme..."
+                  :placeholder="$t('filters.theme_search')"
                   class="w-full bg-black/30 border border-white/5 rounded-xl py-2 pl-9 pr-3 text-white text-xs placeholder-white/30 focus:outline-none focus:border-blue-500/30 transition-colors"
                 >
               </div>
@@ -176,7 +176,7 @@
                     <Icon v-if="filters.themeIds.includes(theme.id)" name="solar:check-circle-bold" class="w-4 h-4 shrink-0" />
                  </button>
                  <div v-if="filteredThemes.length === 0" class="text-center py-4 text-xs text-white/40">
-                   Theme not found
+                   {{ $t('filters.theme_not_found') }}
                  </div>
               </div>
            </div>
@@ -186,7 +186,7 @@
         <div class="space-y-3 border-t border-white/5 pt-6">
            <button @click="accordions.mechanics = !accordions.mechanics" class="w-full flex items-center justify-between group pl-1">
               <div class="flex items-center gap-2">
-                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">Mechanics</label>
+                 <label class="text-xs font-bold text-white/40 uppercase tracking-wider cursor-pointer group-hover:text-white/70 transition-colors">{{ $t('filters.mechanics_title') }}</label>
                  <span v-if="filters.mechanicIds.length > 0" class="text-xs text-blue-400 bg-blue-500/10 px-2 flex items-center justify-center rounded-full">{{ filters.mechanicIds.length }}</span>
               </div>
               <Icon :name="accordions.mechanics ? 'solar:alt-arrow-up-line-duotone' : 'solar:alt-arrow-down-line-duotone'" class="w-5 h-5 text-white/40 group-hover:text-white/70 transition-transform" />
@@ -218,7 +218,7 @@
           class="w-full flex items-center justify-center gap-2 py-3.5 bg-black/20 text-white/70 hover:text-white hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-2xl text-sm font-bold transition-all duration-300 shadow-inner group"
         >
           <Icon name="solar:trash-bin-trash-line-duotone" class="w-5 h-5 group-hover:text-red-400 transition-colors" />
-          Reset all
+          {{ $t('filters.reset_all') }}
         </button>
       </div>
     </aside>

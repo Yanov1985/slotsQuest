@@ -9,30 +9,44 @@ datasource db {
 }
 
 model providers {
-  id             String    @id
-  name           String    @unique
-  slug           String    @unique
-  description    String?
-  logo_url       String?
-  website_url    String?
-  founded_year   Int?
-  country        String?
-  is_active      Boolean?  @default(true)
-  created_at     DateTime? @default(now())
-  updated_at     DateTime? @default(now())
-  is_recommended Boolean?  @default(false)
-  slots          slots[]
+  id               String    @id
+  name             String    @unique
+  slug             String    @unique
+  description      String?
+  logo_url         String?
+  website_url      String?
+  founded_year     Int?
+  country          String?
+  is_active        Boolean?  @default(true)
+  created_at       DateTime? @default(now())
+  updated_at       DateTime? @default(now())
+  is_recommended   Boolean?  @default(false)
+  content_markdown String?
+  faq_json         String?
+  jsonld_enabled   Boolean?  @default(true)
+  localizations    Json?
+  pros_cons_json   String?
+  seo_desc         String?
+  seo_keywords     String?
+  seo_title        String?
+  slots            slots[]
 }
 
 model slot_categories {
-  id          String    @id
-  name        String    @unique
-  slug        String    @unique
-  description String?
-  created_at  DateTime? @default(now())
-  is_active   Boolean?  @default(true)
-  updated_at  DateTime? @default(now())
-  slots       slots[]
+  id               String    @id
+  name             String    @unique
+  slug             String    @unique
+  description      String?
+  created_at       DateTime? @default(now())
+  is_active        Boolean?  @default(true)
+  updated_at       DateTime? @default(now())
+  content_markdown String?
+  faq_json         String?
+  localizations    Json?
+  seo_desc         String?
+  seo_keywords     String?
+  seo_title        String?
+  slots            slots[]
 }
 
 model slots {
@@ -41,12 +55,12 @@ model slots {
   slug                                  String           @unique
   provider_id                           String
   category_id                           String?
-  theme_id                              String? // Deprecated: используйте slotThemes для many-to-many связи
+  theme_id                              String?
   description                           String?
   thumbnail_url                         String?
   media_type                            String?
   image_url                             String?
-  image_focus_point                     String?  @default("center 20%") // Точка фокуса для адаптивного кропа (CSS object-position)
+  image_focus_point                     String?          @default("center 20%")
   video_url                             String?
   demo_url                              String?
   real_play_url                         String?
@@ -122,7 +136,6 @@ model slots {
   ante_bet_title                        String?
   ante_bet_description                  String?
   ante_bet_warning                      String?
-  // FAQ (Frequently Asked Questions)
   faq_title                             String?
   faq_q1_emoji                          String?
   faq_q1_question                       String?
@@ -173,8 +186,8 @@ model slots {
   popularity_rtp_desc                   String?
   popularity_rtp_score                  String?
   popularity_stats_title                String?
-  popularity_title                      String? // Шаблон заголовка секции с плейсхолдером [popularity_keyword]
-  popularity_title_keyword              String? // Ключевое слово для замены в заголовке секции популярности
+  popularity_title                      String?
+  popularity_title_keyword              String?
   popularity_trend_title                String?
   popularity_trend_y1                   Int?
   popularity_trend_y2                   Int?
@@ -189,491 +202,379 @@ model slots {
   popularity_year_3                     String?
   popularity_year_4                     String?
   real_rtp                              Decimal?
+  strategy_title                        String?          @map("strategies_title")
+  strategy_intro                        String?          @map("strategies_intro")
+  strategy_beginner_title               String?
+  strategy_beginner_1                   String?
+  strategy_beginner_2                   String?
+  strategy_beginner_3                   String?
+  strategy_beginner_4                   String?
+  strategy_advanced_title               String?
+  strategy_advanced_1                   String?
+  strategy_advanced_2                   String?
+  strategy_advanced_3                   String?
+  strategy_advanced_4                   String?
+  strategy_warnings_title               String?
+  strategy_warning_1_title              String?
+  strategy_warning_1_text               String?
+  strategy_warning_2_title              String?
+  strategy_warning_2_text               String?
+  success_secret_title                  String?
+  success_secret_intro                  String?
+  success_secret_card_1_title           String?
+  success_secret_card_1_text            String?
+  success_secret_card_2_title           String?
+  success_secret_card_2_text            String?
+  success_secret_outro                  String?
+  reviews_title                         String?
+  reviews_subtitle                      String?
+  reviews_overall_rating                String?
+  reviews_overall_label                 String?
+  reviews_overall_stars                 String?
+  reviews_total_count                   String?
+  reviews_total_label                   String?
+  reviews_total_desc                    String?
+  reviews_positive_percent              String?
+  reviews_positive_label                String?
+  reviews_positive_desc                 String?
+  reviews_recommend_percent             String?
+  reviews_recommend_label               String?
+  reviews_recommend_desc                String?
+  reviews_distribution_title            String?
+  reviews_sentiments_title              String?
+  reviews_featured_title                String?
+  reviews_5_stars_percent               String?
+  reviews_5_stars_count                 String?
+  reviews_4_stars_percent               String?
+  reviews_4_stars_count                 String?
+  reviews_3_stars_percent               String?
+  reviews_3_stars_count                 String?
+  reviews_2_stars_percent               String?
+  reviews_2_stars_count                 String?
+  reviews_1_stars_percent               String?
+  reviews_1_stars_count                 String?
+  reviews_sentiment_1_title             String?
+  reviews_sentiment_1_desc              String?
+  reviews_sentiment_2_title             String?
+  reviews_sentiment_2_desc              String?
+  reviews_sentiment_3_title             String?
+  reviews_sentiment_3_desc              String?
+  reviews_sentiment_4_title             String?
+  reviews_sentiment_4_desc              String?
+  review_1_author                       String?
+  review_1_avatar_letter                String?
+  review_1_rating                       String?
+  review_1_badge                        String?
+  review_1_text                         String?
+  review_1_likes                        String?
+  review_1_replies                      String?
+  review_1_date                         String?
+  review_2_author                       String?
+  review_2_avatar_letter                String?
+  review_2_rating                       String?
+  review_2_badge                        String?
+  review_2_text                         String?
+  review_2_likes                        String?
+  review_2_replies                      String?
+  review_2_date                         String?
+  review_3_author                       String?
+  review_3_avatar_letter                String?
+  review_3_rating                       String?
+  review_3_badge                        String?
+  review_3_text                         String?
+  review_3_likes                        String?
+  review_3_replies                      String?
+  review_3_date                         String?
+  prof_rating_title                     String?
+  prof_rating_subtitle                  String?
+  prof_rating_overall_title             String?
+  prof_rating_overall_desc              String?
+  prof_rating_overall_score             String?
+  prof_rating_overall_stars             String?
+  prof_rating_metric_1_emoji            String?
+  prof_rating_metric_1_name             String?
+  prof_rating_metric_1_score            String?
+  prof_rating_metric_2_emoji            String?
+  prof_rating_metric_2_name             String?
+  prof_rating_metric_2_score            String?
+  prof_rating_metric_3_emoji            String?
+  prof_rating_metric_3_name             String?
+  prof_rating_metric_3_score            String?
+  prof_rating_metric_4_emoji            String?
+  prof_rating_metric_4_name             String?
+  prof_rating_metric_4_score            String?
+  prof_rating_metric_5_emoji            String?
+  prof_rating_metric_5_name             String?
+  prof_rating_metric_5_score            String?
+  prof_rating_expert_title              String?
+  prof_rating_expert_name               String?
+  prof_rating_expert_position           String?
+  prof_rating_expert_quote              String?
+  prof_rating_expert_quote_keyword      String?
+  prof_rating_warning_title             String?
+  prof_rating_warning_text              String?
+  prof_rating_pros_title                String?
+  prof_rating_pros_1_title              String?
+  prof_rating_pros_1_desc               String?
+  prof_rating_pros_2_title              String?
+  prof_rating_pros_2_desc               String?
+  prof_rating_pros_3_title              String?
+  prof_rating_pros_3_desc               String?
+  prof_rating_pros_4_title              String?
+  prof_rating_pros_4_desc               String?
+  prof_rating_pros_5_title              String?
+  prof_rating_pros_5_desc               String?
+  prof_rating_cons_title                String?
+  prof_rating_cons_1_title              String?
+  prof_rating_cons_1_desc               String?
+  prof_rating_cons_2_title              String?
+  prof_rating_cons_2_desc               String?
+  prof_rating_cons_3_title              String?
+  prof_rating_cons_3_desc               String?
+  prof_rating_cons_4_title              String?
+  prof_rating_cons_4_desc               String?
+  prof_rating_cons_5_title              String?
+  prof_rating_cons_5_desc               String?
+  prof_rating_recommendation_title      String?
+  prof_rating_recommendation_subtitle   String?
+  prof_rating_recommendation_text       String?
+  prof_rating_recommendation_keyword    String?
+  conclusion_title                      String?
+  conclusion_rating_title               String?
+  conclusion_rating_keyword             String?
+  conclusion_text_1                     String?
+  conclusion_text_1_keyword             String?
+  conclusion_text_2                     String?
+  conclusion_suitable_title             String?
+  conclusion_suitable_1                 String?
+  conclusion_suitable_2                 String?
+  conclusion_suitable_3                 String?
+  conclusion_suitable_4                 String?
+  conclusion_warning_title              String?
+  conclusion_warning_1                  String?
+  conclusion_warning_2                  String?
+  conclusion_warning_3                  String?
+  conclusion_warning_4                  String?
+  conclusion_verdict_title              String?
+  conclusion_verdict_text               String?
+  conclusion_verdict_keyword            String?
+  cta_title                             String?
+  cta_subtitle                          String?
+  cta_subtitle_keyword                  String?
+  cta_potential                         String?
+  cta_potential_prefix                  String?
+  cta_potential_suffix                  String?
+  cta_feature_1_emoji                   String?
+  cta_feature_1_title                   String?
+  cta_feature_1_desc                    String?
+  cta_feature_2_emoji                   String?
+  cta_feature_2_title                   String?
+  cta_feature_2_desc                    String?
+  cta_feature_3_emoji                   String?
+  cta_feature_3_title                   String?
+  cta_feature_3_desc                    String?
+  cta_button_demo_emoji                 String?
+  cta_button_demo_text                  String?
+  cta_button_demo_url                   String?
+  cta_button_real_emoji                 String?
+  cta_button_real_text                  String?
+  cta_button_real_url                   String?
+  cta_trust_1_text                      String?
+  cta_trust_2_text                      String?
+  cta_trust_3_text                      String?
+  info_expert_verdict                   String?
+  info_pros                             String?
+  info_cons                             String?
+  info_faq                              String?
+  info_reviews                          String?
+  info_how_to_play                      String?
+  info_demo_cta                         String?
+  geo_regions                           String?
+  localizations                         Json?
+  jsonld_enabled                        Boolean          @default(true)
+  jsonld_type                           String?          @default("Game")
+  jsonld_game_genre                     String?
+  jsonld_game_platform                  String?          @default("Web Browser, Mobile, Desktop")
+  jsonld_content_rating                 String?          @default("18+")
+  jsonld_is_free                        Boolean          @default(true)
+  jsonld_enable_product                 Boolean          @default(false)
+  jsonld_enable_review                  Boolean          @default(true)
+  jsonld_enable_faq                     Boolean          @default(false)
+  jsonld_enable_howto                   Boolean          @default(false)
+  jsonld_enable_breadcrumb              Boolean          @default(true)
+  jsonld_enable_video                   Boolean          @default(false)
+  jsonld_product_price                  Float?
+  jsonld_product_currency               String?          @default("USD")
+  jsonld_product_availability           String?          @default("InStock")
+  jsonld_product_condition              String?          @default("NewCondition")
+  jsonld_review_author                  String?          @default("SlotQuest Editorial Team")
+  jsonld_review_date                    DateTime?        @default(now())
+  jsonld_review_text                    String?
+  jsonld_review_rating                  Float?
+  jsonld_faq_json                       String?
+  jsonld_howto_json                     String?
+  jsonld_video_url                      String?
+  jsonld_video_thumbnail                String?
+  jsonld_video_duration                 String?
+  jsonld_video_upload_date              DateTime?
+  jsonld_video_description              String?
+  jsonld_custom                         String?
+  jsonld_override_auto                  Boolean          @default(false)
+  jsonld_last_validated                 DateTime?
+  jsonld_validation_errors              String?
+  jsonld_rich_snippet_enabled           Boolean          @default(true)
+  seo_title                             String?
+  seo_description                       String?
+  seo_keywords_primary                  String?
+  seo_keywords_lsi                      String?
+  seo_keywords_geo                      String?
+  content_language                      String?          @default("en")
+  geo_target_regions                    String?
+  seo_title_template                    String?
+  seo_title_power_words                 String?
+  search_intent                         String?          @default("transactional")
+  canonical_url                         String?
+  og_title                              String?
+  og_description                        String?
+  og_image                              String?
+  og_type                               String?          @default("article")
+  og_url                                String?
+  og_site_name                          String?          @default("SlotQuest")
+  og_locale                             String?          @default("en_US")
+  og_locale_alternate                   String?
+  og_video                              String?
+  og_video_type                         String?
+  og_video_width                        Int?
+  og_video_height                       Int?
+  og_image_width                        Int?             @default(1200)
+  og_image_height                       Int?             @default(630)
+  og_image_alt                          String?
+  twitter_card                          String?          @default("summary_large_image")
+  twitter_site                          String?          @default("@SlotQuest")
+  twitter_creator                       String?          @default("@SlotQuest")
+  twitter_title                         String?
+  twitter_description                   String?
+  twitter_image                         String?
+  twitter_image_alt                     String?
+  twitter_player                        String?
+  twitter_player_width                  Int?
+  twitter_player_height                 Int?
+  robots_index                          Boolean          @default(true)
+  robots_follow                         Boolean          @default(true)
+  robots_max_snippet                    Int?             @default(-1)
+  robots_max_image_preview              String?          @default("large")
+  robots_max_video_preview              Int?             @default(-1)
+  robots_notranslate                    Boolean          @default(false)
+  robots_noimageindex                   Boolean          @default(false)
+  robots_unavailable_after              DateTime?
+  hreflang_enabled                      Boolean          @default(true)
+  hreflang_x_default                    String?
+  hreflang_config                       String?
+  hreflang_preset                       String?          @default("international")
+  author_meta                           String?          @default("SlotQuest Team")
+  publisher_meta                        String?          @default("SlotQuest")
+  copyright_meta                        String?
+  last_reviewed_date                    DateTime?
+  content_updated_at                    DateTime?
+  preconnect_urls                       String?
+  preload_image                         Boolean          @default(true)
+  dns_prefetch_urls                     String?
+  seo_title_use_template                Boolean          @default(false)
+  eeat_experience_date                  DateTime?
+  eeat_experience_hours                 Int?
+  eeat_experience_sessions              Int?
+  eeat_experience_screenshots           String?
+  eeat_author_name                      String?          @default("SlotQuest Editorial Team")
+  eeat_author_position                  String?
+  eeat_author_bio                       String?
+  eeat_author_avatar                    String?
+  eeat_author_social                    String?
+  eeat_expertise_years                  Int?             @default(5)
+  eeat_reviews_count                    Int?
+  eeat_certifications                   String?
+  eeat_partnerships                     String?
+  eeat_citations_count                  Int?             @default(0)
+  eeat_awards                           String?
+  eeat_featured_in                      String?
+  eeat_data_sources                     String?
+  eeat_fact_checked                     Boolean          @default(true)
+  eeat_fact_check_date                  DateTime?
+  eeat_methodology                      String?
+  eeat_disclaimer                       String?          @default("18+ | Gambling can be addictive | Play responsibly")
+  eeat_license_info                     String?
+  content_published_date                DateTime?
+  content_major_update                  DateTime?
+  content_minor_update                  DateTime?
+  content_reviewed_date                 DateTime?
+  content_version                       String?          @default("1.0")
+  content_changelog                     String?
+  content_update_frequency              String?          @default("monthly")
+  content_next_review                   DateTime?
+  content_freshness_score               Int?             @default(100)
+  social_share_count                    Int?             @default(0)
+  social_facebook_shares                Int?             @default(0)
+  social_twitter_shares                 Int?             @default(0)
+  social_pinterest_shares               Int?             @default(0)
+  social_custom_hashtags                String?
+  social_cta_text                       String?
+  cta_primary_text                      String?          @default("Play Now")
+  cta_primary_url                       String?
+  cta_secondary_text                    String?          @default("Try Demo")
+  cta_secondary_url                     String?
+  cta_urgency_text                      String?
+  cta_social_proof                      String?
+  keyword_primary_target                Float?           @default(1.5)
+  keyword_density_score                 Int?             @default(0)
+  keyword_analysis_date                 DateTime?
+  keyword_analysis_result               String?
+  keyword_suggestions                   String?
+  keyword_competitors                   String?
+  indexing_status                       String?          @default("unknown")
+  indexing_first_date                   DateTime?
+  indexing_last_crawl                   DateTime?
+  indexing_crawl_frequency              String?          @default("weekly")
+  indexing_impressions                  Int?             @default(0)
+  indexing_clicks                       Int?             @default(0)
+  indexing_position                     Float?
+  indexing_internal_links               Int?             @default(0)
+  indexing_external_links               Int?             @default(0)
+  indexing_last_check                   DateTime?
+  indexing_errors                       String?
+  cwv_lcp                               Float?
+  cwv_fid                               Float?
+  cwv_cls                               Float?
+  cwv_ttfb                              Float?
+  cwv_fcp                               Float?
+  cwv_inp                               Float?
+  cwv_score_mobile                      Int?             @default(0)
+  cwv_score_desktop                     Int?             @default(0)
+  cwv_last_check                        DateTime?
+  cwv_issues                            String?
+  cwv_opportunities                     String?
+  sitemap_include                       Boolean          @default(true)
+  sitemap_priority                      Float?           @default(0.8)
+  sitemap_frequency                     String?          @default("weekly")
+  sitemap_last_mod                      DateTime?
+  sitemap_images                        String?
+  sitemap_videos                        String?
+  sitemap_news                          Boolean          @default(false)
+  seo_health_score                      Int?             @default(0)
+  seo_health_issues                     String?
+  seo_health_warnings                   String?
+  seo_health_passed                     String?
+  seo_health_last_audit                 DateTime?
+  seo_health_trend                      String?
+  competitor_urls                       String?
+  competitor_positions                  String?
+  competitor_last_check                 DateTime?
   slot_bonuses                          slot_bonuses[]
   slot_features                         slot_features[]
   slot_mechanics                        slot_mechanics[]
-  slotThemes                            slot_themes[] // Новая many-to-many связь с темами
-
-  // Strategies & Tips (dynamic content for gameplay advice)
-  strategy_title           String? @map("strategies_title")
-  strategy_intro           String? @map("strategies_intro")
-  strategy_beginner_title  String?
-  strategy_beginner_1      String?
-  strategy_beginner_2      String?
-  strategy_beginner_3      String?
-  strategy_beginner_4      String?
-  strategy_advanced_title  String?
-  strategy_advanced_1      String?
-  strategy_advanced_2      String?
-  strategy_advanced_3      String?
-  strategy_advanced_4      String?
-  // Важные предупреждения (2 карточки)
-  strategy_warnings_title  String? // Заголовок секции "⚠️ Важные предупреждения"
-  strategy_warning_1_title String? // Карточка 1: заголовок "Высокая волатильность"
-  strategy_warning_1_text  String? // Карточка 1: текст
-  strategy_warning_2_title String? // Карточка 2: заголовок "Покупка бонуса"
-  strategy_warning_2_text  String? // Карточка 2: текст
-
-  // Секция "В чем секрет успеха?"
-  success_secret_title        String? // Заголовок "В чем секрет такого огромного успеха?"
-  success_secret_intro        String? // Вступительный текст
-  success_secret_card_1_title String? // Карточка 1: "🍭 Связь с Sweet Bonanza"
-  success_secret_card_1_text  String? // Карточка 1: текст
-  success_secret_card_2_title String? // Карточка 2: "⚖️ Идеальный баланс"
-  success_secret_card_2_text  String? // Карточка 2: текст
-  success_secret_outro        String? // Заключительный текст
-
-  // Отзывы игроков - заголовки и статистика
-  reviews_title              String?
-  reviews_subtitle           String?
-  // Карточки статистики (4 карточки)
-  reviews_overall_rating     String? // Значение рейтинга (4.3)
-  reviews_overall_label      String? // Заголовок "Общий рейтинг"
-  reviews_overall_stars      String? // Звёзды "★★★★☆"
-  reviews_total_count        String? // Количество отзывов (1.2K+)
-  reviews_total_label        String? // Заголовок "Всего отзывов"
-  reviews_total_desc         String? // Подпись "активное сообщество"
-  reviews_positive_percent   String? // Процент (75%)
-  reviews_positive_label     String? // Заголовок "Положительные"
-  reviews_positive_desc      String? // Подпись "4-5 звёзд"
-  reviews_recommend_percent  String? // Процент (68%)
-  reviews_recommend_label    String? // Заголовок "Рекомендуют"
-  reviews_recommend_desc     String? // Подпись "друзьям играть"
-  // Заголовки секций
-  reviews_distribution_title String? // "Распределение оценок"
-  reviews_sentiments_title   String? // "Анализ настроений"
-  reviews_featured_title     String? // "Избранные отзывы игроков"
-  // Распределение оценок (5-1 звезда)
-  reviews_5_stars_percent    String?
-  reviews_5_stars_count      String?
-  reviews_4_stars_percent    String?
-  reviews_4_stars_count      String?
-  reviews_3_stars_percent    String?
-  reviews_3_stars_count      String?
-  reviews_2_stars_percent    String?
-  reviews_2_stars_count      String?
-  reviews_1_stars_percent    String?
-  reviews_1_stars_count      String?
-  // Ключевые моменты из отзывов (sentiment analysis)
-  reviews_sentiment_1_title  String?
-  reviews_sentiment_1_desc   String?
-  reviews_sentiment_2_title  String?
-  reviews_sentiment_2_desc   String?
-  reviews_sentiment_3_title  String?
-  reviews_sentiment_3_desc   String?
-  reviews_sentiment_4_title  String?
-  reviews_sentiment_4_desc   String?
-  // Индивидуальные отзывы (3 основных отзыва)
-  review_1_author            String?
-  review_1_avatar_letter     String?
-  review_1_rating            String?
-  review_1_badge             String?
-  review_1_text              String?
-  review_1_likes             String?
-  review_1_replies           String?
-  review_1_date              String?
-  review_2_author            String?
-  review_2_avatar_letter     String?
-  review_2_rating            String?
-  review_2_badge             String?
-  review_2_text              String?
-  review_2_likes             String?
-  review_2_replies           String?
-  review_2_date              String?
-  review_3_author            String?
-  review_3_avatar_letter     String?
-  review_3_rating            String?
-  review_3_badge             String?
-  review_3_text              String?
-  review_3_likes             String?
-  review_3_replies           String?
-  review_3_date              String?
-
-  // Профессиональная оценка - заголовки и общая информация
-  prof_rating_title                   String?
-  prof_rating_subtitle                String?
-  prof_rating_overall_title           String?
-  prof_rating_overall_desc            String?
-  prof_rating_overall_score           String?
-  prof_rating_overall_stars           String?
-  // Детальные метрики (5 категорий оценки)
-  prof_rating_metric_1_emoji          String?
-  prof_rating_metric_1_name           String?
-  prof_rating_metric_1_score          String?
-  prof_rating_metric_2_emoji          String?
-  prof_rating_metric_2_name           String?
-  prof_rating_metric_2_score          String?
-  prof_rating_metric_3_emoji          String?
-  prof_rating_metric_3_name           String?
-  prof_rating_metric_3_score          String?
-  prof_rating_metric_4_emoji          String?
-  prof_rating_metric_4_name           String?
-  prof_rating_metric_4_score          String?
-  prof_rating_metric_5_emoji          String?
-  prof_rating_metric_5_name           String?
-  prof_rating_metric_5_score          String?
-  // Экспертное заключение
-  prof_rating_expert_title            String? // Заголовок секции "Экспертное заключение"
-  prof_rating_expert_name             String? // Имя эксперта "Сертифицированный эксперт"
-  prof_rating_expert_position         String? // Должность "Ведущий аналитик игровой индустрии • 8+ лет опыта"
-  prof_rating_expert_quote            String? // Текст экспертной цитаты с плейсхолдером [prof_expert_keyword]
-  prof_rating_expert_quote_keyword    String? // Ключевое слово для замены в цитате эксперта
-  // Предупреждение о волатильности
-  prof_rating_warning_title           String? // Заголовок "Предупреждение о волатильности"
-  prof_rating_warning_text            String? // Текст предупреждения
-  // Преимущества (5 пунктов)
-  prof_rating_pros_title              String? // Заголовок секции преимуществ "✅ ПРЕИМУЩЕСТВА"
-  prof_rating_pros_1_title            String? // Заголовок преимущества 1
-  prof_rating_pros_1_desc             String? // Описание преимущества 1
-  prof_rating_pros_2_title            String?
-  prof_rating_pros_2_desc             String?
-  prof_rating_pros_3_title            String?
-  prof_rating_pros_3_desc             String?
-  prof_rating_pros_4_title            String?
-  prof_rating_pros_4_desc             String?
-  prof_rating_pros_5_title            String?
-  prof_rating_pros_5_desc             String?
-  // Недостатки (5 пунктов)
-  prof_rating_cons_title              String? // Заголовок секции недостатков "❌ НЕДОСТАТКИ"
-  prof_rating_cons_1_title            String? // Заголовок недостатка 1
-  prof_rating_cons_1_desc             String? // Описание недостатка 1
-  prof_rating_cons_2_title            String?
-  prof_rating_cons_2_desc             String?
-  prof_rating_cons_3_title            String?
-  prof_rating_cons_3_desc             String?
-  prof_rating_cons_4_title            String?
-  prof_rating_cons_4_desc             String?
-  prof_rating_cons_5_title            String?
-  prof_rating_cons_5_desc             String?
-  // Итоговая рекомендация
-  prof_rating_recommendation_title    String? // Заголовок "Итоговая рекомендация"
-  prof_rating_recommendation_subtitle String? // Подзаголовок "От экспертов SlotQuest"
-  prof_rating_recommendation_text     String? // Текст с плейсхолдером [prof_recommendation_keyword]
-  prof_rating_recommendation_keyword  String? // Ключевое слово для замены в тексте
-
-  // Секция "Заключение" (Conclusion)
-  conclusion_title           String?
-  // Final Rating - заголовок с ключевым словом
-  conclusion_rating_title    String? // Шаблон заголовка "Итоговая оценка [conclusion_keyword]"
-  conclusion_rating_keyword  String? // Ключевое слово для использования в заголовке Final Rating
-  conclusion_text_1          String?
-  conclusion_text_1_keyword  String? // Ключевое слово для использования в начале Paragraph 1 (заменяет [conclusion_text_keyword])
-  conclusion_text_2          String?
-  // Кому подходит (заголовок + 4 пункта)
-  conclusion_suitable_title  String? // Заголовок секции "Кому подходит"
-  conclusion_suitable_1      String?
-  conclusion_suitable_2      String?
-  conclusion_suitable_3      String?
-  conclusion_suitable_4      String?
-  // Важно помнить (заголовок + 4 пункта)
-  conclusion_warning_title   String? // Заголовок секции "Важно помнить"
-  conclusion_warning_1       String?
-  conclusion_warning_2       String?
-  conclusion_warning_3       String?
-  conclusion_warning_4       String?
-  // Финальный вердикт
-  conclusion_verdict_title   String? // Заголовок секции "Финальный вердикт"
-  conclusion_verdict_text    String? // Текст финального вердикта с плейсхолдером [conclusion_verdict_keyword]
-  conclusion_verdict_keyword String? // Ключевое слово для замены в тексте финального вердикта
-
-  // Секция CTA "Время побеждать"
-  cta_title             String?
-  cta_subtitle          String?
-  cta_subtitle_keyword  String? // Ключевое слово для использования в subtitle вместо названия слота
-  cta_potential         String?
-  cta_potential_prefix  String? // Текст перед значением win potential (например: "Потенциал выигрыша до")
-  cta_potential_suffix  String? // Текст после значения win potential (например: "ждёт вас!")
-  // Фичи/Преимущества (3 блока по 3 поля)
-  cta_feature_1_emoji   String?
-  cta_feature_1_title   String?
-  cta_feature_1_desc    String?
-  cta_feature_2_emoji   String?
-  cta_feature_2_title   String?
-  cta_feature_2_desc    String?
-  cta_feature_3_emoji   String?
-  cta_feature_3_title   String?
-  cta_feature_3_desc    String?
-  // Кнопки призыва к действию (2 кнопки по 3 поля)
-  cta_button_demo_emoji String?
-  cta_button_demo_text  String?
-  cta_button_demo_url   String?
-  cta_button_real_emoji String?
-  cta_button_real_text  String?
-  cta_button_real_url   String?
-  // Элементы доверия (3 пункта)
-  cta_trust_1_text      String?
-  cta_trust_2_text      String?
-  cta_trust_3_text      String?
-
-  // Info Popup Content (для модального окна ⓘ на клиенте)
-  info_expert_verdict String? // Экспертный вердикт (HTML)
-  info_pros           String? // Преимущества (JSON массив строк)
-  info_cons           String? // Недостатки (JSON массив строк)
-  info_faq            String? // FAQ (JSON массив {question, answer})
-  info_reviews        String? // Отзывы (JSON массив {author, rating, text, date})
-  info_how_to_play    String? // Как играть (JSON массив {step, text})
-  info_demo_cta       String? // CTA текст для демо-режима
-
-  // ========== 🌍 GEO TARGETING ==========
-  geo_regions          String? // JSON массив кодов стран для hreflang (например ["RU","IN","BR"])
-  localizations        Json?   // JSON object для хранения переводов и локализованного SEO ({"pt-BR": { seo_title: "...", ... }})
-
-  // ========== 🎯 JSON-LD СТРУКТУРИРОВАННЫЕ ДАННЫЕ (SEO) ==========
-  // Управление JSON-LD схемами для Google Rich Snippets и поисковой оптимизации
-  // Эти поля позволяют контролировать структурированные данные через админ-панель
-
-  // 1️⃣ ОСНОВНАЯ СХЕМА (Game/Product/WebApplication)
-  jsonld_enabled        Boolean @default(true) // Включить/выключить JSON-LD для этого слота
-  jsonld_type           String? @default("Game") // Тип схемы: Game, Product, WebApplication, VideoGame
-  jsonld_game_genre     String? // Жанр игры: Casino, Arcade, Strategy, Puzzle
-  jsonld_game_platform  String? @default("Web Browser, Mobile, Desktop") // Платформы: Web, Mobile, Desktop
-  jsonld_content_rating String? @default("18+") // Возрастной рейтинг: 18+, 21+, Everyone
-  jsonld_is_free        Boolean @default(true) // Доступна ли бесплатная версия
-
-  // 2️⃣ ДОПОЛНИТЕЛЬНЫЕ СХЕМЫ (включить/выключить через чекбоксы)
-  jsonld_enable_product    Boolean @default(false) // ✅ Включить Product Schema (цена, доступность)
-  jsonld_enable_review     Boolean @default(true) // ✅ Включить Review Schema (звёзды в поиске!)
-  jsonld_enable_faq        Boolean @default(false) // ✅ Включить FAQ Schema (вопросы-ответы)
-  jsonld_enable_howto      Boolean @default(false) // ✅ Включить HowTo Schema (инструкция)
-  jsonld_enable_breadcrumb Boolean @default(true) // ✅ Включить BreadcrumbList Schema (хлебные крошки)
-  jsonld_enable_video      Boolean @default(false) // ✅ Включить VideoObject Schema (видео-обзор)
-
-  // 3️⃣ PRODUCT SCHEMA (если слот продаётся как продукт или есть платная версия)
-  jsonld_product_price        Float? // Цена продукта (например: 9.99)
-  jsonld_product_currency     String? @default("USD") // Валюта: USD, EUR, RUB
-  jsonld_product_availability String? @default("InStock") // Доступность: InStock, OutOfStock, PreOrder
-  jsonld_product_condition    String? @default("NewCondition") // Состояние: NewCondition, UsedCondition, RefurbishedCondition
-
-  // 4️⃣ REVIEW SCHEMA (отзывы для отображения звёзд в Google)
-  jsonld_review_author String?   @default("SlotQuest Editorial Team") // Автор отзыва
-  jsonld_review_date   DateTime? @default(now()) // Дата отзыва
-  jsonld_review_text   String? // Текст отзыва (краткий, 100-200 символов)
-  jsonld_review_rating Float? // Рейтинг от эксперта (0-5)
-
-  // 5️⃣ FAQ SCHEMA (часто задаваемые вопросы для расширенного сниппета)
-  jsonld_faq_json String? // JSON массив [{question: "...", answer: "..."}]
-
-  // 6️⃣ HOWTO SCHEMA (пошаговая инструкция "Как играть")
-  jsonld_howto_json String? // JSON массив [{step: 1, name: "...", text: "..."}]
-
-  // 7️⃣ VIDEO SCHEMA (если есть видео-обзор слота)
-  jsonld_video_url         String? // URL видео (YouTube, Vimeo)
-  jsonld_video_thumbnail   String? // URL превью видео
-  jsonld_video_duration    String? // Длительность в ISO 8601: PT2M30S (2 минуты 30 секунд)
-  jsonld_video_upload_date DateTime? // Дата загрузки видео
-  jsonld_video_description String? // Описание видео
-
-  // 8️⃣ КАСТОМНАЯ JSON-LD (для продвинутых пользователей)
-  jsonld_custom        String? // Полностью кастомная JSON-LD схема (raw JSON)
-  jsonld_override_auto Boolean @default(false) // Использовать кастомную схему вместо автоматической
-
-  // 9️⃣ МЕТА-ИНФОРМАЦИЯ И АНАЛИТИКА
-  jsonld_last_validated       DateTime? // Дата последней проверки валидности
-  jsonld_validation_errors    String? // Ошибки валидации (JSON массив)
-  jsonld_rich_snippet_enabled Boolean   @default(true) // Показывать ли rich snippets
-
-  // 🔟 SEO МЕТА-ТЕГИ (основные для поисковых систем)
-  seo_title            String? // SEO заголовок (50-60 символов)
-  seo_description      String? // SEO описание (150-160 символов)
-  seo_keywords_primary String? // Основные ключевые слова (3-5 слов)
-  seo_keywords_lsi     String? // LSI ключевые слова (10-15 связанных терминов)
-  seo_keywords_geo     String? // Гео-ключевые слова (для разных стран)
-  content_language     String? @default("en") // Язык контента: en, ru, es, de
-  geo_target_regions   String? // Целевые регионы (ISO коды через запятую): US,UK,CA,RU
-
-  // 1️⃣1️⃣ РАСШИРЕННЫЕ SEO ПОЛЯ (Фаза 1)
-  // Title & Description Templates
-  seo_title_template    String? // Шаблон заголовка: "{name} Slot by {provider} | Play Free Demo 2025"
-  seo_title_power_words String? // Продающие слова: "Free,Demo,Bonus,New 2025"
-  search_intent         String? @default("transactional") // Интент: informational, navigational, transactional, commercial
-  canonical_url         String? // Канонический URL страницы
-
-  // 1️⃣2️⃣ РАСШИРЕННЫЕ OPEN GRAPH ТЕГИ
-  og_title            String? // Open Graph заголовок
-  og_description      String? // Open Graph описание
-  og_image            String? // Open Graph изображение (1200x630)
-  og_type             String? @default("article") // Тип: website, article, game
-  og_url              String? // URL страницы для OG
-  og_site_name        String? @default("SlotQuest") // Название сайта
-  og_locale           String? @default("en_US") // Локаль: en_US, ru_RU, pt_BR
-  og_locale_alternate String? // Альтернативные локали через запятую: ru_RU,pt_BR,hi_IN
-  og_video            String? // URL видео для OG (YouTube/Vimeo)
-  og_video_type       String? // Тип видео: video/mp4
-  og_video_width      Int? // Ширина видео
-  og_video_height     Int? // Высота видео
-  og_image_width      Int?    @default(1200) // Ширина изображения
-  og_image_height     Int?    @default(630) // Высота изображения
-  og_image_alt        String? // Alt текст для изображения
-
-  // 1️⃣3️⃣ TWITTER CARD ТЕГИ
-  twitter_card          String? @default("summary_large_image") // Тип: summary, summary_large_image, player
-  twitter_site          String? @default("@SlotQuest") // Twitter аккаунт сайта
-  twitter_creator       String? @default("@SlotQuest") // Twitter автора
-  twitter_title         String? // Заголовок для Twitter
-  twitter_description   String? // Описание для Twitter
-  twitter_image         String? // Изображение для Twitter
-  twitter_image_alt     String? // Alt текст изображения
-  twitter_player        String? // URL видео-плеера (для player card)
-  twitter_player_width  Int? // Ширина плеера
-  twitter_player_height Int? // Высота плеера
-
-  // 1️⃣4️⃣ ADVANCED ROBOTS DIRECTIVES
-  robots_index             Boolean   @default(true) // index/noindex
-  robots_follow            Boolean   @default(true) // follow/nofollow
-  robots_max_snippet       Int?      @default(-1) // max-snippet: -1 = без ограничений, 0 = без сниппета
-  robots_max_image_preview String?   @default("large") // max-image-preview: none, standard, large
-  robots_max_video_preview Int?      @default(-1) // max-video-preview: -1 = без ограничений
-  robots_notranslate       Boolean   @default(false) // notranslate
-  robots_noimageindex      Boolean   @default(false) // noimageindex
-  robots_unavailable_after DateTime? // unavailable_after: дата после которой убрать из индекса
-
-  // 1️⃣5️⃣ HREFLANG И МЕЖДУНАРОДНОЕ SEO
-  hreflang_enabled   Boolean @default(true) // Включить hreflang теги
-  hreflang_x_default String? // URL для x-default (обычно англ. версия)
-  // JSON формат: [{"lang": "en", "region": "US", "url": "/slots/..."}]
-  hreflang_config    String? // JSON массив конфигурации hreflang
-  // Пресеты для быстрой настройки целевых гео (из вашего списка)
-  hreflang_preset    String? @default("international") // international, cis, latam, asia, custom
-
-  // 1️⃣6️⃣ ДОПОЛНИТЕЛЬНЫЕ ТЕХНИЧЕСКИЕ SEO
-  author_meta        String?   @default("SlotQuest Team") // Мета-тег автора
-  publisher_meta     String?   @default("SlotQuest") // Издатель
-  copyright_meta     String? // Авторские права
-  last_reviewed_date DateTime? // Дата последней проверки контента (E-E-A-T)
-  content_updated_at DateTime? // Дата обновления контента
-
-  // 1️⃣7️⃣ CORE WEB VITALS HINTS
-  preconnect_urls   String? // URL для preconnect через запятую
-  preload_image     Boolean @default(true) // Preload главного изображения
-  dns_prefetch_urls String? // URL для dns-prefetch через запятую
-
-  // ========== 🎯 ФАЗА 2: РАСШИРЕННОЕ SEO ==========
-
-  // 1️⃣8️⃣ TITLE TEMPLATES - Система шаблонов заголовков
-  // seo_title_template и seo_title_power_words уже определены в секции 1️⃣1️⃣
-  seo_title_use_template Boolean @default(false) // Использовать шаблон вместо ручного title
-
-  // 1️⃣9️⃣ E-E-A-T СИГНАЛЫ (Google Quality Guidelines)
-  // Experience - Опыт
-  eeat_experience_date        DateTime? // Дата первого тестирования слота
-  eeat_experience_hours       Int? // Количество часов тестирования
-  eeat_experience_sessions    Int? // Количество игровых сессий
-  eeat_experience_screenshots String? // JSON массив скриншотов реального геймплея
-
-  // Expertise - Экспертиза
-  eeat_author_name     String? @default("SlotQuest Editorial Team") // Имя автора обзора
-  eeat_author_position String? // Должность: "Senior Slot Analyst"
-  eeat_author_bio      String? // Краткая биография автора
-  eeat_author_avatar   String? // URL аватара автора
-  eeat_author_social   String? // JSON: {"twitter": "@...", "linkedin": "..."}
-  eeat_expertise_years Int?    @default(5) // Лет опыта в индустрии
-  eeat_reviews_count   Int? // Количество написанных обзоров
-
-  // Authoritativeness - Авторитетность
-  eeat_certifications  String? // Сертификации: "eCOGRA, iTech Labs, GLI"
-  eeat_partnerships    String? // Партнёрства с провайдерами
-  eeat_citations_count Int?    @default(0) // Количество цитирований
-  eeat_awards          String? // Полученные награды (JSON)
-  eeat_featured_in     String? // Упоминания в СМИ: "Forbes, Casino.org"
-
-  // Trustworthiness - Надёжность
-  eeat_data_sources    String? // Источники данных: "Official RTP from Pragmatic Play"
-  eeat_fact_checked    Boolean   @default(true) // Факты проверены
-  eeat_fact_check_date DateTime? // Дата проверки фактов
-  eeat_methodology     String? // Описание методологии оценки
-  eeat_disclaimer      String?   @default("18+ | Gambling can be addictive | Play responsibly") // Отказ от ответственности
-  eeat_license_info    String? // Информация о лицензии
-
-  // 2️⃣0️⃣ CONTENT FRESHNESS - Свежесть контента
-  content_published_date   DateTime? // Дата первой публикации
-  content_major_update     DateTime? // Дата крупного обновления
-  content_minor_update     DateTime? // Дата мелкого обновления
-  content_reviewed_date    DateTime? // Дата последней редакторской проверки
-  content_version          String?   @default("1.0") // Версия контента
-  content_changelog        String? // JSON массив изменений: [{date, description}]
-  content_update_frequency String?   @default("monthly") // weekly, monthly, quarterly
-  content_next_review      DateTime? // Запланированная дата следующей проверки
-  content_freshness_score  Int?      @default(100) // Оценка свежести 0-100
-
-  // 2️⃣1️⃣ SOCIAL SHARING OPTIMIZATION
-  social_share_count      Int?    @default(0) // Общее количество шейров
-  social_facebook_shares  Int?    @default(0) // Шейры в Facebook
-  social_twitter_shares   Int?    @default(0) // Шейры в Twitter
-  social_pinterest_shares Int?    @default(0) // Шейры в Pinterest
-  social_custom_hashtags  String? // Кастомные хештеги: "#slots #casino #pragmatic"
-  social_cta_text         String? // CTA для шеринга: "Share this slot review!"
-
-  // 2️⃣2️⃣ CONVERSION OPTIMIZATION
-  cta_primary_text   String? @default("Play Now") // Основной CTA
-  cta_primary_url    String? // URL основного CTA
-  cta_secondary_text String? @default("Try Demo") // Вторичный CTA
-  cta_secondary_url  String? // URL вторичного CTA
-  cta_urgency_text   String? // Текст срочности: "Limited time offer!"
-  cta_social_proof   String? // Социальное доказательство: "1,247 players online"
-
-  // ========== 🎯 ФАЗА 3: АНАЛИТИКА И ПРОИЗВОДИТЕЛЬНОСТЬ ==========
-
-  // 2️⃣3️⃣ KEYWORD DENSITY ANALYSIS
-  keyword_primary_target  Float?    @default(1.5) // Целевая плотность primary keyword (%)
-  keyword_density_score   Int?      @default(0) // Оценка плотности 0-100
-  keyword_analysis_date   DateTime? // Дата последнего анализа
-  keyword_analysis_result String? // JSON результат анализа: {primary: 1.2%, lsi: [...], issues: [...]}
-  keyword_suggestions     String? // JSON предложения по улучшению
-  keyword_competitors     String? // JSON: анализ ключевых слов конкурентов
-
-  // 2️⃣4️⃣ INDEXING STATUS
-  indexing_status          String?   @default("unknown") // indexed, not_indexed, pending, error
-  indexing_first_date      DateTime? // Дата первой индексации
-  indexing_last_crawl      DateTime? // Дата последнего обхода
-  indexing_crawl_frequency String?   @default("weekly") // daily, weekly, monthly
-  indexing_impressions     Int?      @default(0) // Показы в поиске за неделю
-  indexing_clicks          Int?      @default(0) // Клики из поиска за неделю
-  indexing_position        Float? // Средняя позиция в поиске
-  indexing_internal_links  Int?      @default(0) // Количество внутренних ссылок
-  indexing_external_links  Int?      @default(0) // Количество внешних бэклинков
-  indexing_last_check      DateTime? // Дата последней проверки статуса
-  indexing_errors          String? // JSON массив ошибок индексации
-
-  // 2️⃣5️⃣ PAGE SPEED / CORE WEB VITALS
-  cwv_lcp           Float? // Largest Contentful Paint (секунды)
-  cwv_fid           Float? // First Input Delay (миллисекунды)
-  cwv_cls           Float? // Cumulative Layout Shift (0-1)
-  cwv_ttfb          Float? // Time to First Byte (миллисекунды)
-  cwv_fcp           Float? // First Contentful Paint (секунды)
-  cwv_inp           Float? // Interaction to Next Paint (миллисекунды)
-  cwv_score_mobile  Int?      @default(0) // PageSpeed Score Mobile (0-100)
-  cwv_score_desktop Int?      @default(0) // PageSpeed Score Desktop (0-100)
-  cwv_last_check    DateTime? // Дата последней проверки
-  cwv_issues        String? // JSON массив проблем с производительностью
-  cwv_opportunities String? // JSON массив возможностей оптимизации
-
-  // 2️⃣6️⃣ SITEMAP CONFIGURATION
-  sitemap_include   Boolean   @default(true) // Включить в sitemap
-  sitemap_priority  Float?    @default(0.8) // Приоритет 0.0-1.0
-  sitemap_frequency String?   @default("weekly") // always, hourly, daily, weekly, monthly, yearly, never
-  sitemap_last_mod  DateTime? // Дата последнего изменения для sitemap
-  sitemap_images    String? // JSON массив изображений для sitemap
-  sitemap_videos    String? // JSON массив видео для sitemap
-  sitemap_news      Boolean   @default(false) // Включить в Google News sitemap
-
-  // 2️⃣7️⃣ SEO HEALTH SCORE
-  seo_health_score      Int?      @default(0) // Общая оценка SEO здоровья 0-100
-  seo_health_issues     String? // JSON массив проблем
-  seo_health_warnings   String? // JSON массив предупреждений
-  seo_health_passed     String? // JSON массив пройденных проверок
-  seo_health_last_audit DateTime? // Дата последнего аудита
-  seo_health_trend      String? // JSON тренд оценки за время
-
-  // 2️⃣8️⃣ COMPETITOR ANALYSIS
-  competitor_urls       String? // JSON массив URL конкурентов для этого слота
-  competitor_positions  String? // JSON позиции конкурентов по ключевым словам
-  competitor_last_check DateTime? // Дата последней проверки конкурентов
-
-  // ========================================
-
-  slot_categories slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  providers       providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  themes          themes?          @relation("DeprecatedTheme", fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  slot_reviews                          slot_reviews[]
+  slotThemes                            slot_themes[]
+  slot_categories                       slot_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  providers                             providers        @relation(fields: [provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  themes                                themes?          @relation("DeprecatedTheme", fields: [theme_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([provider_id], map: "idx_slots_provider_id")
   @@index([category_id], map: "idx_slots_category_id")
@@ -682,15 +583,13 @@ model slots {
   @@index([rating(sort: Desc)], map: "idx_slots_rating")
 }
 
-// Таблица связи многие-ко-многим для слотов и тематик
 model slot_themes {
   id         String   @id @default(cuid())
   slot_id    String
   theme_id   String
   created_at DateTime @default(now())
-
-  slots  slots  @relation(fields: [slot_id], references: [id], onDelete: Cascade)
-  themes themes @relation(fields: [theme_id], references: [id], onDelete: Cascade)
+  slots      slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
+  themes     themes   @relation(fields: [theme_id], references: [id], onDelete: Cascade)
 
   @@unique([slot_id, theme_id])
   @@index([slot_id], map: "idx_slot_themes_slot_id")
@@ -744,8 +643,8 @@ model themes {
   is_active        Boolean       @default(true)
   created_at       DateTime      @default(now())
   updated_at       DateTime      @updatedAt
-  slots_deprecated slots[]       @relation("DeprecatedTheme") // Старая связь one-to-many (deprecated)
-  slotThemes       slot_themes[] // Новая many-to-many связь
+  slotThemes       slot_themes[]
+  slots_deprecated slots[]       @relation("DeprecatedTheme")
 
   @@index([is_active])
   @@index([is_featured])
@@ -825,88 +724,244 @@ model slot_mechanics {
 }
 
 model pages {
-  slug                String   @id // e.g., "home"
-  title               String       // e.g., "Homepage"
-  hero_title          String?      // Hero H1
-  hero_desc           String?      // Hero subtitle
-
-  // Basic SEO
-  seo_title           String?      // Meta Title
-  seo_desc            String?      // Meta Description
-  seo_keywords        String?      // Meta Keywords
-
-  // Technical SEO
-  seo_canonical_url   String?      // Custom Canonical URL
-  seo_robots          String?      // Robots directives (legacy, for backward compatibility)
-
-  // Advanced Keywords System (Mirroring slots)
-  hero_keyword_1      String?
-  hero_keyword_2      String?
-  hero_keyword_3      String?
-  seo_keywords_primary  String?
-  seo_keywords_lsi      String?
-  seo_keywords_longtail String?
-  seo_keywords_geo      String?
-  seo_keywords_list     String?      // JSON array of strings [ "kw1", "kw2", ... ]
-
-  // Granular Robots (Mirroring slots)
-  robots_index             Boolean?  @default(true)
-  robots_follow            Boolean?  @default(true)
-  robots_max_snippet       Int?      @default(-1)
-  robots_max_image_preview String?   @default("large")
-  robots_max_video_preview Int?      @default(-1)
-  robots_notranslate       Boolean?  @default(false)
-  robots_noimageindex      Boolean?  @default(false)
-
-  // Localization & Geo (Mirroring slots)
-  hreflang_enabled         Boolean?  @default(false)
-  hreflang_config          String?   // JSON string
-  geo_target_enabled       Boolean?  @default(false)
-  geo_target_regions       String?   // Comma separated or JSON
-  localizations            Json?     // 52-GEO Muxed Data
-
-  // Structured Data / JSON-LD (Mirroring slots)
-  jsonld_enabled           Boolean?  @default(true)
-  jsonld_type              String?   @default("CollectionPage")
-  jsonld_enable_faq        Boolean?  @default(false)
-  jsonld_faq_json          String?   // JSON string [ { question, answer } ]
-  jsonld_enable_review     Boolean?  @default(false)
+  slug                     String   @id
+  title                    String
+  hero_title               String?
+  hero_desc                String?
+  seo_title                String?
+  seo_desc                 String?
+  seo_keywords             String?
+  seo_canonical_url        String?
+  seo_robots               String?
+  hero_keyword_1           String?
+  hero_keyword_2           String?
+  hero_keyword_3           String?
+  seo_keywords_primary     String?
+  seo_keywords_lsi         String?
+  seo_keywords_longtail    String?
+  seo_keywords_geo         String?
+  seo_keywords_list        String?
+  robots_index             Boolean? @default(true)
+  robots_follow            Boolean? @default(true)
+  robots_max_snippet       Int?     @default(-1)
+  robots_max_image_preview String?  @default("large")
+  robots_max_video_preview Int?     @default(-1)
+  robots_notranslate       Boolean? @default(false)
+  robots_noimageindex      Boolean? @default(false)
+  hreflang_enabled         Boolean? @default(false)
+  hreflang_config          String?
+  geo_target_enabled       Boolean? @default(false)
+  geo_target_regions       String?
+  jsonld_enabled           Boolean? @default(true)
+  jsonld_type              String?  @default("CollectionPage")
+  jsonld_enable_faq        Boolean? @default(false)
+  jsonld_faq_json          String?
+  jsonld_enable_review     Boolean? @default(false)
   jsonld_review_author     String?
   jsonld_review_rating     Decimal?
   jsonld_review_text       String?
-  jsonld_enable_how_to     Boolean?  @default(false)
-  jsonld_how_to_json       String?   // JSON string [ { name, text, image } ]
-  jsonld_enable_breadcrumb Boolean?  @default(true)
-  jsonld_override_auto     Boolean?  @default(false) // Custom override toggle
+  jsonld_enable_how_to     Boolean? @default(false)
+  jsonld_how_to_json       String?
+  jsonld_enable_breadcrumb Boolean? @default(true)
+  jsonld_override_auto     Boolean? @default(false)
+  info_pros                String?
+  info_cons                String?
+  og_title                 String?
+  og_desc                  String?
+  og_image                 String?
+  twitter_card             String?
+  json_schema              String?
+  fast_filters             String?
+  content                  String?
+  show_awards              Boolean? @default(false)
+  awards                   String?
+  footer_company_name      String?  @default("SlotQuest Inc.")
+  footer_description       String?  @default("The ultimate catalog for slot enthusiasts. Explore thousands of games, analyze mechanics, and find your next favorite slot with our advanced data-driven platform.")
+  footer_facebook          String?  @default("https://facebook.com/slotquest")
+  footer_twitter           String?  @default("https://twitter.com/slotquest")
+  footer_instagram         String?  @default("https://instagram.com/slotquest")
+  footer_telegram          String?  @default("https://t.me/slotquest")
+  created_at               DateTime @default(now())
+  updated_at               DateTime @updatedAt
+  localizations            Json?
+  global_affiliate_link    String?
+}
 
-  // SEO Info Pros/Cons (Mirroring slots)
-  info_pros           String?      // JSON string of pros
-  info_cons           String?      // JSON string of cons
+model blogs {
+  id               String    @id @default(cuid())
+  slug             String    @unique
+  title            String
+  content_markdown String?
+  author_name      String?   @default("SlotQuest Team")
+  author_avatar    String?
+  published_at     DateTime? @default(now())
+  updated_at       DateTime? @updatedAt
+  is_published     Boolean   @default(true)
+  tags             String?
+  seo_title        String?
+  seo_desc         String?
+  seo_keywords     String?
+  localizations    Json?
+  jsonld_article   Boolean   @default(true)
+  category         String?
+  cover_image_url  String?
+  excerpt          String?
+  is_featured      Boolean   @default(false)
+  reading_time     Int?      @default(5)
 
-  // Open Graph / Social
-  og_title            String?      // Open Graph Title
-  og_desc             String?      // Open Graph Description
-  og_image            String?      // Open Graph Image URL
-  twitter_card        String?      // Twitter Card Type
+  @@index([is_published])
+  @@index([slug])
+  @@index([category])
+  @@index([published_at(sort: Desc)])
+  @@index([is_featured])
+}
 
-  // Advanced
-  json_schema         String?      // Custom manual JSON-LD Overrides
+model slot_reviews {
+  id            String   @id @default(cuid())
+  slot_id       String
+  author_name   String
+  author_avatar String?
+  rating        Decimal
+  text          String
+  likes         Int      @default(0)
+  language      String   @default("en")
+  is_verified   Boolean  @default(true)
+  created_at    DateTime @default(now())
+  slots         slots    @relation(fields: [slot_id], references: [id], onDelete: Cascade)
 
-  fast_filters        String?      // Dynamic JSON array of top sticky filters [{category_id, name, icon}]
-  content             String?      // Dynamic JSON array of SEO Text blocks [{title, icon, text}]
-  
-  // Custom Content Sections
-  show_awards         Boolean?     @default(false)
-  awards              String?      // JSON string of awards entries
+  @@index([slot_id])
+  @@index([language])
+}
 
-  // Dynamic Footer Settings
-  footer_company_name String?      @default("SlotQuest Inc.")
-  footer_description  String?      @default("The ultimate catalog for slot enthusiasts. Explore thousands of games, analyze mechanics, and find your next favorite slot with our advanced data-driven platform.")
-  footer_facebook     String?      @default("https://facebook.com/slotquest")
-  footer_twitter      String?      @default("https://twitter.com/slotquest")
-  footer_instagram    String?      @default("https://instagram.com/slotquest")
-  footer_telegram     String?      @default("https://t.me/slotquest")
+model glossary {
+  id                   String   @id @default(cuid())
+  term                 String   @unique
+  slug                 String   @unique
+  brief_definition     String
+  detailed_explanation String?
+  related_terms        String?
+  seo_title            String?
+  seo_desc             String?
+  localizations        Json?
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+  category             String?
+  is_published         Boolean  @default(true)
+  letter               String?
 
-  created_at          DateTime @default(now())
-  updated_at          DateTime @updatedAt
+  @@index([slug])
+  @@index([letter])
+  @@index([category])
+  @@index([is_published])
+}
+
+model casinos {
+  id               String       @id @default(cuid())
+  name             String       @unique
+  slug             String       @unique
+  logo_url         String?
+  website_url      String?
+  affiliate_link   String?
+  rating           Decimal?     @default(0.0)
+  established_year Int?
+  owner            String?
+  licensing        String?
+  languages        String?
+  currencies       String?
+  deposit_methods  String?
+  withdrawal_limit String?
+  is_active        Boolean      @default(true)
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+  seo_title        String?
+  seo_desc         String?
+  content_markdown String?
+  pros_cons_json   String?
+  faq_json         String?
+  localizations    Json?
+  promotions       promotions[]
+
+  @@index([is_active])
+  @@index([rating(sort: Desc)])
+}
+
+model promotions {
+  id                String    @id @default(cuid())
+  casino_id         String
+  title             String
+  slug              String    @unique
+  promo_type        String
+  amount            String?
+  wager_requirement String?
+  promo_code        String?
+  affiliate_link    String?
+  is_exclusive      Boolean   @default(false)
+  is_active         Boolean   @default(true)
+  valid_until       DateTime?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+  seo_title         String?
+  seo_desc          String?
+  content_markdown  String?
+  localizations     Json?
+  casinos           casinos   @relation(fields: [casino_id], references: [id], onDelete: Cascade)
+
+  @@index([casino_id])
+  @@index([promo_type])
+  @@index([is_active])
+}
+
+model news {
+  id               String    @id @default(cuid())
+  title            String
+  slug             String    @unique
+  content_markdown String?
+  image_url        String?
+  source_url       String?
+  tags             String?
+  author_name      String?   @default("SlotQuest NewsBot")
+  published_at     DateTime? @default(now())
+  updated_at       DateTime  @updatedAt
+  is_published     Boolean   @default(true)
+  seo_title        String?
+  seo_desc         String?
+  localizations    Json?
+
+  @@index([is_published])
+  @@index([published_at(sort: Desc)])
+}
+
+model streamers {
+  id             String     @id @default(cuid())
+  name           String     @unique
+  slug           String     @unique
+  platform       String?
+  channel_url    String?
+  avatar_url     String?
+  bio_markdown   String?
+  favorite_slots String?
+  seo_title      String?
+  seo_desc       String?
+  localizations  Json?
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+  big_wins       big_wins[]
+
+  @@index([platform])
+}
+
+model big_wins {
+  id          String    @id @default(cuid())
+  streamer_id String
+  slot_id     String
+  multiplier  Decimal?
+  win_amount  Decimal?
+  currency    String?   @default("USD")
+  video_url   String?
+  date        DateTime?
+  created_at  DateTime  @default(now())
+  streamers   streamers @relation(fields: [streamer_id], references: [id], onDelete: Cascade)
+
+  @@index([streamer_id])
+  @@index([multiplier(sort: Desc)])
 }

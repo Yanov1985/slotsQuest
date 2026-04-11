@@ -193,12 +193,12 @@
                 <nav class="flex flex-col gap-3 lg:gap-4 w-full max-w-md mx-auto mt-2 lg:mt-0 order-3 lg:order-3">
                   <BackgroundGradient :animate="true" className="rounded-xl lg:rounded-2xl" containerClassName="w-full">
                     <component
-                      :is="slot.demo_url ? 'a' : 'button'"
-                      :href="slot.demo_url ? slot.demo_url : null"
+                      :is="(slot.demo_url || globalAffiliateLink) ? 'a' : 'button'"
+                      :href="globalAffiliateLink ? globalAffiliateLink : (slot.demo_url ? slot.demo_url : null)"
                       target="_blank"
                       rel="nofollow noopener"
                       class="group relative w-full bg-gradient-to-r from-emerald-600/20 to-green-600/20 backdrop-blur-sm border border-emerald-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 ease-out transform-gpu will-change-transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 lg:gap-3"
-                      @click="!slot.demo_url ? $emit('play-demo') : null"
+                      @click="!(globalAffiliateLink || slot.demo_url) ? $emit('play-demo') : null"
                     >
                       <Icon name="solar:gamepad-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-emerald-300 drop-shadow-md z-10" />
                       <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">{{ t('playFreeDemo') }}</span>
@@ -208,12 +208,12 @@
 
                   <BackgroundGradient :animate="true" className="rounded-xl lg:rounded-2xl" containerClassName="w-full">
                     <component
-                      :is="slot.real_play_url ? 'a' : 'button'"
-                      :href="slot.real_play_url ? slot.real_play_url : null"
+                      :is="(slot.real_play_url || globalAffiliateLink) ? 'a' : 'button'"
+                      :href="globalAffiliateLink ? globalAffiliateLink : (slot.real_play_url ? slot.real_play_url : null)"
                       target="_blank"
                       rel="nofollow sponsored noopener"
                       class="group relative w-full bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm border border-orange-400/30 text-white text-base lg:text-lg font-black py-3 lg:py-4 px-4 lg:px-6 rounded-xl lg:rounded-2xl transition-all duration-500 ease-out transform-gpu will-change-transform hover:-translate-y-1 hover:scale-[1.02] flex items-center justify-center gap-2 lg:gap-3"
-                      @click="!slot.real_play_url ? $emit('play-real') : null"
+                      @click="!(globalAffiliateLink || slot.real_play_url) ? $emit('play-real') : null"
                     >
                       <Icon name="solar:play-circle-bold" class="w-6 h-6 lg:w-7 lg:h-7 shrink-0 text-orange-300 drop-shadow-md z-10" />
                       <span class="relative z-10 whitespace-nowrap font-extrabold tracking-wide">{{ t('playForReal') }}</span>
@@ -223,7 +223,7 @@
                 </nav>
 
                 <!-- 🖥️ Описание слота (Unified) order-4 on mobile -->
-                <section class="mb-4 lg:mb-6 mt-4 lg:mt-6 order-4 lg:order-4" role="region" aria-labelledby="slot-description">
+                <section class="mb-4 lg:mb-6 mt-4 lg:mt-6 order-4 lg:order-4 bg-[#121722] p-4 sm:p-5 md:p-6 lg:p-8 rounded-2xl border border-[#1D2535] shadow-lg" role="region" aria-labelledby="slot-description">
                   <meta itemprop="description" :content="shortDescriptionRaw" />
                   <p id="slot-description" class="text-sm sm:text-base lg:text-lg leading-relaxed lg:leading-loose text-justify text-white/90 font-normal tracking-wide max-w-prose">
                     <span class="text-white/85" v-html="shortDescriptionHtml"></span>
@@ -366,6 +366,12 @@ const emit = defineEmits([
   'hover-star',
   'open-fullscreen'
 ])
+
+// Global configuration
+const globalData = useNuxtData('global-footer-data')
+const globalAffiliateLink = computed(() => {
+  return globalData.data.value?.global_affiliate_link || null
+})
 
 // Refs & Computed
 

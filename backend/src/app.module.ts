@@ -17,6 +17,11 @@ import { PrismaModule } from './prisma/prisma.module';
 import { JsonLdModule } from './jsonld/jsonld.module'; // 🎯 Модуль JSON-LD для SEO
 import { PagesModule } from './pages/pages.module';
 import { AuthModule } from './auth/auth.module';
+import { BlogsModule } from './blogs/blogs.module';
+import { GlossaryModule } from './glossary/glossary.module';
+import { NewsModule } from './news/news.module';
+import { CasinosModule } from './casinos/casinos.module';
+import { StreamersModule } from './streamers/streamers.module';
 
 @Module({
   imports: [
@@ -25,7 +30,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 100, // Максимум 100 запросов за 60 секунд (Anti-DDoS)
+      limit: 1000, // Максимум 1000 запросов за 60 секунд (Anti-DDoS)
     }]),
     CacheModule.register({
       isGlobal: true,
@@ -43,6 +48,11 @@ import { AuthModule } from './auth/auth.module';
     JsonLdModule,
     PagesModule, // 🎯 JSON-LD генерация и валидация
     AuthModule,
+    BlogsModule,
+    GlossaryModule,
+    NewsModule,
+    CasinosModule,
+    StreamersModule,
   ],
   controllers: [AppController],
   providers: [

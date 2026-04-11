@@ -27,7 +27,7 @@
 
           <!-- Tab Switcher -->
           <div class="flex p-1 bg-[#0F1117] rounded-xl border border-[#353A4A] overflow-x-auto whitespace-nowrap max-w-[90vw] sm:max-w-full scrollbar-hide">
-             <button v-for="tab in ['content', 'filters', 'seo', 'localization', 'structured', 'branding']" :key="tab" 
+             <button v-for="tab in ['content', 'filters', 'seo', 'localization', 'structured', 'branding', 'affiliate']" :key="tab" 
                @click="activeTab = tab"
                class="px-4 py-2 text-xs font-bold rounded-lg transition-all capitalize"
                :class="activeTab === tab ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-[#9CA3AF] hover:text-white hover:bg-[#1B1E26]'"
@@ -358,6 +358,20 @@
               </section>
            </div>
 
+           <!-- TAB: AFFILIATE -->
+           <div v-if="activeTab === 'affiliate'" class="space-y-8">
+              <section class="bg-[#161A21]/50 border border-[#353A4A] rounded-2xl p-4 md:p-8">
+                 <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-yellow-400"><Icon name="solar:money-bag-bold" /> Партнерская ссылка (Affiliate)</h3>
+                 <div class="space-y-4">
+                    <div>
+                       <label class="block text-xs font-bold text-[#9CA3AF] mb-1 uppercase">Global Affiliate Link</label>
+                       <input v-model="pageData.global_affiliate_link" type="text" placeholder="https://affiliatesite.com/?ref=..." class="w-full bg-[#0F1117] border border-[#353A4A] rounded-xl px-4 py-3 focus:border-yellow-500" />
+                       <p class="text-xs text-[#9CA3AF] mt-2 italic">Эта ссылка будет глобально подставляться в кнопки слотов (вместо "Играть бесплатно" и "Играть на деньги" будет кнопка "ПОДРОБНЕЕ" ведущая по этой ссылке в новой вкладке).</p>
+                    </div>
+                 </div>
+              </section>
+           </div>
+
        </div>
     </main>
     </div>
@@ -382,7 +396,8 @@ const isLoading = ref(true)
 const isSaving = ref(false)
 
 // Tab state
-const activeTab = ref('content')
+const route = useRoute()
+const activeTab = ref(route.query.tab ? String(route.query.tab) : 'content')
 
 // Section visibility state (legacy, but kept for UI compatibility if needed)
 const showHero = ref(true)
@@ -468,7 +483,10 @@ const pageData = ref({
   footer_facebook: '',
   footer_twitter: '',
   footer_instagram: '',
-  footer_telegram: ''
+  footer_telegram: '',
+
+  // Affiliate
+  global_affiliate_link: ''
 })
 
 // UI-Specific Editor States

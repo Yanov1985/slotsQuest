@@ -1,0 +1,4 @@
+{
+  "status": "error",
+  "error": "\nInvalid `prisma.mechanics.findUnique()` invocation in\nD:\\www\\Projects\\2025\\SlotQuest\\backend\\check-db.js:8:56\n\n  5 async function main() {\n  6     try {\n  7         // Find the 'popular' mechanic ID\n→ 8         const popularMechanic = await prisma.mechanics.findUnique(\nCan't reach database server at `aws-1-eu-central-1.pooler.supabase.com:6543`\n\nPlease make sure your database server is running at `aws-1-eu-central-1.pooler.supabase.com:6543`."
+}

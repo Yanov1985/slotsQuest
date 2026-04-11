@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-black font-sans selection:bg-blue-500/30 overflow-x-clip flex flex-col">
     <!-- Shared Animated Background -->
-    <div class="fixed inset-0 z-0 pointer-events-none">
+    <div v-if="!isBlogArticle" class="fixed inset-0 z-0 pointer-events-none">
       <TheBackgroundBeams :intensity="0.9" :speed="1.2" />
     </div>
 
@@ -31,6 +31,7 @@ import { Toaster } from 'vue-sonner'
 
 const route = useRoute()
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))
+const isBlogArticle = computed(() => route.name && String(route.name).startsWith('blogs-slug'))
 
 const { getPage } = usePagesApi()
 const { data: pageData } = await useAsyncData('global-footer-data', () => getPage('home'))

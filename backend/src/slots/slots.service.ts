@@ -9,6 +9,7 @@ import { UpdateSlotDto } from './dto/update-slot.dto';
 interface SlotFilters {
   provider?: string;
   category?: string;
+  mechanic?: string;
   limit?: number;
   offset?: number;
 }
@@ -81,7 +82,7 @@ export class SlotsService {
 
   async getAllSlots(filters: SlotFilters = {}) {
     try {
-      const { provider, category, limit, offset } = filters;
+      const { provider, category, mechanic, limit, offset } = filters;
 
       return await this.prisma.slots.findMany({
         where: {
@@ -95,31 +96,61 @@ export class SlotsService {
             slot_categories: {
               slug: category
             }
+          }),
+          ...(mechanic && {
+            slot_mechanics: {
+              some: {
+                mechanics: {
+                  slug: mechanic
+                }
+              }
+            }
           })
         },
-        include: {
-          providers: true,
-          slot_categories: true,
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          image_url: true,
+          thumbnail_url: true,
+          release_date: true,
+          popularity_rank: true,
+          category_id: true,
+          provider_id: true,
+          is_active: true,
+          created_at: true,
+          rating: true,
+          play_count: true,
+          localizations: true,
+          providers: {
+            select: { id: true, name: true, slug: true }
+          },
+          slot_categories: {
+            select: { id: true, name: true, slug: true }
+          },
           slot_mechanics: {
-            include: {
-              mechanics: true,
-            },
+            select: {
+              mechanic_id: true,
+              mechanics: { select: { id: true, slug: true } }
+            }
           },
           slot_bonuses: {
-            include: {
-              bonuses: true,
-            },
+            select: {
+              bonus_id: true,
+              bonuses: { select: { id: true, slug: true } }
+            }
           },
           slotThemes: {
-            include: {
-              themes: true,
-            },
-          },
+            select: {
+              theme_id: true,
+              themes: { select: { id: true, slug: true } }
+            }
+          }
         },
         orderBy: {
           created_at: 'desc',
         },
-        ...(limit && { take: limit }),
+        take: limit || 200,
         ...(offset && { skip: offset }),
       });
     } catch (error) {
@@ -137,24 +168,26 @@ export class SlotsService {
             gte: 4.5
           }
         },
-        include: {
-          providers: true,
-          slot_categories: true,
-          slot_mechanics: {
-            include: {
-              mechanics: true,
-            },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          image_url: true,
+          thumbnail_url: true,
+          release_date: true,
+          popularity_rank: true,
+          category_id: true,
+          provider_id: true,
+          is_active: true,
+          created_at: true,
+          rating: true,
+          play_count: true,
+          providers: {
+            select: { id: true, name: true, slug: true }
           },
-          slot_bonuses: {
-            include: {
-              bonuses: true,
-            },
-          },
-          slotThemes: {
-            include: {
-              themes: true,
-            },
-          },
+          slot_categories: {
+            select: { id: true, name: true, slug: true }
+          }
         },
         orderBy: {
           rating: 'desc',
@@ -173,24 +206,26 @@ export class SlotsService {
         where: {
           is_active: true,
         },
-        include: {
-          providers: true,
-          slot_categories: true,
-          slot_mechanics: {
-            include: {
-              mechanics: true,
-            },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          image_url: true,
+          thumbnail_url: true,
+          release_date: true,
+          popularity_rank: true,
+          category_id: true,
+          provider_id: true,
+          is_active: true,
+          created_at: true,
+          rating: true,
+          play_count: true,
+          providers: {
+            select: { id: true, name: true, slug: true }
           },
-          slot_bonuses: {
-            include: {
-              bonuses: true,
-            },
-          },
-          slotThemes: {
-            include: {
-              themes: true,
-            },
-          },
+          slot_categories: {
+            select: { id: true, name: true, slug: true }
+          }
         },
         orderBy: {
           play_count: 'desc',
@@ -214,24 +249,26 @@ export class SlotsService {
             { providers: { name: { contains: query } } },
           ],
         },
-        include: {
-          providers: true,
-          slot_categories: true,
-          slot_mechanics: {
-            include: {
-              mechanics: true,
-            },
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          image_url: true,
+          thumbnail_url: true,
+          release_date: true,
+          popularity_rank: true,
+          category_id: true,
+          provider_id: true,
+          is_active: true,
+          created_at: true,
+          rating: true,
+          play_count: true,
+          providers: {
+            select: { id: true, name: true, slug: true }
           },
-          slot_bonuses: {
-            include: {
-              bonuses: true,
-            },
-          },
-          slotThemes: {
-            include: {
-              themes: true,
-            },
-          },
+          slot_categories: {
+            select: { id: true, name: true, slug: true }
+          }
         },
       });
     } catch (error) {

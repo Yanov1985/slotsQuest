@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Catalog",
+    "hero_desc": "Find your favorite slot game",
+    "home": "Home"
+  },
+  "filters": {
+    "popular": "Popular",
+    "newest": "Newest",
+    "a_z": "A - Z",
+    "all_slots": "All Slots"
+  },
+  "empty_state": {
+    "title": "No slots found",
+    "desc": "Try changing your filters or search terms"
+  },
+  "error_state": {
+    "title": "Error Loading Catalog",
+    "btn": "Try Again"
+  },
+  "buttons": {
+    "play_for_free": "Play for free",
+    "play_for_money": "Play for money",
+    "back_to_catalog": "Back to Catalog",
+    "more_details": "Més Detalls"
+  },
+  "footer": {
+    "description_default": "El catàleg definitiu d'entusiastes.",
+    "nav_title": "Navegació",
+    "legal_title": "Legal i Suport",
+    "compliance_title": "Compliment",
+    "warning_18": "Només per a majors de 18 anys.",
+    "info_only": "és un lloc informatiu.",
+    "rights_reserved": "Tots els drets reservats.",
+    "secure_platform": "Plataforma Segura",
+    "verified_data": "Dades Verificades"
+  },
+  "slug": {
+    "back_to": "Tornar a",
+    "slot_not_found": "Slot No Trobat",
+    "go_to_catalog": "Anar al Catàleg",
+    "awards_and_achievements": "Premis i Assoliments",
+    "overview": "Visió General",
+    "core_mechanics": "Mecàniques Principals"
+  }
+}

@@ -85,14 +85,51 @@ export const usePageSEO = (pageRef: any, slotsRef: any = [], providersRef: any =
             if (!p) return []
             const links: any[] = []
             
-            // Hreflang
-            if (p.hreflang_enabled && p.hreflang_config?.length) {
+            // Dynamic Hreflang Tags based on actual DB localizations
+            const localizations = p.localizations || {}
+            const availableLocales = Object.keys(localizations)
+            
+            // Generate standard x-default
+            if (availableLocales.length > 0) {
+                links.push({
+                    rel: 'alternate',
+                    hreflang: 'x-default',
+                    href: `${siteUrl}` 
+                })
+                
+                // Generate alternating hreflangs for the 52 GEOs
+                availableLocales.forEach((locCode) => {
+                    // Extract exact path routing logic
+                    let canonicalPath = path
+
+                    // Remove current locale from path to get raw route '/pt-BR/about' -> '/about'
+                    const pathParts = canonicalPath.split('/').filter(Boolean)
+                    if (pathParts.length > 0 && availableLocales.includes(pathParts[0])) {
+                        pathParts.shift()
+                    }
+                    const rawPath = pathParts.join('/')
+                    
+                    // Build target URL 
+                    let targetUrl = `${siteUrl}`
+                    if (locCode !== 'en') {
+                        targetUrl += `/${locCode}`
+                    }
+                    if (rawPath) {
+                        targetUrl += `/${rawPath}`
+                    }
+
+                    links.push({
+                        rel: 'alternate',
+                        hreflang: locCode,
+                        href: targetUrl
+                    })
+                })
+            } else if (p.hreflang_enabled && p.hreflang_config?.length) {
+                // Fallback to legacy config if needed
                 p.hreflang_config.forEach((item: any) => {
                     if (!item.lang) return
-                    
                     const hreflangCode = item.region ? `${item.lang}-${item.region}` : item.lang
                     const fallbackUrl = `${siteUrl}${path}`
-
                     links.push({
                         rel: 'alternate',
                         hreflang: hreflangCode,

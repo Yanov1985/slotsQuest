@@ -1,11 +1,12 @@
 export const useSlotsApi = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   // Get all slots with optional filters
   const getSlots = async (filters?: {
     provider?: string
     category?: string
+    mechanic?: string
     limit?: number
     offset?: number
     admin?: boolean
@@ -14,6 +15,7 @@ export const useSlotsApi = () => {
 
     if (filters?.provider) query.append('provider', filters.provider)
     if (filters?.category) query.append('category', filters.category)
+    if (filters?.mechanic) query.append('mechanic', filters.mechanic)
     if (filters?.limit) query.append('limit', filters.limit.toString())
     if (filters?.offset) query.append('offset', filters.offset.toString())
     if (filters?.admin) query.append('admin', 'true')
@@ -101,7 +103,8 @@ export const useSlotsApi = () => {
       return response.data || response
     } catch (error) {
       console.error('Error creating slot:', error)
-      throw error
+      console.error('API Error in useSlotsApi.ts:', error);
+      return null; // fallback
     }
   }
 
@@ -115,7 +118,8 @@ export const useSlotsApi = () => {
       return response.data || response
     } catch (error) {
       console.error('Error updating slot:', error)
-      throw error
+      console.error('API Error in useSlotsApi.ts:', error);
+      return null; // fallback
     }
   }
 
@@ -128,7 +132,8 @@ export const useSlotsApi = () => {
       return response
     } catch (error) {
       console.error('Error deleting slot:', error)
-      throw error
+      console.error('API Error in useSlotsApi.ts:', error);
+      return null; // fallback
     }
   }
 
@@ -139,7 +144,8 @@ export const useSlotsApi = () => {
       return response.data || response
     } catch (error) {
       console.error('Error fetching slot by ID:', error)
-      throw error
+      console.error('API Error in useSlotsApi.ts:', error);
+      return null; // fallback
     }
   }
 

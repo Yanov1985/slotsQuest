@@ -1,6 +1,6 @@
 export const useFeatures = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiBase || 'http://localhost:3001'
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   const getFeatures = async (params = {}) => {
     try {
@@ -34,7 +34,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении механик:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -55,7 +56,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении механики:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -77,7 +79,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при создании механики:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -99,7 +102,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при обновлении механики:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -119,7 +123,8 @@ export const useFeatures = () => {
       return true
     } catch (error) {
       console.error('Ошибка при удалении механики:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -140,7 +145,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении механик слота:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -161,7 +167,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении слотов механики:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -183,7 +190,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при добавлении механики к слоту:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -203,7 +211,8 @@ export const useFeatures = () => {
       return true
     } catch (error) {
       console.error('Ошибка при удалении механики из слота:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -224,7 +233,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении популярных механик:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 
@@ -245,7 +255,8 @@ export const useFeatures = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении рекомендуемых механик:', error)
-      throw error
+      console.error('API Error in useFeatures.js:', error);
+      return null; // fallback
     }
   }
 

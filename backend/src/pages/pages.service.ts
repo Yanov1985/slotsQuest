@@ -1,9 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class PagesService {
-    constructor(private prisma: PrismaService) { }
+    constructor(
+        private prisma: PrismaService,
+        @Inject(CACHE_MANAGER) private cacheManager: Cache
+    ) { }
 
     private jsonFields = [
         'content',
@@ -136,6 +141,7 @@ export class PagesService {
             footer_twitter: updateData.footer_twitter !== undefined ? updateData.footer_twitter : null,
             footer_instagram: updateData.footer_instagram !== undefined ? updateData.footer_instagram : null,
             footer_telegram: updateData.footer_telegram !== undefined ? updateData.footer_telegram : null,
+            global_affiliate_link: updateData.global_affiliate_link !== undefined ? updateData.global_affiliate_link : null,
         };
 
         // Use upsert to create the page if it doesn't exist yet
@@ -148,6 +154,9 @@ export class PagesService {
                 title: dataToUpdate.title || 'New Page',
             },
         });
+
+        // Invalidate backend cache so Admin sees updates instantly
+        await this.cacheManager.del(`/api/pages/${slug}`);
 
         return this.parseFields(page);
     }

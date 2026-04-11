@@ -22,6 +22,7 @@ type SitemapUrlItem = {
   changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
   priority?: number
   images?: Array<{ loc: string; title?: string }>
+  _i18nTransform?: boolean
 }
 
 const ALLOWED_CHANGEFREQ = new Set([
@@ -75,54 +76,71 @@ function parseImagesJson(rawJson?: string | null): Array<{ loc: string; title?: 
 export default defineEventHandler(async (event) => {
   // Берем URL backend API из runtime-конфига, чтобы работать одинаково в dev/prod.
   const config = useRuntimeConfig(event)
-  const apiBase = normalizeApiBaseUrl(config.public?.apiUrl as string | undefined)
+  const baseURL = normalizeApiBaseUrl(config.public?.apiUrl as string | undefined)
 
   // Базовые страницы сайта, которые важны для Google независимо от наличия слотов.
   const staticEntries: SitemapUrlItem[] = [
     {
-      // Главная как самая приоритетная URL.
       loc: '/',
       _sitemap: 'pages',
       changefreq: 'daily',
-      priority: 1.0
+      priority: 1.0,
+      _i18nTransform: true
     },
     {
-      // Каталог слотов как второй по приоритету хаб.
       loc: '/slots',
       _sitemap: 'pages',
       changefreq: 'daily',
-      priority: 0.9
+      priority: 0.9,
+      _i18nTransform: true
     },
     {
-      // Юридические страницы полезны для trust signals и E-E-A-T.
+      loc: '/blogs',
+      _sitemap: 'pages',
+      changefreq: 'daily',
+      priority: 0.9,
+      _i18nTransform: true
+    },
+    {
+      loc: '/news',
+      _sitemap: 'pages',
+      changefreq: 'daily', // Google needs to check news hub daily
+      priority: 0.9,
+      _i18nTransform: true
+    },
+    {
       loc: '/legal/privacy-policy',
       _sitemap: 'pages',
       changefreq: 'monthly',
-      priority: 0.3
+      priority: 0.3,
+      _i18nTransform: true
     },
     {
       loc: '/legal/terms-and-conditions',
       _sitemap: 'pages',
       changefreq: 'monthly',
-      priority: 0.3
+      priority: 0.3,
+      _i18nTransform: true
     },
     {
       loc: '/legal/cookie-policy',
       _sitemap: 'pages',
       changefreq: 'monthly',
-      priority: 0.2
+      priority: 0.2,
+      _i18nTransform: true
     },
     {
       loc: '/legal/responsible-gaming',
       _sitemap: 'pages',
       changefreq: 'monthly',
-      priority: 0.4
+      priority: 0.4,
+      _i18nTransform: true
     }
   ]
 
   try {
     // Получаем все активные слоты через публичный API.
-    const response = await $fetch<SlotsApiResponse | SlotSitemapSourceItem[]>(`${apiBase}/api/slots?limit=5000`)
+    const response = await $fetch<SlotsApiResponse | SlotSitemapSourceItem[]>(`${baseURL}/api/api/slots?limit=5000`)
     const slots = Array.isArray(response) ? response : response?.data || []
 
     // Преобразуем слоты в записи sitemap с учетом индивидуальных SEO-настроек слота.
@@ -137,22 +155,12 @@ export default defineEventHandler(async (event) => {
           ? Math.min(1, Math.max(0, rawPriority))
           : 0.8
 
-        // Собираем изображения для image-sitemap (если есть).
-        const imagesFromSeo = parseImagesJson(slot.sitemap_images)
-        const heroImage = normalizeUrl(slot.image_url)
-        const thumbnailImage = normalizeUrl(slot.thumbnail_url)
-
-        const images = [
-          ...imagesFromSeo,
-          ...(heroImage ? [{ loc: heroImage, title: slot.name || undefined }] : []),
-          ...(thumbnailImage ? [{ loc: thumbnailImage, title: slot.name || undefined }] : [])
-        ].filter((img, index, arr) => arr.findIndex((candidate) => candidate.loc === img.loc) === index)
-
         const baseEntry: SitemapUrlItem = {
           loc: `/slots/${slot.slug}`,
           _sitemap: 'slots',
           changefreq,
           priority: safePriority,
+          _i18nTransform: true,
           ...(lastmod ? { lastmod } : {})
         }
 
@@ -187,7 +195,37 @@ export default defineEventHandler(async (event) => {
       })
       .filter(Boolean) as SitemapUrlItem[]
 
-    return [...staticEntries, ...slotEntries, ...imageEntries]
+    // Получаем статьи блога
+    const blogResponse = await $fetch<{ data: any[] }>(`${baseURL}/api/api/blogs?limit=1000`)
+    const blogs = blogResponse?.data || []
+
+    const blogEntries: SitemapUrlItem[] = blogs
+      .filter((post) => post?.slug && post.is_published !== false)
+      .map((post) => ({
+        loc: `/blogs/${post.slug}`,
+        _sitemap: 'pages', // Put them in pages or create a 'blogs' sitemap in nuxt.config if preferred
+        changefreq: 'weekly',
+        priority: 0.8,
+        _i18nTransform: true,
+        lastmod: toIsoDate(post.updated_at || post.published_at)
+      }))
+
+    // Получаем новости
+    const newsResponse = await $fetch<{ data: any[] }>(`${baseURL}/api/api/news?limit=1000`)
+    const newsArticles = newsResponse?.data || []
+
+    const newsEntries: SitemapUrlItem[] = newsArticles
+      .filter((post) => post?.slug && post.is_published !== false)
+      .map((post) => ({
+        loc: `/news/${post.slug}`,
+        _sitemap: 'pages',
+        changefreq: 'daily', // Новости требуют частой проверки
+        priority: 0.8,
+        _i18nTransform: true,
+        lastmod: toIsoDate(post.updated_at || post.published_at || post.created_at)
+      }))
+
+    return [...staticEntries, ...slotEntries, ...blogEntries, ...newsEntries, ...imageEntries]
   } catch (error) {
     // Если backend временно недоступен, отдаем хотя бы базовые страницы, чтобы sitemap не был пустым.
     console.error('Sitemap dynamic source error:', error)

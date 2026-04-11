@@ -11,7 +11,7 @@ type LoginResponse = {
 
 export const useAdminAuth = () => {
   const config = useRuntimeConfig()
-  const apiUrl = config.public.apiUrl || 'http://127.0.0.1:3001'
+  const apiUrl = import.meta.client ? '' : (config.public.apiUrl || 'http://127.0.0.1:3001')
 
   const tokenCookie = useCookie<string | null>('admin_token', {
     sameSite: 'lax',

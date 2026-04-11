@@ -159,11 +159,19 @@ const defaultSections = computed(() => {
   ]
 })
 
-const localSections = ref(props.sections && props.sections.length > 0 ? props.sections : defaultSections.value)
+const mapInvalidIcon = (iconStr) => {
+  if (!iconStr) return 'solar:document-text-line-duotone'
+  const map = {
+    'solar:star-bold-duotone': 'solar:star-fall-bold-duotone',
+  }
+  return map[iconStr] || iconStr
+}
+
+const localSections = ref(props.sections && props.sections.length > 0 ? props.sections.map(s => ({...s, icon: mapInvalidIcon(s.icon)})) : defaultSections.value)
 
 watch(() => props.sections, (newVal) => {
   if (newVal && newVal.length > 0) {
-    localSections.value = newVal
+    localSections.value = newVal.map(s => ({...s, icon: mapInvalidIcon(s.icon)}))
   } else {
     localSections.value = defaultSections.value
   }

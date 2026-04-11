@@ -155,20 +155,7 @@ export class ProvidersPrismaService {
       })
       .slice(0, limit);
 
-    // Return only provider data without stats
-    return providersWithStats.map(item => ({
-      id: item.id,
-      name: item.name,
-      slug: item.slug,
-      description: item.description,
-      logo_url: item.logo_url,
-      website_url: item.website_url,
-      founded_year: item.founded_year,
-      country: item.country,
-      is_active: item.is_active,
-      is_recommended: item.is_recommended,
-      created_at: item.created_at,
-      updated_at: item.updated_at,
-    }));
+    // Return only provider data without stats and slots
+    return providersWithStats.map(({ stats, slots, ...providerData }) => providerData as unknown as Provider);
   }
 }

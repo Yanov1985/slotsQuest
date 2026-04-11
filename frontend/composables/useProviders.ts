@@ -1,6 +1,6 @@
 export const useProviders = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   // Get all providers
   const getProviders = async (isAdmin = false) => {
@@ -31,7 +31,8 @@ export const useProviders = () => {
       return response
     } catch (error) {
       console.error('Error creating provider:', error)
-      throw error
+      console.error('API Error in useProviders.ts:', error);
+      return null; // fallback
     }
   }
 
@@ -45,7 +46,8 @@ export const useProviders = () => {
       return response
     } catch (error) {
       console.error('Error updating provider:', error)
-      throw error
+      console.error('API Error in useProviders.ts:', error);
+      return null; // fallback
     }
   }
 
@@ -58,7 +60,8 @@ export const useProviders = () => {
       return response
     } catch (error) {
       console.error('Error deleting provider:', error)
-      throw error
+      console.error('API Error in useProviders.ts:', error);
+      return null; // fallback
     }
   }
 

@@ -1,0 +1,34 @@
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const updates = {
+  "en": { "title": "Filters", "search_title": "Search", "search_placeholder": "Slot name...", "provider_title": "Provider", "provider_search": "Search provider...", "provider_not_found": "Provider not found", "categories_title": "Categories", "category_search": "Search category...", "category_not_found": "Category not found", "themes_title": "Themes", "theme_search": "Search theme...", "theme_not_found": "Theme not found", "mechanics_title": "Mechanics", "reset_all": "Reset all" },
+  "ru": { "title": "Фильтры", "search_title": "Поиск", "search_placeholder": "Имя слота...", "provider_title": "Провайдер", "provider_search": "Искать провайдера...", "provider_not_found": "Провайдер не найден", "categories_title": "Категории", "category_search": "Искать категорию...", "category_not_found": "Категория не найдена", "themes_title": "Темы", "theme_search": "Искать тему...", "theme_not_found": "Тема не найдена", "mechanics_title": "Механики", "reset_all": "Сбросить всё" },
+  "es": { "title": "Filtros", "search_title": "Buscar", "search_placeholder": "Nombre...", "provider_title": "Proveedor", "provider_search": "Buscar proveedor...", "provider_not_found": "Proveedor no encontrado", "categories_title": "Categorías", "category_search": "Buscar categoría...", "category_not_found": "Categoría no encontrada", "themes_title": "Temas", "theme_search": "Buscar tema...", "theme_not_found": "Tema no encontrado", "mechanics_title": "Mecánicas", "reset_all": "Restablecer todo" },
+  "pt": { "title": "Filtros", "search_title": "Pesquisar", "search_placeholder": "Nome do slot...", "provider_title": "Provedor", "provider_search": "Pesquisar provedor...", "provider_not_found": "Provedor não encontrado", "categories_title": "Categorias", "category_search": "Pesquisar categoria...", "category_not_found": "Categoria não encontrada", "themes_title": "Temas", "theme_search": "Pesquisar tema...", "theme_not_found": "Tema não encontrado", "mechanics_title": "Mecânicas", "reset_all": "Redefinir tudo" },
+  "fr": { "title": "Filtres", "search_title": "Rechercher", "search_placeholder": "Nom de la machine...", "provider_title": "Fournisseur", "provider_search": "Rechercher un fournisseur...", "provider_not_found": "Fournisseur introuvable", "categories_title": "Catégories", "category_search": "Rechercher une catégorie...", "category_not_found": "Catégorie introuvable", "themes_title": "Thèmes", "theme_search": "Rechercher un thème...", "theme_not_found": "Thème introuvable", "mechanics_title": "Mécaniques", "reset_all": "Tout réinitialiser" },
+  "de": { "title": "Filter", "search_title": "Suche", "search_placeholder": "Slot-Name...", "provider_title": "Anbieter", "provider_search": "Anbieter suchen...", "provider_not_found": "Anbieter nicht gefunden", "categories_title": "Kategorien", "category_search": "Kategorie suchen...", "category_not_found": "Kategorie nicht gefunden", "themes_title": "Themen", "theme_search": "Thema suchen...", "theme_not_found": "Thema nicht gefunden", "mechanics_title": "Mechaniken", "reset_all": "Alles zurücksetzen" },
+  "it": { "title": "Filtri", "search_title": "Cerca", "search_placeholder": "Nome della slot...", "provider_title": "Provider", "provider_search": "Cerca provider...", "provider_not_found": "Provider non trovato", "categories_title": "Categorie", "category_search": "Cerca categoria...", "category_not_found": "Categoria non trovata", "themes_title": "Temi", "theme_search": "Cerca tema...", "theme_not_found": "Tema non trovato", "mechanics_title": "Meccaniche", "reset_all": "Reimposta tutto" },
+  "pl": { "title": "Filtry", "search_title": "Szukaj", "search_placeholder": "Nazwa slotu...", "provider_title": "Dostawca", "provider_search": "Szukaj dostawcy...", "provider_not_found": "Nie znaleziono dostawcy", "categories_title": "Kategorie", "category_search": "Szukaj kategorii...", "category_not_found": "Nie znaleziono kategorii", "themes_title": "Motywy", "theme_search": "Szukaj motywu...", "theme_not_found": "Nie znaleziono motywu", "mechanics_title": "Mechaniki", "reset_all": "Resetuj wszystko" },
+  "tr": { "title": "Filtreler", "search_title": "Ara", "search_placeholder": "Slot adı...", "provider_title": "Sağlayıcı", "provider_search": "Sağlayıcı ara...", "provider_not_found": "Sağlayıcı bulunamadı", "categories_title": "Kategoriler", "category_search": "Kategori ara...", "category_not_found": "Kategori bulunamadı", "themes_title": "Temalar", "theme_search": "Tema ara...", "theme_not_found": "Tema bulunamadı", "mechanics_title": "Mekanikler", "reset_all": "Tümünü sıfırla" },
+  "el": { "title": "Φίλτρα", "search_title": "Αναζήτηση", "search_placeholder": "Όνομα...", "provider_title": "Πάροχος", "provider_search": "Αναζήτηση παρόχου...", "provider_not_found": "Δεν βρέθηκε", "categories_title": "Κατηγορίες", "category_search": "Αναζήτηση κατηγορίας...", "category_not_found": "Δεν βρέθηκε", "themes_title": "Θέματα", "theme_search": "Αναζήτηση θέματος...", "theme_not_found": "Δεν βρέθηκε", "mechanics_title": "Μηχανισμοί", "reset_all": "Επαναφορά όλων" },
+  "ja": { "title": "フィルター", "search_title": "検索", "search_placeholder": "スロット名...", "provider_title": "プロバイダー", "provider_search": "プロバイダーを検索...", "provider_not_found": "見つかりません", "categories_title": "カテゴリー", "category_search": "カテゴリーを検索...", "category_not_found": "見つかりません", "themes_title": "テーマ", "theme_search": "テーマを検索...", "theme_not_found": "見つかりません", "mechanics_title": "メカニクス", "reset_all": "すべてリセット" },
+  "zh": { "title": "过滤器", "search_title": "搜索", "search_placeholder": "老虎机名称...", "provider_title": "供应商", "provider_search": "搜索供应商...", "provider_not_found": "未找到", "categories_title": "类别", "category_search": "搜索类别...", "category_not_found": "未找到", "themes_title": "主题", "theme_search": "搜索主题...", "theme_not_found": "未找到", "mechanics_title": "机制", "reset_all": "全部重置" },
+  "hi": { "title": "फ़िल्टर", "search_title": "खोजें", "search_placeholder": "नाम...", "provider_title": "प्रदाता", "provider_search": "प्रदाता खोजें...", "provider_not_found": "नहीं मिला", "categories_title": "श्रेणियाँ", "category_search": "श्रेणी खोजें...", "category_not_found": "नहीं मिली", "themes_title": "थीम्स", "theme_search": "थीम खोजें...", "theme_not_found": "नहीं मिली", "mechanics_title": "यांत्रिकी", "reset_all": "सभी रीसेट करें" }
+}
+
+for (const [lang, data] of Object.entries(updates)) {
+  const filePath = path.join(__dirname, `locales/${lang}.json`)
+  if (fs.existsSync(filePath)) {
+    const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    if (!content.filters) content.filters = {};
+    Object.assign(content.filters, data);
+    fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
+    console.log(`Updated ${lang}.json`);
+  } else {
+    console.log(`${lang}.json not found!`);
+  }
+}

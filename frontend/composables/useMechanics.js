@@ -1,8 +1,9 @@
 export const useMechanics = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   const getMechanics = async (params = {}) => {
+    console.log('[DEBUG] baseURL is:', baseURL);
     try {
       const query = new URLSearchParams()
 
@@ -29,7 +30,8 @@ export const useMechanics = () => {
       return data?.data || data || []
     } catch (error) {
       console.error('Ошибка при получении механик:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -45,7 +47,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении механики:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -62,7 +65,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при создании механики:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -79,7 +83,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при обновлении механики:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -95,7 +100,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при удалении механики:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -111,7 +117,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при изменении статуса механики:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -127,7 +134,8 @@ export const useMechanics = () => {
       return data
     } catch (error) {
       console.error('Ошибка при получении статистики механик:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -141,7 +149,8 @@ export const useMechanics = () => {
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при поиске механик:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -157,7 +166,8 @@ export const useMechanics = () => {
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении популярных механик:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -173,7 +183,8 @@ export const useMechanics = () => {
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении рекомендуемых механик:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 
@@ -190,7 +201,8 @@ export const useMechanics = () => {
       return await getMechanics(params)
     } catch (error) {
       console.error('Ошибка при получении механик по типу:', error)
-      throw error
+      console.error('API Error in useMechanics.js:', error);
+      return null; // fallback
     }
   }
 

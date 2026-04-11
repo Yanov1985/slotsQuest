@@ -85,6 +85,24 @@
               </div>
               <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
             </NuxtLink>
+
+            <NuxtLink to="/admin/blogs" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
+              <div class="flex items-center space-x-3">
+                <Icon name="heroicons:document-text" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Блоги</span>
+              </div>
+              <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
+            </NuxtLink>
+
+            <NuxtLink to="/admin/news" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
+              <div class="flex items-center space-x-3">
+                <Icon name="heroicons:newspaper" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Новости</span>
+              </div>
+              <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
+            </NuxtLink>
+
+
           </div>
         </div>
 
@@ -99,6 +117,14 @@
               <div class="flex items-center space-x-3">
                 <Icon name="heroicons:map" class="text-[#FF6E48] text-xl" />
                 <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Sitemap</span>
+              </div>
+              <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
+            </NuxtLink>
+
+            <NuxtLink to="/admin/homepage?tab=affiliate" class="flex items-center justify-between p-3 bg-[#1B1E26]/50 hover:bg-[#1B1E26] rounded-lg transition-colors group">
+              <div class="flex items-center space-x-3">
+                <Icon name="solar:money-bag-bold" class="text-[#FF6E48] text-xl" />
+                <span class="text-[#E5E7EB] group-hover:text-[#FF6E48] transition-colors font-medium">Партнерская ссылка</span>
               </div>
               <span class="text-[#9CA3AF] group-hover:text-[#E5E7EB] transition-colors">→</span>
             </NuxtLink>

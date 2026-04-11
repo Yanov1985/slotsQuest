@@ -1,11 +1,23 @@
 export const useCategories = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = import.meta.client ? '' : config.public.apiUrl
 
   // Get all categories
   const getCategories = async () => {
     const response = await $fetch(`${baseURL}/api/categories`)
     return response
+  }
+
+  // Get category by slug
+  const getCategoryBySlug = async (slug: string) => {
+    const response = await $fetch<{ data: any }>(`${baseURL}/api/categories/slug/${slug}`)
+    return response.data
+  }
+
+  // Get slots by category
+  const getSlotsByCategory = async (slug: string) => {
+    const response = await $fetch<{ data: any }>(`${baseURL}/api/categories/${slug}/slots`)
+    return response.data
   }
 
   // Create category
@@ -36,6 +48,8 @@ export const useCategories = () => {
 
   return {
     getCategories,
+    getCategoryBySlug,
+    getSlotsByCategory,
     createCategory,
     updateCategory,
     deleteCategory

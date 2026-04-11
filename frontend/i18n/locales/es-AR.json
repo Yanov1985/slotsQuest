@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Catálogo",
+    "hero_desc": "Encuentra tu tragamonedas favorita",
+    "home": "Inicio"
+  },
+  "filters": {
+    "popular": "Populares",
+    "newest": "Más nuevos",
+    "a_z": "A - Z",
+    "all_slots": "Todas las Tragamonedas"
+  },
+  "empty_state": {
+    "title": "No se encontraron tragamonedas",
+    "desc": "Intenta cambiar tus filtros o términos de búsqueda"
+  },
+  "error_state": {
+    "title": "Error al cargar el catálogo",
+    "btn": "Intentar de nuevo"
+  },
+  "buttons": {
+    "play_for_free": "Jugar gratis",
+    "play_for_money": "Jugar por dinero",
+    "back_to_catalog": "Volver al Catálogo",
+    "more_details": "Más Detalles"
+  },
+  "footer": {
+    "description_default": "El catálogo definitivo para entusiastas de las tragamonedas. Explora miles de juegos.",
+    "nav_title": "Navegación",
+    "legal_title": "Legal y Soporte",
+    "compliance_title": "Cumplimiento",
+    "warning_18": "Estrictamente para mayores de 18 años. El juego puede ser adictivo.",
+    "info_only": "es un sitio informativo. No ofrecemos apuestas con dinero real.",
+    "rights_reserved": "Todos los derechos reservados.",
+    "secure_platform": "Plataforma Segura",
+    "verified_data": "Datos Verificados"
+  },
+  "slug": {
+    "back_to": "Volver a",
+    "slot_not_found": "Tragamonedas no encontrada",
+    "go_to_catalog": "Ir al Catálogo",
+    "awards_and_achievements": "Premios y Logros",
+    "overview": "Descripción General",
+    "core_mechanics": "Mecánicas Principales"
+  }
+}

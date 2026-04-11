@@ -306,6 +306,15 @@
                 />
               </div>
               <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Slug (URL)</label>
+                <input
+                  v-model="newsForm.slug"
+                  type="text"
+                  placeholder="Оставьте пустым для автогенерации"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Краткое описание</label>
                 <textarea
                   v-model="newsForm.excerpt"
@@ -413,44 +422,7 @@
 
 <script setup>
 // Mock data for demonstration
-const news = ref([
-  {
-    id: '1',
-    title: 'New slots are now available!',
-    excerpt: 'Добавлены 15 новых захватывающих слотов от ведущих провайдеров',
-    content: 'Мы рады сообщить о добавлении 15 новых слотов...',
-    category: 'updates',
-    status: 'published',
-    is_featured: true,
-    author: 'Админ',
-    image: 'https://via.placeholder.com/400x200',
-    created_at: '2024-01-15T10:30:00Z'
-  },
-  {
-    id: '2',
-    title: 'Турнир "Зимние призы" - выиграй до 100,000 монет!',
-    excerpt: 'Участвуй в зимнем турнире и получи шанс выиграть крупные призы',
-    content: 'С 1 по 31 января проходит турнир "Зимние призы"...',
-    category: 'tournaments',
-    status: 'published',
-    is_featured: false,
-    author: 'Админ',
-    image: 'https://via.placeholder.com/400x200',
-    created_at: '2024-01-10T14:15:00Z'
-  },
-  {
-    id: '3',
-    title: 'Бонус за первый депозит увеличен до 200%',
-    excerpt: 'Новые игроки теперь получают еще больше бонусов',
-    content: 'Мы увеличили бонус за первый депозит...',
-    category: 'promotions',
-    status: 'draft',
-    is_featured: false,
-    author: 'Админ',
-    image: null,
-    created_at: '2024-01-05T09:45:00Z'
-  }
-])
+const news = ref([])
 
 const loading = ref(false)
 const searchQuery = ref('')
@@ -529,17 +501,40 @@ const getCategoryName = (category) => {
   return categories[category] || category
 }
 
-const refreshNews = async () => {
+const fetchNews = async () => {
   loading.value = true
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  loading.value = false
+  try {
+    const res = await $fetch('/api/news?admin=true')
+    // Transform backend fields to UI fields
+    news.value = (res.data || []).map(item => ({
+      ...item,
+      // Default to "general" or fallback
+      category: item.category || 'general',
+      status: item.is_published ? 'published' : 'draft',
+      image: item.image_url,
+      content: item.content_markdown || item.content || '',
+      author: item.author_name || 'Админ'
+    }))
+  } catch (err) {
+    console.error('Failed to fetch news', err)
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => {
+  fetchNews()
+})
+
+const refreshNews = async () => {
+  await fetchNews()
 }
 
 const openAddModal = () => {
   editingNews.value = null
   newsForm.value = {
     title: '',
+    slug: '',
     excerpt: '',
     content: '',
     category: 'general',
@@ -554,6 +549,7 @@ const editNews = (article) => {
   editingNews.value = article
   newsForm.value = {
     title: article.title,
+    slug: article.slug,
     excerpt: article.excerpt,
     content: article.content,
     category: article.category,
@@ -564,33 +560,44 @@ const editNews = (article) => {
   showModal.value = true
 }
 
+const generateSlug = (text) => {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
 const saveNews = async () => {
   loading.value = true
   
+  const payload = {
+    title: newsForm.value.title,
+    slug: newsForm.value.slug || generateSlug(newsForm.value.title),
+    excerpt: newsForm.value.excerpt,
+    content_markdown: newsForm.value.content,
+    category: newsForm.value.category,
+    is_published: newsForm.value.status === 'published',
+    is_featured: newsForm.value.is_featured,
+    image_url: newsForm.value.image,
+    author_name: 'Админ'
+  }
+
   try {
     if (editingNews.value) {
-      // Update existing news
-      const index = news.value.findIndex(n => n.id === editingNews.value.id)
-      if (index !== -1) {
-        news.value[index] = {
-          ...news.value[index],
-          ...newsForm.value,
-          updated_at: new Date().toISOString()
-        }
-      }
+      await $fetch(`/api/news/${editingNews.value.id}`, {
+        method: 'PATCH',
+        body: payload
+      })
     } else {
-      // Create new news
-      const newArticle = {
-        id: Date.now().toString(),
-        ...newsForm.value,
-        author: 'Админ',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      }
-      news.value.unshift(newArticle)
+      await $fetch('/api/news', {
+        method: 'POST',
+        body: payload
+      })
     }
-    
     closeModal()
+    await fetchNews()
   } catch (error) {
     console.error('Error saving news:', error)
   } finally {
@@ -600,13 +607,13 @@ const saveNews = async () => {
 
 const toggleNewsStatus = async (article) => {
   loading.value = true
-  
   try {
-    const index = news.value.findIndex(n => n.id === article.id)
-    if (index !== -1) {
-      news.value[index].status = news.value[index].status === 'published' ? 'draft' : 'published'
-      news.value[index].updated_at = new Date().toISOString()
-    }
+    const is_published = article.status !== 'published'
+    await $fetch(`/api/news/${article.id}`, {
+      method: 'PATCH',
+      body: { is_published }
+    })
+    await fetchNews()
   } catch (error) {
     console.error('Error toggling news status:', error)
   } finally {
@@ -621,11 +628,13 @@ const confirmDelete = (article) => {
 
 const deleteNews = async () => {
   loading.value = true
-  
   try {
-    news.value = news.value.filter(n => n.id !== newsToDelete.value.id)
+    await $fetch(`/api/news/${newsToDelete.value.id}`, {
+      method: 'DELETE'
+    })
     showDeleteModal.value = false
     newsToDelete.value = null
+    await fetchNews()
   } catch (error) {
     console.error('Error deleting news:', error)
   } finally {
@@ -638,6 +647,7 @@ const closeModal = () => {
   editingNews.value = null
   newsForm.value = {
     title: '',
+    slug: '',
     excerpt: '',
     content: '',
     category: 'general',

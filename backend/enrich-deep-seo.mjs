@@ -1,34 +1,39 @@
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { PrismaClient } from '@prisma/client';
-import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
+import { OpenAI } from 'openai';
+import * as dotenv from 'dotenv';
+dotenv.config({ override: true });
 
 const prisma = new PrismaClient();
-const genAI = new GoogleGenerativeAI("AIzaSyBumteDFfUqb4F0YKkuGTdbqWb4wXFpCvE");
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Strict JSON Schema for Gemini
+// Strict JSON Schema for OpenAI Structured Outputs
 const schema = {
-  type: SchemaType.OBJECT,
+  type: "object",
   properties: {
-    seo_title: { type: SchemaType.STRING },
-    seo_description: { type: SchemaType.STRING },
-    seo_keywords_primary: { type: SchemaType.STRING },
-    seo_keywords_lsi: { type: SchemaType.STRING },
-    overview: { type: SchemaType.STRING },
-    mechanics: { type: SchemaType.STRING },
-    faq: { type: SchemaType.STRING },
-    cta_button: { type: SchemaType.STRING },
-    demo_button: { type: SchemaType.STRING }
+    seo_title: { type: "string" },
+    seo_description: { type: "string" },
+    seo_keywords_primary: { type: "string" },
+    seo_keywords_lsi: { type: "string" },
+    overview: { type: "string" },
+    mechanics: { type: "string" },
+    expert_verdict: { type: "string" },
+    pros: { type: "array", items: { type: "string" } },
+    cons: { type: "array", items: { type: "string" } },
+    how_to_play: { type: "array", items: { type: "object", properties: { step: { type: "string" }, text: { type: "string" } }, required: ["step", "text"], additionalProperties: false } },
+    faq: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "string" } }, required: ["question", "answer"], additionalProperties: false } },
+    reviews: { type: "array", items: { type: "object", properties: { author: { type: "string" }, date: { type: "string" }, rating: { type: "number" }, text: { type: "string" } }, required: ["author", "date", "rating", "text"], additionalProperties: false } },
+    cta_button: { type: "string" },
+    demo_button: { type: "string" }
   },
-  required: ["seo_title", "seo_description", "seo_keywords_primary", "seo_keywords_lsi", "overview", "mechanics", "faq", "cta_button", "demo_button"]
+  required: [
+    "seo_title", "seo_description", "seo_keywords_primary", "seo_keywords_lsi", 
+    "overview", "mechanics", "expert_verdict", "pros", "cons", "how_to_play", 
+    "faq", "reviews", "cta_button", "demo_button"
+  ],
+  additionalProperties: false
 };
-
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
-  generationConfig: {
-    responseMimeType: "application/json"
-  }
-});
 
 const BASE_LANGUAGES = [
   { code: 'en', name: 'English (UK/Global)' },
@@ -69,7 +74,7 @@ You are an Elite Semrush SEO Expert specializing in online gambling.
 We are creating the ultimate detailed casino review page for the slot "${slotName}" by "${providerName}".
 Target Language/Region: ${targetLang.name} (${targetLang.code}).
 
-Based on the original English review text provided below, generate an extremely detailed, hyper-optimized SEO matrix localized for that specific language and gambling culture. Inject high-volume local search slang (like 'comprar bonus', 'taktikleri', 'заносы', 'apuesta', etc. where culturally appropriate).
+Based on the original English review text provided below, generate an extremely detailed, hyper-optimized SEO matrix localized for that specific language and gambling culture. Inject high-volume local search slang ONLY if it naturally belongs to the target language (e.g. do not use Turkish slang for English).
 
 Schema Guide:
 - seo_title: Optimized Title Tag (around 60 chars)
@@ -78,7 +83,12 @@ Schema Guide:
 - seo_keywords_lsi: 5-7 long-tail LSI keywords separated by commas
 - overview: A rich, long-form 2-3 paragraph SEO text describing themes, volatility, and gameplay. Use HTML like <strong> and <br>. Must sound written by a true casino expert.
 - mechanics: 1 short paragraph summarizing the Tumble/Megaways/Free Spins features.
-- faq: An HTML formatted list of 2 or 3 FAQ Q&A pairs (e.g. <strong>Q: What is the RTP?</strong><br>A: ...)
+- expert_verdict: A short analytical expert verdict (paragraph with HTML if needed), giving reasons why this slot is good or bad.
+- pros: A list of 3-5 pros/advantages in the target language.
+- cons: A list of 2-3 cons/disadvantages in the target language.
+- how_to_play: A list of 3-5 simple sequential steps (step name and text) on how to play the game, fully localized.
+- faq: An array of 3 FAQ Q&A objects (question and answer strings).
+- reviews: Generate 3 realistic mock user reviews. Use local-sounding names where possible, date strings like 'May 12, 2023', ratings out of 5, and the review text itself.
 - cta_button: A punchy Call To Action for the Real Money play button (e.g. 'Play ${slotName} for Real!')
 - demo_button: A Call to action for the Demo play button
 
@@ -87,11 +97,23 @@ ${reviewText ? reviewText.substring(0, 3000) : `Detailed information about the s
 `;
 
   try {
-    const result = await model.generateContent(prompt);
-    const content = result.response.text();
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      response_format: {
+          type: "json_schema",
+          json_schema: {
+              name: "seo_matrix",
+              strict: true,
+              schema: schema
+          }
+      }
+    });
+    
+    const content = response.choices[0].message.content;
     return JSON.parse(content);
   } catch (e) {
-    console.error(`     ❌ Gemini Error on ${targetLang.code}:`, e.message);
+    console.error(`     ❌ OpenAI Error on ${targetLang.code}:`, e.message);
     return null;
   }
 }
@@ -141,7 +163,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function start() {
   console.log('🤖 Starting Enterprise Deep-Text LLM SEO Engine (Google Gemini)...');
   
-  const slots = await prisma.slots.findMany({ include: { providers: true } });
+  const slots = await prisma.slots.findMany({ 
+      include: { providers: true }
+  });
   console.log(`Found ${slots.length} slots in DB.`);
 
   for (let slot of slots) {
@@ -149,11 +173,10 @@ async function start() {
     let existingRaw = slot.localizations || {};
     let existingJson = typeof existingRaw === 'string' ? JSON.parse(existingRaw) : existingRaw;
     
-    // Check if English overview is huge. If it already has deep text, skip it!
-    if (existingJson['en'] && existingJson['en'].overview && existingJson['en'].overview.length > 500) {
-        if (slot.slug !== 'sweet-bonanza') { // Let's always run at least the top ones if they lack
-          // Let's just process all slots without deep overviews
-        }
+    // Check if it already has deep SEO content (e.g., faq is present).
+    if (existingJson['en'] && existingJson['en'].faq && Array.isArray(existingJson['en'].faq) && existingJson['en'].faq.length > 0) {
+        console.log(`⏩ Skipping [${slot.name}] - Already has deep SEO content.`);
+        continue;
     }
 
     console.log(`\\n==================================================`);

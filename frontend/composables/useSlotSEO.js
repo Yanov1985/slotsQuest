@@ -190,12 +190,12 @@ export const useSlotSEO = ({
                     localizations.forEach(loc => {
                         const code = loc.code || loc.region;
                         if (!code || code === 'en') return;
-                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code}${slotUrl}` });
+                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code.toLowerCase()}${slotUrl}` });
                     });
                 } else if (localizations && typeof localizations === 'object') {
                     Object.entries(localizations).forEach(([code, locData]) => {
                         if (!code || code === 'en') return;
-                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code}${slotUrl}` });
+                        links.push({ rel: 'alternate', hreflang: code.toLowerCase(), href: `${baseUrl}/${code.toLowerCase()}${slotUrl}` });
                     });
                 }
             } catch (e) {

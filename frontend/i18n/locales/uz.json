@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "catalog": "Katalog",
+    "hero_desc": "Sevimli slot o'yiningizni toping",
+    "home": "Bosh sahifa"
+  },
+  "filters": {
+    "popular": "Ommabop",
+    "newest": "Eng yangi",
+    "a_z": "A - Z",
+    "all_slots": "Barcha Slotlar"
+  },
+  "empty_state": {
+    "title": "Slotlar topilmadi",
+    "desc": "Filtrlarni yoki qidiruv so'zlarini o'zgartirib ko'ring"
+  },
+  "error_state": {
+    "title": "Katalogni yuklashda xato",
+    "btn": "Qayta urinib ko'ring"
+  },
+  "buttons": {
+    "play_for_free": "Bepul o'ynash",
+    "play_for_money": "Pulga o'ynash",
+    "back_to_catalog": "Katalogga qaytish",
+    "more_details": "Batafsil"
+  },
+  "footer": {
+    "description_default": "Slot ishqibozlari uchun yakuniy katalog.",
+    "nav_title": "Navigatsiya",
+    "legal_title": "Huquqiy",
+    "compliance_title": "Muvofiqlik",
+    "warning_18": "Faqat 18 yoshdan oshganlar uchun.",
+    "info_only": "axborot sayti. Biz qimor o'yinlarini taklif qilmaymiz.",
+    "rights_reserved": "Barcha huquqlar himoyalangan.",
+    "secure_platform": "Xavfsiz platforma",
+    "verified_data": "Tasdiqlangan ma'lumotlar"
+  },
+  "slug": {
+    "back_to": "Qaytish",
+    "slot_not_found": "Slot topilmadi",
+    "go_to_catalog": "Katalogga o'tish",
+    "awards_and_achievements": "Mukofotlar va yutuqlar",
+    "overview": "Umumiy ko'rinish",
+    "core_mechanics": "Asosiy mexanika"
+  }
+}
